@@ -83,6 +83,9 @@
 		145394EF166F220D00417F61 /* MyFlight2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				1823C9C4166F243F0079CA3F /* Controller */,
+				1823C9C3166F24370079CA3F /* View */,
+				1823C9C1166F24240079CA3F /* Model */,
 				145394F8166F220E00417F61 /* AppDelegate.h */,
 				145394F9166F220E00417F61 /* AppDelegate.m */,
 				14539501166F220E00417F61 /* ViewController.h */,
@@ -105,6 +108,27 @@
 				145394FF166F220E00417F61 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1823C9C1166F24240079CA3F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1823C9C3166F24370079CA3F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1823C9C4166F243F0079CA3F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +316,7 @@
 				1453950B166F220E00417F61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
