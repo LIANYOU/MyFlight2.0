@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "OneWayTicketCheckController.h"
+#import "OneWayCheckViewController.h"
 #import "MyCenterViewController.h"
 
 @interface ViewController ()
@@ -30,15 +30,11 @@
 }
 
 - (IBAction)showTicketReservation:(id)sender {
-    
-    CCLog(@"显示机票预订");
 
-    OneWayTicketCheckController *one = [[OneWayTicketCheckController alloc] init];
+    OneWayCheckViewController *one = [[OneWayCheckViewController alloc] init];
     [self.navigationController pushViewController:one animated:YES];
     
     [one release];
-    
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated{

@@ -20,8 +20,8 @@
 		14539506166F220E00417F61 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14539504166F220E00417F61 /* ViewController.xib */; };
 		1453951D166F278000417F61 /* MyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1453951B166F278000417F61 /* MyCenterViewController.m */; };
 		1453951E166F278000417F61 /* MyCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1453951C166F278000417F61 /* MyCenterViewController.xib */; };
-		14539531166F314A00417F61 /* OneWayTicketCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1453952F166F314A00417F61 /* OneWayTicketCheckController.m */; };
-		14539532166F314A00417F61 /* OneWayTicketCheckController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14539530166F314A00417F61 /* OneWayTicketCheckController.xib */; };
+		18CA7394166F6EA100D7E9A3 /* OneWayCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA7392166F6EA100D7E9A3 /* OneWayCheckViewController.m */; };
+		18CA7395166F6EA100D7E9A3 /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,9 +44,9 @@
 		1453951A166F278000417F61 /* MyCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterViewController.h; sourceTree = "<group>"; };
 		1453951B166F278000417F61 /* MyCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterViewController.m; sourceTree = "<group>"; };
 		1453951C166F278000417F61 /* MyCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterViewController.xib; sourceTree = "<group>"; };
-		1453952E166F314A00417F61 /* OneWayTicketCheckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWayTicketCheckController.h; sourceTree = "<group>"; };
-		1453952F166F314A00417F61 /* OneWayTicketCheckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneWayTicketCheckController.m; sourceTree = "<group>"; };
-		14539530166F314A00417F61 /* OneWayTicketCheckController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneWayTicketCheckController.xib; sourceTree = "<group>"; };
+		18CA7391166F6EA100D7E9A3 /* OneWayCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWayCheckViewController.h; sourceTree = "<group>"; };
+		18CA7392166F6EA100D7E9A3 /* OneWayCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneWayCheckViewController.m; sourceTree = "<group>"; };
+		18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneWayCheckViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,9 +133,9 @@
 		14539523166F2C6800417F61 /* TicketCheck */ = {
 			isa = PBXGroup;
 			children = (
-				1453952E166F314A00417F61 /* OneWayTicketCheckController.h */,
-				1453952F166F314A00417F61 /* OneWayTicketCheckController.m */,
-				14539530166F314A00417F61 /* OneWayTicketCheckController.xib */,
+				18CA7391166F6EA100D7E9A3 /* OneWayCheckViewController.h */,
+				18CA7392166F6EA100D7E9A3 /* OneWayCheckViewController.m */,
+				18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */,
 			);
 			name = TicketCheck;
 			sourceTree = "<group>";
@@ -220,7 +220,7 @@
 				14539500166F220E00417F61 /* Default-568h@2x.png in Resources */,
 				14539506166F220E00417F61 /* ViewController.xib in Resources */,
 				1453951E166F278000417F61 /* MyCenterViewController.xib in Resources */,
-				14539532166F314A00417F61 /* OneWayTicketCheckController.xib in Resources */,
+				18CA7395166F6EA100D7E9A3 /* OneWayCheckViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +235,7 @@
 				145394FA166F220E00417F61 /* AppDelegate.m in Sources */,
 				14539503166F220E00417F61 /* ViewController.m in Sources */,
 				1453951D166F278000417F61 /* MyCenterViewController.m in Sources */,
-				14539531166F314A00417F61 /* OneWayTicketCheckController.m in Sources */,
+				18CA7394166F6EA100D7E9A3 /* OneWayCheckViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
