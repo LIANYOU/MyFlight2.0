@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		145394EA166F220D00417F61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394E9166F220D00417F61 /* UIKit.framework */; };
+		145394EC166F220D00417F61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394EB166F220D00417F61 /* Foundation.framework */; };
+		145394EE166F220D00417F61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394ED166F220D00417F61 /* CoreGraphics.framework */; };
+		145394F4166F220D00417F61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 145394F2166F220D00417F61 /* InfoPlist.strings */; };
+		145394F6166F220E00417F61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 145394F5166F220E00417F61 /* main.m */; };
+		145394FA166F220E00417F61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 145394F9166F220E00417F61 /* AppDelegate.m */; };
+		145394FC166F220E00417F61 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 145394FB166F220E00417F61 /* Default.png */; };
+		145394FE166F220E00417F61 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 145394FD166F220E00417F61 /* Default@2x.png */; };
+		14539500166F220E00417F61 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 145394FF166F220E00417F61 /* Default-568h@2x.png */; };
+		14539503166F220E00417F61 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14539502166F220E00417F61 /* ViewController.m */; };
+		14539506166F220E00417F61 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14539504166F220E00417F61 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		145394E5166F220D00417F61 /* MyFlight2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFlight2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		145394E9166F220D00417F61 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		145394EB166F220D00417F61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		145394ED166F220D00417F61 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		145394F1166F220D00417F61 /* MyFlight2.0-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyFlight2.0-Info.plist"; sourceTree = "<group>"; };
+		145394F3166F220D00417F61 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		145394F5166F220E00417F61 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		145394F7166F220E00417F61 /* MyFlight2.0-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyFlight2.0-Prefix.pch"; sourceTree = "<group>"; };
+		145394F8166F220E00417F61 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		145394F9166F220E00417F61 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		145394FB166F220E00417F61 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		145394FD166F220E00417F61 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		145394FF166F220E00417F61 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		14539501166F220E00417F61 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		14539502166F220E00417F61 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		14539505166F220E00417F61 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		145394E2166F220D00417F61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				145394EA166F220D00417F61 /* UIKit.framework in Frameworks */,
+				145394EC166F220D00417F61 /* Foundation.framework in Frameworks */,
+				145394EE166F220D00417F61 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		145394DA166F220D00417F61 = {
+			isa = PBXGroup;
+			children = (
+				145394EF166F220D00417F61 /* MyFlight2.0 */,
+				145394E8166F220D00417F61 /* Frameworks */,
+				145394E6166F220D00417F61 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		145394E6166F220D00417F61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				145394E5166F220D00417F61 /* MyFlight2.0.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		145394E8166F220D00417F61 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				145394E9166F220D00417F61 /* UIKit.framework */,
+				145394EB166F220D00417F61 /* Foundation.framework */,
+				145394ED166F220D00417F61 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		145394EF166F220D00417F61 /* MyFlight2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				145394F8166F220E00417F61 /* AppDelegate.h */,
+				145394F9166F220E00417F61 /* AppDelegate.m */,
+				14539501166F220E00417F61 /* ViewController.h */,
+				14539502166F220E00417F61 /* ViewController.m */,
+				14539504166F220E00417F61 /* ViewController.xib */,
+				145394F0166F220D00417F61 /* Supporting Files */,
+			);
+			path = MyFlight2.0;
+			sourceTree = "<group>";
+		};
+		145394F0166F220D00417F61 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				145394F1166F220D00417F61 /* MyFlight2.0-Info.plist */,
+				145394F2166F220D00417F61 /* InfoPlist.strings */,
+				145394F5166F220E00417F61 /* main.m */,
+				145394F7166F220E00417F61 /* MyFlight2.0-Prefix.pch */,
+				145394FB166F220E00417F61 /* Default.png */,
+				145394FD166F220E00417F61 /* Default@2x.png */,
+				145394FF166F220E00417F61 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		145394E4166F220D00417F61 /* MyFlight2.0 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14539509166F220E00417F61 /* Build configuration list for PBXNativeTarget "MyFlight2.0" */;
+			buildPhases = (
+				145394E1166F220D00417F61 /* Sources */,
+				145394E2166F220D00417F61 /* Frameworks */,
+				145394E3166F220D00417F61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyFlight2.0;
+			productName = MyFlight2.0;
+			productReference = 145394E5166F220D00417F61 /* MyFlight2.0.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		145394DC166F220D00417F61 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "LIAN YOU";
+			};
+			buildConfigurationList = 145394DF166F220D00417F61 /* Build configuration list for PBXProject "MyFlight2.0" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 145394DA166F220D00417F61;
+			productRefGroup = 145394E6166F220D00417F61 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				145394E4166F220D00417F61 /* MyFlight2.0 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		145394E3166F220D00417F61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				145394F4166F220D00417F61 /* InfoPlist.strings in Resources */,
+				145394FC166F220E00417F61 /* Default.png in Resources */,
+				145394FE166F220E00417F61 /* Default@2x.png in Resources */,
+				14539500166F220E00417F61 /* Default-568h@2x.png in Resources */,
+				14539506166F220E00417F61 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		145394E1166F220D00417F61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				145394F6166F220E00417F61 /* main.m in Sources */,
+				145394FA166F220E00417F61 /* AppDelegate.m in Sources */,
+				14539503166F220E00417F61 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		145394F2166F220D00417F61 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				145394F3166F220D00417F61 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		14539504166F220E00417F61 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14539505166F220E00417F61 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		14539507166F220E00417F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		14539508166F220E00417F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1453950A166F220E00417F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MyFlight2.0/MyFlight2.0-Prefix.pch";
+				INFOPLIST_FILE = "MyFlight2.0/MyFlight2.0-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1453950B166F220E00417F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MyFlight2.0/MyFlight2.0-Prefix.pch";
+				INFOPLIST_FILE = "MyFlight2.0/MyFlight2.0-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		145394DF166F220D00417F61 /* Build configuration list for PBXProject "MyFlight2.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14539507166F220E00417F61 /* Debug */,
+				14539508166F220E00417F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14539509166F220E00417F61 /* Build configuration list for PBXNativeTarget "MyFlight2.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1453950A166F220E00417F61 /* Debug */,
+				1453950B166F220E00417F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 145394DC166F220D00417F61 /* Project object */;
+}
