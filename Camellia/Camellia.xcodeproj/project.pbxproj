@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14BD6258166D9F5700BED584 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BD6256166D9F5700BED584 /* MainPageViewController.m */; };
-		14BD6259166D9F5700BED584 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14BD6257166D9F5700BED584 /* MainPageViewController.xib */; };
+		14EDBFF4166F147200DA4FF2 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EDBFF2166F147200DA4FF2 /* MainPageViewController.m */; };
+		14EDBFF5166F147200DA4FF2 /* MainPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14EDBFF3166F147200DA4FF2 /* MainPageViewController.xib */; };
 		183DAB55166C450000788B0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183DAB54166C450000788B0E /* UIKit.framework */; };
 		183DAB57166C450000788B0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183DAB56166C450000788B0E /* Foundation.framework */; };
 		183DAB59166C450000788B0E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183DAB58166C450000788B0E /* CoreGraphics.framework */; };
@@ -22,9 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14BD6255166D9F5700BED584 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
-		14BD6256166D9F5700BED584 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
-		14BD6257166D9F5700BED584 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
+		14EDBFF1166F147200DA4FF2 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
+		14EDBFF2166F147200DA4FF2 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
+		14EDBFF3166F147200DA4FF2 /* MainPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageViewController.xib; sourceTree = "<group>"; };
 		183DAB50166C450000788B0E /* Camellia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Camellia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		183DAB54166C450000788B0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		183DAB56166C450000788B0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,13 +91,13 @@
 		14BD6248166D9E1200BED584 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				14EDBFF1166F147200DA4FF2 /* MainPageViewController.h */,
+				14EDBFF2166F147200DA4FF2 /* MainPageViewController.m */,
+				14EDBFF3166F147200DA4FF2 /* MainPageViewController.xib */,
 				14BD626D166DA8FF00BED584 /* TravelAssistant */,
 				14BD626C166DA70C00BED584 /* TicketReservation */,
 				14BD626B166DA6AC00BED584 /* ChooseSeatOnline */,
 				14BD626A166DA65800BED584 /* MyCenter */,
-				14BD6255166D9F5700BED584 /* MainPageViewController.h */,
-				14BD6256166D9F5700BED584 /* MainPageViewController.m */,
-				14BD6257166D9F5700BED584 /* MainPageViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -351,7 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				183DAB5F166C450000788B0E /* InfoPlist.strings in Resources */,
-				14BD6259166D9F5700BED584 /* MainPageViewController.xib in Resources */,
+				14EDBFF5166F147200DA4FF2 /* MainPageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +368,7 @@
 				183DAB79166C475E00788B0E /* AppContextHandler.m in Sources */,
 				183DAB7D166C480200788B0E /* MockServiceShell.m in Sources */,
 				183DAB81166C49AF00788B0E /* User.m in Sources */,
-				14BD6258166D9F5700BED584 /* MainPageViewController.m in Sources */,
+				14EDBFF4166F147200DA4FF2 /* MainPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
