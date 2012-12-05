@@ -10,4 +10,22 @@
 
 @interface ViewController : UIViewController
 
+//显示机票预订
+- (IBAction)showTicketReservation:(id)sender;
+
+//显示我的中心
+- (IBAction)showMyCenter:(id)sender;
+
+//显示更多 设置
+- (IBAction)showMoreView:(id)sender;
+
+//显示出行助手
+- (IBAction)showTravelAssistant:(id)sender;
+
+//在线选座
+- (IBAction)chooseSeatOnline:(id)sender;
+//显示航空公司常旅客
+- (IBAction)showRegularPassengerController:(id)sender;
+
+
 @end
