@@ -9,6 +9,7 @@
 #import "ShowSelectedResultViewController.h"
 #import "SelectResultCell.h"
 #import "CustomTableView.h"
+#import "WriteOrderViewController.h"
 @interface ShowSelectedResultViewController ()
 
 @end
@@ -107,7 +108,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    WriteOrderViewController * order = [[WriteOrderViewController alloc] init];
+    [self.navigationController pushViewController:order animated:YES];
+    [order release];
 }
 
 #pragma mark - UIScrollViewDelegate

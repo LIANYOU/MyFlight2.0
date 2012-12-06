@@ -1,14 +1,14 @@
 //
-//  WriteOrderDetailsCell.m
+//  WriterOrderCommonCell.m
 //  MyFlight2.0
 //
 //  Created by sss on 12-12-6.
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import "WriteOrderDetailsCell.h"
+#import "WriterOrderCommonCell.h"
 
-@implementation WriteOrderDetailsCell
+@implementation WriterOrderCommonCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,14 +27,10 @@
 }
 
 - (void)dealloc {
-    [personName release];
-    [phoneNumber release];
-    [addPerson release];
-    [_personName release];
-    [_phoneNumber release];
-    [_person release];
-    [_phone release];
-    [_addPerson release];
+    [firstLable release];
+    [secondLabel release];
+    [_firstLable release];
+    [_secondLable release];
     [super dealloc];
 }
 @end

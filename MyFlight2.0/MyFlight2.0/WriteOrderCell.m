@@ -36,6 +36,8 @@
     [image release];
     [endTime release];
     [endAirPortName release];
+    [backView release];
+    [_backView release];
     [super dealloc];
 }
 @end
