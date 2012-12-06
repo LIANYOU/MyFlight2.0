@@ -26,4 +26,16 @@
     // Configure the view for the selected state
 }
 
+- (void)dealloc {
+    [temporaryLabel release];
+    [airPort release];
+    [palntType release];
+    [beginTime release];
+    [endTime release];
+    [pay release];
+    [discount release];
+    [ticketCount release];
+    [arrowsImage release];
+    [super dealloc];
+}
 @end
