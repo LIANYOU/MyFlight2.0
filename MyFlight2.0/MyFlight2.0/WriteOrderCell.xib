@@ -264,7 +264,6 @@
 										<string key="NSFrame">{{249, 35}, {56, 18}}</string>
 										<reference key="NSSuperview" ref="945038654"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -314,11 +313,21 @@
 				<reference key="NSNextKeyView" ref="828549082"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="828549082"/>
+				<string key="IBUIReuseIdentifier">Cell1</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">writeOrderCell</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="352354745"/>
+					</object>
+					<int key="connectionID">146</int>
+				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">HUButton</string>
@@ -369,14 +378,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">image</string>
-						<reference key="source" ref="352354745"/>
-						<reference key="destination" ref="470652711"/>
-					</object>
-					<int key="connectionID">143</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">endTime</string>
 						<reference key="source" ref="352354745"/>
 						<reference key="destination" ref="665100473"/>
@@ -390,6 +391,14 @@
 						<reference key="destination" ref="732153992"/>
 					</object>
 					<int key="connectionID">145</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">backView</string>
+						<reference key="source" ref="352354745"/>
+						<reference key="destination" ref="945038654"/>
+					</object>
+					<int key="connectionID">148</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1266,6 +1275,7 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="3" key="10.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<array key="10.IBViewMetadataConstraints">
 					<reference ref="273295292"/>
 					<reference ref="2467668"/>
@@ -1382,7 +1392,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">145</int>
+			<int key="maxID">148</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1395,11 +1405,20 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">WirterOrderTwoLineCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/WirterOrderTwoLineCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">WriteOrderCell</string>
 					<string key="superclassName">UITableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="HUButton">UILabel</string>
 						<string key="airPortName">UILabel</string>
+						<string key="backView">UIView</string>
 						<string key="date">UILabel</string>
 						<string key="endAirPortName">UILabel</string>
 						<string key="endTime">UILabel</string>
@@ -1416,6 +1435,10 @@
 						<object class="IBToOneOutletInfo" key="airPortName">
 							<string key="name">airPortName</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="backView">
+							<string key="name">backView</string>
+							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="date">
 							<string key="name">date</string>
@@ -1452,11 +1475,99 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">WriteOrderDetailsCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="addPerson">UIButton</string>
+						<string key="personName">UILabel</string>
+						<string key="phoneNumber">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="addPerson">
+							<string key="name">addPerson</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="personName">
+							<string key="name">personName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="phoneNumber">
+							<string key="name">phoneNumber</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/WriteOrderDetailsCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">WriteOrderViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="orderMoney">UILabel</string>
+						<string key="orderScrollView">UIScrollView</string>
+						<string key="orderTableView">UITableView</string>
+						<string key="wirterOrderTwoLineCell">WirterOrderTwoLineCell</string>
+						<string key="writeOrderCell">WriteOrderCell</string>
+						<string key="writeOrderDetailsCell">WriteOrderDetailsCell</string>
+						<string key="writerOrderCommonCell">WriterOrderCommonCell</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="orderMoney">
+							<string key="name">orderMoney</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="orderScrollView">
+							<string key="name">orderScrollView</string>
+							<string key="candidateClassName">UIScrollView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="orderTableView">
+							<string key="name">orderTableView</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="wirterOrderTwoLineCell">
+							<string key="name">wirterOrderTwoLineCell</string>
+							<string key="candidateClassName">WirterOrderTwoLineCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="writeOrderCell">
+							<string key="name">writeOrderCell</string>
+							<string key="candidateClassName">WriteOrderCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="writeOrderDetailsCell">
+							<string key="name">writeOrderDetailsCell</string>
+							<string key="candidateClassName">WriteOrderDetailsCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="writerOrderCommonCell">
+							<string key="name">writerOrderCommonCell</string>
+							<string key="candidateClassName">WriterOrderCommonCell</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/WriteOrderViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">WriterOrderCommonCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="firstLable">UILabel</string>
+						<string key="secondLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="firstLable">
+							<string key="name">firstLable</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="secondLabel">
+							<string key="name">secondLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/WriterOrderCommonCell.h</string>
 					</object>
 				</object>
 			</array>

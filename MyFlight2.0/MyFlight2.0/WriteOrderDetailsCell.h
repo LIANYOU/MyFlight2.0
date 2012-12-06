@@ -9,5 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface WriteOrderDetailsCell : UITableViewCell
+{    
+    IBOutlet UIButton *addPerson;
+    IBOutlet UILabel *phoneNumber;
+    IBOutlet UILabel *personName;
+}
+@property (retain, nonatomic) IBOutlet UILabel *personName;
+@property (retain, nonatomic) IBOutlet UILabel *phoneNumber;
+@property (retain, nonatomic) IBOutlet UILabel *person;
+@property (retain, nonatomic) IBOutlet UILabel *phone;
+@property (retain, nonatomic) IBOutlet UIButton *addPerson;
 
 @end

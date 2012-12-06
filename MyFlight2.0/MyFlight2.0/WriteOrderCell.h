@@ -10,6 +10,7 @@
 
 @interface WriteOrderCell : UITableViewCell
 {
+    IBOutlet UIView *backView;
     IBOutlet UILabel *HUButton;
     IBOutlet UILabel *endAirPortName;
     IBOutlet UILabel *endTime;
@@ -20,4 +21,5 @@
     IBOutlet UILabel *plantType;
     IBOutlet UILabel *airPortName;
 }
+@property (retain, nonatomic) IBOutlet UIView *backView;
 @end

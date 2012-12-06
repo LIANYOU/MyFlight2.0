@@ -33,6 +33,10 @@
 		18CA7395166F6EA100D7E9A3 /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */; };
 		18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */; };
 		18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */; };
+		18D88F591670967400A3B959 /* WriterOrderCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D88F581670967400A3B959 /* WriterOrderCommonCell.m */; };
+		18D88F5C1670968700A3B959 /* WriterOrderCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D88F5B1670968700A3B959 /* WriterOrderCommonCell.xib */; };
+		18D88F6C167099DC00A3B959 /* WirterOrderTwoLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D88F6B167099DC00A3B959 /* WirterOrderTwoLineCell.m */; };
+		18D88F6E167099EF00A3B959 /* WirterOrderTwoLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D88F6D167099EE00A3B959 /* WirterOrderTwoLineCell.xib */; };
 		18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */; };
 		18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */; };
 		18EAE79716703B3800CA6265 /* SelectResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE79616703B3800CA6265 /* SelectResultCell.m */; };
@@ -88,6 +92,12 @@
 		18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
 		18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistroyCheckViewController.m; sourceTree = "<group>"; };
 		18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistroyCheckViewController.xib; sourceTree = "<group>"; };
+		18D88F571670967400A3B959 /* WriterOrderCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriterOrderCommonCell.h; sourceTree = "<group>"; };
+		18D88F581670967400A3B959 /* WriterOrderCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriterOrderCommonCell.m; sourceTree = "<group>"; };
+		18D88F5B1670968700A3B959 /* WriterOrderCommonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriterOrderCommonCell.xib; sourceTree = "<group>"; };
+		18D88F6A167099DC00A3B959 /* WirterOrderTwoLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WirterOrderTwoLineCell.h; sourceTree = "<group>"; };
+		18D88F6B167099DC00A3B959 /* WirterOrderTwoLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WirterOrderTwoLineCell.m; sourceTree = "<group>"; };
+		18D88F6D167099EE00A3B959 /* WirterOrderTwoLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WirterOrderTwoLineCell.xib; sourceTree = "<group>"; };
 		18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
 		18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
 		18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
@@ -307,6 +317,12 @@
 				18EAE7CC16708BFA00CA6265 /* WriteOrderDetailsCell.h */,
 				18EAE7CD16708BFB00CA6265 /* WriteOrderDetailsCell.m */,
 				18EAE7CF16708C0F00CA6265 /* WriteOrderDetailsCell.xib */,
+				18D88F571670967400A3B959 /* WriterOrderCommonCell.h */,
+				18D88F581670967400A3B959 /* WriterOrderCommonCell.m */,
+				18D88F5B1670968700A3B959 /* WriterOrderCommonCell.xib */,
+				18D88F6A167099DC00A3B959 /* WirterOrderTwoLineCell.h */,
+				18D88F6B167099DC00A3B959 /* WirterOrderTwoLineCell.m */,
+				18D88F6D167099EE00A3B959 /* WirterOrderTwoLineCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -374,16 +390,15 @@
 				18EAE79916703B7400CA6265 /* SelectResultCell.xib in Resources */,
 				14279360167039BB00E2E1E3 /* MyCenterController.xib in Resources */,
 				1427936D1670412F00E2E1E3 /* BuyInsuranceViewController.xib in Resources */,
-
 				18EAE7B316705F9E00CA6265 /* CustomTableView.xib in Resources */,
 				18EAE7BC167069E000CA6265 /* CustomTableViewCell.xib in Resources */,
 				18EAE7C616707ED600CA6265 /* WriteOrderViewController.xib in Resources */,
 				18EAE7CB1670876900CA6265 /* WriteOrderCell.xib in Resources */,
 				18EAE7D016708C0F00CA6265 /* WriteOrderDetailsCell.xib in Resources */,
-
 				1427937E16706AB100E2E1E3 /* ChooseSpaceViewController.xib in Resources */,
 				142793821670792500E2E1E3 /* line.png in Resources */,
-
+				18D88F5C1670968700A3B959 /* WriterOrderCommonCell.xib in Resources */,
+				18D88F6E167099EF00A3B959 /* WirterOrderTwoLineCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,15 +420,14 @@
 				142793591670351F00E2E1E3 /* UIQuickHelp.m in Sources */,
 				1427935F167039BB00E2E1E3 /* MyCenterController.m in Sources */,
 				1427936C1670412F00E2E1E3 /* BuyInsuranceViewController.m in Sources */,
-
 				18EAE7B016705F7300CA6265 /* CustomTableView.m in Sources */,
 				18EAE7BA1670699B00CA6265 /* CustomTableViewCell.m in Sources */,
 				18EAE7C516707ED600CA6265 /* WriteOrderViewController.m in Sources */,
 				18EAE7C91670874E00CA6265 /* WriteOrderCell.m in Sources */,
 				18EAE7CE16708BFC00CA6265 /* WriteOrderDetailsCell.m in Sources */,
-
 				1427937D16706AB100E2E1E3 /* ChooseSpaceViewController.m in Sources */,
-
+				18D88F591670967400A3B959 /* WriterOrderCommonCell.m in Sources */,
+				18D88F6C167099DC00A3B959 /* WirterOrderTwoLineCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
