@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142793591670351F00E2E1E3 /* UIQuickHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 142793581670351F00E2E1E3 /* UIQuickHelp.m */; };
+		1427935B1670361C00E2E1E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1427935A1670361C00E2E1E3 /* QuartzCore.framework */; };
+		1427935F167039BB00E2E1E3 /* MyCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1427935D167039BB00E2E1E3 /* MyCenterController.m */; };
+		14279360167039BB00E2E1E3 /* MyCenterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427935E167039BB00E2E1E3 /* MyCenterController.xib */; };
 		145394EA166F220D00417F61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394E9166F220D00417F61 /* UIKit.framework */; };
 		145394EC166F220D00417F61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394EB166F220D00417F61 /* Foundation.framework */; };
 		145394EE166F220D00417F61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394ED166F220D00417F61 /* CoreGraphics.framework */; };
@@ -27,6 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		142793571670351F00E2E1E3 /* UIQuickHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIQuickHelp.h; sourceTree = "<group>"; };
+		142793581670351F00E2E1E3 /* UIQuickHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIQuickHelp.m; sourceTree = "<group>"; };
+		1427935A1670361C00E2E1E3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1427935C167039BB00E2E1E3 /* MyCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterController.h; sourceTree = "<group>"; };
+		1427935D167039BB00E2E1E3 /* MyCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterController.m; sourceTree = "<group>"; };
+		1427935E167039BB00E2E1E3 /* MyCenterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterController.xib; sourceTree = "<group>"; };
 		145394E5166F220D00417F61 /* MyFlight2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFlight2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145394E9166F220D00417F61 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		145394EB166F220D00417F61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -59,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1427935B1670361C00E2E1E3 /* QuartzCore.framework in Frameworks */,
 				145394EA166F220D00417F61 /* UIKit.framework in Frameworks */,
 				145394EC166F220D00417F61 /* Foundation.framework in Frameworks */,
 				145394EE166F220D00417F61 /* CoreGraphics.framework in Frameworks */,
@@ -68,6 +79,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14279355167034BC00E2E1E3 /* UIHelper */ = {
+			isa = PBXGroup;
+			children = (
+				142793571670351F00E2E1E3 /* UIQuickHelp.h */,
+				142793581670351F00E2E1E3 /* UIQuickHelp.m */,
+			);
+			name = UIHelper;
+			sourceTree = "<group>";
+		};
 		145394DA166F220D00417F61 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +108,7 @@
 		145394E8166F220D00417F61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1427935A1670361C00E2E1E3 /* QuartzCore.framework */,
 				145394E9166F220D00417F61 /* UIKit.framework */,
 				145394EB166F220D00417F61 /* Foundation.framework */,
 				145394ED166F220D00417F61 /* CoreGraphics.framework */,
@@ -98,6 +119,7 @@
 		145394EF166F220D00417F61 /* MyFlight2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				14279355167034BC00E2E1E3 /* UIHelper */,
 				1823C9C4166F243F0079CA3F /* Controller */,
 				1823C9C3166F24370079CA3F /* View */,
 				1823C9C1166F24240079CA3F /* Model */,
@@ -131,6 +153,9 @@
 				1453951A166F278000417F61 /* MyCenterViewController.h */,
 				1453951B166F278000417F61 /* MyCenterViewController.m */,
 				1453951C166F278000417F61 /* MyCenterViewController.xib */,
+				1427935C167039BB00E2E1E3 /* MyCenterController.h */,
+				1427935D167039BB00E2E1E3 /* MyCenterController.m */,
+				1427935E167039BB00E2E1E3 /* MyCenterController.xib */,
 			);
 			name = MyCenter;
 			sourceTree = "<group>";
@@ -230,6 +255,7 @@
 				1453951E166F278000417F61 /* MyCenterViewController.xib in Resources */,
 				18CA7395166F6EA100D7E9A3 /* OneWayCheckViewController.xib in Resources */,
 				18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */,
+				14279360167039BB00E2E1E3 /* MyCenterController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +272,8 @@
 				1453951D166F278000417F61 /* MyCenterViewController.m in Sources */,
 				18CA7394166F6EA100D7E9A3 /* OneWayCheckViewController.m in Sources */,
 				18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */,
+				142793591670351F00E2E1E3 /* UIQuickHelp.m in Sources */,
+				1427935F167039BB00E2E1E3 /* MyCenterController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
