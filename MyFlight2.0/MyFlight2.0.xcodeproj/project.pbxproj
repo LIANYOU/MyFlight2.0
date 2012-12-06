@@ -13,6 +13,9 @@
 		14279360167039BB00E2E1E3 /* MyCenterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427935E167039BB00E2E1E3 /* MyCenterController.xib */; };
 		1427936C1670412F00E2E1E3 /* BuyInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1427936A1670412F00E2E1E3 /* BuyInsuranceViewController.m */; };
 		1427936D1670412F00E2E1E3 /* BuyInsuranceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427936B1670412F00E2E1E3 /* BuyInsuranceViewController.xib */; };
+		1427937D16706AB100E2E1E3 /* ChooseSpaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1427937B16706AB100E2E1E3 /* ChooseSpaceViewController.m */; };
+		1427937E16706AB100E2E1E3 /* ChooseSpaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427937C16706AB100E2E1E3 /* ChooseSpaceViewController.xib */; };
+		142793821670792500E2E1E3 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 142793811670792500E2E1E3 /* line.png */; };
 		145394EA166F220D00417F61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394E9166F220D00417F61 /* UIKit.framework */; };
 		145394EC166F220D00417F61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394EB166F220D00417F61 /* Foundation.framework */; };
 		145394EE166F220D00417F61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394ED166F220D00417F61 /* CoreGraphics.framework */; };
@@ -56,6 +59,10 @@
 		142793691670412F00E2E1E3 /* BuyInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyInsuranceViewController.h; sourceTree = "<group>"; };
 		1427936A1670412F00E2E1E3 /* BuyInsuranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyInsuranceViewController.m; sourceTree = "<group>"; };
 		1427936B1670412F00E2E1E3 /* BuyInsuranceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyInsuranceViewController.xib; sourceTree = "<group>"; };
+		1427937A16706AB100E2E1E3 /* ChooseSpaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSpaceViewController.h; sourceTree = "<group>"; };
+		1427937B16706AB100E2E1E3 /* ChooseSpaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSpaceViewController.m; sourceTree = "<group>"; };
+		1427937C16706AB100E2E1E3 /* ChooseSpaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseSpaceViewController.xib; sourceTree = "<group>"; };
+		142793811670792500E2E1E3 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
 		145394E5166F220D00417F61 /* MyFlight2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFlight2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145394E9166F220D00417F61 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		145394EB166F220D00417F61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -128,6 +135,39 @@
 			name = UIHelper;
 			sourceTree = "<group>";
 		};
+		142793771670699100E2E1E3 /* chooseSpace */ = {
+			isa = PBXGroup;
+			children = (
+				1427937A16706AB100E2E1E3 /* ChooseSpaceViewController.h */,
+				1427937B16706AB100E2E1E3 /* ChooseSpaceViewController.m */,
+				1427937C16706AB100E2E1E3 /* ChooseSpaceViewController.xib */,
+			);
+			name = chooseSpace;
+			sourceTree = "<group>";
+		};
+		1427937916706A2700E2E1E3 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
+		1427937F167078DA00E2E1E3 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				14279380167078FC00E2E1E3 /* publicImages */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		14279380167078FC00E2E1E3 /* publicImages */ = {
+			isa = PBXGroup;
+			children = (
+				142793811670792500E2E1E3 /* line.png */,
+			);
+			name = publicImages;
+			sourceTree = "<group>";
+		};
 		145394DA166F220D00417F61 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +199,7 @@
 		145394EF166F220D00417F61 /* MyFlight2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				1427937F167078DA00E2E1E3 /* images */,
 				14279355167034BC00E2E1E3 /* UIHelper */,
 				1823C9C4166F243F0079CA3F /* Controller */,
 				1823C9C3166F24370079CA3F /* View */,
@@ -203,6 +244,8 @@
 		14539523166F2C6800417F61 /* TicketCheck */ = {
 			isa = PBXGroup;
 			children = (
+				1427937916706A2700E2E1E3 /* New Group */,
+				142793771670699100E2E1E3 /* chooseSpace */,
 				18EAE79416703AA000CA6265 /* cell */,
 				18CA7391166F6EA100D7E9A3 /* OneWayCheckViewController.h */,
 				18CA7392166F6EA100D7E9A3 /* OneWayCheckViewController.m */,
@@ -331,11 +374,16 @@
 				18EAE79916703B7400CA6265 /* SelectResultCell.xib in Resources */,
 				14279360167039BB00E2E1E3 /* MyCenterController.xib in Resources */,
 				1427936D1670412F00E2E1E3 /* BuyInsuranceViewController.xib in Resources */,
+
 				18EAE7B316705F9E00CA6265 /* CustomTableView.xib in Resources */,
 				18EAE7BC167069E000CA6265 /* CustomTableViewCell.xib in Resources */,
 				18EAE7C616707ED600CA6265 /* WriteOrderViewController.xib in Resources */,
 				18EAE7CB1670876900CA6265 /* WriteOrderCell.xib in Resources */,
 				18EAE7D016708C0F00CA6265 /* WriteOrderDetailsCell.xib in Resources */,
+
+				1427937E16706AB100E2E1E3 /* ChooseSpaceViewController.xib in Resources */,
+				142793821670792500E2E1E3 /* line.png in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,11 +405,15 @@
 				142793591670351F00E2E1E3 /* UIQuickHelp.m in Sources */,
 				1427935F167039BB00E2E1E3 /* MyCenterController.m in Sources */,
 				1427936C1670412F00E2E1E3 /* BuyInsuranceViewController.m in Sources */,
+
 				18EAE7B016705F7300CA6265 /* CustomTableView.m in Sources */,
 				18EAE7BA1670699B00CA6265 /* CustomTableViewCell.m in Sources */,
 				18EAE7C516707ED600CA6265 /* WriteOrderViewController.m in Sources */,
 				18EAE7C91670874E00CA6265 /* WriteOrderCell.m in Sources */,
 				18EAE7CE16708BFC00CA6265 /* WriteOrderDetailsCell.m in Sources */,
+
+				1427937D16706AB100E2E1E3 /* ChooseSpaceViewController.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
