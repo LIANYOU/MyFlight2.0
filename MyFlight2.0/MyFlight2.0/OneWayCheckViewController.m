@@ -8,6 +8,7 @@
 
 #import "OneWayCheckViewController.h"
 #import "HistroyCheckViewController.h"
+#import "ShowSelectedResultViewController.h"
 @interface OneWayCheckViewController ()
 
 @end
@@ -93,7 +94,9 @@
 
 - (IBAction)select:(id)sender {
     if (selectSegment.selectedSegmentIndex == 0) {
-        NSLog(@"推进单程");
+        ShowSelectedResultViewController * show = [[ShowSelectedResultViewController alloc] init];
+        [self.navigationController pushViewController:show animated:YES];
+        [show release];
     }
     else {
         NSLog(@"推进返程");

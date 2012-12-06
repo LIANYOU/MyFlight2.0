@@ -24,6 +24,10 @@
 		18CA7395166F6EA100D7E9A3 /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */; };
 		18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */; };
 		18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */; };
+		18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */; };
+		18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */; };
+		18EAE79716703B3800CA6265 /* SelectResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE79616703B3800CA6265 /* SelectResultCell.m */; };
+		18EAE79916703B7400CA6265 /* SelectResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE79816703B7400CA6265 /* SelectResultCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,12 @@
 		18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
 		18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistroyCheckViewController.m; sourceTree = "<group>"; };
 		18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistroyCheckViewController.xib; sourceTree = "<group>"; };
+		18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
+		18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
+		18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
+		18EAE79516703B3800CA6265 /* SelectResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectResultCell.h; sourceTree = "<group>"; };
+		18EAE79616703B3800CA6265 /* SelectResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectResultCell.m; sourceTree = "<group>"; };
+		18EAE79816703B7400CA6265 /* SelectResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectResultCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,12 +148,16 @@
 		14539523166F2C6800417F61 /* TicketCheck */ = {
 			isa = PBXGroup;
 			children = (
+				18EAE79416703AA000CA6265 /* cell */,
 				18CA7391166F6EA100D7E9A3 /* OneWayCheckViewController.h */,
 				18CA7392166F6EA100D7E9A3 /* OneWayCheckViewController.m */,
 				18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */,
 				18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */,
 				18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */,
 				18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */,
+				18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */,
+				18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */,
+				18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */,
 			);
 			name = TicketCheck;
 			sourceTree = "<group>";
@@ -169,6 +183,16 @@
 				14539518166F271900417F61 /* MyCenter */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		18EAE79416703AA000CA6265 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				18EAE79516703B3800CA6265 /* SelectResultCell.h */,
+				18EAE79616703B3800CA6265 /* SelectResultCell.m */,
+				18EAE79816703B7400CA6265 /* SelectResultCell.xib */,
+			);
+			name = cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +254,8 @@
 				1453951E166F278000417F61 /* MyCenterViewController.xib in Resources */,
 				18CA7395166F6EA100D7E9A3 /* OneWayCheckViewController.xib in Resources */,
 				18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */,
+				18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */,
+				18EAE79916703B7400CA6265 /* SelectResultCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +272,8 @@
 				1453951D166F278000417F61 /* MyCenterViewController.m in Sources */,
 				18CA7394166F6EA100D7E9A3 /* OneWayCheckViewController.m in Sources */,
 				18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */,
+				18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */,
+				18EAE79716703B3800CA6265 /* SelectResultCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
