@@ -1,24 +1,18 @@
 //
-//  BuyInsuranceViewController.m
+//  ChooseSpaceViewController.m
 //  MyFlight2.0
 //
 //  Created by Davidsph on 12/6/12.
 //  Copyright (c) 2012 LIAN YOU. All rights reserved.
 //
 
-#import "BuyInsuranceViewController.h"
+#import "ChooseSpaceViewController.h"
 
-@interface BuyInsuranceViewController ()
-{
-    
-    
-    
-}
-
+@interface ChooseSpaceViewController ()
 
 @end
 
-@implementation BuyInsuranceViewController
+@implementation ChooseSpaceViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,8 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
     // Do any additional setup after loading the view from its nib.
 }
 
