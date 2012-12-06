@@ -7,7 +7,7 @@
 //
 
 #import "OneWayCheckViewController.h"
-
+#import "HistroyCheckViewController.h"
 @interface OneWayCheckViewController ()
 
 @end
@@ -25,7 +25,6 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"viewload");
     UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     histroyBut.frame = CGRectMake(230, 5, 80, 30);
     [histroyBut setTitle:@"历史查询" forState:UIControlStateNormal];
@@ -74,7 +73,9 @@
 
 -(void)historySearch
 {
-    NSLog(@"history");
+    HistroyCheckViewController * histroy = [[HistroyCheckViewController alloc] init];
+    [self.navigationController pushViewController:histroy animated:YES];
+    [histroy release];
 }
 
 - (IBAction)selectFlayWay:(UISegmentedControl *)sender {
