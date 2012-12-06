@@ -8,6 +8,7 @@
 
 #import "ShowSelectedResultViewController.h"
 #import "SelectResultCell.h"
+#import "CustomTableView.h"
 @interface ShowSelectedResultViewController ()
 
 @end
@@ -27,6 +28,7 @@
 {
     self.showResultTableView.delegate = self;
     self.showResultTableView.dataSource = self;
+
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -108,6 +110,24 @@
     
 }
 
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView  // 开始滚动的时候隐藏筛选菜单
+{
+    backImagelabel.hidden = YES;
+    siftBtn.hidden = YES;
+    sortBtn.hidden = YES;
+    
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView  // 停止滚动后2秒显示筛选菜单
+{
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(showSift) userInfo:nil repeats:NO];
+}
+-(void)showSift
+{
+    backImagelabel.hidden = NO;
+    siftBtn.hidden = NO;
+    sortBtn.hidden = NO;
+}
 - (IBAction)enterSales:(id)sender {
     CCLog(@"进入内嵌促销网页");
 }
@@ -121,10 +141,16 @@
     CCLog(@"刷新后一天");
 }
 
-- (IBAction)siftByAirPort:(id)sender {
-    CCLog(@"筛选航空公司");
+- (IBAction)siftByAirPort:(UIButton *)sender {
+    CustomTableView * view = [[CustomTableView alloc] initWithButtonName:sender.titleLabel.text];
+    view.frame = CGRectMake(0, 250, 320, 120);
+    [self.view addSubview:view];
+    [view release];
 }
-- (IBAction)sortByDate:(id)sender {
-    CCLog(@"按照日期进行排序");
+- (IBAction)sortByDate:(UIButton *)sender {
+    CustomTableView * view = [[CustomTableView alloc] initWithButtonName:sender.titleLabel.text];
+    view.frame = CGRectMake(0, 250, 320, 120);
+    [self.view addSubview:view];
+    [view release];
 }
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "CustomTableViewCell.h"
+@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
     IBOutlet UIButton *salesText;
     
@@ -28,8 +28,8 @@
 - (IBAction)enterTheDayBefore:(id)sender; // 进入前一天的查询结果
 - (IBAction)showCalendar:(id)sender;      // 显示日历，选择日期
 - (IBAction)enterTheDayAfter:(id)sender;  //进入下一天的查询结果
-- (IBAction)siftByAirPort:(id)sender;     // 按照航空公司进行筛选查询结果
-- (IBAction)sortByDate:(id)sender;        // 对查询结果按时间进行排序
+- (IBAction)siftByAirPort:(UIButton *)sender;     // 按照航空公司进行筛选查询结果
+- (IBAction)sortByDate:(UIButton *)sender;        // 对查询结果按时间进行排序
 
 
 @end
