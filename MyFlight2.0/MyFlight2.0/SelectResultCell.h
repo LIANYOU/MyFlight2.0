@@ -9,5 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface SelectResultCell : UITableViewCell
-
+{    
+    IBOutlet UILabel *temporaryLabel;
+    IBOutlet UILabel *airPort;
+    IBOutlet UILabel *palntType;    
+    IBOutlet UILabel *beginTime;    
+    IBOutlet UILabel *endTime;
+    IBOutlet UILabel *pay;    
+    IBOutlet UILabel *discount;    
+    IBOutlet UILabel *ticketCount;    
+    IBOutlet UIImageView *arrowsImage;    
+}
 @end

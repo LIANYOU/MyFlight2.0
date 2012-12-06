@@ -7,7 +7,7 @@
 //
 
 #import "ShowSelectedResultViewController.h"
-
+#import "SelectResultCell.h"
 @interface ShowSelectedResultViewController ()
 
 @end
@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad
 {
+    self.showResultTableView.delegate = self;
+    self.showResultTableView.dataSource = self;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -67,6 +69,45 @@
     sortBtn = nil;
     [super viewDidUnload];
 }
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 9;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    static BOOL nibsRegistered=NO;
+    if(!nibsRegistered)
+    {//第一次运行时注册nib文件，文件名不需要扩展名
+        UINib *nib=[UINib nibWithNibName:@"SelectResultCell" bundle:nil];
+        [self.showResultTableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
+        nibsRegistered=YES;
+    }
+    SelectResultCell *cell = [self.showResultTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
 - (IBAction)enterSales:(id)sender {
     CCLog(@"进入内嵌促销网页");
 }

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShowSelectedResultViewController : UIViewController
+@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     IBOutlet UIButton *salesText;
     
