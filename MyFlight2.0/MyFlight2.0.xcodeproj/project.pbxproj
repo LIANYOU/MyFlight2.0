@@ -11,6 +11,8 @@
 		1427935B1670361C00E2E1E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1427935A1670361C00E2E1E3 /* QuartzCore.framework */; };
 		1427935F167039BB00E2E1E3 /* MyCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1427935D167039BB00E2E1E3 /* MyCenterController.m */; };
 		14279360167039BB00E2E1E3 /* MyCenterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427935E167039BB00E2E1E3 /* MyCenterController.xib */; };
+		1427936C1670412F00E2E1E3 /* BuyInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1427936A1670412F00E2E1E3 /* BuyInsuranceViewController.m */; };
+		1427936D1670412F00E2E1E3 /* BuyInsuranceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427936B1670412F00E2E1E3 /* BuyInsuranceViewController.xib */; };
 		145394EA166F220D00417F61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394E9166F220D00417F61 /* UIKit.framework */; };
 		145394EC166F220D00417F61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394EB166F220D00417F61 /* Foundation.framework */; };
 		145394EE166F220D00417F61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394ED166F220D00417F61 /* CoreGraphics.framework */; };
@@ -41,6 +43,9 @@
 		1427935C167039BB00E2E1E3 /* MyCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterController.h; sourceTree = "<group>"; };
 		1427935D167039BB00E2E1E3 /* MyCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterController.m; sourceTree = "<group>"; };
 		1427935E167039BB00E2E1E3 /* MyCenterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterController.xib; sourceTree = "<group>"; };
+		142793691670412F00E2E1E3 /* BuyInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyInsuranceViewController.h; sourceTree = "<group>"; };
+		1427936A1670412F00E2E1E3 /* BuyInsuranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyInsuranceViewController.m; sourceTree = "<group>"; };
+		1427936B1670412F00E2E1E3 /* BuyInsuranceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyInsuranceViewController.xib; sourceTree = "<group>"; };
 		145394E5166F220D00417F61 /* MyFlight2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFlight2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145394E9166F220D00417F61 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		145394EB166F220D00417F61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -183,6 +188,9 @@
 				18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */,
 				18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */,
 				18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */,
+				142793691670412F00E2E1E3 /* BuyInsuranceViewController.h */,
+				1427936A1670412F00E2E1E3 /* BuyInsuranceViewController.m */,
+				1427936B1670412F00E2E1E3 /* BuyInsuranceViewController.xib */,
 			);
 			name = TicketCheck;
 			sourceTree = "<group>";
@@ -279,12 +287,10 @@
 				1453951E166F278000417F61 /* MyCenterViewController.xib in Resources */,
 				18CA7395166F6EA100D7E9A3 /* OneWayCheckViewController.xib in Resources */,
 				18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */,
-
 				18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */,
 				18EAE79916703B7400CA6265 /* SelectResultCell.xib in Resources */,
-
 				14279360167039BB00E2E1E3 /* MyCenterController.xib in Resources */,
-
+				1427936D1670412F00E2E1E3 /* BuyInsuranceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,13 +307,11 @@
 				1453951D166F278000417F61 /* MyCenterViewController.m in Sources */,
 				18CA7394166F6EA100D7E9A3 /* OneWayCheckViewController.m in Sources */,
 				18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */,
-
 				18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */,
 				18EAE79716703B3800CA6265 /* SelectResultCell.m in Sources */,
-
 				142793591670351F00E2E1E3 /* UIQuickHelp.m in Sources */,
 				1427935F167039BB00E2E1E3 /* MyCenterController.m in Sources */,
-
+				1427936C1670412F00E2E1E3 /* BuyInsuranceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
