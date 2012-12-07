@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChooseSpaceCell.h"
 
-@interface ChooseSpaceViewController : UIViewController
+@interface ChooseSpaceViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@property (retain, nonatomic) IBOutlet UILabel *SpaceName;
+@property (retain, nonatomic) IBOutlet UIButton *changeSpace;
+@property (retain, nonatomic) IBOutlet UILabel *payMoney;
+@property (retain, nonatomic) IBOutlet UILabel *ticketCount;
+@property (retain, nonatomic) IBOutlet UILabel *discount;
+@property (retain, nonatomic) IBOutlet UITableView *showTableView;
+
+@property (retain, nonatomic) IBOutlet ChooseSpaceCell *spaceCell;
+
+@property(nonatomic,readonly) NSArray * spaceNameArr;  // 存放cell的仓明（超值经济舱，经济舱）
 
 @end

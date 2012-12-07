@@ -27,5 +27,7 @@
 //显示航空公司常旅客
 - (IBAction)showRegularPassengerController:(id)sender;
 
+- (IBAction)logMyAccount:(id)sender;
 
+- (IBAction)showFlightCondition:(id)sender;
 @end

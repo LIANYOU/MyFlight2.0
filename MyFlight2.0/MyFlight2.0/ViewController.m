@@ -9,7 +9,8 @@
 #import "ViewController.h"
 #import "OneWayCheckViewController.h"
 #import "MyCenterViewController.h"
-
+#import "LogViewController.h"
+#import "SearchFlightConditionController.h"
 @interface ViewController ()
 
 @end
@@ -66,5 +67,17 @@
 - (IBAction)showRegularPassengerController:(id)sender {
     
     CCLog(@"显示航空公司常旅客");
+}
+
+- (IBAction)logMyAccount:(id)sender {
+    LogViewController * log = [[LogViewController alloc] init];
+    [self presentModalViewController:log animated:YES];
+    [log release];
+}
+
+- (IBAction)showFlightCondition:(id)sender {
+    SearchFlightConditionController * figth = [[SearchFlightConditionController alloc] init];
+    [self.navigationController pushViewController:figth animated:YES];
+    [figth release];
 }
 @end

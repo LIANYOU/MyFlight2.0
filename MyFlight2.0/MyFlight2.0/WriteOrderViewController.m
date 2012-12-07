@@ -8,6 +8,8 @@
 
 #import "WriteOrderViewController.h"
 #import "BuyInsuranceViewController.h"
+#import "ChooseSpaceViewController.h"
+#import "ChoosePersonController.h"
 @interface WriteOrderViewController ()
 
 @end
@@ -195,8 +197,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 2 && indexPath.row == 1) {
-        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+    BOOL logFlag = TRUE;  // 此处保留一个flag判断是否用户已经登陆
+    if (indexPath.section == 2 && indexPath.row == 0) {
+        if (logFlag) {
+            CCLog(@"推进到选择乘机人列表");
+//            ChoosePersonController * person = [[ChoosePersonController alloc] init];
+//            [self.navigationController pushViewController:person animated:YES];
+//            [person release];
+        }
+        else
+        {
+            CCLog(@"进入添加乘机人列表");
+        }
     }
     else
     {

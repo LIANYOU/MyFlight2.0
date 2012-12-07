@@ -1,16 +1,15 @@
 //
-//  WriterOrderCommonCell.m
+//  ChoosePersonCell.m
 //  MyFlight2.0
 //
-//  Created by sss on 12-12-6.
+//  Created by sss on 12-12-7.
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import "WriterOrderCommonCell.h"
+#import "ChoosePersonCell.h"
 
-@implementation WriterOrderCommonCell
-@synthesize firstLable = _firstLable;
-@synthesize secondLable = _secondLable;
+@implementation ChoosePersonCell
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -28,10 +27,10 @@
 }
 
 - (void)dealloc {
-    [firstLable release];
-    [secondLabel release];
-    [_firstLable release];
-    [_secondLable release];
+    [_chooseBtn release];
+    [_personName release];
+    [_personType release];
+    [_papersNumber release];
     [super dealloc];
 }
 @end

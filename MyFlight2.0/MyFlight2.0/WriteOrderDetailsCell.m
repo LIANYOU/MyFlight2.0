@@ -10,6 +10,11 @@
 
 @implementation WriteOrderDetailsCell
 
+@synthesize personName = _personName;
+@synthesize phoneNumber = _phoneNumber;
+@synthesize person = _person;
+@synthesize addPerson = _addPerson;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
