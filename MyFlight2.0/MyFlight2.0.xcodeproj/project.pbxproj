@@ -157,6 +157,8 @@
 		180E22E51671F411002A7228 /* SearchFlightConditionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFlightConditionController.xib; sourceTree = "<group>"; };
 		180E22E81671F4E6002A7228 /* DNWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNWrapper.h; sourceTree = "<group>"; };
 		180E22E91671F4E6002A7228 /* DNWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNWrapper.m; sourceTree = "<group>"; };
+		18478C1E1672F30D00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
+		18478C1F1672F30D00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
 		18CA7391166F6EA100D7E9A3 /* OneWayCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWayCheckViewController.h; sourceTree = "<group>"; };
 		18CA7392166F6EA100D7E9A3 /* OneWayCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneWayCheckViewController.m; sourceTree = "<group>"; };
 		18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneWayCheckViewController.xib; sourceTree = "<group>"; };
@@ -439,6 +441,8 @@
 				180E22E91671F4E6002A7228 /* DNWrapper.m */,
 				180E22721671919F002A7228 /* SearchAirPort.h */,
 				180E22731671919F002A7228 /* SearchAirPort.m */,
+				18478C1E1672F30D00D3AFCD /* SearchFlightCondition.h */,
+				18478C1F1672F30D00D3AFCD /* SearchFlightCondition.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
