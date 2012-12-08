@@ -66,9 +66,10 @@
     {
         str5=@"";
     }
-    
+
      NSString * search=[NSString stringWithFormat:@"http://test.51you.com/web/phone/prod/flight/flightMovement.jsp?%@%@%@%@%@",str1,str2,str3,str4,str5];
     
+    NSLog(@"%@",search);
     self.allData = [NSMutableData data];
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:search]];
     [request setCompletionBlock:^{
@@ -94,7 +95,7 @@
     NSData * da = (NSData *)data;
     self.dictionary = [da objectFromJSONData];
     
-    
+    return [self.dictionary objectForKey:@"flightList"];
 }
 
 @end

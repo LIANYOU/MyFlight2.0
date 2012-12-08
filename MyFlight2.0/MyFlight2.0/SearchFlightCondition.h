@@ -15,7 +15,6 @@
 @property(nonatomic,retain) NSString * dpt;    //出发机场
 @property(nonatomic,retain) NSString * arr;    //到达机场
 @property(nonatomic,retain) NSString * hwld;   //硬件id(选填)
-
 @property(nonatomic,retain) NSData * allData;   // 存放返回的所有机场信息
 @property(nonatomic,retain) NSDictionary * dictionary; // JSON 转换的时候使用
 

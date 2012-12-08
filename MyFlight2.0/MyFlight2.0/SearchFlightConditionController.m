@@ -7,7 +7,7 @@
 //
 
 #import "SearchFlightConditionController.h"
-
+#import "SearchFlightCondition.h"
 @interface SearchFlightConditionController ()
 
 @end
@@ -48,5 +48,20 @@
     [super viewDidUnload];
 }
 - (IBAction)searchFligth:(id)sender {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+    
+    SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:@"HO1252" fdate:nil dpt:@"PEK" arr:@"SHA" hwld:nil];
+    [search searchFlightCondition];
+    
+}
+-(void)receive:(NSNotification *)not//通过通知接收初始数据
+{
+    NSArray * arr = [NSArray array];
+    NSDictionary *dic=[not userInfo];
+    arr = [dic objectForKey:@"arr"];
+
+    for (int i = 0; i<arr.count; i++) {
+        NSLog(@"%@",[[arr objectAtIndex:i] objectForKey:@"arrAirport"]);
+    }
 }
 @end

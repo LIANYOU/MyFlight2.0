@@ -61,6 +61,7 @@
 		180E22E61671F411002A7228 /* SearchFlightConditionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E22E41671F411002A7228 /* SearchFlightConditionController.m */; };
 		180E22E71671F411002A7228 /* SearchFlightConditionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180E22E51671F411002A7228 /* SearchFlightConditionController.xib */; };
 		180E22EA1671F4E6002A7228 /* DNWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E22E91671F4E6002A7228 /* DNWrapper.m */; };
+		18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18478C64167332AD00D3AFCD /* SearchFlightCondition.m */; };
 		18CA7394166F6EA100D7E9A3 /* OneWayCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA7392166F6EA100D7E9A3 /* OneWayCheckViewController.m */; };
 		18CA7395166F6EA100D7E9A3 /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */; };
 		18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */; };
@@ -178,8 +179,8 @@
 		180E22E51671F411002A7228 /* SearchFlightConditionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFlightConditionController.xib; sourceTree = "<group>"; };
 		180E22E81671F4E6002A7228 /* DNWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNWrapper.h; sourceTree = "<group>"; };
 		180E22E91671F4E6002A7228 /* DNWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNWrapper.m; sourceTree = "<group>"; };
-		18478C1E1672F30D00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
-		18478C1F1672F30D00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
+		18478C63167332AD00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
+		18478C64167332AD00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
 		18CA7391166F6EA100D7E9A3 /* OneWayCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWayCheckViewController.h; sourceTree = "<group>"; };
 		18CA7392166F6EA100D7E9A3 /* OneWayCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneWayCheckViewController.m; sourceTree = "<group>"; };
 		18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneWayCheckViewController.xib; sourceTree = "<group>"; };
@@ -484,8 +485,8 @@
 				180E22E91671F4E6002A7228 /* DNWrapper.m */,
 				180E22721671919F002A7228 /* SearchAirPort.h */,
 				180E22731671919F002A7228 /* SearchAirPort.m */,
-				18478C1E1672F30D00D3AFCD /* SearchFlightCondition.h */,
-				18478C1F1672F30D00D3AFCD /* SearchFlightCondition.m */,
+				18478C63167332AD00D3AFCD /* SearchFlightCondition.h */,
+				18478C64167332AD00D3AFCD /* SearchFlightCondition.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -682,6 +683,7 @@
 				14ED61EF1672F16D0019DC23 /* FMDatabasePool.m in Sources */,
 				14ED61F01672F16D0019DC23 /* FMDatabaseQueue.m in Sources */,
 				14ED61F31672F16D0019DC23 /* FMResultSet.m in Sources */,
+				18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
