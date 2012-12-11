@@ -52,6 +52,7 @@
     [orderMoney release];
     [_orderTableView release];
     [_orderScrollView release];
+    [_headView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -63,10 +64,31 @@
     orderMoney = nil;
     [self setOrderTableView:nil];
     [self setOrderScrollView:nil];
+    [self setHeadView:nil];
     [super viewDidUnload];
 }
 
 #pragma mark - Table view data source
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section //设置不同section的header的高度
+{
+    return 40;
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        UIView * myView =[[[UIView alloc] init] autorelease];
+        
+        self.headView.frame = CGRectMake(0, 0, 320, 40);
+        [myView addSubview:self.headView];
+        
+        return myView;
+    }
+   else
+return nil;
+
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

@@ -13,10 +13,10 @@
 -(id) initWithdpt:(NSString *)dpt
               arr:(NSString *)arr
              date:(NSString *)date
-            ftype:(int)ftype
+            ftype:(NSString *)ftype
             cabin:(int) cabin
           carrier:(NSString *)carrier
-          dptTime:(NSString *)dptTime
+          dptTime:(int)dptTime
           qryFlag:(NSString *)qryFlag
 {
     self = [super init];
@@ -55,17 +55,21 @@
     if (self.date!=nil) {
         str3=[NSString stringWithFormat:@"&date=%@",[self.date stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
+    else
+    {
+        str3 = @"";
+    }
 
     NSString *str4;
-    if (self.ftype!=0) {
-        str4=[NSString stringWithFormat:@"&ftype=%d",self.ftype];
+    if (self.ftype) {
+        str4=[NSString stringWithFormat:@"&ftype=%@",[self.ftype stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
     else
     {
         str4=@"";
     }
     NSString *str5;
-    if (self.cabin!=0) {
+    if (self.cabin) {
         str5=[NSString stringWithFormat:@"&cabin=%d",self.cabin];
     }
     else
@@ -81,8 +85,8 @@
         str6=@"";
     }
     NSString *str7;
-    if (self.dptTime!=nil) {
-        str7=[NSString stringWithFormat:@"&dptTime=%@",[self.dptTime stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    if (self.dptTime) {
+        str7=[NSString stringWithFormat:@"&dptTime=%d",self.dptTime];
     }
     else
     {
@@ -99,13 +103,15 @@
     
     NSString * search=[NSString stringWithFormat:@"http://test.51you.com/web/phone/prod/flight/flightSearchPhone.jsp?%@%@%@%@%@%@%@%@",str1,str2,str3,str4,str5,str6,str7,str8];
     
+    NSLog(@"search = %@",search);
 
     self.allData = [NSMutableData data];
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:search]];
     [request setCompletionBlock:^{
         
         self.allData = [request responseData];
-        NSMutableArray * dataArr =  [self analysisData:self.allData];
+                
+        NSArray * dataArr =  [self analysisData:self.allData];
         NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:dataArr,@"arr", nil];
         NSNotification * not = [NSNotification notificationWithName:@"接受数据" object:self userInfo:dic];
         [[NSNotificationCenter defaultCenter] postNotification:not];
@@ -118,12 +124,16 @@
     [request startAsynchronous];
 }
 
--(NSMutableArray *)analysisData:(NSData *)data
+-(NSArray *)analysisData:(NSData *)data
 {
     self.dictionary = [NSDictionary dictionary];
     NSData * da = (NSData *)data;
     self.dictionary = [da objectFromJSONData];
     
-    
+    NSArray * arr = [self.dictionary objectForKey:@"outBounds"];
+   
+    return arr;
 }
+
+
 @end

@@ -9,11 +9,14 @@
 #import "OneWayCheckViewController.h"
 #import "HistroyCheckViewController.h"
 #import "ShowSelectedResultViewController.h"
+#import "SearchAirPort.h"
 @interface OneWayCheckViewController ()
 
 @end
 
 @implementation OneWayCheckViewController
+
+int searchFlag = 0; // 单程和往返的标记位
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,6 +77,8 @@
 
 -(void)historySearch
 {
+
+        
     HistroyCheckViewController * histroy = [[HistroyCheckViewController alloc] init];
     [self.navigationController pushViewController:histroy animated:YES];
     [histroy release];
@@ -81,11 +86,13 @@
 
 - (IBAction)selectFlayWay:(UISegmentedControl *)sender {
     if (sender.selectedSegmentIndex == 0) {
+        searchFlag = 1;
         returnBtn.hidden = YES;
         retrunDateTitle.hidden = YES;
         returnDate.hidden = YES;
     }
     else {
+        searchFlag = 2;
         returnBtn.hidden = NO;
         retrunDateTitle.hidden = NO;
         returnDate.hidden = NO;
@@ -94,7 +101,12 @@
 
 - (IBAction)select:(id)sender {
     if (selectSegment.selectedSegmentIndex == 0) {
+        
+        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:@"PEK" arr:@"SHA" date:@"2012-12-28" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+        
+
         ShowSelectedResultViewController * show = [[ShowSelectedResultViewController alloc] init];
+        show.airPort = searchAirPort;
         [self.navigationController pushViewController:show animated:YES];
         [show release];
     }

@@ -9,6 +9,7 @@
 #import "ChooseSpaceViewController.h"
 #import "ChooseSpaceCell.h"
 #import "WriteOrderViewController.h"
+#import "TransitionString.h"
 @interface ChooseSpaceViewController ()
 
 @end
@@ -24,16 +25,30 @@
     return self;
 }
 
--(void)initDataArr
-{
-    
-}
+
 
 - (void)viewDidLoad
 {
-    [self initDataArr];
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
+    
+    self.flightCode.text = self.searchFlight.temporaryLabel;
+    self.airPort.text = self.searchFlight.airPort;
+    self.palntType.text = self.searchFlight.palntType;
+    self.beginTime.text = self.searchFlight.beginTime;
+    self.endTime.text = self.searchFlight.endTime;
+    
+    self.changeInfoArr = [NSMutableArray array];
+    self.indexPath = [NSMutableArray array];
+    
+    for (int i = 0; i<self.searchFlight.cabinsArr.count; i++) {
+        NSDictionary * dic = [self.searchFlight.cabinsArr objectAtIndex:i];
+        NSString * string = [dic objectForKey:@"changeInfo"];
+        
+        [self.changeInfoArr addObject:string];
+    }
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -45,23 +60,26 @@
 }
 
 - (void)dealloc {
-    [_SpaceName release];
-    [_changeSpace release];
-    [_payMoney release];
-    [_ticketCount release];
-    [_discount release];
+
     [_showTableView release];
     [_spaceCell release];
+    [_flightCode release];
+    [_airPort release];
+    [_palntType release];
+    [_beginTime release];
+    [_endTime release];
+    [_scheduleDate release];
     [super dealloc];
 }
 - (void)viewDidUnload {
-    [self setSpaceName:nil];
-    [self setChangeSpace:nil];
-    [self setPayMoney:nil];
-    [self setTicketCount:nil];
-    [self setDiscount:nil];
     [self setShowTableView:nil];
     [self setSpaceCell:nil];
+    [self setFlightCode:nil];
+    [self setAirPort:nil];
+    [self setPalntType:nil];
+    [self setBeginTime:nil];
+    [self setEndTime:nil];
+    [self setScheduleDate:nil];
     [super viewDidUnload];
 }
 
@@ -74,7 +92,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.searchFlight.cabinsArr.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -90,6 +108,17 @@
         [[NSBundle mainBundle] loadNibNamed:@"ChooseSpaceCell" owner:self options:nil];
         cell = self.spaceCell;
     }
+    
+    NSDictionary * dic = [self.searchFlight.cabinsArr objectAtIndex:indexPath.row] ;
+    cell.SpaceName.text = [dic objectForKey:@"cabinCN"];
+    cell.payMoney.text = [dic objectForKey:@"price"];
+    cell.ticketCount.text = [TransitionString transitionSeatNum: [dic objectForKey:@"seatNum"] ];
+    cell.discount.text = [dic objectForKey:@"discount"];
+    cell.discount.text = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"cabinCode"]];
+    
+    cell.changeSpace.tag = indexPath.row;
+    [cell.changeSpace addTarget:self action:@selector(changeFlightInfo:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 
@@ -102,5 +131,17 @@
         [self.navigationController pushViewController:insurance animated:YES];
         [insurance release];
     
+}
+- (void)changeFlightInfo:(UIButton *)sender {
+
+    CCLog(@"%@",self.changeInfoArr objectAtIndex:sender.tag);
+    
+//    NSIndexPath * indexPathToInsert = [NSIndexPath indexPathForRow:10 inSection:0];
+//
+//    [self.indexPath addObject:indexPathToInsert];
+//
+//    [self.showTableView insertRowsAtIndexPaths:self.indexPath withRowAnimation:UITableViewRowAnimationBottom];
+
+
 }
 @end

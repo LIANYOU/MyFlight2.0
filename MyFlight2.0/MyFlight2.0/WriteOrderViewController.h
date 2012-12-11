@@ -16,6 +16,7 @@
     IBOutlet UILabel *orderMoney;
     
 }
+@property (retain, nonatomic) IBOutlet UIView *headView;
 @property (retain, nonatomic) NSArray * cellTitleArr;
 @property (retain, nonatomic) IBOutlet UITableView *orderTableView;
 @property (retain, nonatomic) IBOutlet WriteOrderCell *writeOrderCell;

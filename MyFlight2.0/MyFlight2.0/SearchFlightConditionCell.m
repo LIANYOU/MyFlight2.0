@@ -1,14 +1,14 @@
 //
-//  SelectResultCell.m
+//  SearchFlightConditionCell.m
 //  MyFlight2.0
 //
-//  Created by sss on 12-12-6.
+//  Created by WangJian on 12-12-9.
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import "SelectResultCell.h"
+#import "SearchFlightConditionCell.h"
 
-@implementation SelectResultCell
+@implementation SearchFlightConditionCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,15 +27,15 @@
 }
 
 - (void)dealloc {
-
-    [_temporaryLabel release];
-    [_airPort release];
-    [_palntType release];
-    [_beginTime release];
-    [_endTime release];
-    [_pay release];
-    [_discount release];
-    [_ticketCount release];
+    [_flightCompany release];
+    [_flightNum release];
+    [_deptAirport release];
+    [_arrAirport release];
+    [_expectedDeptTime release];
+    [_expectedArrTime release];
+    [_deptTime release];
+    [_arrTime release];
+    [_flightState release];
     [super dealloc];
 }
 @end

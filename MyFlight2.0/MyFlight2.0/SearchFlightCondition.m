@@ -37,6 +37,7 @@
     {
         str1=@"";
     }
+   
     NSString *str2;
     if (self.fdate!=nil) {
         str2=[NSString stringWithFormat:@"&fdate=%@",[self.fdate stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -45,9 +46,14 @@
     {
         str2=@"";
     }
+    
     NSString *str3;
     if (self.dpt!=nil) {
         str3=[NSString stringWithFormat:@"&dpt=%@",[self.dpt stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    }
+    else
+    {
+        str3=@"";
     }
     
     NSString *str4;
@@ -66,10 +72,9 @@
     {
         str5=@"";
     }
-
-     NSString * search=[NSString stringWithFormat:@"http://test.51you.com/web/phone/prod/flight/flightMovement.jsp?%@%@%@%@%@",str1,str2,str3,str4,str5];
     
-    NSLog(@"%@",search);
+     NSString * search=[NSString stringWithFormat:@"http://test.51you.com/web/phone/prod/flight/flightMovement.jsp?%@%@%@%@%@",str1,str2,str3,str4,str5];
+   
     self.allData = [NSMutableData data];
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:search]];
     [request setCompletionBlock:^{

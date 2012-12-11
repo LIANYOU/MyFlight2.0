@@ -10,14 +10,16 @@
 
 @interface SelectResultCell : UITableViewCell
 {    
-    IBOutlet UILabel *temporaryLabel;
-    IBOutlet UILabel *airPort;
-    IBOutlet UILabel *palntType;    
-    IBOutlet UILabel *beginTime;    
-    IBOutlet UILabel *endTime;
-    IBOutlet UILabel *pay;    
-    IBOutlet UILabel *discount;    
-    IBOutlet UILabel *ticketCount;    
-    IBOutlet UIImageView *arrowsImage;    
+  
 }
+@property (retain, nonatomic) IBOutlet UILabel *temporaryLabel;
+@property (retain, nonatomic) IBOutlet UILabel *airPort;
+@property (retain, nonatomic) IBOutlet UILabel *palntType;
+@property (retain, nonatomic) IBOutlet UILabel *beginTime;
+@property (retain, nonatomic) IBOutlet UILabel *endTime;
+@property (retain, nonatomic) IBOutlet UILabel *pay;
+@property (retain, nonatomic) IBOutlet UILabel *discount;
+@property (retain, nonatomic) IBOutlet UILabel *ticketCount;
+
+
 @end

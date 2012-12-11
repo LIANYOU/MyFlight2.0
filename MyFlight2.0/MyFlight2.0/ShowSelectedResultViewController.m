@@ -11,6 +11,8 @@
 #import "CustomTableView.h"
 #import "WriteOrderViewController.h"
 #import "ChooseSpaceViewController.h"
+#import "TransitionString.h"
+#import "SearchFlightData.h"
 @interface ShowSelectedResultViewController ()
 
 @end
@@ -31,6 +33,13 @@
     self.showResultTableView.delegate = self;
     self.showResultTableView.dataSource = self;
 
+    self.dateArr = [NSArray array];
+    self.searchFlightDateArr = [NSMutableArray array];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+    [self.airPort searchAirPort];
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -51,6 +60,7 @@
     [backImagelabel release];
     [siftBtn release];
     [sortBtn release];
+    [_showCell release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -71,9 +81,37 @@
     siftBtn = nil;
     [sortBtn release];
     sortBtn = nil;
+    [self setShowCell:nil];
     [super viewDidUnload];
 }
 
+-(void)receive:(NSNotification *)not
+{
+    self.dateArr = [[not userInfo] objectForKey:@"arr"];
+    
+    [self.dateArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        SearchFlightData * s = [[SearchFlightData alloc] init] ;
+        
+        NSDictionary * dic = [self.dateArr objectAtIndex:idx];
+        
+        s.temporaryLabel = [dic objectForKey:@"code"];
+        s.airPort = [dic objectForKey:@"carrier"];
+        s.palntType = [TransitionString transitionPalntType:[dic objectForKey:@"plantype"]];
+        s.beginTime = [TransitionString transitionTime:[dic objectForKey:@"dptTime"]];
+        s.endTime = [TransitionString transitionTime:[dic objectForKey:@"arrTime"]];
+        s.pay = [TransitionString transitionPay:[dic objectForKey:@"cabinYPrice"]]; // Y仓价格
+        s.discount = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"lowestCabinCode"]]; // 仓位折扣
+        s.ticketCount = [TransitionString transitionSeatNum:[dic objectForKey:@"lowestSeatNum"]]; // 剩余票数
+        s.cabinsArr = [dic objectForKey:@"Cabins"];
+        
+        [self.searchFlightDateArr addObject:s];
+        
+        [s release];
+
+    }];
+    
+    [self.showResultTableView reloadData];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -83,7 +121,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 9;
+    return self.dateArr.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -93,15 +131,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    static BOOL nibsRegistered=NO;
-    if(!nibsRegistered)
-    {//第一次运行时注册nib文件，文件名不需要扩展名
-        UINib *nib=[UINib nibWithNibName:@"SelectResultCell" bundle:nil];
-        [self.showResultTableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-        nibsRegistered=YES;
+    SelectResultCell *cell = (SelectResultCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell)
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"SelectResultCell" owner:self options:nil];
+        cell = self.showCell;
     }
-    SelectResultCell *cell = [self.showResultTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    SearchFlightData * s = [self.searchFlightDateArr objectAtIndex:indexPath.row];
     
+    cell.temporaryLabel.text = s.temporaryLabel;
+    cell.airPort.text = s.airPort;
+    cell.palntType.text = s.palntType;
+    cell.beginTime.text = s.beginTime;
+    cell.endTime.text = s.endTime;
+    cell.pay.text = s.pay; // Y仓价格
+    cell.discount.text = s.discount; // 仓位折扣
+    cell.ticketCount.text = s.ticketCount; // 剩余票数
+
     return cell;
 }
 
@@ -110,6 +157,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChooseSpaceViewController * order = [[ChooseSpaceViewController alloc] init];
+    order.searchFlight = [self.searchFlightDateArr objectAtIndex:indexPath.row];
+    
     [self.navigationController pushViewController:order animated:YES];
     [order release];
 }

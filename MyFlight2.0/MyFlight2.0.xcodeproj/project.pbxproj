@@ -66,14 +66,29 @@
 		18CA7395166F6EA100D7E9A3 /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */; };
 		18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */; };
 		18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */; };
+		18D1BBE2167363AC00FE7B8F /* ShowFligthConditionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1BBE0167363AC00FE7B8F /* ShowFligthConditionController.m */; };
+		18D1BBE3167363AC00FE7B8F /* ShowFligthConditionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1BBE1167363AC00FE7B8F /* ShowFligthConditionController.xib */; };
 		18D88F591670967400A3B959 /* WriterOrderCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D88F581670967400A3B959 /* WriterOrderCommonCell.m */; };
 		18D88F5C1670968700A3B959 /* WriterOrderCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D88F5B1670968700A3B959 /* WriterOrderCommonCell.xib */; };
 		18D88F6C167099DC00A3B959 /* WirterOrderTwoLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D88F6B167099DC00A3B959 /* WirterOrderTwoLineCell.m */; };
 		18D88F6E167099EF00A3B959 /* WirterOrderTwoLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D88F6D167099EE00A3B959 /* WirterOrderTwoLineCell.xib */; };
+		18DD1D391675BF7A006B59AB /* TransitionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D381675BF7A006B59AB /* TransitionString.m */; };
+		18DD1D3C1675D01E006B59AB /* searchFlightData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D3B1675D01D006B59AB /* searchFlightData.m */; };
 		18E0B6C916717C9E00968F01 /* ChooseSpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B6C816717C9E00968F01 /* ChooseSpaceCell.m */; };
 		18E0B6CC16717CB200968F01 /* ChooseSpaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E0B6CB16717CB200968F01 /* ChooseSpaceCell.xib */; };
 		18E0B6D11671843F00968F01 /* ChoosePersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B6CF1671843F00968F01 /* ChoosePersonController.m */; };
 		18E0B6D21671843F00968F01 /* ChoosePersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E0B6D01671843F00968F01 /* ChoosePersonController.xib */; };
+		18E508A316743EDA0003BD0C /* SearchFlightConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E508A216743EDA0003BD0C /* SearchFlightConditionCell.m */; };
+		18E508A516743EE90003BD0C /* SearchFlightConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E508A416743EE90003BD0C /* SearchFlightConditionCell.xib */; };
+		18E508BC16747B840003BD0C /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E508B216747B840003BD0C /* EGORefreshTableHeaderView.m */; };
+		18E508BD16747B840003BD0C /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508B416747B840003BD0C /* blackArrow.png */; };
+		18E508BE16747B840003BD0C /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508B516747B840003BD0C /* blackArrow@2x.png */; };
+		18E508BF16747B840003BD0C /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508B616747B840003BD0C /* blueArrow.png */; };
+		18E508C016747B840003BD0C /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508B716747B840003BD0C /* blueArrow@2x.png */; };
+		18E508C116747B840003BD0C /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508B816747B840003BD0C /* grayArrow.png */; };
+		18E508C216747B840003BD0C /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508B916747B840003BD0C /* grayArrow@2x.png */; };
+		18E508C316747B840003BD0C /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508BA16747B840003BD0C /* whiteArrow.png */; };
+		18E508C416747B840003BD0C /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508BB16747B840003BD0C /* whiteArrow@2x.png */; };
 		18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */; };
 		18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */; };
 		18EAE79716703B3800CA6265 /* SelectResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE79616703B3800CA6265 /* SelectResultCell.m */; };
@@ -187,12 +202,19 @@
 		18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
 		18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistroyCheckViewController.m; sourceTree = "<group>"; };
 		18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistroyCheckViewController.xib; sourceTree = "<group>"; };
+		18D1BBDF167363AC00FE7B8F /* ShowFligthConditionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFligthConditionController.h; sourceTree = "<group>"; };
+		18D1BBE0167363AC00FE7B8F /* ShowFligthConditionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFligthConditionController.m; sourceTree = "<group>"; };
+		18D1BBE1167363AC00FE7B8F /* ShowFligthConditionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowFligthConditionController.xib; sourceTree = "<group>"; };
 		18D88F571670967400A3B959 /* WriterOrderCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriterOrderCommonCell.h; sourceTree = "<group>"; };
 		18D88F581670967400A3B959 /* WriterOrderCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriterOrderCommonCell.m; sourceTree = "<group>"; };
 		18D88F5B1670968700A3B959 /* WriterOrderCommonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriterOrderCommonCell.xib; sourceTree = "<group>"; };
 		18D88F6A167099DC00A3B959 /* WirterOrderTwoLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WirterOrderTwoLineCell.h; sourceTree = "<group>"; };
 		18D88F6B167099DC00A3B959 /* WirterOrderTwoLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WirterOrderTwoLineCell.m; sourceTree = "<group>"; };
 		18D88F6D167099EE00A3B959 /* WirterOrderTwoLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WirterOrderTwoLineCell.xib; sourceTree = "<group>"; };
+		18DD1D371675BF7A006B59AB /* TransitionString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionString.h; sourceTree = "<group>"; };
+		18DD1D381675BF7A006B59AB /* TransitionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionString.m; sourceTree = "<group>"; };
+		18DD1D3A1675D01D006B59AB /* searchFlightData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchFlightData.h; sourceTree = "<group>"; };
+		18DD1D3B1675D01D006B59AB /* searchFlightData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchFlightData.m; sourceTree = "<group>"; };
 		18E0B6C716717C9E00968F01 /* ChooseSpaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSpaceCell.h; sourceTree = "<group>"; };
 		18E0B6C816717C9E00968F01 /* ChooseSpaceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSpaceCell.m; sourceTree = "<group>"; };
 		18E0B6CB16717CB200968F01 /* ChooseSpaceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseSpaceCell.xib; sourceTree = "<group>"; };
@@ -202,6 +224,19 @@
 		18E0B6DC16718D9C00968F01 /* ChoosePersonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePersonCell.h; sourceTree = "<group>"; };
 		18E0B6DD16718D9C00968F01 /* ChoosePersonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonCell.m; sourceTree = "<group>"; };
 		18E0B6DE16718D9C00968F01 /* ChoosePersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoosePersonCell.xib; sourceTree = "<group>"; };
+		18E508A116743EDA0003BD0C /* SearchFlightConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightConditionCell.h; sourceTree = "<group>"; };
+		18E508A216743EDA0003BD0C /* SearchFlightConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightConditionCell.m; sourceTree = "<group>"; };
+		18E508A416743EE90003BD0C /* SearchFlightConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFlightConditionCell.xib; sourceTree = "<group>"; };
+		18E508B116747B840003BD0C /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		18E508B216747B840003BD0C /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		18E508B416747B840003BD0C /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		18E508B516747B840003BD0C /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		18E508B616747B840003BD0C /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		18E508B716747B840003BD0C /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		18E508B816747B840003BD0C /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		18E508B916747B840003BD0C /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		18E508BA16747B840003BD0C /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		18E508BB16747B840003BD0C /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
 		18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
 		18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
@@ -408,6 +443,7 @@
 		180E223C16718FFF002A7228 /* RelatedResources */ = {
 			isa = PBXGroup;
 			children = (
+				18E508AE16747B840003BD0C /* EGOTableViewPullRefresh */,
 				14ED61E01672F16D0019DC23 /* FMDB */,
 				180E225E16719094002A7228 /* JSONKit */,
 				180E223E1671908E002A7228 /* ASIHTTPRequestDoc */,
@@ -474,6 +510,12 @@
 				180E22E31671F411002A7228 /* SearchFlightConditionController.h */,
 				180E22E41671F411002A7228 /* SearchFlightConditionController.m */,
 				180E22E51671F411002A7228 /* SearchFlightConditionController.xib */,
+				18D1BBDF167363AC00FE7B8F /* ShowFligthConditionController.h */,
+				18D1BBE0167363AC00FE7B8F /* ShowFligthConditionController.m */,
+				18D1BBE1167363AC00FE7B8F /* ShowFligthConditionController.xib */,
+				18E508A116743EDA0003BD0C /* SearchFlightConditionCell.h */,
+				18E508A216743EDA0003BD0C /* SearchFlightConditionCell.m */,
+				18E508A416743EE90003BD0C /* SearchFlightConditionCell.xib */,
 			);
 			name = FlightCondition;
 			sourceTree = "<group>";
@@ -487,6 +529,10 @@
 				180E22731671919F002A7228 /* SearchAirPort.m */,
 				18478C63167332AD00D3AFCD /* SearchFlightCondition.h */,
 				18478C64167332AD00D3AFCD /* SearchFlightCondition.m */,
+				18DD1D371675BF7A006B59AB /* TransitionString.h */,
+				18DD1D381675BF7A006B59AB /* TransitionString.m */,
+				18DD1D3A1675D01D006B59AB /* searchFlightData.h */,
+				18DD1D3B1675D01D006B59AB /* searchFlightData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -527,6 +573,47 @@
 				18E0B6DE16718D9C00968F01 /* ChoosePersonCell.xib */,
 			);
 			name = choosePerson;
+			sourceTree = "<group>";
+		};
+		18E508AE16747B840003BD0C /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				18E508AF16747B840003BD0C /* Classes */,
+				18E508B316747B840003BD0C /* Resources */,
+			);
+			path = EGOTableViewPullRefresh;
+			sourceTree = "<group>";
+		};
+		18E508AF16747B840003BD0C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				18E508B016747B840003BD0C /* View */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		18E508B016747B840003BD0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18E508B116747B840003BD0C /* EGORefreshTableHeaderView.h */,
+				18E508B216747B840003BD0C /* EGORefreshTableHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18E508B316747B840003BD0C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				18E508B416747B840003BD0C /* blackArrow.png */,
+				18E508B516747B840003BD0C /* blackArrow@2x.png */,
+				18E508B616747B840003BD0C /* blueArrow.png */,
+				18E508B716747B840003BD0C /* blueArrow@2x.png */,
+				18E508B816747B840003BD0C /* grayArrow.png */,
+				18E508B916747B840003BD0C /* grayArrow@2x.png */,
+				18E508BA16747B840003BD0C /* whiteArrow.png */,
+				18E508BB16747B840003BD0C /* whiteArrow@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		18EAE79416703AA000CA6265 /* cell */ = {
@@ -632,6 +719,16 @@
 				180E22E71671F411002A7228 /* SearchFlightConditionController.xib in Resources */,
 				14ED61F11672F16D0019DC23 /* FMDBd使用说明.txt in Resources */,
 				14ED61F21672F16D0019DC23 /* FMDB使用.html in Resources */,
+				18D1BBE3167363AC00FE7B8F /* ShowFligthConditionController.xib in Resources */,
+				18E508A516743EE90003BD0C /* SearchFlightConditionCell.xib in Resources */,
+				18E508BD16747B840003BD0C /* blackArrow.png in Resources */,
+				18E508BE16747B840003BD0C /* blackArrow@2x.png in Resources */,
+				18E508BF16747B840003BD0C /* blueArrow.png in Resources */,
+				18E508C016747B840003BD0C /* blueArrow@2x.png in Resources */,
+				18E508C116747B840003BD0C /* grayArrow.png in Resources */,
+				18E508C216747B840003BD0C /* grayArrow@2x.png in Resources */,
+				18E508C316747B840003BD0C /* whiteArrow.png in Resources */,
+				18E508C416747B840003BD0C /* whiteArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +781,11 @@
 				14ED61F01672F16D0019DC23 /* FMDatabaseQueue.m in Sources */,
 				14ED61F31672F16D0019DC23 /* FMResultSet.m in Sources */,
 				18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */,
+				18D1BBE2167363AC00FE7B8F /* ShowFligthConditionController.m in Sources */,
+				18E508A316743EDA0003BD0C /* SearchFlightConditionCell.m in Sources */,
+				18E508BC16747B840003BD0C /* EGORefreshTableHeaderView.m in Sources */,
+				18DD1D391675BF7A006B59AB /* TransitionString.m in Sources */,
+				18DD1D3C1675D01E006B59AB /* searchFlightData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

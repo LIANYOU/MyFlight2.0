@@ -8,6 +8,7 @@
 
 #import "SearchFlightConditionController.h"
 #import "SearchFlightCondition.h"
+#import "ShowFligthConditionController.h"
 @interface SearchFlightConditionController ()
 
 @end
@@ -26,6 +27,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.selectedByAirPort.frame = CGRectMake(0, 460-390, 320, 378);
+    self.selectedByDate.frame = CGRectMake(0, 460-390, 320, 378);
+    
+    [self.view addSubview:self.selectedByAirPort];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -39,29 +45,46 @@
     [_startAirPort release];
     [_endAirPort release];
     [_time release];
+    [_selectedByAirPort release];
+    [_selectedSegment release];
+    [_flightNumber release];
+    [_selectedByDate release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setStartAirPort:nil];
     [self setEndAirPort:nil];
     [self setTime:nil];
+    [self setSelectedByAirPort:nil];
+    [self setSelectedSegment:nil];
+    [self setFlightNumber:nil];
+    [self setSelectedByDate:nil];
     [super viewDidUnload];
 }
-- (IBAction)searchFligth:(id)sender {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+- (IBAction)selectedInquireType:(UISegmentedControl *)sender {
     
-    SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:@"HO1252" fdate:nil dpt:@"PEK" arr:@"SHA" hwld:nil];
-    [search searchFlightCondition];
-    
-}
--(void)receive:(NSNotification *)not//通过通知接收初始数据
-{
-    NSArray * arr = [NSArray array];
-    NSDictionary *dic=[not userInfo];
-    arr = [dic objectForKey:@"arr"];
-
-    for (int i = 0; i<arr.count; i++) {
-        NSLog(@"%@",[[arr objectAtIndex:i] objectForKey:@"arrAirport"]);
+    if (self.selectedSegment.selectedSegmentIndex == 1) {
+        [self.selectedByAirPort removeFromSuperview];
+        [self.view addSubview:self.selectedByDate];
+    }
+    else if (self.selectedSegment.selectedSegmentIndex == 0)
+    {
+        [self.selectedByDate removeFromSuperview];
+        [self.view addSubview:self.selectedByAirPort];
     }
 }
+
+- (IBAction)searchFligth:(id)sender {
+    SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:@"HO1252" fdate:@"2012-12-10" dpt:nil arr:nil hwld:nil];
+        
+    ShowFligthConditionController * show = [[ShowFligthConditionController alloc] init];
+    
+    show.searchCondition = search;
+    
+    [self.navigationController pushViewController:show animated:YES];
+    [show release];
+
+}
+
+
 @end

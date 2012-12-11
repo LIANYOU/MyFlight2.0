@@ -10,4 +10,10 @@
 
 @interface ChooseSpaceCell : UITableViewCell
 
+@property (retain, nonatomic) IBOutlet UILabel *SpaceName;
+@property (retain, nonatomic) IBOutlet UIButton *changeSpace;
+@property (retain, nonatomic) IBOutlet UILabel *payMoney;
+@property (retain, nonatomic) IBOutlet UILabel *ticketCount;
+@property (retain, nonatomic) IBOutlet UILabel *discount;
+
 @end
