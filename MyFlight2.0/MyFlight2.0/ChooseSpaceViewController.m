@@ -40,11 +40,14 @@
     
     self.changeInfoArr = [NSMutableArray array];
     self.indexPath = [NSMutableArray array];
-    
+    self.searchFlight.cabinNumberArr = [NSMutableArray array];
     for (int i = 0; i<self.searchFlight.cabinsArr.count; i++) {
         NSDictionary * dic = [self.searchFlight.cabinsArr objectAtIndex:i];
         NSString * string = [dic objectForKey:@"changeInfo"];
-        
+        NSString * string1 = [dic objectForKey:@"cabinCode"]; // 舱位编码
+        NSString * string2 = [dic objectForKey:@"cabinCN"];
+        NSString * str = [NSString stringWithFormat:@"%@ %@",string2,string1];
+        [self.searchFlight.cabinNumberArr addObject:str];
         [self.changeInfoArr addObject:string];
     }
     
@@ -123,25 +126,28 @@
 }
 
 
-#pragma mark - Table view delegate
+#pragma mark - Table view delegatesearchFlight
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        WriteOrderViewController * insurance = [[WriteOrderViewController alloc] init];
-        [self.navigationController pushViewController:insurance animated:YES];
-        [insurance release];
+    WriteOrderViewController * insurance = [[WriteOrderViewController alloc] init];
+    
+    insurance.searchDate = self.searchFlight;
+    insurance.searchDate.cabinNumber =  [insurance.searchDate.cabinNumberArr objectAtIndex:indexPath.row];
+    insurance.searchDate.pay = [[self.searchFlight.cabinsArr objectAtIndex:indexPath.row]objectForKey:@"price"];
+    
+    [self.navigationController pushViewController:insurance animated:YES];
+    [insurance release];
     
 }
 - (void)changeFlightInfo:(UIButton *)sender {
 
-    CCLog(@"%@",self.changeInfoArr objectAtIndex:sender.tag);
+    CCLog(@"%@",[self.changeInfoArr objectAtIndex:sender.tag]);
     
-//    NSIndexPath * indexPathToInsert = [NSIndexPath indexPathForRow:10 inSection:0];
+//    NSIndexPath * indexPathToInsert = [NSIndexPath indexPathForRow:sender.tag+1 inSection:0];
 //
 //    [self.indexPath addObject:indexPathToInsert];
 //
 //    [self.showTableView insertRowsAtIndexPaths:self.indexPath withRowAnimation:UITableViewRowAnimationBottom];
-
-
 }
 @end

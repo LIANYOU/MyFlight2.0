@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"航班动态";
+    
     self.selectedByAirPort.frame = CGRectMake(0, 460-390, 320, 378);
     self.selectedByDate.frame = CGRectMake(0, 460-390, 320, 378);
     
@@ -75,7 +77,7 @@
 }
 
 - (IBAction)searchFligth:(id)sender {
-    SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:@"HO1252" fdate:@"2012-12-10" dpt:nil arr:nil hwld:nil];
+    SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:nil fdate:@"2012-12-11" dpt:@"PEK" arr:@"SHA" hwld:nil];
         
     ShowFligthConditionController * show = [[ShowFligthConditionController alloc] init];
     

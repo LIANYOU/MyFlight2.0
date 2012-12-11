@@ -40,6 +40,12 @@ int searchFlag = 0; // 单程和往返的标记位
     
     self.navigationItem.title = @"机票查询";
     
+    startAirport.text = @"北京首都";
+    endAirport.text = @"上海虹桥";
+    
+    searchDate.startPortName = startAirport.text;
+    searchDate.endPortName = endAirport.text;
+    
     returnBtn.hidden = YES; // 默认选择单程，返回日期的图表隐藏
     retrunDateTitle.hidden = YES;
     returnDate.hidden = YES;
@@ -102,11 +108,16 @@ int searchFlag = 0; // 单程和往返的标记位
 - (IBAction)select:(id)sender {
     if (selectSegment.selectedSegmentIndex == 0) {
         
-        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:@"PEK" arr:@"SHA" date:@"2012-12-28" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:@"PEK" arr:@"SHA" date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
 
         ShowSelectedResultViewController * show = [[ShowSelectedResultViewController alloc] init];
         show.airPort = searchAirPort;
+        
+        show.startPort = startAirport.text;
+        show.endPort = endAirport.text;
+        
+        show.one = self;
         [self.navigationController pushViewController:show animated:YES];
         [show release];
     }

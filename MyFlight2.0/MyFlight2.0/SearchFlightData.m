@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import "searchFlightData.h"
+#import "SearchFlightData.h"
 
 @implementation SearchFlightData
 

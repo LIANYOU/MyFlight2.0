@@ -66,6 +66,13 @@
 		18CA7395166F6EA100D7E9A3 /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA7393166F6EA100D7E9A3 /* OneWayCheckViewController.xib */; };
 		18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */; };
 		18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */; };
+		18CC772E167711FF001106FB /* AddPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC772C167711FF001106FB /* AddPersonController.m */; };
+		18CC772F167711FF001106FB /* AddPersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CC772D167711FF001106FB /* AddPersonController.xib */; };
+		18CC773216771442001106FB /* AddPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC773116771442001106FB /* AddPersonCell.m */; };
+		18CC773416771462001106FB /* AddPersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CC773316771462001106FB /* AddPersonCell.xib */; };
+		18CC773C16771806001106FB /* AddPersonSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC773B16771805001106FB /* AddPersonSwitchCell.m */; };
+		18CC773E1677181A001106FB /* AddPersonSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CC773D16771819001106FB /* AddPersonSwitchCell.xib */; };
+		18CC774116771D8E001106FB /* IdentityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC774016771D8E001106FB /* IdentityViewController.m */; };
 		18D1BBE2167363AC00FE7B8F /* ShowFligthConditionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1BBE0167363AC00FE7B8F /* ShowFligthConditionController.m */; };
 		18D1BBE3167363AC00FE7B8F /* ShowFligthConditionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1BBE1167363AC00FE7B8F /* ShowFligthConditionController.xib */; };
 		18D88F591670967400A3B959 /* WriterOrderCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D88F581670967400A3B959 /* WriterOrderCommonCell.m */; };
@@ -73,11 +80,9 @@
 		18D88F6C167099DC00A3B959 /* WirterOrderTwoLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D88F6B167099DC00A3B959 /* WirterOrderTwoLineCell.m */; };
 		18D88F6E167099EF00A3B959 /* WirterOrderTwoLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D88F6D167099EE00A3B959 /* WirterOrderTwoLineCell.xib */; };
 		18DD1D391675BF7A006B59AB /* TransitionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D381675BF7A006B59AB /* TransitionString.m */; };
-		18DD1D3C1675D01E006B59AB /* searchFlightData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D3B1675D01D006B59AB /* searchFlightData.m */; };
+		18DD1D3C1675D01E006B59AB /* SearchFlightData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D3B1675D01D006B59AB /* SearchFlightData.m */; };
 		18E0B6C916717C9E00968F01 /* ChooseSpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B6C816717C9E00968F01 /* ChooseSpaceCell.m */; };
 		18E0B6CC16717CB200968F01 /* ChooseSpaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E0B6CB16717CB200968F01 /* ChooseSpaceCell.xib */; };
-		18E0B6D11671843F00968F01 /* ChoosePersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E0B6CF1671843F00968F01 /* ChoosePersonController.m */; };
-		18E0B6D21671843F00968F01 /* ChoosePersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E0B6D01671843F00968F01 /* ChoosePersonController.xib */; };
 		18E508A316743EDA0003BD0C /* SearchFlightConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E508A216743EDA0003BD0C /* SearchFlightConditionCell.m */; };
 		18E508A516743EE90003BD0C /* SearchFlightConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E508A416743EE90003BD0C /* SearchFlightConditionCell.xib */; };
 		18E508BC16747B840003BD0C /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E508B216747B840003BD0C /* EGORefreshTableHeaderView.m */; };
@@ -202,6 +207,17 @@
 		18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
 		18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistroyCheckViewController.m; sourceTree = "<group>"; };
 		18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistroyCheckViewController.xib; sourceTree = "<group>"; };
+		18CC772B167711FF001106FB /* AddPersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonController.h; sourceTree = "<group>"; };
+		18CC772C167711FF001106FB /* AddPersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonController.m; sourceTree = "<group>"; };
+		18CC772D167711FF001106FB /* AddPersonController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonController.xib; sourceTree = "<group>"; };
+		18CC773016771442001106FB /* AddPersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonCell.h; sourceTree = "<group>"; };
+		18CC773116771442001106FB /* AddPersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonCell.m; sourceTree = "<group>"; };
+		18CC773316771462001106FB /* AddPersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonCell.xib; sourceTree = "<group>"; };
+		18CC773A16771804001106FB /* AddPersonSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonSwitchCell.h; sourceTree = "<group>"; };
+		18CC773B16771805001106FB /* AddPersonSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonSwitchCell.m; sourceTree = "<group>"; };
+		18CC773D16771819001106FB /* AddPersonSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonSwitchCell.xib; sourceTree = "<group>"; };
+		18CC773F16771D8D001106FB /* IdentityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentityViewController.h; sourceTree = "<group>"; };
+		18CC774016771D8E001106FB /* IdentityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityViewController.m; sourceTree = "<group>"; };
 		18D1BBDF167363AC00FE7B8F /* ShowFligthConditionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFligthConditionController.h; sourceTree = "<group>"; };
 		18D1BBE0167363AC00FE7B8F /* ShowFligthConditionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFligthConditionController.m; sourceTree = "<group>"; };
 		18D1BBE1167363AC00FE7B8F /* ShowFligthConditionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowFligthConditionController.xib; sourceTree = "<group>"; };
@@ -213,17 +229,11 @@
 		18D88F6D167099EE00A3B959 /* WirterOrderTwoLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WirterOrderTwoLineCell.xib; sourceTree = "<group>"; };
 		18DD1D371675BF7A006B59AB /* TransitionString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionString.h; sourceTree = "<group>"; };
 		18DD1D381675BF7A006B59AB /* TransitionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionString.m; sourceTree = "<group>"; };
-		18DD1D3A1675D01D006B59AB /* searchFlightData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchFlightData.h; sourceTree = "<group>"; };
-		18DD1D3B1675D01D006B59AB /* searchFlightData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchFlightData.m; sourceTree = "<group>"; };
+		18DD1D3A1675D01D006B59AB /* SearchFlightData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightData.h; sourceTree = "<group>"; };
+		18DD1D3B1675D01D006B59AB /* SearchFlightData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightData.m; sourceTree = "<group>"; };
 		18E0B6C716717C9E00968F01 /* ChooseSpaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSpaceCell.h; sourceTree = "<group>"; };
 		18E0B6C816717C9E00968F01 /* ChooseSpaceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSpaceCell.m; sourceTree = "<group>"; };
 		18E0B6CB16717CB200968F01 /* ChooseSpaceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseSpaceCell.xib; sourceTree = "<group>"; };
-		18E0B6CE1671843F00968F01 /* ChoosePersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonController.h; sourceTree = "<group>"; };
-		18E0B6CF1671843F00968F01 /* ChoosePersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonController.m; sourceTree = "<group>"; };
-		18E0B6D01671843F00968F01 /* ChoosePersonController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePersonController.xib; sourceTree = "<group>"; };
-		18E0B6DC16718D9C00968F01 /* ChoosePersonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePersonCell.h; sourceTree = "<group>"; };
-		18E0B6DD16718D9C00968F01 /* ChoosePersonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonCell.m; sourceTree = "<group>"; };
-		18E0B6DE16718D9C00968F01 /* ChoosePersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoosePersonCell.xib; sourceTree = "<group>"; };
 		18E508A116743EDA0003BD0C /* SearchFlightConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightConditionCell.h; sourceTree = "<group>"; };
 		18E508A216743EDA0003BD0C /* SearchFlightConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightConditionCell.m; sourceTree = "<group>"; };
 		18E508A416743EE90003BD0C /* SearchFlightConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFlightConditionCell.xib; sourceTree = "<group>"; };
@@ -531,8 +541,8 @@
 				18478C64167332AD00D3AFCD /* SearchFlightCondition.m */,
 				18DD1D371675BF7A006B59AB /* TransitionString.h */,
 				18DD1D381675BF7A006B59AB /* TransitionString.m */,
-				18DD1D3A1675D01D006B59AB /* searchFlightData.h */,
-				18DD1D3B1675D01D006B59AB /* searchFlightData.m */,
+				18DD1D3A1675D01D006B59AB /* SearchFlightData.h */,
+				18DD1D3B1675D01D006B59AB /* SearchFlightData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -565,12 +575,17 @@
 		18E0B6CD167183D300968F01 /* choosePerson */ = {
 			isa = PBXGroup;
 			children = (
-				18E0B6CE1671843F00968F01 /* ChoosePersonController.h */,
-				18E0B6CF1671843F00968F01 /* ChoosePersonController.m */,
-				18E0B6D01671843F00968F01 /* ChoosePersonController.xib */,
-				18E0B6DC16718D9C00968F01 /* ChoosePersonCell.h */,
-				18E0B6DD16718D9C00968F01 /* ChoosePersonCell.m */,
-				18E0B6DE16718D9C00968F01 /* ChoosePersonCell.xib */,
+				18CC772B167711FF001106FB /* AddPersonController.h */,
+				18CC772C167711FF001106FB /* AddPersonController.m */,
+				18CC772D167711FF001106FB /* AddPersonController.xib */,
+				18CC773016771442001106FB /* AddPersonCell.h */,
+				18CC773116771442001106FB /* AddPersonCell.m */,
+				18CC773316771462001106FB /* AddPersonCell.xib */,
+				18CC773A16771804001106FB /* AddPersonSwitchCell.h */,
+				18CC773B16771805001106FB /* AddPersonSwitchCell.m */,
+				18CC773D16771819001106FB /* AddPersonSwitchCell.xib */,
+				18CC773F16771D8D001106FB /* IdentityViewController.h */,
+				18CC774016771D8E001106FB /* IdentityViewController.m */,
 			);
 			name = choosePerson;
 			sourceTree = "<group>";
@@ -711,7 +726,6 @@
 				18D88F5C1670968700A3B959 /* WriterOrderCommonCell.xib in Resources */,
 				18D88F6E167099EF00A3B959 /* WirterOrderTwoLineCell.xib in Resources */,
 				18E0B6CC16717CB200968F01 /* ChooseSpaceCell.xib in Resources */,
-				18E0B6D21671843F00968F01 /* ChoosePersonController.xib in Resources */,
 				180E226316719094002A7228 /* CHANGELOG.md in Resources */,
 				180E226516719094002A7228 /* README.md in Resources */,
 				180E22861671B3D4002A7228 /* LogViewController.xib in Resources */,
@@ -729,6 +743,9 @@
 				18E508C216747B840003BD0C /* grayArrow@2x.png in Resources */,
 				18E508C316747B840003BD0C /* whiteArrow.png in Resources */,
 				18E508C416747B840003BD0C /* whiteArrow@2x.png in Resources */,
+				18CC772F167711FF001106FB /* AddPersonController.xib in Resources */,
+				18CC773416771462001106FB /* AddPersonCell.xib in Resources */,
+				18CC773E1677181A001106FB /* AddPersonSwitchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,7 +776,6 @@
 				18D88F591670967400A3B959 /* WriterOrderCommonCell.m in Sources */,
 				18D88F6C167099DC00A3B959 /* WirterOrderTwoLineCell.m in Sources */,
 				18E0B6C916717C9E00968F01 /* ChooseSpaceCell.m in Sources */,
-				18E0B6D11671843F00968F01 /* ChoosePersonController.m in Sources */,
 				180E22551671908E002A7228 /* ASIAuthenticationDialog.m in Sources */,
 				180E22561671908E002A7228 /* ASIDataCompressor.m in Sources */,
 				180E22571671908E002A7228 /* ASIDataDecompressor.m in Sources */,
@@ -785,7 +801,11 @@
 				18E508A316743EDA0003BD0C /* SearchFlightConditionCell.m in Sources */,
 				18E508BC16747B840003BD0C /* EGORefreshTableHeaderView.m in Sources */,
 				18DD1D391675BF7A006B59AB /* TransitionString.m in Sources */,
-				18DD1D3C1675D01E006B59AB /* searchFlightData.m in Sources */,
+				18DD1D3C1675D01E006B59AB /* SearchFlightData.m in Sources */,
+				18CC772E167711FF001106FB /* AddPersonController.m in Sources */,
+				18CC773216771442001106FB /* AddPersonCell.m in Sources */,
+				18CC773C16771806001106FB /* AddPersonSwitchCell.m in Sources */,
+				18CC774116771D8E001106FB /* IdentityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

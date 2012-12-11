@@ -32,22 +32,30 @@
 {
     self.showResultTableView.delegate = self;
     self.showResultTableView.dataSource = self;
-
-    self.dateArr = [NSArray array];
-    self.searchFlightDateArr = [NSMutableArray array];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
-    [self.airPort searchAirPort];
-    
-    
+    NSString * navigationTitle = [NSString stringWithFormat:@"%@ -- %@",self.startPort,self.endPort];
+    self.navigationItem.title = navigationTitle;
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    if (self.one != nil || self.write != nil) {
+        self.dateArr = [NSArray array];
+        self.searchFlightDateArr = [NSMutableArray array];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+        [self.airPort searchAirPort];
+        
+        self.one = nil;
+        self.write = nil;
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)dealloc {
@@ -103,7 +111,8 @@
         s.discount = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"lowestCabinCode"]]; // 仓位折扣
         s.ticketCount = [TransitionString transitionSeatNum:[dic objectForKey:@"lowestSeatNum"]]; // 剩余票数
         s.cabinsArr = [dic objectForKey:@"Cabins"];
-        
+        s.startPortName = self.startPort;
+        s.endPortName = self.endPort;
         [self.searchFlightDateArr addObject:s];
         
         [s release];

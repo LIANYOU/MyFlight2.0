@@ -25,7 +25,8 @@
 @property (retain, nonatomic)  NSString *discount;
 @property (retain, nonatomic)  NSString *ticketCount;
 
-@property (retain, nonatomic)  NSArray *cabinsArr;
-
+@property (retain, nonatomic)  NSArray * cabinsArr;
+@property (retain, nonatomic)  NSMutableArray * cabinNumberArr;
+@property (retain, nonatomic) NSString * cabinNumber;
 
 @end

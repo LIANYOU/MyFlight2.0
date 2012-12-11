@@ -11,7 +11,8 @@
 #import "WriteOrderDetailsCell.h"
 #import "WirterOrderTwoLineCell.h"
 #import "WriterOrderCommonCell.h"
-@interface WriteOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "SearchFlightData.h"
+@interface WriteOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     IBOutlet UILabel *orderMoney;
     
@@ -24,5 +25,17 @@
 @property (retain, nonatomic) IBOutlet WriterOrderCommonCell *writerOrderCommonCell;
 @property (retain, nonatomic) IBOutlet WirterOrderTwoLineCell *wirterOrderTwoLineCell;
 @property (retain, nonatomic) IBOutlet UIScrollView *orderScrollView;
+@property (retain, nonatomic) IBOutlet UILabel *allPay;   // 底部的显示还有多少钱的按钮
+
+
+@property (retain, nonatomic) SearchFlightData * searchDate;
+
+///  cell属性的定义
+@property (retain, nonatomic) IBOutlet UILabel *upPayMoney;
+
+
+
+
+- (IBAction)payMoney:(id)sender;  // 去支付订单
 
 @end

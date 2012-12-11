@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SearchFlightData.h"
 @interface OneWayCheckViewController : UIViewController
 {
     IBOutlet UIButton *returnBtn;
@@ -18,6 +18,8 @@
     IBOutlet UILabel *startAirport;
     
     IBOutlet UISegmentedControl *selectSegment;
+    
+    SearchFlightData * searchDate;
 }
 
 - (IBAction)selectFlayWay:(UISegmentedControl *)sender;

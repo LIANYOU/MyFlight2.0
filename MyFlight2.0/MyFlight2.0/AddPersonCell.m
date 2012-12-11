@@ -1,15 +1,15 @@
 //
-//  WriteOrderCell.m
+//  AddPersonCell.m
 //  MyFlight2.0
 //
-//  Created by sss on 12-12-6.
+//  Created by WangJian on 12-12-11.
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import "WriteOrderCell.h"
+#import "AddPersonCell.h"
 
-@implementation WriteOrderCell
-@synthesize backView = _backView;
+@implementation AddPersonCell
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -27,16 +27,8 @@
 }
 
 - (void)dealloc {
-
-    [_backView release];
-    [_HUButton release];
-    [_endAirPortName release];
-    [_endTime release];
-    [_startAirPortName release];
-    [_startTime release];
-    [_date release];
-    [_plantType release];
-    [_airPortName release];
+    [_cellTitle release];
+    [_cellText release];
     [super dealloc];
 }
 @end

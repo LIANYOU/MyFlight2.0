@@ -10,7 +10,11 @@
 #import "CustomTableViewCell.h"
 #import "SearchAirPort.h"
 #import "SelectResultCell.h"
-@class SearchFlightData;
+
+@class OneWayCheckViewController;
+@class WriteOrderViewController;
+
+#import "SearchFlightData.h"
 @interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
     IBOutlet UIButton *salesText;
@@ -28,8 +32,18 @@
 @property (retain, nonatomic) SearchAirPort * airPort;
 @property (retain, nonatomic) NSArray * dateArr;  // 接收返回的数据
 @property (retain, nonatomic) NSMutableArray * searchFlightDateArr;
+@property (retain, nonatomic) SearchFlightData * search;
+
+@property (retain, nonatomic) OneWayCheckViewController * one;  // 次controller的前身是哪一个controller
+@property (retain, nonatomic) WriteOrderViewController * write;
 
 @property (retain, nonatomic) IBOutlet SelectResultCell *showCell;
+
+
+@property (retain, nonatomic) NSString * startPort;  // 传值
+@property (retain, nonatomic) NSString * endPort;
+@property (retain, nonatomic) NSString * startTime;
+@property (retain, nonatomic) NSString * endTime;
 
 - (IBAction)enterSales:(id)sender;        // 进入促销活动
 - (IBAction)enterTheDayBefore:(id)sender; // 进入前一天的查询结果

@@ -1,14 +1,14 @@
 //
-//  ChoosePersonCell.m
+//  AddPersonSwitchCell.m
 //  MyFlight2.0
 //
-//  Created by sss on 12-12-7.
+//  Created by WangJian on 12-12-11.
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import "ChoosePersonCell.h"
+#import "AddPersonSwitchCell.h"
 
-@implementation ChoosePersonCell
+@implementation AddPersonSwitchCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,10 +27,7 @@
 }
 
 - (void)dealloc {
-    [_chooseBtn release];
-    [_personName release];
-    [_personType release];
-    [_papersNumber release];
+    [_cellTitle release];
     [super dealloc];
 }
 @end
