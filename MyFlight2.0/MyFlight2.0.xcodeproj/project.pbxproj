@@ -362,12 +362,12 @@
 		1427937F167078DA00E2E1E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
+
 				14805BA2167875A700836353 /* TicketCheck */,
-=======
+
 				18D01F1316783569002C13DB /* Un sel.png */,
 				18D01F1416783569002C13DB /* sel.png */,
->>>>>>> 321
+
 				14279380167078FC00E2E1E3 /* publicImages */,
 			);
 			name = images;
@@ -872,19 +872,19 @@
 				18CC772F167711FF001106FB /* AddPersonController.xib in Resources */,
 				18CC773416771462001106FB /* AddPersonCell.xib in Resources */,
 				18CC773E1677181A001106FB /* AddPersonSwitchCell.xib in Resources */,
-<<<<<<< HEAD
+
 				14805B8C16782CF500836353 /* AirPortDataBase.sqlite in Resources */,
 				14805B8E1678349200836353 /* DataBaseVersionConfigure.plist in Resources */,
 				14805B9C1678729A00836353 /* ChooseAirPortViewController.xib in Resources */,
 				14805BA11678752D00836353 /* ChooseAirPortCell.xib in Resources */,
 				14805BA4167875E900836353 /* bg_pek.png in Resources */,
 				14805BA61678760B00836353 /* icon_return.png in Resources */,
-=======
+
 				18D01F0D16782CA4002C13DB /* ChoosePersonController.xib in Resources */,
 				18D01F1216782DFE002C13DB /* ChoosePersonCell.xib in Resources */,
 				18D01F1516783569002C13DB /* Un sel.png in Resources */,
 				18D01F1616783569002C13DB /* sel.png in Resources */,
->>>>>>> 321
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,16 +945,16 @@
 				18CC773216771442001106FB /* AddPersonCell.m in Sources */,
 				18CC773C16771806001106FB /* AddPersonSwitchCell.m in Sources */,
 				18CC774116771D8E001106FB /* IdentityViewController.m in Sources */,
-<<<<<<< HEAD
+
 				14805B8616782A8E00836353 /* AirPortDataBase.m in Sources */,
 				14805B8A16782B2B00836353 /* AirPortData.m in Sources */,
 				14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */,
 				14805B9B1678729A00836353 /* ChooseAirPortViewController.m in Sources */,
 				14805B9F1678751400836353 /* ChooseAirPortCell.m in Sources */,
-=======
+
 				18D01F0C16782CA4002C13DB /* ChoosePersonController.m in Sources */,
 				18D01F1016782DEA002C13DB /* ChoosePersonCell.m in Sources */,
->>>>>>> 321
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
