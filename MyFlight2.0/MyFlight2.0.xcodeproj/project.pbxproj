@@ -138,6 +138,9 @@
 		1453951A166F278000417F61 /* MyCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterViewController.h; sourceTree = "<group>"; };
 		1453951B166F278000417F61 /* MyCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterViewController.m; sourceTree = "<group>"; };
 		1453951C166F278000417F61 /* MyCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterViewController.xib; sourceTree = "<group>"; };
+		14805A0E1676F04B00836353 /* AppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigure.h; sourceTree = "<group>"; };
+		14805A0F1676F0DF00836353 /* AirPortsUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortsUility.h; sourceTree = "<group>"; };
+		14805A101676F13000836353 /* PublicConstUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicConstUrls.h; sourceTree = "<group>"; };
 		14ED61E11672F16D0019DC23 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		14ED61E21672F16D0019DC23 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		14ED61E31672F16D0019DC23 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -354,6 +357,7 @@
 		145394EF166F220D00417F61 /* MyFlight2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				148059D01676E6BE00836353 /* configure */,
 				180E223C16718FFF002A7228 /* RelatedResources */,
 				1427937F167078DA00E2E1E3 /* images */,
 				14279355167034BC00E2E1E3 /* UIHelper */,
@@ -419,6 +423,23 @@
 				18EAE7C416707ED500CA6265 /* WriteOrderViewController.xib */,
 			);
 			name = TicketCheck;
+			sourceTree = "<group>";
+		};
+		148059CE1676E65D00836353 /* CityAndAirPorts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CityAndAirPorts;
+			sourceTree = "<group>";
+		};
+		148059D01676E6BE00836353 /* configure */ = {
+			isa = PBXGroup;
+			children = (
+				14805A0E1676F04B00836353 /* AppConfigure.h */,
+				14805A0F1676F0DF00836353 /* AirPortsUility.h */,
+				14805A101676F13000836353 /* PublicConstUrls.h */,
+			);
+			name = configure;
 			sourceTree = "<group>";
 		};
 		14ED61E01672F16D0019DC23 /* FMDB */ = {
@@ -523,6 +544,7 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				148059CE1676E65D00836353 /* CityAndAirPorts */,
 				180E22E81671F4E6002A7228 /* DNWrapper.h */,
 				180E22E91671F4E6002A7228 /* DNWrapper.m */,
 				180E22721671919F002A7228 /* SearchAirPort.h */,

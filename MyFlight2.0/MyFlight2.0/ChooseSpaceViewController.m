@@ -134,7 +134,7 @@
 }
 - (void)changeFlightInfo:(UIButton *)sender {
 
-    CCLog(@"%@",self.changeInfoArr objectAtIndex:sender.tag);
+    CCLog(@"%@",[self.changeInfoArr objectAtIndex:sender.tag]);
     
 //    NSIndexPath * indexPathToInsert = [NSIndexPath indexPathForRow:10 inSection:0];
 //
