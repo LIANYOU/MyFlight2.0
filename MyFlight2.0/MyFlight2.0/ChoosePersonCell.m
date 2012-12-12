@@ -1,14 +1,14 @@
 //
-//  AddPersonSwitchCell.m
+//  ChoosePersonCell.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 12-12-11.
+//  Created by WangJian on 12-12-12.
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import "AddPersonSwitchCell.h"
+#import "ChoosePersonCell.h"
 
-@implementation AddPersonSwitchCell
+@implementation ChoosePersonCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,14 +27,10 @@
 }
 
 - (void)dealloc {
-    [_cellTitle release];
-    [_swith release];
+    [_btn release];
+    [_name release];
+    [_type release];
+    [_identityNumber release];
     [super dealloc];
-}
-- (IBAction)switchOFFOrON:(UISwitch *)sender {
-    
-    UIAlertView * alter = [[UIAlertView alloc] initWithTitle:nil message:@"您登录后才能保存乘机人信息，是否登录?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"【暂不登录】",@"【登录】", nil];
-    [alter show];
-    [alter release];
 }
 @end

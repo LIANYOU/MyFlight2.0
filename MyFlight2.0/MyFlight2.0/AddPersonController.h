@@ -9,7 +9,14 @@
 #import <UIKit/UIKit.h>
 @class AddPersonCell;
 @class AddPersonSwitchCell;
-@interface AddPersonController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface AddPersonController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
+{
+    UISwitch *mySwitch;
+    void (^blocks) (NSString * name, NSString * identity);
+    
+    NSString * name;
+    NSString * identityType;  // 成人或儿童
+}
 
 @property (retain, nonatomic) IBOutlet UITableView *addPersonTableView;
 @property (retain, nonatomic) IBOutlet AddPersonCell *addPersonCell;
@@ -17,4 +24,6 @@
 
 @property(nonatomic,retain) NSArray * cellTitleArr;
 @property(nonatomic,retain) NSMutableArray * cellTextArr;
+
+-(void)getDate:(void (^) (NSString * name, NSString * identity))string;
 @end

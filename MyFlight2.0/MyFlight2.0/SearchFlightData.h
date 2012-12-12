@@ -12,6 +12,8 @@
 
 @property (retain, nonatomic)  NSString *startPortName;
 @property (retain, nonatomic)  NSString *endPortName;
+@property (retain, nonatomic)  NSString *backStartPortName;
+@property (retain, nonatomic)  NSString *backendPortName;
 @property (retain, nonatomic)  NSString *beginDate;
 @property (retain, nonatomic)  NSString *endDate;
 

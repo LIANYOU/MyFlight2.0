@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBook/AddressBook.h>
 #import "WriteOrderCell.h"
 #import "WriteOrderDetailsCell.h"
 #import "WirterOrderTwoLineCell.h"
 #import "WriterOrderCommonCell.h"
 #import "SearchFlightData.h"
-@interface WriteOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface WriteOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     IBOutlet UILabel *orderMoney;
+    NSString * stringAfterJoin ;  // 拼接好的string
     
+    NSString * firstCellText;
 }
 @property (retain, nonatomic) IBOutlet UIView *headView;
 @property (retain, nonatomic) NSArray * cellTitleArr;
@@ -27,8 +30,11 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *orderScrollView;
 @property (retain, nonatomic) IBOutlet UILabel *allPay;   // 底部的显示还有多少钱的按钮
 
-
+@property (retain, nonatomic) NSMutableArray * stringArr;  // 存放添加联系人返回回来的字符串
 @property (retain, nonatomic) SearchFlightData * searchDate;
+
+@property (assign, nonatomic) int flag;
+@property (retain, nonatomic) NSMutableArray * firstCelTextArr;
 
 ///  cell属性的定义
 @property (retain, nonatomic) IBOutlet UILabel *upPayMoney;

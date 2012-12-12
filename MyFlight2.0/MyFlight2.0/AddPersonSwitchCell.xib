@@ -46,20 +46,18 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{208, 8}, {94, 27}}</string>
 								<reference key="NSSuperview" ref="735477105"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<bool key="IBUIOn">YES</bool>
 							</object>
 							<object class="IBUILabel" id="845877406">
 								<reference key="NSNextResponder" ref="735477105"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{9, 11}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="735477105"/>
-								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="717965308"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -91,8 +89,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 43}</string>
 						<reference key="NSSuperview" ref="608158236"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="717965308"/>
+						<reference key="NSNextKeyView" ref="845877406"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -107,7 +104,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 44}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="735477105"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -132,6 +128,14 @@
 						<reference key="destination" ref="845877406"/>
 					</object>
 					<int key="connectionID">10</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">swith</string>
+						<reference key="source" ref="608158236"/>
+						<reference key="destination" ref="717965308"/>
+					</object>
+					<int key="connectionID">13</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -284,88 +288,9 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">12</int>
+			<int key="maxID">14</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">AddPersonCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="cellText">UITextField</string>
-						<string key="cellTitle">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="cellText">
-							<string key="name">cellText</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="cellTitle">
-							<string key="name">cellTitle</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/AddPersonCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">AddPersonController</string>
-					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="addPersonCell">AddPersonCell</string>
-						<string key="addPersonSwithCell">AddPersonSwitchCell</string>
-						<string key="addPersonTableView">UITableView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="addPersonCell">
-							<string key="name">addPersonCell</string>
-							<string key="candidateClassName">AddPersonCell</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addPersonSwithCell">
-							<string key="name">addPersonSwithCell</string>
-							<string key="candidateClassName">AddPersonSwitchCell</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addPersonTableView">
-							<string key="name">addPersonTableView</string>
-							<string key="candidateClassName">UITableView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/AddPersonController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">AddPersonSwitchCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">cellTitle</string>
-						<string key="NS.object.0">UILabel</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">cellTitle</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">cellTitle</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/AddPersonSwitchCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSLayoutConstraint</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

@@ -10,5 +10,7 @@
 
 @interface AddPersonSwitchCell : UITableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *cellTitle;
+@property (retain, nonatomic) IBOutlet UISwitch *swith;
+//- (IBAction)switchOFFOrON:(UISwitch *)sender;
 
 @end

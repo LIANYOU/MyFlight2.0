@@ -16,7 +16,7 @@
 
 @implementation OneWayCheckViewController
 
-int searchFlag = 0; // 单程和往返的标记位
+int searchFlag = 1; // 单程和往返的标记位
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -83,8 +83,6 @@ int searchFlag = 0; // 单程和往返的标记位
 
 -(void)historySearch
 {
-
-        
     HistroyCheckViewController * histroy = [[HistroyCheckViewController alloc] init];
     [self.navigationController pushViewController:histroy animated:YES];
     [histroy release];
@@ -106,24 +104,25 @@ int searchFlag = 0; // 单程和往返的标记位
 }
 
 - (IBAction)select:(id)sender {
-    if (selectSegment.selectedSegmentIndex == 0) {
-        
+//    if (selectSegment.selectedSegmentIndex == 0) {
+    
         SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:@"PEK" arr:@"SHA" date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
 
         ShowSelectedResultViewController * show = [[ShowSelectedResultViewController alloc] init];
         show.airPort = searchAirPort;
-        
+    NSLog(@"%s,%d",__FUNCTION__,searchFlag);
+    show.flag = searchFlag;
         show.startPort = startAirport.text;
         show.endPort = endAirport.text;
         
         show.one = self;
         [self.navigationController pushViewController:show animated:YES];
         [show release];
-    }
-    else {
-        NSLog(@"推进返程");
-    }
+//    }
+//    else {
+//        NSLog(@"推进返程");
+//    }
 }
 - (void)dealloc {
     [startAirport release];

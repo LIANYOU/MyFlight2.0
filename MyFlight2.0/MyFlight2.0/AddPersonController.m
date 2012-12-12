@@ -27,12 +27,27 @@
 
 - (void)viewDidLoad
 {
+    
+    self.navigationItem.title = @"添加乘机人";
+    
     self.cellTitleArr = [NSArray arrayWithObjects:@"身份 *",@"姓名 *",@"证件类型 *",@"证件号码 *",@"生日 *",@"保存为常用乘机人", nil];
  
     self.cellTextArr = [NSMutableArray arrayWithObjects:@"成人",@"请输入乘机人姓名",@"省份证",@"请输入证件号码",@"1990-09-09", nil];
     
     self.addPersonTableView.delegate = self;
     self.addPersonTableView.dataSource = self;
+    
+    
+    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    histroyBut.frame = CGRectMake(20, 5, 80, 30);
+    [histroyBut setTitle:@"返回" forState:UIControlStateNormal];
+    [histroyBut addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+    self.navigationItem.leftBarButtonItem=backBtn;
+    [backBtn release];
+
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -84,6 +99,8 @@
             cell = self.addPersonSwithCell;
         }
         cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
+        [cell.swith addTarget:self action:@selector(switchOFFORON:) forControlEvents:UIControlEventValueChanged];
+    
         return cell;
 
     }
@@ -97,10 +114,20 @@
         }
         if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4) {
             cell.cellText.enabled = NO;
+             
             cell.cellText.text = [self.cellTextArr objectAtIndex:indexPath.row];
+            
+            if (indexPath.row == 0) {
+                identityType = cell.cellText.text;   // 儿童或者成人赋值
+            }
+            
         }
         else
         {
+            if (indexPath.row == 1) {
+                cell.cellText.tag = indexPath.row;
+            }
+            
             cell.cellText.delegate = self;
             cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
             cell.cellText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
@@ -128,9 +155,56 @@
     }
 }
 
+#pragma mark - switch
+
+-(void)switchOFFORON:(UISwitch *)sender
+{
+    mySwitch = (UISwitch *)sender;
+    BOOL setting = mySwitch.isOn;//获得开关状态
+    if(setting)
+    {
+        UIAlertView * alter = [[UIAlertView alloc] initWithTitle:nil message:@"您登录后才能保存乘机人信息，是否登录?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"【暂不登录】",@"【登录】", nil];
+        [alter show];
+        [alter release];
+        
+    }else {
+        
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        mySwitch.on = NO;    // 若不登陆则状态位OFF
+    }
+    else if (buttonIndex == 1)
+    {
+        NSLog(@"进入登陆界面");
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    int flag  = textField.tag;
+    if (flag == 1) {
+        name = textField.text;
+    }
+}
+
+-(void)getDate:(void (^) (NSString * name, NSString * identity))string
+{
+    [blocks release];
+    blocks = [string copy];
+}
+-(void)back
+{
+    blocks(name,identityType);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

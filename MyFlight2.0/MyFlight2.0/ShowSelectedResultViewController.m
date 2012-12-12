@@ -43,6 +43,9 @@
     [super viewWillAppear:YES];
     
     if (self.one != nil || self.write != nil) {
+        if (self.write != nil) {
+            self.flag  = 3; // 随便标记一位， 在推进到填写订单的时候使用
+        }
         self.dateArr = [NSArray array];
         self.searchFlightDateArr = [NSMutableArray array];
         
@@ -165,11 +168,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     ChooseSpaceViewController * order = [[ChooseSpaceViewController alloc] init];
     order.searchFlight = [self.searchFlightDateArr objectAtIndex:indexPath.row];
-    
+    order.flag = self.flag;
     [self.navigationController pushViewController:order animated:YES];
     [order release];
+    
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -215,4 +220,5 @@
     [self.view addSubview:view];
     [view release];
 }
+
 @end

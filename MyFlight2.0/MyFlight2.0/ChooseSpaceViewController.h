@@ -10,7 +10,7 @@
 #import "ChooseSpaceCell.h"
 #import "SearchFlightData.h"
 
-@interface ChooseSpaceViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface ChooseSpaceViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UITableView *showTableView;
 
@@ -23,6 +23,8 @@
 @property(nonatomic,retain) NSMutableArray * changeInfoArr; // 存放每一行退改签的数据
 
 @property(nonatomic,retain) NSMutableArray * indexPath;    // 存放插入的退改签的cell 的数据
+
+@property(nonatomic,assign) int flag ; // 记录单程还是往返
 
 @property (retain, nonatomic) IBOutlet UILabel *flightCode;
 @property (retain, nonatomic) IBOutlet UILabel *airPort;

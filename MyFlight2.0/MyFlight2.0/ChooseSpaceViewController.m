@@ -10,6 +10,7 @@
 #import "ChooseSpaceCell.h"
 #import "WriteOrderViewController.h"
 #import "TransitionString.h"
+#import "ShowSelectedResultViewController.h"
 @interface ChooseSpaceViewController ()
 
 @end
@@ -130,18 +131,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WriteOrderViewController * insurance = [[WriteOrderViewController alloc] init];
+    if (self.flag == 2) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您还有返程订单未选择" delegate:self cancelButtonTitle:nil otherButtonTitles:@"取消",@"选择返程", nil];
+        [alert show];
+        [alert release];
+    }
     
-    insurance.searchDate = self.searchFlight;
-    insurance.searchDate.cabinNumber =  [insurance.searchDate.cabinNumberArr objectAtIndex:indexPath.row];
-    insurance.searchDate.pay = [[self.searchFlight.cabinsArr objectAtIndex:indexPath.row]objectForKey:@"price"];
-    
-    [self.navigationController pushViewController:insurance animated:YES];
-    [insurance release];
+    else
+    {
+        WriteOrderViewController * insurance = [[WriteOrderViewController alloc] init];
+        insurance.flag = self.flag;
+        NSLog(@"%s,%d",__FUNCTION__,self.flag);
+        insurance.searchDate = self.searchFlight;
+        insurance.searchDate.cabinNumber =  [insurance.searchDate.cabinNumberArr objectAtIndex:indexPath.row];
+        insurance.searchDate.pay = [[self.searchFlight.cabinsArr objectAtIndex:indexPath.row]objectForKey:@"price"];
+        
+        [self.navigationController pushViewController:insurance animated:YES];
+        [insurance release];
+    }
     
 }
 - (void)changeFlightInfo:(UIButton *)sender {
-
+    
     CCLog(@"%@",[self.changeInfoArr objectAtIndex:sender.tag]);
     
 //    NSIndexPath * indexPathToInsert = [NSIndexPath indexPathForRow:sender.tag+1 inSection:0];
@@ -150,4 +161,25 @@
 //
 //    [self.showTableView insertRowsAtIndexPaths:self.indexPath withRowAnimation:UITableViewRowAnimationBottom];
 }
+
+
+
+#pragma mark -- alertView delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex ==1 ) {
+        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:@"SHA" arr:@"PEK" date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+        
+        ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
+        show.airPort = searchAirPort;
+        show.write = self;
+        [self.navigationController popToViewController:show animated:YES];
+        NSLog(@"返回选择返程订单");
+    }
+    else if (buttonIndex ==0)
+    {
+        NSLog(@"停留在次界面");
+    }
+}
+
 @end
