@@ -29,6 +29,17 @@
 		14539506166F220E00417F61 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14539504166F220E00417F61 /* ViewController.xib */; };
 		1453951D166F278000417F61 /* MyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1453951B166F278000417F61 /* MyCenterViewController.m */; };
 		1453951E166F278000417F61 /* MyCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1453951C166F278000417F61 /* MyCenterViewController.xib */; };
+		14805B8616782A8E00836353 /* AirPortDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B8516782A8E00836353 /* AirPortDataBase.m */; };
+		14805B8A16782B2B00836353 /* AirPortData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B8916782B2A00836353 /* AirPortData.m */; };
+		14805B8C16782CF500836353 /* AirPortDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14805B8B16782CF400836353 /* AirPortDataBase.sqlite */; };
+		14805B8E1678349200836353 /* DataBaseVersionConfigure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14805B8D1678349100836353 /* DataBaseVersionConfigure.plist */; };
+		14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */; };
+		14805B9B1678729A00836353 /* ChooseAirPortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B991678729A00836353 /* ChooseAirPortViewController.m */; };
+		14805B9C1678729A00836353 /* ChooseAirPortViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14805B9A1678729A00836353 /* ChooseAirPortViewController.xib */; };
+		14805B9F1678751400836353 /* ChooseAirPortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B9E1678751400836353 /* ChooseAirPortCell.m */; };
+		14805BA11678752D00836353 /* ChooseAirPortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA01678752C00836353 /* ChooseAirPortCell.xib */; };
+		14805BA4167875E900836353 /* bg_pek.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA3167875E900836353 /* bg_pek.png */; };
+		14805BA61678760B00836353 /* icon_return.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA51678760B00836353 /* icon_return.png */; };
 		14ED61ED1672F16D0019DC23 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E21672F16D0019DC23 /* FMDatabase.m */; };
 		14ED61EE1672F16D0019DC23 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E41672F16D0019DC23 /* FMDatabaseAdditions.m */; };
 		14ED61EF1672F16D0019DC23 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E61672F16D0019DC23 /* FMDatabasePool.m */; };
@@ -146,6 +157,22 @@
 		14805A0E1676F04B00836353 /* AppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigure.h; sourceTree = "<group>"; };
 		14805A0F1676F0DF00836353 /* AirPortsUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortsUility.h; sourceTree = "<group>"; };
 		14805A101676F13000836353 /* PublicConstUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicConstUrls.h; sourceTree = "<group>"; };
+		14805B8416782A8E00836353 /* AirPortDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortDataBase.h; sourceTree = "<group>"; };
+		14805B8516782A8E00836353 /* AirPortDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPortDataBase.m; sourceTree = "<group>"; };
+		14805B8816782B2A00836353 /* AirPortData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortData.h; sourceTree = "<group>"; };
+		14805B8916782B2A00836353 /* AirPortData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPortData.m; sourceTree = "<group>"; };
+		14805B8B16782CF400836353 /* AirPortDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirPortDataBase.sqlite; sourceTree = "<group>"; };
+		14805B8D1678349100836353 /* DataBaseVersionConfigure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DataBaseVersionConfigure.plist; sourceTree = "<group>"; };
+		14805B8F16783A1200836353 /* AirPortDataBaseSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortDataBaseSingleton.h; sourceTree = "<group>"; };
+		14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPortDataBaseSingleton.m; sourceTree = "<group>"; };
+		14805B981678729A00836353 /* ChooseAirPortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAirPortViewController.h; sourceTree = "<group>"; };
+		14805B991678729A00836353 /* ChooseAirPortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAirPortViewController.m; sourceTree = "<group>"; };
+		14805B9A1678729A00836353 /* ChooseAirPortViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseAirPortViewController.xib; sourceTree = "<group>"; };
+		14805B9D1678751300836353 /* ChooseAirPortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAirPortCell.h; sourceTree = "<group>"; };
+		14805B9E1678751400836353 /* ChooseAirPortCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAirPortCell.m; sourceTree = "<group>"; };
+		14805BA01678752C00836353 /* ChooseAirPortCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseAirPortCell.xib; sourceTree = "<group>"; };
+		14805BA3167875E900836353 /* bg_pek.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pek.png; sourceTree = "<group>"; };
+		14805BA51678760B00836353 /* icon_return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_return.png; sourceTree = "<group>"; };
 		14ED61E11672F16D0019DC23 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		14ED61E21672F16D0019DC23 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		14ED61E31672F16D0019DC23 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -318,6 +345,7 @@
 		1427937F167078DA00E2E1E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				14805BA2167875A700836353 /* TicketCheck */,
 				14279380167078FC00E2E1E3 /* publicImages */,
 			);
 			name = images;
@@ -326,6 +354,7 @@
 		14279380167078FC00E2E1E3 /* publicImages */ = {
 			isa = PBXGroup;
 			children = (
+				14805BA51678760B00836353 /* icon_return.png */,
 				142793811670792500E2E1E3 /* line.png */,
 			);
 			name = publicImages;
@@ -413,6 +442,7 @@
 		14539523166F2C6800417F61 /* TicketCheck */ = {
 			isa = PBXGroup;
 			children = (
+				14805B9716786F3C00836353 /* chooseAirPorts */,
 				18E0B6CD167183D300968F01 /* choosePerson */,
 				142793771670699100E2E1E3 /* chooseSpace */,
 				18EAE79416703AA000CA6265 /* cell */,
@@ -438,6 +468,14 @@
 		148059CE1676E65D00836353 /* CityAndAirPorts */ = {
 			isa = PBXGroup;
 			children = (
+				14805B8D1678349100836353 /* DataBaseVersionConfigure.plist */,
+				14805B8B16782CF400836353 /* AirPortDataBase.sqlite */,
+				14805B8816782B2A00836353 /* AirPortData.h */,
+				14805B8916782B2A00836353 /* AirPortData.m */,
+				14805B8416782A8E00836353 /* AirPortDataBase.h */,
+				14805B8516782A8E00836353 /* AirPortDataBase.m */,
+				14805B8F16783A1200836353 /* AirPortDataBaseSingleton.h */,
+				14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */,
 			);
 			name = CityAndAirPorts;
 			sourceTree = "<group>";
@@ -450,6 +488,27 @@
 				14805A101676F13000836353 /* PublicConstUrls.h */,
 			);
 			name = configure;
+			sourceTree = "<group>";
+		};
+		14805B9716786F3C00836353 /* chooseAirPorts */ = {
+			isa = PBXGroup;
+			children = (
+				14805B981678729A00836353 /* ChooseAirPortViewController.h */,
+				14805B991678729A00836353 /* ChooseAirPortViewController.m */,
+				14805B9A1678729A00836353 /* ChooseAirPortViewController.xib */,
+				14805B9D1678751300836353 /* ChooseAirPortCell.h */,
+				14805B9E1678751400836353 /* ChooseAirPortCell.m */,
+				14805BA01678752C00836353 /* ChooseAirPortCell.xib */,
+			);
+			name = chooseAirPorts;
+			sourceTree = "<group>";
+		};
+		14805BA2167875A700836353 /* TicketCheck */ = {
+			isa = PBXGroup;
+			children = (
+				14805BA3167875E900836353 /* bg_pek.png */,
+			);
+			name = TicketCheck;
 			sourceTree = "<group>";
 		};
 		14ED61E01672F16D0019DC23 /* FMDB */ = {
@@ -768,6 +827,12 @@
 				18CC772F167711FF001106FB /* AddPersonController.xib in Resources */,
 				18CC773416771462001106FB /* AddPersonCell.xib in Resources */,
 				18CC773E1677181A001106FB /* AddPersonSwitchCell.xib in Resources */,
+				14805B8C16782CF500836353 /* AirPortDataBase.sqlite in Resources */,
+				14805B8E1678349200836353 /* DataBaseVersionConfigure.plist in Resources */,
+				14805B9C1678729A00836353 /* ChooseAirPortViewController.xib in Resources */,
+				14805BA11678752D00836353 /* ChooseAirPortCell.xib in Resources */,
+				14805BA4167875E900836353 /* bg_pek.png in Resources */,
+				14805BA61678760B00836353 /* icon_return.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +893,11 @@
 				18CC773216771442001106FB /* AddPersonCell.m in Sources */,
 				18CC773C16771806001106FB /* AddPersonSwitchCell.m in Sources */,
 				18CC774116771D8E001106FB /* IdentityViewController.m in Sources */,
+				14805B8616782A8E00836353 /* AirPortDataBase.m in Sources */,
+				14805B8A16782B2B00836353 /* AirPortData.m in Sources */,
+				14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */,
+				14805B9B1678729A00836353 /* ChooseAirPortViewController.m in Sources */,
+				14805B9F1678751400836353 /* ChooseAirPortCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

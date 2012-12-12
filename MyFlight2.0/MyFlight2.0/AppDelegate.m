@@ -10,6 +10,8 @@
 
 #import "ViewController.h"
 #import "SearchFlightConditionController.h"
+#import "AirPortDataBase.h"
+#import "AirPortDataBaseSingleton.h"
 @implementation AppDelegate
 @synthesize window=_window,viewController = _viewController;
 
@@ -27,10 +29,37 @@
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
     UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:self.viewController];
     
+    
+    [self performSelectorInBackground:@selector(initDataBaseInBackground) withObject:nil];
+    
+    [self performSelectorInBackground:@selector(getCityAndAirport) withObject:nil];
+
+    
     self.window.rootViewController = nav;
     [nav release];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void) getCityAndAirport{
+    
+    [NSThread sleepForTimeInterval:7];
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+
+    AirPortDataBaseSingleton *single = [AirPortDataBaseSingleton shareAirPortBaseData];
+    
+    [NSThread sleepForTimeInterval:5];
+   
+//    [AirPortDataBase findAllHotAirPorts];
+//    [AirPortDataBase findAllCitiesAndAirPorts];
+}
+
+
+- (void) initDataBaseInBackground{
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    [AirPortDataBase initDataBase];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
