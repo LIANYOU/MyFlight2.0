@@ -30,28 +30,45 @@
 
 - (void)viewDidLoad
 {
+    
+//    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    histroyBut.frame = CGRectMake(230, 5, 80, 30);
+//    [histroyBut setTitle:@"返回" forState:UIControlStateNormal];
+//    [histroyBut addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+//    self.navigationItem.leftBarButtonItem=backBtn;
+//    [backBtn release];
+
+    
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
     
-    self.flightCode.text = self.searchFlight.temporaryLabel;
-    self.airPort.text = self.searchFlight.airPort;
-    self.palntType.text = self.searchFlight.palntType;
-    self.beginTime.text = self.searchFlight.beginTime;
-    self.endTime.text = self.searchFlight.endTime;
+    if (self.searchBackFlight != nil) {
+        data = self.searchBackFlight;
+    }
+    else{
+        data = self.searchFlight;
+    }
+    self.flightCode.text = data.temporaryLabel;
+    self.airPort.text = data.airPort;
+    self.palntType.text = data.palntType;
+    self.beginTime.text = data.beginTime;
+    self.endTime.text = data.endTime;
     
     self.changeInfoArr = [NSMutableArray array];
     self.indexPath = [NSMutableArray array];
-    self.searchFlight.cabinNumberArr = [NSMutableArray array];
-    for (int i = 0; i<self.searchFlight.cabinsArr.count; i++) {
-        NSDictionary * dic = [self.searchFlight.cabinsArr objectAtIndex:i];
-        NSString * string = [dic objectForKey:@"changeInfo"];
-        NSString * string1 = [dic objectForKey:@"cabinCode"]; // 舱位编码
-        NSString * string2 = [dic objectForKey:@"cabinCN"];
+    data.cabinNumberArr = [NSMutableArray array];
+    for (int i = 0; i<data.cabinsArr.count; i++) {
+        NSDictionary * dictionary = [data.cabinsArr objectAtIndex:i];
+        NSString * string = [dictionary objectForKey:@"changeInfo"];
+        NSString * string1 = [dictionary objectForKey:@"cabinCode"]; // 舱位编码
+        NSString * string2 = [dictionary objectForKey:@"cabinCN"];
         NSString * str = [NSString stringWithFormat:@"%@ %@",string2,string1];
-        [self.searchFlight.cabinNumberArr addObject:str];
+        [data.cabinNumberArr addObject:str];
         [self.changeInfoArr addObject:string];
     }
-    
+
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -96,7 +113,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.searchFlight.cabinsArr.count;
+    if (self.searchBackFlight != nil) {
+        return self.searchBackFlight.cabinsArr.count;
+    }
+    else{
+        return self.searchFlight.cabinsArr.count;
+    }
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -112,8 +135,13 @@
         [[NSBundle mainBundle] loadNibNamed:@"ChooseSpaceCell" owner:self options:nil];
         cell = self.spaceCell;
     }
-    
-    NSDictionary * dic = [self.searchFlight.cabinsArr objectAtIndex:indexPath.row] ;
+    if (self.searchBackFlight != nil) {
+        dic = [self.searchBackFlight.cabinsArr objectAtIndex:indexPath.row] ;
+    }
+    else{
+        dic = [self.searchFlight.cabinsArr objectAtIndex:indexPath.row] ;
+    }
+   
     cell.SpaceName.text = [dic objectForKey:@"cabinCN"];
     cell.payMoney.text = [dic objectForKey:@"price"];
     cell.ticketCount.text = [TransitionString transitionSeatNum: [dic objectForKey:@"seatNum"] ];
@@ -131,6 +159,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+       
     if (self.flag == 2) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您还有返程订单未选择" delegate:self cancelButtonTitle:nil otherButtonTitles:@"取消",@"选择返程", nil];
         [alert show];
@@ -141,10 +170,19 @@
     {
         WriteOrderViewController * insurance = [[WriteOrderViewController alloc] init];
         insurance.flag = self.flag;
-        NSLog(@"%s,%d",__FUNCTION__,self.flag);
+        
         insurance.searchDate = self.searchFlight;
+        insurance.searchBackDate = self.searchBackFlight;
+        
         insurance.searchDate.cabinNumber =  [insurance.searchDate.cabinNumberArr objectAtIndex:indexPath.row];
+        
+        insurance.searchBackDate.cabinNumber = [insurance.searchBackDate.cabinNumberArr objectAtIndex:indexPath.row];
+        
         insurance.searchDate.pay = [[self.searchFlight.cabinsArr objectAtIndex:indexPath.row]objectForKey:@"price"];
+        
+        insurance.searchBackDate.pay = [[self.searchBackFlight.cabinsArr objectAtIndex:indexPath.row] objectForKey:@"price"];
+        
+        NSLog(@"%@,%@",insurance.searchDate.pay,insurance.searchBackDate.pay);
         
         [self.navigationController pushViewController:insurance animated:YES];
         [insurance release];
@@ -172,9 +210,10 @@
         
         ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
         show.airPort = searchAirPort;
+        show.netFlag = 1;  // 等与1  ，在返回到返程列表的时候 不需要联网
         show.write = self;
         [self.navigationController popToViewController:show animated:YES];
-        NSLog(@"返回选择返程订单");
+        
     }
     else if (buttonIndex ==0)
     {
@@ -182,4 +221,11 @@
     }
 }
 
+-(void)back
+{
+    ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
+    //show.netFlag = 1;  // 返回时候不需要联网
+    [self.navigationController popToViewController:show animated:YES];
+
+}
 @end

@@ -33,6 +33,12 @@
     self.showResultTableView.delegate = self;
     self.showResultTableView.dataSource = self;
     
+    self.searchFlightDateArr = [NSMutableArray array];
+    self.searchBackFlightDateArr = [NSMutableArray array];
+    self.indexArr = [NSMutableArray array];
+    
+    self.indexFlag = 1000;
+    
     NSString * navigationTitle = [NSString stringWithFormat:@"%@ -- %@",self.startPort,self.endPort];
     self.navigationItem.title = navigationTitle;
     [super viewDidLoad];
@@ -47,13 +53,12 @@
             self.flag  = 3; // 随便标记一位， 在推进到填写订单的时候使用
         }
         self.dateArr = [NSArray array];
-        self.searchFlightDateArr = [NSMutableArray array];
+        
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
         [self.airPort searchAirPort];
         
-        self.one = nil;
-        self.write = nil;
+        
     }
 }
 - (void)didReceiveMemoryWarning
@@ -100,10 +105,10 @@
 {
     self.dateArr = [[not userInfo] objectForKey:@"arr"];
     
-    [self.dateArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    for (int i = 0; i<self.dateArr.count; i++) {
         SearchFlightData * s = [[SearchFlightData alloc] init] ;
         
-        NSDictionary * dic = [self.dateArr objectAtIndex:idx];
+        NSDictionary * dic = [self.dateArr objectAtIndex:i];
         
         s.temporaryLabel = [dic objectForKey:@"code"];
         s.airPort = [dic objectForKey:@"carrier"];
@@ -114,14 +119,24 @@
         s.discount = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"lowestCabinCode"]]; // 仓位折扣
         s.ticketCount = [TransitionString transitionSeatNum:[dic objectForKey:@"lowestSeatNum"]]; // 剩余票数
         s.cabinsArr = [dic objectForKey:@"Cabins"];
-        s.startPortName = self.startPort;
+        s.startPortName = self.startPort;  // 机场名字 如:（北京首都）
         s.endPortName = self.endPort;
-        [self.searchFlightDateArr addObject:s];
+        
+        if (self.write != nil) {
+
+            [self.searchBackFlightDateArr addObject:s];
+        }
+        else {
+            [self.searchFlightDateArr addObject:s];
+        }
         
         [s release];
 
-    }];
+    }
+
+  //  NSLog(@"==========%d",self.searchBackFlightDateArr.count);
     
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self.showResultTableView reloadData];
 }
 #pragma mark - Table view data source
@@ -150,16 +165,23 @@
         cell = self.showCell;
     }
 
-    SearchFlightData * s = [self.searchFlightDateArr objectAtIndex:indexPath.row];
+    if (self.write != nil  ||  self.netFlag == 1) {
+        data = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        data = [self.searchFlightDateArr objectAtIndex:indexPath.row];
+    }
     
-    cell.temporaryLabel.text = s.temporaryLabel;
-    cell.airPort.text = s.airPort;
-    cell.palntType.text = s.palntType;
-    cell.beginTime.text = s.beginTime;
-    cell.endTime.text = s.endTime;
-    cell.pay.text = s.pay; // Y仓价格
-    cell.discount.text = s.discount; // 仓位折扣
-    cell.ticketCount.text = s.ticketCount; // 剩余票数
+    
+    cell.temporaryLabel.text = data.temporaryLabel;
+    cell.airPort.text = data.airPort;
+    cell.palntType.text = data.palntType;
+    cell.beginTime.text = data.beginTime;
+    cell.endTime.text = data.endTime;
+    cell.pay.text = data.pay; // Y仓价格
+    cell.discount.text = data.discount; // 仓位折扣
+    cell.ticketCount.text = data.ticketCount; // 剩余票数
 
     return cell;
 }
@@ -170,9 +192,29 @@
 {
 
     ChooseSpaceViewController * order = [[ChooseSpaceViewController alloc] init];
-    order.searchFlight = [self.searchFlightDateArr objectAtIndex:indexPath.row];
+    if (self.write != nil ||  self.netFlag == 1) {
+        order.searchBackFlight = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
+        self.indexFlag = indexPath.row;
+    } 
+
+    if (self.indexFlag == 1000) {
+        
+        [self.indexArr addObject:[self.searchFlightDateArr objectAtIndex:indexPath.row]];
+        order.searchFlight = [self.searchFlightDateArr objectAtIndex:indexPath.row];
+    }
+    
+    else
+    {
+        order.searchFlight = [self.indexArr lastObject];
+    }
+    
     order.flag = self.flag;
+   
     [self.navigationController pushViewController:order animated:YES];
+    
+    self.write = nil;
+    self.one = nil;
+    
     [order release];
     
 }

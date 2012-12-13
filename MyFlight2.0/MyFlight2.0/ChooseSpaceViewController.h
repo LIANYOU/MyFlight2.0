@@ -11,14 +11,18 @@
 #import "SearchFlightData.h"
 
 @interface ChooseSpaceViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
-
+{
+    SearchFlightData * data;
+    NSDictionary * dic;
+}
 @property (retain, nonatomic) IBOutlet UITableView *showTableView;
-
 @property (retain, nonatomic) IBOutlet ChooseSpaceCell *spaceCell;
 
 @property(nonatomic,retain) NSArray * spaceNameArr;  // 存放cell的仓明（超值经济舱，经济舱）
+@property(nonatomic,assign) int indexFlag;
 
 @property(nonatomic,retain) SearchFlightData * searchFlight;
+@property(nonatomic,retain) SearchFlightData * searchBackFlight;
 
 @property(nonatomic,retain) NSMutableArray * changeInfoArr; // 存放每一行退改签的数据
 

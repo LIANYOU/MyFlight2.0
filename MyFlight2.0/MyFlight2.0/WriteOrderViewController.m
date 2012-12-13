@@ -44,8 +44,6 @@
     self.orderTableView.delegate = self;
     self.orderTableView.dataSource = self;
     
-    NSLog(@"%s,%d",__FUNCTION__,self.flag);
-    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -117,7 +115,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (self.flag==1) { // 单程
-        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+        
         return 2;
     }
     else if(self.flag == 3)
@@ -175,7 +173,7 @@
             CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
             
             CGFloat height = MAX(size.height, 44.0f);
-            NSLog(@"%f",height);
+           
             return height;
             
         }
@@ -218,6 +216,15 @@
                 cell = self.writeOrderCell;
             }
             cell.userInteractionEnabled = NO;
+            
+            cell.HUButton.text = self.searchDate.temporaryLabel;
+            cell.airPortName.text = self.searchDate.airPort;
+            cell.startTime.text = self.searchDate.beginTime;
+            cell.endTime.text = self.searchDate.endTime;
+            cell.startAirPortName.text = self.searchDate.startPortName;
+            cell.endAirPortName.text = self.searchDate.endPortName;
+            cell.plantType.text = self.searchDate.cabinNumber;
+            
             return cell;
             break;
         }
@@ -232,6 +239,15 @@
             }
             cell.backView.backgroundColor = [UIColor orangeColor];
             cell.userInteractionEnabled = NO;
+            
+            cell.HUButton.text = self.searchBackDate.temporaryLabel;
+            cell.airPortName.text = self.searchBackDate.airPort;
+            cell.startTime.text = self.searchBackDate.beginTime;
+            cell.endTime.text = self.searchBackDate.endTime;
+            cell.startAirPortName.text = self.searchBackDate.startPortName;
+            cell.endAirPortName.text = self.searchBackDate.endPortName;
+            cell.plantType.text = self.searchBackDate.cabinNumber;
+            
             return cell;
             break;
             
