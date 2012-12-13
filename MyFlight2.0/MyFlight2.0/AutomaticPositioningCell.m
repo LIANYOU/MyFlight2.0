@@ -1,14 +1,14 @@
 //
-//  ChooseAirPortCell.m
+//  AutomaticPositioningCell.m
 //  MyFlight2.0
 //
 //  Created by Davidsph on 12/12/12.
 //  Copyright (c) 2012 LIAN YOU. All rights reserved.
 //
 
-#import "ChooseAirPortCell.h"
+#import "AutomaticPositioningCell.h"
 
-@implementation ChooseAirPortCell
+@implementation AutomaticPositioningCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,10 +26,4 @@
     // Configure the view for the selected state
 }
 
-- (void)dealloc {
-    [_apCodeLabel release];
-    [_airPortNameLabel release];
-    [_flightState release];
-    [super dealloc];
-}
 @end

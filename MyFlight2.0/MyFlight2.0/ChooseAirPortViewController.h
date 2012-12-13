@@ -7,13 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ChooseAirPortViewController;
+@class  AirPortData;
+@protocol ChooseAirPortViewControllerDelegate <NSObject>
 
-@interface ChooseAirPortViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@optional
+
+- (void) ChooseAirPortViewController:(ChooseAirPortViewController *) controlelr didSelectAirPortInfo:(AirPortData *) airPort;
+
+@end
+
+@interface ChooseAirPortViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ChooseAirPortViewControllerDelegate>
 
 
 
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic,retain)NSArray *resultHotArray;
+@property(nonatomic,retain)NSArray *allKeysArray;
+//属性传值
+@property(nonatomic,retain)NSString *startAirportName;
+@property(nonatomic,retain)NSString *endAirPortName;
+
+@property(nonatomic,assign)id<ChooseAirPortViewControllerDelegate> delegate;
 
 @end
