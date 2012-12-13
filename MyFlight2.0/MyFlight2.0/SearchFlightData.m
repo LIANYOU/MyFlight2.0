@@ -10,4 +10,13 @@
 
 @implementation SearchFlightData
 
++(SearchFlightData *)defaultSearchFlightData
+{
+    static SearchFlightData * search = nil;
+    if (search==nil)
+    {
+        search = [[SearchFlightData alloc] init];
+    }
+    return search;
+}
 @end

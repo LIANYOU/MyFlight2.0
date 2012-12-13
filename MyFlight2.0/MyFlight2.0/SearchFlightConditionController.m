@@ -77,7 +77,7 @@
 }
 
 - (IBAction)searchFligth:(id)sender {
-    SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:nil fdate:@"2012-12-11" dpt:@"PEK" arr:@"SHA" hwld:nil];
+    SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:nil fdate:nil dpt:@"PEK" arr:@"SHA" hwld:nil];
         
     ShowFligthConditionController * show = [[ShowFligthConditionController alloc] init];
     

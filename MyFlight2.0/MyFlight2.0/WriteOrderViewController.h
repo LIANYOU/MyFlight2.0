@@ -31,16 +31,15 @@
 @property (retain, nonatomic) IBOutlet UILabel *allPay;   // 底部的显示还有多少钱的按钮
 
 @property (retain, nonatomic) NSMutableArray * stringArr;  // 存放添加联系人返回回来的字符串
+
 @property (retain, nonatomic) SearchFlightData * searchDate;
+@property (retain, nonatomic) SearchFlightData * searchBackDate;
 
 @property (assign, nonatomic) int flag;
 @property (retain, nonatomic) NSMutableArray * firstCelTextArr;
 
 ///  cell属性的定义
 @property (retain, nonatomic) IBOutlet UILabel *upPayMoney;
-
-
-
 
 - (IBAction)payMoney:(id)sender;  // 去支付订单
 

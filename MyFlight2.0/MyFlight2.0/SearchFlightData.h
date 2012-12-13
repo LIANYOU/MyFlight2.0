@@ -27,8 +27,9 @@
 @property (retain, nonatomic)  NSString *discount;
 @property (retain, nonatomic)  NSString *ticketCount;
 
-@property (retain, nonatomic)  NSArray * cabinsArr;
-@property (retain, nonatomic)  NSMutableArray * cabinNumberArr;
-@property (retain, nonatomic) NSString * cabinNumber;
+@property (retain, nonatomic)  NSArray * cabinsArr;  
+@property (retain, nonatomic)  NSMutableArray * cabinNumberArr;   // 存放某一航班的所有cabinNumber舱位的信息
+@property (retain, nonatomic)  NSString * cabinNumber;   // (格式 “经济舱 Z” );
 
++(SearchFlightData *)defaultSearchFlightData;
 @end

@@ -27,15 +27,23 @@
     IBOutlet UIButton *sortBtn;
     IBOutlet UILabel *backImagelabel;
     IBOutlet UIButton *siftBtn;
+    
+    SearchFlightData * data;
 }
 @property (retain, nonatomic) IBOutlet UITableView *showResultTableView;
 @property (retain, nonatomic) SearchAirPort * airPort;
 @property (retain, nonatomic) NSArray * dateArr;  // 接收返回的数据
-@property (retain, nonatomic) NSMutableArray * searchFlightDateArr;
+@property (retain, nonatomic) NSMutableArray * searchFlightDateArr;      // 存放单程结果
+@property (retain, nonatomic) NSMutableArray * searchBackFlightDateArr;  // 存放返程结果
 @property (retain, nonatomic) SearchFlightData * search;
 
 @property (retain, nonatomic) OneWayCheckViewController * one;  // 次controller的前身是哪一个controller
 @property (retain, nonatomic) ChooseSpaceViewController * write;
+@property (nonatomic,assign) int netFlag;  // 判断是否需要联网的标记位
+@property (nonatomic,assign) int indexFlag; // 
+
+@property (nonatomic,retain) NSMutableArray * indexArr;
+
 
 @property (retain, nonatomic) IBOutlet SelectResultCell *showCell;
 
