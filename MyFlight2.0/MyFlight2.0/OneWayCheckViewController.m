@@ -29,9 +29,10 @@ int searchFlag = 1; // 单程和往返的标记位
 
 - (void)viewDidLoad
 {
-    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    histroyBut.frame = CGRectMake(230, 5, 80, 30);
-    [histroyBut setTitle:@"历史查询" forState:UIControlStateNormal];
+    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
+    histroyBut.frame = CGRectMake(230, 5, 30, 30);
+    
+    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_history.png"]];
     [histroyBut addTarget:self action:@selector(historySearch) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
