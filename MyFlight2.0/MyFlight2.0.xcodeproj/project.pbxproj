@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14241AAF1679ADC600D84663 /* depart.png in Resources */ = {isa = PBXBuildFile; fileRef = 14241AAE1679ADC600D84663 /* depart.png */; };
+		14241AB21679ADD700D84663 /* arrive.png in Resources */ = {isa = PBXBuildFile; fileRef = 14241AB11679ADD700D84663 /* arrive.png */; };
+		14241ABA1679BD2200D84663 /* ChooseAirPortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14241AB81679BD2200D84663 /* ChooseAirPortCell.m */; };
+		14241ABB1679BD2200D84663 /* ChooseAirPortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14241AB91679BD2200D84663 /* ChooseAirPortCell.xib */; };
+		14241AC01679BD2F00D84663 /* ChooseAirPortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14241ABE1679BD2F00D84663 /* ChooseAirPortViewController.m */; };
+		14241AC11679BD2F00D84663 /* ChooseAirPortViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14241ABF1679BD2F00D84663 /* ChooseAirPortViewController.xib */; };
+		14241AC91679BDEC00D84663 /* AutomaticPositioningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14241AC71679BDEC00D84663 /* AutomaticPositioningCell.m */; };
+		14241ACA1679BDEC00D84663 /* AutomaticPositioningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14241AC81679BDEC00D84663 /* AutomaticPositioningCell.xib */; };
+		14241AD71679C05A00D84663 /* ChoosePersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14241AD51679C05A00D84663 /* ChoosePersonCell.m */; };
+		14241AD81679C05A00D84663 /* ChoosePersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14241AD61679C05A00D84663 /* ChoosePersonCell.xib */; };
+		14241ADC1679C08700D84663 /* ChoosePersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14241ADA1679C08700D84663 /* ChoosePersonController.m */; };
+		14241ADD1679C08700D84663 /* ChoosePersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14241ADB1679C08700D84663 /* ChoosePersonController.xib */; };
 		142793591670351F00E2E1E3 /* UIQuickHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 142793581670351F00E2E1E3 /* UIQuickHelp.m */; };
 		1427935B1670361C00E2E1E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1427935A1670361C00E2E1E3 /* QuartzCore.framework */; };
 		1427935F167039BB00E2E1E3 /* MyCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1427935D167039BB00E2E1E3 /* MyCenterController.m */; };
@@ -34,10 +46,6 @@
 		14805B8C16782CF500836353 /* AirPortDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14805B8B16782CF400836353 /* AirPortDataBase.sqlite */; };
 		14805B8E1678349200836353 /* DataBaseVersionConfigure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14805B8D1678349100836353 /* DataBaseVersionConfigure.plist */; };
 		14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */; };
-		14805B9B1678729A00836353 /* ChooseAirPortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B991678729A00836353 /* ChooseAirPortViewController.m */; };
-		14805B9C1678729A00836353 /* ChooseAirPortViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14805B9A1678729A00836353 /* ChooseAirPortViewController.xib */; };
-		14805B9F1678751400836353 /* ChooseAirPortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B9E1678751400836353 /* ChooseAirPortCell.m */; };
-		14805BA11678752D00836353 /* ChooseAirPortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA01678752C00836353 /* ChooseAirPortCell.xib */; };
 		14805BA4167875E900836353 /* bg_pek.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA3167875E900836353 /* bg_pek.png */; };
 		14805BA61678760B00836353 /* icon_return.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA51678760B00836353 /* icon_return.png */; };
 		14ED61ED1672F16D0019DC23 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E21672F16D0019DC23 /* FMDatabase.m */; };
@@ -84,10 +92,6 @@
 		18CC773C16771806001106FB /* AddPersonSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC773B16771805001106FB /* AddPersonSwitchCell.m */; };
 		18CC773E1677181A001106FB /* AddPersonSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CC773D16771819001106FB /* AddPersonSwitchCell.xib */; };
 		18CC774116771D8E001106FB /* IdentityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC774016771D8E001106FB /* IdentityViewController.m */; };
-		18D01F0C16782CA4002C13DB /* ChoosePersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01F0A16782CA4002C13DB /* ChoosePersonController.m */; };
-		18D01F0D16782CA4002C13DB /* ChoosePersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D01F0B16782CA4002C13DB /* ChoosePersonController.xib */; };
-		18D01F1016782DEA002C13DB /* ChoosePersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01F0F16782DEA002C13DB /* ChoosePersonCell.m */; };
-		18D01F1216782DFE002C13DB /* ChoosePersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D01F1116782DFE002C13DB /* ChoosePersonCell.xib */; };
 		18D01F1516783569002C13DB /* Un sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D01F1316783569002C13DB /* Un sel.png */; };
 		18D01F1616783569002C13DB /* sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D01F1416783569002C13DB /* sel.png */; };
 		18D1BBE2167363AC00FE7B8F /* ShowFligthConditionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1BBE0167363AC00FE7B8F /* ShowFligthConditionController.m */; };
@@ -129,6 +133,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14241AAE1679ADC600D84663 /* depart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = depart.png; sourceTree = "<group>"; };
+		14241AB11679ADD700D84663 /* arrive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrive.png; sourceTree = "<group>"; };
+		14241AB71679BD2200D84663 /* ChooseAirPortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAirPortCell.h; sourceTree = "<group>"; };
+		14241AB81679BD2200D84663 /* ChooseAirPortCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAirPortCell.m; sourceTree = "<group>"; };
+		14241AB91679BD2200D84663 /* ChooseAirPortCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseAirPortCell.xib; sourceTree = "<group>"; };
+		14241ABD1679BD2F00D84663 /* ChooseAirPortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAirPortViewController.h; sourceTree = "<group>"; };
+		14241ABE1679BD2F00D84663 /* ChooseAirPortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAirPortViewController.m; sourceTree = "<group>"; };
+		14241ABF1679BD2F00D84663 /* ChooseAirPortViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseAirPortViewController.xib; sourceTree = "<group>"; };
+		14241AC61679BDEC00D84663 /* AutomaticPositioningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutomaticPositioningCell.h; sourceTree = "<group>"; };
+		14241AC71679BDEC00D84663 /* AutomaticPositioningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutomaticPositioningCell.m; sourceTree = "<group>"; };
+		14241AC81679BDEC00D84663 /* AutomaticPositioningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutomaticPositioningCell.xib; sourceTree = "<group>"; };
+		14241AD41679C05A00D84663 /* ChoosePersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonCell.h; sourceTree = "<group>"; };
+		14241AD51679C05A00D84663 /* ChoosePersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonCell.m; sourceTree = "<group>"; };
+		14241AD61679C05A00D84663 /* ChoosePersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePersonCell.xib; sourceTree = "<group>"; };
+		14241AD91679C08700D84663 /* ChoosePersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonController.h; sourceTree = "<group>"; };
+		14241ADA1679C08700D84663 /* ChoosePersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonController.m; sourceTree = "<group>"; };
+		14241ADB1679C08700D84663 /* ChoosePersonController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePersonController.xib; sourceTree = "<group>"; };
 		142793571670351F00E2E1E3 /* UIQuickHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIQuickHelp.h; sourceTree = "<group>"; };
 		142793581670351F00E2E1E3 /* UIQuickHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIQuickHelp.m; sourceTree = "<group>"; };
 		1427935A1670361C00E2E1E3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -172,12 +193,6 @@
 		14805B8D1678349100836353 /* DataBaseVersionConfigure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DataBaseVersionConfigure.plist; sourceTree = "<group>"; };
 		14805B8F16783A1200836353 /* AirPortDataBaseSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortDataBaseSingleton.h; sourceTree = "<group>"; };
 		14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPortDataBaseSingleton.m; sourceTree = "<group>"; };
-		14805B981678729A00836353 /* ChooseAirPortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAirPortViewController.h; sourceTree = "<group>"; };
-		14805B991678729A00836353 /* ChooseAirPortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAirPortViewController.m; sourceTree = "<group>"; };
-		14805B9A1678729A00836353 /* ChooseAirPortViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseAirPortViewController.xib; sourceTree = "<group>"; };
-		14805B9D1678751300836353 /* ChooseAirPortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAirPortCell.h; sourceTree = "<group>"; };
-		14805B9E1678751400836353 /* ChooseAirPortCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAirPortCell.m; sourceTree = "<group>"; };
-		14805BA01678752C00836353 /* ChooseAirPortCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseAirPortCell.xib; sourceTree = "<group>"; };
 		14805BA3167875E900836353 /* bg_pek.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pek.png; sourceTree = "<group>"; };
 		14805BA51678760B00836353 /* icon_return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_return.png; sourceTree = "<group>"; };
 		14ED61E11672F16D0019DC23 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -255,12 +270,6 @@
 		18CC773D16771819001106FB /* AddPersonSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonSwitchCell.xib; sourceTree = "<group>"; };
 		18CC773F16771D8D001106FB /* IdentityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentityViewController.h; sourceTree = "<group>"; };
 		18CC774016771D8E001106FB /* IdentityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityViewController.m; sourceTree = "<group>"; };
-		18D01F0916782CA4002C13DB /* ChoosePersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonController.h; sourceTree = "<group>"; };
-		18D01F0A16782CA4002C13DB /* ChoosePersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonController.m; sourceTree = "<group>"; };
-		18D01F0B16782CA4002C13DB /* ChoosePersonController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePersonController.xib; sourceTree = "<group>"; };
-		18D01F0E16782DEA002C13DB /* ChoosePersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonCell.h; sourceTree = "<group>"; };
-		18D01F0F16782DEA002C13DB /* ChoosePersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonCell.m; sourceTree = "<group>"; };
-		18D01F1116782DFE002C13DB /* ChoosePersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePersonCell.xib; sourceTree = "<group>"; };
 		18D01F1316783569002C13DB /* Un sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Un sel.png"; sourceTree = "<group>"; };
 		18D01F1416783569002C13DB /* sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sel.png; sourceTree = "<group>"; };
 		18D1BBDF167363AC00FE7B8F /* ShowFligthConditionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFligthConditionController.h; sourceTree = "<group>"; };
@@ -513,12 +522,15 @@
 		14805B9716786F3C00836353 /* chooseAirPorts */ = {
 			isa = PBXGroup;
 			children = (
-				14805B981678729A00836353 /* ChooseAirPortViewController.h */,
-				14805B991678729A00836353 /* ChooseAirPortViewController.m */,
-				14805B9A1678729A00836353 /* ChooseAirPortViewController.xib */,
-				14805B9D1678751300836353 /* ChooseAirPortCell.h */,
-				14805B9E1678751400836353 /* ChooseAirPortCell.m */,
-				14805BA01678752C00836353 /* ChooseAirPortCell.xib */,
+				14241AC61679BDEC00D84663 /* AutomaticPositioningCell.h */,
+				14241AC71679BDEC00D84663 /* AutomaticPositioningCell.m */,
+				14241AC81679BDEC00D84663 /* AutomaticPositioningCell.xib */,
+				14241ABD1679BD2F00D84663 /* ChooseAirPortViewController.h */,
+				14241ABE1679BD2F00D84663 /* ChooseAirPortViewController.m */,
+				14241ABF1679BD2F00D84663 /* ChooseAirPortViewController.xib */,
+				14241AB71679BD2200D84663 /* ChooseAirPortCell.h */,
+				14241AB81679BD2200D84663 /* ChooseAirPortCell.m */,
+				14241AB91679BD2200D84663 /* ChooseAirPortCell.xib */,
 			);
 			name = chooseAirPorts;
 			sourceTree = "<group>";
@@ -526,6 +538,8 @@
 		14805BA2167875A700836353 /* TicketCheck */ = {
 			isa = PBXGroup;
 			children = (
+				14241AB11679ADD700D84663 /* arrive.png */,
+				14241AAE1679ADC600D84663 /* depart.png */,
 				14805BA3167875E900836353 /* bg_pek.png */,
 			);
 			name = TicketCheck;
@@ -694,12 +708,12 @@
 		18D01F0816782C4A002C13DB /* choose */ = {
 			isa = PBXGroup;
 			children = (
-				18D01F0916782CA4002C13DB /* ChoosePersonController.h */,
-				18D01F0A16782CA4002C13DB /* ChoosePersonController.m */,
-				18D01F0B16782CA4002C13DB /* ChoosePersonController.xib */,
-				18D01F0E16782DEA002C13DB /* ChoosePersonCell.h */,
-				18D01F0F16782DEA002C13DB /* ChoosePersonCell.m */,
-				18D01F1116782DFE002C13DB /* ChoosePersonCell.xib */,
+				14241AD91679C08700D84663 /* ChoosePersonController.h */,
+				14241ADA1679C08700D84663 /* ChoosePersonController.m */,
+				14241ADB1679C08700D84663 /* ChoosePersonController.xib */,
+				14241AD41679C05A00D84663 /* ChoosePersonCell.h */,
+				14241AD51679C05A00D84663 /* ChoosePersonCell.m */,
+				14241AD61679C05A00D84663 /* ChoosePersonCell.xib */,
 			);
 			name = choose;
 			sourceTree = "<group>";
@@ -871,14 +885,17 @@
 				18CC773E1677181A001106FB /* AddPersonSwitchCell.xib in Resources */,
 				14805B8C16782CF500836353 /* AirPortDataBase.sqlite in Resources */,
 				14805B8E1678349200836353 /* DataBaseVersionConfigure.plist in Resources */,
-				14805B9C1678729A00836353 /* ChooseAirPortViewController.xib in Resources */,
-				14805BA11678752D00836353 /* ChooseAirPortCell.xib in Resources */,
 				14805BA4167875E900836353 /* bg_pek.png in Resources */,
 				14805BA61678760B00836353 /* icon_return.png in Resources */,
-				18D01F0D16782CA4002C13DB /* ChoosePersonController.xib in Resources */,
-				18D01F1216782DFE002C13DB /* ChoosePersonCell.xib in Resources */,
 				18D01F1516783569002C13DB /* Un sel.png in Resources */,
 				18D01F1616783569002C13DB /* sel.png in Resources */,
+				14241AAF1679ADC600D84663 /* depart.png in Resources */,
+				14241AB21679ADD700D84663 /* arrive.png in Resources */,
+				14241ABB1679BD2200D84663 /* ChooseAirPortCell.xib in Resources */,
+				14241AC11679BD2F00D84663 /* ChooseAirPortViewController.xib in Resources */,
+				14241ACA1679BDEC00D84663 /* AutomaticPositioningCell.xib in Resources */,
+				14241AD81679C05A00D84663 /* ChoosePersonCell.xib in Resources */,
+				14241ADD1679C08700D84663 /* ChoosePersonController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -942,10 +959,11 @@
 				14805B8616782A8E00836353 /* AirPortDataBase.m in Sources */,
 				14805B8A16782B2B00836353 /* AirPortData.m in Sources */,
 				14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */,
-				14805B9B1678729A00836353 /* ChooseAirPortViewController.m in Sources */,
-				14805B9F1678751400836353 /* ChooseAirPortCell.m in Sources */,
-				18D01F0C16782CA4002C13DB /* ChoosePersonController.m in Sources */,
-				18D01F1016782DEA002C13DB /* ChoosePersonCell.m in Sources */,
+				14241ABA1679BD2200D84663 /* ChooseAirPortCell.m in Sources */,
+				14241AC01679BD2F00D84663 /* ChooseAirPortViewController.m in Sources */,
+				14241AC91679BDEC00D84663 /* AutomaticPositioningCell.m in Sources */,
+				14241AD71679C05A00D84663 /* ChoosePersonCell.m in Sources */,
+				14241ADC1679C08700D84663 /* ChoosePersonController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

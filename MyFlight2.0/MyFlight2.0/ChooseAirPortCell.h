@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface ChooseAirPortCell : UITableViewCell
+@property (retain, nonatomic) IBOutlet UILabel *apCodeLabel;
+
+@property (retain, nonatomic) IBOutlet UILabel *airPortNameLabel;
+
+@property (retain, nonatomic) IBOutlet UIImageView *flightState;
+
+
 
 @end

@@ -8,14 +8,22 @@
 
 #import "ChooseAirPortViewController.h"
 #import "AirPortDataBaseSingleton.h"
-@interface ChooseAirPortViewController ()
+#import "ChooseAirPortCell.h"
+#import "AutomaticPositioningCell.h"
+#import "AirPortData.h"
 
-@property(nonatomic,retain) NSMutableDictionary*resultDic;
+@interface ChooseAirPortViewController (){
+    
+    NSMutableArray *sectionTitles;
+    NSMutableSet *selectItem;
+}
+
+@property(nonatomic,retain) NSMutableDictionary *resultDic;
 
 @end
 
 @implementation ChooseAirPortViewController
-
+@synthesize resultDic;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,12 +33,41 @@
     return self;
 }
 
+- (void) initSectionTitles{
+    
+    sectionTitles = [[NSMutableArray alloc] init];
+   	[sectionTitles addObject:@"热门"];//letter start with !
+	
+    for (unichar c = 'A'; c <= 'Z'; ++c) {
+        NSString* letter = [NSString stringWithFormat:@"%c", c];
+        [sectionTitles addObject:letter];
+    }
+	
+CCLog(@"分区的头部为：%d",[sectionTitles count]);
+}
+
 - (void)viewDidLoad
 {
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    selectItem =[[NSMutableSet alloc] init];
+    
+    
     [super viewDidLoad];
+    self.startAirportName = @"北京首都";
+    [self initSectionTitles];
+    resultDic = [[NSMutableDictionary alloc] init];
+    AirPortDataBaseSingleton *air =[AirPortDataBaseSingleton shareAirPortBaseData];
+    self.resultDic = air.correctAirPortsDic;
     
-    self.resultDic = [[AirPortDataBaseSingleton shareAirPortBaseData] correctAirPortsDic];
+    self.resultHotArray = [self.resultDic objectForKey:@"热门"];
     
+//   [ self.resultDic removeObjectForKey:@"热门"];
+ 
+    
+    
+    
+    
+    CCLog(@"热门区域为：%d个",[self.resultHotArray count]);
     NSLog(@"字典里面 一共有%d个分区",self.resultDic.count);
     
     // Do any additional setup after loading the view from its nib.
@@ -45,6 +82,7 @@
 - (void)dealloc {
     [_searchBar release];
     [_tableView release];
+    [sectionTitles release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -59,80 +97,168 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     
     
-    return 1;
+    
+    return 28;
 }
 
+
+
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    
+  
+    NSString *string =nil;
+    if (section==0) {
+        string = @"当前定位机场";
+    } else{
+        
+        string = [sectionTitles objectAtIndex:section-1];
+        
+    }
+    return string;
+}
+- (NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView{
+    
+       return sectionTitles;
+
+    
+      
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    
+    NSInteger rows = 0;
+    
+    if (section==0) {
+        
+        rows =1;
+    } else{
+        NSArray * itemAray = [self.resultDic objectForKey:[sectionTitles objectAtIndex:section-1]];
+        
+        rows =[itemAray count];
+        
+    }
+    
     // Return the number of rows in the section.
-    return 2;
+    return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    UITableViewCell *cell = nil;
+//    static NSString *CellIdentifier = nil;
+    
+    
+    if (indexPath.section==0) {
+        
+      static NSString *CellIdentifier  = @"onecell";
+        cell =[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+      if (cell==nil) {
+          
+           NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"AutomaticPositioningCell" owner:self options:nil];
+           
+           
+           cell = [array objectAtIndex:0];
+       }
+        
+               
+    } else{
+        
+        static NSString *CellIdentifier = @"cell";
+        cell =[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell==nil) {
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"ChooseAirPortCell" owner:self options:nil];
+            
+            
+            cell = [array objectAtIndex:0];
+            
+        }
+        
+        ChooseAirPortCell *thisCell = (ChooseAirPortCell *) cell;
+        
+        NSArray *items = [[self .resultDic objectForKey:[sectionTitles objectAtIndex:indexPath.section -1]] retain];
+        
+     
+        AirPortData *data  = [items objectAtIndex:indexPath.row];
+        thisCell.apCodeLabel.text = data.apCode;
+        
+        thisCell.airPortNameLabel.text = data.apName;
+        thisCell.apCodeLabel.textColor =[UIColor darkTextColor];
+        thisCell.airPortNameLabel.textColor = [UIColor darkTextColor];
+        
+        [thisCell.flightState setHidden:YES];
+        if ([thisCell.airPortNameLabel.text isEqualToString:self.startAirportName]) {
+            
+            thisCell.apCodeLabel.textColor = [UIColor blueColor];
+            thisCell.airPortNameLabel.textColor =[UIColor blueColor];
+            [thisCell.flightState setHidden:NO];
+            thisCell.flightState.image = [UIImage imageNamed:@"arrive.png"];
+        }
+        
+            
+            
+            
+            
+        if ([thisCell.airPortNameLabel.text isEqualToString:self.endAirPortName]) {
+            thisCell.apCodeLabel.textColor = [UIColor blueColor];
+            thisCell.airPortNameLabel.textColor =[UIColor blueColor];
+            [thisCell.flightState setHidden:NO];
+            thisCell.flightState.image =[UIImage imageNamed:@"depart.png"];
+            
+            
+        }
+        
+        
+    }
+    
     
     // Configure the cell...
     
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    
+
+    if (indexPath.section==0) {
+        
+        
+    } else{
+        
+//        ChooseAirPortCell *cell = (ChooseAirPortCell *)[tableView cellForRowAtIndexPath:indexPath];
+        
+        NSArray *items = [[self .resultDic objectForKey:[sectionTitles objectAtIndex:indexPath.section -1]] retain];
+        
+        
+        AirPortData *data  = [items objectAtIndex:indexPath.row];
+
+        
+//        CCLog(@"选择的机场信息：%@,%@",data.apCode,data.apName);
+        
+        if (_delegate&&[_delegate respondsToSelector:@selector(ChooseAirPortViewController:didSelectAirPortInfo:)]) {
+            
+            [_delegate ChooseAirPortViewController:self didSelectAirPortInfo:data];
+            
+                 
+        }
+        
+          
+    }
+    
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
+
+
+
+
 }
 
 
