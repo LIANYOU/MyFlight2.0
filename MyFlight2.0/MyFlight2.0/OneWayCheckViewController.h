@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SearchFlightData.h"
-@interface OneWayCheckViewController : UIViewController
+#import "ChooseAirPortViewController.h"
+@interface OneWayCheckViewController : UIViewController<ChooseAirPortViewControllerDelegate>
 {
     IBOutlet UIButton *returnBtn;
     IBOutlet UILabel *retrunDateTitle;
@@ -19,9 +20,17 @@
     
     IBOutlet UISegmentedControl *selectSegment;
     
+    NSString * startCode;
+    NSString * endCode;
+    
     SearchFlightData * searchDate;
 }
+- (IBAction)getStartPort:(id)sender;
 
+- (IBAction)getStartDate:(id)sender;
+- (IBAction)getBackData:(id)sender;
+
+- (IBAction)getEndPort:(id)sender;
 - (IBAction)selectFlayWay:(UISegmentedControl *)sender;
 - (IBAction)select:(id)sender;
 @end

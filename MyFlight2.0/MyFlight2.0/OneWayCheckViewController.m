@@ -10,8 +10,14 @@
 #import "HistroyCheckViewController.h"
 #import "ShowSelectedResultViewController.h"
 #import "SearchAirPort.h"
+#import "ChooseAirPortViewController.h"
+#import "AirPortData.h"
+#import "AppConfigure.h"
 @interface OneWayCheckViewController ()
-
+{
+    
+    ChooseAirPortViewController *chooseAirPort;
+}
 @end
 
 @implementation OneWayCheckViewController
@@ -89,6 +95,37 @@ int searchFlag = 1; // 单程和往返的标记位
     [histroy release];
 }
 
+- (IBAction)getStartPort:(id)sender {
+    
+    chooseAirPort =[[ChooseAirPortViewController alloc] init];
+    chooseAirPort.startAirportName = startAirport.text;
+    chooseAirPort.endAirPortName = endAirport.text;
+    chooseAirPort.choiceTypeOfAirPort=START_AIRPORT_TYPE;
+    
+    
+    chooseAirPort.delegate =self;
+    [self.navigationController pushViewController:chooseAirPort animated:YES];
+        
+    
+}
+
+- (IBAction)getStartDate:(id)sender {
+}
+
+- (IBAction)getBackData:(id)sender {
+}
+
+- (IBAction)getEndPort:(id)sender {
+    
+    chooseAirPort =[[ChooseAirPortViewController alloc] init];
+    chooseAirPort.startAirportName = startAirport.text;
+    chooseAirPort.endAirPortName = endAirport.text;
+    chooseAirPort.choiceTypeOfAirPort = END_AIRPORT_TYPE;
+    chooseAirPort.delegate =self;
+    [self.navigationController pushViewController:chooseAirPort animated:YES];
+    
+}
+
 - (IBAction)selectFlayWay:(UISegmentedControl *)sender {
     if (sender.selectedSegmentIndex == 0) {
         searchFlag = 1;
@@ -107,7 +144,7 @@ int searchFlag = 1; // 单程和往返的标记位
 - (IBAction)select:(id)sender {
 //    if (selectSegment.selectedSegmentIndex == 0) {
     
-        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:@"PEK" arr:@"SHA" date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:startCode arr:endCode date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
 
         ShowSelectedResultViewController * show = [[ShowSelectedResultViewController alloc] init];
@@ -124,6 +161,26 @@ int searchFlag = 1; // 单程和往返的标记位
 //    else {
 //        NSLog(@"推进返程");
 //    }
+}
+
+
+- (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger )choiceType didSelectAirPortInfo:(AirPortData *)airPort{
+    
+    if (choiceType==START_AIRPORT_TYPE) {
+        
+        startAirport.text = airPort.apName;
+        startCode =   airPort.apCode;
+        
+    } else if(choiceType==END_AIRPORT_TYPE){
+        
+        endAirport.text = airPort.apName;
+        endCode = airPort.apCode;
+    }
+    
+    
+    
+    
+    
 }
 - (void)dealloc {
     [startAirport release];

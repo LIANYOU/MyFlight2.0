@@ -53,7 +53,7 @@ CCLog(@"分区的头部为：%d",[sectionTitles count]);
     
     
     [super viewDidLoad];
-    self.startAirportName = @"北京首都";
+    
     [self initSectionTitles];
     resultDic = [[NSMutableDictionary alloc] init];
     AirPortDataBaseSingleton *air =[AirPortDataBaseSingleton shareAirPortBaseData];
@@ -240,11 +240,11 @@ CCLog(@"分区的头部为：%d",[sectionTitles count]);
         AirPortData *data  = [items objectAtIndex:indexPath.row];
 
         
-//        CCLog(@"选择的机场信息：%@,%@",data.apCode,data.apName);
+        CCLog(@"选择的机场信息：%@,%@",data.apCode,data.apName);
         
-        if (_delegate&&[_delegate respondsToSelector:@selector(ChooseAirPortViewController:didSelectAirPortInfo:)]) {
+        if (_delegate&&[_delegate respondsToSelector:@selector(ChooseAirPortViewController:chooseType:didSelectAirPortInfo:)]) {
             
-            [_delegate ChooseAirPortViewController:self didSelectAirPortInfo:data];
+            [_delegate ChooseAirPortViewController:self chooseType:self.choiceTypeOfAirPort didSelectAirPortInfo:data];
             
                  
         }

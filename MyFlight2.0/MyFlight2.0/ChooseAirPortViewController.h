@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class ChooseAirPortViewController;
 @class  AirPortData;
 @protocol ChooseAirPortViewControllerDelegate <NSObject>
 
 @optional
 
-- (void) ChooseAirPortViewController:(ChooseAirPortViewController *) controlelr didSelectAirPortInfo:(AirPortData *) airPort;
+- (void) ChooseAirPortViewController:(ChooseAirPortViewController *) controlelr chooseType:(NSInteger ) choiceType didSelectAirPortInfo:(AirPortData *) airPort;
 
 @end
 
@@ -29,6 +30,7 @@
 //属性传值
 @property(nonatomic,retain)NSString *startAirportName;
 @property(nonatomic,retain)NSString *endAirPortName;
+@property(nonatomic,assign)NSInteger choiceTypeOfAirPort;
 
 @property(nonatomic,assign)id<ChooseAirPortViewControllerDelegate> delegate;
 
