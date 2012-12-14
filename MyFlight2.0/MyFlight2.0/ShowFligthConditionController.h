@@ -14,6 +14,9 @@
 {
     EGORefreshTableHeaderView * _refreshHeaderView;
     BOOL _reloading;
+    UIColor * _myBlueColor;
+    UIColor * _myRedColor;
+    UIColor * _myGreenColor;
 }
 @property (retain, nonatomic) IBOutlet UIView *HeadView;
 @property (retain, nonatomic) IBOutlet UITableView *showTableView;
