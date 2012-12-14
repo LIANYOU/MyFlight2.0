@@ -8,6 +8,7 @@
 
 #import "ShowFligthConditionController.h"
 #import "SearchFlightConditionCell.h"
+#import "DetailFlightConditionViewController.h"
 @interface ShowFligthConditionController ()
 
 @end
@@ -25,6 +26,9 @@
 
 - (void)viewDidLoad
 {
+    _myBlueColor = [[UIColor alloc]initWithRed:10/255.0 green:91/255.0 blue:173/255.0 alpha:1.0];
+    _myGreenColor = [[UIColor alloc]initWithRed:81/255.0 green:147/255.0 blue:55/255.0 alpha:1.0];
+    
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
     
@@ -55,10 +59,14 @@
     [_HeadView release];
     [_showTableView release];
     [_flightConditionCell release];
+    [_myBlueColor release];
+    [_myGreenColor release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     _refreshHeaderView = nil;
+    [_myBlueColor release];
+    [_myGreenColor release];
     [self setHeadView:nil];
     [self setShowTableView:nil];
     [self setFlightConditionCell:nil];
@@ -134,9 +142,30 @@
     cell.deptTime.text = [dic objectForKey:@"deptTime"];
     cell.arrTime.text = [dic objectForKey:@"arrTime"];
     cell.flightState.text = [dic objectForKey:@"flightState"];
+    
 
+    if ([[dic objectForKey:@"flightState"]isEqualToString:@"到达"]) {
+        cell.flightState.textColor = _myGreenColor;
+    }else if ([[dic objectForKey:@"flightState"]isEqualToString:@"延误"]){
+        cell.flightState.textColor = [UIColor redColor];
+    }else if([[dic objectForKey:@"flightState"]isEqualToString:@"取消"]){
+        cell.flightState.textColor = [UIColor redColor];
+    }else if([[dic objectForKey:@"flightState"]isEqualToString:@"起飞"]){
+        cell.flightState.textColor = _myBlueColor;
+    }else{
+        cell.flightState.textColor = [UIColor blackColor];
+    }
     return cell;
 
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary * dic = [self.dateArr objectAtIndex:indexPath.row];
+    DetailFlightConditionViewController * detail = [[DetailFlightConditionViewController alloc]init];
+    detail.dic = dic;
+    [self.navigationController pushViewController:detail animated:YES];
+    
+    
 }
 
 #pragma mark -
