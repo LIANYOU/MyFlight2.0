@@ -32,9 +32,7 @@
         }
         
         AirPortData *data = [resultAllDic objectForKey:key];
-        
-        
-        
+                
         [section addObject:data];
         
     }

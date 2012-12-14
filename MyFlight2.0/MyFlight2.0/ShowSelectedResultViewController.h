@@ -11,12 +11,16 @@
 #import "SearchAirPort.h"
 #import "SelectResultCell.h"
 #import "ChooseSpaceViewController.h"
+#import "SearchFlightData.h"
+#import "MBProgressHUD.h"
 @class OneWayCheckViewController;
 
 
 #import "SearchFlightData.h"
-@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
+@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,MBProgressHUDDelegate>
 {
+    
+    MBProgressHUD * HUD;
     IBOutlet UIButton *salesText;
     
     IBOutlet UIButton *nowDateBtn;
@@ -28,6 +32,8 @@
     IBOutlet UILabel *backImagelabel;
     IBOutlet UIButton *siftBtn;
     
+    NSDictionary * dicCode;  // 用来接收存在plist文件中的机场二字码
+    
     SearchFlightData * data;
 }
 @property (retain, nonatomic) IBOutlet UITableView *showResultTableView;
@@ -35,7 +41,7 @@
 @property (retain, nonatomic) NSArray * dateArr;  // 接收返回的数据
 @property (retain, nonatomic) NSMutableArray * searchFlightDateArr;      // 存放单程结果
 @property (retain, nonatomic) NSMutableArray * searchBackFlightDateArr;  // 存放返程结果
-@property (retain, nonatomic) SearchFlightData * search;
+ 
 
 @property (retain, nonatomic) OneWayCheckViewController * one;  // 次controller的前身是哪一个controller
 @property (retain, nonatomic) ChooseSpaceViewController * write;
@@ -43,15 +49,19 @@
 @property (nonatomic,assign) int indexFlag; // 
 
 @property (nonatomic,retain) NSMutableArray * indexArr;
-
+@property (nonatomic,retain) NSMutableArray * twoCodeArr;  // 存放查找到的机场列表里边的二字码，用于按照航空公司进行筛选
+@property (nonatomic,retain) NSMutableArray * tempTwoCodeArr;
 
 @property (retain, nonatomic) IBOutlet SelectResultCell *showCell;
 
-
 @property (retain, nonatomic) NSString * startPort;  // 传值
 @property (retain, nonatomic) NSString * endPort;
+@property (retain, nonatomic) NSString * startThreeCode;
+@property (retain, nonatomic) NSString * endThreeCode;
 @property (retain, nonatomic) NSString * startTime;
 @property (retain, nonatomic) NSString * endTime;
+@property (retain, nonatomic) NSString * startDate;
+@property (retain, nonatomic) NSString * endDate;
 
 
 @property (assign, nonatomic) int flag; // 记录前边选择的是单程还是往返

@@ -20,15 +20,16 @@
 }
 
 
--(id)initWithButtonName:(NSString *)name
+-(id)initWithButtonName:(NSString *)name andAirPortTwoCode:(NSArray *)codeArr andTable:(UITableView *)tableView
 {
     self = [super init];
     if ([name isEqualToString:@"按航空公司筛选"]) {
-        cellArr = [[NSArray alloc] initWithObjects:@"中国航空",@"山东航空",@"山西航空", nil];
+        cellArr = codeArr;
     }
     else{
         cellArr = [[NSArray alloc] initWithObjects:@"时间从早到晚",@"价格从低到高", nil];
     }
+    _tableView = tableView;
     
     self.delegate = self;
     self.dataSource = self;

@@ -206,7 +206,8 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex ==1 ) {
-        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:@"SHA" arr:@"PEK" date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+
+        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:self.searchFlight.endPortThreeCode arr:self.searchFlight.startPortThreeCode date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
         ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
         show.airPort = searchAirPort;
