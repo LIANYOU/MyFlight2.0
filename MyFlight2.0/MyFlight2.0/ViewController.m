@@ -71,7 +71,7 @@
 
 - (IBAction)logMyAccount:(id)sender {
     LogViewController * log = [[LogViewController alloc] init];
-    [self presentModalViewController:log animated:YES];
+    [self.navigationController pushViewController:log animated:YES];
     [log release];
 }
 

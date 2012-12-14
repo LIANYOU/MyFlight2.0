@@ -50,6 +50,9 @@ int searchFlag = 1; // 单程和往返的标记位
     startAirport.text = @"北京首都";
     endAirport.text = @"上海虹桥";
     
+    startCode = @"PEK";
+    endCode = @"SHA";
+    
     searchDate.startPortName = startAirport.text;
     searchDate.endPortName = endAirport.text;
     

@@ -161,8 +161,8 @@
     SelectResultCell *cell = (SelectResultCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
     {
-        [[NSBundle mainBundle] loadNibNamed:@"SelectResultCell" owner:self options:nil];
-        cell = self.showCell;
+      NSArray *array =  [[NSBundle mainBundle] loadNibNamed:@"SelectResultCell" owner:self options:nil];
+        cell = [array objectAtIndex:0];
     }
 
     if (self.write != nil  ||  self.netFlag == 1) {

@@ -55,7 +55,7 @@
 
 - (IBAction)registerNewNumber:(id)sender {
     RegisterViewController * view = [[RegisterViewController alloc] init];
-    [self presentModalViewController:view animated:YES];
+    [self.navigationController pushViewController:view animated:YES];
     [view release];
 }
 @end

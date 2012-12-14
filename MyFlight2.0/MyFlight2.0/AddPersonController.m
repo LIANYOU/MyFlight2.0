@@ -204,7 +204,7 @@
 }
 -(void)back
 {
-    blocks(name,identityType);
+  //  blocks(name,identityType);
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

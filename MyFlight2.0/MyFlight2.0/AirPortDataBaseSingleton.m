@@ -15,7 +15,7 @@
 
 - (NSMutableDictionary *) getCorrectGroupedAirportsInfo{
     
-    NSMutableDictionary *resultDic = [NSMutableDictionary dictionary];
+    NSMutableDictionary *resultDic = [[NSMutableDictionary alloc] init];
     
     NSMutableDictionary *resultHotDic = self.originHotAirPorts;
     NSMutableDictionary *resultAllDic = self.originAllAirPorts;
@@ -55,9 +55,7 @@
         
     }
 
-
     return [resultDic autorelease];
-
 
 }
 - (id) init{
