@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyCenterViewCell.h"
+#import "MyCenterViewCommonCell.h"
+@interface MyCenterViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
+@property (retain, nonatomic) IBOutlet MyCenterViewCommonCell *myCommonCell;
 
-@interface MyCenterViewController : UITableViewController
+@property (retain,nonatomic) NSArray * titleArr;
+@property (retain,nonatomic) NSArray * imageArr;
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property (retain, nonatomic) IBOutlet MyCenterViewCell *myCell;
 
 @end

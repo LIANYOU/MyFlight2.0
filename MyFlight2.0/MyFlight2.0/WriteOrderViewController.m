@@ -162,7 +162,7 @@
 {
     if (self.flag == 1) {  // 单程
         if (indexPath.section == 0) {
-            return 70;
+            return 80;
         }
         if (indexPath.section == 1 && indexPath.row == 0) {
             
@@ -187,7 +187,7 @@
     }
     else{
         if (indexPath.section == 0 || indexPath.section == 1) {
-            return 70;
+            return 80;
         }
         if (indexPath.section == 2 && indexPath.row == 0) {
             return 50;
@@ -215,6 +215,7 @@
                 [[NSBundle mainBundle] loadNibNamed:@"WriteOrderCell" owner:self options:nil];
                 cell = self.writeOrderCell;
             }
+            cell.backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_blue.png"]];
             cell.userInteractionEnabled = NO;
             
             cell.HUButton.text = self.searchDate.temporaryLabel;
@@ -237,7 +238,7 @@
                 [[NSBundle mainBundle] loadNibNamed:@"WriteOrderCell" owner:self options:nil];
                 cell = self.writeOrderCell;
             }
-            cell.backView.backgroundColor = [UIColor orangeColor];
+            cell.backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_green.png"]];
             cell.userInteractionEnabled = NO;
             
             cell.HUButton.text = self.searchBackDate.temporaryLabel;
@@ -322,6 +323,7 @@
                     [[NSBundle mainBundle] loadNibNamed:@"WriteOrderCell" owner:self options:nil];
                     cell = self.writeOrderCell;
                 }
+                cell.backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_blue.png"]];
                 cell.userInteractionEnabled = NO;
                 
                 cell.HUButton.text = self.searchDate.temporaryLabel;

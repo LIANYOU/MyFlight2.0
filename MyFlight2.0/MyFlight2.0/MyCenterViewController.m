@@ -7,7 +7,10 @@
 //
 
 #import "MyCenterViewController.h"
-
+#import "MyCenterViewCell.h"
+#import "MyCenterViewCommonCell.h"
+#import "MyInformationController.h"
+#import "UsedPersonController.h"
 @interface MyCenterViewController ()
 
 @end
@@ -25,6 +28,13 @@
 
 - (void)viewDidLoad
 {
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    self.titleArr = [NSArray arrayWithObjects:@"个人资料",@"我的订单",@"常用乘机人信息",@"我订阅的低价航线",@"用心愿旅行卡充值", nil];
+    self.imageArr = [NSArray arrayWithObjects:@"icon_acc.png",@"icon_Orders.png",@"icon_atv.png",@"icon_rss.png",@"icon_Recharge.png", nil];
+    
+    self.navigationItem.title = @"我的个人中心";
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -39,87 +49,99 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
-    // Return the number of sections.
-    return 0;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    // Return the number of rows in the section.
-    return 0;
+    if (section == 2) {
+        return 4;
+    }
+    else
+    {
+        return 1;
+    }
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1) {
+        return 94;
+    }
+    else{
+        return 44;
+    }
+    
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    if (indexPath.section == 0 || indexPath.section == 2) {
+        MyCenterViewCommonCell *cell = (MyCenterViewCommonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell)
+        {
+            [[NSBundle mainBundle] loadNibNamed:@"MyCenterViewCommonCell" owner:self options:nil];
+            cell = self.myCommonCell;
+        }
+        if (indexPath.section == 0) {
+            cell.firstLabel.text = [self.titleArr objectAtIndex:0];
+            cell.imaeView.image = [UIImage imageNamed:@"icon_acc.png"];
+            cell.secondLabel.text = @"12345678";  // 个人账号
+        }
+        else{
+            cell.firstLabel.text = [self.titleArr objectAtIndex:indexPath.row + 1];
+            cell.imaeView.image = [UIImage imageNamed:[self.imageArr objectAtIndex:indexPath.row +1]];
+            cell.secondLabel.text = @"";
+        }
+
+        
+        return cell;
     }
+    else{
+        MyCenterViewCell *cell = (MyCenterViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell)
+        {
+            [[NSBundle mainBundle] loadNibNamed:@"MyCenterViewCell" owner:self options:nil];
+            cell = self.myCell;
+        }
+        
+        
+        return cell;
+    }
+        
+    //cell.airPortName.text = [cellArr objectAtIndex:indexPath.row];
     
-    // Configure the cell...
     
-    return cell;
+    
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    if (indexPath.section == 0) {
+        MyInformationController  * center = [[MyInformationController alloc] init];
+        [self.navigationController pushViewController:center animated:YES];
+        [center release];
+    }
+    if (indexPath.section == 2 && indexPath.row == 1) {
+
+        UsedPersonController * person = [[UsedPersonController alloc] init];
+        [self.navigationController pushViewController:person animated:YES];
+        [person release];
+    }
 }
 
+- (void)dealloc {
+    
+    [_myCell release];
+    [_myCommonCell release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setTableView:nil];
+    [self setMyCell:nil];
+    [self setMyCommonCell:nil];
+    [super viewDidUnload];
+}
 @end

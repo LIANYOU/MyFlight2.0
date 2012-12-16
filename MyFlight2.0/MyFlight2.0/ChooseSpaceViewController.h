@@ -36,6 +36,9 @@
 @property (retain, nonatomic) IBOutlet UILabel *beginTime;
 @property (retain, nonatomic) IBOutlet UILabel *endTime;
 @property (retain, nonatomic) IBOutlet UILabel *scheduleDate;
+@property (retain, nonatomic) IBOutlet UILabel *beginAirPortName;
+@property (retain, nonatomic) IBOutlet UILabel *endAirPortName;
+
 - (void)changeFlightInfo:(UIButton *)sender;
 
 @end

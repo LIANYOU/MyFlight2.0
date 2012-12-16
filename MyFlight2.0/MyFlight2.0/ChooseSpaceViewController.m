@@ -50,11 +50,14 @@
     else{
         data = self.searchFlight;
     }
-    self.flightCode.text = data.temporaryLabel;
+    self.flightCode.text =[NSString stringWithFormat:@"%@%@",data.airPort,data.temporaryLabel];
     self.airPort.text = data.airPort;
     self.palntType.text = data.palntType;
     self.beginTime.text = data.beginTime;
     self.endTime.text = data.endTime;
+
+    self.beginAirPortName.text = data.startPortName;
+    self.endAirPortName.text = data.endPortName;
     
     self.changeInfoArr = [NSMutableArray array];
     self.indexPath = [NSMutableArray array];
@@ -90,6 +93,8 @@
     [_beginTime release];
     [_endTime release];
     [_scheduleDate release];
+    [_beginAirPortName release];
+    [_endAirPortName release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -101,6 +106,8 @@
     [self setBeginTime:nil];
     [self setEndTime:nil];
     [self setScheduleDate:nil];
+    [self setBeginAirPortName:nil];
+    [self setEndAirPortName:nil];
     [super viewDidUnload];
 }
 
@@ -206,7 +213,8 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex ==1 ) {
-        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:@"SHA" arr:@"PEK" date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+
+        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:self.searchFlight.endPortThreeCode arr:self.searchFlight.startPortThreeCode date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
         ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
         show.airPort = searchAirPort;

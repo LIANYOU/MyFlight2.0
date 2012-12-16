@@ -11,6 +11,7 @@
 #import "MyCenterViewController.h"
 #import "LogViewController.h"
 #import "SearchFlightConditionController.h"
+#import "HomeMoreController.h"
 @interface ViewController ()
 
 @end
@@ -53,7 +54,9 @@
 }
 
 - (IBAction)showMoreView:(id)sender {
-    CCLog(@"显示更多设置界面");
+    HomeMoreController * more = [[HomeMoreController alloc] init];
+    [self.navigationController pushViewController:more animated:YES];
+    [more release];
 }
 
 - (IBAction)showTravelAssistant:(id)sender {
@@ -71,7 +74,7 @@
 
 - (IBAction)logMyAccount:(id)sender {
     LogViewController * log = [[LogViewController alloc] init];
-    [self presentModalViewController:log animated:YES];
+    [self.navigationController pushViewController:log animated:YES];
     [log release];
 }
 

@@ -32,9 +32,7 @@
         }
         
         AirPortData *data = [resultAllDic objectForKey:key];
-        
-        
-        
+                
         [section addObject:data];
         
     }
@@ -55,9 +53,7 @@
         
     }
 
-
     return [resultDic autorelease];
-
 
 }
 - (id) init{

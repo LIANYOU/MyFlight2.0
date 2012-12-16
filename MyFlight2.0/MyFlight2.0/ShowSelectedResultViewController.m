@@ -13,6 +13,7 @@
 #import "ChooseSpaceViewController.h"
 #import "TransitionString.h"
 #import "SearchFlightData.h"
+#import "LowOrderController.h"
 @interface ShowSelectedResultViewController ()
 
 @end
@@ -36,11 +37,26 @@
     self.searchFlightDateArr = [NSMutableArray array];
     self.searchBackFlightDateArr = [NSMutableArray array];
     self.indexArr = [NSMutableArray array];
+    self.tempTwoCodeArr = [NSMutableArray array];
     
     self.indexFlag = 1000;
     
-    NSString * navigationTitle = [NSString stringWithFormat:@"%@ -- %@",self.startPort,self.endPort];
-    self.navigationItem.title = navigationTitle;
+    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
+    histroyBut.frame = CGRectMake(250, 5, 60, 31);
+    histroyBut.titleLabel.font = [UIFont systemFontOfSize:13.0];
+    [histroyBut setTitle:@"低价预约" forState:UIControlStateNormal];
+    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clean_histroy_4words_.png"]];
+    [histroyBut addTarget:self action:@selector(lowOrder) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+    self.navigationItem.rightBarButtonItem=backBtn;
+    [backBtn release];
+    
+    NSString * dataPath = [[NSBundle mainBundle] pathForResource:@"AirPortCode" ofType:@"plist"];
+    
+    dicCode = [[NSDictionary alloc] initWithContentsOfFile:dataPath];
+
+    NSLog(@"%@",dicCode.allKeys);
     [super viewDidLoad];
     
 }
@@ -48,17 +64,36 @@
 {
     [super viewWillAppear:YES];
     
+    self.twoCodeArr = [[NSMutableArray alloc] init];
+    
+    if (self.write != nil) {
+        navigationTitle = [NSString stringWithFormat:@"%@ -- %@",self.endPort,self.startPort];
+    }
+    else{
+        navigationTitle = [NSString stringWithFormat:@"%@ -- %@",self.startPort,self.endPort];
+        self.navigationItem.title = navigationTitle;
+    }
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(50, 180, 5, 30)];
+    label.text = navigationTitle;
+    label.font = [UIFont systemFontOfSize:16.0];
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor  = [UIColor clearColor];
+    self.navigationItem.titleView = label;
+
+
     if (self.one != nil || self.write != nil) {
         if (self.write != nil) {
             self.flag  = 3; // 随便标记一位， 在推进到填写订单的时候使用
         }
         self.dateArr = [NSArray array];
         
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
         [self.airPort searchAirPort];
         
-        
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+    
+        [HUD show:YES];
     }
 }
 - (void)didReceiveMemoryWarning
@@ -121,9 +156,13 @@
         s.cabinsArr = [dic objectForKey:@"Cabins"];
         s.startPortName = self.startPort;  // 机场名字 如:（北京首都）
         s.endPortName = self.endPort;
+        s.startPortThreeCode = self.startThreeCode;
+        s.endPortThreeCode = self.endThreeCode;
         
         if (self.write != nil) {
 
+            s.startPortName = self.endPort;
+            s.endPortName = self.startPort;
             [self.searchBackFlightDateArr addObject:s];
         }
         else {
@@ -133,11 +172,57 @@
         [s release];
 
     }
-
-  //  NSLog(@"==========%d",self.searchBackFlightDateArr.count);
     
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self.showResultTableView reloadData];
+    
+    
+    if (self.write != nil  ||  self.netFlag == 1) {
+        for (SearchFlightData * _data in self.searchBackFlightDateArr) {
+            if (self.twoCodeArr.count == 0) {
+                [self.twoCodeArr addObject:_data.airPort];
+            }
+            for (int i = 0; i<self.twoCodeArr.count; i++) {
+                
+                NSString * str = [self.twoCodeArr objectAtIndex:i];
+                if ([_data.airPort isEqualToString:str]) {
+                    break;
+                }
+                if (i == self.twoCodeArr.count-1) {
+                    [self.twoCodeArr addObject:_data.airPort];
+                }
+            }
+
+        }
+        
+    }
+    else
+    {
+        for (SearchFlightData * _data in self.searchFlightDateArr) {
+            if (self.twoCodeArr.count == 0) {
+                [self.twoCodeArr addObject:_data.airPort];
+            }
+            for (int i = 0; i<self.twoCodeArr.count; i++) {
+                
+                NSString * str = [self.twoCodeArr objectAtIndex:i];
+                if ([_data.airPort isEqualToString:str]) {
+                    break;
+                }
+                if (i == self.twoCodeArr.count-1) {
+                    [self.twoCodeArr addObject:_data.airPort];
+                }
+            }
+            
+        }
+
+    }
+    self.tempTwoCodeArr = self.twoCodeArr;
+    
+    [HUD removeFromSuperview];
+	[HUD release];
+	HUD = nil;
+
+
 }
 #pragma mark - Table view data source
 
@@ -152,7 +237,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 65;
+    return 56;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -161,8 +246,8 @@
     SelectResultCell *cell = (SelectResultCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell)
     {
-        [[NSBundle mainBundle] loadNibNamed:@"SelectResultCell" owner:self options:nil];
-        cell = self.showCell;
+      NSArray *array =  [[NSBundle mainBundle] loadNibNamed:@"SelectResultCell" owner:self options:nil];
+        cell = [array objectAtIndex:0];
     }
 
     if (self.write != nil  ||  self.netFlag == 1) {
@@ -174,8 +259,26 @@
     }
     
     
-    cell.temporaryLabel.text = data.temporaryLabel;
-    cell.airPort.text = data.airPort;
+   
+    
+    NSString * string ;
+    
+    for (int i = 0; i<dicCode.allKeys.count; i++) {
+        
+        if ([data.airPort isEqualToString:[dicCode.allKeys objectAtIndex:i]]) {
+        
+            string = [dicCode objectForKey:[dicCode.allKeys objectAtIndex:i]];
+            
+            break;
+        }
+        else
+        {
+            string = data.airPort;
+        }
+    }
+    
+    cell.temporaryLabel.text = [NSString stringWithFormat:@"%@%@",data.airPort, data.temporaryLabel];
+    cell.airPort.text = string;
     cell.palntType.text = data.palntType;
     cell.beginTime.text = data.beginTime;
     cell.endTime.text = data.endTime;
@@ -225,7 +328,6 @@
     backImagelabel.hidden = YES;
     siftBtn.hidden = YES;
     sortBtn.hidden = YES;
-    
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView  // 停止滚动后2秒显示筛选菜单
 {
@@ -241,26 +343,54 @@
     CCLog(@"进入内嵌促销网页");
 }
 - (IBAction)enterTheDayBefore:(id)sender {
-    CCLog(@"刷新前一天");
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    [HUD show:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+    self.airPort.date = @"2012-12-19";
+    [self.airPort searchAirPort];
 }
 - (IBAction)showCalendar:(id)sender {
+    
     CCLog(@"显示日历");
 }
 - (IBAction)enterTheDayAfter:(id)sender {
-    CCLog(@"刷新后一天");
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    [HUD show:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+    self.airPort.date = @"2012-12-21";
+    [self.airPort searchAirPort];
 }
 
 - (IBAction)siftByAirPort:(UIButton *)sender {
-    CustomTableView * view = [[CustomTableView alloc] initWithButtonName:sender.titleLabel.text];
-    view.frame = CGRectMake(0, 250, 320, 120);
-    [self.view addSubview:view];
-    [view release];
+    if (self.one != nil || self.write != nil) {
+        CustomTableView * view = [[CustomTableView alloc] initWithButtonName:sender.titleLabel.text andAirPortTwoCode:self.twoCodeArr andTable:self.showResultTableView];
+        view.frame = CGRectMake(0, 250, 320, 120);
+        [self.view addSubview:view];
+        [view release];
+    }
+    else
+    {
+        CustomTableView * view = [[CustomTableView alloc] initWithButtonName:sender.titleLabel.text andAirPortTwoCode:self.tempTwoCodeArr andTable:self.showResultTableView];
+        view.frame = CGRectMake(0, 250, 320, 120);
+        [self.view addSubview:view];
+        [view release];
+    }
+    
 }
 - (IBAction)sortByDate:(UIButton *)sender {
-    CustomTableView * view = [[CustomTableView alloc] initWithButtonName:sender.titleLabel.text];
+    CustomTableView * view = [[CustomTableView alloc] initWithButtonName:sender.titleLabel.text andAirPortTwoCode:self.twoCodeArr andTable:self.showResultTableView];
     view.frame = CGRectMake(0, 250, 320, 120);
     [self.view addSubview:view];
     [view release];
 }
 
+-(void)lowOrder
+{
+    LowOrderController * low = [[LowOrderController alloc] init];
+    [self.navigationController pushViewController:low animated:YES];
+}
 @end

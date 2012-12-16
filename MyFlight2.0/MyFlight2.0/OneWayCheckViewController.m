@@ -35,10 +35,12 @@ int searchFlag = 1; // 单程和往返的标记位
 
 - (void)viewDidLoad
 {
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title_bar1.png"] forBarMetrics:UIBarMetricsDefault];
+    
     UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
     histroyBut.frame = CGRectMake(230, 5, 30, 30);
     
-    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_history.png"]];
+    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_history_.png"]];
     [histroyBut addTarget:self action:@selector(historySearch) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
@@ -145,25 +147,35 @@ int searchFlag = 1; // 单程和往返的标记位
 }
 
 - (IBAction)select:(id)sender {
-//    if (selectSegment.selectedSegmentIndex == 0) {
-    
-        SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:startCode arr:endCode date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
-        
 
-        ShowSelectedResultViewController * show = [[ShowSelectedResultViewController alloc] init];
-        show.airPort = searchAirPort;
-    NSLog(@"%s,%d",__FUNCTION__,searchFlag);
+    SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:startCode arr:endCode date:@"2012-12-20" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+    
+    ShowSelectedResultViewController * show = [[ShowSelectedResultViewController alloc] init];
+    show.airPort = searchAirPort;
+    show.one = self;
+    
+    show.startPort = startAirport.text;
+    show.endPort = endAirport.text;
+    show.startThreeCode = startCode;
+    show.endThreeCode = endCode;
+    
+    show.startDate = @"2012-12-20";   // 假定一个写死的出发日期
+    
     show.flag = searchFlag;
-        show.startPort = startAirport.text;
-        show.endPort = endAirport.text;
-        
-        show.one = self;
-        [self.navigationController pushViewController:show animated:YES];
-        [show release];
-//    }
-//    else {
-//        NSLog(@"推进返程");
-//    }
+    
+    [self.navigationController pushViewController:show animated:YES];
+    [show release];
+    
+    
+    [self filePath];
+
+}
+
+- (NSString *)filePath
+{
+    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [docPath stringByAppendingPathComponent:@"historyText"];
+    return path;
 }
 
 

@@ -1,18 +1,18 @@
 //
-//  MyCenterController.m
+//  EditViewController.m
 //  MyFlight2.0
 //
-//  Created by Davidsph on 12/6/12.
-//  Copyright (c) 2012 LIAN YOU. All rights reserved.
+//  Created by WangJian on 12-12-16.
+//  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import "MyCenterController.h"
+#import "EditViewController.h"
 
-@interface MyCenterController ()
+@interface EditViewController ()
 
 @end
 
-@implementation MyCenterController
+@implementation EditViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

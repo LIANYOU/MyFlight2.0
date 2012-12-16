@@ -52,11 +52,12 @@ CCLog(@"分区的头部为：%d",[sectionTitles count]);
     selectItem =[[NSMutableSet alloc] init];
     
     
-    [super viewDidLoad];
+    [super viewDidLoad]; 
     
     [self initSectionTitles];
     resultDic = [[NSMutableDictionary alloc] init];
     AirPortDataBaseSingleton *air =[AirPortDataBaseSingleton shareAirPortBaseData];
+    
     self.resultDic = air.correctAirPortsDic;
     
     self.resultHotArray = [self.resultDic objectForKey:@"热门"];
