@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <QuartzCore/QuartzCore.h>
+#import "FlightConditionDetailData.h"
 @interface DetailFlightConditionViewController : UIViewController{
     NSDictionary * _dic;
+    FlightConditionDetailData * myFlightConditionDetailData;
+    
     IBOutlet UIButton * btnMessage;
     IBOutlet UIButton * btnPhone;
     IBOutlet UIButton * btnShare;
@@ -41,7 +44,9 @@
     IBOutlet UIButton * littlePlaneBtn; //小飞机图标，不知道干嘛的
     
     IBOutlet UIButton * attentionThisPlaneBtn; //关注该航班
+   
 }
+
 @property(nonatomic,retain) IBOutlet UIButton * btnMessage;
 @property(nonatomic,retain) IBOutlet UIButton * btnPhone;
 @property(nonatomic,retain) IBOutlet UIButton * btnShare;

@@ -192,6 +192,10 @@
 		18E4BC68167A072E009858A0 /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC54167A072E009858A0 /* Thumbs.db */; };
 		18E4BC6B167AC29B009858A0 /* myBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC69167AC293009858A0 /* myBtn.png */; };
 		18E4BC6C167AC29B009858A0 /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC6A167AC295009858A0 /* tabbar.png */; };
+		18E4BC90167B8792009858A0 /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4BC8D167B878E009858A0 /* SVSegmentedControl.m */; };
+		18E4BC91167B8792009858A0 /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E4BC8F167B8791009858A0 /* SVSegmentedThumb.m */; };
+		18E4BC94167C9746009858A0 /* tab_bg_flightCondition.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC93167C9737009858A0 /* tab_bg_flightCondition.png */; };
+		18E4BC96167C9D4E009858A0 /* block3_change.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC95167C9D4E009858A0 /* block3_change.png */; };
 		18E508A316743EDA0003BD0C /* SearchFlightConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E508A216743EDA0003BD0C /* SearchFlightConditionCell.m */; };
 		18E508A516743EE90003BD0C /* SearchFlightConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E508A416743EE90003BD0C /* SearchFlightConditionCell.xib */; };
 		18E508BC16747B840003BD0C /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E508B216747B840003BD0C /* EGORefreshTableHeaderView.m */; };
@@ -204,6 +208,7 @@
 		18E508C316747B840003BD0C /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508BA16747B840003BD0C /* whiteArrow.png */; };
 		18E508C416747B840003BD0C /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508BB16747B840003BD0C /* whiteArrow@2x.png */; };
 		18E677F316787910008E187C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E677F216787910008E187C /* AddressBook.framework */; };
+		18E88F09167D9678002FCC62 /* FlightConditionDetailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88F08167D9678002FCC62 /* FlightConditionDetailData.m */; };
 		18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */; };
 		18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */; };
 		18EAE79716703B3800CA6265 /* SelectResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE79616703B3800CA6265 /* SelectResultCell.m */; };
@@ -466,6 +471,12 @@
 		18E4BC54167A072E009858A0 /* Thumbs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thumbs.db; sourceTree = "<group>"; };
 		18E4BC69167AC293009858A0 /* myBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myBtn.png; sourceTree = "<group>"; };
 		18E4BC6A167AC295009858A0 /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
+		18E4BC8C167B878E009858A0 /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
+		18E4BC8D167B878E009858A0 /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
+		18E4BC8E167B878F009858A0 /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
+		18E4BC8F167B8791009858A0 /* SVSegmentedThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedThumb.m; sourceTree = "<group>"; };
+		18E4BC93167C9737009858A0 /* tab_bg_flightCondition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_bg_flightCondition.png; sourceTree = "<group>"; };
+		18E4BC95167C9D4E009858A0 /* block3_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block3_change.png; sourceTree = "<group>"; };
 		18E508A116743EDA0003BD0C /* SearchFlightConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightConditionCell.h; sourceTree = "<group>"; };
 		18E508A216743EDA0003BD0C /* SearchFlightConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightConditionCell.m; sourceTree = "<group>"; };
 		18E508A416743EE90003BD0C /* SearchFlightConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFlightConditionCell.xib; sourceTree = "<group>"; };
@@ -480,6 +491,8 @@
 		18E508BA16747B840003BD0C /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		18E508BB16747B840003BD0C /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		18E677F216787910008E187C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		18E88F07167D9678002FCC62 /* FlightConditionDetailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightConditionDetailData.h; sourceTree = "<group>"; };
+		18E88F08167D9678002FCC62 /* FlightConditionDetailData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightConditionDetailData.m; sourceTree = "<group>"; };
 		18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
 		18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
 		18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
@@ -549,11 +562,8 @@
 		1427937F167078DA00E2E1E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
-
 				18DC00231679BC38008C6B8D /* 机票预订 */,
-
 				18E4BC40167A072D009858A0 /* 航班动态 */,
-
 				14805BA2167875A700836353 /* TicketCheck */,
 				18D01F1316783569002C13DB /* Un sel.png */,
 				18E4BC3E167A04B4009858A0 /* myline.png */,
@@ -828,6 +838,10 @@
 				18E4BC381679BF3F009858A0 /* DetailFlightConditionViewController.h */,
 				18E4BC391679BF3F009858A0 /* DetailFlightConditionViewController.m */,
 				18E4BC3A1679BF40009858A0 /* DetailFlightConditionViewController.xib */,
+				18E4BC8C167B878E009858A0 /* SVSegmentedControl.h */,
+				18E4BC8D167B878E009858A0 /* SVSegmentedControl.m */,
+				18E4BC8E167B878F009858A0 /* SVSegmentedThumb.h */,
+				18E4BC8F167B8791009858A0 /* SVSegmentedThumb.m */,
 			);
 			name = FlightCondition;
 			sourceTree = "<group>";
@@ -846,6 +860,8 @@
 				18DD1D381675BF7A006B59AB /* TransitionString.m */,
 				18DD1D3A1675D01D006B59AB /* SearchFlightData.h */,
 				18DD1D3B1675D01D006B59AB /* SearchFlightData.m */,
+				18E88F07167D9678002FCC62 /* FlightConditionDetailData.h */,
+				18E88F08167D9678002FCC62 /* FlightConditionDetailData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -965,6 +981,7 @@
 				18DC00591679BC38008C6B8D /* switch_on.png */,
 				18DC005A1679BC38008C6B8D /* tab.png */,
 				18DC005B1679BC38008C6B8D /* tab_bg.png */,
+				18E4BC93167C9737009858A0 /* tab_bg_flightCondition.png */,
 				18DC005C1679BC38008C6B8D /* title_bar.png */,
 				18DC005D1679BC38008C6B8D /* triangle_white_down.png */,
 				18DC005E1679BC38008C6B8D /* triangle_white_up.png */,
@@ -992,6 +1009,7 @@
 				18E4BC42167A072D009858A0 /* att_btn.png */,
 				18E4BC43167A072D009858A0 /* att_btn_click.png */,
 				18E4BC44167A072D009858A0 /* block3.png */,
+				18E4BC95167C9D4E009858A0 /* block3_change.png */,
 				18E4BC45167A072D009858A0 /* btn_flight.png */,
 				18E4BC46167A072D009858A0 /* circle_gray.png */,
 				18E4BC47167A072D009858A0 /* circle_green.png */,
@@ -1174,7 +1192,6 @@
 				14805B8E1678349200836353 /* DataBaseVersionConfigure.plist in Resources */,
 				14805BA4167875E900836353 /* bg_pek.png in Resources */,
 				14805BA61678760B00836353 /* icon_return.png in Resources */,
-
 				18D01F1516783569002C13DB /* Un sel.png in Resources */,
 				18D01F1616783569002C13DB /* sel.png in Resources */,
 				14241AAF1679ADC600D84663 /* depart.png in Resources */,
@@ -1247,9 +1264,6 @@
 				18DC009F1679BC38008C6B8D /* white_block2.png in Resources */,
 				18DC00A01679BC38008C6B8D /* white_icon_oneway.png in Resources */,
 				18DC00A11679BC38008C6B8D /* white_icon_round.png in Resources */,
-
-				18D01F0D16782CA4002C13DB /* ChoosePersonController.xib in Resources */,
-				18D01F1216782DFE002C13DB /* ChoosePersonCell.xib in Resources */,
 				18D01F1516783569002C13DB /* Un sel.png in Resources */,
 				18D01F1616783569002C13DB /* sel.png in Resources */,
 				18E4BC3C1679BF41009858A0 /* DetailFlightConditionViewController.xib in Resources */,
@@ -1276,7 +1290,8 @@
 				18E4BC68167A072E009858A0 /* Thumbs.db in Resources */,
 				18E4BC6B167AC29B009858A0 /* myBtn.png in Resources */,
 				18E4BC6C167AC29B009858A0 /* tabbar.png in Resources */,
-
+				18E4BC94167C9746009858A0 /* tab_bg_flightCondition.png in Resources */,
+				18E4BC96167C9D4E009858A0 /* block3_change.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,19 +1355,15 @@
 				14805B8616782A8E00836353 /* AirPortDataBase.m in Sources */,
 				14805B8A16782B2B00836353 /* AirPortData.m in Sources */,
 				14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */,
-
 				14241ABA1679BD2200D84663 /* ChooseAirPortCell.m in Sources */,
 				14241AC01679BD2F00D84663 /* ChooseAirPortViewController.m in Sources */,
 				14241AC91679BDEC00D84663 /* AutomaticPositioningCell.m in Sources */,
 				14241AD71679C05A00D84663 /* ChoosePersonCell.m in Sources */,
 				14241ADC1679C08700D84663 /* ChoosePersonController.m in Sources */,
-
-				14805B9B1678729A00836353 /* ChooseAirPortViewController.m in Sources */,
-				14805B9F1678751400836353 /* ChooseAirPortCell.m in Sources */,
-				18D01F0C16782CA4002C13DB /* ChoosePersonController.m in Sources */,
-				18D01F1016782DEA002C13DB /* ChoosePersonCell.m in Sources */,
 				18E4BC3B1679BF41009858A0 /* DetailFlightConditionViewController.m in Sources */,
-
+				18E4BC90167B8792009858A0 /* SVSegmentedControl.m in Sources */,
+				18E4BC91167B8792009858A0 /* SVSegmentedThumb.m in Sources */,
+				18E88F09167D9678002FCC62 /* FlightConditionDetailData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
