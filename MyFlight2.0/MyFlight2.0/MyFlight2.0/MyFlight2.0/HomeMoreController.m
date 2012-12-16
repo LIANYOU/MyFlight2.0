@@ -63,6 +63,7 @@
     if (!cell)
     {
         [[NSBundle mainBundle] loadNibNamed:@"MoreCell" owner:self options:nil];
+        
         cell = self.moreCell;
     }
     

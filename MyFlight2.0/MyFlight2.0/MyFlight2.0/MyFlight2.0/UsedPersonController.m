@@ -74,6 +74,7 @@
     {
         [[NSBundle mainBundle] loadNibNamed:@"UsedPersonCell" owner:self options:nil];
         cell = self.personCell;
+        
     }
 
     

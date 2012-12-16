@@ -8,6 +8,7 @@
 
 #import "LogViewController.h"
 #import "RegisterViewController.h"
+#import "LookForPasswordFirstStepViewController.h"
 @interface LogViewController ()
 
 @end
@@ -57,5 +58,12 @@
     RegisterViewController * view = [[RegisterViewController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
     [view release];
+}
+- (IBAction)LookForPassword:(id)sender {
+    
+    
+    LookForPasswordFirstStepViewController *controller =[[LookForPasswordFirstStepViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+       
 }
 @end

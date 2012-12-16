@@ -39,6 +39,23 @@
 		14539506166F220E00417F61 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14539504166F220E00417F61 /* ViewController.xib */; };
 		1453951D166F278000417F61 /* MyCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1453951B166F278000417F61 /* MyCenterViewController.m */; };
 		1453951E166F278000417F61 /* MyCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1453951C166F278000417F61 /* MyCenterViewController.xib */; };
+		146986BC167DCB5700E9B30D /* gray_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B1167DCB5700E9B30D /* gray_btn.png */; };
+		146986BD167DCB5700E9B30D /* green_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B2167DCB5700E9B30D /* green_btn.png */; };
+		146986BE167DCB5700E9B30D /* icon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B3167DCB5700E9B30D /* icon_qq.png */; };
+		146986BF167DCB5700E9B30D /* icon_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B4167DCB5700E9B30D /* icon_tencent.png */; };
+		146986C0167DCB5700E9B30D /* icon_wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B5167DCB5700E9B30D /* icon_wechat.png */; };
+		146986C1167DCB5700E9B30D /* icon_weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B6167DCB5700E9B30D /* icon_weibo.png */; };
+		146986C2167DCB5700E9B30D /* input.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B7167DCB5700E9B30D /* input.png */; };
+		146986C3167DCB5700E9B30D /* input_tep_no.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B8167DCB5700E9B30D /* input_tep_no.png */; };
+		146986C4167DCB5700E9B30D /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = 146986B9167DCB5700E9B30D /* Thumbs.db */; };
+		146986C5167DCB5700E9B30D /* white_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986BA167DCB5700E9B30D /* white_btn.png */; };
+		146986C6167DCB5700E9B30D /* white_btn_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986BB167DCB5700E9B30D /* white_btn_click.png */; };
+		146986CC167DD24200E9B30D /* ResetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146986CA167DD24200E9B30D /* ResetPassWordViewController.m */; };
+		146986CD167DD24200E9B30D /* ResetPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146986CB167DD24200E9B30D /* ResetPassWordViewController.xib */; };
+		146986D2167DD8FF00E9B30D /* LookForPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146986D0167DD8FF00E9B30D /* LookForPasswordViewController.m */; };
+		146986D3167DD8FF00E9B30D /* LookForPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146986D1167DD8FF00E9B30D /* LookForPasswordViewController.xib */; };
+		146986D7167DDF6600E9B30D /* LookForPasswordFirstStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146986D5167DDF6600E9B30D /* LookForPasswordFirstStepViewController.m */; };
+		146986D8167DDF6600E9B30D /* LookForPasswordFirstStepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146986D6167DDF6600E9B30D /* LookForPasswordFirstStepViewController.xib */; };
 		14805B8616782A8E00836353 /* AirPortDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B8516782A8E00836353 /* AirPortDataBase.m */; };
 		14805B8A16782B2B00836353 /* AirPortData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B8916782B2A00836353 /* AirPortData.m */; };
 		14805B8C16782CF500836353 /* AirPortDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14805B8B16782CF400836353 /* AirPortDataBase.sqlite */; };
@@ -312,6 +329,26 @@
 		1453951A166F278000417F61 /* MyCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterViewController.h; sourceTree = "<group>"; };
 		1453951B166F278000417F61 /* MyCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterViewController.m; sourceTree = "<group>"; };
 		1453951C166F278000417F61 /* MyCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterViewController.xib; sourceTree = "<group>"; };
+		146986B1167DCB5700E9B30D /* gray_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_btn.png; sourceTree = "<group>"; };
+		146986B2167DCB5700E9B30D /* green_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_btn.png; sourceTree = "<group>"; };
+		146986B3167DCB5700E9B30D /* icon_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_qq.png; sourceTree = "<group>"; };
+		146986B4167DCB5700E9B30D /* icon_tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tencent.png; sourceTree = "<group>"; };
+		146986B5167DCB5700E9B30D /* icon_wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_wechat.png; sourceTree = "<group>"; };
+		146986B6167DCB5700E9B30D /* icon_weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_weibo.png; sourceTree = "<group>"; };
+		146986B7167DCB5700E9B30D /* input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = input.png; sourceTree = "<group>"; };
+		146986B8167DCB5700E9B30D /* input_tep_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = input_tep_no.png; sourceTree = "<group>"; };
+		146986B9167DCB5700E9B30D /* Thumbs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thumbs.db; sourceTree = "<group>"; };
+		146986BA167DCB5700E9B30D /* white_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_btn.png; sourceTree = "<group>"; };
+		146986BB167DCB5700E9B30D /* white_btn_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_btn_click.png; sourceTree = "<group>"; };
+		146986C9167DD24200E9B30D /* ResetPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPassWordViewController.h; sourceTree = "<group>"; };
+		146986CA167DD24200E9B30D /* ResetPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPassWordViewController.m; sourceTree = "<group>"; };
+		146986CB167DD24200E9B30D /* ResetPassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetPassWordViewController.xib; sourceTree = "<group>"; };
+		146986CF167DD8FF00E9B30D /* LookForPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookForPasswordViewController.h; sourceTree = "<group>"; };
+		146986D0167DD8FF00E9B30D /* LookForPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookForPasswordViewController.m; sourceTree = "<group>"; };
+		146986D1167DD8FF00E9B30D /* LookForPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LookForPasswordViewController.xib; sourceTree = "<group>"; };
+		146986D4167DDF6600E9B30D /* LookForPasswordFirstStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookForPasswordFirstStepViewController.h; sourceTree = "<group>"; };
+		146986D5167DDF6600E9B30D /* LookForPasswordFirstStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookForPasswordFirstStepViewController.m; sourceTree = "<group>"; };
+		146986D6167DDF6600E9B30D /* LookForPasswordFirstStepViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LookForPasswordFirstStepViewController.xib; sourceTree = "<group>"; };
 		14805A0E1676F04B00836353 /* AppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigure.h; sourceTree = "<group>"; };
 		14805A0F1676F0DF00836353 /* AirPortsUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortsUility.h; sourceTree = "<group>"; };
 		14805A101676F13000836353 /* PublicConstUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicConstUrls.h; sourceTree = "<group>"; };
@@ -655,6 +692,7 @@
 		1427937F167078DA00E2E1E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				146986B0167DCB5700E9B30D /* 登录 */,
 				18E37CA0167D53890086B3F8 /* 个人中心 */,
 				18DC00231679BC38008C6B8D /* 机票预订 */,
 				18E4BC40167A072D009858A0 /* 航班动态 */,
@@ -792,6 +830,40 @@
 				18EAE7C416707ED500CA6265 /* WriteOrderViewController.xib */,
 			);
 			name = TicketCheck;
+			sourceTree = "<group>";
+		};
+		146986B0167DCB5700E9B30D /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				146986B1167DCB5700E9B30D /* gray_btn.png */,
+				146986B2167DCB5700E9B30D /* green_btn.png */,
+				146986B3167DCB5700E9B30D /* icon_qq.png */,
+				146986B4167DCB5700E9B30D /* icon_tencent.png */,
+				146986B5167DCB5700E9B30D /* icon_wechat.png */,
+				146986B6167DCB5700E9B30D /* icon_weibo.png */,
+				146986B7167DCB5700E9B30D /* input.png */,
+				146986B8167DCB5700E9B30D /* input_tep_no.png */,
+				146986B9167DCB5700E9B30D /* Thumbs.db */,
+				146986BA167DCB5700E9B30D /* white_btn.png */,
+				146986BB167DCB5700E9B30D /* white_btn_click.png */,
+			);
+			path = "登录";
+			sourceTree = "<group>";
+		};
+		146986CE167DD8D400E9B30D /* LookForPassword */ = {
+			isa = PBXGroup;
+			children = (
+				146986C9167DD24200E9B30D /* ResetPassWordViewController.h */,
+				146986CA167DD24200E9B30D /* ResetPassWordViewController.m */,
+				146986CB167DD24200E9B30D /* ResetPassWordViewController.xib */,
+				146986CF167DD8FF00E9B30D /* LookForPasswordViewController.h */,
+				146986D0167DD8FF00E9B30D /* LookForPasswordViewController.m */,
+				146986D1167DD8FF00E9B30D /* LookForPasswordViewController.xib */,
+				146986D4167DDF6600E9B30D /* LookForPasswordFirstStepViewController.h */,
+				146986D5167DDF6600E9B30D /* LookForPasswordFirstStepViewController.m */,
+				146986D6167DDF6600E9B30D /* LookForPasswordFirstStepViewController.xib */,
+			);
+			name = LookForPassword;
 			sourceTree = "<group>";
 		};
 		148059CE1676E65D00836353 /* CityAndAirPorts */ = {
@@ -933,6 +1005,7 @@
 		180E22811671B387002A7228 /* Loging */ = {
 			isa = PBXGroup;
 			children = (
+				146986CE167DD8D400E9B30D /* LookForPassword */,
 				180E22821671B3D4002A7228 /* LogViewController.h */,
 				180E22831671B3D4002A7228 /* LogViewController.m */,
 				180E22841671B3D4002A7228 /* LogViewController.xib */,
@@ -1513,6 +1586,20 @@
 				18E37D00167DAC730086B3F8 /* ShowFligthConditionController.xib in Resources */,
 				18E37D05167DAC880086B3F8 /* SearchFlightConditionCell.xib in Resources */,
 				18E37D0A167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib in Resources */,
+				146986BC167DCB5700E9B30D /* gray_btn.png in Resources */,
+				146986BD167DCB5700E9B30D /* green_btn.png in Resources */,
+				146986BE167DCB5700E9B30D /* icon_qq.png in Resources */,
+				146986BF167DCB5700E9B30D /* icon_tencent.png in Resources */,
+				146986C0167DCB5700E9B30D /* icon_wechat.png in Resources */,
+				146986C1167DCB5700E9B30D /* icon_weibo.png in Resources */,
+				146986C2167DCB5700E9B30D /* input.png in Resources */,
+				146986C3167DCB5700E9B30D /* input_tep_no.png in Resources */,
+				146986C4167DCB5700E9B30D /* Thumbs.db in Resources */,
+				146986C5167DCB5700E9B30D /* white_btn.png in Resources */,
+				146986C6167DCB5700E9B30D /* white_btn_click.png in Resources */,
+				146986CD167DD24200E9B30D /* ResetPassWordViewController.xib in Resources */,
+				146986D3167DD8FF00E9B30D /* LookForPasswordViewController.xib in Resources */,
+				146986D8167DDF6600E9B30D /* LookForPasswordFirstStepViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1598,6 +1685,9 @@
 				18E37D0F167DACB40086B3F8 /* SVSegmentedControl.m in Sources */,
 				18E37D10167DACB40086B3F8 /* SVSegmentedThumb.m in Sources */,
 				18E37D13167DAD050086B3F8 /* FlightConditionDetailData.m in Sources */,
+				146986CC167DD24200E9B30D /* ResetPassWordViewController.m in Sources */,
+				146986D2167DD8FF00E9B30D /* LookForPasswordViewController.m in Sources */,
+				146986D7167DDF6600E9B30D /* LookForPasswordFirstStepViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

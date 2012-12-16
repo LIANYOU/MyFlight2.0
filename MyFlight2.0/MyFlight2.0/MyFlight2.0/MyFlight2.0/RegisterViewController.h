@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+//注册界面
 @interface RegisterViewController : UIViewController<UITextFieldDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *accountFiled;
 @property (retain, nonatomic) IBOutlet UITextField *securityCodeField;

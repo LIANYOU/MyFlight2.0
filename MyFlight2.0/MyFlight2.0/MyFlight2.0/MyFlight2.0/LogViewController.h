@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+//登陆界面  
 @interface LogViewController : UIViewController
 {
     IBOutlet UITextField *logPassword;   // 登陆密码
@@ -15,6 +17,12 @@
 }
 - (IBAction)beginLoging:(id)sender;      // 登陆
 - (IBAction)registerNewNumber:(id)sender;// 注册
+
+
+
+
+- (IBAction)LookForPassword:(id)sender;
+
 @property (retain, nonatomic) IBOutlet UIButton *forgetPassword;  // 找回密码
 
 @end
