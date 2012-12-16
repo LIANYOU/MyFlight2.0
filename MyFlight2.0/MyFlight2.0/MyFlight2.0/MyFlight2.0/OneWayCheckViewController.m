@@ -191,11 +191,7 @@ int searchFlag = 1; // 单程和往返的标记位
         endAirport.text = airPort.apName;
         endCode = airPort.apCode;
     }
-    
-    
-    
-    
-    
+ 
 }
 - (void)dealloc {
     [startAirport release];

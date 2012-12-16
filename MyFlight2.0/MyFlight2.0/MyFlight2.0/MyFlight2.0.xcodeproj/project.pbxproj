@@ -76,6 +76,11 @@
 		1807541F167C2734007B42A4 /* LowOrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1807541D167C2734007B42A4 /* LowOrderController.xib */; };
 		18075422167C29B1007B42A4 /* LowOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18075421167C29B1007B42A4 /* LowOrderCell.m */; };
 		18075424167C29C7007B42A4 /* LowOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18075423167C29C7007B42A4 /* LowOrderCell.xib */; };
+		18080179167DBAC600CD5F9A /* TraveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18080177167DBAC600CD5F9A /* TraveController.m */; };
+		1808017A167DBAC600CD5F9A /* TraveController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18080178167DBAC600CD5F9A /* TraveController.xib */; };
+		1808017C167DC0E200CD5F9A /* icon_arrowhead_.png in Resources */ = {isa = PBXBuildFile; fileRef = 1808017B167DC0E200CD5F9A /* icon_arrowhead_.png */; };
+		1808017E167DCBCB00CD5F9A /* icon_Selected_.png in Resources */ = {isa = PBXBuildFile; fileRef = 1808017D167DCBCB00CD5F9A /* icon_Selected_.png */; };
+		18080180167DCD6200CD5F9A /* icon_Default_.png in Resources */ = {isa = PBXBuildFile; fileRef = 1808017F167DCD6200CD5F9A /* icon_Default_.png */; };
 		180D964E167C410B00A36243 /* clean_histroy_4words_.png in Resources */ = {isa = PBXBuildFile; fileRef = 180D964D167C410B00A36243 /* clean_histroy_4words_.png */; };
 		180D9653167C450000A36243 /* btn_2words_.png in Resources */ = {isa = PBXBuildFile; fileRef = 180D9650167C450000A36243 /* btn_2words_.png */; };
 		180D9654167C450000A36243 /* icon_history_.png in Resources */ = {isa = PBXBuildFile; fileRef = 180D9651167C450000A36243 /* icon_history_.png */; };
@@ -384,6 +389,12 @@
 		18075420167C29B1007B42A4 /* LowOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LowOrderCell.h; sourceTree = "<group>"; };
 		18075421167C29B1007B42A4 /* LowOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LowOrderCell.m; sourceTree = "<group>"; };
 		18075423167C29C7007B42A4 /* LowOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LowOrderCell.xib; sourceTree = "<group>"; };
+		18080176167DBAC600CD5F9A /* TraveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TraveController.h; sourceTree = "<group>"; };
+		18080177167DBAC600CD5F9A /* TraveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraveController.m; sourceTree = "<group>"; };
+		18080178167DBAC600CD5F9A /* TraveController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TraveController.xib; sourceTree = "<group>"; };
+		1808017B167DC0E200CD5F9A /* icon_arrowhead_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_arrowhead_.png; sourceTree = "<group>"; };
+		1808017D167DCBCB00CD5F9A /* icon_Selected_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Selected_.png; sourceTree = "<group>"; };
+		1808017F167DCD6200CD5F9A /* icon_Default_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Default_.png; sourceTree = "<group>"; };
 		180D964D167C410B00A36243 /* clean_histroy_4words_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clean_histroy_4words_.png; sourceTree = "<group>"; };
 		180D9650167C450000A36243 /* btn_2words_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_2words_.png; sourceTree = "<group>"; };
 		180D9651167C450000A36243 /* icon_history_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_history_.png; sourceTree = "<group>"; };
@@ -705,9 +716,12 @@
 				18D01F1316783569002C13DB /* Un sel.png */,
 				180D9650167C450000A36243 /* btn_2words_.png */,
 				180D9651167C450000A36243 /* icon_history_.png */,
+				1808017D167DCBCB00CD5F9A /* icon_Selected_.png */,
+				1808017F167DCD6200CD5F9A /* icon_Default_.png */,
 				180D9652167C450000A36243 /* icon_return_.png */,
 				18E37CE0167D7CE70086B3F8 /* icon_add_.png */,
 				180D964D167C410B00A36243 /* clean_histroy_4words_.png */,
+				1808017B167DC0E200CD5F9A /* icon_arrowhead_.png */,
 				18E4BC3E167A04B4009858A0 /* myline.png */,
 				18D01F1416783569002C13DB /* sel.png */,
 				18E37CC5167D6BA70086B3F8 /* btn_save_.png */,
@@ -813,6 +827,7 @@
 		14539523166F2C6800417F61 /* TicketCheck */ = {
 			isa = PBXGroup;
 			children = (
+				18080174167DB95400CD5F9A /* TravelItinerary */,
 				1807541A167C26B6007B42A4 /* lowOrder */,
 				14805B9716786F3C00836353 /* chooseAirPorts */,
 				18E0B6CD167183D300968F01 /* choosePerson */,
@@ -953,6 +968,16 @@
 				18075423167C29C7007B42A4 /* LowOrderCell.xib */,
 			);
 			name = lowOrder;
+			sourceTree = "<group>";
+		};
+		18080174167DB95400CD5F9A /* TravelItinerary */ = {
+			isa = PBXGroup;
+			children = (
+				18080176167DBAC600CD5F9A /* TraveController.h */,
+				18080177167DBAC600CD5F9A /* TraveController.m */,
+				18080178167DBAC600CD5F9A /* TraveController.xib */,
+			);
+			name = TravelItinerary;
 			sourceTree = "<group>";
 		};
 		180E223C16718FFF002A7228 /* RelatedResources */ = {
@@ -1595,6 +1620,7 @@
 				18E37D05167DAC880086B3F8 /* SearchFlightConditionCell.xib in Resources */,
 				18E37D0A167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib in Resources */,
 
+
 				146986BC167DCB5700E9B30D /* gray_btn.png in Resources */,
 				146986BD167DCB5700E9B30D /* green_btn.png in Resources */,
 				146986BE167DCB5700E9B30D /* icon_qq.png in Resources */,
@@ -1611,6 +1637,12 @@
 				146986D8167DDF6600E9B30D /* LookForPasswordFirstStepViewController.xib in Resources */,
 
 				18E88F1F167DB926002FCC62 /* SMSViewController.xib in Resources */,
+
+
+				1808017A167DBAC600CD5F9A /* TraveController.xib in Resources */,
+				1808017C167DC0E200CD5F9A /* icon_arrowhead_.png in Resources */,
+				1808017E167DCBCB00CD5F9A /* icon_Selected_.png in Resources */,
+				18080180167DCD6200CD5F9A /* icon_Default_.png in Resources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1698,11 +1730,15 @@
 				18E37D10167DACB40086B3F8 /* SVSegmentedThumb.m in Sources */,
 				18E37D13167DAD050086B3F8 /* FlightConditionDetailData.m in Sources */,
 
+
 				146986CC167DD24200E9B30D /* ResetPassWordViewController.m in Sources */,
 				146986D2167DD8FF00E9B30D /* LookForPasswordViewController.m in Sources */,
 				146986D7167DDF6600E9B30D /* LookForPasswordFirstStepViewController.m in Sources */,
 
 				18E88F1E167DB926002FCC62 /* SMSViewController.m in Sources */,
+
+
+				18080179167DBAC600CD5F9A /* TraveController.m in Sources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
