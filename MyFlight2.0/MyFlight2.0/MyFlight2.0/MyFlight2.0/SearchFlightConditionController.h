@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SVSegmentedControl.h"
-@interface SearchFlightConditionController : UIViewController<SVSegmentedControlDelegate>{
+#import "ChooseAirPortViewController.h"
+@interface SearchFlightConditionController : UIViewController<SVSegmentedControlDelegate,ChooseAirPortViewControllerDelegate>{
     SVSegmentedControl * mySegmentController;
+    NSString * startAirPortCode;
+    NSString * arrAirPortCode;
 }
 @property (nonatomic,retain)IBOutlet UILabel * flightTimeByNumber;
 
@@ -25,4 +28,10 @@
 - (IBAction)selectedInquireType:(UISegmentedControl *)sender;
 
 - (IBAction)searchFligth:(id)sender;
+
+
+- (IBAction)chooseStartAirPort:(id)sender;
+
+- (IBAction)chooseEndAirPort:(id)sender;
+
 @end

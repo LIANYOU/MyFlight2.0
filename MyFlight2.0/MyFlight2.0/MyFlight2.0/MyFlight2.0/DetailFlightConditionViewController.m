@@ -7,7 +7,7 @@
 //
 
 #import "DetailFlightConditionViewController.h"
-
+#import "SMSViewController.h"
 @interface DetailFlightConditionViewController ()
 
 @end
@@ -46,6 +46,7 @@
 
 -(void)fillAllData{
     NSLog(@"%@",self.dic);
+    
     self.planeCode.text = myFlightConditionDetailData.flightNum;
     self.planeCompanyAndTime.text = [NSString stringWithFormat:@"%@ %@",myFlightConditionDetailData.flightCompany,myFlightConditionDetailData.deptDate];
     self.planeState.text = myFlightConditionDetailData.flightState;
@@ -55,16 +56,20 @@
     self.arriveWeather.text = nil;
     self.fromT.text = myFlightConditionDetailData.flightHTerminal;
     self.arriveT.text = myFlightConditionDetailData.flightTerminal;
-    self.fromFirstTimeName.text = @"计划";
+    self.fromFirstTimeName.text = @"计划：";
     self.fromFirstTime.text = myFlightConditionDetailData.deptTime;
-    self.fromSceTimeName.text = @"实际";
+    self.fromSceTimeName.text = @"实际：";
     self.fromSceTime.text = myFlightConditionDetailData.realDeptTime;
     self.fromResult.text = @"";
-    self.arriveFirstTimeName.text = @"计划";
+    self.arriveFirstTimeName.text = @"计划：";
     self.arriveFirstTime.text = myFlightConditionDetailData.arrTime;
-    self.arriveSecTimeName.text = @"实际";
+    self.arriveSecTimeName.text = @"实际：";
     self.arriveSecTime.text = myFlightConditionDetailData.realArrTime;
     self.arriveResult.text = @"";
+    
+   
+    
+    
     /*
      arrAirport = "\U4e0a\U6d77\U8679\U6865";
      arrTime = "09:34";
@@ -82,32 +87,14 @@
      flightTerminal = T2;
      realArrTime = "09:32";
      realDeptTime = "07:46";
-     */
-    /*
-     arrAirport = "\U547c\U548c\U6d69\U7279\U767d\U5854\U56fd\U9645";
-     arrTime = "13:15";
-     deptAirport = "\U5317\U4eac\U9996\U90fd";
-     deptDate = "2012-12-16";
-     deptTime = "10:30";
-     expectedArrTime = "13:15";
-     expectedDeptTime = "10:30";
-     flightArrcode = HET;
-     flightCompany = "\U4e2d\U56fd\U56fd\U9645\U822a\U7a7a\U516c\U53f8";
-     flightDepcode = PEK;
-     flightHTerminal = T3;
-     flightNum = CA1111;
-     flightState = "\U5230\U8fbe";
-     flightTerminal = "  -  ";
-     realArrTime = "13:20";
-     realDeptTime = "12:26";
-
-     
-     */
-    
+     */    
 }
 
 -(void)btnMessageClick:(id)sender{
     CCLog(@"btnMessageClick");
+    SMSViewController * sendMessange = [[SMSViewController alloc]init];
+    [self.navigationController pushViewController:sendMessange animated:YES];
+    [sendMessange release];
 }
 -(void)btnPhoneClick:(id)sender{
     CCLog(@"btnPhoneClick");

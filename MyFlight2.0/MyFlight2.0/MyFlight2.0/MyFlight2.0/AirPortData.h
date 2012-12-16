@@ -10,14 +10,14 @@
 
 @interface AirPortData : NSObject
 
-@property(nonatomic,retain)NSString *apCode;
-@property(nonatomic,retain)NSString *apName;
-@property(nonatomic,retain)NSString *apEname;
-@property(nonatomic,retain)NSString *apLName;
-@property(nonatomic,retain)NSString *hotCity;
-@property(nonatomic,retain)NSString *cityName;
-@property(nonatomic,retain)NSString *air_x;
-@property(nonatomic,retain)NSString *air_y;
+@property(nonatomic,retain)NSString *apCode; //机场三字码
+@property(nonatomic,retain)NSString *apName; //机场名字
+@property(nonatomic,retain)NSString *apEname; //机场名字拼音
+@property(nonatomic,retain)NSString *apLName; //机场的长名字  XXXXX机场
+@property(nonatomic,retain)NSString *hotCity; //是否是热门机场
+@property(nonatomic,retain)NSString *cityName; //热门城市
+@property(nonatomic,retain)NSString *air_x; //机场坐标 
+@property(nonatomic,retain)NSString *air_y; 
 
 - (id) initWithapCode:(NSString *) apCode apName:(NSString *) apName hotCity:(NSString *) hotCity cityName:(NSString *) cityName air_x:(NSString *)air_x air_y:(NSString *) air_y;
 

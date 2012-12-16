@@ -10,6 +10,8 @@
 #import "SearchFlightCondition.h"
 #import "ShowFligthConditionController.h"
 #import "DetailFlightConditionViewController.h"
+#import "AirPortData.h"
+#import "AppConfigure.h"
 @interface SearchFlightConditionController ()
 
 @end
@@ -28,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
     //查询按钮颜色
     //UIColor * mySelectBtnColor = [UIColor colorWithRed:255/255.0 green:107/255.0 blue:42/255.0 alpha:1];
     self.navigationItem.title = @"航班动态";
@@ -127,7 +131,8 @@
 
 - (IBAction)searchFligth:(id)sender {
     if (mySegmentController.selectedIndex == 0) {
-        SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:nil fdate:nil dpt:@"PEK" arr:@"SHA" hwld:nil];
+
+        SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:nil fdate:nil dpt:startAirPortCode arr:arrAirPortCode hwld:nil];
         ShowFligthConditionController * show = [[ShowFligthConditionController alloc] init];
         
         show.searchCondition = search;
@@ -147,6 +152,36 @@
 
 }
 
+- (IBAction)chooseStartAirPort:(id)sender {
+    
+    ChooseAirPortViewController *controller = [[ChooseAirPortViewController alloc] init];
+    //默认出发机场 
+    controller.startAirportName = self.startAirPort.text;
+    //默认到达机场 
+    controller.endAirPortName =self.endAirPort.text;
+    //选择的类型 
+    controller.choiceTypeOfAirPort = START_AIRPORT_TYPE;
+    controller.delegate =self;
+    
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    
+}
+
+- (IBAction)chooseEndAirPort:(id)sender {
+    
+    ChooseAirPortViewController *controller = [[ChooseAirPortViewController alloc] init];
+    //默认出发机场
+    controller.startAirportName = self.startAirPort.text;
+    //默认到达机场
+    controller.endAirPortName =self.endAirPort.text;
+    //选择的类型
+    controller.choiceTypeOfAirPort = END_AIRPORT_TYPE;
+    controller.delegate = self;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 -(void)mySegmentValueChange:(SVSegmentedControl *)arg{
     if (arg.selectedIndex == 1) {
         [self.selectedByAirPort removeFromSuperview];
@@ -157,17 +192,33 @@
     }
 }
 
--(void)rightItemClick:(UIButton *)arg{
-    if (mySegmentController.selectedIndex == 1) {
-        [mySegmentController setSelectedIndex:0];
-        NSLog(@"mySegmentController.selectedIndex == 1");
-    }else if(mySegmentController.selectedIndex == 0){
-        [mySegmentController setSelectedIndex:1];
-        NSLog(@"mySegmentController.selectedIndex == 0");
-    }
-}
+//-(void)rightItemClick:(UIButton *)arg{
+//    if (mySegmentController.selectedIndex == 1) {
+//        [mySegmentController setSelectedIndex:0];
+//        NSLog(@"mySegmentController.selectedIndex == 1");
+//    }else if(mySegmentController.selectedIndex == 0){
+//        [mySegmentController setSelectedIndex:1];
+//        NSLog(@"mySegmentController.selectedIndex == 0");
+//    }
+//}
 
 - (IBAction)returnClicked:(id)sender {
     [self.flightNumber resignFirstResponder];
+}
+
+- (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger)choiceType didSelectAirPortInfo:(AirPortData *)airPortP{
+    
+    if (choiceType==START_AIRPORT_TYPE ) {
+        //获得用户的出发机场 
+        self.startAirPort.text = airPortP.apName;
+        NSLog(@"my >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>%@",airPortP.apCode);
+        startAirPortCode = [NSString stringWithString:airPortP.apCode];
+    } else if(choiceType==END_AIRPORT_TYPE){
+        //获得用户的到达机场
+        self.endAirPort.text = airPortP.apName;
+         NSLog(@"my >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>%@",airPortP.apCode);
+        arrAirPortCode = [NSString stringWithString:airPortP.apCode];
+        
+    }
 }
 @end
