@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SVSegmentedControl.h"
+@interface SearchFlightConditionController : UIViewController<SVSegmentedControlDelegate>{
+    SVSegmentedControl * mySegmentController;
+}
+@property (nonatomic,retain)IBOutlet UILabel * flightTimeByNumber;
 
-@interface SearchFlightConditionController : UIViewController
-
-@property (retain, nonatomic) IBOutlet UISegmentedControl *selectedSegment;
 @property (retain, nonatomic) IBOutlet UILabel *startAirPort;
 @property (retain, nonatomic) IBOutlet UILabel *endAirPort;
 @property (retain, nonatomic) IBOutlet UILabel *time;
