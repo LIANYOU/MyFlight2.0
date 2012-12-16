@@ -100,7 +100,8 @@
     {
         str8=@"";
     }
-    
+    // http://test.51you.com/web/phone/prod/flight/flightSearchPhone.jsp
+    // http://test.51you.com/web/phone/prod/flight/flightSearchPhone.jsp
     NSString * search=[NSString stringWithFormat:@"http://test.51you.com/web/phone/prod/flight/flightSearchPhone.jsp?%@%@%@%@%@%@%@%@",str1,str2,str3,str4,str5,str6,str7,str8];
     
     NSLog(@"search = %@",search);

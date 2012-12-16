@@ -12,7 +12,7 @@
 #import "AddPersonController.h"
 #import "ShowSelectedResultViewController.h"
 #import "ChoosePersonController.h"
-
+#import "TraveController.h"
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 100.0f
@@ -417,7 +417,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BOOL logFlag = FALSE;  // 此处保留一个flag判断是否用户已经登陆
-    if (indexPath.section == self.flag && indexPath.row == 0) {
+    if (indexPath.row == 0) {
         if (logFlag) {
             AddPersonController * person = [[AddPersonController alloc] init];   // 添加乘机人列表
             
@@ -469,13 +469,17 @@
             [self.navigationController pushViewController:choose animated:YES];
         }
     }
-    else
-    {
+
+    if (indexPath.row == 2) {
         BuyInsuranceViewController * insurance = [[BuyInsuranceViewController alloc] init];
         [self.navigationController pushViewController:insurance animated:YES];
         [insurance release];
     }
-    
+    if (indexPath.row == 3) {
+        TraveController * trave = [[TraveController alloc] init];
+        [self.navigationController pushViewController:trave animated:YES];
+        [trave release];
+    }
 }
 - (IBAction)payMoney:(id)sender {
     
