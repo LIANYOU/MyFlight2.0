@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">11G63</string>
+		<string key="IBDocument.SystemVersion">12A269</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.AppKitVersion">1187</string>
+		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">1930</string>
@@ -386,7 +386,7 @@
 							<object class="IBUIImageView" id="145524543">
 								<reference key="NSNextResponder" ref="90925211"/>
 								<int key="NSvFlags">289</int>
-								<string key="NSFrame">{{226, 3}, {43, 39}}</string>
+								<string key="NSFrame">{{226, 1}, {43, 39}}</string>
 								<reference key="NSSuperview" ref="90925211"/>
 								<reference key="NSNextKeyView" ref="384726721"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -441,28 +441,21 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">HU3456</string>
+								<string key="IBUIText">HU34564</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4wNDcwNTg4MjM1MyAwLjM2NDcwNTg4MjQgMC42Nzg0MzEzNzI1AA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
-									<double key="pointSize">21</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">21</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="395372849"/>
+								<reference key="IBUIFont" ref="888141688"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUILabel" id="464013177">
 								<reference key="NSNextResponder" ref="90925211"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{79, 24}, {141, 21}}</string>
+								<string key="NSFrame">{{79, 12}, {141, 33}}</string>
 								<reference key="NSSuperview" ref="90925211"/>
 								<reference key="NSNextKeyView" ref="145524543"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -479,6 +472,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
+								<int key="IBUINumberOfLines">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="314561167">
 									<int key="type">1</int>
 									<double key="pointSize">11</double>
@@ -489,6 +483,7 @@
 									<int key="NSfFlags">16</int>
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+								<double key="preferredMaxLayoutWidth">141</double>
 							</object>
 							<object class="IBUIImageView" id="75910279">
 								<reference key="NSNextResponder" ref="90925211"/>
@@ -507,7 +502,7 @@
 							<object class="IBUIImageView" id="698930334">
 								<reference key="NSNextResponder" ref="90925211"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{72, 110}, {137, 35}}</string>
+								<string key="NSFrame">{{71, 111}, {138, 33}}</string>
 								<reference key="NSSuperview" ref="90925211"/>
 								<reference key="NSNextKeyView" ref="171570931"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -993,6 +988,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45NDUwOTgwMzkyIDAuOTE3NjQ3MDU4OCAwLjg5ODAzOTIxNTcAA</bytes>
 						</object>
+						<int key="IBUITag">999</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
@@ -1618,22 +1614,22 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="att_btn.png">{600, 80}</string>
-			<string key="att_btn_click.png">{600, 80}</string>
-			<string key="btn_flight.png">{64, 64}</string>
-			<string key="circle_gray.png">{290, 79}</string>
-			<string key="circle_green.png">{280, 69}</string>
-			<string key="icon_green_bg.png">{90, 71}</string>
-			<string key="icon_green_flight.png">{54, 17}</string>
-			<string key="icon_message.png">{40, 40}</string>
-			<string key="icon_message_click.png">{40, 40}</string>
-			<string key="icon_more.png">{40, 40}</string>
-			<string key="icon_more_click.png">{40, 40}</string>
-			<string key="icon_share.png">{40, 40}</string>
-			<string key="icon_share_click.png">{40, 40}</string>
-			<string key="icon_tep.png">{40, 40}</string>
-			<string key="icon_tep_click.png">{40, 40}</string>
-			<string key="tabbar.png">{640, 103}</string>
+			<string key="att_btn.png">{16, 16}</string>
+			<string key="att_btn_click.png">{16, 16}</string>
+			<string key="btn_flight.png">{16, 16}</string>
+			<string key="circle_gray.png">{16, 16}</string>
+			<string key="circle_green.png">{16, 16}</string>
+			<string key="icon_green_bg.png">{16, 16}</string>
+			<string key="icon_green_flight.png">{16, 16}</string>
+			<string key="icon_message.png">{16, 16}</string>
+			<string key="icon_message_click.png">{16, 16}</string>
+			<string key="icon_more.png">{16, 16}</string>
+			<string key="icon_more_click.png">{16, 16}</string>
+			<string key="icon_share.png">{16, 16}</string>
+			<string key="icon_share_click.png">{16, 16}</string>
+			<string key="icon_tep.png">{16, 16}</string>
+			<string key="icon_tep_click.png">{16, 16}</string>
+			<string key="tabbar.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>

@@ -135,8 +135,8 @@
     
     cell.flightCompany.text = [dic objectForKey:@"flightCompany"];
     cell.flightNum.text = [dic objectForKey:@"flightNum"];
-    cell.deptAirport.text = [dic objectForKey:@"deptAirport"];
-    cell.arrAirport.text = [dic objectForKey:@"arrAirport"];
+    cell.deptAirport.text = [NSString stringWithFormat:@"%@%@",[dic objectForKey:@"deptAirport"],[dic objectForKey:@"flightHTerminal"]];
+    cell.arrAirport.text = [NSString stringWithFormat:@"%@%@",[dic objectForKey:@"arrAirport"],[dic objectForKey:@"flightTerminal"]];
     cell.expectedDeptTime.text = [dic objectForKey:@"expectedDeptTime"];
     cell.expectedArrTime.text = [dic objectForKey:@"expectedArrTime"];
     cell.deptTime.text = [dic objectForKey:@"deptTime"];

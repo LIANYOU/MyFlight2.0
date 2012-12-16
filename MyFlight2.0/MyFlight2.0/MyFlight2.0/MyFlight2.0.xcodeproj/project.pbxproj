@@ -266,6 +266,8 @@
 		18E508C316747B840003BD0C /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508BA16747B840003BD0C /* whiteArrow.png */; };
 		18E508C416747B840003BD0C /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508BB16747B840003BD0C /* whiteArrow@2x.png */; };
 		18E677F316787910008E187C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E677F216787910008E187C /* AddressBook.framework */; };
+		18E88F1E167DB926002FCC62 /* SMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88F1C167DB926002FCC62 /* SMSViewController.m */; };
+		18E88F1F167DB926002FCC62 /* SMSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E88F1D167DB926002FCC62 /* SMSViewController.xib */; };
 		18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */; };
 		18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */; };
 		18EAE79716703B3800CA6265 /* SelectResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE79616703B3800CA6265 /* SelectResultCell.m */; };
@@ -623,6 +625,9 @@
 		18E508BA16747B840003BD0C /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		18E508BB16747B840003BD0C /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		18E677F216787910008E187C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		18E88F1B167DB926002FCC62 /* SMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSViewController.h; sourceTree = "<group>"; };
+		18E88F1C167DB926002FCC62 /* SMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSViewController.m; sourceTree = "<group>"; };
+		18E88F1D167DB926002FCC62 /* SMSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSViewController.xib; sourceTree = "<group>"; };
 		18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
 		18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
 		18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
@@ -1262,6 +1267,9 @@
 				18E37D06167DAC9A0086B3F8 /* DetailFlightConditionViewController.h */,
 				18E37D07167DAC9A0086B3F8 /* DetailFlightConditionViewController.m */,
 				18E37D08167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib */,
+				18E88F1B167DB926002FCC62 /* SMSViewController.h */,
+				18E88F1C167DB926002FCC62 /* SMSViewController.m */,
+				18E88F1D167DB926002FCC62 /* SMSViewController.xib */,
 				18E37D0B167DACB40086B3F8 /* SVSegmentedControl.h */,
 				18E37D0C167DACB40086B3F8 /* SVSegmentedControl.m */,
 				18E37D0D167DACB40086B3F8 /* SVSegmentedThumb.h */,
@@ -1586,6 +1594,7 @@
 				18E37D00167DAC730086B3F8 /* ShowFligthConditionController.xib in Resources */,
 				18E37D05167DAC880086B3F8 /* SearchFlightConditionCell.xib in Resources */,
 				18E37D0A167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib in Resources */,
+
 				146986BC167DCB5700E9B30D /* gray_btn.png in Resources */,
 				146986BD167DCB5700E9B30D /* green_btn.png in Resources */,
 				146986BE167DCB5700E9B30D /* icon_qq.png in Resources */,
@@ -1600,6 +1609,9 @@
 				146986CD167DD24200E9B30D /* ResetPassWordViewController.xib in Resources */,
 				146986D3167DD8FF00E9B30D /* LookForPasswordViewController.xib in Resources */,
 				146986D8167DDF6600E9B30D /* LookForPasswordFirstStepViewController.xib in Resources */,
+
+				18E88F1F167DB926002FCC62 /* SMSViewController.xib in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1685,9 +1697,13 @@
 				18E37D0F167DACB40086B3F8 /* SVSegmentedControl.m in Sources */,
 				18E37D10167DACB40086B3F8 /* SVSegmentedThumb.m in Sources */,
 				18E37D13167DAD050086B3F8 /* FlightConditionDetailData.m in Sources */,
+
 				146986CC167DD24200E9B30D /* ResetPassWordViewController.m in Sources */,
 				146986D2167DD8FF00E9B30D /* LookForPasswordViewController.m in Sources */,
 				146986D7167DDF6600E9B30D /* LookForPasswordFirstStepViewController.m in Sources */,
+
+				18E88F1E167DB926002FCC62 /* SMSViewController.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
