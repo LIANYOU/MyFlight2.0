@@ -273,6 +273,10 @@
 		18E677F316787910008E187C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E677F216787910008E187C /* AddressBook.framework */; };
 		18E88F1E167DB926002FCC62 /* SMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88F1C167DB926002FCC62 /* SMSViewController.m */; };
 		18E88F1F167DB926002FCC62 /* SMSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E88F1D167DB926002FCC62 /* SMSViewController.xib */; };
+		18E88FAA167EE843002FCC62 /* GetLinkManInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88FA9167EE843002FCC62 /* GetLinkManInfo.m */; };
+		18E88FAE167EF9F4002FCC62 /* AddLinkManViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88FAD167EF9F3002FCC62 /* AddLinkManViewController.m */; };
+		18E88FEC167F0237002FCC62 /* DrawFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88FEA167F022C002FCC62 /* DrawFlightViewController.m */; };
+		18E88FED167F0237002FCC62 /* DrawFlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E88FEB167F0231002FCC62 /* DrawFlightViewController.xib */; };
 		18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */; };
 		18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */; };
 		18EAE79716703B3800CA6265 /* SelectResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE79616703B3800CA6265 /* SelectResultCell.m */; };
@@ -639,6 +643,13 @@
 		18E88F1B167DB926002FCC62 /* SMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSViewController.h; sourceTree = "<group>"; };
 		18E88F1C167DB926002FCC62 /* SMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSViewController.m; sourceTree = "<group>"; };
 		18E88F1D167DB926002FCC62 /* SMSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSViewController.xib; sourceTree = "<group>"; };
+		18E88FA8167EE843002FCC62 /* GetLinkManInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetLinkManInfo.h; sourceTree = "<group>"; };
+		18E88FA9167EE843002FCC62 /* GetLinkManInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetLinkManInfo.m; sourceTree = "<group>"; };
+		18E88FAC167EF9F1002FCC62 /* AddLinkManViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLinkManViewController.h; sourceTree = "<group>"; };
+		18E88FAD167EF9F3002FCC62 /* AddLinkManViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLinkManViewController.m; sourceTree = "<group>"; };
+		18E88FE9167F0228002FCC62 /* DrawFlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawFlightViewController.h; sourceTree = "<group>"; };
+		18E88FEA167F022C002FCC62 /* DrawFlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawFlightViewController.m; sourceTree = "<group>"; };
+		18E88FEB167F0231002FCC62 /* DrawFlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawFlightViewController.xib; sourceTree = "<group>"; };
 		18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
 		18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
 		18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
@@ -1295,6 +1306,13 @@
 				18E88F1B167DB926002FCC62 /* SMSViewController.h */,
 				18E88F1C167DB926002FCC62 /* SMSViewController.m */,
 				18E88F1D167DB926002FCC62 /* SMSViewController.xib */,
+				18E88FA8167EE843002FCC62 /* GetLinkManInfo.h */,
+				18E88FA9167EE843002FCC62 /* GetLinkManInfo.m */,
+				18E88FAC167EF9F1002FCC62 /* AddLinkManViewController.h */,
+				18E88FAD167EF9F3002FCC62 /* AddLinkManViewController.m */,
+				18E88FE9167F0228002FCC62 /* DrawFlightViewController.h */,
+				18E88FEA167F022C002FCC62 /* DrawFlightViewController.m */,
+				18E88FEB167F0231002FCC62 /* DrawFlightViewController.xib */,
 				18E37D0B167DACB40086B3F8 /* SVSegmentedControl.h */,
 				18E37D0C167DACB40086B3F8 /* SVSegmentedControl.m */,
 				18E37D0D167DACB40086B3F8 /* SVSegmentedThumb.h */,
@@ -1619,8 +1637,6 @@
 				18E37D00167DAC730086B3F8 /* ShowFligthConditionController.xib in Resources */,
 				18E37D05167DAC880086B3F8 /* SearchFlightConditionCell.xib in Resources */,
 				18E37D0A167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib in Resources */,
-
-
 				146986BC167DCB5700E9B30D /* gray_btn.png in Resources */,
 				146986BD167DCB5700E9B30D /* green_btn.png in Resources */,
 				146986BE167DCB5700E9B30D /* icon_qq.png in Resources */,
@@ -1635,15 +1651,12 @@
 				146986CD167DD24200E9B30D /* ResetPassWordViewController.xib in Resources */,
 				146986D3167DD8FF00E9B30D /* LookForPasswordViewController.xib in Resources */,
 				146986D8167DDF6600E9B30D /* LookForPasswordFirstStepViewController.xib in Resources */,
-
 				18E88F1F167DB926002FCC62 /* SMSViewController.xib in Resources */,
-
-
 				1808017A167DBAC600CD5F9A /* TraveController.xib in Resources */,
 				1808017C167DC0E200CD5F9A /* icon_arrowhead_.png in Resources */,
 				1808017E167DCBCB00CD5F9A /* icon_Selected_.png in Resources */,
 				18080180167DCD6200CD5F9A /* icon_Default_.png in Resources */,
-
+				18E88FED167F0237002FCC62 /* DrawFlightViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1729,17 +1742,14 @@
 				18E37D0F167DACB40086B3F8 /* SVSegmentedControl.m in Sources */,
 				18E37D10167DACB40086B3F8 /* SVSegmentedThumb.m in Sources */,
 				18E37D13167DAD050086B3F8 /* FlightConditionDetailData.m in Sources */,
-
-
 				146986CC167DD24200E9B30D /* ResetPassWordViewController.m in Sources */,
 				146986D2167DD8FF00E9B30D /* LookForPasswordViewController.m in Sources */,
 				146986D7167DDF6600E9B30D /* LookForPasswordFirstStepViewController.m in Sources */,
-
 				18E88F1E167DB926002FCC62 /* SMSViewController.m in Sources */,
-
-
 				18080179167DBAC600CD5F9A /* TraveController.m in Sources */,
-
+				18E88FAA167EE843002FCC62 /* GetLinkManInfo.m in Sources */,
+				18E88FAE167EF9F4002FCC62 /* AddLinkManViewController.m in Sources */,
+				18E88FEC167F0237002FCC62 /* DrawFlightViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,8 +11,8 @@
 @interface SMSViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     IBOutlet UIButton * sendMessageButton;
-    IBOutlet UITableView * detailTable;
+
 }
 @property(nonatomic,retain)IBOutlet UIButton * sendMessageButton;
-@property(nonatomic,retain)IBOutlet UITableView * detailTable;
+
 @end

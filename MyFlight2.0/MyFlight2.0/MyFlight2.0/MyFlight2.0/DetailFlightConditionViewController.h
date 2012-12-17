@@ -13,6 +13,8 @@
     NSDictionary * _dic;
     FlightConditionDetailData * myFlightConditionDetailData;
     
+    
+    
     IBOutlet UIButton * btnMessage;
     IBOutlet UIButton * btnPhone;
     IBOutlet UIButton * btnShare;

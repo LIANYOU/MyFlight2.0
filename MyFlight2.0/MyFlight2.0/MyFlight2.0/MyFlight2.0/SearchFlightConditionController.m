@@ -12,6 +12,7 @@
 #import "DetailFlightConditionViewController.h"
 #import "AirPortData.h"
 #import "AppConfigure.h"
+#import <QuartzCore/QuartzCore.h>
 @interface SearchFlightConditionController ()
 
 @end
@@ -74,9 +75,10 @@
     
     self.selectedByAirPort.frame = CGRectMake(0, 460-390, 320, 378);
     self.selectedByAirPort.backgroundColor = [UIColor clearColor];
-    self.selectedByDate.frame = CGRectMake(0, 460-390, 320, 378);
+    self.selectedByDate.frame = CGRectMake(320, 460-390, 320, 378);
     self.selectedByDate.backgroundColor  = [UIColor clearColor];
     [self.view addSubview:self.selectedByAirPort];
+    [self.view addSubview:self.selectedByDate];
     
     
     //获得系统时间
@@ -92,7 +94,7 @@
     NSString *  nsDateString= [NSString  stringWithFormat:@"%4d-%2d-%2d",year,month,day];
     [self.time setText:nsDateString];
     [self.flightTimeByNumber setText:nsDateString];
-    NSLog(@"%@",nsDateString);
+//    NSLog(@"%@",nsDateString);
     [dateformatter release];
     
     
@@ -134,7 +136,6 @@
 
         SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:nil fdate:nil dpt:startAirPortCode arr:arrAirPortCode hwld:nil];
         ShowFligthConditionController * show = [[ShowFligthConditionController alloc] init];
-        
         show.searchCondition = search;
         
         [self.navigationController pushViewController:show animated:YES];
@@ -184,23 +185,32 @@
 
 -(void)mySegmentValueChange:(SVSegmentedControl *)arg{
     if (arg.selectedIndex == 1) {
-        [self.selectedByAirPort removeFromSuperview];
-        [self.view addSubview:self.selectedByDate];
+        /*
+         |a    b    0|
+         
+         |c    d    0|
+         
+         |tx   ty   1|
+         */
+        [UIView beginAnimations:nil context:NULL];
+        CGAffineTransform moveTo = CGAffineTransformMakeTranslation(320, 0);
+        CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-320, 0);
+        self.selectedByAirPort.layer.affineTransform = moveTo;
+        self.selectedByDate.layer.affineTransform = moveFrom;
+        [UIView setAnimationDuration:1];
+        [UIView commitAnimations];
+        
     }else if (arg.selectedIndex == 0){
-        [self.selectedByDate removeFromSuperview];
-        [self.view addSubview:self.selectedByAirPort];
+        [UIView beginAnimations:nil context:NULL];
+        CGAffineTransform moveTo1 = CGAffineTransformMakeTranslation(320, 0);
+        CGAffineTransform moveFrom1 = CGAffineTransformMakeTranslation(0, 0);
+        self.selectedByAirPort.layer.affineTransform = moveFrom1;
+        self.selectedByDate.layer.affineTransform = moveTo1;
+        [UIView setAnimationDuration:1];
+        [UIView commitAnimations];
     }
 }
 
-//-(void)rightItemClick:(UIButton *)arg{
-//    if (mySegmentController.selectedIndex == 1) {
-//        [mySegmentController setSelectedIndex:0];
-//        NSLog(@"mySegmentController.selectedIndex == 1");
-//    }else if(mySegmentController.selectedIndex == 0){
-//        [mySegmentController setSelectedIndex:1];
-//        NSLog(@"mySegmentController.selectedIndex == 0");
-//    }
-//}
 
 - (IBAction)returnClicked:(id)sender {
     [self.flightNumber resignFirstResponder];

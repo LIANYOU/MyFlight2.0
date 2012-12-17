@@ -13,7 +13,7 @@
 @end
 
 @implementation SMSViewController
-@synthesize sendMessageButton,detailTable;
+@synthesize sendMessageButton;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,16 +27,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIButton * myBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton * myBtn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     myBtn.frame = CGRectMake(0, 0, 76, 30);
     [myBtn setImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:UIControlStateNormal];
-    [myBtn setTitle:@"选择联系人" forState:UIControlStateNormal];
+    UILabel * titleLable = [[UILabel alloc]initWithFrame:CGRectMake(3, 2, 70, 26)];
+    titleLable.font = [UIFont systemFontOfSize:13];
+    titleLable.text = @"选择联系人";
+    titleLable.backgroundColor = [UIColor clearColor];
+    [myBtn addSubview:titleLable];
+    [titleLable release];
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithCustomView:myBtn];
     [myBtn release];
-    self.navigationController.navigationItem.rightBarButtonItem = rightItem;
-    
-    self.detailTable.delegate = self;
-    self.detailTable.dataSource = self;
+    self.navigationItem.rightBarButtonItem = rightItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,24 +52,6 @@
     NSLog(@"uibarbuttonItemClick");
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
 
-    return 1;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    return cell;
-}
 
 @end

@@ -1614,22 +1614,22 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="att_btn.png">{16, 16}</string>
-			<string key="att_btn_click.png">{16, 16}</string>
-			<string key="btn_flight.png">{16, 16}</string>
-			<string key="circle_gray.png">{16, 16}</string>
-			<string key="circle_green.png">{16, 16}</string>
-			<string key="icon_green_bg.png">{16, 16}</string>
-			<string key="icon_green_flight.png">{16, 16}</string>
-			<string key="icon_message.png">{16, 16}</string>
-			<string key="icon_message_click.png">{16, 16}</string>
-			<string key="icon_more.png">{16, 16}</string>
-			<string key="icon_more_click.png">{16, 16}</string>
-			<string key="icon_share.png">{16, 16}</string>
-			<string key="icon_share_click.png">{16, 16}</string>
-			<string key="icon_tep.png">{16, 16}</string>
-			<string key="icon_tep_click.png">{16, 16}</string>
-			<string key="tabbar.png">{16, 16}</string>
+			<string key="att_btn.png">{600, 80}</string>
+			<string key="att_btn_click.png">{600, 80}</string>
+			<string key="btn_flight.png">{64, 64}</string>
+			<string key="circle_gray.png">{290, 79}</string>
+			<string key="circle_green.png">{280, 69}</string>
+			<string key="icon_green_bg.png">{90, 71}</string>
+			<string key="icon_green_flight.png">{54, 17}</string>
+			<string key="icon_message.png">{40, 40}</string>
+			<string key="icon_message_click.png">{40, 40}</string>
+			<string key="icon_more.png">{40, 40}</string>
+			<string key="icon_more_click.png">{40, 40}</string>
+			<string key="icon_share.png">{40, 40}</string>
+			<string key="icon_share_click.png">{40, 40}</string>
+			<string key="icon_tep.png">{40, 40}</string>
+			<string key="icon_tep_click.png">{40, 40}</string>
+			<string key="tabbar.png">{640, 103}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>

@@ -45,7 +45,7 @@
 }
 
 -(void)fillAllData{
-    NSLog(@"%@",self.dic);
+//    NSLog(@"%@",self.dic);
     
     self.planeCode.text = myFlightConditionDetailData.flightNum;
     self.planeCompanyAndTime.text = [NSString stringWithFormat:@"%@ %@",myFlightConditionDetailData.flightCompany,myFlightConditionDetailData.deptDate];
@@ -65,45 +65,24 @@
     self.arriveFirstTime.text = myFlightConditionDetailData.arrTime;
     self.arriveSecTimeName.text = @"实际：";
     self.arriveSecTime.text = myFlightConditionDetailData.realArrTime;
-    self.arriveResult.text = @"";
-    
-   
-    
-    
-    /*
-     arrAirport = "\U4e0a\U6d77\U8679\U6865";
-     arrTime = "09:34";
-     deptAirport = "\U5317\U4eac\U9996\U90fd";
-     deptDate = "2012-12-16";
-     deptTime = "06:35";
-     expectedArrTime = "09:34";
-     expectedDeptTime = "06:35";
-     flightArrcode = SHA;
-     flightCompany = "\U4e0a\U6d77\U5409\U7965\U822a\U7a7a\U516c\U53f8";
-     flightDepcode = PEK;
-     flightHTerminal = T3;
-     flightNum = HO1252;
-     flightState = "\U5230\U8fbe";
-     flightTerminal = T2;
-     realArrTime = "09:32";
-     realDeptTime = "07:46";
-     */    
+    self.arriveResult.text = @"";    
 }
 
 -(void)btnMessageClick:(id)sender{
-    CCLog(@"btnMessageClick");
+    
     SMSViewController * sendMessange = [[SMSViewController alloc]init];
     [self.navigationController pushViewController:sendMessange animated:YES];
     [sendMessange release];
 }
 -(void)btnPhoneClick:(id)sender{
-    CCLog(@"btnPhoneClick");
+   
 }
 -(void)btnShareClick:(id)sender{
-    CCLog(@"btnShareClick");
+  
 }
 -(void)btnMoreShareClick:(id)sender{
-    CCLog(@"btnMoreShareClick");
+    UIActionSheet * moreShare = [[UIActionSheet alloc]initWithTitle:@"更多分享" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到新浪微博",@"分享到短信",@"发邮件", nil];
+    [moreShare showInView:self.view];
 }
 
 - (void)didReceiveMemoryWarning
