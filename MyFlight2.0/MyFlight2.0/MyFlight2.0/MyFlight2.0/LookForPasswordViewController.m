@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"找回密码";
     // Do any additional setup after loading the view from its nib.
 }
 

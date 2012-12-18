@@ -376,6 +376,7 @@
 		14698729167F016600E9B30D /* SpecialAppointmentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialAppointmentData.m; sourceTree = "<group>"; };
 		14698735167F152400E9B30D /* NSData+base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+base64.h"; sourceTree = "<group>"; };
 		14698736167F152400E9B30D /* NSData+base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+base64.m"; sourceTree = "<group>"; };
+		1469874F1680303100E9B30D /* ServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDelegate.h; sourceTree = "<group>"; };
 		14805A0E1676F04B00836353 /* AppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigure.h; sourceTree = "<group>"; };
 		14805A0F1676F0DF00836353 /* AirPortsUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortsUility.h; sourceTree = "<group>"; };
 		14805A101676F13000836353 /* PublicConstUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicConstUrls.h; sourceTree = "<group>"; };
@@ -806,6 +807,7 @@
 		145394EF166F220D00417F61 /* MyFlight2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				1469874D1680300900E9B30D /* service */,
 				148059D01676E6BE00836353 /* configure */,
 				180E223C16718FFF002A7228 /* RelatedResources */,
 				1427937F167078DA00E2E1E3 /* images */,
@@ -962,6 +964,14 @@
 				14698736167F152400E9B30D /* NSData+base64.m */,
 			);
 			name = makeSecret;
+			sourceTree = "<group>";
+		};
+		1469874D1680300900E9B30D /* service */ = {
+			isa = PBXGroup;
+			children = (
+				1469874F1680303100E9B30D /* ServiceDelegate.h */,
+			);
+			name = service;
 			sourceTree = "<group>";
 		};
 		148059CE1676E65D00836353 /* CityAndAirPorts */ = {
@@ -1725,10 +1735,7 @@
 				1808017C167DC0E200CD5F9A /* icon_arrowhead_.png in Resources */,
 				1808017E167DCBCB00CD5F9A /* icon_Selected_.png in Resources */,
 				18080180167DCD6200CD5F9A /* icon_Default_.png in Resources */,
-
 				18E88FED167F0237002FCC62 /* DrawFlightViewController.xib in Resources */,
-
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1819,17 +1826,14 @@
 				146986D7167DDF6600E9B30D /* LookForPasswordFirstStepViewController.m in Sources */,
 				18E88F1E167DB926002FCC62 /* SMSViewController.m in Sources */,
 				18080179167DBAC600CD5F9A /* TraveController.m in Sources */,
-
 				18E88FAA167EE843002FCC62 /* GetLinkManInfo.m in Sources */,
 				18E88FAE167EF9F4002FCC62 /* AddLinkManViewController.m in Sources */,
 				18E88FEC167F0237002FCC62 /* DrawFlightViewController.m in Sources */,
-
 				1469871B167EF31000E9B30D /* UserAccount.m in Sources */,
 				14698723167EFB1E00E9B30D /* CommonContact.m in Sources */,
 				14698727167EFE2F00E9B30D /* CouponsInfo.m in Sources */,
 				1469872A167F016800E9B30D /* SpecialAppointmentData.m in Sources */,
 				14698737167F152400E9B30D /* NSData+base64.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

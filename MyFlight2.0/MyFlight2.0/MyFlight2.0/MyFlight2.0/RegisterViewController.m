@@ -33,6 +33,7 @@
     self.passWordFiled.delegate = self;
     self.passWordFiled.secureTextEntry = NO;
     
+    self.title  =@"注册";
     self.accountFiled.keyboardType = UIKeyboardTypeNamePhonePad;  // 设置键盘样式
     self.passWordFiled.keyboardType = UIKeyboardTypeDefault;
     
