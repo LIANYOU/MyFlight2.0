@@ -282,6 +282,7 @@
 		18E88FAE167EF9F4002FCC62 /* AddLinkManViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88FAD167EF9F3002FCC62 /* AddLinkManViewController.m */; };
 		18E88FEC167F0237002FCC62 /* DrawFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88FEA167F022C002FCC62 /* DrawFlightViewController.m */; };
 		18E88FED167F0237002FCC62 /* DrawFlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E88FEB167F0231002FCC62 /* DrawFlightViewController.xib */; };
+		18E8901A1680549B002FCC62 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E8901916805493002FCC62 /* AddressBookUI.framework */; };
 		18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */; };
 		18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */; };
 		18EAE79716703B3800CA6265 /* SelectResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE79616703B3800CA6265 /* SelectResultCell.m */; };
@@ -665,6 +666,7 @@
 		18E88FE9167F0228002FCC62 /* DrawFlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawFlightViewController.h; sourceTree = "<group>"; };
 		18E88FEA167F022C002FCC62 /* DrawFlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawFlightViewController.m; sourceTree = "<group>"; };
 		18E88FEB167F0231002FCC62 /* DrawFlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawFlightViewController.xib; sourceTree = "<group>"; };
+		18E8901916805493002FCC62 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
 		18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
 		18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
@@ -693,6 +695,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E8901A1680549B002FCC62 /* AddressBookUI.framework in Frameworks */,
 				18E677F316787910008E187C /* AddressBook.framework in Frameworks */,
 				14ED61F61672F1960019DC23 /* libsqlite3.0.dylib in Frameworks */,
 				180E227116719111002A7228 /* libz.dylib in Frameworks */,
@@ -785,6 +788,7 @@
 		145394E8166F220D00417F61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18E8901916805493002FCC62 /* AddressBookUI.framework */,
 				14ED61F51672F1960019DC23 /* libsqlite3.0.dylib */,
 				180E227016719111002A7228 /* libz.dylib */,
 				18E677F216787910008E187C /* AddressBook.framework */,

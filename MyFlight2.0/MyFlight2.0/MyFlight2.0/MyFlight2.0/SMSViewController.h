@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SMSViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
+#import "AddLinkManViewController.h"
+@interface SMSViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ABPeoplePickerNavigationControllerDelegate>
 {
-    IBOutlet UIButton * sendMessageButton;
-
+//    IBOutlet UIButton * sendMessageButton;  //发送短信
+    NSMutableArray * nameAndPhone;      //联系人名字和电话号码
+    UIButton * sendMessageBtn;
+    BOOL haveThisMan;
 }
-@property(nonatomic,retain)IBOutlet UIButton * sendMessageButton;
 
+
+//- (IBAction)sendMessageBtnClick:(id)sender;
 @end

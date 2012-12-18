@@ -51,7 +51,7 @@
     
     UIColor * myFirstColor = [UIColor colorWithRed:244/255.0 green:239/255.0 blue:231/225.0 alpha:1.0f];
     UIColor * mySceColor = [UIColor colorWithRed:10/255.0 green:91/255.0 blue:173/255.0 alpha:1];
-    self.view.backgroundColor = myFirstColor;
+    self.view.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:222.0/255.0 blue:215.0/255.0 alpha:1];;
     
     NSArray * array = [[NSArray alloc]initWithObjects:@"按起降地",@"按航班号", nil];
     mySegmentController  = [[SVSegmentedControl alloc]initWithSectionTitles:array];

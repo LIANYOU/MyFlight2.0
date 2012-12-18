@@ -10,7 +10,7 @@
 
 @implementation GetLinkManInfo
 -(NSMutableArray *)getAllPersonNameAndPhone{
-    NSMutableArray * array = [[[NSMutableArray alloc]initWithCapacity:0]autorelease];
+    NSMutableArray * array = [NSMutableArray arrayWithCapacity:0];
     ABAddressBookRef addressBook = nil;
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0){
 
@@ -27,7 +27,7 @@
         addressBook = ABAddressBookCreate();
     }
     NSArray *personArray = (NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
-    NSLog(@"%d",[personArray count]);
+    NSLog(@"getAllPersonNameAndPhone_personArray: %d",[personArray count]);
     for ( id obj in personArray) {
         ABMutableMultiValueRef phone = ABRecordCopyValue(obj, kABPersonPhoneProperty);
         for(int i = 0 ;i < ABMultiValueGetCount(phone); i++)
@@ -37,6 +37,7 @@
             NSString * temp1 =  [myNumber stringByReplacingOccurrencesOfString:@"+86" withString:@""];
             NSString * new = [temp1 stringByReplacingOccurrencesOfString:@"-" withString:@""];
             NSDictionary * myDic = [[NSDictionary alloc]initWithObjectsAndKeys:myName,@"name",new,@"phone", nil];
+            NSLog(@"%@ : %@",[myDic valueForKey:@"name"],[myDic valueForKey:@"phone"]);
             [array addObject:myDic];
             [myDic release];
         }
