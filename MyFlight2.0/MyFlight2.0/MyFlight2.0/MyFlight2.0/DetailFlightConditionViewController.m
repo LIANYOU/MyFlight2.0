@@ -38,8 +38,36 @@
     myView.layer.masksToBounds = YES;
     
     myFlightConditionDetailData = [[FlightConditionDetailData alloc]initWithDictionary:self.dic];
-
-
+    
+    
+    //判断提前还是晚点
+    if ([myFlightConditionDetailData.realDeptTime isEqualToString:@"-"]) {
+        NSLog(@"---------------------");
+        self.fromResult.text = @"";
+        self.arriveResult.text = @"";
+    }else{
+        NSInteger firseTimeDiff = [self mxGetStringTimeDiff:myFlightConditionDetailData.expectedDeptTime timeE:myFlightConditionDetailData.realDeptTime];
+        firseTimeDiff = firseTimeDiff/60;
+        NSInteger secTimeDiff = [self mxGetStringTimeDiff:myFlightConditionDetailData.expectedArrTime timeE:myFlightConditionDetailData.realArrTime];
+        secTimeDiff = secTimeDiff/60;
+        if (firseTimeDiff < 0) {
+            NSString * relustFirst = [NSString stringWithFormat:@"比预计提前%d分钟",(-1)*firseTimeDiff];
+            self.fromResult.text = relustFirst;
+        }else{
+            NSString * relustFirst = [NSString stringWithFormat:@"比预计晚点%d分钟",firseTimeDiff];
+            self.fromResult.text = relustFirst;
+        }
+        
+        if (secTimeDiff < 0) {
+            NSString * relustSec = [NSString stringWithFormat:@"比预计提前%d分钟",(-1)*secTimeDiff];
+            self.arriveResult.text = relustSec;
+        }else{
+            NSString * relustSec = [NSString stringWithFormat:@"比预计晚点%d分钟",secTimeDiff];
+            self.arriveResult.text = relustSec;
+        }
+    }
+    
+    
     [self fillAllData];
   
 }
@@ -57,15 +85,15 @@
     self.fromT.text = myFlightConditionDetailData.flightHTerminal;
     self.arriveT.text = myFlightConditionDetailData.flightTerminal;
     self.fromFirstTimeName.text = @"计划：";
-    self.fromFirstTime.text = myFlightConditionDetailData.deptTime;
+    self.fromFirstTime.text = myFlightConditionDetailData.expectedDeptTime;
     self.fromSceTimeName.text = @"实际：";
     self.fromSceTime.text = myFlightConditionDetailData.realDeptTime;
-    self.fromResult.text = @"";
+//    self.fromResult.text = @"";
     self.arriveFirstTimeName.text = @"计划：";
-    self.arriveFirstTime.text = myFlightConditionDetailData.arrTime;
+    self.arriveFirstTime.text = myFlightConditionDetailData.expectedArrTime;
     self.arriveSecTimeName.text = @"实际：";
     self.arriveSecTime.text = myFlightConditionDetailData.realArrTime;
-    self.arriveResult.text = @"";    
+//    self.arriveResult.text = @"";    
 }
 
 -(void)btnMessageClick:(id)sender{
@@ -81,9 +109,44 @@
   
 }
 -(void)btnMoreShareClick:(id)sender{
-    UIActionSheet * moreShare = [[UIActionSheet alloc]initWithTitle:@"更多分享" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到新浪微博",@"分享到短信",@"发邮件", nil];
+    UIActionSheet * moreShare = [[UIActionSheet alloc]initWithTitle:@"更多分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到新浪微博",@"分享到短信",@"发邮件", nil];
     [moreShare showInView:self.view];
 }
+#pragma mark - actionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        //分享新浪微博
+        
+    }else if(buttonIndex == 1){
+        //分享到邮件
+        
+    }else if(buttonIndex == 2){
+        //发邮件
+        
+    }else if(buttonIndex == 3){
+       //取消
+        
+    }
+    
+}
+#pragma mark - 算时间差
+- (double)mxGetStringTimeDiff:(NSString*)timeS timeE:(NSString*)timeE
+{
+    double timeDiff = 0.0;
+    
+    NSDateFormatter *formatters = [[NSDateFormatter alloc]init];
+    [formatters setDateFormat:@"HH:mm"];
+    NSDate *dateS = [formatters dateFromString:timeS];
+    
+    NSDateFormatter *formatterE = [[NSDateFormatter alloc]init];
+    [formatterE setDateFormat:@"HH:mm"];
+    NSDate *dateE = [formatterE dateFromString:timeE];
+    
+    timeDiff = [dateE timeIntervalSinceDate:dateS ];
+    
+    return timeDiff;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -30,6 +30,9 @@
     }
     return self;
 }
+
+
+
 -(void)dealloc{
     self.arrAirport = nil;
     self.arrTime = nil;

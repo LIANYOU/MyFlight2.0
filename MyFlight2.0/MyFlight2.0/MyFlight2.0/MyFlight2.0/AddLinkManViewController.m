@@ -13,7 +13,7 @@
 @end
 
 @implementation AddLinkManViewController
-
+@synthesize delegate = _delegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,10 +30,10 @@
     self.view.backgroundColor = [UIColor blackColor];
     
     linkMan = [[GetLinkManInfo alloc]init];
-    linkManArray = [[NSMutableArray alloc]initWithCapacity:1];
-    linkManArray = [linkMan getAllPersonNameAndPhone];
-    
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 500) style:UITableViewStylePlain];
+    linkManArray = [NSArray arrayWithArray:[linkMan getAllPersonNameAndPhone]];
+    //linkManArray = [linkMan getAllPersonNameAndPhone];
+    NSLog(@"linkManArray : %d",[linkManArray count]);
+   myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 500) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     
@@ -49,11 +49,12 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return [[linkMan getAllPersonNameAndPhone] count];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [linkManArray count];
+    
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -63,23 +64,27 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     UILabel * nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 3, 60, 30)];
-    nameLabel.text = [[linkManArray objectAtIndex:indexPath.row]objectForKey:@"name"];
+    nameLabel.text = [[[linkMan getAllPersonNameAndPhone] objectAtIndex:indexPath.row]valueForKey:@"name"];
+    nameLabel.font = [UIFont systemFontOfSize:13];
     [cell addSubview:nameLabel];
     [nameLabel release];
     UILabel * phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(230, 3, 80, 30)];
-    phoneLabel.text = [[linkManArray objectAtIndex:indexPath.row]objectForKey:@"phone"];
+    phoneLabel.text = [[[linkMan getAllPersonNameAndPhone] objectAtIndex:indexPath.row]valueForKey:@"phone"];
+    phoneLabel.font = [UIFont systemFontOfSize:13];
     [cell addSubview:phoneLabel];
     [phoneLabel release];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    NSDictionary * chose = [[linkMan getAllPersonNameAndPhone] objectAtIndex:indexPath.row];
+    [self.delegate oneManWasChosed:chose];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)dealloc{
     [linkMan release];
-    [myTableView release];
+   // [myTableView release];
     [linkManArray release];
     [super dealloc];
 }

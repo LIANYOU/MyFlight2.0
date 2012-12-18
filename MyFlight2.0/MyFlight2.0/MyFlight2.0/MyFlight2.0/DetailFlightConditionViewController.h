@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "FlightConditionDetailData.h"
-@interface DetailFlightConditionViewController : UIViewController{
+@interface DetailFlightConditionViewController : UIViewController<UIActionSheetDelegate>{
     NSDictionary * _dic;
     FlightConditionDetailData * myFlightConditionDetailData;
     

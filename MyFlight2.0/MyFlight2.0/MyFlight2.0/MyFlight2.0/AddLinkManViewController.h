@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 @class GetLinkManInfo;
+@protocol AddLinkManViewControllerDelegate <NSObject>
+
+-(void)oneManWasChosed:(NSDictionary *)choseDic;
+
+@end
+
 @interface AddLinkManViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     GetLinkManInfo * linkMan;
-    NSMutableArray * linkManArray;
+    NSArray * linkManArray;
     UITableView * myTableView;
+    id<AddLinkManViewControllerDelegate> _delegate;
 }
+@property(nonatomic,assign) id<AddLinkManViewControllerDelegate> delegate;
 @end
