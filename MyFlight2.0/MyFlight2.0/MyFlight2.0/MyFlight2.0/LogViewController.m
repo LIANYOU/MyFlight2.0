@@ -27,6 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    ScrollerView.contentSize = CGSizeMake(320, 600);
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -39,7 +42,9 @@
 - (void)dealloc {
     [logNumber release];
     [logPassword release];
-    [_forgetPassword release];
+
+    [ScrollerView release];
+    [_remembePasswordBn release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -47,23 +52,72 @@
     logNumber = nil;
     [logPassword release];
     logPassword = nil;
-    [self setForgetPassword:nil];
+
+    [ScrollerView release];
+    ScrollerView = nil;
+    [self setRemembePasswordBn:nil];
     [super viewDidUnload];
 }
+
+
+//登陆 
 - (IBAction)beginLoging:(id)sender {
     
 }
 
+//注册账号
 - (IBAction)registerNewNumber:(id)sender {
     RegisterViewController * view = [[RegisterViewController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
     [view release];
 }
+- (IBAction)backKeyBoard:(UITextField *)sender {
+    
+    
+    NSLog(@"回收键盘");
+    [sender resignFirstResponder];
+}
+
+//找回密码 
 - (IBAction)LookForPassword:(id)sender {
     
     
     LookForPasswordFirstStepViewController *controller =[[LookForPasswordFirstStepViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
        
+}
+
+- (IBAction)LoginWithQQ:(id)sender {
+}
+
+- (IBAction)LoginWithTencentWeiBo:(id)sender {
+}
+
+- (IBAction)LoginWithWeiXin:(id)sender {
+}
+
+- (IBAction)LoginWithSinaWeiBo:(id)sender {
+}
+
+//记住密码按钮 
+- (IBAction)rememberPassword:(id)sender {
+    
+    if ([[self.remembePasswordBn currentBackgroundImage] isEqual:[UIImage imageNamed:@"icon_choice.png"]]) {
+        //不记住密码
+        
+       [self.remembePasswordBn setBackgroundImage:[UIImage imageNamed:@"ico_def.png"] forState:UIControlStateNormal];
+        
+        
+        
+    } else{
+        
+        //记住密码
+         [self.remembePasswordBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];
+        
+        
+    }
+    
+    
+    
 }
 @end
