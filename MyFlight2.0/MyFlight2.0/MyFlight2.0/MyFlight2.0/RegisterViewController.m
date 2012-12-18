@@ -9,7 +9,10 @@
 #import "RegisterViewController.h"
 #import "DNWrapper.h"
 @interface RegisterViewController ()
-
+{
+    
+    BOOL isShowPassword;
+}
 @end
 
 @implementation RegisterViewController
@@ -28,7 +31,7 @@
     self.accountFiled.delegate = self;
     self.securityCodeField.delegate = self;
     self.passWordFiled.delegate = self;
-    self.passWordFiled.secureTextEntry = YES;
+    self.passWordFiled.secureTextEntry = NO;
     
     self.accountFiled.keyboardType = UIKeyboardTypeNamePhonePad;  // 设置键盘样式
     self.passWordFiled.keyboardType = UIKeyboardTypeDefault;
@@ -47,21 +50,62 @@
     [_accountFiled release];
     [_passWordFiled release];
     [_securityCodeField release];
+    [_showPassWordBn release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setAccountFiled:nil];
     [self setPassWordFiled:nil];
     [self setSecurityCodeField:nil];
+    [self setShowPassWordBn:nil];
     [super viewDidUnload];
 }
 - (IBAction)getSecurityCode:(id)sender {
 }
 
+//显示密码
 - (IBAction)showPassWord:(id)sender {
-    self.passWordFiled.secureTextEntry = NO;
+    
+    NSString *string = self.passWordFiled.text;
+    if ([[self.showPassWordBn currentBackgroundImage] isEqual:[UIImage imageNamed:@"icon_choice.png"]]) {
+        
+    
+        
+            self.passWordFiled.text=@"";
+            self.passWordFiled.secureTextEntry = YES;
+       
+       self.passWordFiled.text=string;
+        
+        
+        
+        NSLog(@"不显示密码");
+        [self.showPassWordBn setBackgroundImage:[UIImage imageNamed:@"ico_def.png"] forState:UIControlStateNormal];
+        isShowPassword = NO;
+        
+        
+    } else{
+        
+        
+             self.passWordFiled.text=@"";
+            self.passWordFiled.secureTextEntry = YES;
+        
+
+       self.passWordFiled.text=string;
+//        self.passWordFiled.secureTextEntry = NO;
+//
+        isShowPassword = YES;
+      [self.showPassWordBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];  
+        NSLog(@"显示密码");
+                
+    }
+    
+    
 }
 
+
+
+
+//注册用户
 - (IBAction)registerAccount:(id)sender {
     
     NSString * phoneStr = [self.accountFiled text];
