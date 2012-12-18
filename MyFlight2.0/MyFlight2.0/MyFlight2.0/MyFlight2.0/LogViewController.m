@@ -29,7 +29,7 @@
     [super viewDidLoad];
     
     ScrollerView.contentSize = CGSizeMake(320, 600);
-    
+    self.title = @"账户登录";
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -62,6 +62,10 @@
 
 //登陆 
 - (IBAction)beginLoging:(id)sender {
+    
+    
+    
+    
     
 }
 
