@@ -12,6 +12,7 @@
 #import "LogViewController.h"
 #import "SearchFlightConditionController.h"
 #import "HomeMoreController.h"
+#import "TravelAssistantViewController.h"
 @interface ViewController ()
 
 @end
@@ -61,6 +62,9 @@
 
 - (IBAction)showTravelAssistant:(id)sender {
     CCLog(@"显示出行助手");
+    TravelAssistantViewController * travelAss = [[TravelAssistantViewController alloc]init];
+    [self.navigationController pushViewController:travelAss animated:YES];
+    [travelAss release];
 }
 
 - (IBAction)chooseSeatOnline:(id)sender {

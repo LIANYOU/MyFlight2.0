@@ -127,6 +127,22 @@
 		18CC774116771D8E001106FB /* IdentityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC774016771D8E001106FB /* IdentityViewController.m */; };
 		18D01F1516783569002C13DB /* Un sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D01F1316783569002C13DB /* Un sel.png */; };
 		18D01F1616783569002C13DB /* sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D01F1416783569002C13DB /* sel.png */; };
+		18D196CB1681623400FEE73A /* TravelAssistantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D196C91681623400FEE73A /* TravelAssistantViewController.m */; };
+		18D196CC1681623400FEE73A /* TravelAssistantViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D196CA1681623400FEE73A /* TravelAssistantViewController.xib */; };
+		18D1970E16816C6C00FEE73A /* icon_checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970316816C6C00FEE73A /* icon_checkin.png */; };
+		18D1970F16816C6C00FEE73A /* icon_Distributed.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970416816C6C00FEE73A /* icon_Distributed.png */; };
+		18D1971016816C6C00FEE73A /* icon_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970516816C6C00FEE73A /* icon_location.png */; };
+		18D1971116816C6C00FEE73A /* icon_luggage.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970616816C6C00FEE73A /* icon_luggage.png */; };
+		18D1971316816C6C00FEE73A /* icon_telphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970816816C6C00FEE73A /* icon_telphone.png */; };
+		18D1971416816C6C00FEE73A /* icon_tep.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970916816C6C00FEE73A /* icon_tep.png */; };
+		18D1971516816C6C00FEE73A /* icon_Traffic.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970A16816C6C00FEE73A /* icon_Traffic.png */; };
+		18D1971616816C6C00FEE73A /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970B16816C6C00FEE73A /* Thumbs.db */; };
+		18D1971716816C6C00FEE73A /* triangle_icon_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970C16816C6C00FEE73A /* triangle_icon_down.png */; };
+		18D1971816816C6C00FEE73A /* triangle_icon_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970D16816C6C00FEE73A /* triangle_icon_up.png */; };
+		18D1971B1681735800FEE73A /* icon_travel_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D197191681735800FEE73A /* icon_travel_more.png */; };
+		18D1971C1681735800FEE73A /* icon_travelFile.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1971A1681735800FEE73A /* icon_travelFile.png */; };
+		18D197201681752F00FEE73A /* FlightCompanyDistrubuteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1971E1681752F00FEE73A /* FlightCompanyDistrubuteViewController.m */; };
+		18D197211681752F00FEE73A /* FlightCompanyDistrubuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1971F1681752F00FEE73A /* FlightCompanyDistrubuteViewController.xib */; };
 		18D415B6167CCC57005DA0F8 /* MyCenterViewCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D415B5167CCC57005DA0F8 /* MyCenterViewCommonCell.m */; };
 		18D415B8167CCC69005DA0F8 /* MyCenterViewCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D415B7167CCC69005DA0F8 /* MyCenterViewCommonCell.xib */; };
 		18D415BB167CCCFE005DA0F8 /* MyCenterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D415BA167CCCFE005DA0F8 /* MyCenterViewCell.m */; };
@@ -483,6 +499,24 @@
 		18CC774016771D8E001106FB /* IdentityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityViewController.m; sourceTree = "<group>"; };
 		18D01F1316783569002C13DB /* Un sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Un sel.png"; sourceTree = "<group>"; };
 		18D01F1416783569002C13DB /* sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sel.png; sourceTree = "<group>"; };
+		18D196C81681623400FEE73A /* TravelAssistantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelAssistantViewController.h; sourceTree = "<group>"; };
+		18D196C91681623400FEE73A /* TravelAssistantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelAssistantViewController.m; sourceTree = "<group>"; };
+		18D196CA1681623400FEE73A /* TravelAssistantViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelAssistantViewController.xib; sourceTree = "<group>"; };
+		18D1970316816C6C00FEE73A /* icon_checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checkin.png; sourceTree = "<group>"; };
+		18D1970416816C6C00FEE73A /* icon_Distributed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Distributed.png; sourceTree = "<group>"; };
+		18D1970516816C6C00FEE73A /* icon_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_location.png; sourceTree = "<group>"; };
+		18D1970616816C6C00FEE73A /* icon_luggage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_luggage.png; sourceTree = "<group>"; };
+		18D1970816816C6C00FEE73A /* icon_telphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_telphone.png; sourceTree = "<group>"; };
+		18D1970916816C6C00FEE73A /* icon_tep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tep.png; sourceTree = "<group>"; };
+		18D1970A16816C6C00FEE73A /* icon_Traffic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Traffic.png; sourceTree = "<group>"; };
+		18D1970B16816C6C00FEE73A /* Thumbs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thumbs.db; sourceTree = "<group>"; };
+		18D1970C16816C6C00FEE73A /* triangle_icon_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_icon_down.png; sourceTree = "<group>"; };
+		18D1970D16816C6C00FEE73A /* triangle_icon_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_icon_up.png; sourceTree = "<group>"; };
+		18D197191681735800FEE73A /* icon_travel_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_travel_more.png; sourceTree = "<group>"; };
+		18D1971A1681735800FEE73A /* icon_travelFile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_travelFile.png; sourceTree = "<group>"; };
+		18D1971D1681752F00FEE73A /* FlightCompanyDistrubuteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightCompanyDistrubuteViewController.h; sourceTree = "<group>"; };
+		18D1971E1681752F00FEE73A /* FlightCompanyDistrubuteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightCompanyDistrubuteViewController.m; sourceTree = "<group>"; };
+		18D1971F1681752F00FEE73A /* FlightCompanyDistrubuteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightCompanyDistrubuteViewController.xib; sourceTree = "<group>"; };
 		18D415B4167CCC57005DA0F8 /* MyCenterViewCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterViewCommonCell.h; sourceTree = "<group>"; };
 		18D415B5167CCC57005DA0F8 /* MyCenterViewCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterViewCommonCell.m; sourceTree = "<group>"; };
 		18D415B7167CCC69005DA0F8 /* MyCenterViewCommonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterViewCommonCell.xib; sourceTree = "<group>"; };
@@ -738,6 +772,7 @@
 		1427937F167078DA00E2E1E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				18D1970216816C6C00FEE73A /* 出行小秘书 */,
 				146986B0167DCB5700E9B30D /* 登录 */,
 				18E37CA0167D53890086B3F8 /* 个人中心 */,
 				18DC00231679BC38008C6B8D /* 机票预订 */,
@@ -925,7 +960,6 @@
 				14698724167EFDB400E9B30D /* coupons */,
 				14698720167EFA8B00E9B30D /* CommonContactInfo */,
 				14698719167EF31000E9B30D /* UserAccount.h */,
-				1469871A167EF31000E9B30D /* UserAccount.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1161,6 +1195,7 @@
 				18DD1D381675BF7A006B59AB /* TransitionString.m */,
 				18DD1D3A1675D01D006B59AB /* SearchFlightData.h */,
 				18DD1D3B1675D01D006B59AB /* SearchFlightData.m */,
+				1469871A167EF31000E9B30D /* UserAccount.m */,
 				18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */,
 			);
 			name = Model;
@@ -1183,6 +1218,7 @@
 		1823C9C4166F243F0079CA3F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18D196C6168161CC00FEE73A /* TravelAssistant */,
 				18E37CF6167DAC2E0086B3F8 /* FlightCondition */,
 				18E37CE2167D7FDF0086B3F8 /* More */,
 				180E22811671B387002A7228 /* Loging */,
@@ -1221,6 +1257,38 @@
 				14241AD61679C05A00D84663 /* ChoosePersonCell.xib */,
 			);
 			name = choose;
+			sourceTree = "<group>";
+		};
+		18D196C6168161CC00FEE73A /* TravelAssistant */ = {
+			isa = PBXGroup;
+			children = (
+				18D196C81681623400FEE73A /* TravelAssistantViewController.h */,
+				18D196C91681623400FEE73A /* TravelAssistantViewController.m */,
+				18D196CA1681623400FEE73A /* TravelAssistantViewController.xib */,
+				18D1971D1681752F00FEE73A /* FlightCompanyDistrubuteViewController.h */,
+				18D1971E1681752F00FEE73A /* FlightCompanyDistrubuteViewController.m */,
+				18D1971F1681752F00FEE73A /* FlightCompanyDistrubuteViewController.xib */,
+			);
+			name = TravelAssistant;
+			sourceTree = "<group>";
+		};
+		18D1970216816C6C00FEE73A /* 出行小秘书 */ = {
+			isa = PBXGroup;
+			children = (
+				18D197191681735800FEE73A /* icon_travel_more.png */,
+				18D1971A1681735800FEE73A /* icon_travelFile.png */,
+				18D1970316816C6C00FEE73A /* icon_checkin.png */,
+				18D1970416816C6C00FEE73A /* icon_Distributed.png */,
+				18D1970516816C6C00FEE73A /* icon_location.png */,
+				18D1970616816C6C00FEE73A /* icon_luggage.png */,
+				18D1970816816C6C00FEE73A /* icon_telphone.png */,
+				18D1970916816C6C00FEE73A /* icon_tep.png */,
+				18D1970A16816C6C00FEE73A /* icon_Traffic.png */,
+				18D1970B16816C6C00FEE73A /* Thumbs.db */,
+				18D1970C16816C6C00FEE73A /* triangle_icon_down.png */,
+				18D1970D16816C6C00FEE73A /* triangle_icon_up.png */,
+			);
+			path = "出行小秘书";
 			sourceTree = "<group>";
 		};
 		18DC00231679BC38008C6B8D /* 机票预订 */ = {
@@ -1736,6 +1804,20 @@
 				1808017E167DCBCB00CD5F9A /* icon_Selected_.png in Resources */,
 				18080180167DCD6200CD5F9A /* icon_Default_.png in Resources */,
 				18E88FED167F0237002FCC62 /* DrawFlightViewController.xib in Resources */,
+				18D196CC1681623400FEE73A /* TravelAssistantViewController.xib in Resources */,
+				18D1970E16816C6C00FEE73A /* icon_checkin.png in Resources */,
+				18D1970F16816C6C00FEE73A /* icon_Distributed.png in Resources */,
+				18D1971016816C6C00FEE73A /* icon_location.png in Resources */,
+				18D1971116816C6C00FEE73A /* icon_luggage.png in Resources */,
+				18D1971316816C6C00FEE73A /* icon_telphone.png in Resources */,
+				18D1971416816C6C00FEE73A /* icon_tep.png in Resources */,
+				18D1971516816C6C00FEE73A /* icon_Traffic.png in Resources */,
+				18D1971616816C6C00FEE73A /* Thumbs.db in Resources */,
+				18D1971716816C6C00FEE73A /* triangle_icon_down.png in Resources */,
+				18D1971816816C6C00FEE73A /* triangle_icon_up.png in Resources */,
+				18D1971B1681735800FEE73A /* icon_travel_more.png in Resources */,
+				18D1971C1681735800FEE73A /* icon_travelFile.png in Resources */,
+				18D197211681752F00FEE73A /* FlightCompanyDistrubuteViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1834,6 +1916,8 @@
 				14698727167EFE2F00E9B30D /* CouponsInfo.m in Sources */,
 				1469872A167F016800E9B30D /* SpecialAppointmentData.m in Sources */,
 				14698737167F152400E9B30D /* NSData+base64.m in Sources */,
+				18D196CB1681623400FEE73A /* TravelAssistantViewController.m in Sources */,
+				18D197201681752F00FEE73A /* FlightCompanyDistrubuteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
