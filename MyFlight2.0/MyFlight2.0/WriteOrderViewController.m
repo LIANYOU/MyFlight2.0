@@ -13,12 +13,22 @@
 #import "ShowSelectedResultViewController.h"
 #import "ChoosePersonController.h"
 #import "TraveController.h"
+
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 100.0f
 
 @interface WriteOrderViewController ()
-
+{
+    int goPay;
+    int backPay;
+    
+    
+    int childNumber;  // 儿童个数
+    int personNumber; // 成人个数
+    
+    int finalPay;  // 最终支付的价格
+}
 @end
 
 @implementation WriteOrderViewController
@@ -40,11 +50,25 @@
     self.firstCelTextArr = [NSMutableArray arrayWithObject:@""];
     self.navigationItem.title = @"填写订单";
     
-    int goPay = [self.goPay intValue];
-    int backPay = [self.backPay intValue];
+    // NSLog(@"-------%d",[self.goPay intValue]);  // 如果是单程的时候按照self.backPay 计算。
+     goPay = [self.goPay intValue];
+     backPay = [self.backPay intValue];
     
-    self.upPayMoney.text = [NSString stringWithFormat:@"%d",(goPay+backPay)];  // 暂时的 此处还没有添加保险金额
-    self.allPay.text = [NSString stringWithFormat:@"%d",(goPay+backPay)];
+    int airPortName = [self.searchDate.constructionFee intValue];
+    int oil = [self.searchDate.adultBaf intValue];
+
+    
+    self.upPayMoney.text = [NSString stringWithFormat:@"%d",([self.goPay intValue]+[self.backPay intValue]+airPortName+oil)];  // 暂时的 此处还没有添加保险金额
+    self.allPay.text = [NSString stringWithFormat:@"%d",([self.goPay intValue]+[self.backPay intValue]+airPortName+oil)];
+    
+//    NSLog(@"%@,%@",self.searchDate.personPrice,self.searchDate.childPrice);
+//    NSLog(@"%@",self.searchDate.cabinNumber);
+//    NSLog(@"%@,%@",self.searchBackDate.personPrice,self.searchBackDate.childPrice);
+//    NSLog(@"%@",self.searchBackDate.cabinNumber);
+
+    //******** headView
+
+    
     
     self.orderTableView.delegate = self;
     self.orderTableView.dataSource = self;
@@ -65,13 +89,17 @@
     self.tempView = self.headView;
     self.headViewHegiht = 40;
     
+    
+    //
+    personNumber = 1;  // 默认一个成人
+    childNumber = 0;
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    
     [super viewWillAppear:YES];
 }
 
@@ -93,6 +121,17 @@
     [_allPay release];
     [_upPayMoney release];
     [_bigHeadView release];
+    [_bigUpPayMoney release];
+    [_PerStanderPrice release];
+    [_PersonConstructionFee release];
+    [_personAdultBaf release];
+    [_childStanderPrice release];
+    [_childConstructionFee release];
+    [_childBaf release];
+    [_personMuber release];
+    [_childMunber release];
+    [_Personinsure release];
+    [_childInsure release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -108,6 +147,17 @@
     [self setAllPay:nil];
     [self setUpPayMoney:nil];
     [self setBigHeadView:nil];
+    [self setBigUpPayMoney:nil];
+    [self setPerStanderPrice:nil];
+    [self setPersonConstructionFee:nil];
+    [self setPersonAdultBaf:nil];
+    [self setChildStanderPrice:nil];
+    [self setChildConstructionFee:nil];
+    [self setChildBaf:nil];
+    [self setPersonMuber:nil];
+    [self setChildMunber:nil];
+    [self setPersoninsure:nil];
+    [self setChildInsure:nil];
     [super viewDidUnload];
 }
 
@@ -300,16 +350,21 @@
                 switch (indexPath.row) {
                     case 0:
                     {
-                        cell.firstLable.text = [self.cellTitleArr objectAtIndex:0];
+                        cell.firstLable.text = @"乘机人";
                         
                         firstCellText = [self.firstCelTextArr objectAtIndex:0];
-                                               
+                        
                         CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
                         
                         CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
                         
                         cell.secondLable.lineBreakMode = UILineBreakModeCharacterWrap;
-                        cell.secondLable.frame = CGRectMake(118, 11, 196, MAX(size.height, 44.0f));
+                        
+                        cell.secondLable.frame = CGRectMake(135, 0, 196, MAX(size.height, 44.0f));
+                        
+                        cell.firstLable.frame = CGRectMake(21, 0, 196, MAX(size.height, 44.0f));
+                        
+                        cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 44.0f));
                         
                         cell.secondLable.text = firstCellText;
                     }
@@ -337,8 +392,11 @@
                     [[NSBundle mainBundle] loadNibNamed:@"WriteOrderDetailsCell" owner:self options:nil];
                     cell = self.writeOrderDetailsCell;
                 }
+                [cell.addPerson addTarget:self action:@selector(addPersonFormAddressBook) forControlEvents:UIControlEventTouchUpInside];
                 cell.personName = [self.cellTitleArr objectAtIndex:1];
                 cell.phoneNumber = [self.cellTitleArr objectAtIndex:2];
+                cell.nameField.delegate = self;
+                cell.phoneField.delegate = self;
                // cell.userInteractionEnabled = NO;
                 return cell;
             }
@@ -400,7 +458,6 @@
                             cell.firstLable.text = [self.cellTitleArr objectAtIndex:0];
                             
                             firstCellText = [self.firstCelTextArr objectAtIndex:0];
-                            NSLog(@"%@",firstCellText);
                             
                             CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
                             
@@ -443,6 +500,9 @@
                     }
                     cell.personName = [self.cellTitleArr objectAtIndex:1];
                     cell.phoneNumber = [self.cellTitleArr objectAtIndex:2];
+                    
+                    cell.nameField.delegate = self;
+                    cell.phoneField.delegate = self;
                     [cell.addPerson addTarget:self action:@selector(addPersonFormAddressBook) forControlEvents:UIControlEventTouchUpInside];
                     // cell.userInteractionEnabled = NO;
                     return cell;
@@ -469,6 +529,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    personNumber = 1;
+    childNumber = 0; // 再次进入的时候清空初始人数；
+    
     BOOL logFlag = FALSE;  // 此处保留一个flag判断是否用户已经登陆
     if (indexPath.row == 0) {
         if (logFlag) {
@@ -499,15 +562,23 @@
                 self.indexArr = arr;   // 把后边添加的标记的联系人传过来
                 
                 for (int i = 0; i<name.allKeys.count; i++) {
+                    
                     NSString * str1 = [name objectForKey:[name.allKeys objectAtIndex:i]];
                     NSString * str2 = [identity objectForKey:[identity.allKeys objectAtIndex:i]];
                     NSString * str3 = [type objectForKey:[type.allKeys objectAtIndex:i]];
                     
                     NSString * string = [NSString stringWithFormat:@"%@%@\n%@",str1,str3,str2];
                    
+                    if ([str3 isEqualToString:@"儿童"]) {
+                        childNumber = childNumber + 1;
+                    }
+                    
+                   
+                   // NSLog(@"%@,%@,%@",str1,str2,str3);
                     [self.stringArr addObject:string];
                 }
-                
+                  
+                personNumber = type.allKeys.count-childNumber;  // 此处获得了选择的成人和儿童的人数
                 
                 for (int i = 0; i<self.stringArr.count; i++) {
                     
@@ -519,7 +590,11 @@
                     }
                     
                 }
-                            
+                
+                self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];  //  改变成人和儿童的数目
+                self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
+
+                
                 [self.firstCelTextArr replaceObjectAtIndex:0 withObject:stringAfterJoin];
                 [self.orderTableView reloadData];
                 
@@ -530,23 +605,30 @@
     }
 
     if (indexPath.row == 2) {
+
+        BuyInsuranceViewController * insurance = [[BuyInsuranceViewController alloc] init];
+        [insurance getDate:^(NSString *idntity) {
+   
+            WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
+            cell.secondLable.text = idntity;
+           // NSLog(@"post %@",schedule);
+        }];
+        [self.navigationController pushViewController:insurance animated:YES];
+        [insurance release];
+
+    }
+    if (indexPath.row == 3) {
+        
         TraveController * trave = [[TraveController alloc] init];
         [trave getDate:^(NSString *schedule, NSString *postPay) {
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             cell.secondLable.text = schedule;
-            NSLog(@"post %@",schedule);
+          
         }];
         
         [self.navigationController pushViewController:trave animated:YES];
         [trave release];
-    }
-    if (indexPath.row == 3) {
         
-        BuyInsuranceViewController * insurance = [[BuyInsuranceViewController alloc] init];
-        [self.navigationController pushViewController:insurance animated:YES];
-        [insurance release];
-        
-       
     }
 }
 - (IBAction)payMoney:(id)sender {
@@ -556,7 +638,11 @@
 
 -(void)addPersonFormAddressBook
 {
-    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate = self;
+    [self presentModalViewController:picker animated:YES];
+    [picker release];
+    
 //    ABAddressBookRef addressBook = ABAddressBookCreate();
 //    CFArrayRef results = ABAddressBookCopyArrayOfAllPeople(addressBook);
     
@@ -568,7 +654,53 @@
     
 }
 - (IBAction)changeToBigHeadView:(id)sender {
+    
     self.tempView = self.bigHeadView;
+    
+    self.PerStanderPrice.text =[NSString stringWithFormat:@"%d",[self.goPay intValue] + [self.backPay intValue]] ;  // 票面价
+    
+   // self.PerStanderPrice.text = self.searchDate.standerPrice;
+    self.personAdultBaf.text = self.searchDate.adultBaf;
+    self.PersonConstructionFee.text = self.searchDate.constructionFee;
+    self.Personinsure.text = @"0";
+    self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];
+    
+    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
+    self.allPay.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
+    
+    self.childStanderPrice.text = [NSString stringWithFormat:@"%d",[self.childBackPay intValue]+[self.childGopay intValue]];
+    self.childBaf.text = self.searchDate.childBaf;
+    self.childConstructionFee.text = self.searchDate.childConstructionFee;
+    self.childInsure.text = @"0";
+    self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
+    
+    if (childNumber == 0) {  // 次数添加如果没有儿童的时候的headView
+        
+    }
+
+    //********* 计算订单总额......
+   
+    int personMoney = [self.backPay intValue]+[self.goPay intValue];   // 单程是时候最后赋值的是self.backPay
+    int airPortName = [self.searchDate.constructionFee intValue];
+    int oil = [self.searchDate.adultBaf intValue];
+    int allInsure = 0;  // 所有人要买就都买一份保险
+    
+    int childPersonMoney = [self.childBackPay intValue] + [self.childGopay intValue];
+    int childAirPortName = [self.searchDate.childConstructionFee intValue];
+    int childOil = [self.searchDate.childBaf intValue];
+    
+   // NSLog(@"%d,%d,%d",childPersonMoney,childAirPortName,childOil);
+   // int allInsure = 0;
+
+    int newPersonAllPay = (personMoney+airPortName+oil+allInsure)*personNumber;
+    int newChildAllPay = (childPersonMoney+childAirPortName+childOil)*childNumber;
+    
+    finalPay = newPersonAllPay + newChildAllPay;
+    NSLog(@"%d,%d",newPersonAllPay,newChildAllPay);
+    
+    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay+newChildAllPay];  // 暂时的 此处还没有添加保险金额
+    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay+newChildAllPay];
+    
     self.headViewHegiht = 97.0f;
     [self.orderTableView reloadData];
 }
@@ -576,6 +708,100 @@
 - (IBAction)changeToSmallHeadView:(id)sender {
     self.tempView = self.headView;
     self.headViewHegiht = 40.0f;
+    
+    self.upPayMoney.text = [NSString stringWithFormat:@"%d",finalPay];
+    self.allPay.text = [NSString stringWithFormat:@"%d",finalPay];
+    
+//    self.upPayMoney.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
+//    self.allPay.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
+    
     [self.orderTableView reloadData];
+}
+
+-(void)add
+{
+//    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+//    picker.peoplePickerDelegate = self;
+//    [self presentModalViewController:picker animated:YES];
+//    [picker release];
+
+}
+
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
+    [self dismissModalViewControllerAnimated:YES];
+}
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person{
+    //是否存在此人 开关
+    haveThisMan = NO;
+    
+    //获取联系人姓名
+    NSString * name = (NSString*)ABRecordCopyCompositeName(person);
+    
+    //获取联系人电话
+    ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    NSMutableArray *phones = [[NSMutableArray alloc] init];
+    for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++)
+    {
+        NSString *aPhone = [(NSString*)ABMultiValueCopyValueAtIndex(phoneMulti, i) autorelease];
+        NSString *aLabel = [(NSString*)ABMultiValueCopyLabelAtIndex(phoneMulti, i) autorelease];
+        
+        //获取号码
+        NSString * temp1 =  [aPhone stringByReplacingOccurrencesOfString:@"+86" withString:@""];
+        NSString * new = [temp1 stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        NSString * phone = new;
+        NSLog(@"PhoneLabel:%@ Phone#:%@",aLabel,aPhone);
+        
+        //查重
+        NSDictionary * oneMan = [NSDictionary dictionaryWithObjectsAndKeys:name,@"name",phone,@"phone", nil];
+        for (NSDictionary * dic in nameAndPhone) {
+            if ([[dic valueForKey:@"name"] isEqualToString:name]) {
+                UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"已存在" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+                [alert release];
+                haveThisMan = YES;
+                return NO;
+            }
+        }
+        //将联系人添加到数组中
+        if (haveThisMan == NO) {
+            [nameAndPhone addObject:oneMan];
+        }
+        if([aLabel isEqualToString:@"_$!<Mobile>!$_"]){
+            [phones addObject:aPhone];
+            NSLog(@"[phones count] : %d",[phones count]);
+        }
+    }
+    //    //获取号码
+    //    if([phones count]>0)
+    //    {   NSLog(@"[phones count]>0");
+    //        phone = [phones objectAtIndex:0];
+    //    }
+    
+    
+    //获取联系人邮箱
+    ABMutableMultiValueRef emailMulti = ABRecordCopyValue(person, kABPersonEmailProperty);
+    NSMutableArray *emails = [[NSMutableArray alloc] init];
+    for (int i = 0;i < ABMultiValueGetCount(emailMulti); i++)
+    {
+        //邮箱地址
+        NSString *emailAdress = [(NSString*)ABMultiValueCopyValueAtIndex(emailMulti, i) autorelease];
+        [emails addObject:emailAdress];
+    }
+    //    if([emails count]>0){
+    //        NSString *emailFirst=[emails objectAtIndex:0];
+    //        NSString * email = emailFirst;
+    //    }
+   // [self resetSendMessageBtnFrame];
+    [peoplePicker dismissModalViewControllerAnimated:YES];
+    return NO;
+}
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier{
+    return NO;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 @end

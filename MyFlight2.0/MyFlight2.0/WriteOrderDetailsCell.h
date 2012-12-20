@@ -19,5 +19,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *person;
 @property (retain, nonatomic) IBOutlet UILabel *phone;
 @property (retain, nonatomic) IBOutlet UIButton *addPerson;
+@property (retain, nonatomic) IBOutlet UITextField *nameField;
+@property (retain, nonatomic) IBOutlet UITextField *phoneField;
 
 @end

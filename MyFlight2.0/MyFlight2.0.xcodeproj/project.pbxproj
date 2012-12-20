@@ -158,6 +158,7 @@
 		1827BE881683629C00349FE1 /* BaggageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827BE861683629A00349FE1 /* BaggageViewController.m */; };
 		1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE871683629B00349FE1 /* BaggageViewController.xib */; };
 		18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18478C64167332AD00D3AFCD /* SearchFlightCondition.m */; };
+		1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852CC7D16837F5600431A9B /* TravePhoneCell.xib */; };
 		18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */; };
 		18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */; };
 		18CC772E167711FF001106FB /* AddPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC772C167711FF001106FB /* AddPersonController.m */; };
@@ -205,6 +206,9 @@
 		18D105391682B33B00F112D2 /* TravelAssistantViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1052F1682B33B00F112D2 /* TravelAssistantViewController.xib */; };
 		18D1053B1682B33B00F112D2 /* TravelPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D105331682B33B00F112D2 /* TravelPhoneViewController.m */; };
 		18D1053C1682B33B00F112D2 /* TravelPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */; };
+		18D1053D1682B33B00F112D2 /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D105351682B33B00F112D2 /* TravePhoneCell.xib */; };
+		18D10548168334FC00F112D2 /* ico_def_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D10546168334FC00F112D2 /* ico_def_.png */; };
+		18D10549168334FC00F112D2 /* icon_choice_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D10547168334FC00F112D2 /* icon_choice_.png */; };
 		18D1970E16816C6C00FEE73A /* icon_checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970316816C6C00FEE73A /* icon_checkin.png */; };
 		18D1970F16816C6C00FEE73A /* icon_Distributed.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970416816C6C00FEE73A /* icon_Distributed.png */; };
 		18D1971016816C6C00FEE73A /* icon_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970516816C6C00FEE73A /* icon_location.png */; };
@@ -594,6 +598,7 @@
 		1827BE871683629B00349FE1 /* BaggageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaggageViewController.xib; sourceTree = "<group>"; };
 		18478C63167332AD00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
 		18478C64167332AD00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
+		1852CC7D16837F5600431A9B /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
 		18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
 		18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistroyCheckViewController.m; sourceTree = "<group>"; };
 		18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistroyCheckViewController.xib; sourceTree = "<group>"; };
@@ -664,6 +669,9 @@
 		18D105321682B33B00F112D2 /* TravelPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelPhoneViewController.h; sourceTree = "<group>"; };
 		18D105331682B33B00F112D2 /* TravelPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelPhoneViewController.m; sourceTree = "<group>"; };
 		18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelPhoneViewController.xib; sourceTree = "<group>"; };
+		18D105351682B33B00F112D2 /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
+		18D10546168334FC00F112D2 /* ico_def_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_def_.png; sourceTree = "<group>"; };
+		18D10547168334FC00F112D2 /* icon_choice_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_choice_.png; sourceTree = "<group>"; };
 		18D1970316816C6C00FEE73A /* icon_checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checkin.png; sourceTree = "<group>"; };
 		18D1970416816C6C00FEE73A /* icon_Distributed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Distributed.png; sourceTree = "<group>"; };
 		18D1970516816C6C00FEE73A /* icon_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_location.png; sourceTree = "<group>"; };
@@ -1002,6 +1010,8 @@
 				14805BA2167875A700836353 /* TicketCheck */,
 				18D01F1316783569002C13DB /* Un sel.png */,
 				180D9650167C450000A36243 /* btn_2words_.png */,
+				18D10546168334FC00F112D2 /* ico_def_.png */,
+				18D10547168334FC00F112D2 /* icon_choice_.png */,
 				18D105171682A8DE00F112D2 /* bg_blue_.png */,
 				18D105181682A8DE00F112D2 /* bg_green_.png */,
 				180D9651167C450000A36243 /* icon_history_.png */,
@@ -1031,6 +1041,7 @@
 		145394DA166F220D00417F61 = {
 			isa = PBXGroup;
 			children = (
+				1852CC7D16837F5600431A9B /* TravePhoneCell.xib */,
 				141523821682C06800E2FF0E /* Business */,
 				145394EF166F220D00417F61 /* MyFlight2.0 */,
 				145394E8166F220D00417F61 /* Frameworks */,
@@ -2111,7 +2122,6 @@
 				18D105371682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib in Resources */,
 				18D105391682B33B00F112D2 /* TravelAssistantViewController.xib in Resources */,
 				18D1053C1682B33B00F112D2 /* TravelPhoneViewController.xib in Resources */,
-
 				18D1979A1682C92400FEE73A /* FlightCompanyDistrubuteController.xib in Resources */,
 				18D1979F1682D05B00FEE73A /* TravelTrafficViewController.xib in Resources */,
 				1827BE5B1683541E00349FE1 /* l_3U.png in Resources */,
@@ -2152,13 +2162,14 @@
 				1827BE7E1683541E00349FE1 /* l_ZH.png in Resources */,
 				1827BE841683582000349FE1 /* ChackInNavgationViewController.xib in Resources */,
 				1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */,
-
 				18D1053D1682B33B00F112D2 /* TravePhoneCell.xib in Resources */,
 				141523A116834BBF00E2FF0E /* MyNewCenterViewController.xib in Resources */,
 				141523A816835D7300E2FF0E /* PersonalInfoViewController.xib in Resources */,
 				141523AD1683683300E2FF0E /* PersonInfotoShowViewController.xib in Resources */,
 				141523B3168370C900E2FF0E /* CommonContactViewController.xib in Resources */,
-
+				18D10548168334FC00F112D2 /* ico_def_.png in Resources */,
+				18D10549168334FC00F112D2 /* icon_choice_.png in Resources */,
+				1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2263,23 +2274,17 @@
 				18D105361682B33B00F112D2 /* FlightCompanyDistrubuteViewController.m in Sources */,
 				18D105381682B33B00F112D2 /* TravelAssistantViewController.m in Sources */,
 				18D1053B1682B33B00F112D2 /* TravelPhoneViewController.m in Sources */,
-
 				141523871682C12000E2FF0E /* LoginBusiness.m in Sources */,
 				1415238D1682C3BE00E2FF0E /* LoginInNetworkHelper.m in Sources */,
 				141523921682CC3C00E2FF0E /* IsLoginInSingle.m in Sources */,
-
-
 				18D197991682C92400FEE73A /* FlightCompanyDistrubuteController.m in Sources */,
 				18D1979E1682D05B00FEE73A /* TravelTrafficViewController.m in Sources */,
 				1827BE831683582000349FE1 /* ChackInNavgationViewController.m in Sources */,
 				1827BE881683629C00349FE1 /* BaggageViewController.m in Sources */,
-
-
 				141523A016834BBF00E2FF0E /* MyNewCenterViewController.m in Sources */,
 				141523A716835D7300E2FF0E /* PersonalInfoViewController.m in Sources */,
 				141523AC1683683300E2FF0E /* PersonInfotoShowViewController.m in Sources */,
 				141523B2168370C900E2FF0E /* CommonContactViewController.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

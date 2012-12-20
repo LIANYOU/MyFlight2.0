@@ -83,6 +83,7 @@
     self.indexPath = [NSMutableArray array];
     data.cabinNumberArr = [NSMutableArray array];
     self.payArr = [NSMutableArray array];
+    self.childPayArr = [NSMutableArray arrayWithCapacity:5];
     self.indexArr = [NSMutableArray array];
     //    for (int i = 0; i<data.cabinsArr.count; i++) {
 //        NSDictionary * dictionary = [data.cabinsArr objectAtIndex:i];
@@ -103,7 +104,7 @@
 {
     self.dateArr  = [[NSMutableArray alloc] init];
     self.dateArr = [[not userInfo] objectForKey:@"arr"];
-    NSLog(@"%d",self.dateArr.count);
+ 
     self.tempArr = [[NSMutableArray alloc] init];
     for (int i = 0; i<self.dateArr.count; i++) {
         [self.tempArr addObject:@""];
@@ -114,10 +115,12 @@
         NSString * string = [dictionary objectForKey:@"changeInfo"];
         NSString * string1 = [dictionary objectForKey:@"cabinCode"]; // 舱位编码
         NSString * string2 = [dictionary objectForKey:@"cabinCN"];
-        NSString * string3 = [dictionary objectForKey:@"price"];
+        NSString * string3 = [dictionary objectForKey:@"price"];    //
+        NSString * string4 = [dictionary objectForKey:@"childPrice"];
         NSString * str = [NSString stringWithFormat:@"%@ %@",string2,string1];
         [data.cabinNumberArr addObject:str];
         [self.payArr addObject:string3];
+        [self.childPayArr addObject:string4];
         [self.changeInfoArr addObject:string];
      
     }
@@ -232,7 +235,7 @@
         
         //   CGFloat height = MAX(size.height, 44.0f);
         //   NSLog(@"%f",size.height);
-        return size.height+44.0f;
+        return size.height+61.0f;
 
     }
 }
@@ -255,6 +258,7 @@
         cell.endTime.text = data.endTime;
         cell.beginAirPortName.text = data.startPortName;
         cell.endAirPortName.text = data.endPortName;
+        cell.scheduleDate.text = @"";  // 判断是不是第二天
 
         return cell;
 
@@ -287,9 +291,9 @@
         
         CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
         
-        cell.view.frame = CGRectMake(0, 0, 320, size.height+44.0f);
+        cell.view.frame = CGRectMake(0, 0, 320, size.height+61.0f);
         cell.textCell.lineBreakMode = UILineBreakModeCharacterWrap;
-        cell.textCell.frame = CGRectMake(10, 44, 290, size.height);
+        cell.textCell.frame = CGRectMake(10, 61, 290, size.height);
         cell.textCell.font = [UIFont systemFontOfSize:12.0f];
         cell.textCell.text = _firstCellText;
         
@@ -314,12 +318,13 @@
             
             SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:self.searchFlight.endPortThreeCode arr:self.searchFlight.startPortThreeCode date:@"2012-12-30" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
             
-            self.searchFlight.pay = [self.payArr objectAtIndex:indexPath.row-1]; // 保存去程金额
+            self.searchFlight.pay = [self.payArr objectAtIndex:indexPath.row-1]; // 保存成人去程金额
             
             ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
             
             show.payMoney = [self.payArr objectAtIndex:indexPath.row-1];
-            
+            show.childPayMoney = [self.childPayArr objectAtIndex:indexPath.row-1];   // 传递儿童的价格
+          //  NSLog(@"show.payMoney  %@, childPayMoney  %@",show.payMoney,show.childPayMoney);
             show.airPort = searchAirPort;
             show.cabin = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
             
@@ -337,6 +342,8 @@
             
             insurance.searchDate = self.searchFlight;
             
+//            NSLog(@"---%@,%@",self.searchFlight.personPrice,self.searchFlight.childPrice);
+//            NSLog(@"---%@,%@",self.searchBackFlight.personPrice,self.searchBackFlight.childPrice);
             insurance.searchBackDate = self.searchBackFlight;
             
             insurance.searchDate.cabinNumber =  [insurance.searchDate.cabinNumberArr objectAtIndex:indexPath.row-1];
@@ -347,20 +354,26 @@
             
             insurance.searchBackDate.pay = [[self.searchBackFlight.cabinsArr objectAtIndex:indexPath.row-1] objectForKey:@"price"];
             
-            NSLog(@"%@,%@",insurance.searchDate.temporaryLabel,insurance.searchBackDate.temporaryLabel);
-            
-            
-            NSLog(@"%@,%@",self.goPay,self.goCabin);
+//            NSLog(@"%@,%@",insurance.searchDate.pay,insurance.searchBackDate.pay);
+//            
+//            
+//           NSLog(@"%@,%@",self.goPay,self.goCabin);
             
             NSString * str = [self.payArr objectAtIndex:indexPath.row-1];
+            NSString * str2 = [self.childPayArr objectAtIndex:indexPath.row-1];
             NSString * str1 = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
-            NSLog(@"%@,%@",str,str1);
+//            NSLog(@"%@,%@",str,str1);
             
+            insurance.goCabin = self.goCabin;
+            insurance.backCabin = str1;
             
             insurance.goPay = self.goPay;
-            insurance.goCabin = self.goCabin;
             insurance.backPay = str;
-            insurance.backCabin = str1;
+            insurance.childGopay = self.childGoPay;
+            insurance.childBackPay = str2;
+            
+            NSLog(@"%@,%@",insurance.goPay,str);
+            NSLog(@"%@,%@",self.childGoPay,str2);  // 此处都儿童成人价格都正确
             
             [self.navigationController pushViewController:insurance animated:YES];
             [insurance release];

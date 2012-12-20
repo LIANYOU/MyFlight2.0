@@ -34,7 +34,8 @@
 @property(nonatomic,retain) searchCabin * searchCab;
 
 @property(nonatomic,retain) NSMutableArray * changeInfoArr; // 存放每一行退改签的数据
-@property(nonatomic,retain) NSMutableArray * payArr;
+@property(nonatomic,retain) NSMutableArray * payArr;  // 保存成人价格的数组
+@property(nonatomic,retain) NSMutableArray * childPayArr;  // 保存儿童价格的数组
 
 @property(nonatomic,retain) NSMutableArray * indexPath;    // 存放插入的退改签的cell 的数据
 
@@ -44,9 +45,9 @@
 
 @property (retain, nonatomic) IBOutlet BigCell *bigCell;
 
-@property(nonatomic,retain) NSString * goPay;
+@property(nonatomic,retain) NSString * goPay;  //成人去程价格
 @property(nonatomic,retain) NSString * goCabin;
-
+@property(nonatomic,retain) NSString * childGoPay;  // 儿童去成价格
 
 @property(nonatomic,retain) NSMutableArray *tempArr;
 @property(nonatomic,retain) NSString *firstCellText;

@@ -20,7 +20,14 @@
 
 
 @interface BuyInsuranceViewController : UIViewController
+{
+    NSString * BuyString;
+        void (^blocks) (NSString * idntity);
+    
+}
+- (IBAction)swithOFFOrON:(UISwitch*)sender;
 
+-(void)getDate:(void (^) (NSString * idntity))string;
 
 //代理
 @property(nonatomic,assign)id<BuyInsuranceViewControllerDelegate> delegate;

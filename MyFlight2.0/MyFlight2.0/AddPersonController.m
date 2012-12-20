@@ -30,7 +30,7 @@
     
     self.navigationItem.title = @"添加乘机人";
     
-    self.cellTitleArr = [NSArray arrayWithObjects:@"身份 *",@"姓名 *",@"证件类型 *",@"证件号码 *",@"生日 *",@"保存为常用乘机人", nil];
+    self.cellTitleArr = [NSArray arrayWithObjects:@"身  份 *",@"姓  名 *",@"证件类型 *",@"证件号码 *",@"生  日 *",@"保存为常用乘机人", nil];
  
     self.cellTextArr = [NSMutableArray arrayWithObjects:@"成人",@"请输入乘机人姓名",@"省份证",@"请输入证件号码",@"1990-09-09", nil];
     
@@ -38,14 +38,15 @@
     self.addPersonTableView.dataSource = self;
     
     
-    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    histroyBut.frame = CGRectMake(20, 5, 80, 30);
-    [histroyBut setTitle:@"返回" forState:UIControlStateNormal];
-    [histroyBut addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(10, 5, 30, 31);
+    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
+    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
-    self.navigationItem.leftBarButtonItem=backBtn;
-    [backBtn release];
+    UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem=backBtn1;
+    [backBtn1 release];;
 
     
     [super viewDidLoad];
@@ -80,7 +81,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.cellTitleArr.count;
+   // if ([[self.cellTextArr objectAtIndex:0] isEqual:@"成人"]) {
+        
+        return self.cellTitleArr.count;
+//    }
+//    else{
+//        
+//        return self.cellTitleArr.count-1;
+//    }
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -89,52 +98,64 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    
-    if (indexPath.row == 5) {
-        AddPersonSwitchCell *cell = (AddPersonSwitchCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell)
-        {
-            [[NSBundle mainBundle] loadNibNamed:@"AddPersonSwitchCell" owner:self options:nil];
-            cell = self.addPersonSwithCell;
-        }
-        cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
-        [cell.swith addTarget:self action:@selector(switchOFFORON:) forControlEvents:UIControlEventValueChanged];
-    
-        return cell;
-
-    }
-    else
-    {
-        AddPersonCell *cell = (AddPersonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell)
-        {
-            [[NSBundle mainBundle] loadNibNamed:@"AddPersonCell" owner:self options:nil];
-            cell = self.addPersonCell;
-        }
-        if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4) {
-            cell.cellText.enabled = NO;
-             
-            cell.cellText.text = [self.cellTextArr objectAtIndex:indexPath.row];
-            
-            if (indexPath.row == 0) {
-                identityType = cell.cellText.text;   // 儿童或者成人赋值
+        static NSString *CellIdentifier = @"Cell";
+        
+        if (indexPath.row == 5) {
+            AddPersonSwitchCell *cell = (AddPersonSwitchCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (!cell)
+            {
+                [[NSBundle mainBundle] loadNibNamed:@"AddPersonSwitchCell" owner:self options:nil];
+                cell = self.addPersonSwithCell;
             }
+            cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
+            [cell.swith addTarget:self action:@selector(switchOFFORON:) forControlEvents:UIControlEventValueChanged];
+            
+            return cell;
             
         }
         else
         {
-            if (indexPath.row == 1) {
-                cell.cellText.tag = indexPath.row;
+            AddPersonCell *cell = (AddPersonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (!cell)
+            {
+                [[NSBundle mainBundle] loadNibNamed:@"AddPersonCell" owner:self options:nil];
+                cell = self.addPersonCell;
+            }
+            if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4) {
+                cell.cellText.enabled = NO;
+                if (indexPath.row == 0) {
+                    cell.cellTitle.text = [self.cellTitleArr objectAtIndex:0];
+                    cell.cellText.text = [self.cellTextArr objectAtIndex:0];
+                }
+                if (indexPath.row==2) {
+                    cell.cellTitle.text = [self.cellTitleArr objectAtIndex:2];
+                    cell.cellText.text = [self.cellTextArr objectAtIndex:2];
+                }
+                if (indexPath.row==4) {
+                    cell.cellTitle.text = [self.cellTitleArr objectAtIndex:4];
+                    cell.cellText.text = [self.cellTextArr objectAtIndex:4];
+                }
+                
+                if (indexPath.row == 0) {
+                    identityType = cell.cellText.text;   // 儿童或者成人赋值
+                }
+                
+            }
+            else
+            {
+                if (indexPath.row == 1) {
+                    cell.cellText.tag = indexPath.row;
+                }
+                
+                cell.cellText.delegate = self;
+                cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
+                cell.cellText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
             }
             
-            cell.cellText.delegate = self;
-            cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
-            cell.cellText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
+            return cell;
         }
-       
-        return cell;
-    }
+
+
 }
 
 #pragma mark - Table view delegate
@@ -146,6 +167,7 @@
         identity.flag = indexPath.row;
         
         [identity getDate:^(NSString *idntity) {
+            NSLog(@"---%@",idntity);
             [self.cellTextArr replaceObjectAtIndex:indexPath.row withObject:idntity];
             [self.addPersonTableView reloadData];
         }];

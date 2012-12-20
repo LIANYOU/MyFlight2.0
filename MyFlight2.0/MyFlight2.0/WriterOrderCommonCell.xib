@@ -47,7 +47,7 @@
 									<object class="IBUILabel" id="700333709">
 										<reference key="NSNextResponder" ref="739240145"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{110, 6}, {196, 32}}</string>
+										<string key="NSFrame">{{116, 6}, {196, 32}}</string>
 										<reference key="NSSuperview" ref="739240145"/>
 										<reference key="NSWindow"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -371,23 +371,43 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">WriteOrderViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">payMoney:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">payMoney:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="changeToBigHeadView:">id</string>
+						<string key="changeToSmallHeadView:">id</string>
+						<string key="payMoney:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="changeToBigHeadView:">
+							<string key="name">changeToBigHeadView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="changeToSmallHeadView:">
+							<string key="name">changeToSmallHeadView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="payMoney:">
 							<string key="name">payMoney:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="PerStanderPrice">UILabel</string>
+						<string key="PersonConstructionFee">UILabel</string>
+						<string key="Personinsure">UILabel</string>
 						<string key="allPay">UILabel</string>
+						<string key="bigHeadView">UIView</string>
+						<string key="bigUpPayMoney">UILabel</string>
+						<string key="childBaf">UILabel</string>
+						<string key="childConstructionFee">UILabel</string>
+						<string key="childInsure">UILabel</string>
+						<string key="childMunber">UILabel</string>
+						<string key="childStanderPrice">UILabel</string>
 						<string key="headView">UIView</string>
 						<string key="orderMoney">UILabel</string>
 						<string key="orderScrollView">UIScrollView</string>
 						<string key="orderTableView">UITableView</string>
+						<string key="personAdultBaf">UILabel</string>
+						<string key="personMuber">UILabel</string>
 						<string key="upPayMoney">UILabel</string>
 						<string key="wirterOrderTwoLineCell">WirterOrderTwoLineCell</string>
 						<string key="writeOrderCell">WriteOrderCell</string>
@@ -395,8 +415,48 @@
 						<string key="writerOrderCommonCell">WriterOrderCommonCell</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="PerStanderPrice">
+							<string key="name">PerStanderPrice</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="PersonConstructionFee">
+							<string key="name">PersonConstructionFee</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="Personinsure">
+							<string key="name">Personinsure</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="allPay">
 							<string key="name">allPay</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bigHeadView">
+							<string key="name">bigHeadView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bigUpPayMoney">
+							<string key="name">bigUpPayMoney</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="childBaf">
+							<string key="name">childBaf</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="childConstructionFee">
+							<string key="name">childConstructionFee</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="childInsure">
+							<string key="name">childInsure</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="childMunber">
+							<string key="name">childMunber</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="childStanderPrice">
+							<string key="name">childStanderPrice</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="headView">
@@ -414,6 +474,14 @@
 						<object class="IBToOneOutletInfo" key="orderTableView">
 							<string key="name">orderTableView</string>
 							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="personAdultBaf">
+							<string key="name">personAdultBaf</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="personMuber">
+							<string key="name">personMuber</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="upPayMoney">
 							<string key="name">upPayMoney</string>
