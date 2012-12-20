@@ -41,7 +41,9 @@
 #define REGISTER_URL_Index  @"/web/phone/register.jsp"
 #define REGISTER_URL GET_RIGHT_URL_WITH_Index(REGISTER_URL_Index)
 
-
+#define KEY_Register_Account @"account" 
+#define KEY_Register_Pwd @"pwd"
+#define KEY_Register_Pwd2 @"pwd2"
 
 
 

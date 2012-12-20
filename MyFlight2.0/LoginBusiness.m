@@ -27,10 +27,17 @@
 }
 
 //注册 密码可能要求输入确认密码
-- (void) registerWithAccount:(NSString *)name password:(NSArray *)passwd andDelegate:(id<ServiceDelegate>)delegate{
+- (void) registerWithAccount:(NSString *)name password:(NSString *)passwd andDelegate:(id<ServiceDelegate>)delegate{
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
+    
+    [dic setObject:name forKey:KEY_Register_Account];
+    
+    [dic setObject:passwd forKey:KEY_Register_Pwd];
     
     
-    [LoginInNetworkHelper registerWithUrl:nil delegate:delegate];
+    [LoginInNetworkHelper registerWithUrl:dic delegate:delegate];
+    [dic release];
     
     
 }
@@ -43,9 +50,6 @@
     
     [LoginInNetworkHelper getAccountInfo:nil delegate:delegate];
     
-    
-    
-    
-}
+ }
 
 @end

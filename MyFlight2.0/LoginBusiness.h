@@ -17,7 +17,7 @@
 
 
 //注册 
-- (void) registerWithAccount:(NSString *) name password:(NSArray *) passwd andDelegate:(id<ServiceDelegate>) delegate;
+- (void) registerWithAccount:(NSString *) name password:(NSString *) passwd andDelegate:(id<ServiceDelegate>) delegate;
 
 //查询账号信息
 - (void) getAccountInfo:(NSString *) info andDelegate:(id<ServiceDelegate>) delegate;

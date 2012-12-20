@@ -15,9 +15,9 @@
 + (BOOL) requestWithUrl:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
 
 //注册操作 
-+ (BOOL) registerWithUrl:(NSDictionary *) param delegate:(id<ServiceDelegate>) delegate;
++ (BOOL) registerWithUrl:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
 
 //查看账号信息 
-+ (BOOL) getAccountInfo:(NSDictionary *) param delegate:(id<ServiceDelegate>) delegate;
++ (BOOL) getAccountInfo:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
 
 @end
