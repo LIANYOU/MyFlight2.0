@@ -1,0 +1,65 @@
+FMDB使用说明：首先要导入libsqlite3.0.dylib这个动态链接库，然后这使用到的类中引入相关头文件。1. 创建一个数据库实例
+ 	//寻找路径
+    NSString *doc_path=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+    //数据库路径
+    NSString *sqlPath=[doc_path stringByAppendingPathComponent:@"ad.sqlite"];
+    NSLog(@"%@",sqlPath);	//初始化数据库 ,如果存在则打开，不存在会创建一个并打开
+    FMDatabase *db=[FMDatabase databaseWithPath:sqlPath];
+    
+    //这个方法一定要执行
+    if (![db open]) {
+        NSLog(@"数据库打开失败！");
+        return db;
+    }
+    
+2.创建表格 //执行SQL语句
+
+	if ([db tableExists:@"player"]) {
+        NSLog(@"表已存在！！");
+    } else{
+        
+        [db executeUpdate:@"CREATE TABLE player(id integer primary key AUTOINCREMENT  NOT NULL  UNIQUE ,name text,game text,ratingPic text)"];
+        
+        NSLog(@"创建一个新表");
+    }
+    
+3. 数据的增删改查
+
+插入：
+
+FMDatabase *db=[self openDatabase];
+    
+    if ( [db executeUpdate:@"insert into player(name,game,ratingPic) values(?,?,?)",player.name,player.game,player.ratingPic]) 
+    {
+        NSLog(@"插入成功");    
+    }
+    
+    [db close];
+
+
+
+查询：
+	
+FMResultSet *resultSet=[db executeQuery:@"select * from player"]; while([result next]) {//执行查询后的操作}
+
+模糊查询：
+
+NSString *sql=[NSString stringWithFormat:@"select DISTINCT * from player where name like '%@%%'",self.searchBar.text];
+            NSLog(@"sql=%@",sql);
+            NSLog(@"查询词为：%@",self.searchBar.text);
+            re=[dbase executeQuery:sql];
+
+
+删除： 
+//以id为主键删除数据
+        if([db executeUpdate:@"delete from player where id=?",[NSNumber numberWithInt:selectID]])               
+        {
+            
+            NSLog(@"删除成功");
+            
+            
+        }
+
+
+
+

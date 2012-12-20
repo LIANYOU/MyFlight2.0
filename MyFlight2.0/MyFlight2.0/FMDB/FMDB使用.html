@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1138.51">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Heiti SC Light'}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    span.s1 {font: 12.0px Helvetica}
+    span.s2 {font: 12.0px 'Heiti SC Light'}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">FMDB</span>使用说明：</p>
+<p class="p1">首先要导入<span class="s1">libsqlite3.0.dylib</span>这个动态链接库，然后这使用到的类中引入相关头文件。</p>
+<p class="p1"><span class="s1">1. </span>创建一个数据库实例</p>
+<p class="p2"><br></p>
+<p class="p3"><span class="Apple-converted-space"> <span class="Apple-tab-span">	</span></span>//<span class="s2">寻找路径</span></p>
+<p class="p3"><span class="Apple-converted-space">    </span>NSString *doc_path=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];</p>
+<p class="p3"><span class="Apple-converted-space">    </span>//<span class="s2">数据库路径</span></p>
+<p class="p3"><span class="Apple-converted-space">    </span>NSString *sqlPath=[doc_path stringByAppendingPathComponent:@"ad.sqlite"];</p>
+<p class="p3"><span class="Apple-converted-space">    </span>NSLog(@"%@",sqlPath);</p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>//</span>初始化数据库<span class="s1"> ,</span>如果存在则打开，不存在会创建一个并打开</p>
+<p class="p3"><span class="Apple-converted-space">    </span>FMDatabase *db=[FMDatabase databaseWithPath:sqlPath];</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>//</span>这个方法一定要执行</p>
+<p class="p3"><span class="Apple-converted-space">    </span>if (![db open]) {</p>
+<p class="p3"><span class="Apple-converted-space">        </span>NSLog(@"<span class="s2">数据库打开失败！</span>");</p>
+<p class="p3"><span class="Apple-converted-space">        </span>return db;</p>
+<p class="p3"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p3">2.<span class="s2">创建表格</span> //<span class="s2">执行</span>SQL<span class="s2">语句</span></p>
+<p class="p2"><br></p>
+<p class="p3"><span class="Apple-tab-span">	</span>if ([db tableExists:@"player"]) {</p>
+<p class="p3"><span class="Apple-converted-space">        </span>NSLog(@"<span class="s2">表已存在！！</span>");</p>
+<p class="p3"><span class="Apple-converted-space">    </span>} else{</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p3"><span class="Apple-converted-space">        </span>[db executeUpdate:@"CREATE TABLE player(id integer primary key AUTOINCREMENT<span class="Apple-converted-space">  </span>NOT NULL<span class="Apple-converted-space">  </span>UNIQUE ,name text,game text,ratingPic text)"];</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p3"><span class="Apple-converted-space">        </span>NSLog(@"<span class="s2">创建一个新表</span>");</p>
+<p class="p3"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="s1">3. </span>数据的增删改查</p>
+<p class="p2"><br></p>
+<p class="p1">插入：</p>
+<p class="p2"><br></p>
+<p class="p3">FMDatabase *db=[self openDatabase];</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p3"><span class="Apple-converted-space">    </span>if ( [db executeUpdate:@"insert into player(name,game,ratingPic) values(?,?,?)",player.name,player.game,player.ratingPic])<span class="Apple-converted-space"> </span></p>
+<p class="p3"><span class="Apple-converted-space">    </span>{</p>
+<p class="p3"><span class="Apple-converted-space">        </span>NSLog(@"<span class="s2">插入成功</span>"); <span class="Apple-converted-space">   </span></p>
+<p class="p3"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p3"><span class="Apple-converted-space">    </span>[db close];</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">查询：</p>
+<p class="p2"><span class="Apple-tab-span">	</span></p>
+<p class="p3">FMResultSet *resultSet=[db executeQuery:@"select * from player"]; while([result next]) {//<span class="s2">执行查询后的操作</span>}</p>
+<p class="p2"><br></p>
+<p class="p1">模糊查询：</p>
+<p class="p2"><br></p>
+<p class="p3">NSString *sql=[NSString stringWithFormat:@"select DISTINCT * from player where name like '%@%%'",self.searchBar.text];</p>
+<p class="p3"><span class="Apple-converted-space">            </span>NSLog(@"sql=%@",sql);</p>
+<p class="p3"><span class="Apple-converted-space">            </span>NSLog(@"<span class="s2">查询词为：</span>%@",self.searchBar.text);</p>
+<p class="p3"><span class="Apple-converted-space">            </span>re=[dbase executeQuery:sql];</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">删除：<span class="s1"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">//</span>以<span class="s1">id</span>为主键删除数据</p>
+<p class="p3"><span class="Apple-converted-space">        </span>if([db executeUpdate:@"delete from player where id=?",[NSNumber numberWithInt:selectID]])<span class="Apple-converted-space">               </span></p>
+<p class="p3"><span class="Apple-converted-space">        </span>{</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p3"><span class="Apple-converted-space">            </span>NSLog(@"<span class="s2">删除成功</span>");</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p3"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+</body>
+</html>
