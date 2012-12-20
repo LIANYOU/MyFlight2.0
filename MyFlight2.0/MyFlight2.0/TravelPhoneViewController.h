@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TravelPhoneViewController : UIViewController
+@interface TravelPhoneViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+    UITableView * myTableView;
+    NSMutableData * myData;
+    NSString * _airPort;
+    NSMutableArray * phoneInfoArray;   //电话号码和名称
+    UILabel * titlelabel;   //名称
+    UILabel * phoneLabel;
+    BOOL didFinish;
+    
+}
+@property(nonatomic,retain) NSString * airPort;
 
 @end

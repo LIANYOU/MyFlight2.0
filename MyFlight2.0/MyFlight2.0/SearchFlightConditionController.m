@@ -55,16 +55,17 @@
     
     NSArray * array = [[NSArray alloc]initWithObjects:@"按起降地",@"按航班号", nil];
     mySegmentController  = [[SVSegmentedControl alloc]initWithSectionTitles:array];
+    mySegmentController.backgroundImage = [UIImage imageNamed:@"tab_bg.png"];
     mySegmentController.textColor = myFirstColor;
     mySegmentController.height = 40;
     mySegmentController.LKWidth = 150;
     mySegmentController.center = CGPointMake(160, 50);
-    mySegmentController.thumb.backgroundImage = [UIImage imageNamed:@"block3_change.png"];
     mySegmentController.thumb.textColor = mySceColor;
+    mySegmentController.thumb.tintColor = [UIColor whiteColor];
     mySegmentController.thumb.textShadowColor = [UIColor clearColor];
     [array release];
     mySegmentController.crossFadeLabelsOnDrag = YES;
-    mySegmentController.backgroundImage = [UIImage imageNamed:@"tab_bg_flightCondition.png"];
+   
     mySegmentController.tintColor = [UIColor colorWithRed:22/255.0f green:74.0/255.0f blue:178.0/255.0f alpha:1.0f];
     [self.view addSubview:mySegmentController];
     
@@ -193,20 +194,21 @@
          |tx   ty   1|
          */
         [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:1];
+
         CGAffineTransform moveTo = CGAffineTransformMakeTranslation(320, 0);
         CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-320, 0);
         self.selectedByAirPort.layer.affineTransform = moveTo;
         self.selectedByDate.layer.affineTransform = moveFrom;
-        [UIView setAnimationDuration:1];
         [UIView commitAnimations];
         
     }else if (arg.selectedIndex == 0){
         [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:1];
         CGAffineTransform moveTo1 = CGAffineTransformMakeTranslation(320, 0);
         CGAffineTransform moveFrom1 = CGAffineTransformMakeTranslation(0, 0);
         self.selectedByAirPort.layer.affineTransform = moveFrom1;
         self.selectedByDate.layer.affineTransform = moveTo1;
-        [UIView setAnimationDuration:1];
         [UIView commitAnimations];
     }
 }

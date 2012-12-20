@@ -8,12 +8,15 @@
 
 #import "FlightCompanyDistrubuteViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ASIFormDataRequest.h"
+#import "AppConfigure.h"
+#import "JSONKit.h"
 @interface FlightCompanyDistrubuteViewController ()
 
 @end
 
 @implementation FlightCompanyDistrubuteViewController
-
+@synthesize airPortCode = _airPortCode;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,18 +38,19 @@
     myView.layer.cornerRadius = 4;
     myView.backgroundColor = [UIColor whiteColor];
     
-    UILabel * myTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 50)];
+    myTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 50)];
     myTitleLabel.backgroundColor = [UIColor clearColor];
-    myTitleLabel.text = @"北京首都机场";
+//    myTitleLabel.text = @"北京首都机场";
     myTitleLabel.textAlignment = NSTextAlignmentCenter;
     myTitleLabel.font = [UIFont systemFontOfSize:17];
     [myView addSubview:myTitleLabel];
-    [myTitleLabel release];
    
-    UITextView * myTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 51, myView.bounds.size.width, myView.bounds.size.height - 55-40)];
-    myTextView.text = @"    北京首都国际机场是“中国第一国门”，是中国最重要、规模最大、设备最先进、运输生产最繁忙的大型国际航空港。是中国的空中门户和对外交流的重要窗口。北京首都国际机场建成于1958年，运营50多年来，伴随着历史的脚步，始终昂首向前。尤其是改革开放以来，随着中国经济的快速发展，并得益于北京得天独厚的政治、经济、文化和地理位置优势，北京首都国际机场的年旅客吞吐量从1978年的103万人次增长到2010年的7395万人次，目前排名全球第2位。";
+   
+    myTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 51, myView.bounds.size.width, myView.bounds.size.height - 55-40)];
+    myTextView.editable = NO;
+
     [myView addSubview:myTextView];
-    [myTextView release];
+    
     
     UIView * bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, myView.bounds.size.height - 40, myView.bounds.size.width, 40)];
     bottomView.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
@@ -77,6 +81,56 @@
     
     [self.view addSubview:myView];
     [myView release];
+    
+    myData = [[NSMutableData alloc]init];
+    // Do any additional setup after loading the view from its nib.
+    
+    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Web/AirportGuide.json"];
+    
+    //请求
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:@"AirportGuide" forKey:@"RequestType"];
+    [request setPostValue:self.airPortCode forKey:@"ArilineCode"];
+    [request setPostValue:CURRENT_DEVICEID_VALUE forKey:@"hwId"];
+    [request setPostValue:@"01" forKey:@"serviceCode"];
+    [request setPostValue:@"v1.0" forKey:@"source"];
+    
+    //请求完成
+    [request setCompletionBlock:^{
+
+        NSError * myError=nil;
+        NSString * str = [request responseString];
+        NSLog(@"str:%@",str);
+        NSDictionary * dic = [str objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&myError];
+        if (!myError) {
+            CCLog(@"无错误");
+        } else{
+            
+            NSLog(@"*******");
+        }
+        NSLog(@"字典：%@",dic);
+
+    
+        NSDictionary * dic1 = [dic valueForKey:@"AirportGuide"];
+        NSArray * array = [dic1 valueForKey:@"airportIntro" ];
+        NSString * mystr = [array lastObject];
+        NSArray * nameArray = [dic1 valueForKey:@"airportName"];
+        NSString * name = [nameArray lastObject];
+        
+//        NSArray * rootArray = [dic valueForKey:@"AirportGuide"];
+//        NSDictionary * subDic = [rootArray objectAtIndex:0];
+//
+        myTextView.text = mystr;
+        myTitleLabel.text = name;
+    }];
+    //请求失败
+    [request setFailedBlock:^{
+        NSError *error = [request error];
+        NSLog(@"Error: %@", error.localizedDescription);
+    }];
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
 }
 
 -(void)btnLocClick:(id)sender{
@@ -95,4 +149,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc{
+    [myTitleLabel release];
+    [myTextView release];
+    [myData release];
+    [super dealloc];
+}
 @end

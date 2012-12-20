@@ -9,11 +9,16 @@
 #import "TravelAssistantViewController.h"
 #import "FlightCompanyDistrubuteViewController.h"
 #import "AppConfigure.h"
+#import "TravelPhoneViewController.h"
+#import "FlightCompanyDistrubuteController.h"
+#import "TravelTrafficViewController.h"
+#import "ChackInNavgationViewController.h"
 @interface TravelAssistantViewController ()
 
 @end
 
 @implementation TravelAssistantViewController
+@synthesize myAirPortData = _myAirPortData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    airPortCode = [[NSString alloc]initWithString:@"PEK"];
     self.view.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 270) style:UITableViewStylePlain];
     myTableView.delegate = self;
@@ -46,8 +52,9 @@
     myBtn.frame = CGRectMake(0, 0, 76, 30);
     [myBtn setImage:[UIImage imageNamed:@"clean_histroy_4words.png"] forState:UIControlStateNormal];
     [myBtn setImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:UIControlStateHighlighted];
-    UILabel * titleLable = [[UILabel alloc]initWithFrame:CGRectMake(7, 2, 70, 26)];
+    titleLable = [[UILabel alloc]initWithFrame:CGRectMake(7, 2, 62, 26)];
     titleLable.font = [UIFont systemFontOfSize:13];
+    titleLable.textAlignment = NSTextAlignmentCenter;
     titleLable.text = @"选择机场";
     titleLable.textColor = [UIColor whiteColor];
     titleLable.backgroundColor = [UIColor clearColor];
@@ -107,24 +114,58 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.row == 0) {
-        NSLog(@"机场介绍");
-        //需要传机场三字码，子控制器中要用（还没传）
-        FlightCompanyDistrubuteViewController * fcd = [[FlightCompanyDistrubuteViewController alloc]init];
-        [self.navigationController pushViewController:fcd animated:YES];
-        [fcd release];
-    }else if (indexPath.row == 1){
-        NSLog(@"行李规定");
-    }else if (indexPath.row == 2){
-        NSLog(@"机场交通");
-    }else if (indexPath.row == 3){
-        NSLog(@"值机柜台");
-    }else if (indexPath.row == 4){
-        NSLog(@"常用电话");
-    }else if (indexPath.row == 5){
-        NSLog(@"航空公司分布");
-    }
+//    if (self.myAirPortData.apCode = nil) {
+//        UIAlertView * chooseAlert = [[UIAlertView alloc]initWithTitle:@"机场未选择" message:@"是否选择机场" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"是", nil];
+//        [chooseAlert show];
+//    }else{
+        if (indexPath.row == 0) {
+            NSLog(@"机场介绍");
+            FlightCompanyDistrubuteViewController * fcd = [[FlightCompanyDistrubuteViewController alloc]init];
+            if (self.myAirPortData) {
+                fcd.airPortCode = self.myAirPortData.apCode;
+            }else{
+                fcd.airPortCode = airPortCode;
+            }
+            [self.navigationController pushViewController:fcd animated:YES];
+            [fcd release];
+        }else if (indexPath.row == 1){
+            NSLog(@"行李规定");
+        }else if (indexPath.row == 2){
+            NSLog(@"机场交通");
+            TravelTrafficViewController * ttvc = [[TravelTrafficViewController alloc]init];
+            if (self.myAirPortData) {
+                ttvc.airPortCode = self.myAirPortData.apCode;
+            }else{
+                ttvc.airPortCode = airPortCode;
+            }
+            [self.navigationController pushViewController:ttvc  animated:YES];
+            [ttvc release];
+        }else if (indexPath.row == 3){
+            NSLog(@"值机柜台");
+            ChackInNavgationViewController * cinav = [[ChackInNavgationViewController alloc]init];
+            cinav.airPortCode = self.myAirPortData.apCode;
+            cinav.myTitle = self.myAirPortData.apName;
+            [self.navigationController pushViewController:cinav animated:YES];
+            [cinav release];
+        }else if (indexPath.row == 4){
+            NSLog(@"常用电话");
+            TravelPhoneViewController * tpvc = [[TravelPhoneViewController alloc]init];
+            tpvc.airPort = self.myAirPortData.apCode;
+            [self.navigationController pushViewController:tpvc animated:YES];
+            [tpvc release];
+            
+        }else if (indexPath.row == 5){
+            NSLog(@"航空公司分布");
+            FlightCompanyDistrubuteController * fcdc = [[FlightCompanyDistrubuteController alloc]init];
+            fcdc.airPortCode = self.myAirPortData.apCode;
+            
+            fcdc.myTitle = self.myAirPortData.apName;
+            
+            
+            [self.navigationController pushViewController:fcdc animated:YES];
+            [fcdc release];
+        }
+//    }
 }
 
 -(void)rightItemClick:(id)arg{
@@ -139,10 +180,17 @@
     
     
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void) ChooseAirPortViewController:(ChooseAirPortViewController *) controlelr chooseType:(NSInteger ) choiceType didSelectAirPortInfo:(AirPortData *) airPort{
+    self.myAirPortData = airPort;
+    NSLog(@"myairPortData : %@",self.myAirPortData.apCode);
+    titleLable.text = airPort.apName;
     
 }
 
 -(void)dealloc{
+    [airPortCode release];
     [myTableView release];
     [titleArray release];
     [imageArray release];

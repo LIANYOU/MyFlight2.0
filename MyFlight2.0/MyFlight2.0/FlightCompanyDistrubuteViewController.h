@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface FlightCompanyDistrubuteViewController : UIViewController
+{
+    NSString * _airPortCode;
+    NSMutableData * myData;
+    UITextView * myTextView;
+    UILabel * myTitleLabel;
+}
+@property(nonatomic,retain) NSString * airPortCode;
 
 @end

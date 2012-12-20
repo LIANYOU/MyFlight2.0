@@ -109,6 +109,46 @@
 		180E228F1671BB6F002A7228 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180E228D1671BB6F002A7228 /* RegisterViewController.xib */; };
 		180E22EA1671F4E6002A7228 /* DNWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E22E91671F4E6002A7228 /* DNWrapper.m */; };
 		181F0F14167B028100CEDBAB /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 181F0F13167B028100CEDBAB /* MBProgressHUD.m */; };
+		1827BE5B1683541E00349FE1 /* l_3U.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE371683541E00349FE1 /* l_3U.png */; };
+		1827BE5C1683541E00349FE1 /* l_8L.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE381683541E00349FE1 /* l_8L.png */; };
+		1827BE5D1683541E00349FE1 /* l_9C.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE391683541E00349FE1 /* l_9C.png */; };
+		1827BE5E1683541E00349FE1 /* l_BK.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE3A1683541E00349FE1 /* l_BK.png */; };
+		1827BE5F1683541E00349FE1 /* l_CA.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE3B1683541E00349FE1 /* l_CA.png */; };
+		1827BE601683541E00349FE1 /* l_CN.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE3C1683541E00349FE1 /* l_CN.png */; };
+		1827BE611683541E00349FE1 /* l_CX.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE3D1683541E00349FE1 /* l_CX.png */; };
+		1827BE621683541E00349FE1 /* l_CY.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE3E1683541E00349FE1 /* l_CY.png */; };
+		1827BE631683541E00349FE1 /* l_CZ.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE3F1683541E00349FE1 /* l_CZ.png */; };
+		1827BE641683541E00349FE1 /* l_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE401683541E00349FE1 /* l_default.png */; };
+		1827BE651683541E00349FE1 /* l_EU.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE411683541E00349FE1 /* l_EU.png */; };
+		1827BE661683541E00349FE1 /* l_FM.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE421683541E00349FE1 /* l_FM.png */; };
+		1827BE671683541E00349FE1 /* l_G5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE431683541E00349FE1 /* l_G5.png */; };
+		1827BE681683541E00349FE1 /* l_GS.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE441683541E00349FE1 /* l_GS.png */; };
+		1827BE691683541E00349FE1 /* l_HO.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE451683541E00349FE1 /* l_HO.png */; };
+		1827BE6A1683541E00349FE1 /* l_HU.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE461683541E00349FE1 /* l_HU.png */; };
+		1827BE6B1683541E00349FE1 /* l_HX.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE471683541E00349FE1 /* l_HX.png */; };
+		1827BE6C1683541E00349FE1 /* l_JD.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE481683541E00349FE1 /* l_JD.png */; };
+		1827BE6D1683541E00349FE1 /* l_JR.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE491683541E00349FE1 /* l_JR.png */; };
+		1827BE6E1683541E00349FE1 /* l_KA.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE4A1683541E00349FE1 /* l_KA.png */; };
+		1827BE6F1683541E00349FE1 /* l_KN.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE4B1683541E00349FE1 /* l_KN.png */; };
+		1827BE701683541E00349FE1 /* l_KY.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE4C1683541E00349FE1 /* l_KY.png */; };
+		1827BE711683541E00349FE1 /* l_MF.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE4D1683541E00349FE1 /* l_MF.png */; };
+		1827BE721683541E00349FE1 /* l_MU.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE4E1683541E00349FE1 /* l_MU.png */; };
+		1827BE731683541E00349FE1 /* l_N8.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE4F1683541E00349FE1 /* l_N8.png */; };
+		1827BE741683541E00349FE1 /* l_NS.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE501683541E00349FE1 /* l_NS.png */; };
+		1827BE751683541E00349FE1 /* l_NX.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE511683541E00349FE1 /* l_NX.png */; };
+		1827BE761683541E00349FE1 /* l_NZ.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE521683541E00349FE1 /* l_NZ.png */; };
+		1827BE771683541E00349FE1 /* l_OQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE531683541E00349FE1 /* l_OQ.png */; };
+		1827BE781683541E00349FE1 /* l_PN.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE541683541E00349FE1 /* l_PN.png */; };
+		1827BE791683541E00349FE1 /* l_SC.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE551683541E00349FE1 /* l_SC.png */; };
+		1827BE7A1683541E00349FE1 /* l_SK.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE561683541E00349FE1 /* l_SK.png */; };
+		1827BE7B1683541E00349FE1 /* l_TV.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE571683541E00349FE1 /* l_TV.png */; };
+		1827BE7C1683541E00349FE1 /* l_UO.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE581683541E00349FE1 /* l_UO.png */; };
+		1827BE7D1683541E00349FE1 /* l_VD.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE591683541E00349FE1 /* l_VD.png */; };
+		1827BE7E1683541E00349FE1 /* l_ZH.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE5A1683541E00349FE1 /* l_ZH.png */; };
+		1827BE831683582000349FE1 /* ChackInNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827BE811683581E00349FE1 /* ChackInNavgationViewController.m */; };
+		1827BE841683582000349FE1 /* ChackInNavgationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE821683581F00349FE1 /* ChackInNavgationViewController.xib */; };
+		1827BE881683629C00349FE1 /* BaggageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827BE861683629A00349FE1 /* BaggageViewController.m */; };
+		1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE871683629B00349FE1 /* BaggageViewController.xib */; };
 		18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18478C64167332AD00D3AFCD /* SearchFlightCondition.m */; };
 		18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */; };
 		18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */; };
@@ -155,22 +195,24 @@
 		18D105371682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1052C1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib */; };
 		18D105381682B33B00F112D2 /* TravelAssistantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1052E1682B33B00F112D2 /* TravelAssistantViewController.m */; };
 		18D105391682B33B00F112D2 /* TravelAssistantViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1052F1682B33B00F112D2 /* TravelAssistantViewController.xib */; };
-		18D1053A1682B33B00F112D2 /* TravelPhoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D105311682B33B00F112D2 /* TravelPhoneCell.m */; };
 		18D1053B1682B33B00F112D2 /* TravelPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D105331682B33B00F112D2 /* TravelPhoneViewController.m */; };
 		18D1053C1682B33B00F112D2 /* TravelPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */; };
-		18D1053D1682B33B00F112D2 /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D105351682B33B00F112D2 /* TravePhoneCell.xib */; };
 		18D1970E16816C6C00FEE73A /* icon_checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970316816C6C00FEE73A /* icon_checkin.png */; };
 		18D1970F16816C6C00FEE73A /* icon_Distributed.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970416816C6C00FEE73A /* icon_Distributed.png */; };
 		18D1971016816C6C00FEE73A /* icon_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970516816C6C00FEE73A /* icon_location.png */; };
 		18D1971116816C6C00FEE73A /* icon_luggage.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970616816C6C00FEE73A /* icon_luggage.png */; };
 		18D1971316816C6C00FEE73A /* icon_telphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970816816C6C00FEE73A /* icon_telphone.png */; };
-		18D1971416816C6C00FEE73A /* icon_tep.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970916816C6C00FEE73A /* icon_tep.png */; };
+		18D1971416816C6C00FEE73A /* icon_tep_travel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970916816C6C00FEE73A /* icon_tep_travel.png */; };
 		18D1971516816C6C00FEE73A /* icon_Traffic.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970A16816C6C00FEE73A /* icon_Traffic.png */; };
 		18D1971616816C6C00FEE73A /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970B16816C6C00FEE73A /* Thumbs.db */; };
 		18D1971716816C6C00FEE73A /* triangle_icon_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970C16816C6C00FEE73A /* triangle_icon_down.png */; };
 		18D1971816816C6C00FEE73A /* triangle_icon_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970D16816C6C00FEE73A /* triangle_icon_up.png */; };
 		18D1971B1681735800FEE73A /* icon_travel_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D197191681735800FEE73A /* icon_travel_more.png */; };
 		18D1971C1681735800FEE73A /* icon_travelFile.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1971A1681735800FEE73A /* icon_travelFile.png */; };
+		18D197991682C92400FEE73A /* FlightCompanyDistrubuteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D197971682C92100FEE73A /* FlightCompanyDistrubuteController.m */; };
+		18D1979A1682C92400FEE73A /* FlightCompanyDistrubuteController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D197981682C92200FEE73A /* FlightCompanyDistrubuteController.xib */; };
+		18D1979E1682D05B00FEE73A /* TravelTrafficViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1979C1682D05900FEE73A /* TravelTrafficViewController.m */; };
+		18D1979F1682D05B00FEE73A /* TravelTrafficViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1979D1682D05A00FEE73A /* TravelTrafficViewController.xib */; };
 		18D415B6167CCC57005DA0F8 /* MyCenterViewCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D415B5167CCC57005DA0F8 /* MyCenterViewCommonCell.m */; };
 		18D415B8167CCC69005DA0F8 /* MyCenterViewCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D415B7167CCC69005DA0F8 /* MyCenterViewCommonCell.xib */; };
 		18D415BB167CCCFE005DA0F8 /* MyCenterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D415BA167CCCFE005DA0F8 /* MyCenterViewCell.m */; };
@@ -488,6 +530,48 @@
 		180E22E91671F4E6002A7228 /* DNWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNWrapper.m; sourceTree = "<group>"; };
 		181F0F12167B028100CEDBAB /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		181F0F13167B028100CEDBAB /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		1827BE371683541E00349FE1 /* l_3U.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_3U.png; sourceTree = "<group>"; };
+		1827BE381683541E00349FE1 /* l_8L.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_8L.png; sourceTree = "<group>"; };
+		1827BE391683541E00349FE1 /* l_9C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_9C.png; sourceTree = "<group>"; };
+		1827BE3A1683541E00349FE1 /* l_BK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_BK.png; sourceTree = "<group>"; };
+		1827BE3B1683541E00349FE1 /* l_CA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_CA.png; sourceTree = "<group>"; };
+		1827BE3C1683541E00349FE1 /* l_CN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_CN.png; sourceTree = "<group>"; };
+		1827BE3D1683541E00349FE1 /* l_CX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_CX.png; sourceTree = "<group>"; };
+		1827BE3E1683541E00349FE1 /* l_CY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_CY.png; sourceTree = "<group>"; };
+		1827BE3F1683541E00349FE1 /* l_CZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_CZ.png; sourceTree = "<group>"; };
+		1827BE401683541E00349FE1 /* l_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_default.png; sourceTree = "<group>"; };
+		1827BE411683541E00349FE1 /* l_EU.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_EU.png; sourceTree = "<group>"; };
+		1827BE421683541E00349FE1 /* l_FM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_FM.png; sourceTree = "<group>"; };
+		1827BE431683541E00349FE1 /* l_G5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_G5.png; sourceTree = "<group>"; };
+		1827BE441683541E00349FE1 /* l_GS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_GS.png; sourceTree = "<group>"; };
+		1827BE451683541E00349FE1 /* l_HO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_HO.png; sourceTree = "<group>"; };
+		1827BE461683541E00349FE1 /* l_HU.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_HU.png; sourceTree = "<group>"; };
+		1827BE471683541E00349FE1 /* l_HX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_HX.png; sourceTree = "<group>"; };
+		1827BE481683541E00349FE1 /* l_JD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_JD.png; sourceTree = "<group>"; };
+		1827BE491683541E00349FE1 /* l_JR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_JR.png; sourceTree = "<group>"; };
+		1827BE4A1683541E00349FE1 /* l_KA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_KA.png; sourceTree = "<group>"; };
+		1827BE4B1683541E00349FE1 /* l_KN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_KN.png; sourceTree = "<group>"; };
+		1827BE4C1683541E00349FE1 /* l_KY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_KY.png; sourceTree = "<group>"; };
+		1827BE4D1683541E00349FE1 /* l_MF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_MF.png; sourceTree = "<group>"; };
+		1827BE4E1683541E00349FE1 /* l_MU.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_MU.png; sourceTree = "<group>"; };
+		1827BE4F1683541E00349FE1 /* l_N8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_N8.png; sourceTree = "<group>"; };
+		1827BE501683541E00349FE1 /* l_NS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_NS.png; sourceTree = "<group>"; };
+		1827BE511683541E00349FE1 /* l_NX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_NX.png; sourceTree = "<group>"; };
+		1827BE521683541E00349FE1 /* l_NZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_NZ.png; sourceTree = "<group>"; };
+		1827BE531683541E00349FE1 /* l_OQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_OQ.png; sourceTree = "<group>"; };
+		1827BE541683541E00349FE1 /* l_PN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_PN.png; sourceTree = "<group>"; };
+		1827BE551683541E00349FE1 /* l_SC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_SC.png; sourceTree = "<group>"; };
+		1827BE561683541E00349FE1 /* l_SK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_SK.png; sourceTree = "<group>"; };
+		1827BE571683541E00349FE1 /* l_TV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_TV.png; sourceTree = "<group>"; };
+		1827BE581683541E00349FE1 /* l_UO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_UO.png; sourceTree = "<group>"; };
+		1827BE591683541E00349FE1 /* l_VD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_VD.png; sourceTree = "<group>"; };
+		1827BE5A1683541E00349FE1 /* l_ZH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_ZH.png; sourceTree = "<group>"; };
+		1827BE801683581D00349FE1 /* ChackInNavgationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChackInNavgationViewController.h; sourceTree = "<group>"; };
+		1827BE811683581E00349FE1 /* ChackInNavgationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChackInNavgationViewController.m; sourceTree = "<group>"; };
+		1827BE821683581F00349FE1 /* ChackInNavgationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChackInNavgationViewController.xib; sourceTree = "<group>"; };
+		1827BE851683629A00349FE1 /* BaggageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaggageViewController.h; sourceTree = "<group>"; };
+		1827BE861683629A00349FE1 /* BaggageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaggageViewController.m; sourceTree = "<group>"; };
+		1827BE871683629B00349FE1 /* BaggageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaggageViewController.xib; sourceTree = "<group>"; };
 		18478C63167332AD00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
 		18478C64167332AD00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
 		18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
@@ -557,24 +641,27 @@
 		18D1052D1682B33B00F112D2 /* TravelAssistantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelAssistantViewController.h; sourceTree = "<group>"; };
 		18D1052E1682B33B00F112D2 /* TravelAssistantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelAssistantViewController.m; sourceTree = "<group>"; };
 		18D1052F1682B33B00F112D2 /* TravelAssistantViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelAssistantViewController.xib; sourceTree = "<group>"; };
-		18D105301682B33B00F112D2 /* TravelPhoneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelPhoneCell.h; sourceTree = "<group>"; };
-		18D105311682B33B00F112D2 /* TravelPhoneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelPhoneCell.m; sourceTree = "<group>"; };
 		18D105321682B33B00F112D2 /* TravelPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelPhoneViewController.h; sourceTree = "<group>"; };
 		18D105331682B33B00F112D2 /* TravelPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelPhoneViewController.m; sourceTree = "<group>"; };
 		18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelPhoneViewController.xib; sourceTree = "<group>"; };
-		18D105351682B33B00F112D2 /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
 		18D1970316816C6C00FEE73A /* icon_checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checkin.png; sourceTree = "<group>"; };
 		18D1970416816C6C00FEE73A /* icon_Distributed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Distributed.png; sourceTree = "<group>"; };
 		18D1970516816C6C00FEE73A /* icon_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_location.png; sourceTree = "<group>"; };
 		18D1970616816C6C00FEE73A /* icon_luggage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_luggage.png; sourceTree = "<group>"; };
 		18D1970816816C6C00FEE73A /* icon_telphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_telphone.png; sourceTree = "<group>"; };
-		18D1970916816C6C00FEE73A /* icon_tep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tep.png; sourceTree = "<group>"; };
+		18D1970916816C6C00FEE73A /* icon_tep_travel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tep_travel.png; sourceTree = "<group>"; };
 		18D1970A16816C6C00FEE73A /* icon_Traffic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Traffic.png; sourceTree = "<group>"; };
 		18D1970B16816C6C00FEE73A /* Thumbs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thumbs.db; sourceTree = "<group>"; };
 		18D1970C16816C6C00FEE73A /* triangle_icon_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_icon_down.png; sourceTree = "<group>"; };
 		18D1970D16816C6C00FEE73A /* triangle_icon_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_icon_up.png; sourceTree = "<group>"; };
 		18D197191681735800FEE73A /* icon_travel_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_travel_more.png; sourceTree = "<group>"; };
 		18D1971A1681735800FEE73A /* icon_travelFile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_travelFile.png; sourceTree = "<group>"; };
+		18D197961682C92000FEE73A /* FlightCompanyDistrubuteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightCompanyDistrubuteController.h; sourceTree = "<group>"; };
+		18D197971682C92100FEE73A /* FlightCompanyDistrubuteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightCompanyDistrubuteController.m; sourceTree = "<group>"; };
+		18D197981682C92200FEE73A /* FlightCompanyDistrubuteController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightCompanyDistrubuteController.xib; sourceTree = "<group>"; };
+		18D1979B1682D05700FEE73A /* TravelTrafficViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelTrafficViewController.h; sourceTree = "<group>"; };
+		18D1979C1682D05900FEE73A /* TravelTrafficViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelTrafficViewController.m; sourceTree = "<group>"; };
+		18D1979D1682D05A00FEE73A /* TravelTrafficViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelTrafficViewController.xib; sourceTree = "<group>"; };
 		18D415B4167CCC57005DA0F8 /* MyCenterViewCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterViewCommonCell.h; sourceTree = "<group>"; };
 		18D415B5167CCC57005DA0F8 /* MyCenterViewCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterViewCommonCell.m; sourceTree = "<group>"; };
 		18D415B7167CCC69005DA0F8 /* MyCenterViewCommonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterViewCommonCell.xib; sourceTree = "<group>"; };
@@ -843,6 +930,7 @@
 		1427937F167078DA00E2E1E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1827BE361683541D00349FE1 /* 航空公司图标 */,
 				18D1970216816C6C00FEE73A /* 出行小秘书 */,
 				146986B0167DCB5700E9B30D /* 登录 */,
 				18E37CA0167D53890086B3F8 /* 个人中心 */,
@@ -1306,6 +1394,49 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		1827BE361683541D00349FE1 /* 航空公司图标 */ = {
+			isa = PBXGroup;
+			children = (
+				1827BE371683541E00349FE1 /* l_3U.png */,
+				1827BE381683541E00349FE1 /* l_8L.png */,
+				1827BE391683541E00349FE1 /* l_9C.png */,
+				1827BE3A1683541E00349FE1 /* l_BK.png */,
+				1827BE3B1683541E00349FE1 /* l_CA.png */,
+				1827BE3C1683541E00349FE1 /* l_CN.png */,
+				1827BE3D1683541E00349FE1 /* l_CX.png */,
+				1827BE3E1683541E00349FE1 /* l_CY.png */,
+				1827BE3F1683541E00349FE1 /* l_CZ.png */,
+				1827BE401683541E00349FE1 /* l_default.png */,
+				1827BE411683541E00349FE1 /* l_EU.png */,
+				1827BE421683541E00349FE1 /* l_FM.png */,
+				1827BE431683541E00349FE1 /* l_G5.png */,
+				1827BE441683541E00349FE1 /* l_GS.png */,
+				1827BE451683541E00349FE1 /* l_HO.png */,
+				1827BE461683541E00349FE1 /* l_HU.png */,
+				1827BE471683541E00349FE1 /* l_HX.png */,
+				1827BE481683541E00349FE1 /* l_JD.png */,
+				1827BE491683541E00349FE1 /* l_JR.png */,
+				1827BE4A1683541E00349FE1 /* l_KA.png */,
+				1827BE4B1683541E00349FE1 /* l_KN.png */,
+				1827BE4C1683541E00349FE1 /* l_KY.png */,
+				1827BE4D1683541E00349FE1 /* l_MF.png */,
+				1827BE4E1683541E00349FE1 /* l_MU.png */,
+				1827BE4F1683541E00349FE1 /* l_N8.png */,
+				1827BE501683541E00349FE1 /* l_NS.png */,
+				1827BE511683541E00349FE1 /* l_NX.png */,
+				1827BE521683541E00349FE1 /* l_NZ.png */,
+				1827BE531683541E00349FE1 /* l_OQ.png */,
+				1827BE541683541E00349FE1 /* l_PN.png */,
+				1827BE551683541E00349FE1 /* l_SC.png */,
+				1827BE561683541E00349FE1 /* l_SK.png */,
+				1827BE571683541E00349FE1 /* l_TV.png */,
+				1827BE581683541E00349FE1 /* l_UO.png */,
+				1827BE591683541E00349FE1 /* l_VD.png */,
+				1827BE5A1683541E00349FE1 /* l_ZH.png */,
+			);
+			path = "航空公司图标";
+			sourceTree = "<group>";
+		};
 		18D01F0616782C2A002C13DB /* addPerson */ = {
 			isa = PBXGroup;
 			children = (
@@ -1340,18 +1471,27 @@
 		18D196C6168161CC00FEE73A /* TravelAssistant */ = {
 			isa = PBXGroup;
 			children = (
-				18D1052A1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.h */,
-				18D1052B1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.m */,
-				18D1052C1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib */,
 				18D1052D1682B33B00F112D2 /* TravelAssistantViewController.h */,
 				18D1052E1682B33B00F112D2 /* TravelAssistantViewController.m */,
 				18D1052F1682B33B00F112D2 /* TravelAssistantViewController.xib */,
-				18D105301682B33B00F112D2 /* TravelPhoneCell.h */,
-				18D105311682B33B00F112D2 /* TravelPhoneCell.m */,
+				18D1052A1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.h */,
+				18D1052B1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.m */,
+				18D1052C1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib */,
 				18D105321682B33B00F112D2 /* TravelPhoneViewController.h */,
 				18D105331682B33B00F112D2 /* TravelPhoneViewController.m */,
 				18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */,
-				18D105351682B33B00F112D2 /* TravePhoneCell.xib */,
+				18D197961682C92000FEE73A /* FlightCompanyDistrubuteController.h */,
+				18D197971682C92100FEE73A /* FlightCompanyDistrubuteController.m */,
+				18D197981682C92200FEE73A /* FlightCompanyDistrubuteController.xib */,
+				18D1979B1682D05700FEE73A /* TravelTrafficViewController.h */,
+				18D1979C1682D05900FEE73A /* TravelTrafficViewController.m */,
+				18D1979D1682D05A00FEE73A /* TravelTrafficViewController.xib */,
+				1827BE851683629A00349FE1 /* BaggageViewController.h */,
+				1827BE861683629A00349FE1 /* BaggageViewController.m */,
+				1827BE871683629B00349FE1 /* BaggageViewController.xib */,
+				1827BE801683581D00349FE1 /* ChackInNavgationViewController.h */,
+				1827BE811683581E00349FE1 /* ChackInNavgationViewController.m */,
+				1827BE821683581F00349FE1 /* ChackInNavgationViewController.xib */,
 			);
 			name = TravelAssistant;
 			sourceTree = "<group>";
@@ -1366,7 +1506,7 @@
 				18D1970516816C6C00FEE73A /* icon_location.png */,
 				18D1970616816C6C00FEE73A /* icon_luggage.png */,
 				18D1970816816C6C00FEE73A /* icon_telphone.png */,
-				18D1970916816C6C00FEE73A /* icon_tep.png */,
+				18D1970916816C6C00FEE73A /* icon_tep_travel.png */,
 				18D1970A16816C6C00FEE73A /* icon_Traffic.png */,
 				18D1970B16816C6C00FEE73A /* Thumbs.db */,
 				18D1970C16816C6C00FEE73A /* triangle_icon_down.png */,
@@ -1882,7 +2022,7 @@
 				18D1971016816C6C00FEE73A /* icon_location.png in Resources */,
 				18D1971116816C6C00FEE73A /* icon_luggage.png in Resources */,
 				18D1971316816C6C00FEE73A /* icon_telphone.png in Resources */,
-				18D1971416816C6C00FEE73A /* icon_tep.png in Resources */,
+				18D1971416816C6C00FEE73A /* icon_tep_travel.png in Resources */,
 				18D1971516816C6C00FEE73A /* icon_Traffic.png in Resources */,
 				18D1971616816C6C00FEE73A /* Thumbs.db in Resources */,
 				18D1971716816C6C00FEE73A /* triangle_icon_down.png in Resources */,
@@ -1907,7 +2047,46 @@
 				18D105371682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib in Resources */,
 				18D105391682B33B00F112D2 /* TravelAssistantViewController.xib in Resources */,
 				18D1053C1682B33B00F112D2 /* TravelPhoneViewController.xib in Resources */,
-				18D1053D1682B33B00F112D2 /* TravePhoneCell.xib in Resources */,
+				18D1979A1682C92400FEE73A /* FlightCompanyDistrubuteController.xib in Resources */,
+				18D1979F1682D05B00FEE73A /* TravelTrafficViewController.xib in Resources */,
+				1827BE5B1683541E00349FE1 /* l_3U.png in Resources */,
+				1827BE5C1683541E00349FE1 /* l_8L.png in Resources */,
+				1827BE5D1683541E00349FE1 /* l_9C.png in Resources */,
+				1827BE5E1683541E00349FE1 /* l_BK.png in Resources */,
+				1827BE5F1683541E00349FE1 /* l_CA.png in Resources */,
+				1827BE601683541E00349FE1 /* l_CN.png in Resources */,
+				1827BE611683541E00349FE1 /* l_CX.png in Resources */,
+				1827BE621683541E00349FE1 /* l_CY.png in Resources */,
+				1827BE631683541E00349FE1 /* l_CZ.png in Resources */,
+				1827BE641683541E00349FE1 /* l_default.png in Resources */,
+				1827BE651683541E00349FE1 /* l_EU.png in Resources */,
+				1827BE661683541E00349FE1 /* l_FM.png in Resources */,
+				1827BE671683541E00349FE1 /* l_G5.png in Resources */,
+				1827BE681683541E00349FE1 /* l_GS.png in Resources */,
+				1827BE691683541E00349FE1 /* l_HO.png in Resources */,
+				1827BE6A1683541E00349FE1 /* l_HU.png in Resources */,
+				1827BE6B1683541E00349FE1 /* l_HX.png in Resources */,
+				1827BE6C1683541E00349FE1 /* l_JD.png in Resources */,
+				1827BE6D1683541E00349FE1 /* l_JR.png in Resources */,
+				1827BE6E1683541E00349FE1 /* l_KA.png in Resources */,
+				1827BE6F1683541E00349FE1 /* l_KN.png in Resources */,
+				1827BE701683541E00349FE1 /* l_KY.png in Resources */,
+				1827BE711683541E00349FE1 /* l_MF.png in Resources */,
+				1827BE721683541E00349FE1 /* l_MU.png in Resources */,
+				1827BE731683541E00349FE1 /* l_N8.png in Resources */,
+				1827BE741683541E00349FE1 /* l_NS.png in Resources */,
+				1827BE751683541E00349FE1 /* l_NX.png in Resources */,
+				1827BE761683541E00349FE1 /* l_NZ.png in Resources */,
+				1827BE771683541E00349FE1 /* l_OQ.png in Resources */,
+				1827BE781683541E00349FE1 /* l_PN.png in Resources */,
+				1827BE791683541E00349FE1 /* l_SC.png in Resources */,
+				1827BE7A1683541E00349FE1 /* l_SK.png in Resources */,
+				1827BE7B1683541E00349FE1 /* l_TV.png in Resources */,
+				1827BE7C1683541E00349FE1 /* l_UO.png in Resources */,
+				1827BE7D1683541E00349FE1 /* l_VD.png in Resources */,
+				1827BE7E1683541E00349FE1 /* l_ZH.png in Resources */,
+				1827BE841683582000349FE1 /* ChackInNavgationViewController.xib in Resources */,
+				1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2011,11 +2190,17 @@
 				18D1051E1682ABEB00F112D2 /* NewChooseSpaceCell.m in Sources */,
 				18D105361682B33B00F112D2 /* FlightCompanyDistrubuteViewController.m in Sources */,
 				18D105381682B33B00F112D2 /* TravelAssistantViewController.m in Sources */,
-				18D1053A1682B33B00F112D2 /* TravelPhoneCell.m in Sources */,
 				18D1053B1682B33B00F112D2 /* TravelPhoneViewController.m in Sources */,
+
 				141523871682C12000E2FF0E /* LoginBusiness.m in Sources */,
 				1415238D1682C3BE00E2FF0E /* LoginInNetworkHelper.m in Sources */,
 				141523921682CC3C00E2FF0E /* IsLoginInSingle.m in Sources */,
+
+				18D197991682C92400FEE73A /* FlightCompanyDistrubuteController.m in Sources */,
+				18D1979E1682D05B00FEE73A /* TravelTrafficViewController.m in Sources */,
+				1827BE831683582000349FE1 /* ChackInNavgationViewController.m in Sources */,
+				1827BE881683629C00349FE1 /* BaggageViewController.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

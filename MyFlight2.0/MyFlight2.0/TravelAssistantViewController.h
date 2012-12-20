@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "ChooseAirPortViewController.h"
+#import "AirPortData.h"
 @interface TravelAssistantViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ChooseAirPortViewControllerDelegate>
 {
     UITableView * myTableView;
     NSArray * imageArray;
-    NSArray * titleArray;
+    NSArray * titleArray;   
+    AirPortData * _myAirPortData;
+    NSString * airPortCode;     // 机场三字码
+    UILabel * titleLable;
 }
+@property(nonatomic,retain)AirPortData * myAirPortData;
 @end

@@ -99,8 +99,6 @@ CCLog(@"分区的头部为：%d",[sectionTitles count]);
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    
-    
     return 28;
 }
 
