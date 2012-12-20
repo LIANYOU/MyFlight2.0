@@ -172,9 +172,11 @@
 								<int key="NSID">2</int>
 							</object>
 						</object>
+						<bool key="IBUIClearsOnBeginEditing">YES</bool>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<int key="IBUIKeyboardType">4</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="296323621">
@@ -206,6 +208,7 @@
 							<bytes key="NSWhite">MAA</bytes>
 							<reference key="NSCustomColorSpace" ref="800679836"/>
 						</object>
+						<bool key="IBUIClearsOnBeginEditing">YES</bool>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -276,7 +279,7 @@
 						<string key="NSFrame">{{20, 184}, {179, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="152813119"/>
+						<reference key="NSNextKeyView" ref="658277823"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -387,6 +390,7 @@
 						<string key="NSFrame">{{32, 184}, {162, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="152813119"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -522,9 +526,7 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="699387256"/>
 							<reference ref="714263366"/>
-							<reference ref="727657475"/>
 							<reference ref="926192212"/>
 							<reference ref="312835672"/>
 							<reference ref="914088586"/>
@@ -535,6 +537,8 @@
 							<reference ref="225386448"/>
 							<reference ref="645400783"/>
 							<reference ref="658277823"/>
+							<reference ref="699387256"/>
+							<reference ref="727657475"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

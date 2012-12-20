@@ -10,6 +10,14 @@
 		141523871682C12000E2FF0E /* LoginBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523861682C12000E2FF0E /* LoginBusiness.m */; };
 		1415238D1682C3BE00E2FF0E /* LoginInNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1415238C1682C3BE00E2FF0E /* LoginInNetworkHelper.m */; };
 		141523921682CC3C00E2FF0E /* IsLoginInSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523911682CC3C00E2FF0E /* IsLoginInSingle.m */; };
+		141523A016834BBF00E2FF0E /* MyNewCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1415239E16834BBF00E2FF0E /* MyNewCenterViewController.m */; };
+		141523A116834BBF00E2FF0E /* MyNewCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1415239F16834BBF00E2FF0E /* MyNewCenterViewController.xib */; };
+		141523A716835D7300E2FF0E /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523A516835D7300E2FF0E /* PersonalInfoViewController.m */; };
+		141523A816835D7300E2FF0E /* PersonalInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141523A616835D7300E2FF0E /* PersonalInfoViewController.xib */; };
+		141523AC1683683300E2FF0E /* PersonInfotoShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523AA1683683300E2FF0E /* PersonInfotoShowViewController.m */; };
+		141523AD1683683300E2FF0E /* PersonInfotoShowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141523AB1683683300E2FF0E /* PersonInfotoShowViewController.xib */; };
+		141523B2168370C900E2FF0E /* CommonContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523B0168370C900E2FF0E /* CommonContactViewController.m */; };
+		141523B3168370C900E2FF0E /* CommonContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141523B1168370C900E2FF0E /* CommonContactViewController.xib */; };
 		14241AAF1679ADC600D84663 /* depart.png in Resources */ = {isa = PBXBuildFile; fileRef = 14241AAE1679ADC600D84663 /* depart.png */; };
 		14241AB21679ADD700D84663 /* arrive.png in Resources */ = {isa = PBXBuildFile; fileRef = 14241AB11679ADD700D84663 /* arrive.png */; };
 		14241ABA1679BD2200D84663 /* ChooseAirPortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14241AB81679BD2200D84663 /* ChooseAirPortCell.m */; };
@@ -336,6 +344,18 @@
 		1415238C1682C3BE00E2FF0E /* LoginInNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInNetworkHelper.m; sourceTree = "<group>"; };
 		141523901682CC3C00E2FF0E /* IsLoginInSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsLoginInSingle.h; sourceTree = "<group>"; };
 		141523911682CC3C00E2FF0E /* IsLoginInSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsLoginInSingle.m; sourceTree = "<group>"; };
+		1415239D16834BBF00E2FF0E /* MyNewCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNewCenterViewController.h; sourceTree = "<group>"; };
+		1415239E16834BBF00E2FF0E /* MyNewCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNewCenterViewController.m; sourceTree = "<group>"; };
+		1415239F16834BBF00E2FF0E /* MyNewCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyNewCenterViewController.xib; sourceTree = "<group>"; };
+		141523A416835D7300E2FF0E /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoViewController.h; sourceTree = "<group>"; };
+		141523A516835D7300E2FF0E /* PersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoViewController.m; sourceTree = "<group>"; };
+		141523A616835D7300E2FF0E /* PersonalInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalInfoViewController.xib; sourceTree = "<group>"; };
+		141523A91683683300E2FF0E /* PersonInfotoShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInfotoShowViewController.h; sourceTree = "<group>"; };
+		141523AA1683683300E2FF0E /* PersonInfotoShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInfotoShowViewController.m; sourceTree = "<group>"; };
+		141523AB1683683300E2FF0E /* PersonInfotoShowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonInfotoShowViewController.xib; sourceTree = "<group>"; };
+		141523AF168370C900E2FF0E /* CommonContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonContactViewController.h; sourceTree = "<group>"; };
+		141523B0168370C900E2FF0E /* CommonContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonContactViewController.m; sourceTree = "<group>"; };
+		141523B1168370C900E2FF0E /* CommonContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonContactViewController.xib; sourceTree = "<group>"; };
 		14241AAE1679ADC600D84663 /* depart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = depart.png; sourceTree = "<group>"; };
 		14241AB11679ADD700D84663 /* arrive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrive.png; sourceTree = "<group>"; };
 		14241AB71679BD2200D84663 /* ChooseAirPortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAirPortCell.h; sourceTree = "<group>"; };
@@ -812,6 +832,49 @@
 			name = singleClass;
 			sourceTree = "<group>";
 		};
+		1415239B16834B4F00E2FF0E /* newMyCenter */ = {
+			isa = PBXGroup;
+			children = (
+				141523AE1683707700E2FF0E /* CommonContact */,
+				141523A316835D5200E2FF0E /* personalInfo */,
+				141523A216835CAB00E2FF0E /* edit */,
+				1415239D16834BBF00E2FF0E /* MyNewCenterViewController.h */,
+				1415239E16834BBF00E2FF0E /* MyNewCenterViewController.m */,
+				1415239F16834BBF00E2FF0E /* MyNewCenterViewController.xib */,
+			);
+			name = newMyCenter;
+			sourceTree = "<group>";
+		};
+		141523A216835CAB00E2FF0E /* edit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = edit;
+			sourceTree = "<group>";
+		};
+		141523A316835D5200E2FF0E /* personalInfo */ = {
+			isa = PBXGroup;
+			children = (
+				141523A416835D7300E2FF0E /* PersonalInfoViewController.h */,
+				141523A516835D7300E2FF0E /* PersonalInfoViewController.m */,
+				141523A616835D7300E2FF0E /* PersonalInfoViewController.xib */,
+				141523A91683683300E2FF0E /* PersonInfotoShowViewController.h */,
+				141523AA1683683300E2FF0E /* PersonInfotoShowViewController.m */,
+				141523AB1683683300E2FF0E /* PersonInfotoShowViewController.xib */,
+			);
+			name = personalInfo;
+			sourceTree = "<group>";
+		};
+		141523AE1683707700E2FF0E /* CommonContact */ = {
+			isa = PBXGroup;
+			children = (
+				141523AF168370C900E2FF0E /* CommonContactViewController.h */,
+				141523B0168370C900E2FF0E /* CommonContactViewController.m */,
+				141523B1168370C900E2FF0E /* CommonContactViewController.xib */,
+			);
+			name = CommonContact;
+			sourceTree = "<group>";
+		};
 		14279355167034BC00E2E1E3 /* UIHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -950,6 +1013,7 @@
 		14539518166F271900417F61 /* MyCenter */ = {
 			isa = PBXGroup;
 			children = (
+				1415239B16834B4F00E2FF0E /* newMyCenter */,
 				18E37CD5167D76700086B3F8 /* UsedPerson */,
 				18E37CB8167D600A0086B3F8 /* myInformation */,
 				1453951A166F278000417F61 /* MyCenterViewController.h */,
@@ -1908,6 +1972,10 @@
 				18D105391682B33B00F112D2 /* TravelAssistantViewController.xib in Resources */,
 				18D1053C1682B33B00F112D2 /* TravelPhoneViewController.xib in Resources */,
 				18D1053D1682B33B00F112D2 /* TravePhoneCell.xib in Resources */,
+				141523A116834BBF00E2FF0E /* MyNewCenterViewController.xib in Resources */,
+				141523A816835D7300E2FF0E /* PersonalInfoViewController.xib in Resources */,
+				141523AD1683683300E2FF0E /* PersonInfotoShowViewController.xib in Resources */,
+				141523B3168370C900E2FF0E /* CommonContactViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2016,6 +2084,10 @@
 				141523871682C12000E2FF0E /* LoginBusiness.m in Sources */,
 				1415238D1682C3BE00E2FF0E /* LoginInNetworkHelper.m in Sources */,
 				141523921682CC3C00E2FF0E /* IsLoginInSingle.m in Sources */,
+				141523A016834BBF00E2FF0E /* MyNewCenterViewController.m in Sources */,
+				141523A716835D7300E2FF0E /* PersonalInfoViewController.m in Sources */,
+				141523AC1683683300E2FF0E /* PersonInfotoShowViewController.m in Sources */,
+				141523B2168370C900E2FF0E /* CommonContactViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
