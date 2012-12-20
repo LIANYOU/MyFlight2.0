@@ -161,10 +161,20 @@
         s.palntType = [TransitionString transitionPalntType:[dic objectForKey:@"plantype"]];
         s.beginTime = [dic objectForKey:@"dptTime"];
         s.endTime = [dic objectForKey:@"arrTime"];
-        s.pay = [TransitionString transitionPay:[dic objectForKey:@"cabinYPrice"]]; // Y仓价格
+        s.pay = [dic objectForKey:@"lowestPrice"]; // 价格
         s.discount = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"lowestCabinCode"]]; // 仓位折扣
         s.ticketCount = [TransitionString transitionSeatNum:[dic objectForKey:@"lowestSeatNum"]]; // 剩余票数
         s.cabinsArr = [dic objectForKey:@"Cabins"];
+        s.adultBaf = [dic objectForKey:@"adulBaf"];
+       
+        s.childBaf = [dic objectForKey:@"childBaf"];
+        s.constructionFee = [dic objectForKey:@"constructionFee"];
+        s.childConstructionFee = [dic objectForKey:@"childConstructionFee"];
+        s.standerPrice = [dic objectForKey:@"standerPrice"];
+        
+//        s.personPrice = [dic objectForKey:@"lowestPrice"];
+//        s.childPrice = [dic objectForKey:@"lowestChildTicket"];
+        
         s.startPortName = self.startPort;  // 机场名字 如:（北京首都）
         s.endPortName = self.endPort;
         s.startPortThreeCode = self.startThreeCode;
@@ -183,7 +193,7 @@
         [s release];
 
     }
-    
+
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [self.showResultTableView reloadData];
     
@@ -335,8 +345,9 @@
     
     order.flag = self.flag;
     
-    order.goPay = self.payMoney;
+    order.goPay = self.payMoney;    // 此处上一个页面记录的传递的是成人的去程价格
     order.goCabin = self.cabin;
+    order.childGoPay = self.childPayMoney;
     
     [self.navigationController pushViewController:order animated:YES];
     

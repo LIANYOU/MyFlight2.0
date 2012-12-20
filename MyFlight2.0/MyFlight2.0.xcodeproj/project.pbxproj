@@ -156,6 +156,8 @@
 		18D1053B1682B33B00F112D2 /* TravelPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D105331682B33B00F112D2 /* TravelPhoneViewController.m */; };
 		18D1053C1682B33B00F112D2 /* TravelPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */; };
 		18D1053D1682B33B00F112D2 /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D105351682B33B00F112D2 /* TravePhoneCell.xib */; };
+		18D10548168334FC00F112D2 /* ico_def_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D10546168334FC00F112D2 /* ico_def_.png */; };
+		18D10549168334FC00F112D2 /* icon_choice_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D10547168334FC00F112D2 /* icon_choice_.png */; };
 		18D1970E16816C6C00FEE73A /* icon_checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970316816C6C00FEE73A /* icon_checkin.png */; };
 		18D1970F16816C6C00FEE73A /* icon_Distributed.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970416816C6C00FEE73A /* icon_Distributed.png */; };
 		18D1971016816C6C00FEE73A /* icon_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970516816C6C00FEE73A /* icon_location.png */; };
@@ -554,6 +556,8 @@
 		18D105331682B33B00F112D2 /* TravelPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelPhoneViewController.m; sourceTree = "<group>"; };
 		18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelPhoneViewController.xib; sourceTree = "<group>"; };
 		18D105351682B33B00F112D2 /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
+		18D10546168334FC00F112D2 /* ico_def_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_def_.png; sourceTree = "<group>"; };
+		18D10547168334FC00F112D2 /* icon_choice_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_choice_.png; sourceTree = "<group>"; };
 		18D1970316816C6C00FEE73A /* icon_checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checkin.png; sourceTree = "<group>"; };
 		18D1970416816C6C00FEE73A /* icon_Distributed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Distributed.png; sourceTree = "<group>"; };
 		18D1970516816C6C00FEE73A /* icon_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_location.png; sourceTree = "<group>"; };
@@ -814,6 +818,8 @@
 				14805BA2167875A700836353 /* TicketCheck */,
 				18D01F1316783569002C13DB /* Un sel.png */,
 				180D9650167C450000A36243 /* btn_2words_.png */,
+				18D10546168334FC00F112D2 /* ico_def_.png */,
+				18D10547168334FC00F112D2 /* icon_choice_.png */,
 				18D105171682A8DE00F112D2 /* bg_blue_.png */,
 				18D105181682A8DE00F112D2 /* bg_green_.png */,
 				180D9651167C450000A36243 /* icon_history_.png */,
@@ -1869,6 +1875,8 @@
 				18D105391682B33B00F112D2 /* TravelAssistantViewController.xib in Resources */,
 				18D1053C1682B33B00F112D2 /* TravelPhoneViewController.xib in Resources */,
 				18D1053D1682B33B00F112D2 /* TravePhoneCell.xib in Resources */,
+				18D10548168334FC00F112D2 /* ico_def_.png in Resources */,
+				18D10549168334FC00F112D2 /* icon_choice_.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,10 @@
 #import "ChoosePersonCell.h"
 #import "AddPersonController.h"
 @interface ChoosePersonController ()
-
+{
+    int childNumber;  // 儿童个数
+    int personNumber; // 成人个数
+}
 @end
 
 @implementation ChoosePersonController
@@ -26,6 +29,8 @@
 
 - (void)viewDidLoad
 {
+    self.navigationItem.title = @"选择乘机人";
+    
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
     
@@ -58,6 +63,7 @@
     [backBtn2 release];
 
 
+    self.dataArr = [NSMutableArray arrayWithObjects:@"儿童",@"成人",@"儿童",@"成人",@"成人", nil];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -81,7 +87,7 @@
     
     UIView * myView =[[[UIView alloc] init] autorelease];
     
-    self.addBtn.frame = CGRectMake(0, 10, 300, 36);
+    self.addBtn.frame = CGRectMake(10, 10, 300, 36);
     [myView addSubview:self.addBtn];
     
     return myView;
@@ -115,7 +121,6 @@
         cell = self.choosePersonCell;
         
     }
-    [cell.btn addTarget:self action:@selector(selectMore:) forControlEvents:UIControlEventTouchUpInside];
     //判断是否已被选择
     cell.btn.tag=indexPath.row;
     selectedSign=NO;
@@ -126,14 +131,19 @@
             int a=[thisRow intValue];
             if (indexPath.row==a) {
                 selectedSign=YES;
-                cell.btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"sel.png"]];
+                cell.btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_choice_.png"]];
                 break;
             }
         }
     }
     if (selectedSign==NO) {
-        cell.btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"Un sel.png"]];
+        cell.btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"ico_def_.png"]];
     }
+    
+    cell.type.text = [self.dataArr objectAtIndex:indexPath.row];
+    
+    [cell.btn addTarget:self action:@selector(selectMore:) forControlEvents:UIControlEventTouchUpInside];
+
     
     return cell;
     
@@ -156,14 +166,14 @@
             if (btn.tag==a) {
                 [self.selectArr removeObject:thisRow];
             
-                btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"Un sel"]];
+                btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"ico_def_.png"]];
                 return;
             }
         }
     }
     
     [self.selectArr addObject: [NSString stringWithFormat:@"%d",btn.tag]];
-    btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"sel"]];
+    btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_choice_.png"]];
 }
 
 

@@ -41,7 +41,7 @@
 					<object class="IBUIButton" id="49314717">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 33}</string>
+						<string key="NSFrameSize">{320, 27}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="259311237"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -79,7 +79,7 @@
 					<object class="IBUITableView" id="897803358">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 77}, {320, 383}}</string>
+						<string key="NSFrame">{{0, 74}, {320, 386}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="568944090"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -161,6 +161,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{204, 420}, {89, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -179,7 +180,7 @@
 					<object class="IBUIButton" id="259311237">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{272, 5}, {28, 23}}</string>
+						<string key="NSFrame">{{278, 0}, {28, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="986962125"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -187,7 +188,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">X</string>
 						<reference key="IBUIHighlightedTitleColor" ref="588420578"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -201,7 +201,7 @@
 					<object class="IBUIImageView" id="986962125">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 31}, {320, 47}}</string>
+						<string key="NSFrame">{{0, 27}, {320, 47}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="922793090"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -217,7 +217,7 @@
 					<object class="IBUIButton" id="374938800">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{64, 40}, {188, 30}}</string>
+						<string key="NSFrame">{{66, 36}, {188, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="73547758"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -242,7 +242,7 @@
 					<object class="IBUIButton" id="922793090">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 40}, {51, 30}}</string>
+						<string key="NSFrame">{{5, 36}, {51, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="374938800"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -267,7 +267,7 @@
 					<object class="IBUIButton" id="73547758">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{260, 40}, {53, 30}}</string>
+						<string key="NSFrame">{{260, 36}, {53, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="897803358"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -472,13 +472,13 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="49314717"/>
 							<reference ref="897803358"/>
-							<reference ref="986962125"/>
-							<reference ref="922793090"/>
-							<reference ref="73547758"/>
-							<reference ref="374938800"/>
 							<reference ref="568944090"/>
 							<reference ref="78475441"/>
 							<reference ref="652677148"/>
+							<reference ref="986962125"/>
+							<reference ref="922793090"/>
+							<reference ref="374938800"/>
+							<reference ref="73547758"/>
 							<reference ref="259311237"/>
 						</array>
 						<reference key="parent" ref="0"/>

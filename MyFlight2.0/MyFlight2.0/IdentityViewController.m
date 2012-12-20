@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     self.arr = [NSArray arrayWithObjects:@"成人",@"儿童", nil];
-    self.identityCardArr = [NSArray arrayWithObjects:@"身份证",@"护照",@"港澳通行证",@"其他", nil];
+    self.identityCardArr = [NSArray arrayWithObjects:@"身份证",@"护照",@"其他", nil];
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -58,7 +58,7 @@
     }
     else
     {
-         return 4;
+         return 3;
     }
    
 }

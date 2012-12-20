@@ -13,12 +13,20 @@
 #import "WirterOrderTwoLineCell.h"
 #import "WriterOrderCommonCell.h"
 #import "SearchFlightData.h"
-@interface WriteOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
+#import <AddressBookUI/AddressBookUI.h>
+
+
+@interface WriteOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ABPersonViewControllerDelegate,ABNewPersonViewControllerDelegate,ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate>
 {
     IBOutlet UILabel *orderMoney;
     NSString * stringAfterJoin ;  // 拼接好的string
     
     NSString * firstCellText;
+    
+    NSMutableArray * nameAndPhone;      //联系人名字和电话号码
+    UIButton * sendMessageBtn;
+    BOOL haveThisMan;
 }
 @property (retain, nonatomic) IBOutlet UIView *bigHeadView;
 @property (retain, nonatomic) IBOutlet UIView *headView;
@@ -43,13 +51,30 @@
 
 ///  cell属性的定义
 @property (retain, nonatomic) IBOutlet UILabel *upPayMoney;
+@property (retain, nonatomic) IBOutlet UILabel *bigUpPayMoney;
+
+
+//*****headView  property
+@property (retain, nonatomic) IBOutlet UILabel *PerStanderPrice;
+@property (retain, nonatomic) IBOutlet UILabel *PersonConstructionFee;
+@property (retain, nonatomic) IBOutlet UILabel *personAdultBaf;
+@property (retain, nonatomic) IBOutlet UILabel *personMuber;
+@property (retain, nonatomic) IBOutlet UILabel *Personinsure;
+
+@property (retain, nonatomic) IBOutlet UILabel *childStanderPrice;
+@property (retain, nonatomic) IBOutlet UILabel *childConstructionFee;
+@property (retain, nonatomic) IBOutlet UILabel *childBaf;
+@property (retain, nonatomic) IBOutlet UILabel *childMunber;
+@property (retain, nonatomic) IBOutlet UILabel *childInsure;
+
 
 
 @property (retain, nonatomic) NSString * goPay;
 @property (retain, nonatomic) NSString * goCabin;
 @property (retain, nonatomic) NSString * backPay;
 @property (retain, nonatomic) NSString * backCabin;
-
+@property (retain, nonatomic) NSString * childGopay; // 儿童去程价格
+@property (retain, nonatomic) NSString * childBackPay; 
 
 @property (nonatomic,retain) UIView * tempView;
 @property (nonatomic,assign) float headViewHegiht;

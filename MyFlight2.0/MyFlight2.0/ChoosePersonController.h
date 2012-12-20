@@ -15,6 +15,8 @@
     void (^blocks) (NSMutableDictionary * name, NSMutableDictionary * identity ,NSMutableDictionary * type, NSMutableArray * arr);
     
 }
+@property (nonatomic,retain) NSMutableArray * dataArr;
+
 @property (retain, nonatomic) IBOutlet UITableView *showTableView;
 @property (retain, nonatomic) IBOutlet ChoosePersonCell *choosePersonCell;
 

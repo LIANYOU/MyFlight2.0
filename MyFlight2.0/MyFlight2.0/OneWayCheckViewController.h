@@ -26,6 +26,23 @@
     IBOutlet UILabel *oneStartAirPort;
     IBOutlet UILabel *oneSatrtDate;
     IBOutlet UILabel *oneEndAirPort;
+   
+    // one
+    IBOutlet UIView *beginView;
+    IBOutlet UIView *endView;
+    IBOutlet UIImageView *beginImage;
+    IBOutlet UIImageView *endImage;
+    IBOutlet UILabel *beginTitle;
+    IBOutlet UILabel *endTitle;
+    
+    // two
+    IBOutlet UIView *twoBeginView;
+    IBOutlet UIView *twoEndView;
+    IBOutlet UIImageView *twoBeginImageView;
+    IBOutlet UIImageView *twoEndImageView;
+    IBOutlet UILabel *twoBeginTitle;
+    IBOutlet UILabel *twoEndTitle;
+    
     
     SVSegmentedControl * mySegmentController;
     

@@ -35,5 +35,14 @@
 @property (retain, nonatomic)  NSMutableArray * cabinNumberArr;   // 存放某一航班的所有cabinNumber舱位的信息
 @property (retain, nonatomic)  NSString * cabinNumber;   // (格式 “经济舱 Z” );
 
+@property (retain, nonatomic)  NSString * adultBaf;      // 成人燃油费
+@property (retain, nonatomic)  NSString * childBaf;      // 儿童燃油费
+@property (retain, nonatomic)  NSString * constructionFee;// 成人机建费
+@property (retain, nonatomic)  NSString * childConstructionFee; // 儿童机建费
+@property (retain, nonatomic)  NSString * personPrice;      // 成人票面价（最低价）
+@property (retain, nonatomic)  NSString * childPrice;      // 儿童票面价（儿童最低价）
+@property (retain, nonatomic)  NSString * standerPrice;      // 票面价
+
+
 +(SearchFlightData *)defaultSearchFlightData;
 @end

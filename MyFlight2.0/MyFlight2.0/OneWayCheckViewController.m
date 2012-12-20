@@ -95,10 +95,11 @@ int searchFlag = 1; // 单程和往返的标记位
     NSArray * array = [[NSArray alloc]initWithObjects:@"单程",@"往返", nil];
     mySegmentController  = [[SVSegmentedControl alloc]initWithSectionTitles:array];
     mySegmentController.textColor = myFirstColor;
-    mySegmentController.thumb.backgroundImage = [UIImage imageNamed:@"block3_change.png"];
+    //mySegmentController.thumb.backgroundImage = [UIImage imageNamed:@"block3_change.png"];
     mySegmentController.backgroundImage = [UIImage imageNamed:@"tab_bg.png"];
     mySegmentController.height = 40;
     mySegmentController.LKWidth = 150;
+    mySegmentController.thumb.tintColor = [UIColor whiteColor];
     mySegmentController.center = CGPointMake(160, 50);
     
     mySegmentController.thumb.textColor = mySceColor;
@@ -144,6 +145,30 @@ int searchFlag = 1; // 单程和往返的标记位
     oneEndAirPort = nil;
     [oneSatrtDate release];
     oneSatrtDate = nil;
+    [beginView release];
+    beginView = nil;
+    [endView release];
+    endView = nil;
+    [beginImage release];
+    beginImage = nil;
+    [endImage release];
+    endImage = nil;
+    [beginTitle release];
+    beginTitle = nil;
+    [endTitle release];
+    endTitle = nil;
+    [twoBeginView release];
+    twoBeginView = nil;
+    [twoEndView release];
+    twoEndView = nil;
+    [twoBeginImageView release];
+    twoBeginImageView = nil;
+    [twoEndImageView release];
+    twoEndImageView = nil;
+    [twoBeginTitle release];
+    twoBeginTitle = nil;
+    [twoEndTitle release];
+    twoEndTitle = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -237,20 +262,37 @@ int searchFlag = 1; // 单程和往返的标记位
          if (flag == 1) {
              CGAffineTransform moveTo = CGAffineTransformMakeTranslation(190, 0);
              CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-190, 0);
-             startAirport.layer.affineTransform = moveTo;
-             endAirport.layer.affineTransform = moveFrom;
+             twoBeginView.layer.affineTransform = moveTo;
+             twoEndView.layer.affineTransform = moveFrom;
              flag = 2;
          }
          else{
              CGAffineTransform moveTo = CGAffineTransformMakeTranslation(0, 0);
              CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(0, 0);
-             endAirport.layer.affineTransform = moveTo;
-             startAirport.layer.affineTransform = moveFrom;
+             twoEndView.layer.affineTransform = moveTo;
+             twoBeginView.layer.affineTransform = moveFrom;
              flag = 1;
          }
          
      }  completion:^(BOOL finished)
      {
+         
+         if (flag == 2) {
+             twoBeginImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
+             twoEndImageView.image = [UIImage imageNamed:@"icon_depart.png"];
+             twoBeginTitle.text = @"到达机场";
+             twoEndTitle.text = @"出发机场";
+             
+         }
+         else{
+             twoBeginImageView.image = [UIImage imageNamed:@"icon_depart.png"];
+             twoEndImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
+             twoBeginTitle.text = @"出发机场";
+             twoEndTitle.text = @"到达机场";
+             
+         }
+
+         
          changeString = startAirport;
          startAirport = endAirport;
          endAirport = changeString;
@@ -270,15 +312,15 @@ int searchFlag = 1; // 单程和往返的标记位
          if (oneFlag == 1) {
              CGAffineTransform moveTo = CGAffineTransformMakeTranslation(190, 0);
              CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-190, 0);
-             oneStartAirPort.layer.affineTransform = moveTo;
-             oneEndAirPort.layer.affineTransform = moveFrom;
+             beginView.layer.affineTransform = moveTo;
+             endView.layer.affineTransform = moveFrom;
              oneFlag = 2;
          }
          else{
              CGAffineTransform moveTo = CGAffineTransformMakeTranslation(0, 0);
              CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(0, 0);
-             oneEndAirPort.layer.affineTransform = moveTo;
-             oneStartAirPort.layer.affineTransform = moveFrom;
+             endView.layer.affineTransform = moveTo;
+             beginView.layer.affineTransform = moveFrom;
              oneFlag = 1;
          }
          
@@ -288,6 +330,21 @@ int searchFlag = 1; // 单程和往返的标记位
          oneStartAirPort = oneEndAirPort;
          oneEndAirPort = changeString;
          changeString = nil;
+         
+         if (oneFlag == 2) {
+             beginImage.image = [UIImage imageNamed:@"icon_arrive.png"];
+             endImage.image = [UIImage imageNamed:@"icon_depart.png"];
+             beginTitle.text = @"到达机场";
+             endTitle.text = @"出发机场";
+
+         }
+         else{
+             beginImage.image = [UIImage imageNamed:@"icon_depart.png"];
+             endImage.image = [UIImage imageNamed:@"icon_arrive.png"];
+             beginTitle.text = @"出发机场";
+             endTitle.text = @"到达机场";
+
+         }
          
          oneCode = oneStartCode;
          oneStartCode = oneEndCode;
@@ -330,6 +387,18 @@ int searchFlag = 1; // 单程和往返的标记位
     [oneStartAirPort release];
     [oneEndAirPort release];
     [oneSatrtDate release];
+    [beginView release];
+    [endView release];
+    [beginImage release];
+    [endImage release];
+    [beginTitle release];
+    [endTitle release];
+    [twoBeginView release];
+    [twoEndView release];
+    [twoBeginImageView release];
+    [twoEndImageView release];
+    [twoBeginTitle release];
+    [twoEndTitle release];
     [super dealloc];
 }
 
@@ -337,27 +406,32 @@ int searchFlag = 1; // 单程和往返的标记位
 -(void)mySegmentValueChange:(SVSegmentedControl *)arg{
     if (arg.selectedIndex == 0) {
         searchFlag = 1;
-        
-        [UIView beginAnimations:nil context:NULL];
-        CGAffineTransform moveTo = CGAffineTransformMakeTranslation(0, 0);
-        CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(320, 0);
-        self.selectOne.layer.affineTransform = moveTo;
-        self.selectTwoWay.layer.affineTransform = moveFrom;
-        [UIView setAnimationDuration:1.5];
-        [UIView commitAnimations];
+       
+        [UIView animateWithDuration:0.2 animations:^(void)  //不用回调
+         {
+             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(0, 0);
+             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(320, 0);
+             self.selectOne.layer.affineTransform = moveTo;
+             self.selectTwoWay.layer.affineTransform = moveFrom;
+         }  completion:^(BOOL finished)
+         {
+             
+         }];
 
-     
     }else if (arg.selectedIndex == 1){
 
         searchFlag = 2;
-       
-        [UIView beginAnimations:nil context:NULL];
-        CGAffineTransform moveTo1 = CGAffineTransformMakeTranslation(320, 0);
-        CGAffineTransform moveFrom1 = CGAffineTransformMakeTranslation(-320, 0);
-        self.selectTwoWay.layer.affineTransform = moveFrom1;
-        self.selectOne.layer.affineTransform = moveTo1;
-        [UIView setAnimationDuration:1.5];
-        [UIView commitAnimations];
+        
+        [UIView animateWithDuration:0.2 animations:^(void)  //不用回调
+         {
+             CGAffineTransform moveTo1 = CGAffineTransformMakeTranslation(320, 0);
+             CGAffineTransform moveFrom1 = CGAffineTransformMakeTranslation(-320, 0);
+             self.selectTwoWay.layer.affineTransform = moveFrom1;
+             self.selectOne.layer.affineTransform = moveTo1;
+         }  completion:^(BOOL finished)
+         {
+             
+         }];
     }
 }
 

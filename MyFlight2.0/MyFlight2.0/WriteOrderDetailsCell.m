@@ -40,6 +40,8 @@
     [_person release];
     [_phone release];
     [_addPerson release];
+    [_nameField release];
+    [_phoneField release];
     [super dealloc];
 }
 @end

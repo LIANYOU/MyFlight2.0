@@ -73,6 +73,7 @@
 
 @property (retain, nonatomic) NSString * payMoney;  // 保存去程时候的金额和舱位
 @property (retain, nonatomic) NSString * cabin;
+@property (retain, nonatomic) NSString * childPayMoney; // 保存去程的时候儿童的价格
 
 - (IBAction)enterSales:(id)sender;        // 进入促销活动
 - (IBAction)enterTheDayBefore:(id)sender; // 进入前一天的查询结果
