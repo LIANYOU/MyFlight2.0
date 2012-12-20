@@ -26,4 +26,15 @@
     [view setNeedsDisplay];
 }
 
++ (void) showAlertViewWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delgate cancelButtonTitle:(NSString *)cancel otherButtonTitles:(NSString *)ok{
+    
+    UIAlertView *view = [[UIAlertView alloc] initWithTitle:title message:message delegate:delgate cancelButtonTitle:cancel otherButtonTitles:ok, nil];
+    
+    
+    [view show];
+    
+    [view release];
+    
+}
+
 @end

@@ -12,8 +12,7 @@
 @interface UserAccount : NSObject
 
 
-@property(nonatomic,assign)BOOL isLogin;
-@property(nonatomic,retain)NSString *token; //令牌 
+
 @property(nonatomic,retain)NSString *memberId; //用户ID
 @property(nonatomic,retain)NSString *code; //会员编号
 @property(nonatomic,retain)NSString *name; //联系人

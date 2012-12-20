@@ -11,9 +11,22 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-#endif
+
+#define BASE_Domain_Name @"http://223.202.36.179:9580"
+
+#define GET_RIGHT_URL_WITH_Index(url) [NSString stringWithFormat:@"%@%@",BASE_Domain_Name,url]
+
+#define SERVIVE_Delegate ServiceDelegate
+
+
 #ifdef DEBUG
 #define CCLog(format,...) NSLog(format,##__VA_ARGS__)
 #else
 #define CCLog(format,...)
+#endif
+
+
+
+
+
 #endif

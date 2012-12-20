@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ServiceDelegate.h"
 
 //登陆界面  
-@interface LogViewController : UIViewController
+@interface LogViewController : UIViewController<ServiceDelegate>
 {
     IBOutlet UITextField *logPassword;   // 登陆密码
     IBOutlet UITextField *logNumber;     // 登陆账号
@@ -18,7 +18,13 @@
     IBOutlet UIScrollView *ScrollerView;
     
 }
+
+
+
 - (IBAction)beginLoging:(id)sender;      // 登陆
+
+
+
 - (IBAction)registerNewNumber:(id)sender;// 注册
 
 - (IBAction)backKeyBoard:(id)sender; //回收键盘 

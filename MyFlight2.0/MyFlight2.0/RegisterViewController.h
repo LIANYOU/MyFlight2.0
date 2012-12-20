@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ServiceDelegate.h"
 
 //注册界面
 @interface RegisterViewController : UIViewController<UITextFieldDelegate>

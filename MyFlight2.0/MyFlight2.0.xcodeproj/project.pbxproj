@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141523871682C12000E2FF0E /* LoginBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523861682C12000E2FF0E /* LoginBusiness.m */; };
+		1415238D1682C3BE00E2FF0E /* LoginInNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1415238C1682C3BE00E2FF0E /* LoginInNetworkHelper.m */; };
+		141523921682CC3C00E2FF0E /* IsLoginInSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523911682CC3C00E2FF0E /* IsLoginInSingle.m */; };
 		14241AAF1679ADC600D84663 /* depart.png in Resources */ = {isa = PBXBuildFile; fileRef = 14241AAE1679ADC600D84663 /* depart.png */; };
 		14241AB21679ADD700D84663 /* arrive.png in Resources */ = {isa = PBXBuildFile; fileRef = 14241AB11679ADD700D84663 /* arrive.png */; };
 		14241ABA1679BD2200D84663 /* ChooseAirPortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14241AB81679BD2200D84663 /* ChooseAirPortCell.m */; };
@@ -327,6 +330,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		141523851682C12000E2FF0E /* LoginBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBusiness.h; sourceTree = "<group>"; };
+		141523861682C12000E2FF0E /* LoginBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBusiness.m; sourceTree = "<group>"; };
+		1415238B1682C3BE00E2FF0E /* LoginInNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInNetworkHelper.h; sourceTree = "<group>"; };
+		1415238C1682C3BE00E2FF0E /* LoginInNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInNetworkHelper.m; sourceTree = "<group>"; };
+		141523901682CC3C00E2FF0E /* IsLoginInSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsLoginInSingle.h; sourceTree = "<group>"; };
+		141523911682CC3C00E2FF0E /* IsLoginInSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsLoginInSingle.m; sourceTree = "<group>"; };
 		14241AAE1679ADC600D84663 /* depart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = depart.png; sourceTree = "<group>"; };
 		14241AB11679ADD700D84663 /* arrive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrive.png; sourceTree = "<group>"; };
 		14241AB71679BD2200D84663 /* ChooseAirPortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAirPortCell.h; sourceTree = "<group>"; };
@@ -775,6 +784,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		141523821682C06800E2FF0E /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				141523841682C09F00E2FF0E /* userBusiness */,
+			);
+			name = Business;
+			sourceTree = "<group>";
+		};
+		141523841682C09F00E2FF0E /* userBusiness */ = {
+			isa = PBXGroup;
+			children = (
+				1415238B1682C3BE00E2FF0E /* LoginInNetworkHelper.h */,
+				1415238C1682C3BE00E2FF0E /* LoginInNetworkHelper.m */,
+				141523851682C12000E2FF0E /* LoginBusiness.h */,
+				141523861682C12000E2FF0E /* LoginBusiness.m */,
+			);
+			name = userBusiness;
+			sourceTree = "<group>";
+		};
+		1415238E1682CBD800E2FF0E /* singleClass */ = {
+			isa = PBXGroup;
+			children = (
+				141523901682CC3C00E2FF0E /* IsLoginInSingle.h */,
+				141523911682CC3C00E2FF0E /* IsLoginInSingle.m */,
+			);
+			name = singleClass;
+			sourceTree = "<group>";
+		};
 		14279355167034BC00E2E1E3 /* UIHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,6 +880,7 @@
 		145394DA166F220D00417F61 = {
 			isa = PBXGroup;
 			children = (
+				141523821682C06800E2FF0E /* Business */,
 				145394EF166F220D00417F61 /* MyFlight2.0 */,
 				145394E8166F220D00417F61 /* Frameworks */,
 				145394E6166F220D00417F61 /* Products */,
@@ -992,10 +1030,10 @@
 		14698717167ED85800E9B30D /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				1415238E1682CBD800E2FF0E /* singleClass */,
 				1469872B167F017000E9B30D /* SpecialAppointment */,
 				14698724167EFDB400E9B30D /* coupons */,
 				14698720167EFA8B00E9B30D /* CommonContactInfo */,
-				14698719167EF31000E9B30D /* UserAccount.h */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1003,6 +1041,8 @@
 		14698720167EFA8B00E9B30D /* CommonContactInfo */ = {
 			isa = PBXGroup;
 			children = (
+				14698719167EF31000E9B30D /* UserAccount.h */,
+				1469871A167EF31000E9B30D /* UserAccount.m */,
 				14698721167EFB1E00E9B30D /* CommonContact.h */,
 				14698722167EFB1E00E9B30D /* CommonContact.m */,
 			);
@@ -1234,7 +1274,6 @@
 				18DD1D381675BF7A006B59AB /* TransitionString.m */,
 				18DD1D3A1675D01D006B59AB /* SearchFlightData.h */,
 				18DD1D3B1675D01D006B59AB /* SearchFlightData.m */,
-				1469871A167EF31000E9B30D /* UserAccount.m */,
 				18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */,
 			);
 			name = Model;
@@ -1974,6 +2013,9 @@
 				18D105381682B33B00F112D2 /* TravelAssistantViewController.m in Sources */,
 				18D1053A1682B33B00F112D2 /* TravelPhoneCell.m in Sources */,
 				18D1053B1682B33B00F112D2 /* TravelPhoneViewController.m in Sources */,
+				141523871682C12000E2FF0E /* LoginBusiness.m in Sources */,
+				1415238D1682C3BE00E2FF0E /* LoginInNetworkHelper.m in Sources */,
+				141523921682CC3C00E2FF0E /* IsLoginInSingle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

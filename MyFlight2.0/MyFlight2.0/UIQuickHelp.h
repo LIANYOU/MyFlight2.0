@@ -21,4 +21,9 @@
                withWidth:(CGFloat)width
                withColor:(UIColor*)color;
 
++(void) showAlertViewWithTitle:(NSString *) title message:(NSString *) message delegate:(id) delgate  cancelButtonTitle:(NSString *) cancel otherButtonTitles:(NSString *) ok;
+
+
+
+
 @end
