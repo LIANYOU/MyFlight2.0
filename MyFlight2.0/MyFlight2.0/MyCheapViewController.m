@@ -1,18 +1,18 @@
 //
-//  CommonContactViewController.m
+//  MyCheapViewController.m
 //  MyFlight2.0
 //
 //  Created by Davidsph on 12/21/12.
 //  Copyright (c) 2012 LIAN YOU. All rights reserved.
 //
 
-#import "CommonContactViewController.h"
-#import "CommonContactCell.h"
-@interface CommonContactViewController ()
+#import "MyCheapViewController.h"
+#import "MyCheapCell.h"
+@interface MyCheapViewController ()
 
 @end
 
-@implementation CommonContactViewController
+@implementation MyCheapViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,8 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"常用乘机人";
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -36,7 +34,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - Table view data source
 
@@ -58,20 +55,19 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    CommonContactCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    
-    if (cell == nil) {
+    MyCheapCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell==nil) {
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCheapCell.h" owner:self options:nil];
         
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"CommonContactCell" owner:self options:nil];
-        
-        cell  = [array objectAtIndex:0];
-        
+        cell = [array objectAtIndex:0];
     }
     
-    cell.contactName.text = @"ceshid";
-    cell.personType  =[NSString stringWithFormat:@"(%@)",@"成人"];
-    cell.personId.text = @"131342534654646";
+
+    cell.youHuiQuanName.text = @"新华旅行";
+    cell.moneyLabel.text= @"￥100";
+    cell.timeLabel.text =@"有效期至2012-12-13至2013-11-23";
+    
+    
     
     
     return cell;
@@ -129,8 +125,6 @@
      [detailViewController release];
      */
 }
-
-
 
 
 

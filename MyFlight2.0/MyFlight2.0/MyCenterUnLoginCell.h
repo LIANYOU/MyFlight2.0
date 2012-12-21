@@ -1,5 +1,5 @@
 //
-//  CommonContactViewController.h
+//  MyCenterUnLoginCell.h
 //  MyFlight2.0
 //
 //  Created by Davidsph on 12/21/12.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CommonContactViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
-
-
+@interface MyCenterUnLoginCell : UITableViewCell
 
 @end

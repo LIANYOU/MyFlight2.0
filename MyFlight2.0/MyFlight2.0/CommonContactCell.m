@@ -1,15 +1,14 @@
-
 //
-//  MyCenterViewCommonCell.m
+//  CommonContactCell.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 12-12-15.
-//  Copyright (c) 2012年 LIAN YOU. All rights reserved.
+//  Created by Davidsph on 12/21/12.
+//  Copyright (c) 2012 LIAN YOU. All rights reserved.
 //
 
-#import "MyCenterViewCommonCell.h"
+#import "CommonContactCell.h"
 
-@implementation MyCenterViewCommonCell
+@implementation CommonContactCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,10 +26,13 @@
     // Configure the view for the selected state
 }
 
+
+
+
 - (void)dealloc {
-    [_firstLabel release];
-    [_secondLabel release];
-    [_imaeView release];
+    [_contactName release];
+    [_personType release];
+    [_personId release];
     [super dealloc];
 }
 @end
