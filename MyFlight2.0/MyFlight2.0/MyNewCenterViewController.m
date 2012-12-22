@@ -15,6 +15,7 @@
 
 #import "MyOrderListViewController.h"
 #import "MyCheapViewController.h"
+#import "HistoryCheckDataBase.h"
 @interface MyNewCenterViewController ()
 
 @end
@@ -85,6 +86,10 @@
 {
     [super viewDidLoad];
     
+    
+//    [HistoryCheckDataBase findAllHistoryCheck];
+//    [HistoryCheckDataBase deleteAllHistory];
+   
 //    [[NSUserDefaults standardUserDefaults] setObject:@"去程" forKey:@"qu"];
 //    [[NSUserDefaults standardUserDefaults] synchronize];
 //    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"qu"];

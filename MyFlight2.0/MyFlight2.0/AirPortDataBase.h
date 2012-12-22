@@ -11,7 +11,12 @@
 @interface AirPortDataBase : NSObject
 
 
+//初始化数据库 
 +(void) initDataBase;
+
+
+//查找所有的热门机场 
 + (NSMutableDictionary *) findAllHotAirPorts;
 +(NSMutableDictionary *) findAllCitiesAndAirPorts;
+
 @end
