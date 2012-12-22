@@ -53,6 +53,8 @@
 @property(nonatomic,retain) NSString *firstCellText;
 @property(nonatomic,retain) NSMutableArray *indexArr;
 
+@property(nonatomic,retain) NSString * goBackDate;
+
 @property (retain, nonatomic) IBOutlet UIView *headView;
 
 @property (retain, nonatomic) IBOutlet UILabel *flightCode;

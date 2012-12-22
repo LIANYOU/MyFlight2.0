@@ -16,4 +16,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *discount;
 @property (retain, nonatomic) IBOutlet UILabel *textCell;
 @property (retain, nonatomic) IBOutlet UIView *view;
+@property (retain, nonatomic) IBOutlet UIImageView *wImage;
+@property (retain, nonatomic) IBOutlet UIImageView *dImage;
 @end

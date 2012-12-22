@@ -47,7 +47,7 @@
 @property (retain, nonatomic) IBOutlet UIView *backView;
 
 
-
+@property (retain, nonatomic) NSString * goBackDate;
 
 @property (retain, nonatomic) SearchAirPort * airPort;
 @property (retain, nonatomic) NSArray * dateArr;  // 接收返回的数据

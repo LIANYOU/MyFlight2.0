@@ -28,6 +28,8 @@
 
 - (void)dealloc {
     [_view release];
+    [_wImage release];
+    [_dImage release];
     [super dealloc];
 }
 @end
