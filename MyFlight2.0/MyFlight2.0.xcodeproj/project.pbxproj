@@ -159,6 +159,7 @@
 		1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE871683629B00349FE1 /* BaggageViewController.xib */; };
 		18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18478C64167332AD00D3AFCD /* SearchFlightCondition.m */; };
 		1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852CC7D16837F5600431A9B /* TravePhoneCell.xib */; };
+		18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C9E6D81685C96100A1453C /* circle_green_change.png */; };
 		18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */; };
 		18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */; };
 		18CC772E167711FF001106FB /* AddPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC772C167711FF001106FB /* AddPersonController.m */; };
@@ -599,6 +600,7 @@
 		18478C63167332AD00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
 		18478C64167332AD00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
 		1852CC7D16837F5600431A9B /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
+		18C9E6D81685C96100A1453C /* circle_green_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_green_change.png; sourceTree = "<group>"; };
 		18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
 		18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistroyCheckViewController.m; sourceTree = "<group>"; };
 		18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistroyCheckViewController.xib; sourceTree = "<group>"; };
@@ -1770,6 +1772,7 @@
 		18E4BC40167A072D009858A0 /* 航班动态 */ = {
 			isa = PBXGroup;
 			children = (
+				18C9E6D81685C96100A1453C /* circle_green_change.png */,
 				18E4BC41167A072D009858A0 /* add_Attention.png */,
 				18E4BC42167A072D009858A0 /* att_btn.png */,
 				18E4BC43167A072D009858A0 /* att_btn_click.png */,
@@ -2170,6 +2173,7 @@
 				18D10548168334FC00F112D2 /* ico_def_.png in Resources */,
 				18D10549168334FC00F112D2 /* icon_choice_.png in Resources */,
 				1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */,
+				18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

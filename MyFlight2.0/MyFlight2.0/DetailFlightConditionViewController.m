@@ -37,8 +37,13 @@
     myView.layer.cornerRadius = 6;
     myView.layer.masksToBounds = YES;
     
-    myFlightConditionDetailData = [[FlightConditionDetailData alloc]initWithDictionary:self.dic];
     
+    myFlightConditionDetailData = [[FlightConditionDetailData alloc]initWithDictionary:self.dic];
+  
+    [flightLine setImage:[UIImage imageNamed:@"circle_green_change.png"]];
+    flightLine.frame = CGRectMake(71, 111, 138, 33);
+    flightLine.clipsToBounds = YES;
+    flightLine.contentMode = UIViewContentModeLeft;
     
     //判断提前还是晚点
     if ([myFlightConditionDetailData.realDeptTime isEqualToString:@"-"]) {
@@ -93,7 +98,29 @@
     self.arriveFirstTime.text = myFlightConditionDetailData.expectedArrTime;
     self.arriveSecTimeName.text = @"实际：";
     self.arriveSecTime.text = myFlightConditionDetailData.realArrTime;
-//    self.arriveResult.text = @"";    
+//    self.arriveResult.text = @"";
+    if ([myFlightConditionDetailData.flightState isEqualToString:@"起飞"]) {
+        double totalTime = [self mxGetStringTimeDiff:myFlightConditionDetailData.expectedDeptTime timeE:myFlightConditionDetailData.expectedArrTime];
+        
+        NSDate *  senddate=[NSDate date];
+        NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+        
+        [dateformatter setDateFormat:@"HH:mm"];
+        NSString *  locationString=[dateformatter stringFromDate:senddate];
+        NSLog(@"locationString : %@",locationString);
+        
+    
+
+        double curTime = [self mxGetStringTimeDiff:myFlightConditionDetailData.realDeptTime timeE:locationString];
+        [dateformatter release];
+
+        NSLog(@"起飞：%f",curTime);
+        NSLog(@"total:%f",totalTime);
+        NSLog(@"时间百分比：%f",curTime/totalTime);
+        CGRect frame = flightLine.frame;
+        frame.size.width=frame.size.width*(curTime/totalTime);
+        flightLine.frame=frame;
+    }
 }
 
 -(void)btnMessageClick:(id)sender{

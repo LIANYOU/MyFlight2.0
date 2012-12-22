@@ -46,7 +46,7 @@
     IBOutlet UIButton * littlePlaneBtn; //小飞机图标，不知道干嘛的
     
     IBOutlet UIButton * attentionThisPlaneBtn; //关注该航班
-   
+    IBOutlet UIImageView * flightLine;  //绿色的弧线，显示飞机飞行进度条
 }
 
 @property(nonatomic,retain) IBOutlet UIButton * btnMessage;
