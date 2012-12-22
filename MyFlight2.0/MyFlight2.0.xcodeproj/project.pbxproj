@@ -61,6 +61,9 @@
 		145A2D7516858609000DAAA1 /* MyCheapFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2D7316858609000DAAA1 /* MyCheapFlightViewController.m */; };
 		145A2D7616858609000DAAA1 /* MyCheapFlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D7416858609000DAAA1 /* MyCheapFlightViewController.xib */; };
 		145A2D7D1685D2E4000DAAA1 /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D7C1685D2E4000DAAA1 /* OneWayCheckViewController.xib */; };
+		145A2D8A1685ED0C000DAAA1 /* HistoryCheckDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2D891685ED0C000DAAA1 /* HistoryCheckDataBase.m */; };
+		145A2D8D1685EE4A000DAAA1 /* HistoryCheckInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2D8C1685EE4A000DAAA1 /* HistoryCheckInfoData.m */; };
+		145A2D8F1685EF63000DAAA1 /* HistoryFlightQuery.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D8E1685EF62000DAAA1 /* HistoryFlightQuery.sqlite */; };
 		146986BC167DCB5700E9B30D /* gray_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B1167DCB5700E9B30D /* gray_btn.png */; };
 		146986BD167DCB5700E9B30D /* green_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B2167DCB5700E9B30D /* green_btn.png */; };
 		146986BE167DCB5700E9B30D /* icon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B3167DCB5700E9B30D /* icon_qq.png */; };
@@ -493,6 +496,11 @@
 		145A2D7316858609000DAAA1 /* MyCheapFlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCheapFlightViewController.m; sourceTree = "<group>"; };
 		145A2D7416858609000DAAA1 /* MyCheapFlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCheapFlightViewController.xib; sourceTree = "<group>"; };
 		145A2D7C1685D2E4000DAAA1 /* OneWayCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneWayCheckViewController.xib; sourceTree = "<group>"; };
+		145A2D881685ED0C000DAAA1 /* HistoryCheckDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCheckDataBase.h; sourceTree = "<group>"; };
+		145A2D891685ED0C000DAAA1 /* HistoryCheckDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCheckDataBase.m; sourceTree = "<group>"; };
+		145A2D8B1685EE49000DAAA1 /* HistoryCheckInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCheckInfoData.h; sourceTree = "<group>"; };
+		145A2D8C1685EE4A000DAAA1 /* HistoryCheckInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCheckInfoData.m; sourceTree = "<group>"; };
+		145A2D8E1685EF62000DAAA1 /* HistoryFlightQuery.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = HistoryFlightQuery.sqlite; sourceTree = "<group>"; };
 		146986B1167DCB5700E9B30D /* gray_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_btn.png; sourceTree = "<group>"; };
 		146986B2167DCB5700E9B30D /* green_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_btn.png; sourceTree = "<group>"; };
 		146986B3167DCB5700E9B30D /* icon_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_qq.png; sourceTree = "<group>"; };
@@ -1281,6 +1289,18 @@
 			name = MyCheapFlight;
 			sourceTree = "<group>";
 		};
+		145A2D861685EC85000DAAA1 /* historyCheck */ = {
+			isa = PBXGroup;
+			children = (
+				145A2D8E1685EF62000DAAA1 /* HistoryFlightQuery.sqlite */,
+				145A2D881685ED0C000DAAA1 /* HistoryCheckDataBase.h */,
+				145A2D891685ED0C000DAAA1 /* HistoryCheckDataBase.m */,
+				145A2D8B1685EE49000DAAA1 /* HistoryCheckInfoData.h */,
+				145A2D8C1685EE4A000DAAA1 /* HistoryCheckInfoData.m */,
+			);
+			name = historyCheck;
+			sourceTree = "<group>";
+		};
 		146986B0167DCB5700E9B30D /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1550,6 +1570,7 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				145A2D861685EC85000DAAA1 /* historyCheck */,
 				14698717167ED85800E9B30D /* Login */,
 				148059CE1676E65D00836353 /* CityAndAirPorts */,
 				180E22E81671F4E6002A7228 /* DNWrapper.h */,
@@ -2323,7 +2344,11 @@
 				145A2D7616858609000DAAA1 /* MyCheapFlightViewController.xib in Resources */,
 				145A2D7D1685D2E4000DAAA1 /* OneWayCheckViewController.xib in Resources */,
 
+
 				18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */,
+
+
+				145A2D8F1685EF63000DAAA1 /* HistoryFlightQuery.sqlite in Resources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2450,6 +2475,8 @@
 				145A2D6016845E1C000DAAA1 /* MyOrderListCell.m in Sources */,
 				145A2D6E16855F42000DAAA1 /* ModifyPassWordViewController.m in Sources */,
 				145A2D7516858609000DAAA1 /* MyCheapFlightViewController.m in Sources */,
+				145A2D8A1685ED0C000DAAA1 /* HistoryCheckDataBase.m in Sources */,
+				145A2D8D1685EE4A000DAAA1 /* HistoryCheckInfoData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
