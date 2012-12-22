@@ -18,6 +18,8 @@
 
 @interface OneWayCheckViewController ()
 {
+    int delegataFlag;
+    
     int oneFlag;
     int flag;
     
@@ -27,6 +29,10 @@
     ChooseAirPortViewController *chooseAirPort;
     
     UILabel * changeString;
+    
+    NSString * oneGoData;
+    NSString * twoGoData;
+    NSString * twoGoBack;
 }
 @end
 
@@ -65,10 +71,10 @@ int searchFlag = 1; // 单程和往返的标记位
     self.navigationItem.rightBarButtonItem=histroyBtn;
     [histroyBtn release];
     
-    self.selectOne.frame = CGRectMake(0, 85, 320, 211);
+    self.selectOne.frame = CGRectMake(0, 61+8, 320, 160);
     [self.view addSubview:self.selectTwoWay];
     
-    self.selectTwoWay.frame = CGRectMake(320, 85, 320, 211);
+    self.selectTwoWay.frame = CGRectMake(320, 61+8, 320, 160);
     [self.view addSubview:self.selectOne];
     
     self.navigationItem.title = @"机票查询";
@@ -103,7 +109,7 @@ int searchFlag = 1; // 单程和往返的标记位
     mySegmentController.height = 40;
     mySegmentController.LKWidth = 150;
     mySegmentController.thumb.tintColor = [UIColor whiteColor];
-    mySegmentController.center = CGPointMake(160, 41);
+    mySegmentController.center = CGPointMake(160, 36);
     
     mySegmentController.thumb.textColor = mySceColor;
     mySegmentController.thumb.textShadowColor = [UIColor clearColor];
@@ -122,6 +128,25 @@ int searchFlag = 1; // 单程和往返的标记位
     
     leaveDate = [Date today];
     [leaveDate retain];
+    
+    //获得系统时间
+    NSDate *  senddate=[NSDate date];
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    
+    NSCalendar  * cal=[NSCalendar  currentCalendar];
+    NSUInteger  unitFlags=NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit;
+    NSDateComponents * conponent= [cal components:unitFlags fromDate:senddate];
+    NSInteger year=[conponent year];
+    NSInteger month=[conponent month];
+    NSInteger day=[conponent day];
+    NSString * string = [NSString stringWithFormat:@"%d月%d日",month,day];
+    oneGoData = [[NSString alloc] initWithFormat:@"%4d-%2d-%2d",year,month,day ];
+    NSLog(@"%@",oneGoData);
+    [startDate setText:string];
+    oneSatrtDate.text = string;
+    
+    
+    [dateformatter release];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -208,15 +233,19 @@ int searchFlag = 1; // 单程和往返的标记位
 
 -(void) setYear: (int) year month: (int) month day: (int) day {
     
-
     [leaveDate setYear:year month:month day:day];
-    [oneSatrtDate setText:[NSString stringWithFormat:@"%d-%d-%d", year, month, day]];
-    
-    //dateLabel.text = [NSString stringWithFormat:@"%d年%d月%d日 农历%@%@ 星期%@", year, month, day, [ChineseCalendar findMonthWithYear:year month:month day:day], [ChineseCalendar findDayWithYear:year month:month day:day], [weekDays objectAtIndex:[date weekDay]]];
+    [oneSatrtDate setText:[NSString stringWithFormat:@"%d月%d日", month, day]];
+    [startDate setText:[NSString stringWithFormat:@"%d月%d日", month, day]];
+    [returnDate setText:[NSString stringWithFormat:@"%d月%d日", month, day]];
+    oneGoData = [[NSString alloc] initWithFormat:@"%d-%d-%d",year,month,day];
+    if (delegataFlag == 1) {
+         twoGoBack = [[NSString alloc] initWithFormat:@"%d-%d-%d",year,month,day];
+    }
+   
 }
 
 - (IBAction)getStartDate:(id)sender {
-    
+    delegataFlag = 0;
     [MonthDayCell selectYear:leaveDate.year month:leaveDate.month day:leaveDate.day];
     
     SelectCalendarController* controller = [[SelectCalendarController alloc] init];
@@ -227,6 +256,15 @@ int searchFlag = 1; // 单程和往返的标记位
 }
 
 - (IBAction)getBackData:(id)sender {
+    delegataFlag = 1;
+    [MonthDayCell selectYear:leaveDate.year month:leaveDate.month day:leaveDate.day];
+    
+    SelectCalendarController* controller = [[SelectCalendarController alloc] init];
+    [controller setDelegate:self];
+    [controller showCalendar];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+
 }
 
 - (IBAction)getEndPort:(id)sender {
@@ -246,11 +284,11 @@ int searchFlag = 1; // 单程和往返的标记位
     SearchAirPort * searchAirPort;
     
     ShowSelectedResultViewController * show = [[ShowSelectedResultViewController alloc] init];
-    
+
     
     if (searchFlag == 1) {
-       
-        searchAirPort = [[SearchAirPort alloc] initWithdpt:oneStartCode arr:oneEndCode date:@"2012-12-30" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+        
+        searchAirPort = [[SearchAirPort alloc] initWithdpt:oneStartCode arr:oneEndCode date:oneGoData ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
         show.startPort = oneStartAirPort.text;
         show.endPort = oneEndAirPort.text;
@@ -259,12 +297,15 @@ int searchFlag = 1; // 单程和往返的标记位
         
           }
     else{
-        searchAirPort = [[SearchAirPort alloc] initWithdpt:startCode arr:endCode date:@"2012-12-30" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+        searchAirPort = [[SearchAirPort alloc] initWithdpt:startCode arr:endCode date:oneGoData ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
         show.startPort = startAirport.text;
         show.endPort = endAirport.text;
         show.startThreeCode = startCode;
         show.endThreeCode = endCode;
+        
+        show.goBackDate = twoGoBack;
+       
 
     }
     
@@ -285,8 +326,8 @@ int searchFlag = 1; // 单程和往返的标记位
     [UIView animateWithDuration:1.0 animations:^(void)  //不用回调
      {
          if (flag == 1) {
-             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(190, 0);
-             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-190, 0);
+             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(-170, 0);
+             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(170, 0);
              twoBeginView.layer.affineTransform = moveTo;
              twoEndView.layer.affineTransform = moveFrom;
              flag = 2;
@@ -335,8 +376,8 @@ int searchFlag = 1; // 单程和往返的标记位
     [UIView animateWithDuration:1.0 animations:^(void)  //不用回调
      {
          if (oneFlag == 1) {
-             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(190, 0);
-             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-190, 0);
+             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(170, 0);
+             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-170, 0);
              beginView.layer.affineTransform = moveTo;
              endView.layer.affineTransform = moveFrom;
              oneFlag = 2;

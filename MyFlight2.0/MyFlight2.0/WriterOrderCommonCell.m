@@ -33,6 +33,7 @@
     [_firstLable release];
     [_secondLable release];
     [_backView release];
+    [_imageLabel release];
     [super dealloc];
 }
 @end

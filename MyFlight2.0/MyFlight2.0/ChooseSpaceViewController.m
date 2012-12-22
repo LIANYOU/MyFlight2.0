@@ -210,7 +210,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 103;
+        return 90;
     }
     else
     {
@@ -235,7 +235,7 @@
         
         //   CGFloat height = MAX(size.height, 44.0f);
         //   NSLog(@"%f",size.height);
-        return size.height+61.0f;
+        return size.height+50.0f;
 
     }
 }
@@ -291,12 +291,14 @@
         
         CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
         
-        cell.view.frame = CGRectMake(0, 0, 320, size.height+61.0f);
+        cell.view.frame = CGRectMake(0, 0, 320, size.height+50.0f);
         cell.textCell.lineBreakMode = UILineBreakModeCharacterWrap;
-        cell.textCell.frame = CGRectMake(10, 61, 290, size.height);
+        cell.textCell.frame = CGRectMake(10, 50, 290, size.height);
         cell.textCell.font = [UIFont systemFontOfSize:12.0f];
         cell.textCell.text = _firstCellText;
-        
+        cell.wImage.frame = CGRectMake(0, size.height+50.0f, 320, 1);
+        cell.dImage.frame = CGRectMake(0, size.height+51.0f, 320, 1);
+    
         
         [cell.changeSpace addTarget:self action:@selector(changeFlightInfo:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -316,7 +318,7 @@
     else{
         if (self.flag == 2) {
             
-            SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:self.searchFlight.endPortThreeCode arr:self.searchFlight.startPortThreeCode date:@"2012-12-30" ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+            SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:self.searchFlight.endPortThreeCode arr:self.searchFlight.startPortThreeCode date:self.goBackDate ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
             
             self.searchFlight.pay = [self.payArr objectAtIndex:indexPath.row-1]; // 保存成人去程金额
             

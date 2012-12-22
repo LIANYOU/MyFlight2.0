@@ -292,7 +292,7 @@
             case 0:
                 return 1;
             case 1:
-                return 6;
+                return 7;
             default:
                 break;
         }
@@ -307,7 +307,7 @@
         case 1:
             return 1;
         case 2:
-            return 6;
+            return 7;
         default:
             break;
        }
@@ -320,7 +320,7 @@
 {
     if (self.flag == 1) {  // 单程
         if (indexPath.section == 0) {
-            return 90;
+            return 100;
         }
         if (indexPath.section == 1 && indexPath.row == 0) {
             
@@ -336,16 +336,16 @@
             
         }
         if (indexPath.section == 1 && indexPath.row == 1) {
-            return 80;
+            return 100;
         }
         else{
-            return 40;
+            return 50;
         }
 
     }
     else{
         if (indexPath.section == 0 || indexPath.section == 1) {
-            return 90;
+            return 100;
         }
         if (indexPath.section == 2 && indexPath.row == 0) {
             firstCellText = [self.firstCelTextArr objectAtIndex:0];
@@ -354,16 +354,16 @@
             
             CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
             
-            CGFloat height = MAX(size.height, 44.0f);
+            CGFloat height = MAX(size.height, 50.0f);
             
             return height;
 
         }
         if (indexPath.section == 2 && indexPath.row == 1) {
-            return 80;
+            return 100;
         }
         else{
-            return 40;
+            return 50;
         }
 
     }
@@ -424,7 +424,7 @@
         }
         case 2:
         {
-            if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5) {
+            if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 6) {
                 static NSString *CellIdentifier = @"Cell3";
                 WriterOrderCommonCell *cell = (WriterOrderCommonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                 if (!cell)
@@ -445,7 +445,7 @@
                         
                         cell.secondLable.lineBreakMode = UILineBreakModeCharacterWrap;
                         
-                        cell.secondLable.frame = CGRectMake(135, 0, 196, MAX(size.height, 44.0f));
+                        cell.secondLable.frame = CGRectMake(110, 0, 196, MAX(size.height, 44.0f));
                         
                         cell.firstLable.frame = CGRectMake(21, 0, 196, MAX(size.height, 44.0f));
                         
@@ -456,12 +456,20 @@
                         
                     case 2:
                         cell.firstLable.text = [self.cellTitleArr objectAtIndex:3];
+                        cell.imageLabel.hidden = YES;
                         break;
                     case 3:
                         cell.firstLable.text = [self.cellTitleArr objectAtIndex:4];
+                        cell.imageLabel.hidden = YES;
                         break;
                     case 5:
                         cell.firstLable.text = [self.cellTitleArr objectAtIndex:6];
+                        cell.imageLabel.hidden = YES;
+                        break;
+                    case 6:
+                        cell.firstLable.text = @"";
+                        cell.accessoryType = UITableViewCellAccessoryNone;
+                        cell.imageLabel.hidden = YES;
                         break;
                         
                     default:
@@ -530,7 +538,7 @@
             }
             case 1:
             {
-                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5) {
+                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 6) {
                     static NSString *CellIdentifier = @"Cell3";
                     WriterOrderCommonCell *cell = (WriterOrderCommonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                     if (!cell)
@@ -550,24 +558,33 @@
                           
                             cell.secondLable.lineBreakMode = UILineBreakModeCharacterWrap;
                              
-                            cell.secondLable.frame = CGRectMake(135, 0, 196, MAX(size.height, 44.0f));
+                            cell.secondLable.frame = CGRectMake(110, 0, 196, MAX(size.height, 44.0f));
                             
-                            cell.firstLable.frame = CGRectMake(21, 0, 196, MAX(size.height, 44.0f));
+                            cell.firstLable.frame = CGRectMake(23, 0, 196, MAX(size.height, 44.0f));
                             
                             cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 44.0f));
                             
                             cell.secondLable.text = firstCellText;
                             
+                            cell.imageLabel.frame = CGRectMake(10, MAX(size.height, 44.0f)/2-6, 7, 21);
                             
                             break;
                         case 2:
                             cell.firstLable.text = [self.cellTitleArr objectAtIndex:3];
+                            cell.imageLabel.hidden = YES;
                             break;
                         case 3:
                             cell.firstLable.text = [self.cellTitleArr objectAtIndex:4];
+                            cell.imageLabel.hidden = YES;
                             break;
                         case 5:
                             cell.firstLable.text = [self.cellTitleArr objectAtIndex:6];
+                            cell.imageLabel.hidden = YES;
+                            break;
+                        case 6:
+                            cell.firstLable.text = @"";
+                            cell.accessoryType = UITableViewCellAccessoryNone;
+                            cell.imageLabel.hidden = YES;
                             break;
                             
                         default:

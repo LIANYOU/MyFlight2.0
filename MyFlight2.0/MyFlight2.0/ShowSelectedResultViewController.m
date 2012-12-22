@@ -90,7 +90,7 @@
     [self.showResultTableView addGestureRecognizer:swipe];
     [swipe release];
 
-    
+    self.showResultTableView.separatorColor = [UIColor clearColor];
 
    // NSLog(@"%@",dicCode.allKeys);
     [super viewDidLoad];
@@ -345,7 +345,7 @@
     }
     else
     {
-    return 60;
+    return 62;
     }
 }
 
@@ -417,6 +417,7 @@
             [[NSBundle mainBundle] loadNibNamed:@"ShowSelectedCell" owner:self options:nil];
             cell = self.selectedCell;
         }
+        cell.airportName.textColor = [UIColor whiteColor];
         if (timeSortFlag == 3)
         {
             if (indexPath.row == 0)
@@ -457,6 +458,8 @@
     if (tableView == self.showResultTableView)
     {
         ChooseSpaceViewController * order = [[ChooseSpaceViewController alloc] init];
+        
+        order.goBackDate = self.goBackDate;
         
         SearchFlightData * data_;
         if (sortFlag == 1) {

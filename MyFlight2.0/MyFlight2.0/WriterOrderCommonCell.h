@@ -17,4 +17,5 @@
 @property (retain, nonatomic) IBOutlet UILabel *secondLable;
 @property (retain, nonatomic) IBOutlet UIView *backView;
 @property (retain, nonatomic) IBOutlet UILabel *firstLable;
+@property (retain, nonatomic) IBOutlet UILabel *imageLabel;
 @end
