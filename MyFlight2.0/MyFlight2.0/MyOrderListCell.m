@@ -1,14 +1,14 @@
 //
-//  MyCenterViewCell.m
+//  MyOrderListCell.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 12-12-15.
-//  Copyright (c) 2012年 LIAN YOU. All rights reserved.
+//  Created by Davidsph on 12/21/12.
+//  Copyright (c) 2012 LIAN YOU. All rights reserved.
 //
 
-#import "MyCenterViewCell.h"
+#import "MyOrderListCell.h"
 
-@implementation MyCenterViewCell
+@implementation MyOrderListCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,9 +27,10 @@
 }
 
 - (void)dealloc {
-    [_accountMoney release];
-    [_gold release];
-    [_silver release];
+    [_totalMoney release];
+    [_orderState release];
+    [_areaInfo release];
+    [_orderTime release];
     [super dealloc];
 }
 @end

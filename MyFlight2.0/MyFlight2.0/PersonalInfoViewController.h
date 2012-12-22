@@ -10,4 +10,24 @@
 
 @interface PersonalInfoViewController : UIViewController
 
+//用户名字 
+@property (retain, nonatomic) IBOutlet UITextField *personalName;
+
+
+
+//详细地址 
+@property (retain, nonatomic) IBOutlet UITextField *detailAddress;
+
+
+
+//性别选择
+@property (retain, nonatomic) IBOutlet UISegmentedControl *sexChoice;
+
+//性别显示
+@property (retain, nonatomic) IBOutlet UILabel *sexName;
+
+
+- (IBAction)backKeyBoard:(id)sender;
+
+
 @end

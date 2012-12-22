@@ -10,7 +10,8 @@
 #import "ServiceDelegate.h"
 
 //注册界面
-@interface RegisterViewController : UIViewController<UITextFieldDelegate>
+@interface RegisterViewController : UIViewController<UITextFieldDelegate,ServiceDelegate>
+
 //账号输入框 
 @property (retain, nonatomic) IBOutlet UITextField *accountFiled;
 
@@ -19,8 +20,14 @@
 
 //密码输入框
 @property (retain, nonatomic) IBOutlet UITextField *passWordFiled;
+
+
+
 //获取验证码
 - (IBAction)getSecurityCode:(id)sender;
+
+//获取验证码按钮
+@property (retain, nonatomic) IBOutlet UIButton *secretCodeBn;
 
 
 //显示密码 

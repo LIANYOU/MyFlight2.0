@@ -8,13 +8,14 @@
 
 #import "ViewController.h"
 #import "OneWayCheckViewController.h"
-#import "MyCenterViewController.h"
+
 #import "LogViewController.h"
 #import "SearchFlightConditionController.h"
 #import "HomeMoreController.h"
 #import "TravelAssistantViewController.h"
 #import "WriteOrderViewController.h"
 #import "ChooseSpaceViewController.h"
+#import "MyNewCenterViewController.h"
 @interface ViewController ()
 
 @end
@@ -54,7 +55,9 @@
 - (IBAction)showMyCenter:(id)sender {
     CCLog(@"显示我的中心");
 
-    MyCenterViewController *myCenter = [[MyCenterViewController alloc] init];
+    
+    MyNewCenterViewController *myCenter = [[MyNewCenterViewController alloc] init];
+    
     [self.navigationController pushViewController:myCenter animated:YES];
     [myCenter release];
     

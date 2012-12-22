@@ -8,14 +8,21 @@
 
 #import "RegisterViewController.h"
 #import "DNWrapper.h"
+#import "LoginBusiness.h"
+#import "UIQuickHelp.h"
+#import "AppConfigure.h"
 @interface RegisterViewController ()
 {
     
     BOOL isShowPassword;
+    NSTimer *thisTimer;
+    BOOL isSecretBnEnabled;
+    int timeValue;
 }
 @end
 
 @implementation RegisterViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +39,12 @@
     self.securityCodeField.delegate = self;
     self.passWordFiled.delegate = self;
     self.passWordFiled.secureTextEntry = NO;
+    //默认获取验证码按钮可以使用
+    isSecretBnEnabled = YES;
+    timeValue = 59;
+    
+    [self.secretCodeBn setBackgroundImage:[UIImage imageNamed:@"green_btn.png"] forState:UIControlStateNormal];
+    
     
     self.title  =@"注册";
     self.accountFiled.keyboardType = UIKeyboardTypeNamePhonePad;  // 设置键盘样式
@@ -52,6 +65,7 @@
     [_passWordFiled release];
     [_securityCodeField release];
     [_showPassWordBn release];
+    [_secretCodeBn release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -59,11 +73,206 @@
     [self setPassWordFiled:nil];
     [self setSecurityCodeField:nil];
     [self setShowPassWordBn:nil];
+    [self setSecretCodeBn:nil];
     [super viewDidUnload];
 }
-- (IBAction)getSecurityCode:(id)sender {
+
+
+
+
+
+
+//请求 返回失败时 调用的方法
+- (void)requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    
+    self.secretCodeBn.userInteractionEnabled =YES;
+    isSecretBnEnabled = YES;
+    
+    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
+    NSString *returnMessage = [info objectForKey:KEY_message];
+    
+    
+    if ([thisMessage isEqualToString:GET_SecretCode_RequestType_Value]) {
+        
+        CCLog(@"这是请求验证码返回错误处理信号");
+        
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        
+              
+    } else  if([thisMessage isEqualToString:Regist_RequestType_Value]){
+        
+        CCLog(@"这是注册请求返回的错误信号");
+        
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+
+        
+    }
+   
+    
+    
+    
+    
 }
 
+
+//正确信息后调用的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+    
+    
+    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
+    NSString *returnMessage = [info objectForKey:KEY_message];
+    
+    
+    if ([thisMessage isEqualToString:GET_SecretCode_RequestType_Value]) {
+        
+        CCLog(@"这是请求验证码返回正确处理信号");
+        returnMessage  = @"验证码已成功发送到您的手机";
+        
+        [self.secretCodeBn setBackgroundImage:[UIImage imageNamed:@"gray_btn.png"] forState:UIControlStateNormal];
+        [self.secretCodeBn setTitle:[NSString stringWithFormat:@"%d秒",timeValue] forState:UIControlStateNormal];
+        
+        thisTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateSecretBn) userInfo:nil repeats:YES];
+        
+        
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        
+        
+    } else if([thisMessage isEqualToString:Regist_RequestType_Value]){
+        
+        
+        CCLog(@"这是注册请求返回正确信号");
+        //这是注册请求返回时  需要做的处理 
+        
+        
+        
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+- (void) requestDidFailed:(NSDictionary *)info{
+    
+    
+    
+    
+    isSecretBnEnabled = YES;
+    
+    self.secretCodeBn.userInteractionEnabled = YES;
+    
+    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
+    NSString *returnMessage = [info objectForKey:KEY_message];
+
+    
+    
+    if ([thisMessage isEqualToString:GET_SecretCode_RequestType_Value]) {
+        
+        
+        
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        
+        
+    } else if([thisMessage isEqualToString:Regist_RequestType_Value]){
+        
+        
+        
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        
+        
+    }
+
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+//更新获取验证码 按钮的状态
+- (void) updateSecretBn{
+    
+    NSLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    int thisTime = [[self.secretCodeBn titleForState:UIControlStateNormal] intValue];
+    
+    thisTime--;
+    
+    
+    [self.secretCodeBn setTitle:[NSString stringWithFormat:@"%d秒",thisTime] forState:UIControlStateNormal];
+    
+    if (thisTime==0) {
+        [self.secretCodeBn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        isSecretBnEnabled = YES;
+        self.secretCodeBn.userInteractionEnabled = YES;
+        [self.secretCodeBn setBackgroundImage:[UIImage imageNamed:@"green_btn.png"] forState:UIControlStateNormal];
+        
+        
+        
+        [thisTimer invalidate];
+        
+    }
+    
+    
+//    file://localhost/Users/LIANYOU/MyFlight2.0/MyFlight2.0/MyFlight2.0/%E7%99%BB%E5%BD%95/gray_btn.png
+//    
+//    
+//    file://localhost/Users/LIANYOU/MyFlight2.0/MyFlight2.0/MyFlight2.0/%E7%99%BB%E5%BD%95/green_btn.png
+    
+    
+}
+
+
+//获取验证码 
+- (IBAction)getSecurityCode:(id)sender {
+    
+    
+    LoginBusiness *getSecretCode = [[LoginBusiness alloc] init];
+    
+    
+        
+    //如果请求短信验证码 状态可用
+    
+    if (isSecretBnEnabled) {
+        
+        if (![self.accountFiled.text isEqualToString:@""]) {
+            
+            self.secretCodeBn.userInteractionEnabled = NO;
+
+            
+            [getSecretCode getSecretCode:self.accountFiled.text andDelegate:self];
+            
+        } else{
+            
+            
+            [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"手机号码为空，请先输入手机号码！" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+            
+        }
+
+             
+        
+    }
+    
+    
+    [getSecretCode release];
+    
+     
+}
+
+
+
+#pragma mark -
+#pragma mark 显示密码 
 //显示密码
 - (IBAction)showPassWord:(id)sender {
     
@@ -105,6 +314,9 @@
 
 
 
+
+#pragma mark -
+#pragma mark 注册账号
 
 //注册用户
 - (IBAction)registerAccount:(id)sender {

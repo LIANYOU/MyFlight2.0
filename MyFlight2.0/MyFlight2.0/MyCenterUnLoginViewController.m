@@ -1,18 +1,18 @@
 //
-//  EditViewController.m
+//  MyCenterUnLoginViewController.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 12-12-16.
-//  Copyright (c) 2012年 LIAN YOU. All rights reserved.
+//  Created by Davidsph on 12/21/12.
+//  Copyright (c) 2012 LIAN YOU. All rights reserved.
 //
 
-#import "EditViewController.h"
+#import "MyCenterUnLoginViewController.h"
 
-@interface EditViewController ()
+@interface MyCenterUnLoginViewController ()
 
 @end
 
-@implementation EditViewController
+@implementation MyCenterUnLoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,5 +34,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

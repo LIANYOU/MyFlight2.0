@@ -20,4 +20,6 @@
 //查看账号信息 
 + (BOOL) getAccountInfo:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
 
++ (BOOL) getSecretCode:(NSString *) mobileNumber andDelegat:(id<ServiceDelegate>) delegate;
+
 @end

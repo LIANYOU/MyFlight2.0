@@ -1,18 +1,25 @@
 //
-//  CommonContactViewController.m
+//  MyOrderListViewController.m
 //  MyFlight2.0
 //
 //  Created by Davidsph on 12/21/12.
 //  Copyright (c) 2012 LIAN YOU. All rights reserved.
 //
 
-#import "CommonContactViewController.h"
-#import "CommonContactCell.h"
-@interface CommonContactViewController ()
+#import "MyOrderListViewController.h"
+#import "MyOrderListCell.h"
+#import "MyOrderListCell.h"
+
+
+@interface MyOrderListViewController ()
+
+@property (retain, nonatomic) IBOutlet UITableView *thisTableView;
+
+
 
 @end
 
-@implementation CommonContactViewController
+@implementation MyOrderListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,8 +33,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"常用乘机人";
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -36,6 +41,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 #pragma mark - Table view data source
@@ -50,28 +56,31 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
+        
     // Return the number of rows in the section.
     return 3;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    CommonContactCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    
-    if (cell == nil) {
+    MyOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell==nil) {
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyOrderListCell" owner:self options:nil];
         
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"CommonContactCell" owner:self options:nil];
-        
-        cell  = [array objectAtIndex:0];
+        cell = [array objectAtIndex:0];
         
     }
     
-    cell.contactName.text = @"ceshid";
-    cell.personType  =[NSString stringWithFormat:@"(%@)",@"成人"];
-    cell.personId.text = @"131342534654646";
+    
+    cell.totalMoney.text =@"￥123";
+    cell.orderState.text = @"待支付";
+    cell.areaInfo.text = @"首都北京-上海虹桥";
+    cell.orderTime.text = @"2012-12-23";
+    
+        
     
     
     return cell;
@@ -132,6 +141,12 @@
 
 
 
-
-
+- (void)dealloc {
+    [_thisTableView release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setThisTableView:nil];
+    [super viewDidUnload];
+}
 @end
