@@ -22,12 +22,17 @@
 @interface BuyInsuranceViewController : UIViewController
 {
     NSString * BuyString;
-        void (^blocks) (NSString * idntity);
+    void (^blocks) (NSString * idntity,NSString * type);
+    NSString * swithType;
     
 }
+@property (retain, nonatomic) IBOutlet UISwitch *swith;
+
+@property(nonatomic,retain) NSString * type;
+
 - (IBAction)swithOFFOrON:(UISwitch*)sender;
 
--(void)getDate:(void (^) (NSString * idntity))string;
+-(void)getDate:(void (^) (NSString * idntity,NSString * type))string;
 
 //代理
 @property(nonatomic,assign)id<BuyInsuranceViewControllerDelegate> delegate;

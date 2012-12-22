@@ -7,7 +7,7 @@
 //
 
 #import "TraveController.h"
-
+#import "PostViewController.h"
 @interface TraveController ()
 
 @end
@@ -27,6 +27,8 @@
 {
     self.postView.hidden = YES;
     
+    self.navigationItem.title = @"行程单配送";
+    
     name.delegate = self;
     address.delegate = self;
     phone.delegate = self;
@@ -43,7 +45,7 @@
     [backBtn1 release];
     
     UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
-    histroyBut.frame = CGRectMake(250, 5, 50, 31);
+    histroyBut.frame = CGRectMake(260, 5, 40, 31);
     histroyBut.titleLabel.font = [UIFont systemFontOfSize:13.0];
     [histroyBut setTitle:@"确定" forState:UIControlStateNormal];
     histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_2words_.png"]];
@@ -54,9 +56,33 @@
     [backBtn release];
 
     
-    noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-    helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-    post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+    noNeedBtn.tag = 1;
+    helpYourselfBtn.tag = 2;
+    post.tag = 3;
+    
+//    if (self.flag == 1) {
+//        noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
+//        helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+//        post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+//    }
+//    if (self.flag == 2) {
+//        noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+//        helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
+//        post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+//
+//    }
+//    if (self.flag == 3) {
+//        post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
+//        helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+//        post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+//    }
+    
+//    else{
+        noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+        helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+        post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+
+//    }
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -67,9 +93,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)noNeed:(id)sender {
+- (IBAction)noNeed:(UIButton *)sender {
 
-    _schedule_ = @"不需要行程单";
+    _schedule_ = @"不需要行程单,低碳出行";
+    
+    btnTag = sender.tag;
+    
     noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
     helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
     post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
@@ -77,16 +106,22 @@
     self.postView.hidden = YES;
 }
 
-- (IBAction)helpYourself:(id)sender {
+- (IBAction)helpYourself:(UIButton *)sender {
     _schedule_ = @"机场自取";
+    
+    btnTag = sender.tag;
+   
     noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
     helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
     post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
     self.postView.hidden = YES;
 }
 
-- (IBAction)post:(id)sender {
+- (IBAction)post:(UIButton *)sender {
     _schedule_ = @"邮寄行程单";
+    
+    btnTag = sender.tag;
+   
     noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
     helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
     post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
@@ -101,6 +136,7 @@
     [city release];
     [address release];
     [phone release];
+    [type release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -119,18 +155,30 @@
     address = nil;
     [phone release];
     phone = nil;
+    [type release];
+    type = nil;
     [super viewDidUnload];
 }
 
--(void)getDate:(void (^) (NSString *schedule, NSString *postPay))string
+-(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex))string
 {
     [blocks release];
     blocks = [string copy];
 
 }
+
+- (IBAction)postType:(id)sender {
+    PostViewController * postT = [[PostViewController alloc] init];
+    [postT getDate:^(NSString *idntity) {
+        type.text = idntity;
+    }];
+    [self.navigationController pushViewController:postT animated:YES];
+    [postT release];
+}
 -(void)back
 {
-    blocks(_schedule_,@"");
+  
+    blocks(_schedule_,type.text,btnTag);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -138,10 +186,11 @@
 {
     CGPoint ce=self.view.center;
     ce.y=self.view.frame.size.height/2;
-    if (textField.center.y>180) {
-        ce.y-=(textField.center.y-180);
+    if (textField.center.y>20) {
+        ce.y=ce.y- textField.center.y-20;
     }
-    [UIView beginAnimations:@"Curl"context:nil];//动画开始
+    NSLog(@"%f",textField.center.y);
+    [UIView beginAnimations:@"dsdf" context:nil];//动画开始
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationDelegate:self];
     self.view.center=ce;
@@ -152,6 +201,7 @@
 {
     CGPoint ce=self.view.center;
     ce.y=self.view.frame.size.height/2;
+
     [UIView beginAnimations:@"Curl"context:nil];//动画开始
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationDelegate:self];

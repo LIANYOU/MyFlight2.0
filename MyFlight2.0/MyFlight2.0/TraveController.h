@@ -15,24 +15,29 @@
     IBOutlet UIButton *helpYourselfBtn;
     IBOutlet UIButton *post;
     
+    IBOutlet UILabel *type;
     
     IBOutlet UITextField *name;
     IBOutlet UITextField *city;
     IBOutlet UITextField *address;
     IBOutlet UITextField *phone;
     
-    void (^blocks) (NSString *schedule, NSString *postPay);
+    int btnTag;
+    
+    void (^blocks) (NSString *schedule, NSString *postPay, int chooseBtnIndex);
 }
 
 @property(nonatomic,retain) NSString * schedule_;
 @property(nonatomic,retain) NSString * postPay_;
 
-- (IBAction)noNeed:(id)sender;
-- (IBAction)helpYourself:(id)sender;
-- (IBAction)post:(id)sender;
+- (IBAction)noNeed:(UIButton *)sender;
+- (IBAction)helpYourself:(UIButton *)sender;
+- (IBAction)post:(UIButton *)sender;
 
+@property (assign, nonatomic) int flag;  // 标记上次选择了哪一个btn
 @property (retain, nonatomic) IBOutlet UIView *postView;
 
--(void)getDate:(void (^) (NSString *schedule, NSString *postPay))string;
+-(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex))string;
+- (IBAction)postType:(id)sender;
 
 @end

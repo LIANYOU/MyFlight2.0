@@ -13,6 +13,7 @@
 #import "ShowSelectedResultViewController.h"
 #import "ChoosePersonController.h"
 #import "TraveController.h"
+#import "LogViewController.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -23,10 +24,12 @@
     int goPay;
     int backPay;
     
+    int newPersonAllPay;
+    int newChildAllPay;
     
     int childNumber;  // 儿童个数
     int personNumber; // 成人个数
-    
+  
     int finalPay;  // 最终支付的价格
 }
 @end
@@ -44,8 +47,57 @@
     return self;
 }
 
+-(void)calculateAllPay
+{
+    self.PerStanderPrice.text =[NSString stringWithFormat:@"%d",[self.goPay intValue] + [self.backPay intValue]] ;  // 票面价
+    
+    // self.PerStanderPrice.text = self.searchDate.standerPrice;
+    self.personAdultBaf.text = self.searchDate.adultBaf;
+    self.PersonConstructionFee.text = self.searchDate.constructionFee;
+    self.Personinsure.text = @"0";   // 保险
+    self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];
+    
+    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
+    self.allPay.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
+    
+    self.childStanderPrice.text = [NSString stringWithFormat:@"%d",[self.childBackPay intValue]+[self.childGopay intValue]];
+    self.childBaf.text = self.searchDate.childBaf;
+    self.childConstructionFee.text = self.searchDate.childConstructionFee;
+    self.childInsure.text = @"0";
+    self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
+    
+    //********* 计算订单总额......
+    
+    int personMoney = [self.backPay intValue]+[self.goPay intValue];   // 单程是时候最后赋值的是self.backPay
+    int airPortName = [self.searchDate.constructionFee intValue];
+    int oil = [self.searchDate.adultBaf intValue];
+   // int allInsure = 0;  // 所有人要买就都买一份保险
+    
+    int childPersonMoney = [self.childBackPay intValue] + [self.childGopay intValue];
+    int childAirPortName = [self.searchDate.childConstructionFee intValue];
+    int childOil = [self.searchDate.childBaf intValue];
+    
+    
+    newPersonAllPay = (personMoney+airPortName+oil)*personNumber;
+    newChildAllPay = (childPersonMoney+childAirPortName+childOil);
+    //newChildAllPay = (childPersonMoney+childAirPortName+childOil)*childNumber;
+    
+    finalPay = newPersonAllPay + newChildAllPay;
+  //  NSLog(@"%d,%d",newPersonAllPay,newChildAllPay);
+    
+    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay+0];  // 暂时的 此处还没有添加保险金额
+    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay+0];
+    
+}
 - (void)viewDidLoad
 {
+    
+    //
+    personNumber = 1;  // 默认一个成人
+    childNumber = 0;
+    
+    [self calculateAllPay];
+    
     self.cellTitleArr = [NSArray arrayWithObjects:@"乘机人",@"联系人",@"联系电话",@"购买保险",@"行程单",@"账户资金/优惠券抵用",@"活动促销减免", nil];
     self.firstCelTextArr = [NSMutableArray arrayWithObject:@""];
     self.navigationItem.title = @"填写订单";
@@ -74,6 +126,18 @@
     self.orderTableView.dataSource = self;
     
     
+    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
+    histroyBut.frame = CGRectMake(260, 5, 40, 31);
+    histroyBut.titleLabel.font = [UIFont systemFontOfSize:13.0];
+    [histroyBut setTitle:@"登陆" forState:UIControlStateNormal];
+    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_2words_.png"]];
+    [histroyBut addTarget:self action:@selector(log) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+    self.navigationItem.rightBarButtonItem=backBtn2;
+    [backBtn2 release];
+
+    
     UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(10, 5, 30, 31);
     backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
@@ -90,10 +154,7 @@
     self.headViewHegiht = 40;
     
     
-    //
-    personNumber = 1;  // 默认一个成人
-    childNumber = 0;
-    
+       
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -132,6 +193,7 @@
     [_childMunber release];
     [_Personinsure release];
     [_childInsure release];
+    [_backLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -158,15 +220,36 @@
     [self setChildMunber:nil];
     [self setPersoninsure:nil];
     [self setChildInsure:nil];
+    [self setBackLabel:nil];
     [super viewDidUnload];
 }
 
 #pragma mark - Table view data source
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section ==0)
     {
-       return self.headViewHegiht;
+        if (self.headViewHegiht == 97 && childNumber == 0) {
+            self.backLabel.hidden = YES;
+            self.childInsure.hidden = YES;
+            self.childMunber.hidden = YES;
+            self.childStanderPrice.hidden = YES;
+            self.childConstructionFee.hidden = YES;
+            self.childBaf.hidden = YES;
+            return self.headViewHegiht-30;
+        }
+        else{
+            self.backLabel.hidden = NO;
+            self.childInsure.hidden = NO;
+            self.childMunber.hidden = NO;
+            self.childStanderPrice.hidden = NO;
+            self.childConstructionFee.hidden = NO;
+            self.childBaf.hidden = NO;
+            return self.headViewHegiht;
+        }
+       
     }
     
     else
@@ -299,7 +382,9 @@
                 [[NSBundle mainBundle] loadNibNamed:@"WriteOrderCell" owner:self options:nil];
                 cell = self.writeOrderCell;
             }
-            cell.imageView.image = [UIImage imageNamed:@"bg_blue_.png"];
+          //  cell.bounds.origin.x = 50;
+            cell.backView.frame = CGRectMake(50, 0, 325, 80);
+            cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
             cell.userInteractionEnabled = NO;
             
             cell.HUButton.text = self.searchDate.temporaryLabel;
@@ -322,7 +407,7 @@
                 [[NSBundle mainBundle] loadNibNamed:@"WriteOrderCell" owner:self options:nil];
                 cell = self.writeOrderCell;
             }
-            cell.imageView.image = [UIImage imageNamed:@"bg_green_.png"];
+            cell.imageView.image = [UIImage imageNamed:@"bg_green__.png"];
             cell.userInteractionEnabled = NO;
             
             cell.HUButton.text = self.searchBackDate.temporaryLabel;
@@ -429,7 +514,7 @@
                     cell = self.writeOrderCell;
                 }
                 
-                cell.imageView.image = [UIImage imageNamed:@"bg_blue_.png"];
+                cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
                 cell.userInteractionEnabled = NO;
                 
                 cell.HUButton.text = self.searchDate.temporaryLabel;
@@ -529,11 +614,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    personNumber = 1;
-    childNumber = 0; // 再次进入的时候清空初始人数；
-    
     BOOL logFlag = FALSE;  // 此处保留一个flag判断是否用户已经登陆
     if (indexPath.row == 0) {
+        
+        personNumber = 1;
+        childNumber = 0; // 再次进入的时候清空初始人数；
+        
         if (logFlag) {
             
             AddPersonController * person = [[AddPersonController alloc] init];   // 添加乘机人列表
@@ -591,9 +677,14 @@
                     
                 }
                 
+             //   NSLog(@"ertong %d,%d",personNumber,childNumber);
+                // 动态修改定单的金额数
                 self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];  //  改变成人和儿童的数目
                 self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
 
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
+                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
+                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
                 
                 [self.firstCelTextArr replaceObjectAtIndex:0 withObject:stringAfterJoin];
                 [self.orderTableView reloadData];
@@ -607,12 +698,40 @@
     if (indexPath.row == 2) {
 
         BuyInsuranceViewController * insurance = [[BuyInsuranceViewController alloc] init];
-        [insurance getDate:^(NSString *idntity) {
+        
+        insurance.type = self.swithType;
+        
+        [insurance getDate:^(NSString *idntity,NSString * type) {
    
+            NSLog(@"%@,%@",idntity,type);
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
-            cell.secondLable.text = idntity;
-           // NSLog(@"post %@",schedule);
+            
+            self.swithType = type;   // 记录开关状态
+                         
+            if (idntity != nil) {
+                
+                cell.secondLable.text = [NSString stringWithFormat:@"20元/份*%d人",personNumber+childNumber];
+                self.Personinsure.text = @"20";
+                self.childInsure.text = @"20";
+                            
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+            }
+            else{
+                cell.secondLable.text = @"";
+                self.Personinsure.text = @"0";
+                self.childInsure.text = @"0";
+                
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
+                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
+                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
+
+            }
+           
+               [self.orderTableView reloadData];
         }];
+        
         [self.navigationController pushViewController:insurance animated:YES];
         [insurance release];
 
@@ -620,9 +739,33 @@
     if (indexPath.row == 3) {
         
         TraveController * trave = [[TraveController alloc] init];
-        [trave getDate:^(NSString *schedule, NSString *postPay) {
+    
+        trave.flag = self.traveType;
+        
+        [trave getDate:^(NSString *schedule, NSString *postPay, int chooseBtnIndex) {
+            
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
-            cell.secondLable.text = schedule;
+            
+            self.traveType = chooseBtnIndex;
+            
+             cell.secondLable.text = schedule;
+            
+            if ([postPay isEqualToString:@"快递"]) {
+                
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
+                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
+                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) +20];
+            }
+            
+            else{
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) ];
+                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+            }
+
+            NSLog(@"%@,%@",schedule,postPay);
+            
+           
           
         }];
         
@@ -657,50 +800,6 @@
     
     self.tempView = self.bigHeadView;
     
-    self.PerStanderPrice.text =[NSString stringWithFormat:@"%d",[self.goPay intValue] + [self.backPay intValue]] ;  // 票面价
-    
-   // self.PerStanderPrice.text = self.searchDate.standerPrice;
-    self.personAdultBaf.text = self.searchDate.adultBaf;
-    self.PersonConstructionFee.text = self.searchDate.constructionFee;
-    self.Personinsure.text = @"0";
-    self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];
-    
-    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
-    self.allPay.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
-    
-    self.childStanderPrice.text = [NSString stringWithFormat:@"%d",[self.childBackPay intValue]+[self.childGopay intValue]];
-    self.childBaf.text = self.searchDate.childBaf;
-    self.childConstructionFee.text = self.searchDate.childConstructionFee;
-    self.childInsure.text = @"0";
-    self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
-    
-    if (childNumber == 0) {  // 次数添加如果没有儿童的时候的headView
-        
-    }
-
-    //********* 计算订单总额......
-   
-    int personMoney = [self.backPay intValue]+[self.goPay intValue];   // 单程是时候最后赋值的是self.backPay
-    int airPortName = [self.searchDate.constructionFee intValue];
-    int oil = [self.searchDate.adultBaf intValue];
-    int allInsure = 0;  // 所有人要买就都买一份保险
-    
-    int childPersonMoney = [self.childBackPay intValue] + [self.childGopay intValue];
-    int childAirPortName = [self.searchDate.childConstructionFee intValue];
-    int childOil = [self.searchDate.childBaf intValue];
-    
-   // NSLog(@"%d,%d,%d",childPersonMoney,childAirPortName,childOil);
-   // int allInsure = 0;
-
-    int newPersonAllPay = (personMoney+airPortName+oil+allInsure)*personNumber;
-    int newChildAllPay = (childPersonMoney+childAirPortName+childOil)*childNumber;
-    
-    finalPay = newPersonAllPay + newChildAllPay;
-    NSLog(@"%d,%d",newPersonAllPay,newChildAllPay);
-    
-    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay+newChildAllPay];  // 暂时的 此处还没有添加保险金额
-    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay+newChildAllPay];
-    
     self.headViewHegiht = 97.0f;
     [self.orderTableView reloadData];
 }
@@ -709,11 +808,8 @@
     self.tempView = self.headView;
     self.headViewHegiht = 40.0f;
     
-    self.upPayMoney.text = [NSString stringWithFormat:@"%d",finalPay];
-    self.allPay.text = [NSString stringWithFormat:@"%d",finalPay];
-    
-//    self.upPayMoney.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
-//    self.allPay.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
+//    self.upPayMoney.text = [NSString stringWithFormat:@"%d",finalPay];
+//    self.allPay.text = [NSString stringWithFormat:@"%d",finalPay];
     
     [self.orderTableView reloadData];
 }
@@ -803,5 +899,12 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+-(void)log
+{
+    LogViewController * log = [[LogViewController alloc] init];
+    [self.navigationController pushViewController:log animated:YES];
+    [log release];
 }
 @end

@@ -61,6 +61,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *personMuber;
 @property (retain, nonatomic) IBOutlet UILabel *Personinsure;
 
+
+@property (retain, nonatomic) IBOutlet UILabel *backLabel;
 @property (retain, nonatomic) IBOutlet UILabel *childStanderPrice;
 @property (retain, nonatomic) IBOutlet UILabel *childConstructionFee;
 @property (retain, nonatomic) IBOutlet UILabel *childBaf;
@@ -79,6 +81,8 @@
 @property (nonatomic,retain) UIView * tempView;
 @property (nonatomic,assign) float headViewHegiht;
 
+@property (nonatomic,retain) NSString * swithType;  // 记录填写保险的状态
+@property (nonatomic,assign) int traveType;  // 记录填写行程单状态
 
 - (IBAction)payMoney:(id)sender;  // 去支付订单
 - (IBAction)changeToBigHeadView:(id)sender;

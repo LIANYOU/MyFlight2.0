@@ -14,13 +14,15 @@
 #import "SearchFlightData.h"
 #import "MBProgressHUD.h"
 @class OneWayCheckViewController;
-
+@class ShowSelectedCell;
 
 #import "SearchFlightData.h"
-@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,MBProgressHUDDelegate>
+@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,MBProgressHUDDelegate,UITabBarControllerDelegate>
 {
     
     NSString * navigationTitle;
+    
+    
     
     MBProgressHUD * HUD;
     IBOutlet UIButton *salesText;
@@ -33,12 +35,20 @@
     IBOutlet UIButton *sortBtn;
     IBOutlet UILabel *backImagelabel;
     IBOutlet UIButton *siftBtn;
+    IBOutlet UILabel *airPortLabel;
+    IBOutlet UILabel *timeLabel;
     
     NSDictionary * dicCode;  // 用来接收存在plist文件中的机场二字码
     
     SearchFlightData * data;
 }
 @property (retain, nonatomic) IBOutlet UITableView *showResultTableView;
+@property (retain, nonatomic) IBOutlet UITableView *sortTableView;
+@property (retain, nonatomic) IBOutlet UIView *backView;
+
+
+
+
 @property (retain, nonatomic) SearchAirPort * airPort;
 @property (retain, nonatomic) NSArray * dateArr;  // 接收返回的数据
 @property (retain, nonatomic) NSMutableArray * searchFlightDateArr;      // 存放单程结果
@@ -56,6 +66,7 @@
 
 @property (retain, nonatomic) IBOutlet SelectResultCell *showCell;
 
+@property (retain, nonatomic) IBOutlet ShowSelectedCell *selectedCell;
 
 
 @property (retain, nonatomic) NSString * startPort;  // 传值
@@ -81,6 +92,7 @@
 - (IBAction)enterTheDayAfter:(id)sender;  //进入下一天的查询结果
 - (IBAction)siftByAirPort:(UIButton *)sender;     // 按照航空公司进行筛选查询结果
 - (IBAction)sortByDate:(UIButton *)sender;        // 对查询结果按时间进行排序
+
 
 
 @end

@@ -31,6 +31,15 @@
 {
     self.navigationItem.title = @"购买保险";
 
+    swithType = @"OFF";
+    
+    if ([self.type isEqualToString:@"ON"]) {
+        self.swith.on = YES;
+    }
+    else
+    {
+        self.swith.on = NO;
+    }
     
     UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(10, 5, 30, 31);
@@ -55,26 +64,46 @@
 
 -(void)back
 {
-    blocks(BuyString);
+    if ([self.type isEqualToString:@"ON"] || self.swith.on) {
+        BuyString = @"20元/份*1人";
+        swithType = @"ON";
+    }
+    if (!self.swith.on) {
+        swithType = @"OFF";
+        BuyString = nil;
+
+    }
+    blocks(BuyString,swithType);
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)swithOFFOrON:(UISwitch *)sender {
     
-  //  mySwitch = (UISwitch *)sender;
-    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
     BOOL setting = sender.isOn;//获得开关状态
     if(setting)
     {
-        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+        swithType = @"ON";
         BuyString = @"20元/份*1人";
+    }
+    else{
+
+        swithType = @"OFF";
+        BuyString = nil;
     }
 
 }
 
 
--(void)getDate:(void (^) (NSString * idntity))string{
+-(void)getDate:(void (^) (NSString * idntity,NSString * type))string{
     [blocks release];
     blocks = [string copy];
 }
 
+- (void)dealloc {
+    [_swith release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setSwith:nil];
+    [super viewDidUnload];
+}
 @end

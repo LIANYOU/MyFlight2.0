@@ -13,6 +13,9 @@
 #import "ChooseAirPortViewController.h"
 #import "AirPortData.h"
 #import "AppConfigure.h"
+#import "MonthDayCell.h"
+#import "SelectCalendarController.h"
+
 @interface OneWayCheckViewController ()
 {
     int oneFlag;
@@ -100,7 +103,7 @@ int searchFlag = 1; // 单程和往返的标记位
     mySegmentController.height = 40;
     mySegmentController.LKWidth = 150;
     mySegmentController.thumb.tintColor = [UIColor whiteColor];
-    mySegmentController.center = CGPointMake(160, 50);
+    mySegmentController.center = CGPointMake(160, 41);
     
     mySegmentController.thumb.textColor = mySceColor;
     mySegmentController.thumb.textShadowColor = [UIColor clearColor];
@@ -110,10 +113,15 @@ int searchFlag = 1; // 单程和往返的标记位
     mySegmentController.tintColor = [UIColor colorWithRed:22/255.0f green:74.0/255.0f blue:178.0/255.0f alpha:1.0f];
     [self.view addSubview:mySegmentController];
     
-    
+    self.startNameArr = [NSMutableArray array];
+    self.endNameArr = [NSMutableArray array];
+    self.flyFlagArr = [NSMutableArray array];
     
     mySegmentController.titleEdgeInsets = UIEdgeInsetsMake(0, 2, 0, 2);
     [mySegmentController addTarget:self action:@selector(mySegmentValueChange:) forControlEvents:UIControlEventValueChanged];
+    
+    leaveDate = [Date today];
+    [leaveDate retain];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -198,7 +206,24 @@ int searchFlag = 1; // 单程和往返的标记位
     [self.navigationController pushViewController:chooseAirPort animated:YES];    
 }
 
+-(void) setYear: (int) year month: (int) month day: (int) day {
+    
+
+    [leaveDate setYear:year month:month day:day];
+    [oneSatrtDate setText:[NSString stringWithFormat:@"%d-%d-%d", year, month, day]];
+    
+    //dateLabel.text = [NSString stringWithFormat:@"%d年%d月%d日 农历%@%@ 星期%@", year, month, day, [ChineseCalendar findMonthWithYear:year month:month day:day], [ChineseCalendar findDayWithYear:year month:month day:day], [weekDays objectAtIndex:[date weekDay]]];
+}
+
 - (IBAction)getStartDate:(id)sender {
+    
+    [MonthDayCell selectYear:leaveDate.year month:leaveDate.month day:leaveDate.day];
+    
+    SelectCalendarController* controller = [[SelectCalendarController alloc] init];
+    [controller setDelegate:self];
+    [controller showCalendar];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (IBAction)getBackData:(id)sender {

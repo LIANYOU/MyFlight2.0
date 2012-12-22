@@ -11,7 +11,10 @@
 #import "SearchFlightData.h"
 #import "SVSegmentedControl.h"
 #import "ChooseAirPortViewController.h"
-@interface OneWayCheckViewController : UIViewController<SVSegmentedControlDelegate,ChooseAirPortViewControllerDelegate>
+#import "Date.h"
+#import "ViewControllerDelegate.h"
+
+@interface OneWayCheckViewController : UIViewController<SVSegmentedControlDelegate,ChooseAirPortViewControllerDelegate, ViewControllerDelegate>
 {
     IBOutlet UIButton *returnBtn;
     IBOutlet UIImageView *returnImage;
@@ -52,9 +55,19 @@
     NSString * oneEndCode;
     
     SearchFlightData * searchDate;
+    
+    Date* leaveDate;
 }
 @property (retain, nonatomic) IBOutlet UIView *selectOne;
 @property (retain, nonatomic) IBOutlet UIView *selectTwoWay;
+
+
+@property (retain, nonatomic) NSMutableArray * startNameArr;
+@property (retain, nonatomic) NSMutableArray * endNameArr;
+@property (retain, nonatomic) NSMutableArray * flyFlagArr;
+@property (retain, nonatomic) NSMutableArray * startThreeArr;
+@property (retain, nonatomic) NSMutableArray * endThreeArr;
+
 - (IBAction)getStartPort:(id)sender;
 
 - (IBAction)getStartDate:(id)sender;
