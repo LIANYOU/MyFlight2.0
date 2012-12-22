@@ -7,7 +7,6 @@
 //
 
 #import "TravelTrafficViewController.h"
-#import "SVSegmentedControl.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
@@ -27,9 +26,12 @@
 }
 
 - (void)viewDidLoad
-{
+{//tableView x=0 y=64
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+//    arrRect = CGRectMake(0, 64, 320, 370);
+//    fromRect = CGRectMake(0, 0, 320, 370);
+    
     //title高 18
     UIView * myTitleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 128, 40)];
     navgaitionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 128-35, 40)];
@@ -49,14 +51,14 @@
     UIColor * myFirstColor = [UIColor colorWithRed:244/255.0 green:239/255.0 blue:231/225.0 alpha:1.0f];
     UIColor * mySceColor = [UIColor colorWithRed:10/255.0 green:91/255.0 blue:173/255.0 alpha:1];
     NSArray * titleNameArray = [[NSArray alloc]initWithObjects:@"机场大巴",@"机场快轨",@"出租车", nil];
-    SVSegmentedControl * segmented = [[SVSegmentedControl alloc]initWithSectionTitles:titleNameArray];
+    segmented = [[SVSegmentedControl alloc]initWithSectionTitles:titleNameArray];
     [titleNameArray release];
     segmented.backgroundImage = [UIImage imageNamed:@"tab_bg.png"];
     segmented.textColor = myFirstColor;
-    segmented.center = CGPointMake(160, 25);
+    segmented.center = CGPointMake(160, 23);
     //segmented.thumb.backgroundImage = [UIImage imageNamed:@"tab.png"];
     
-    segmented.height = 40;
+    segmented.height = 38;
     segmented.LKWidth = 100;
     
     segmented.thumb.textColor = mySceColor;
@@ -68,11 +70,31 @@
     
     [segmented addTarget:self action:@selector(mySegmentValueChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:segmented];
-
+    
+    //机场大巴
+    UIView * coachView = [[UIView alloc]initWithFrame:CGRectMake(0, 110, 320, 370)];
+    
+    //机场快线
+    UIView * subwayView = [[UIView alloc]initWithFrame:CGRectMake(0, 110, 320, 370)];
+    
+    //出租车
+    UIView * taxiView = [[UIView alloc]initWithFrame:CGRectMake(0, 110, 320, 370)];
+    
 }
 
 -(void)mySegmentValueChange:(SVSegmentedControl *)sender{
-    mySegValue = sender.selectedIndex;
+    
+    if (segmented.selectedIndex == 0) {
+        trfficType = 0;//机场大巴
+        
+    }else if (segmented.selectedIndex == 1){
+        trfficType = 2;//机场快轨
+        
+    }else if (segmented.selectedIndex == 2){
+        trfficType = 1;//出租车
+        
+        
+    }
 }
 
 -(void)getData{
@@ -123,6 +145,7 @@
 }
 
 -(void)dealloc{
+
     self.airPortCode = nil;
     [super dealloc];
 }

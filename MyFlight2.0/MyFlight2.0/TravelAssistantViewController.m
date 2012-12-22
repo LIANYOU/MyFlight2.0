@@ -13,6 +13,7 @@
 #import "FlightCompanyDistrubuteController.h"
 #import "TravelTrafficViewController.h"
 #import "ChackInNavgationViewController.h"
+#import "BaggageViewController.h"
 @interface TravelAssistantViewController ()
 
 @end
@@ -130,6 +131,9 @@
             [fcd release];
         }else if (indexPath.row == 1){
             NSLog(@"行李规定");
+            BaggageViewController * bag = [[BaggageViewController alloc]init];
+            [self.navigationController pushViewController:bag animated:YES];
+            [bag release];
         }else if (indexPath.row == 2){
             NSLog(@"机场交通");
             TravelTrafficViewController * ttvc = [[TravelTrafficViewController alloc]init];
