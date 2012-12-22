@@ -56,6 +56,10 @@
 		145A2D5D16845DE4000DAAA1 /* MyOrderListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D5B16845DE4000DAAA1 /* MyOrderListViewController.xib */; };
 		145A2D6016845E1C000DAAA1 /* MyOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2D5F16845E1C000DAAA1 /* MyOrderListCell.m */; };
 		145A2D6216845E31000DAAA1 /* MyOrderListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D6116845E31000DAAA1 /* MyOrderListCell.xib */; };
+		145A2D6E16855F42000DAAA1 /* ModifyPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2D6C16855F3D000DAAA1 /* ModifyPassWordViewController.m */; };
+		145A2D6F16855F42000DAAA1 /* ModifyPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D6D16855F40000DAAA1 /* ModifyPassWordViewController.xib */; };
+		145A2D7516858609000DAAA1 /* MyCheapFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2D7316858609000DAAA1 /* MyCheapFlightViewController.m */; };
+		145A2D7616858609000DAAA1 /* MyCheapFlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D7416858609000DAAA1 /* MyCheapFlightViewController.xib */; };
 		146986BC167DCB5700E9B30D /* gray_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B1167DCB5700E9B30D /* gray_btn.png */; };
 		146986BD167DCB5700E9B30D /* green_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B2167DCB5700E9B30D /* green_btn.png */; };
 		146986BE167DCB5700E9B30D /* icon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B3167DCB5700E9B30D /* icon_qq.png */; };
@@ -458,6 +462,12 @@
 		145A2D5E16845E1C000DAAA1 /* MyOrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderListCell.h; sourceTree = "<group>"; };
 		145A2D5F16845E1C000DAAA1 /* MyOrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderListCell.m; sourceTree = "<group>"; };
 		145A2D6116845E31000DAAA1 /* MyOrderListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderListCell.xib; sourceTree = "<group>"; };
+		145A2D6B16855F3C000DAAA1 /* ModifyPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPassWordViewController.h; sourceTree = "<group>"; };
+		145A2D6C16855F3D000DAAA1 /* ModifyPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPassWordViewController.m; sourceTree = "<group>"; };
+		145A2D6D16855F40000DAAA1 /* ModifyPassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModifyPassWordViewController.xib; sourceTree = "<group>"; };
+		145A2D7216858609000DAAA1 /* MyCheapFlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCheapFlightViewController.h; sourceTree = "<group>"; };
+		145A2D7316858609000DAAA1 /* MyCheapFlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCheapFlightViewController.m; sourceTree = "<group>"; };
+		145A2D7416858609000DAAA1 /* MyCheapFlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCheapFlightViewController.xib; sourceTree = "<group>"; };
 		146986B1167DCB5700E9B30D /* gray_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_btn.png; sourceTree = "<group>"; };
 		146986B2167DCB5700E9B30D /* green_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_btn.png; sourceTree = "<group>"; };
 		146986B3167DCB5700E9B30D /* icon_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_qq.png; sourceTree = "<group>"; };
@@ -930,6 +940,7 @@
 		1415239B16834B4F00E2FF0E /* newMyCenter */ = {
 			isa = PBXGroup;
 			children = (
+				145A2D71168585D5000DAAA1 /* MyCheapFlight */,
 				145A2D5816845DB3000DAAA1 /* MyOrderList */,
 				145A2D4D16845515000DAAA1 /* MyCheapquan */,
 				145A2CB516841D82000DAAA1 /* addCommonContact */,
@@ -962,6 +973,9 @@
 				141523A91683683300E2FF0E /* PersonInfotoShowViewController.h */,
 				141523AA1683683300E2FF0E /* PersonInfotoShowViewController.m */,
 				141523AB1683683300E2FF0E /* PersonInfotoShowViewController.xib */,
+				145A2D6B16855F3C000DAAA1 /* ModifyPassWordViewController.h */,
+				145A2D6C16855F3D000DAAA1 /* ModifyPassWordViewController.m */,
+				145A2D6D16855F40000DAAA1 /* ModifyPassWordViewController.xib */,
 			);
 			name = personalInfo;
 			sourceTree = "<group>";
@@ -1189,6 +1203,16 @@
 				145A2D6116845E31000DAAA1 /* MyOrderListCell.xib */,
 			);
 			name = MyOrderList;
+			sourceTree = "<group>";
+		};
+		145A2D71168585D5000DAAA1 /* MyCheapFlight */ = {
+			isa = PBXGroup;
+			children = (
+				145A2D7216858609000DAAA1 /* MyCheapFlightViewController.h */,
+				145A2D7316858609000DAAA1 /* MyCheapFlightViewController.m */,
+				145A2D7416858609000DAAA1 /* MyCheapFlightViewController.xib */,
+			);
+			name = MyCheapFlight;
 			sourceTree = "<group>";
 		};
 		146986B0167DCB5700E9B30D /* 登录 */ = {
@@ -2187,6 +2211,8 @@
 				145A2D5716845910000DAAA1 /* MyCheapCell.xib in Resources */,
 				145A2D5D16845DE4000DAAA1 /* MyOrderListViewController.xib in Resources */,
 				145A2D6216845E31000DAAA1 /* MyOrderListCell.xib in Resources */,
+				145A2D6F16855F42000DAAA1 /* ModifyPassWordViewController.xib in Resources */,
+				145A2D7616858609000DAAA1 /* MyCheapFlightViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2301,6 +2327,8 @@
 				145A2D55168458FB000DAAA1 /* MyCheapCell.m in Sources */,
 				145A2D5C16845DE4000DAAA1 /* MyOrderListViewController.m in Sources */,
 				145A2D6016845E1C000DAAA1 /* MyOrderListCell.m in Sources */,
+				145A2D6E16855F42000DAAA1 /* ModifyPassWordViewController.m in Sources */,
+				145A2D7516858609000DAAA1 /* MyCheapFlightViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

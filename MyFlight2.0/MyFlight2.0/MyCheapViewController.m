@@ -44,6 +44,14 @@
     return 1;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    
+    return 60;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -56,8 +64,10 @@
     static NSString *CellIdentifier = @"Cell";
     
     MyCheapCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell==nil) {
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCheapCell.h" owner:self options:nil];
+        
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCheapCell" owner:nil options:nil];
         
         cell = [array objectAtIndex:0];
     }

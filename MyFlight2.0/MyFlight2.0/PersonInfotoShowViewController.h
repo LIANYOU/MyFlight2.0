@@ -10,4 +10,10 @@
 
 @interface PersonInfotoShowViewController : UIViewController
 
+
+- (IBAction)modifyPasswd:(id)sender;
+
+
+
+
 @end

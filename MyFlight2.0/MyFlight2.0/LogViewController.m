@@ -203,7 +203,7 @@
     
     [loginBusiness loginWithName:logNumber.text password:logPassword.text andDelegate:self];
     
-    
+    [loginBusiness release];
     
     
     

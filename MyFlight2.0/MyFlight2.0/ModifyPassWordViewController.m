@@ -1,18 +1,18 @@
 //
-//  PersonalInfoViewController.m
+//  ModifyPassWordViewController.m
 //  MyFlight2.0
 //
-//  Created by Davidsph on 12/20/12.
+//  Created by Davidsph on 12/22/12.
 //  Copyright (c) 2012 LIAN YOU. All rights reserved.
 //
 
-#import "PersonalInfoViewController.h"
+#import "ModifyPassWordViewController.h"
 
-@interface PersonalInfoViewController ()
+@interface ModifyPassWordViewController ()
 
 @end
 
-@implementation PersonalInfoViewController
+@implementation ModifyPassWordViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,24 +35,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)backKeyBoard:(id)sender{
+    
+    
+    [sender resignFirstResponder];
+    
+    
+}
 - (void)dealloc {
-   
-    [_personalName release];
-    [_detailAddress release];
-    [_sexChoice release];
-    [_sexName release];
+    [_modifyView release];
+    [_newPasswdOne release];
+    [_orignPasswdTextField release];
+    [_newPasswdAgainTextField release];
+    [_orignPasswdState release];
     [super dealloc];
 }
 - (void)viewDidUnload {
-    
-    [self setPersonalName:nil];
-    [self setDetailAddress:nil];
-    [self setSexChoice:nil];
-    [self setSexName:nil];
+    [self setModifyView:nil];
+    [self setNewPasswdOne:nil];
+    [self setOrignPasswdTextField:nil];
+    [self setNewPasswdAgainTextField:nil];
+    [self setOrignPasswdState:nil];
     [super viewDidUnload];
-}
-- (IBAction)backKeyBoard:(id)sender {
-    
-    [sender resignFirstResponder];
 }
 @end

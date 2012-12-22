@@ -12,6 +12,9 @@
 #import "CommonContactViewController.h"
 
 #import "MyCheapViewController.h"
+
+#import "MyOrderListViewController.h"
+#import "MyCheapViewController.h"
 @interface MyNewCenterViewController ()
 
 @end
@@ -81,6 +84,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    [[NSUserDefaults standardUserDefaults] setObject:@"去程" forKey:@"qu"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"qu"];
+    
+//    NSLog(@"去程信息：%@",str);
     [self setNav];
     // Do any additional setup after loading the view from its nib.
 }
@@ -96,6 +105,7 @@
     PersonInfotoShowViewController *controller = [[PersonInfotoShowViewController alloc] init];
     
     [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
        
 }
 
@@ -104,10 +114,18 @@
     
     MyCheapViewController *con = [[MyCheapViewController alloc] init];
     [self.navigationController pushViewController:con animated:YES];
+    [con release];
     
 }
 
 - (IBAction)gotoMyOrderList:(id)sender {
+    
+    MyOrderListViewController *con = [[MyOrderListViewController alloc] init];
+    [self.navigationController pushViewController:con animated:YES];
+    
+    [con release];
+    
+    
 }
 
 - (IBAction)gotoCommonPerson:(id)sender {
@@ -115,9 +133,17 @@
     
     CommonContactViewController *con = [[CommonContactViewController alloc] init];
     [self.navigationController pushViewController:con animated:YES];
+    [con release];
 }
 
 - (IBAction)gotoMyCheapFlightList:(id)sender {
+    
+//    MyCheapViewController *con= [[MyCheapViewController alloc] init];
+//    [self.navigationController pushViewController:con animated:YES];
+//    
+//    [con release];
+//    
+    
 }
 
 - (IBAction)gotoMakeAccountFull:(id)sender {

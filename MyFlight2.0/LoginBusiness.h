@@ -17,10 +17,16 @@
 
 
 //注册 
-- (void) registerWithAccount:(NSString *) name password:(NSString *) passwd andDelegate:(id<ServiceDelegate>) delegate;
+- (void) registerWithAccount:(NSString *) name password:(NSString *) passwd yaCode:(NSString *)yzCode andDelegate:(id<ServiceDelegate>) delegate;
 
 //查询账号信息
 - (void) getAccountInfo:(NSString *) info andDelegate:(id<ServiceDelegate>) delegate;
+
+//获取验证码
+
+- (void) getSecretCode:(NSString *) receivedMobile andDelegate:(id<ServiceDelegate>) delegate;
+
+
 
 
 

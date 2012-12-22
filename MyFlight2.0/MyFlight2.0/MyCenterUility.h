@@ -44,7 +44,7 @@
 #define KEY_Register_Account @"account" 
 #define KEY_Register_Pwd @"pwd"
 #define KEY_Register_Pwd2 @"pwd2"
-
+#define KEY_Register_YZCode @"yzCode"
 
 
 
@@ -67,6 +67,7 @@
 //http://test.51you.com/web/phone/member/member_info_update.jsp
 
 //更新账号信息
+
 #define UPDATE_AccountInfo_index @"/web/phone/member/member_info_update.jsp"
 
 #define UPDATE_AccountInfo_URL  GET_RIGHT_URL_WITH_Index(UPDATE_AccountInfo_index)
@@ -92,6 +93,26 @@
 
 
 
+//获取手机验证码
+
+#define Get_SecretCode_index @"/web/phone/sendValidaMsg.jsp"
+
+#define  URL_GetSecretCodeUrl  GET_RIGHT_URL_WITH_Index(Get_SecretCode_index)
+
+#define KEY_GETCode_ForRegist @"regist"
+#define KEY_GetCode_ForFindPassWd @"findPwd"
+#define KEY_GetCode_forPayPwd @"findPayPwd"
+
+//获取请求的类型
+
+#define KEY_Request_Type @"requestType"
+
+//获取验证码的请求 
+//#define KEY_GET_SecretCode_RequestType @"GetSecretCodeKey"
+#define GET_SecretCode_RequestType_Value @"GetSecretCodeType"
+//注册的请求
+//#define KEY_Regist_RequestType @"RegistRequestKey"
+#define Regist_RequestType_Value  @"RegistRequestType"
 
 
 
