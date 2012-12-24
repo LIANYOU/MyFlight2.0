@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ServiceDelegate.h"
-
+#import "AppConfigure.h"
 //登陆界面  
 @interface LogViewController : UIViewController<ServiceDelegate>
 {
@@ -19,6 +19,8 @@
     
 }
 
+
+@property(nonatomic,retain)NSString  *loginSuccessReturnType;
 
 
 - (IBAction)beginLoging:(id)sender;      // 登陆

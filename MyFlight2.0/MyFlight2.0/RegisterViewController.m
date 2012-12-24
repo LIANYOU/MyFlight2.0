@@ -38,7 +38,7 @@
     self.accountFiled.delegate = self;
     self.securityCodeField.delegate = self;
     self.passWordFiled.delegate = self;
-    self.passWordFiled.secureTextEntry = NO;
+    self.passWordFiled.secureTextEntry = YES;
     //默认获取验证码按钮可以使用
     isSecretBnEnabled = YES;
     timeValue = 59;
@@ -81,7 +81,8 @@
 
 
 
-
+#pragma mark -
+#pragma mark 返回有错误信息时的处理
 //请求 返回失败时 调用的方法
 - (void)requestDidFinishedWithFalseMessage:(NSDictionary *)info{
     
@@ -99,23 +100,24 @@
         
         [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
         
-              
+        
     } else  if([thisMessage isEqualToString:Regist_RequestType_Value]){
         
         CCLog(@"这是注册请求返回的错误信号");
         
         [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-
+        
         
     }
-   
+    
     
     
     
     
 }
 
-
+#pragma mark -
+#pragma mark 成功执行注册操作
 //正确信息后调用的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
@@ -142,24 +144,19 @@
         
         
         CCLog(@"这是注册请求返回正确信号");
-        //这是注册请求返回时  需要做的处理 
+        //这是注册请求返回时  需要做的处理
+        
+        
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"您已经注册成功" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
         
         
         
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
 
+#pragma mark -
+#pragma mark 网络返回失败时的处理
 - (void) requestDidFailed:(NSDictionary *)info{
     
     
@@ -171,7 +168,7 @@
     
     NSString *thisMessage = [info objectForKey:KEY_Request_Type];
     NSString *returnMessage = [info objectForKey:KEY_message];
-
+    
     
     
     if ([thisMessage isEqualToString:GET_SecretCode_RequestType_Value]) {
@@ -189,7 +186,7 @@
         
         
     }
-
+    
     
     
     
@@ -200,6 +197,8 @@
 }
 
 
+#pragma mark -
+#pragma mark 更新验证码的按钮的状态
 //更新获取验证码 按钮的状态
 - (void) updateSecretBn{
     
@@ -224,23 +223,25 @@
     }
     
     
-//    file://localhost/Users/LIANYOU/MyFlight2.0/MyFlight2.0/MyFlight2.0/%E7%99%BB%E5%BD%95/gray_btn.png
-//    
-//    
-//    file://localhost/Users/LIANYOU/MyFlight2.0/MyFlight2.0/MyFlight2.0/%E7%99%BB%E5%BD%95/green_btn.png
+    //    file://localhost/Users/LIANYOU/MyFlight2.0/MyFlight2.0/MyFlight2.0/%E7%99%BB%E5%BD%95/gray_btn.png
+    //
+    //
+    //    file://localhost/Users/LIANYOU/MyFlight2.0/MyFlight2.0/MyFlight2.0/%E7%99%BB%E5%BD%95/green_btn.png
     
     
 }
 
+#pragma mark -
+#pragma mark 获取验证码
 
-//获取验证码 
+//获取验证码
 - (IBAction)getSecurityCode:(id)sender {
     
     
     LoginBusiness *getSecretCode = [[LoginBusiness alloc] init];
     
     
-        
+    
     //如果请求短信验证码 状态可用
     
     if (isSecretBnEnabled) {
@@ -248,7 +249,7 @@
         if (![self.accountFiled.text isEqualToString:@""]) {
             
             self.secretCodeBn.userInteractionEnabled = NO;
-
+            
             
             [getSecretCode getSecretCode:self.accountFiled.text andDelegate:self];
             
@@ -258,33 +259,34 @@
             [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"手机号码为空，请先输入手机号码！" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
             
         }
-
-             
+        
+        
         
     }
     
     
     [getSecretCode release];
     
-     
+    
 }
 
 
 
 #pragma mark -
-#pragma mark 显示密码 
+#pragma mark 显示密码
 //显示密码
 - (IBAction)showPassWord:(id)sender {
     
     NSString *string = self.passWordFiled.text;
+    
     if ([[self.showPassWordBn currentBackgroundImage] isEqual:[UIImage imageNamed:@"icon_choice.png"]]) {
         
-    
         
-            self.passWordFiled.text=@"";
-            self.passWordFiled.secureTextEntry = YES;
-       
-       self.passWordFiled.text=string;
+        
+        self.passWordFiled.text=@"";
+        self.passWordFiled.secureTextEntry = YES;
+        
+        self.passWordFiled.text=string;
         
         
         
@@ -296,17 +298,17 @@
     } else{
         
         
-             self.passWordFiled.text=@"";
-            self.passWordFiled.secureTextEntry = YES;
+        self.passWordFiled.text=@"";
+        self.passWordFiled.secureTextEntry = NO;
         
-
-       self.passWordFiled.text=string;
-//        self.passWordFiled.secureTextEntry = NO;
-//
+        
+        self.passWordFiled.text=string;
+        //        self.passWordFiled.secureTextEntry = NO;
+        //
         isShowPassword = YES;
-      [self.showPassWordBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];  
+        [self.showPassWordBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];
         NSLog(@"显示密码");
-                
+        
     }
     
     
@@ -323,7 +325,7 @@
     
     NSString * phoneStr = [self.accountFiled text];
     NSString * passWordStr = [self.passWordFiled text];
-
+    
     /**
      * 手机号码
      * 移动：134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
@@ -340,7 +342,7 @@
      15         * 中国联通：China Unicom
      16         * 130,131,132,152,155,156,185,186
      17         */
-    NSString * CU = @"^1(3[0-2]|5[256]|8[56])\\d{8}$";
+    NSString * CU = @"^1(3[0-2]|5[256]|8[356])\\d{8}$";
     /**
      20         * 中国电信：China Telecom
      21         * 133,1349,153,180,189
@@ -359,16 +361,26 @@
     NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT];
     
     if ((([regextestmobile evaluateWithObject:phoneStr] == YES)
-        || ([regextestcm evaluateWithObject:phoneStr] == YES)
-        || ([regextestct evaluateWithObject:phoneStr] == YES)
-        || ([regextestcu evaluateWithObject:phoneStr] == YES))
+         || ([regextestcm evaluateWithObject:phoneStr] == YES)
+         || ([regextestct evaluateWithObject:phoneStr] == YES)
+         || ([regextestcu evaluateWithObject:phoneStr] == YES))
         && (passWordStr.length>4&&passWordStr.length<20))
     {
-        NSString * urlStr = [NSString stringWithFormat:@"http://test.51you.com/web/phone/register.jsp?mobile=%@&pwd=%@&source=%@hwId=%@&serviceCode=01",phoneStr,passWordStr];  // 有几个参数还不确定
-        
-        NSString *newStr = [DNWrapper getMD5String:urlStr];
-        
+        //        NSString * urlStr = [NSString stringWithFormat:@"http://test.51you.com/web/phone/register.jsp?mobile=%@&pwd=%@&source=%@hwId=%@&serviceCode=01",phoneStr,passWordStr];  // 有几个参数还不确定
+        //
+        //        NSString *newStr = [DNWrapper getMD5String:urlStr];
+        //
         // 下一步进行ASIHttp请求
+        
+        
+        LoginBusiness *busi = [[LoginBusiness alloc] init];
+        
+        [busi registerWithAccount:self.accountFiled.text password:self.passWordFiled.text yaCode: self.securityCodeField.text andDelegate:self];
+        [busi release];
+        
+        
+        
+        
     }
     else
     {
