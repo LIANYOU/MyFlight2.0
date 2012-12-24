@@ -139,6 +139,7 @@
             TravelTrafficViewController * ttvc = [[TravelTrafficViewController alloc]init];
             if (self.myAirPortData) {
                 ttvc.airPortCode = self.myAirPortData.apCode;
+                ttvc.airPortName = self.myAirPortData.apName;
             }else{
                 ttvc.airPortCode = airPortCode;
             }

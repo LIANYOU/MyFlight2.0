@@ -97,7 +97,8 @@
     
     //请求完成
     [request setCompletionBlock:^{
-        NSString * str = [request responseString];        
+        NSString * str = [request responseString];
+        NSLog(@"str : %@",str);
         NSDictionary * dic = [str objectFromJSONString];
         NSLog(@"dic : %@",dic);
         NSArray * array = [dic objectForKey:@"AirlineAirway"];
@@ -119,6 +120,7 @@
         NSError *error = [request error];
         NSLog(@"Error : %@", error.localizedDescription);
     }];
+    
     
     [request setDelegate:self];
     [request startAsynchronous];

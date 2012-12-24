@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "SVSegmentedControl.h"
-
 @interface TravelTrafficViewController : UIViewController
 {
     NSString * _airPortCode;    //机场三字码
     NSInteger orientation;  //方向    0 = 去机场  ， 1 = 去市区
     NSInteger trfficType;   //交通类型  0 = 机场大巴，     1 = 出租车，   2 = 机场快轨
+    
+    NSInteger orientationCoach;     //大巴时方向
+    NSInteger orientationSubway;    //快轨时方向
+    NSInteger orientationTaxi;      //出租车时方向
+    
     
     NSMutableData * myData;
     NSInteger mySegValue;   //seg值，作为交通类型
@@ -21,15 +25,21 @@
    
     SVSegmentedControl * segmented;
     
+    //导航栏label
+    UILabel * navLabel;
+    UIImageView * navImageView;
     //大巴
     IBOutlet UIView * coachView;
-    
+    NSMutableDictionary * coachDic;
     //机场快线
     IBOutlet UIView * subwayView;
+    NSMutableDictionary * subwayDic;
     
     //出租车
     IBOutlet UIView * taxiView;
+    NSMutableDictionary * taxiDic;
     
+    NSInteger coachListCount;       //多少辆大巴
     IBOutlet UIView * coachSingleList;//机场大巴单个列表（包括详情）
     IBOutlet UILabel * coachPriceLabel;  //价格
     IBOutlet UIButton * coachOpenDetailBtn;  //三角型
@@ -41,6 +51,7 @@
     IBOutlet UILabel * coachLastCoachTime;   //末班车时间
     IBOutlet UILabel * coachIntvalTime;   //间隔时间
     IBOutlet UITextView * coachStopView; //经停站
+    
     
     
     IBOutlet UIView * coachTelTotel;    //机场大巴列表（总）
@@ -72,5 +83,5 @@
     
 }
 @property(nonatomic,retain) NSString * airPortCode;
-
+@property(nonatomic,retain) NSString * airPortName;
 @end

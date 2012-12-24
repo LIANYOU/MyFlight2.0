@@ -9,10 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "SVSegmentedControl.h"
 #import "ChooseAirPortViewController.h"
-@interface SearchFlightConditionController : UIViewController<SVSegmentedControlDelegate,ChooseAirPortViewControllerDelegate>{
+#import "AppConfigure.h"
+@interface SearchFlightConditionController : UIViewController<SVSegmentedControlDelegate,ChooseAirPortViewControllerDelegate,UITableViewDataSource,UITableViewDelegate>{
     SVSegmentedControl * mySegmentController;
     NSString * startAirPortCode;
     NSString * arrAirPortCode;
+    UIView * selectView;      //查询view
+    UIView * shade;         //遮罩
+    UIView * myConditionListView;   //已关注view
+    UITableView * myConditionListTableView;
+    NSMutableData * myData;
+    NSMutableData * myListData;
+    
+    UIImageView * btnImageView; //导航右键按钮图片
+    UIView * rightsuperView; //导航右键view
+    BOOL isAttention;   //是否关注
+    
+    NSMutableString * type;    //提醒类型
+    NSMutableString * resultString; //查询结果
 }
 @property (nonatomic,retain)IBOutlet UILabel * flightTimeByNumber;
 

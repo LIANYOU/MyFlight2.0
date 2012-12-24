@@ -16,6 +16,10 @@
     UILabel * phoneLabel;
     BOOL didFinish;
     
+    double addLength;
+    double allLength;
+    double lengthPoint;
+    NSMutableData * myTestData;
 }
 @property(nonatomic,retain) NSString * airPort;
 
