@@ -251,14 +251,21 @@
             cell = self.bigCell;
         }
         
-        
+        NSLog(@"  == ===== %@%@%@%@   %@",data.airPort,data.palntType,data.beginTime,data.endTime,data.beginDate);
+        if ([data.goOrBackFlag isEqualToString:@"1"]) {
+            cell.scheduleDate.text = data.beginDate;
+        }
+        else{
+            cell.scheduleDate.text = data.backDate;
+        }
         cell.airPort.text = data.airPort;
+        
         cell.palntType.text = data.palntType;
         cell.beginTime.text = data.beginTime;
         cell.endTime.text = data.endTime;
         cell.beginAirPortName.text = data.startPortName;
         cell.endAirPortName.text = data.endPortName;
-        cell.scheduleDate.text = @"";  // 判断是不是第二天
+        cell.nextDayLabel.text = @"";  // 判断是不是第二天
 
         return cell;
 

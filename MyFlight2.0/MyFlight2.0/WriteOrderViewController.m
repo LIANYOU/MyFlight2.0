@@ -31,6 +31,8 @@
     int personNumber; // 成人个数
   
     int finalPay;  // 最终支付的价格
+    
+    NSMutableArray * addPersonArr;
 }
 @end
 
@@ -49,21 +51,22 @@
 
 -(void)calculateAllPay
 {
-    self.PerStanderPrice.text =[NSString stringWithFormat:@"%d",[self.goPay intValue] + [self.backPay intValue]] ;  // 票面价
+    
+    self.PerStanderPrice.text =[NSString stringWithFormat:@"￥%d",[self.goPay intValue] + [self.backPay intValue]] ;  // 票面价
     
     // self.PerStanderPrice.text = self.searchDate.standerPrice;
-    self.personAdultBaf.text = self.searchDate.adultBaf;
-    self.PersonConstructionFee.text = self.searchDate.constructionFee;
-    self.Personinsure.text = @"0";   // 保险
+    self.personAdultBaf.text = [NSString stringWithFormat:@"￥%@",self.searchDate.adultBaf];
+    self.PersonConstructionFee.text = [NSString stringWithFormat:@"￥%@",self.searchDate.constructionFee];
+    self.Personinsure.text = @"￥0";   // 保险
     self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];
     
-    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
-    self.allPay.text = [NSString stringWithFormat:@"%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
+    self.bigUpPayMoney.text = [NSString stringWithFormat:@"￥%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
+    self.allPay.text = [NSString stringWithFormat:@"￥%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
     
-    self.childStanderPrice.text = [NSString stringWithFormat:@"%d",[self.childBackPay intValue]+[self.childGopay intValue]];
-    self.childBaf.text = self.searchDate.childBaf;
-    self.childConstructionFee.text = self.searchDate.childConstructionFee;
-    self.childInsure.text = @"0";
+    self.childStanderPrice.text = [NSString stringWithFormat:@"￥%d",[self.childBackPay intValue]+[self.childGopay intValue]];
+    self.childBaf.text =[NSString stringWithFormat:@"￥%@", self.searchDate.childBaf];
+    self.childConstructionFee.text =[NSString stringWithFormat:@"￥%@", self.searchDate.childConstructionFee];
+    self.childInsure.text = @"￥0";
     self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
     
     //********* 计算订单总额......
@@ -149,6 +152,7 @@
     [backBtn1 release];
 
     self.indexArr = [[NSMutableArray alloc] init];
+    addPersonArr = [[NSMutableArray alloc]initWithObjects:@" ",@" ", nil];
     
     self.tempView = self.headView;
     self.headViewHegiht = 40;
@@ -383,6 +387,8 @@
                 cell = self.writeOrderCell;
             }
           //  cell.bounds.origin.x = 50;
+            
+        
             cell.backView.frame = CGRectMake(50, 0, 325, 80);
             cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
             cell.userInteractionEnabled = NO;
@@ -395,6 +401,8 @@
             cell.endAirPortName.text = self.searchDate.endPortName;
             cell.plantType.text = self.goCabin;
             
+            cell.date.text = self.searchDate.beginDate;
+                       
             return cell;
             break;
         }
@@ -417,6 +425,7 @@
             cell.startAirPortName.text = self.searchBackDate.startPortName;
             cell.endAirPortName.text = self.searchBackDate.endPortName;
             cell.plantType.text = self.backCabin;
+            cell.date.text = self.searchBackDate.backDate;
             
             return cell;
             break;
@@ -435,8 +444,6 @@
                 switch (indexPath.row) {
                     case 0:
                     {
-                        cell.firstLable.text = @"乘机人";
-                        
                         firstCellText = [self.firstCelTextArr objectAtIndex:0];
                         
                         CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
@@ -452,6 +459,10 @@
                         cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 44.0f));
                         
                         cell.secondLable.text = firstCellText;
+                        
+                        cell.firstLable.text = [self.cellTitleArr objectAtIndex:0];
+                     //   NSLog(@"++++++++   %@",cell.firstLable.text);
+
                     }
                         
                     case 2:
@@ -490,7 +501,12 @@
                 cell.phoneNumber = [self.cellTitleArr objectAtIndex:2];
                 cell.nameField.delegate = self;
                 cell.phoneField.delegate = self;
+                
+                cell.nameField.text = [addPersonArr objectAtIndex:0];
+                cell.phoneField.text = [addPersonArr objectAtIndex:1];
+                
                // cell.userInteractionEnabled = NO;
+                
                 return cell;
             }
             if (indexPath.row == 4) {
@@ -532,6 +548,7 @@
                 cell.startAirPortName.text = self.searchDate.startPortName;
                 cell.endAirPortName.text = self.searchDate.endPortName;
                 cell.plantType.text = self.backCabin;
+                cell.date.text = self.searchDate.beginDate;
                 
                 return cell;
                 break;
@@ -606,6 +623,10 @@
                     cell.nameField.delegate = self;
                     cell.phoneField.delegate = self;
                     [cell.addPerson addTarget:self action:@selector(addPersonFormAddressBook) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    cell.nameField.text = [addPersonArr objectAtIndex:0];
+                    cell.phoneField.text = [addPersonArr objectAtIndex:1];
+                    
                     // cell.userInteractionEnabled = NO;
                     return cell;
                 }
@@ -864,6 +885,9 @@
         NSString * phone = new;
         NSLog(@"PhoneLabel:%@ Phone#:%@",aLabel,aPhone);
         
+        [addPersonArr replaceObjectAtIndex:0 withObject:name];
+        [addPersonArr replaceObjectAtIndex:1 withObject:aPhone];
+
         //查重
         NSDictionary * oneMan = [NSDictionary dictionaryWithObjectsAndKeys:name,@"name",phone,@"phone", nil];
         for (NSDictionary * dic in nameAndPhone) {
@@ -906,6 +930,9 @@
     //    }
    // [self resetSendMessageBtnFrame];
     [peoplePicker dismissModalViewControllerAnimated:YES];
+    
+    [self.orderTableView reloadData];
+      
     return NO;
 }
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier{

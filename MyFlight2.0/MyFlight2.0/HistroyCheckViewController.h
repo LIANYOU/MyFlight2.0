@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HistroyCheckViewController : UIViewController
+@class HistoryCell;
+@interface HistroyCheckViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property (retain, nonatomic) IBOutlet HistoryCell *historyCell;
+@property (retain, nonatomic) IBOutlet UITableView *showTableView;
 
 @end

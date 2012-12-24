@@ -11,5 +11,5 @@
 @protocol ViewControllerDelegate <NSObject>
 
 -(void) setYear:(int) year month:(int) month day:(int) day;
-
+-(void) setBackYear:(int) year month:(int) month day:(int) day;
 @end

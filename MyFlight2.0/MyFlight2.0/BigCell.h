@@ -18,5 +18,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *scheduleDate;
 @property (retain, nonatomic) IBOutlet UILabel *beginAirPortName;
 @property (retain, nonatomic) IBOutlet UILabel *endAirPortName;
+@property (retain, nonatomic) IBOutlet UILabel *nextDayLabel;
 
 @end

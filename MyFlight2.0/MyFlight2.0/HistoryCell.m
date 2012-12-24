@@ -1,14 +1,14 @@
 //
-//  BigCell.m
+//  HistoryCell.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 12-12-17.
+//  Created by WangJian on 12-12-23.
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import "BigCell.h"
+#import "HistoryCell.h"
 
-@implementation BigCell
+@implementation HistoryCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,8 +27,9 @@
 }
 
 - (void)dealloc {
-    [_view release];
-    [_nextDayLabel release];
+    [_startName release];
+    [_endName release];
+    [_image release];
     [super dealloc];
 }
 @end

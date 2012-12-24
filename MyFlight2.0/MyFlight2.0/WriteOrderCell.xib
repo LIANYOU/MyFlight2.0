@@ -144,7 +144,7 @@
 									<object class="IBUILabel" id="308981616">
 										<reference key="NSNextResponder" ref="13963224"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{161, 14}, {105, 21}}</string>
+										<string key="NSFrame">{{170, 14}, {105, 21}}</string>
 										<reference key="NSSuperview" ref="13963224"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="410053725"/>
@@ -830,6 +830,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="backView">UIView</string>
 						<string key="firstLable">UILabel</string>
+						<string key="imageLabel">UILabel</string>
 						<string key="secondLabel">UILabel</string>
 						<string key="secondLable">UILabel</string>
 					</dictionary>
@@ -840,6 +841,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="firstLable">
 							<string key="name">firstLable</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imageLabel">
+							<string key="name">imageLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="secondLabel">

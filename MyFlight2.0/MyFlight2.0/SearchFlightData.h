@@ -43,6 +43,6 @@
 @property (retain, nonatomic)  NSString * childPrice;      // 儿童票面价（儿童最低价）
 @property (retain, nonatomic)  NSString * standerPrice;      // 票面价
 
-
+@property (retain, nonatomic)  NSString * goOrBackFlag;   // 去成或返程的时间标记
 +(SearchFlightData *)defaultSearchFlightData;
 @end

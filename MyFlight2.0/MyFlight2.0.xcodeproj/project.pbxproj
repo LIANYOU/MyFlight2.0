@@ -60,10 +60,6 @@
 		145A2D6F16855F42000DAAA1 /* ModifyPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D6D16855F40000DAAA1 /* ModifyPassWordViewController.xib */; };
 		145A2D7516858609000DAAA1 /* MyCheapFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2D7316858609000DAAA1 /* MyCheapFlightViewController.m */; };
 		145A2D7616858609000DAAA1 /* MyCheapFlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D7416858609000DAAA1 /* MyCheapFlightViewController.xib */; };
-		145A2D7D1685D2E4000DAAA1 /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D7C1685D2E4000DAAA1 /* OneWayCheckViewController.xib */; };
-		145A2D8A1685ED0C000DAAA1 /* HistoryCheckDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2D891685ED0C000DAAA1 /* HistoryCheckDataBase.m */; };
-		145A2D8D1685EE4A000DAAA1 /* HistoryCheckInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2D8C1685EE4A000DAAA1 /* HistoryCheckInfoData.m */; };
-		145A2D8F1685EF63000DAAA1 /* HistoryFlightQuery.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D8E1685EF62000DAAA1 /* HistoryFlightQuery.sqlite */; };
 		146986BC167DCB5700E9B30D /* gray_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B1167DCB5700E9B30D /* gray_btn.png */; };
 		146986BD167DCB5700E9B30D /* green_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B2167DCB5700E9B30D /* green_btn.png */; };
 		146986BE167DCB5700E9B30D /* icon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B3167DCB5700E9B30D /* icon_qq.png */; };
@@ -194,8 +190,11 @@
 		18C30D6116859DD7009B0A54 /* ChineseCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D5E16859DD7009B0A54 /* ChineseCalendar.m */; };
 		18C30D6216859DD7009B0A54 /* WeekDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6016859DD7009B0A54 /* WeekDayCell.m */; };
 		18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C9E6D81685C96100A1453C /* circle_green_change.png */; };
+
 		18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */; };
 		18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */; };
+
+
 		18CB6D0F16843C580025F42F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB6D0D16843C580025F42F /* PostViewController.m */; };
 		18CB6D1016843C580025F42F /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D0E16843C580025F42F /* PostViewController.xib */; };
 		18CB6D13168452F80025F42F /* bg_green__.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D12168452F80025F42F /* bg_green__.png */; };
@@ -209,7 +208,6 @@
 		18CC773C16771806001106FB /* AddPersonSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC773B16771805001106FB /* AddPersonSwitchCell.m */; };
 		18CC773E1677181A001106FB /* AddPersonSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CC773D16771819001106FB /* AddPersonSwitchCell.xib */; };
 		18CC774116771D8E001106FB /* IdentityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC774016771D8E001106FB /* IdentityViewController.m */; };
-		18D01976168212190096852E /* OneWayCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01974168212190096852E /* OneWayCheckViewController.m */; };
 		18D01986168217C10096852E /* searchCabin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01985168217C10096852E /* searchCabin.m */; };
 		18D0198D168218AD0096852E /* ChooseSpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01988168218AD0096852E /* ChooseSpaceCell.m */; };
 		18D0198E168218AD0096852E /* ChooseSpaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D01989168218AD0096852E /* ChooseSpaceCell.xib */; };
@@ -331,6 +329,17 @@
 		18DC00A11679BC38008C6B8D /* white_icon_round.png in Resources */ = {isa = PBXBuildFile; fileRef = 18DC00621679BC38008C6B8D /* white_icon_round.png */; };
 		18DD1D391675BF7A006B59AB /* TransitionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D381675BF7A006B59AB /* TransitionString.m */; };
 		18DD1D3C1675D01E006B59AB /* SearchFlightData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D3B1675D01D006B59AB /* SearchFlightData.m */; };
+		18DF892F16881F8B00D2DDAE /* OneWayCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF892D16881F8B00D2DDAE /* OneWayCheckViewController.m */; };
+		18DF893016881F8B00D2DDAE /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF892E16881F8B00D2DDAE /* OneWayCheckViewController.xib */; };
+		18DF893416881FAD00D2DDAE /* HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF893216881FAD00D2DDAE /* HistoryCell.m */; };
+		18DF893516881FAD00D2DDAE /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF893316881FAD00D2DDAE /* HistoryCell.xib */; };
+		18DF893916881FC800D2DDAE /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF893716881FC800D2DDAE /* HistroyCheckViewController.m */; };
+		18DF893A16881FC800D2DDAE /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF893816881FC800D2DDAE /* HistroyCheckViewController.xib */; };
+		18DF893E1688202400D2DDAE /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF893C1688202400D2DDAE /* ShowSelectedResultViewController.m */; };
+		18DF893F1688202400D2DDAE /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF893D1688202400D2DDAE /* ShowSelectedResultViewController.xib */; };
+		18DF894E168824E600D2DDAE /* HistoryCheckDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF894A168824E600D2DDAE /* HistoryCheckDataBase.m */; };
+		18DF894F168824E600D2DDAE /* HistoryCheckInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF894C168824E600D2DDAE /* HistoryCheckInfoData.m */; };
+		18DF8950168824E600D2DDAE /* HistoryFlightQuery.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18DF894D168824E600D2DDAE /* HistoryFlightQuery.sqlite */; };
 		18E37CAC167D53890086B3F8 /* icon_acc.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E37CA1167D53890086B3F8 /* icon_acc.png */; };
 		18E37CAD167D53890086B3F8 /* icon_atv.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E37CA2167D53890086B3F8 /* icon_atv.png */; };
 		18E37CAE167D53890086B3F8 /* icon_Coupon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E37CA3167D53890086B3F8 /* icon_Coupon.png */; };
@@ -403,8 +412,6 @@
 		18E88FEC167F0237002FCC62 /* DrawFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88FEA167F022C002FCC62 /* DrawFlightViewController.m */; };
 		18E88FED167F0237002FCC62 /* DrawFlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E88FEB167F0231002FCC62 /* DrawFlightViewController.xib */; };
 		18E8901A1680549B002FCC62 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E8901916805493002FCC62 /* AddressBookUI.framework */; };
-		18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */; };
-		18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */; };
 		18EAE7B016705F7300CA6265 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE7AF16705F7300CA6265 /* CustomTableView.m */; };
 		18EAE7B316705F9E00CA6265 /* CustomTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE7B216705F9E00CA6265 /* CustomTableView.xib */; };
 		18EAE7BA1670699B00CA6265 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE7B91670699B00CA6265 /* CustomTableViewCell.m */; };
@@ -493,12 +500,6 @@
 		145A2D7216858609000DAAA1 /* MyCheapFlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCheapFlightViewController.h; sourceTree = "<group>"; };
 		145A2D7316858609000DAAA1 /* MyCheapFlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCheapFlightViewController.m; sourceTree = "<group>"; };
 		145A2D7416858609000DAAA1 /* MyCheapFlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCheapFlightViewController.xib; sourceTree = "<group>"; };
-		145A2D7C1685D2E4000DAAA1 /* OneWayCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneWayCheckViewController.xib; sourceTree = "<group>"; };
-		145A2D881685ED0C000DAAA1 /* HistoryCheckDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCheckDataBase.h; sourceTree = "<group>"; };
-		145A2D891685ED0C000DAAA1 /* HistoryCheckDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCheckDataBase.m; sourceTree = "<group>"; };
-		145A2D8B1685EE49000DAAA1 /* HistoryCheckInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCheckInfoData.h; sourceTree = "<group>"; };
-		145A2D8C1685EE4A000DAAA1 /* HistoryCheckInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCheckInfoData.m; sourceTree = "<group>"; };
-		145A2D8E1685EF62000DAAA1 /* HistoryFlightQuery.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = HistoryFlightQuery.sqlite; sourceTree = "<group>"; };
 		146986B1167DCB5700E9B30D /* gray_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_btn.png; sourceTree = "<group>"; };
 		146986B2167DCB5700E9B30D /* green_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_btn.png; sourceTree = "<group>"; };
 		146986B3167DCB5700E9B30D /* icon_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_qq.png; sourceTree = "<group>"; };
@@ -676,15 +677,17 @@
 		18C30D50168598D7009B0A54 /* MonthSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthSection.m; sourceTree = "<group>"; };
 		18C30D5616859927009B0A54 /* SelectCalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCalendarController.h; sourceTree = "<group>"; };
 		18C30D5716859927009B0A54 /* SelectCalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCalendarController.m; sourceTree = "<group>"; };
-		18C30D5C16859C65009B0A54 /* ViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDelegate.h; sourceTree = "<group>"; };
 		18C30D5D16859DD7009B0A54 /* ChineseCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseCalendar.h; sourceTree = "<group>"; };
 		18C30D5E16859DD7009B0A54 /* ChineseCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseCalendar.m; sourceTree = "<group>"; };
 		18C30D5F16859DD7009B0A54 /* WeekDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekDayCell.h; sourceTree = "<group>"; };
 		18C30D6016859DD7009B0A54 /* WeekDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekDayCell.m; sourceTree = "<group>"; };
 		18C9E6D81685C96100A1453C /* circle_green_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_green_change.png; sourceTree = "<group>"; };
+
 		18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
 		18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistroyCheckViewController.m; sourceTree = "<group>"; };
 		18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistroyCheckViewController.xib; sourceTree = "<group>"; };
+
+
 		18CB6D0C16843C580025F42F /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		18CB6D0D16843C580025F42F /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		18CB6D0E16843C580025F42F /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
@@ -704,8 +707,6 @@
 		18CC773D16771819001106FB /* AddPersonSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonSwitchCell.xib; sourceTree = "<group>"; };
 		18CC773F16771D8D001106FB /* IdentityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentityViewController.h; sourceTree = "<group>"; };
 		18CC774016771D8E001106FB /* IdentityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityViewController.m; sourceTree = "<group>"; };
-		18D01973168212190096852E /* OneWayCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWayCheckViewController.h; sourceTree = "<group>"; };
-		18D01974168212190096852E /* OneWayCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneWayCheckViewController.m; sourceTree = "<group>"; };
 		18D01984168217C10096852E /* searchCabin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchCabin.h; sourceTree = "<group>"; };
 		18D01985168217C10096852E /* searchCabin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchCabin.m; sourceTree = "<group>"; };
 		18D01987168218AD0096852E /* ChooseSpaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSpaceCell.h; sourceTree = "<group>"; };
@@ -849,6 +850,24 @@
 		18DD1D381675BF7A006B59AB /* TransitionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionString.m; sourceTree = "<group>"; };
 		18DD1D3A1675D01D006B59AB /* SearchFlightData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightData.h; sourceTree = "<group>"; };
 		18DD1D3B1675D01D006B59AB /* SearchFlightData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightData.m; sourceTree = "<group>"; };
+		18DF892C16881F8B00D2DDAE /* OneWayCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWayCheckViewController.h; sourceTree = "<group>"; };
+		18DF892D16881F8B00D2DDAE /* OneWayCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneWayCheckViewController.m; sourceTree = "<group>"; };
+		18DF892E16881F8B00D2DDAE /* OneWayCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneWayCheckViewController.xib; sourceTree = "<group>"; };
+		18DF893116881FAD00D2DDAE /* HistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCell.h; sourceTree = "<group>"; };
+		18DF893216881FAD00D2DDAE /* HistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCell.m; sourceTree = "<group>"; };
+		18DF893316881FAD00D2DDAE /* HistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryCell.xib; sourceTree = "<group>"; };
+		18DF893616881FC800D2DDAE /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
+		18DF893716881FC800D2DDAE /* HistroyCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistroyCheckViewController.m; sourceTree = "<group>"; };
+		18DF893816881FC800D2DDAE /* HistroyCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistroyCheckViewController.xib; sourceTree = "<group>"; };
+		18DF893B1688202400D2DDAE /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
+		18DF893C1688202400D2DDAE /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
+		18DF893D1688202400D2DDAE /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
+		18DF8949168824E600D2DDAE /* HistoryCheckDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCheckDataBase.h; sourceTree = "<group>"; };
+		18DF894A168824E600D2DDAE /* HistoryCheckDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCheckDataBase.m; sourceTree = "<group>"; };
+		18DF894B168824E600D2DDAE /* HistoryCheckInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCheckInfoData.h; sourceTree = "<group>"; };
+		18DF894C168824E600D2DDAE /* HistoryCheckInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCheckInfoData.m; sourceTree = "<group>"; };
+		18DF894D168824E600D2DDAE /* HistoryFlightQuery.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = HistoryFlightQuery.sqlite; sourceTree = "<group>"; };
+		18DF895E16882F1B00D2DDAE /* ViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDelegate.h; sourceTree = "<group>"; };
 		18E37CA1167D53890086B3F8 /* icon_acc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_acc.png; sourceTree = "<group>"; };
 		18E37CA2167D53890086B3F8 /* icon_atv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_atv.png; sourceTree = "<group>"; };
 		18E37CA3167D53890086B3F8 /* icon_Coupon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Coupon.png; sourceTree = "<group>"; };
@@ -937,9 +956,6 @@
 		18E88FEA167F022C002FCC62 /* DrawFlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawFlightViewController.m; sourceTree = "<group>"; };
 		18E88FEB167F0231002FCC62 /* DrawFlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawFlightViewController.xib; sourceTree = "<group>"; };
 		18E8901916805493002FCC62 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
-		18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
-		18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
 		18EAE7AE16705F7300CA6265 /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
 		18EAE7AF16705F7300CA6265 /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
 		18EAE7B216705F9E00CA6265 /* CustomTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableView.xib; sourceTree = "<group>"; };
@@ -1222,21 +1238,21 @@
 				18E0B6CD167183D300968F01 /* choosePerson */,
 				142793771670699100E2E1E3 /* chooseSpace */,
 				18EAE79416703AA000CA6265 /* cell */,
-				18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */,
-				18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */,
-				18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */,
-				18D01973168212190096852E /* OneWayCheckViewController.h */,
-				18D01974168212190096852E /* OneWayCheckViewController.m */,
-				145A2D7C1685D2E4000DAAA1 /* OneWayCheckViewController.xib */,
-				18EAE78E16702AC300CA6265 /* ShowSelectedResultViewController.h */,
-				18EAE78F16702AC300CA6265 /* ShowSelectedResultViewController.m */,
-				18EAE79016702AC300CA6265 /* ShowSelectedResultViewController.xib */,
+				18DF892C16881F8B00D2DDAE /* OneWayCheckViewController.h */,
+				18DF892D16881F8B00D2DDAE /* OneWayCheckViewController.m */,
+				18DF892E16881F8B00D2DDAE /* OneWayCheckViewController.xib */,
+				18DF893616881FC800D2DDAE /* HistroyCheckViewController.h */,
+				18DF893716881FC800D2DDAE /* HistroyCheckViewController.m */,
+				18DF893816881FC800D2DDAE /* HistroyCheckViewController.xib */,
 				142793691670412F00E2E1E3 /* BuyInsuranceViewController.h */,
 				1427936A1670412F00E2E1E3 /* BuyInsuranceViewController.m */,
 				1427936B1670412F00E2E1E3 /* BuyInsuranceViewController.xib */,
 				18D01996168219C80096852E /* WriteOrderViewController.h */,
 				18D01997168219CC0096852E /* WriteOrderViewController.m */,
 				18D01998168219D90096852E /* WriteOrderViewController.xib */,
+				18DF893B1688202400D2DDAE /* ShowSelectedResultViewController.h */,
+				18DF893C1688202400D2DDAE /* ShowSelectedResultViewController.m */,
+				18DF893D1688202400D2DDAE /* ShowSelectedResultViewController.xib */,
 			);
 			name = TicketCheck;
 			sourceTree = "<group>";
@@ -1290,11 +1306,11 @@
 		145A2D861685EC85000DAAA1 /* historyCheck */ = {
 			isa = PBXGroup;
 			children = (
-				145A2D8E1685EF62000DAAA1 /* HistoryFlightQuery.sqlite */,
-				145A2D881685ED0C000DAAA1 /* HistoryCheckDataBase.h */,
-				145A2D891685ED0C000DAAA1 /* HistoryCheckDataBase.m */,
-				145A2D8B1685EE49000DAAA1 /* HistoryCheckInfoData.h */,
-				145A2D8C1685EE4A000DAAA1 /* HistoryCheckInfoData.m */,
+				18DF8949168824E600D2DDAE /* HistoryCheckDataBase.h */,
+				18DF894A168824E600D2DDAE /* HistoryCheckDataBase.m */,
+				18DF894B168824E600D2DDAE /* HistoryCheckInfoData.h */,
+				18DF894C168824E600D2DDAE /* HistoryCheckInfoData.m */,
+				18DF894D168824E600D2DDAE /* HistoryFlightQuery.sqlite */,
 			);
 			name = historyCheck;
 			sourceTree = "<group>";
@@ -1668,7 +1684,7 @@
 				18C30D5E16859DD7009B0A54 /* ChineseCalendar.m */,
 				18C30D5F16859DD7009B0A54 /* WeekDayCell.h */,
 				18C30D6016859DD7009B0A54 /* WeekDayCell.m */,
-				18C30D5C16859C65009B0A54 /* ViewControllerDelegate.h */,
+				18DF895E16882F1B00D2DDAE /* ViewControllerDelegate.h */,
 				18C30D5616859927009B0A54 /* SelectCalendarController.h */,
 				18C30D5716859927009B0A54 /* SelectCalendarController.m */,
 				18C30D48168598D7009B0A54 /* calendar.txt */,
@@ -2011,6 +2027,9 @@
 				18CB6D5F168467F90025F42F /* ShowSelectedCell.h */,
 				18CB6D60168467F90025F42F /* ShowSelectedCell.m */,
 				18CB6D631684680D0025F42F /* ShowSelectedCell.xib */,
+				18DF893116881FAD00D2DDAE /* HistoryCell.h */,
+				18DF893216881FAD00D2DDAE /* HistoryCell.m */,
+				18DF893316881FAD00D2DDAE /* HistoryCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -2071,8 +2090,6 @@
 				145394FE166F220E00417F61 /* Default@2x.png in Resources */,
 				14539500166F220E00417F61 /* Default-568h@2x.png in Resources */,
 				14539506166F220E00417F61 /* ViewController.xib in Resources */,
-				18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */,
-				18EAE79216702AC300CA6265 /* ShowSelectedResultViewController.xib in Resources */,
 				1427936D1670412F00E2E1E3 /* BuyInsuranceViewController.xib in Resources */,
 				18EAE7B316705F9E00CA6265 /* CustomTableView.xib in Resources */,
 				18EAE7BC167069E000CA6265 /* CustomTableViewCell.xib in Resources */,
@@ -2339,6 +2356,7 @@
 				145A2D6216845E31000DAAA1 /* MyOrderListCell.xib in Resources */,
 				145A2D6F16855F42000DAAA1 /* ModifyPassWordViewController.xib in Resources */,
 				145A2D7616858609000DAAA1 /* MyCheapFlightViewController.xib in Resources */,
+
 				145A2D7D1685D2E4000DAAA1 /* OneWayCheckViewController.xib in Resources */,
 
 
@@ -2350,6 +2368,14 @@
 
 
 				18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */,
+
+
+				18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */,
+				18DF893016881F8B00D2DDAE /* OneWayCheckViewController.xib in Resources */,
+				18DF893516881FAD00D2DDAE /* HistoryCell.xib in Resources */,
+				18DF893A16881FC800D2DDAE /* HistroyCheckViewController.xib in Resources */,
+				18DF893F1688202400D2DDAE /* ShowSelectedResultViewController.xib in Resources */,
+				18DF8950168824E600D2DDAE /* HistoryFlightQuery.sqlite in Resources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2364,8 +2390,6 @@
 				145394F6166F220E00417F61 /* main.m in Sources */,
 				145394FA166F220E00417F61 /* AppDelegate.m in Sources */,
 				14539503166F220E00417F61 /* ViewController.m in Sources */,
-				18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */,
-				18EAE79116702AC300CA6265 /* ShowSelectedResultViewController.m in Sources */,
 				142793591670351F00E2E1E3 /* UIQuickHelp.m in Sources */,
 				1427936C1670412F00E2E1E3 /* BuyInsuranceViewController.m in Sources */,
 				18EAE7B016705F7300CA6265 /* CustomTableView.m in Sources */,
@@ -2429,7 +2453,6 @@
 				14698727167EFE2F00E9B30D /* CouponsInfo.m in Sources */,
 				1469872A167F016800E9B30D /* SpecialAppointmentData.m in Sources */,
 				14698737167F152400E9B30D /* NSData+base64.m in Sources */,
-				18D01976168212190096852E /* OneWayCheckViewController.m in Sources */,
 				18D01986168217C10096852E /* searchCabin.m in Sources */,
 				18D0198D168218AD0096852E /* ChooseSpaceCell.m in Sources */,
 				18D0198F168218AD0096852E /* ChooseSpaceViewController.m in Sources */,
@@ -2476,8 +2499,12 @@
 				145A2D6016845E1C000DAAA1 /* MyOrderListCell.m in Sources */,
 				145A2D6E16855F42000DAAA1 /* ModifyPassWordViewController.m in Sources */,
 				145A2D7516858609000DAAA1 /* MyCheapFlightViewController.m in Sources */,
-				145A2D8A1685ED0C000DAAA1 /* HistoryCheckDataBase.m in Sources */,
-				145A2D8D1685EE4A000DAAA1 /* HistoryCheckInfoData.m in Sources */,
+				18DF892F16881F8B00D2DDAE /* OneWayCheckViewController.m in Sources */,
+				18DF893416881FAD00D2DDAE /* HistoryCell.m in Sources */,
+				18DF893916881FC800D2DDAE /* HistroyCheckViewController.m in Sources */,
+				18DF893E1688202400D2DDAE /* ShowSelectedResultViewController.m in Sources */,
+				18DF894E168824E600D2DDAE /* HistoryCheckDataBase.m in Sources */,
+				18DF894F168824E600D2DDAE /* HistoryCheckInfoData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

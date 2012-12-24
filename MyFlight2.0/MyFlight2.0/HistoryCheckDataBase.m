@@ -21,7 +21,7 @@
     NSString *doc_path=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
     //数据库路径
     NSString *sqlPath=[doc_path stringByAppendingPathComponent:@"HistoryFlightQuery.sqlite"];
-    NSLog(@"%@",sqlPath);
+ //   NSLog(@"%@",sqlPath);
     
     //原始路径
     NSString *orignFilePath = [[NSBundle mainBundle] pathForResource:@"HistoryFlightQuery" ofType:@"sqlite"];
@@ -29,7 +29,7 @@
     
     
     
-    NSLog(@"原始地址:%@",orignFilePath);
+//    NSLog(@"原始地址:%@",orignFilePath);
     
     NSFileManager *fm = [NSFileManager defaultManager];
     if([fm fileExistsAtPath:sqlPath] == NO)//如果doc下没有数据库，从bundle里面拷贝过来
@@ -42,7 +42,7 @@
             NSLog(@"open database error %@",[err localizedDescription]);
             return nil;
         }
-        
+ //
         NSLog(@"document 下没有数据库文件，执行拷贝工作");
     }
     
@@ -51,13 +51,13 @@
     
     //这个方法一定要执行
     if (![db open]) {
-        NSLog(@"数据库打开失败！");
+  //      NSLog(@"数据库打开失败！");
         return db;
     }
     
     
-    NSLog(@"打开成功");
-    NSLog(@"db=%@",db);
+//    NSLog(@"打开成功");
+//    NSLog(@"db=%@",db);
     return  db;
 }
 
@@ -76,7 +76,7 @@
     
     if ([db tableExists:@"HistoryFlight"]) {
         
-        CCLog(@"存在HistoryFlight表格");
+ //       CCLog(@"存在HistoryFlight表格");
         
         
         
@@ -84,9 +84,9 @@
         
         
         
-        NSLog(@"查询到的结果集%@",resultSet);
-        NSLog(@"几列=%d",[resultSet columnCount]);
-        NSLog(@"错误信息：%@ 行数%d",[db lastErrorMessage], [db lastErrorCode]);
+ ///       NSLog(@"查询到的结果集%@",resultSet);
+ //       NSLog(@"几列=%d",[resultSet columnCount]);
+ //       NSLog(@"错误信息：%@ 行数%d",[db lastErrorMessage], [db lastErrorCode]);
         
         
         
@@ -99,7 +99,7 @@
             [data  setStartAirPortName:[resultSet stringForColumnIndex:1] EndAirPortName:[resultSet stringForColumnIndex:2] startApCode:[resultSet stringForColumnIndex:3] endApCode:[resultSet stringForColumnIndex:4] searchFlag:[resultSet stringForColumnIndex:5]];
             
             
-            CCLog(@"添加的出发机场名字为%@",data.startAirPortName);
+   //         CCLog(@"添加的出发机场名字为%@",data.startAirPortName);
             
             [resultArray addObject:data];
             [data release];
@@ -111,7 +111,7 @@
         
     }
     
-    NSLog(@"查找成功");
+ //   NSLog(@"查找成功");
     [db close];
     
     return  [resultArray autorelease];
@@ -128,15 +128,15 @@
     
     if ([db tableExists:@"HistoryFlight"]) {
         
-        CCLog(@"存在HistoryFlight表格");
+ //       CCLog(@"存在HistoryFlight表格");
         
         
         success =  [db executeUpdate:@"insert into HistoryFlight(startAirportName,endAirportName,startApCode,endApCode,flag) values(?,?,?,?,?)",start,endName,startApcode,endApcode,flag];
         if (success) {
             
             
-            
-            CCLog(@"添加历史成功");
+ //
+ //           CCLog(@"添加历史成功");
         }
         
         
@@ -157,12 +157,12 @@
     
     if ([db tableExists:@"HistoryFlight"]) {
         
-        CCLog(@"存在HistoryFlight表格");
+  //      CCLog(@"存在HistoryFlight表格");
         
         success =  [db executeUpdate:@"delete from HistoryFlight"];
         
         if (success) {
-            CCLog(@"删除全部历史");
+  //          CCLog(@"删除全部历史");
         }
         
         

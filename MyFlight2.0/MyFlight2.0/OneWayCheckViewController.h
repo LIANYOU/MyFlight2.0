@@ -13,6 +13,7 @@
 #import "ChooseAirPortViewController.h"
 #import "Date.h"
 #import "ViewControllerDelegate.h"
+#import "HistroyCheckViewController.h"
 
 @interface OneWayCheckViewController : UIViewController<SVSegmentedControlDelegate,ChooseAirPortViewControllerDelegate, ViewControllerDelegate>
 {
@@ -58,6 +59,30 @@
     
     Date* leaveDate;
 }
+
+//@property (retain, nonatomic) IBOutlet UILabel *oneStartAirPort;
+//@property (retain, nonatomic) IBOutlet UILabel *oneEndAirPort;
+//
+//
+//@property (retain, nonatomic) IBOutlet UILabel *startAirport;
+//@property (retain, nonatomic) IBOutlet UILabel *endAirport;
+
+
+@property (retain, nonatomic) NSString * oneStartName;
+@property (retain, nonatomic) NSString * oneEndName;
+@property (retain, nonatomic) NSString * oneStartCode;
+@property (retain, nonatomic) NSString * oneEndCode;
+
+@property (retain, nonatomic) NSString * startName;
+@property (retain, nonatomic) NSString * endName;
+@property (retain, nonatomic) NSString * startCode;
+@property (retain, nonatomic) NSString * endCode;
+
+@property (retain, nonatomic) NSString * flagType;
+
+@property (retain, nonatomic) HistroyCheckViewController * history;
+
+
 @property (retain, nonatomic) IBOutlet UIView *selectOne;
 @property (retain, nonatomic) IBOutlet UIView *selectTwoWay;
 
