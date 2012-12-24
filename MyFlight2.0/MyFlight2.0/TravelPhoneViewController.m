@@ -65,7 +65,7 @@
     }
     
     titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 4, 160, 32)];
-    titlelabel.font = [UIFont systemFontOfSize:11];
+    titlelabel.font = [UIFont systemFontOfSize:14];
     if ([phoneInfoArray count] == 0) {
         NSLog(@"phoneInfoArray count == 0");
     }else{
@@ -79,8 +79,8 @@
     titlelabel.backgroundColor = [UIColor clearColor];
     [cell addSubview:titlelabel];
     
-    phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(170, 4, 80, 32)];
-    phoneLabel.font = [UIFont systemFontOfSize:11];
+    phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 4, 100, 32)];
+    phoneLabel.font = [UIFont systemFontOfSize:14];
     if ([phoneInfoArray count] == 0) {
         NSLog(@"phoneInfoArray count == 0");
     }else{
@@ -125,26 +125,36 @@
     //请求完成
     [request setCompletionBlock:^{
         NSString * str = [request responseString];
-//        NSString * str1 = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
         
         NSDictionary * dic = [str objectFromJSONString];
         NSLog(@"block before : %d",[[dic valueForKey:@"AirportCommonlyPhone"]count]);
-//        NSArray * count = [dic valueForKey:@"AirportCommonlyPhone"];
-//        NSLog(@"count : %d",[count count]);
-//        NSLog(@"cellNumber: %d",cellNumber);
         [phoneInfoArray addObjectsFromArray:[dic valueForKey:@"AirportCommonlyPhone"]];
-
         didFinish = YES;
-//        NSLog(@"change >>>>>>>>>>>>> didFinish = yes");
         [myTableView reloadData];
-        
-        
     }];
     //请求失败
     [request setFailedBlock:^{
         NSError *error = [request error];
         NSLog(@"Error : %@", error.localizedDescription);
     }];
+    
+    [request setHeadersReceivedBlock:^(NSDictionary * headDic){
+       allLength = [[headDic objectForKey:@"Content-Length"]doubleValue];
+        NSLog(@"allLength : %f",allLength);
+    }];
+
+//    [request setDataReceivedBlock:^(NSData * addData){
+//        if (addLength == 0) {
+//            addLength = [addData length];
+//        }else{
+//            addLength = addLength + [addData length];
+//        }
+//        NSLog(@"addLength : %f",addLength);
+//        lengthPoint = addLength/allLength;
+//        NSLog(@"lengthPoint : %f",lengthPoint);
+//        [myData appendData:addData];
+//    }];
     
     [request setDelegate:self];
     [request startAsynchronous];

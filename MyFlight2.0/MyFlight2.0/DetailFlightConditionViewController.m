@@ -122,7 +122,7 @@
         flightLine.frame=frame;
     }
 }
-
+//短信btn
 -(void)btnMessageClick:(id)sender{
     
     SMSViewController * sendMessange = [[SMSViewController alloc]init];
@@ -181,4 +181,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+//飞行地图
+- (IBAction)littleFlightClick:(id)sender {
+    
+}
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "FlightConditionDetailData.h"
+
 @interface DetailFlightConditionViewController : UIViewController<UIActionSheetDelegate>{
     NSDictionary * _dic;
     FlightConditionDetailData * myFlightConditionDetailData;
@@ -47,6 +48,9 @@
     
     IBOutlet UIButton * attentionThisPlaneBtn; //关注该航班
     IBOutlet UIImageView * flightLine;  //绿色的弧线，显示飞机飞行进度条
+    
+    UIView * mapView;   // 地图
+    
 }
 
 @property(nonatomic,retain) IBOutlet UIButton * btnMessage;
@@ -70,6 +74,7 @@
 @property(nonatomic,retain)IBOutlet UILabel * fromSceTime;         //实际时间（各种状态）
 @property(nonatomic,retain)IBOutlet UILabel * fromResult;          //比计划晚点30分钟（等之类的计算）
 
+- (IBAction)littleFlightClick:(id)sender;
 
 @property(nonatomic,retain)IBOutlet UILabel * arriveFirstTimeName; //目的的状态
 @property(nonatomic,retain)IBOutlet UILabel * arriveFirstTime;

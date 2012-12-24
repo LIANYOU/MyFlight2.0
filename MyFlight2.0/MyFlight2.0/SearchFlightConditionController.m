@@ -13,6 +13,8 @@
 #import "AirPortData.h"
 #import "AppConfigure.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ASIFormDataRequest.h"
+#import "JSONKit.h"
 @interface SearchFlightConditionController ()
 
 @end
@@ -31,21 +33,49 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    
-    //查询按钮颜色
-    //UIColor * mySelectBtnColor = [UIColor colorWithRed:255/255.0 green:107/255.0 blue:42/255.0 alpha:1];
-    self.navigationItem.title = @"航班动态";
-    
-//    UIImageView * leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_return.png"]];
-//    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftView];
-//    [leftView release];
-//    
-//    leftItem.action = @selector(rightItemClick:);
+    self.view.backgroundColor = BACKGROUND_COLOR;
+    self.navigationItem.title = @"已关注航班列表";
+    selectView = [[UIView alloc]initWithFrame:CGRectMake(0,-self.view.bounds.size.height, 320, self.view.bounds.size.height)];
+    selectView.backgroundColor = BACKGROUND_COLOR;
+    isAttention = NO;
     
     
-//    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(rightItemClick:)];
-//    self.navigationController.navigationItem.rightBarButtonItem = leftItem;
+    
+    //航班动态列表
+    myConditionListView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
+    myConditionListView.backgroundColor = [UIColor blackColor];
+    myConditionListTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
+    myConditionListTableView.backgroundColor = [UIColor redColor];
+    myConditionListTableView.dataSource = self;
+    myConditionListTableView.delegate = self;
+    [myConditionListView addSubview:myConditionListTableView];
+    [self.view addSubview:myConditionListView];
+    
+    //遮罩
+    shade = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
+    shade.backgroundColor = [UIColor blackColor];
+    shade.alpha = 0.5;
+    shade.userInteractionEnabled = NO;
+    //[self.view addSubview:shade];
+    
+    
+    
+   
+    //定制导航右键
+    rightsuperView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 85, 72)];
+    btnImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 13, 85, 62)];
+    [btnImageView setImage:[UIImage imageNamed:@"add_Attention.png"]];
+    [rightsuperView addSubview:btnImageView];
+    UITapGestureRecognizer * attentionTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(attentionTapEvent:)];
+    [rightsuperView addGestureRecognizer:attentionTap];
+    [attentionTap release];
+    
+    
+    
+    
+    UIBarButtonItem * item = [[UIBarButtonItem alloc]initWithCustomView:rightsuperView];
+    self.navigationItem.rightBarButtonItem = item;
+    [item release];
     
  
     
@@ -67,7 +97,7 @@
     mySegmentController.crossFadeLabelsOnDrag = YES;
    
     mySegmentController.tintColor = [UIColor colorWithRed:22/255.0f green:74.0/255.0f blue:178.0/255.0f alpha:1.0f];
-    [self.view addSubview:mySegmentController];
+    [selectView addSubview:mySegmentController];
     
     
 
@@ -78,8 +108,8 @@
     self.selectedByAirPort.backgroundColor = [UIColor clearColor];
     self.selectedByDate.frame = CGRectMake(320, 460-390, 320, 378);
     self.selectedByDate.backgroundColor  = [UIColor clearColor];
-    [self.view addSubview:self.selectedByAirPort];
-    [self.view addSubview:self.selectedByDate];
+    [selectView addSubview:self.selectedByAirPort];
+    [selectView addSubview:self.selectedByDate];
     
     
     //获得系统时间
@@ -95,10 +125,14 @@
     NSString *  nsDateString= [NSString  stringWithFormat:@"%4d-%2d-%2d",year,month,day];
     [self.time setText:nsDateString];
     [self.flightTimeByNumber setText:nsDateString];
-//    NSLog(@"%@",nsDateString);
+
     [dateformatter release];
     
     
+    [self getListData];
+    
+    
+    [self.view addSubview:selectView];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -109,6 +143,11 @@
 }
 
 - (void)dealloc {
+    [myConditionListTableView release];
+    [myConditionListView release];
+    [selectView release];
+    [mySegmentController release];
+    
     [_startAirPort release];
     [_endAirPort release];
     [_time release];
@@ -116,7 +155,7 @@
  
     [_flightNumber release];
     [_selectedByDate release];
-    [mySegmentController release];
+    
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -223,14 +262,147 @@
     if (choiceType==START_AIRPORT_TYPE ) {
         //获得用户的出发机场 
         self.startAirPort.text = airPortP.apName;
-        NSLog(@"my >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>%@",airPortP.apCode);
-        startAirPortCode = [NSString stringWithString:airPortP.apCode];
+                startAirPortCode = [NSString stringWithString:airPortP.apCode];
     } else if(choiceType==END_AIRPORT_TYPE){
         //获得用户的到达机场
         self.endAirPort.text = airPortP.apName;
-         NSLog(@"my >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>%@",airPortP.apCode);
         arrAirPortCode = [NSString stringWithString:airPortP.apCode];
         
     }
+}
+
+-(void)getListData{
+    myListData = [[NSMutableData alloc]init];
+    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Flight/GetBookFlightMovement.json"];
+    
+    
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:@"XXX" forKey:@"memberId"];
+    [request setPostValue:@"51YOU" forKey:@"orgSource"];
+    [request setPostValue:@"PUSH" forKey:@"type"];
+    [request setPostValue:@"iphone" forKey:@"source"];
+    [request setPostValue:CURRENT_DEVICEID_VALUE forKey:@"hwId"];
+    [request setPostValue:@"01" forKey:@"serviceCode"];    
+    
+    
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    NSLog(@"getListData :%@",request);
+    
+    [request setCompletionBlock:^{
+        
+        NSData * jsonData = [request responseData] ;
+        
+        NSString * temp = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+        NSDictionary * getListDic = [temp objectFromJSONString];
+       
+        NSDictionary * secDic = [getListDic objectForKey:@"result"];
+        resultString = [secDic objectForKey:@"message"];
+        
+        if ([resultString isEqualToString:@"您订阅的航班会出现在这里，方便您对航班动态进行实时查看，去试试吧~"]) {
+            NSLog(@"无数据");
+        }
+    }];
+    
+    [request setFailedBlock:^{
+        NSError *error = [request error];
+        NSLog(@"getList Error : %@", error.localizedDescription);
+    }];
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
+    
+}
+
+-(void)getData{
+    myData = [[NSMutableData alloc]init];
+    // Do any additional setup after loading the view from its nib.
+    
+    // NSString * myUrl = [NSString stringWithFormat:@"%@3gWeb/api/provision.jsp",BASE_Domain_Name];
+    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/flightMovement.jsp"];
+    
+    
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:@"XXX" forKey:@"memberId"];
+    [request setPostValue:@"51YOU" forKey:@"orgSource"];
+    [request setPostValue:@"iphone" forKey:@"source"];
+    [request setPostValue:CURRENT_DEVICEID_VALUE forKey:@"hwId"];
+    [request setPostValue:@"01" forKey:@"serviceCode"];
+    [request setPostValue:@"v3.0" forKey:@"edition"];
+    
+   
+    
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    NSLog(@"request :%@",request);
+    
+    [request setCompletionBlock:^{
+        
+        NSData * jsonData = [request responseData] ;
+        
+        NSString * temp = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"temp : %@",temp);
+        
+    }];
+    
+    [request setFailedBlock:^{
+        NSError *error = [request error];
+        NSLog(@"Error : %@", error.localizedDescription);
+    }];
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
+    
+}
+
+
+-(void)attentionTapEvent:(UITapGestureRecognizer *)tap{
+    isAttention = !isAttention;
+    rightsuperView.userInteractionEnabled = NO;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDelegate:self];
+    btnImageView.frame = CGRectMake(0, -2, 85, 62);
+    if (isAttention == YES) {
+        selectView.frame = CGRectMake(0, 0, 320, self.view.bounds.size.height);
+    }else{
+        selectView.frame = CGRectMake(0, -self.view.bounds.size.height, 320, self.view.bounds.size.height);
+    }
+    [UIView setAnimationDidStopSelector:@selector(animationIsStop)];
+    [UIView commitAnimations];
+}
+
+-(void)animationIsStop{
+    if (isAttention == YES) {
+        self.title = @"添加关注航班";
+        [btnImageView setImage:[UIImage imageNamed:@"icon_del_attention.png"]];
+    }else{
+        self.title = @"已关注航班列表";
+        [btnImageView setImage:[UIImage imageNamed:@"add_Attention.png"]];
+    }
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDidStopSelector:@selector(animationTwoIsStop)];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:0.5];
+    btnImageView.frame = CGRectMake(0, 13, 85, 62);
+    [UIView commitAnimations];
+}
+-(void)animationTwoIsStop{
+    rightsuperView.userInteractionEnabled = YES;
+}
+
+
+#pragma mark - tableView代理
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    cell.textLabel.text = @"cell";
+    return cell;
 }
 @end
