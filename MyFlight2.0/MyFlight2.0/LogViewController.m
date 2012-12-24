@@ -15,11 +15,15 @@
 #import "UIQuickHelp.h"
 #import "IsLoginInSingle.h"
 #import "UserAccount.h"
+
+#import "MyNewCenterViewController.h"
 @interface LogViewController ()
 {
     
     BOOL isRemember;
     IsLoginInSingle *loginSingle;
+    LoginBusiness *loginBusiness;
+    
     
 }
 @end
@@ -41,6 +45,13 @@
     [super viewDidLoad];
     
     
+    //默认设置先回到我的个人中心
+    self.loginSuccessReturnType = Login_Success_ReturnMyCenterDefault_Type;
+    
+    
+    loginBusiness = [[LoginBusiness alloc] init];
+    
+
     
     
     
@@ -87,7 +98,7 @@
 - (void)dealloc {
     [logNumber release];
     [logPassword release];
-    
+    [loginBusiness release];
     [ScrollerView release];
     [_remembePasswordBn release];
     [super dealloc];
@@ -138,6 +149,7 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:logNumber.text forKey:KEY_Default_AccountName];
     
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
 
     
@@ -167,7 +179,38 @@
     NSLog(@"token = %@",token);
     sleep(1);
     
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+    if ([self.loginSuccessReturnType isEqualToString:Login_Success_ReturnMyCenterDefault_Type]) {
+        
+        MyNewCenterViewController *center = [[MyNewCenterViewController alloc] init];
+        
+//        [loginBusiness getAccountInfoWithMemberId:memberID andDelegate:center];
+        
+        
+        [self presentViewController:center animated:YES completion:^{
+            
+            
+            [center updateThisViewWhenSuccess];
+            
+        }];
+        
+        
+        
+        
+        
+    } else{
+        
+        
+         [self.navigationController popViewControllerAnimated:YES];
+    }
+        
+    
+    
+    
+    
+    
+   
     
     
     
@@ -197,13 +240,11 @@
     
     
     
-    LoginBusiness *loginBusiness = [[LoginBusiness alloc] init];
-    
     
     
     [loginBusiness loginWithName:logNumber.text password:logPassword.text andDelegate:self];
     
-    [loginBusiness release];
+ 
     
     
     

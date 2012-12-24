@@ -25,13 +25,15 @@
 
 #define KEY_Default_Token  @"userToken"
 //
+
 #define Default_UserMemberId_Value [[NSUserDefaults standardUserDefaults] stringForKey:KEY_Default_MemberId]
+
 
 #define Default_IsUserLogin_Value  [[NSUserDefaults standardUserDefaults] boolForKey:KEY_Default_IsRememberPwd]
 
-#define Default_Token_Value 
+#define Default_Token_Value [[NSUserDefaults standardUserDefaults] stringForKey:KEY_Default_Token]
 
-
+#define Default_AccountName_Value [[NSUserDefaults standardUserDefaults] stringForKey:KEY_Default_AccountName]
 
 
 //公共返回结果字段标志
@@ -51,7 +53,7 @@
 
 //公共参数字段 默认参数
 #define SOURCE_VALUE  @"xx"
-#define HWID_VALUE  @""
+#define HWID_VALUE  CURRENT_DEVICEID_VALUE
 //当前硬件的唯一标识
 #define CURRENT_DEVICEID_VALUE [UIDevice currentDevice].uniqueIdentifier
 #define SERVICECode_VALUE @"01" 

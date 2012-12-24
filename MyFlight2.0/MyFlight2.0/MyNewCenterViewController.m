@@ -16,6 +16,15 @@
 #import "MyOrderListViewController.h"
 #import "MyCheapViewController.h"
 #import "HistoryCheckDataBase.h"
+
+#import "UserAccount.h"
+#import "IsLoginInSingle.h"
+#import "AppConfigure.h"
+
+#import "LoginBusiness.h"
+#import "UIQuickHelp.h"
+
+
 @interface MyNewCenterViewController ()
 
 @end
@@ -82,19 +91,72 @@
 
 
 
+
+
+
+//网络错误回调的方法 
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+     NSString *meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+    
+    
+}
+
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    NSString *meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+    
+    
+    
+}
+
+
+
+- (void) updateThisViewWhenSuccess{
+    
+   CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    
+    //用户已经登录的情况下 显示用户相关的信息
+    
+    IsLoginInSingle *userSingle = [IsLoginInSingle shareLoginSingle];
+    self.userNameLabel.text = Default_AccountName_Value;
+    
+    self.accountMoneyLabel.text = userSingle.userAccount.account;
+    
+    self.xlGoldMoneyLabel.text = userSingle.userAccount.xinlvGoldMoeny;
+    self.xlSilverMoneyLabel.text = userSingle.userAccount.xinlvSilverMoney;
+
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    LoginBusiness *busi = [[LoginBusiness alloc] init];
+    
+    NSString *memberId =Default_UserMemberId_Value;
+    
+    CCLog(@"在个人中心界面 memberId= %@",memberId);
+    [busi getAccountInfoWithMemberId:memberId andDelegate:self];
     
     
-//    [HistoryCheckDataBase findAllHistoryCheck];
-//    [HistoryCheckDataBase deleteAllHistory];
+    
    
-//    [[NSUserDefaults standardUserDefaults] setObject:@"去程" forKey:@"qu"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"qu"];
-    
-//    NSLog(@"去程信息：%@",str);
     [self setNav];
     // Do any additional setup after loading the view from its nib.
 }
@@ -152,5 +214,19 @@
 }
 
 - (IBAction)gotoMakeAccountFull:(id)sender {
+}
+- (void)dealloc {
+    [_accountMoneyLabel release];
+    [_xlGoldMoneyLabel release];
+    [_xlSilverMoneyLabel release];
+    [_userNameLabel release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setAccountMoneyLabel:nil];
+    [self setXlGoldMoneyLabel:nil];
+    [self setXlSilverMoneyLabel:nil];
+    [self setUserNameLabel:nil];
+    [super viewDidUnload];
 }
 @end

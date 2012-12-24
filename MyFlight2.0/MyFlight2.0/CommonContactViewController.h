@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CommonContactViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "ServiceDelegate.h"
+@interface CommonContactViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ServiceDelegate>
 
 
 

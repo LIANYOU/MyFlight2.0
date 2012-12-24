@@ -8,6 +8,9 @@
 
 #import "CommonContactViewController.h"
 #import "CommonContactCell.h"
+#import "LoginBusiness.h"
+#import "UIQuickHelp.h"
+#import "AppConfigure.h"
 @interface CommonContactViewController ()
 
 @end
@@ -23,9 +26,47 @@
     return self;
 }
 
+
+
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    NSString *meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+    
+    
+}
+
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    NSString *meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+    
+    
+    
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    LoginBusiness  *bis = [[LoginBusiness alloc] init];
+    
+    [bis getCommonPassengerWithMemberId:@"1351876318736518" andDelegate:self];
     
     self.title = @"常用乘机人";
     // Do any additional setup after loading the view from its nib.

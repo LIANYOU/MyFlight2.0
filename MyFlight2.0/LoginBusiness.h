@@ -20,7 +20,11 @@
 - (void) registerWithAccount:(NSString *) name password:(NSString *) passwd yaCode:(NSString *)yzCode andDelegate:(id<ServiceDelegate>) delegate;
 
 //查询账号信息
-- (void) getAccountInfo:(NSString *) info andDelegate:(id<ServiceDelegate>) delegate;
+- (void) getAccountInfoWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate;
+
+//编辑账号信息
+- (void) editAccountInfoWithMemberId:(NSString *) memberId userName:(NSString *) name userSex:(NSString *) sex userAddress:(NSString *) address  andDelegate:(id<ServiceDelegate>) delegate;
+
 
 //获取验证码
 
@@ -28,6 +32,23 @@
 
 
 
+//查询常用联系人
+- (void) getCommonPassengerWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate;
+
+//编辑常用联系人 
+- (void) editCommonPassengerWithMemberId:(NSString *) memberId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
+
+//增加常用联系人
+- (void) addCommonPassengerWithMemberId:(NSString *) memberId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
+
+//删除常用联系人
+- (void) deleteCommonPassengerWithMemberId:(NSString *) memberId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
+
+
+
+
+
+//- (void) makeAccountFullWith 
 
 
 @end

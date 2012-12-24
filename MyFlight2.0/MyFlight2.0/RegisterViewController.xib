@@ -167,13 +167,13 @@
 								<int key="NSID">2</int>
 							</object>
 						</object>
-						<bool key="IBUIClearsOnBeginEditing">YES</bool>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIKeyboardType">4</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
+						<int key="IBUIClearButtonMode">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="296323621">
 							<int key="type">1</int>
 							<double key="pointSize">14</double>
@@ -202,10 +202,10 @@
 							<bytes key="NSWhite">MAA</bytes>
 							<reference key="NSCustomColorSpace" ref="800679836"/>
 						</object>
-						<bool key="IBUIClearsOnBeginEditing">YES</bool>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<bool key="IBUISecureTextEntry">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<int key="IBUIClearButtonMode">1</int>
@@ -215,7 +215,7 @@
 					<object class="IBUIButton" id="645400783">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{16, 140}, {31, 27}}</string>
+						<string key="NSFrame">{{16, 140}, {28, 27}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="370056863"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -224,7 +224,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<reference key="IBUIHighlightedTitleColor" ref="710640232"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -233,7 +232,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="144065591"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">icon_choice.png</string>
+							<string key="NSResourceName">ico_def.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="127823628">
 							<int key="type">2</int>
@@ -529,9 +528,9 @@
 							<reference ref="595069438"/>
 							<reference ref="225386448"/>
 							<reference ref="645400783"/>
-							<reference ref="658277823"/>
 							<reference ref="699387256"/>
 							<reference ref="727657475"/>
+							<reference ref="658277823"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -646,7 +645,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="gray_btn.png">{170, 60}</string>
-			<string key="icon_choice.png">{44, 44}</string>
+			<string key="ico_def.png">{44, 44}</string>
 			<string key="input.png">{416, 60}</string>
 			<string key="line_gray.png">{640, 4}</string>
 			<string key="myBtn.png">{618, 88}</string>

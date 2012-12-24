@@ -7,10 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ServiceDelegate.h"
+@interface MyNewCenterViewController : UIViewController<ServiceDelegate>
 
-@interface MyNewCenterViewController : UIViewController
 
-//显示个人资料界面 
+
+
+
+
+
+//用户名
+@property (retain, nonatomic) IBOutlet UILabel *userNameLabel;
+
+//资金账户余额
+@property (retain, nonatomic) IBOutlet UILabel *accountMoneyLabel;
+//金币余额
+@property (retain, nonatomic) IBOutlet UILabel *xlGoldMoneyLabel;
+
+//银币余额
+
+@property (retain, nonatomic) IBOutlet UILabel *xlSilverMoneyLabel;
+
+
+//显示个人资料界面
 - (IBAction)gotoPersonalInfo:(id)sender;
 
 
@@ -27,6 +46,10 @@
 
 //心愿旅行卡充值 
 - (IBAction)gotoMakeAccountFull:(id)sender;
+
+
+
+- (void) updateThisViewWhenSuccess;
 
 
 @end

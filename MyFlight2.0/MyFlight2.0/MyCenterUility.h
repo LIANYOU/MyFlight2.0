@@ -60,6 +60,8 @@
 #define Account_SearchInfo_URL  GET_RIGHT_URL_WITH_Index(Account_SearchInfo_URL_Index)
 
 
+
+
 //GET_RIGHT_URL_WITH_Index(Account_SearchInfo_URL_Index)
 
 
@@ -109,11 +111,36 @@
 
 //获取验证码的请求 
 //#define KEY_GET_SecretCode_RequestType @"GetSecretCodeKey"
+
 #define GET_SecretCode_RequestType_Value @"GetSecretCodeType"
+
 //注册的请求
 //#define KEY_Regist_RequestType @"RegistRequestKey"
 #define Regist_RequestType_Value  @"RegistRequestType"
 
+
+
+
+
+
+//登录的处理类型
+
+#define Login_Success_ReturnMyCenterDefault_Type  @"MycenterType"
+
+#define Login_Success_ReturnWhereItComes @"GotoWhereItComes"
+
+enum  {
+    isGoToMyCentertype,
+    backToWhereItComes
+    }LoginType;
+
+
+
+
+//常用乘机人查询
+
+#define CommomPassenger_URL_index @"/web/phone/prod/flight/memberPassengerSearch.jsp"
+#define CommomPassenger_URL  GET_RIGHT_URL_WITH_Index(CommomPassenger_URL_index)
 
 
 
