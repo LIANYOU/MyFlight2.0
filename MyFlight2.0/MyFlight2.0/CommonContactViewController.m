@@ -11,6 +11,7 @@
 #import "LoginBusiness.h"
 #import "UIQuickHelp.h"
 #import "AppConfigure.h"
+#import "AddContactViewController.h"
 @interface CommonContactViewController ()
 
 @end
@@ -58,8 +59,14 @@
     
     
 }
-
-
+//
+-(void) addCommonPassenger{
+    AddContactViewController *controller = [[AddContactViewController alloc] init];
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    
+    [controller release];
+}
 
 - (void)viewDidLoad
 {
@@ -69,6 +76,12 @@
     [bis getCommonPassengerWithMemberId:@"1351876318736518" andDelegate:self];
     
     self.title = @"常用乘机人";
+    
+    
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addCommonPassenger)];
+    
+    self.navigationItem.rightBarButtonItem = right;
+    
     // Do any additional setup after loading the view from its nib.
 }
 

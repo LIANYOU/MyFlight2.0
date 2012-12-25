@@ -35,6 +35,8 @@
 
 - (void)viewDidLoad
 {
+    
+    [UIQuickHelp setRoundCornerForView:self.thisView withRadius:8];
     self.accountFiled.delegate = self;
     self.securityCodeField.delegate = self;
     self.passWordFiled.delegate = self;
@@ -66,6 +68,7 @@
     [_securityCodeField release];
     [_showPassWordBn release];
     [_secretCodeBn release];
+    [_thisView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -74,6 +77,7 @@
     [self setSecurityCodeField:nil];
     [self setShowPassWordBn:nil];
     [self setSecretCodeBn:nil];
+    [self setThisView:nil];
     [super viewDidUnload];
 }
 
@@ -149,7 +153,7 @@
         
         [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"您已经注册成功" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
         
-        
+        [self.navigationController popViewControllerAnimated:YES];
         
     }
     
@@ -187,12 +191,7 @@
         
     }
     
-    
-    
-    
-    
-    
-    
+  
     
 }
 
@@ -250,8 +249,9 @@
             
             self.secretCodeBn.userInteractionEnabled = NO;
             
+            [getSecretCode getSecretCode:self.accountFiled.text requestType:GETCode_ForRegist_Value andDelegate:self];
+          
             
-            [getSecretCode getSecretCode:self.accountFiled.text andDelegate:self];
             
         } else{
             
@@ -259,9 +259,6 @@
             [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"手机号码为空，请先输入手机号码！" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
             
         }
-        
-        
-        
     }
     
     

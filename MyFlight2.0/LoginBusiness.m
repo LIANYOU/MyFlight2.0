@@ -70,11 +70,21 @@
 
 //获取验证码
 
-- (void) getSecretCode:(NSString *) receivedMobile andDelegate:(id<ServiceDelegate>) delegate{
+- (void) getSecretCode:(NSString *) receivedMobile requestType:(NSString *) type andDelegate:(id<ServiceDelegate>) delegate{
     
+
+//    NSString *mobileNumber = [bodyDic objectForKey:KEY_Account_Mobile];
+//    NSString *type = [bodyDic objectForKey:KEY_GETCode_RequestType];
+
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
     
-    NSLog(@"在处理业务层 获取用户输入的密码为：%@",receivedMobile);
-    [LoginInNetworkHelper getSecretCode:receivedMobile andDelegat:delegate];
+    [dic setObject:receivedMobile forKey:KEY_Account_Mobile];
+    [dic setObject:type forKey:KEY_GETCode_RequestType];
+    
+    NSLog(@"在处理业务层 获取用户输入：%@",receivedMobile);
+    [LoginInNetworkHelper getSecretCode:dic andDelegat:delegate];
+    
+    [dic release];
      
 }
 
@@ -108,5 +118,31 @@
     
 }
 
+
+//找回密码操作
+
+- (void) findPasswd_getSecrectCode:(NSString *) mobile andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+    [LoginInNetworkHelper findPasswd_getSecrectCode:mobile andDelegate:delegate];
+    
+    
+    
+}
+
+
+- (void) findPasswd_VerCodeIsRight:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+    [LoginInNetworkHelper findPasswd_VerCodeIsRight:mobile code:code andDelegate:delegate];
+    
+      
+}
+
+- (void) findPassWd_ResetPassWdWithNewPwd:(NSString *) newPwd mobile:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate{
+    
+    [LoginInNetworkHelper findPassWd_ResetPassWdWithNewPwd:newPwd mobile:mobile code:code andDelegate:delegate];
+    
+}
 
 @end

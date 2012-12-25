@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface LookForPasswordViewController : UIViewController
+#import "ServiceDelegate.h"
+@interface LookForPasswordViewController : UIViewController<ServiceDelegate>
 
 //用户手机上的验证码
 @property (retain, nonatomic) IBOutlet UITextField *VerificationCode;
@@ -19,9 +19,10 @@
 //重新发送 
 - (IBAction)RequestCodeAgain:(id)sender;
 
+@property (retain, nonatomic) IBOutlet UIButton *getSecretCodeBn;
 
 //重置密码 
 - (IBAction)ResetPassword:(id)sender;
-
+@property(nonatomic,retain)NSString *userMobile;
 
 @end

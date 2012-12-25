@@ -65,6 +65,7 @@
 
 #define PUBLIC_Parameter  [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@",KEY_source,SOURCE_VALUE,KEY_hwId,HWID_VALUE,KEY_serviceCode,SERVICECode_VALUE,KEY_edition,EDITION_VALUE]
 
+#define PUBLIC_Parameter_WithoutSource NSString stringWithFormat:@"&%@=%@&%@=%@&%@=%@",KEY_hwId,HWID_VALUE,KEY_serviceCode,SERVICECode_VALUE,KEY_edition,EDITION_VALUE]
 
 
 

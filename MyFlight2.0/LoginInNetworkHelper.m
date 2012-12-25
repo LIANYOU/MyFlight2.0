@@ -233,7 +233,7 @@
             
             CCLog(@"json解析格式正确");
             
-            message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+            message = [[[dic objectForKey:KEY_result] objectForKey:KEY_message] retain];
             NSLog(@"服务器返回的信息为：%@",message);
             
             CCLog(@"message 长度为%d",[message length]);
@@ -280,7 +280,7 @@
             } else{
                 
                 //message 长度不为0 有错误信息
-                [messageDic setObject:message forKey:KEY_message];
+//                [messageDic setObject:message forKey:KEY_message];
                 
                 
                 [delegate requestDidFinishedWithFalseMessage:messageDic];
@@ -318,7 +318,7 @@
     
     [formRequst startAsynchronous];
     
-    [messageDic release];
+    [messageDic autorelease];
     
     return true;
     
@@ -334,26 +334,27 @@
     
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     
-//    NSString *memberId = [bodyDic objectForKey:KEY_Account_MemberId];
-    NSString *memberId =@"30f3e771eab046de830fb31ca3eb61dd";
+    NSString *memberId = [bodyDic objectForKey:KEY_Account_MemberId];
+//    NSString *memberId =@"30f3e771eab046de830fb31ca3eb61dd";
 
         
-//    NSString *token = Default_Token_Value;
-    NSString *token = @"14A3C4E3D8DE0FBEA75E00013E4A0D33";
+    NSString *token = Default_Token_Value;
+    
+    
+//    NSString *token = @"14A3C4E3D8DE0FBEA75E00013E4A0D33";
     
     CCLog(@"查询用户信息 memberId = %@",memberId);
     
     CCLog(@"查询用户信息 token =%@",token);
     
+    NSLog(@"硬件id %@",HWID_VALUE);
     
     
+    NSString *signTmp = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@",KEY_Account_MemberId,memberId,KEY_source,@"iphone",KEY_Account_token,token];
+
+    NSLog(@"signTmp = %@",signTmp);
     
-    NSString *signTmp = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@",KEY_Account_MemberId,memberId,KEY_source,@"iphone",KEY_Account_token,token,PUBLIC_Parameter];
-    
-    
-       
-    
-    NSString *realUrl = [NSString stringWithFormat:@"%@?%@=%@&%@=%@&%@",Account_SearchInfo_URL,KEY_Account_MemberId,memberId,KEY_SIGN,GET_SIGN(signTmp),PUBLIC_Parameter];
+//    NSString *realUrl = [NSString stringWithFormat:@"%@?%@=%@&%@=%@&%@",Account_SearchInfo_URL,KEY_Account_MemberId,memberId,KEY_SIGN,GET_SIGN(signTmp),PUBLIC_Parameter];
     
     
     
@@ -376,7 +377,7 @@
     
     
     [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
-//    [formRequst setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
+    [formRequst setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
     [formRequst setRequestMethod:@"POST"];
     
     
@@ -465,7 +466,7 @@
     
     
     
-    
+    return true;
     
 }
 
@@ -501,7 +502,7 @@
     
     
     
-    NSString *realUrl = [NSString stringWithFormat:@"%@?%@=%@&%@=%@&%@",Account_SearchInfo_URL,KEY_Account_MemberId,memberId,KEY_SIGN,GET_SIGN(signTmp),PUBLIC_Parameter];
+//    NSString *realUrl = [NSString stringWithFormat:@"%@?%@=%@&%@=%@&%@",Account_SearchInfo_URL,KEY_Account_MemberId,memberId,KEY_SIGN,GET_SIGN(signTmp),PUBLIC_Parameter];
     
     
     
@@ -620,6 +621,10 @@
 + (BOOL) addCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate{
     
     
+    
+    
+    return true;
+    
 }
 
 
@@ -629,19 +634,28 @@
 + (BOOL) editCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate{
     
     
+    return true;
 }
 
+
+#pragma mark -
+#pragma mark 获取验证码
 //获取验证码
-+ (BOOL) getSecretCode:(NSString *) mobileNumber andDelegat:(id<ServiceDelegate>) delegate{
++ (BOOL) getSecretCode:(NSDictionary *) bodyDic andDelegat:(id<ServiceDelegate>) delegate{
     
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     
     
     NSString *publicParm = PUBLIC_Parameter;
     
+    NSString *mobileNumber = [bodyDic objectForKey:KEY_Account_Mobile];
+    NSString *type = [bodyDic objectForKey:KEY_GETCode_RequestType];
+    
+    
+    NSLog(@"用户请求的类型为：%@",type);
     NSLog(@"用户输入的手机号码为：%@",mobileNumber);
     
-    NSString *urlString = [NSString stringWithFormat:@"%@?mobile=%@&type=%@&%@",URL_GetSecretCodeUrl,mobileNumber,KEY_GETCode_ForRegist,publicParm];
+    NSString *urlString = [NSString stringWithFormat:@"%@?mobile=%@&type=%@&%@",URL_GetSecretCodeUrl,mobileNumber,type,publicParm];
     
     
     
@@ -649,7 +663,9 @@
     
     [messageDic setObject:GET_SecretCode_RequestType_Value forKey:KEY_Request_Type];
     
+    
     __block NSString *message = nil;
+    
     
     __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
     
@@ -727,8 +743,317 @@
     return  true;
 }
 
+#pragma mark -
+#pragma mark 找回密码 获取验证码 
+//找回密码
++ (BOOL) findPasswd_getSecrectCode:(NSString *) mobile andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+    
+    NSString *publicParm = PUBLIC_Parameter;
+    NSString *mobileNumber = mobile;
+    
+    CCLog(@"用户请求找回密码操作 输入的手机号为：%@",mobile);
+    //请求的参数 get方式 
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@?account=%@&source=%@&key=%@",FindPasswd_URL,mobileNumber,SOURCE_VALUE,FindPasswd_Key_Value];
+    
+    __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
+    
+    __block NSString *message = nil;
+    
+    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    
+    [formRequst setCompletionBlock:^{
+        
+        NSString *data = [formRequst responseString];
+        
+        CCLog(@"网络返回的数据为：%@",data);
+        
+        NSError *error = nil;
+        
+        
+        NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        
+        if (!error) {
+            
+            CCLog(@"json解析格式正确");
+            
+            message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+            NSLog(@"服务器返回的信息为：%@",message);
+            
+            if ([message length]==0) {
+                
+                // NSLog(@"成功登陆后返回的数据：%@",data);
+                
+                
+                
+                
+                
+                [delegate requestDidFinishedWithRightMessage:messageDic];
+                
+            } else{
+                
+                //message 长度不为0 有错误信息
+                [messageDic setObject:message forKey:KEY_message];
+                
+                
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+            }
+            
+            
+            
+        } else{
+            NSLog(@"解析有错误");
+            
+            
+            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+            [delegate requestDidFinishedWithFalseMessage:messageDic];
+            
+            return ;
+            
+        }
+        
+        
+        
+    }];
+    
+    [formRequst setFailedBlock:^{
+        
+        
+        
+        
+        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+        
+        [delegate requestDidFailed:messageDic];
+        
+        
+        
+    }];
+    
+    
+    
+    
+    [formRequst startAsynchronous];
+    
+    
+    
+    
+    
+    return true;
+}
 
 
 
++ (BOOL) findPasswd_VerCodeIsRight:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate{
+    
+//    NSString *publicParm = PUBLIC_Parameter;
+    NSString *mobileNumber = mobile;
 
+    CCLog(@"用户请求找回密码操作 输入的手机号为：%@",mobile);
+    //请求的参数 get方式
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@?phone=%@&source=%@&code=%@&key=%@",Ver_CodeIsRight_URL,mobileNumber,SOURCE_VALUE,code,FindPasswd_Key_Value];
+    
+    
+    
+    __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
+    
+    __block NSString *message = nil;
+    
+    
+    
+    [messageDic setObject:VER_CodeISRight_RequestType_Value  forKey:KEY_Request_Type];
+    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    
+    [formRequst setCompletionBlock:^{
+        
+        NSString *data = [formRequst responseString];
+        
+        CCLog(@"网络返回的数据为：%@",data);
+        
+        NSError *error = nil;
+        
+        
+        NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        
+        if (!error) {
+            
+            CCLog(@"json解析格式正确");
+            
+            message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+            NSLog(@"服务器返回的信息为：%@",message);
+            
+            if ([message length]==0) {
+                
+                
+                // NSLog(@"成功登陆后返回的数据：%@",data);
+                
+                
+                
+                
+                
+                [delegate requestDidFinishedWithRightMessage:messageDic];
+                
+            } else{
+                
+                //message 长度不为0 有错误信息
+                [messageDic setObject:message forKey:KEY_message];
+                
+                
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+            }
+            
+            
+            
+        } else{
+            NSLog(@"解析有错误");
+            
+            
+            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+            [delegate requestDidFinishedWithFalseMessage:messageDic];
+            
+            return ;
+            
+        }
+        
+        
+        
+    }];
+    
+    [formRequst setFailedBlock:^{
+        
+        
+        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+        
+        [delegate requestDidFailed:messageDic];
+        
+        
+        
+    }];
+    
+    
+    
+    
+    [formRequst startAsynchronous];
+    
+        return true;
+}
+
+
++ (BOOL) findPassWd_ResetPassWdWithNewPwd:(NSString *) newPwd mobile:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+    //    NSString *publicParm = PUBLIC_Parameter;
+    NSString *mobileNumber = mobile;
+    
+    CCLog(@"用户请求找回密码操作 输入的手机号为：%@",mobile);
+    //请求的参数 get方式
+    
+//    http://210.51.165.186:9180/web/phone/member/get_password.jsp?newpassword=123456&confirmpassword=123456&phone=18701081000&code=002345&source=xxxxxxx&key=xxxxx
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@?newpassword=%@&confirmpassword=%@&phone=%@&code=%@&source=%@&key=%@",FindPwd_ResetPwd_URL,newPwd,newPwd,mobileNumber,code,SOURCE_VALUE,FindPasswd_Key_Value];
+    
+    
+    
+    __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
+    
+    __block NSString *message = nil;
+    
+    
+    
+//    [messageDic setObject:VER_CodeISRight_RequestType_Value  forKey:KEY_Request_Type];
+    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    
+    [formRequst setCompletionBlock:^{
+        
+        NSString *data = [formRequst responseString];
+        
+        CCLog(@"网络返回的数据为：%@",data);
+        
+        NSError *error = nil;
+        
+        
+        NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        
+        if (!error) {
+            
+            CCLog(@"json解析格式正确");
+            
+            message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+            NSLog(@"服务器返回的信息为：%@",message);
+            
+            if ([message length]==0) {
+                
+                
+                // NSLog(@"成功登陆后返回的数据：%@",data);
+                
+                
+                
+                
+                
+                [delegate requestDidFinishedWithRightMessage:messageDic];
+                
+            } else{
+                
+                //message 长度不为0 有错误信息
+                [messageDic setObject:message forKey:KEY_message];
+                
+                
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+            }
+            
+            
+            
+        } else{
+            NSLog(@"解析有错误");
+            
+            
+            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+            [delegate requestDidFinishedWithFalseMessage:messageDic];
+            
+            return ;
+            
+        }
+        
+        
+        
+    }];
+    
+    [formRequst setFailedBlock:^{
+        
+        
+        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+        
+        [delegate requestDidFailed:messageDic];
+        
+        
+        
+    }];
+    
+    
+    
+    
+    [formRequst startAsynchronous];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    return true;
+}
 @end

@@ -119,7 +119,11 @@
 
 
 //网络正确回调的方法
-- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
+    
+    
+    
+    
     
     
     
@@ -176,6 +180,7 @@
        
 }
 
+//推出我的优惠券界面 
 - (IBAction)gotoMyCoupons:(id)sender {
     
     
@@ -183,8 +188,12 @@
     [self.navigationController pushViewController:con animated:YES];
     [con release];
     
+    
+    
 }
 
+
+//显示我的订单列表 
 - (IBAction)gotoMyOrderList:(id)sender {
     
     MyOrderListViewController *con = [[MyOrderListViewController alloc] init];
@@ -201,7 +210,11 @@
     CommonContactViewController *con = [[CommonContactViewController alloc] init];
     [self.navigationController pushViewController:con animated:YES];
     [con release];
+    
 }
+
+
+//显示我订阅的低价航线
 
 - (IBAction)gotoMyCheapFlightList:(id)sender {
     
@@ -213,7 +226,13 @@
     
 }
 
+
+
+
+//心愿旅行卡充值 
 - (IBAction)gotoMakeAccountFull:(id)sender {
+    
+    
 }
 - (void)dealloc {
     [_accountMoneyLabel release];

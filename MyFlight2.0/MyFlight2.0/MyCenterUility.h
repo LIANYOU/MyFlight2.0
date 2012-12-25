@@ -101,13 +101,18 @@
 
 #define  URL_GetSecretCodeUrl  GET_RIGHT_URL_WITH_Index(Get_SecretCode_index)
 
-#define KEY_GETCode_ForRegist @"regist"
-#define KEY_GetCode_ForFindPassWd @"findPwd"
-#define KEY_GetCode_forPayPwd @"findPayPwd"
+#define KEY_GETCode_RequestType @"GetCodeRequestType"
+
+//获取密码的类型
+#define GETCode_ForRegist_Value @"regist" //注册用 获取验证码
+#define GetCode_ForFindPassWd_Value @"findPwd" //找回密码
+#define GetCode_forPayPwd_Value @"findPayPwd" //支付验证码
 
 //获取请求的类型
 
 #define KEY_Request_Type @"requestType"
+
+
 
 //获取验证码的请求 
 //#define KEY_GET_SecretCode_RequestType @"GetSecretCodeKey"
@@ -141,6 +146,35 @@ enum  {
 
 #define CommomPassenger_URL_index @"/web/phone/prod/flight/memberPassengerSearch.jsp"
 #define CommomPassenger_URL  GET_RIGHT_URL_WITH_Index(CommomPassenger_URL_index)
+
+
+
+
+
+//找回密码操作
+
+//找回密码的key 参数说明 key为新华旅行分配的唯一码
+
+#define VER_CodeISRight_RequestType_Value @"codeIsRight"
+
+#define FindPasswd_Key_Value @"xxx"
+
+#define FindPasswd_URL_Index @"/web/phone/common/find_pwd.jsp"
+
+
+#define FindPasswd_URL  GET_RIGHT_URL_WITH_Index(FindPasswd_URL_Index)
+
+
+//验证码密码 url
+#define Ver_CodeIsRight_URL_Index @"/web/phone/member/verCodeIsRight.jsp"
+
+#define Ver_CodeIsRight_URL GET_RIGHT_URL_WITH_Index(Ver_CodeIsRight_URL_Index)
+
+
+//重置密码 找回密码
+#define FindPwd_ResetPwd_URL_Index @"/web/phone/member/get_password.jsp"
+
+#define FindPwd_ResetPwd_URL  GET_RIGHT_URL_WITH_Index(FindPwd_ResetPwd_URL_Index)
 
 
 

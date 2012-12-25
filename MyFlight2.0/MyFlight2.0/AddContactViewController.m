@@ -40,4 +40,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
+    [_personTypeLabel release];
+    [_personNameLabel release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setPersonTypeLabel:nil];
+    [self setPersonNameLabel:nil];
+    [super viewDidUnload];
+}
+- (IBAction)personInputInfoBn:(id)sender {
+}
 @end

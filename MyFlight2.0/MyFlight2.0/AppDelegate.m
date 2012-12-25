@@ -12,6 +12,7 @@
 #import "SearchFlightConditionController.h"
 #import "AirPortDataBase.h"
 #import "AirPortDataBaseSingleton.h"
+#import "IsLoginInSingle.h"
 @implementation AppDelegate
 @synthesize window=_window,viewController = _viewController;
 
@@ -87,6 +88,10 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:KEY_Default_IsUserLogin];
+    IsLoginInSingle *single = [IsLoginInSingle shareLoginSingle];
+    single.isLogin = NO;
+    
 }
 
 @end

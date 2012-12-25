@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140D979D1689570800D8934E /* CommonContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140D979B1689570700D8934E /* CommonContactDetailViewController.m */; };
+		140D979E1689570800D8934E /* CommonContactDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140D979C1689570700D8934E /* CommonContactDetailViewController.xib */; };
 		141523871682C12000E2FF0E /* LoginBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523861682C12000E2FF0E /* LoginBusiness.m */; };
 		1415238D1682C3BE00E2FF0E /* LoginInNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1415238C1682C3BE00E2FF0E /* LoginInNetworkHelper.m */; };
 		141523921682CC3C00E2FF0E /* IsLoginInSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523911682CC3C00E2FF0E /* IsLoginInSingle.m */; };
@@ -190,11 +192,6 @@
 		18C30D6116859DD7009B0A54 /* ChineseCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D5E16859DD7009B0A54 /* ChineseCalendar.m */; };
 		18C30D6216859DD7009B0A54 /* WeekDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6016859DD7009B0A54 /* WeekDayCell.m */; };
 		18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C9E6D81685C96100A1453C /* circle_green_change.png */; };
-
-		18CA739D166F739200D7E9A3 /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */; };
-		18CA739E166F739200D7E9A3 /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */; };
-
-
 		18CB6D0F16843C580025F42F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB6D0D16843C580025F42F /* PostViewController.m */; };
 		18CB6D1016843C580025F42F /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D0E16843C580025F42F /* PostViewController.xib */; };
 		18CB6D13168452F80025F42F /* bg_green__.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D12168452F80025F42F /* bg_green__.png */; };
@@ -420,6 +417,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		140D979A1689570700D8934E /* CommonContactDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonContactDetailViewController.h; sourceTree = "<group>"; };
+		140D979B1689570700D8934E /* CommonContactDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonContactDetailViewController.m; sourceTree = "<group>"; };
+		140D979C1689570700D8934E /* CommonContactDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonContactDetailViewController.xib; sourceTree = "<group>"; };
 		141523851682C12000E2FF0E /* LoginBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBusiness.h; sourceTree = "<group>"; };
 		141523861682C12000E2FF0E /* LoginBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBusiness.m; sourceTree = "<group>"; };
 		1415238B1682C3BE00E2FF0E /* LoginInNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInNetworkHelper.h; sourceTree = "<group>"; };
@@ -682,12 +682,6 @@
 		18C30D5F16859DD7009B0A54 /* WeekDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekDayCell.h; sourceTree = "<group>"; };
 		18C30D6016859DD7009B0A54 /* WeekDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekDayCell.m; sourceTree = "<group>"; };
 		18C9E6D81685C96100A1453C /* circle_green_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_green_change.png; sourceTree = "<group>"; };
-
-		18CA739A166F739200D7E9A3 /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
-		18CA739B166F739200D7E9A3 /* HistroyCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistroyCheckViewController.m; sourceTree = "<group>"; };
-		18CA739C166F739200D7E9A3 /* HistroyCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistroyCheckViewController.xib; sourceTree = "<group>"; };
-
-
 		18CB6D0C16843C580025F42F /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		18CB6D0D16843C580025F42F /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		18CB6D0E16843C580025F42F /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
@@ -1068,6 +1062,9 @@
 				145A2D4816844B92000DAAA1 /* CommonContactCell.h */,
 				145A2D4916844B92000DAAA1 /* CommonContactCell.m */,
 				145A2D4B16844BA9000DAAA1 /* CommonContactCell.xib */,
+				140D979A1689570700D8934E /* CommonContactDetailViewController.h */,
+				140D979B1689570700D8934E /* CommonContactDetailViewController.m */,
+				140D979C1689570700D8934E /* CommonContactDetailViewController.xib */,
 			);
 			name = CommonContact;
 			sourceTree = "<group>";
@@ -2356,27 +2353,15 @@
 				145A2D6216845E31000DAAA1 /* MyOrderListCell.xib in Resources */,
 				145A2D6F16855F42000DAAA1 /* ModifyPassWordViewController.xib in Resources */,
 				145A2D7616858609000DAAA1 /* MyCheapFlightViewController.xib in Resources */,
-
-				145A2D7D1685D2E4000DAAA1 /* OneWayCheckViewController.xib in Resources */,
-
-
-
 				18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */,
-
-
-				145A2D8F1685EF63000DAAA1 /* HistoryFlightQuery.sqlite in Resources */,
-
-
 				18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */,
-
-
 				18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */,
 				18DF893016881F8B00D2DDAE /* OneWayCheckViewController.xib in Resources */,
 				18DF893516881FAD00D2DDAE /* HistoryCell.xib in Resources */,
 				18DF893A16881FC800D2DDAE /* HistroyCheckViewController.xib in Resources */,
 				18DF893F1688202400D2DDAE /* ShowSelectedResultViewController.xib in Resources */,
 				18DF8950168824E600D2DDAE /* HistoryFlightQuery.sqlite in Resources */,
-
+				140D979E1689570800D8934E /* CommonContactDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2505,6 +2490,7 @@
 				18DF893E1688202400D2DDAE /* ShowSelectedResultViewController.m in Sources */,
 				18DF894E168824E600D2DDAE /* HistoryCheckDataBase.m in Sources */,
 				18DF894F168824E600D2DDAE /* HistoryCheckInfoData.m in Sources */,
+				140D979D1689570800D8934E /* CommonContactDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
