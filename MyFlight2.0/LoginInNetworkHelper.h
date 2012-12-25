@@ -25,7 +25,7 @@
 
 
 //获取手机验证码
-+ (BOOL) getSecretCode:(NSString *) mobileNumber andDelegat:(id<ServiceDelegate>) delegate;
++ (BOOL) getSecretCode:(NSDictionary *) bodyDic andDelegat:(id<ServiceDelegate>) delegate;
 
 //查询常用联系人 
 +(BOOL) getCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
@@ -36,4 +36,15 @@
 //编辑常用联系人
 + (BOOL) editCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
 
+
+
+
+
+//找回密码操作
+//找回密码操作
+
++ (BOOL) findPasswd_getSecrectCode:(NSString *) mobile andDelegate:(id<ServiceDelegate>) delegate;
++ (BOOL) findPasswd_VerCodeIsRight:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate;
+
++ (BOOL) findPassWd_ResetPassWdWithNewPwd:(NSString *) newPwd mobile:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate;
 @end

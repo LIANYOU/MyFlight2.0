@@ -10,4 +10,13 @@
 
 @interface AddContactViewController : UIViewController
 
+
+@property (retain, nonatomic) IBOutlet UILabel *personTypeLabel;
+
+@property (retain, nonatomic) IBOutlet UITextField *personNameLabel;
+
+//显示用户 输入的姓名 
+- (IBAction)personInputInfoBn:(id)sender;
+
+
 @end

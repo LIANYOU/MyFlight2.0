@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ResetPassWordViewController : UIViewController
+#import "ServiceDelegate.h"
+@interface ResetPassWordViewController : UIViewController<ServiceDelegate,UIAlertViewDelegate>
 
 //用户输入的新密码
 @property (retain, nonatomic) IBOutlet UITextField *newPassword;
@@ -21,4 +21,7 @@
 - (IBAction)commitResetPasswordRequest:(id)sender;
 
 
+
+@property(nonatomic,retain)NSString *mobile; //用户输入的手机
+@property(nonatomic,retain)NSString *code; //用户输入的验证码
 @end

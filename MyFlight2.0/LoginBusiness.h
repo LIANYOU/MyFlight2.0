@@ -28,7 +28,7 @@
 
 //获取验证码
 
-- (void) getSecretCode:(NSString *) receivedMobile andDelegate:(id<ServiceDelegate>) delegate;
+- (void) getSecretCode:(NSString *) receivedMobile requestType:(NSString *) type andDelegate:(id<ServiceDelegate>) delegate;
 
 
 
@@ -45,7 +45,16 @@
 - (void) deleteCommonPassengerWithMemberId:(NSString *) memberId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
 
 
+//找回密码操作
 
+- (void) findPasswd_getSecrectCode:(NSString *) mobile andDelegate:(id<ServiceDelegate>) delegate;
+//验证验证码 
+- (void) findPasswd_VerCodeIsRight:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate;
+
+
+//重置密码
+
+- (void) findPassWd_ResetPassWdWithNewPwd:(NSString *) newPwd mobile:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate;
 
 
 //- (void) makeAccountFullWith 

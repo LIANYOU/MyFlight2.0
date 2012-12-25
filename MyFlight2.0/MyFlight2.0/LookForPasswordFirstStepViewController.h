@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface LookForPasswordFirstStepViewController : UIViewController
+#import "ServiceDelegate.h"
+@interface LookForPasswordFirstStepViewController : UIViewController<ServiceDelegate>
+- (IBAction)backKeyBoard:(id)sender;
 
 
 @property (retain, nonatomic) IBOutlet UITextField *UserInputPhoneNumber;

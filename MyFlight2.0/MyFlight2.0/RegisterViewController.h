@@ -12,6 +12,10 @@
 //注册界面
 @interface RegisterViewController : UIViewController<UITextFieldDelegate,ServiceDelegate>
 
+
+@property (retain, nonatomic) IBOutlet UIView *thisView;
+
+
 //账号输入框 
 @property (retain, nonatomic) IBOutlet UITextField *accountFiled;
 

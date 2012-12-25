@@ -133,10 +133,10 @@
 - (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
     
     
-    NSString *meg =[info objectForKey:KEY_message];
+    NSString *meg =[[info objectForKey:KEY_message] retain];
     
     [UIQuickHelp showAlertViewWithTitle:@"提醒" message: meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-    
+    [meg release];
     
 }
 
@@ -183,36 +183,29 @@
     
     if ([self.loginSuccessReturnType isEqualToString:Login_Success_ReturnMyCenterDefault_Type]) {
         
-        MyNewCenterViewController *center = [[MyNewCenterViewController alloc] init];
+         MyNewCenterViewController *center = [[MyNewCenterViewController alloc] init];
+        
+        UINavigationController *con  =[[UINavigationController alloc] initWithRootViewController:center];
+        
+        [center release];
+       
         
 //        [loginBusiness getAccountInfoWithMemberId:memberID andDelegate:center];
         
         
-        [self presentViewController:center animated:YES completion:^{
+        [self presentViewController:con animated:YES completion:^{
             
             
             [center updateThisViewWhenSuccess];
             
         }];
-        
-        
-        
-        
-        
+          
     } else{
         
         
          [self.navigationController popViewControllerAnimated:YES];
     }
         
-    
-    
-    
-    
-    
-   
-    
-    
     
 }
 //登陆
