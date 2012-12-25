@@ -55,30 +55,32 @@
     self.PerStanderPrice.text =[NSString stringWithFormat:@"￥%d",[self.goPay intValue] + [self.backPay intValue]] ;  // 票面价
     
     // self.PerStanderPrice.text = self.searchDate.standerPrice;
-    self.personAdultBaf.text = [NSString stringWithFormat:@"￥%@",self.searchDate.adultBaf];
-    self.PersonConstructionFee.text = [NSString stringWithFormat:@"￥%@",self.searchDate.constructionFee];
+    self.personAdultBaf.text = [NSString stringWithFormat:@"￥%d",[self.searchDate.adultBaf intValue] + [self.searchBackDate.adultBaf intValue]];
+    self.PersonConstructionFee.text = [NSString stringWithFormat:@"￥%d",[self.searchDate.constructionFee intValue] + [self.searchBackDate.constructionFee intValue]];
     self.Personinsure.text = @"￥0";   // 保险
     self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];
     
-    self.bigUpPayMoney.text = [NSString stringWithFormat:@"￥%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
-    self.allPay.text = [NSString stringWithFormat:@"￥%d",([self.searchDate.adultBaf intValue]+goPay+backPay+[self.searchDate.constructionFee intValue])];  //  暂时还没有把保险加入总额；
+    self.bigUpPayMoney.text = [NSString stringWithFormat:@"￥%d",([self.searchDate.adultBaf intValue]+[self.searchDate.constructionFee intValue]+goPay+backPay+[self.searchDate.constructionFee intValue]+[self.searchBackDate.adultBaf intValue])];  //  暂时还没有把保险加入总额；
+    self.allPay.text = [NSString stringWithFormat:@"￥%d",([self.searchDate.adultBaf intValue]+[self.searchDate.constructionFee intValue]+goPay+backPay+[self.searchDate.constructionFee intValue]+[self.searchBackDate.adultBaf intValue])];  //  暂时还没有把保险加入总额；
+    
+    
     
     self.childStanderPrice.text = [NSString stringWithFormat:@"￥%d",[self.childBackPay intValue]+[self.childGopay intValue]];
-    self.childBaf.text =[NSString stringWithFormat:@"￥%@", self.searchDate.childBaf];
-    self.childConstructionFee.text =[NSString stringWithFormat:@"￥%@", self.searchDate.childConstructionFee];
+    self.childBaf.text =[NSString stringWithFormat:@"￥%d", [self.searchDate.childBaf intValue] + [self.searchBackDate.childBaf intValue]];
+    self.childConstructionFee.text =[NSString stringWithFormat:@"￥%d", [self.searchDate.childConstructionFee intValue] + [self.searchBackDate.childConstructionFee intValue]];
     self.childInsure.text = @"￥0";
     self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
     
     //********* 计算订单总额......
     
     int personMoney = [self.backPay intValue]+[self.goPay intValue];   // 单程是时候最后赋值的是self.backPay
-    int airPortName = [self.searchDate.constructionFee intValue];
-    int oil = [self.searchDate.adultBaf intValue];
+    int airPortName = [self.searchDate.constructionFee intValue] + [self.searchBackDate.constructionFee intValue];
+    int oil = [self.searchDate.adultBaf intValue]+[self.searchBackDate.adultBaf intValue];
    // int allInsure = 0;  // 所有人要买就都买一份保险
     
     int childPersonMoney = [self.childBackPay intValue] + [self.childGopay intValue];
-    int childAirPortName = [self.searchDate.childConstructionFee intValue];
-    int childOil = [self.searchDate.childBaf intValue];
+    int childAirPortName = [self.searchDate.childConstructionFee intValue] + [self.searchBackDate.childConstructionFee intValue];
+    int childOil = [self.searchDate.childBaf intValue] + [self.searchBackDate.childBaf intValue];
     
     
     newPersonAllPay = (personMoney+airPortName+oil)*personNumber;
@@ -101,7 +103,7 @@
     
     [self calculateAllPay];
     
-    self.cellTitleArr = [NSArray arrayWithObjects:@"乘机人",@"联系人",@"联系电话",@"购买保险",@"行程单",@"账户资金/优惠券抵用",@"活动促销减免", nil];
+   // self.cellTitleArr = [NSArray arrayWithObjects:@"乘机人",@"联系人",@"联系电话",@"购买保险",@"行程单",@"账户资金/优惠券抵用",@"活动促销减免", nil];
     self.firstCelTextArr = [NSMutableArray arrayWithObject:@""];
     self.navigationItem.title = @"填写订单";
     
@@ -444,7 +446,7 @@
                 switch (indexPath.row) {
                     case 0:
                     {
-                        firstCellText = [self.firstCelTextArr objectAtIndex:0];
+                         firstCellText = [self.firstCelTextArr objectAtIndex:0];;
                         
                         CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
                         
@@ -460,21 +462,21 @@
                         
                         cell.secondLable.text = firstCellText;
                         
-                        cell.firstLable.text = [self.cellTitleArr objectAtIndex:0];
+                        cell.firstLable.text = @"乘机人";
                      //   NSLog(@"++++++++   %@",cell.firstLable.text);
 
                     }
                         
                     case 2:
-                        cell.firstLable.text = [self.cellTitleArr objectAtIndex:3];
+                        cell.firstLable.text = @"购买保险";
                         cell.imageLabel.hidden = YES;
                         break;
                     case 3:
-                        cell.firstLable.text = [self.cellTitleArr objectAtIndex:4];
+                        cell.firstLable.text = @"行程单";
                         cell.imageLabel.hidden = YES;
                         break;
                     case 5:
-                        cell.firstLable.text = [self.cellTitleArr objectAtIndex:6];
+                        cell.firstLable.text = @"活动促销减免";
                         cell.imageLabel.hidden = YES;
                         break;
                     case 6:
@@ -497,8 +499,8 @@
                     cell = self.writeOrderDetailsCell;
                 }
                 [cell.addPerson addTarget:self action:@selector(addPersonFormAddressBook) forControlEvents:UIControlEventTouchUpInside];
-                cell.personName = [self.cellTitleArr objectAtIndex:1];
-                cell.phoneNumber = [self.cellTitleArr objectAtIndex:2];
+//                cell.personName = [self.cellTitleArr objectAtIndex:1];
+//                cell.phoneNumber = [self.cellTitleArr objectAtIndex:2];
                 cell.nameField.delegate = self;
                 cell.phoneField.delegate = self;
                 
@@ -565,7 +567,7 @@
                     }
                     switch (indexPath.row) {
                         case 0:
-                            cell.firstLable.text = [self.cellTitleArr objectAtIndex:0];
+                            cell.firstLable.text = @"乘机人";
                             
                             firstCellText = [self.firstCelTextArr objectAtIndex:0];
                             
@@ -587,15 +589,15 @@
                             
                             break;
                         case 2:
-                            cell.firstLable.text = [self.cellTitleArr objectAtIndex:3];
+                            cell.firstLable.text = @"购买保险";
                             cell.imageLabel.hidden = YES;
                             break;
                         case 3:
-                            cell.firstLable.text = [self.cellTitleArr objectAtIndex:4];
+                            cell.firstLable.text = @"行程单";
                             cell.imageLabel.hidden = YES;
                             break;
                         case 5:
-                            cell.firstLable.text = [self.cellTitleArr objectAtIndex:6];
+                            cell.firstLable.text = @"促销活动减免";
                             cell.imageLabel.hidden = YES;
                             break;
                         case 6:
@@ -617,8 +619,8 @@
                         [[NSBundle mainBundle] loadNibNamed:@"WriteOrderDetailsCell" owner:self options:nil];
                         cell = self.writeOrderDetailsCell;
                     }
-                    cell.personName = [self.cellTitleArr objectAtIndex:1];
-                    cell.phoneNumber = [self.cellTitleArr objectAtIndex:2];
+//                    cell.personName = [self.cellTitleArr objectAtIndex:1];
+//                    cell.phoneNumber = [self.cellTitleArr objectAtIndex:2];
                     
                     cell.nameField.delegate = self;
                     cell.phoneField.delegate = self;

@@ -68,16 +68,12 @@
         data = self.searchBackFlight;
     }
     else{
+        NSLog(@"searchFligth");
+       
         data = self.searchFlight;
+        NSLog(@"-----  %@",data.beginDate);
     }
     self.flightCode.text =data.temporaryLabel;
-//    self.airPort.text = data.airPort;
-//    self.palntType.text = data.palntType;
-//    self.beginTime.text = data.beginTime;
-//    self.endTime.text = data.endTime;
-//
-//    self.beginAirPortName.text = data.startPortName;
-//    self.endAirPortName.text = data.endPortName;
     
     self.changeInfoArr = [NSMutableArray array];
     self.indexPath = [NSMutableArray array];
@@ -85,15 +81,7 @@
     self.payArr = [NSMutableArray array];
     self.childPayArr = [NSMutableArray arrayWithCapacity:5];
     self.indexArr = [NSMutableArray array];
-    //    for (int i = 0; i<data.cabinsArr.count; i++) {
-//        NSDictionary * dictionary = [data.cabinsArr objectAtIndex:i];
-//        NSString * string = [dictionary objectForKey:@"changeInfo"];
-//        NSString * string1 = [dictionary objectForKey:@"cabinCode"]; // 舱位编码
-//        NSString * string2 = [dictionary objectForKey:@"cabinCN"];
-//        NSString * str = [NSString stringWithFormat:@"%@ %@",string2,string1];
-//        [data.cabinNumberArr addObject:str];
-//        [self.changeInfoArr addObject:string];
-//    }
+
 
     
     [super viewDidLoad];
@@ -110,6 +98,8 @@
         [self.tempArr addObject:@""];
     }
     
+   
+    
     for (int i = 0; i<self.dateArr.count; i++) {
         NSDictionary * dictionary = [self.dateArr objectAtIndex:i];
         NSString * string = [dictionary objectForKey:@"changeInfo"];
@@ -125,6 +115,8 @@
      
     }
  
+     NSLog(@"*****************%d,%d,%d",self.dateArr.count,self.payArr.count,self.childPayArr.count);
+    
     [self.showTableView reloadData];
 
     [HUD removeFromSuperview];
@@ -351,27 +343,23 @@
             
             insurance.searchDate = self.searchFlight;
             
-//            NSLog(@"---%@,%@",self.searchFlight.personPrice,self.searchFlight.childPrice);
-//            NSLog(@"---%@,%@",self.searchBackFlight.personPrice,self.searchBackFlight.childPrice);
             insurance.searchBackDate = self.searchBackFlight;
-            
-            insurance.searchDate.cabinNumber =  [insurance.searchDate.cabinNumberArr objectAtIndex:indexPath.row-1];
-            
-            insurance.searchBackDate.cabinNumber = [insurance.searchBackDate.cabinNumberArr objectAtIndex:indexPath.row-1];
-            
-            insurance.searchDate.pay = [[self.searchFlight.cabinsArr objectAtIndex:indexPath.row-1]objectForKey:@"price"];
-            
-            insurance.searchBackDate.pay = [[self.searchBackFlight.cabinsArr objectAtIndex:indexPath.row-1] objectForKey:@"price"];
-            
-//            NSLog(@"%@,%@",insurance.searchDate.pay,insurance.searchBackDate.pay);
+
+//            insurance.searchDate.cabinNumber =  [insurance.searchDate.cabinNumberArr objectAtIndex:indexPath.row-1];
 //            
+//            insurance.searchBackDate.cabinNumber = [insurance.searchBackDate.cabinNumberArr objectAtIndex:indexPath.row-1];
+            
+//            NSLog(@"%d,%d",self.searchFlight.cabinsArr.count,self.searchBackFlight.cabinsArr.count);
+            
+//            insurance.searchDate.pay = [[self.searchFlight.cabinsArr objectAtIndex:indexPath.row-1]objectForKey:@"price"];
 //            
-//           NSLog(@"%@,%@",self.goPay,self.goCabin);
+//            insurance.searchBackDate.pay = [[self.searchBackFlight.cabinsArr objectAtIndex:indexPath.row-1] objectForKey:@"price"];
+            
+            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
             
             NSString * str = [self.payArr objectAtIndex:indexPath.row-1];
             NSString * str2 = [self.childPayArr objectAtIndex:indexPath.row-1];
             NSString * str1 = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
-//            NSLog(@"%@,%@",str,str1);
             
             insurance.goCabin = self.goCabin;
             insurance.backCabin = str1;

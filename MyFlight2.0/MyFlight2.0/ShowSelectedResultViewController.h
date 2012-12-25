@@ -13,16 +13,19 @@
 #import "ChooseSpaceViewController.h"
 #import "SearchFlightData.h"
 #import "MBProgressHUD.h"
+#import "Date.h"
+#import "ViewControllerDelegate.h"
+
 @class OneWayCheckViewController;
 @class ShowSelectedCell;
 
 #import "SearchFlightData.h"
-@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,MBProgressHUDDelegate,UITabBarControllerDelegate>
+@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,MBProgressHUDDelegate,UITabBarControllerDelegate,ViewControllerDelegate>
 {
     
     NSString * navigationTitle;
     
-    
+    Date* leaveDate;
     
     MBProgressHUD * HUD;
     IBOutlet UIButton *salesText;

@@ -16,6 +16,11 @@
 #import "LowOrderController.h"
 #import "searchCabin.h"
 #import "ShowSelectedCell.h"
+
+#import "AppConfigure.h"
+#import "MonthDayCell.h"
+#import "SelectCalendarController.h"
+
 @interface ShowSelectedResultViewController ()
 {
     NSMutableArray * sortArr;  // 去程筛选以后的数组
@@ -44,13 +49,13 @@
 
 - (void)viewDidLoad
 {
-        
+    
+    self.indexFlag = 1000;
+    
     self.searchFlightDateArr = [NSMutableArray array];
     self.searchBackFlightDateArr = [NSMutableArray array];
     self.indexArr = [NSMutableArray array];
     self.tempTwoCodeArr = [NSMutableArray array];  // 缓存已经得到的二字码
-    
-    self.indexFlag = 1000;
     
     sortFlag = 0;
     sortBackFlag = 0;
@@ -87,10 +92,7 @@
     dicCode = [[NSDictionary alloc] initWithContentsOfFile:dataPath];
     
     
-    UISwipeGestureRecognizer * swipe  = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipe:)];
-    swipe.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionUp;
-    [self.showResultTableView addGestureRecognizer:swipe];
-    [swipe release];
+   
 
     self.showResultTableView.separatorColor = [UIColor clearColor];
 
@@ -101,11 +103,13 @@
 
 -(void)swipe:(UISwipeGestureRecognizer * )swipe//轻扫
 {
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:1];
-//    [UIView setAnimationTransition:(swipe.direction == (UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionUp)) ? UIViewAnimationTransitionCurlUp :UIViewAnimationTransitionFlipFromRight forView: im cache:YES];
-//    [UIView commitAnimations];
+
+    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+    
+    
+    
     if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
+        [self enterTheDayBefore:nil];
         NSLog(@"左边");
     }
     if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
@@ -114,6 +118,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+        
     [super viewWillAppear:YES];
     
     self.showResultTableView.delegate = self;
@@ -139,13 +144,20 @@
     self.navigationItem.titleView = label;
 
     if (self.one != nil || self.write != nil) {
-        if (self.one != nil) {
-            [nowDateBtn setTitle:self.oneGoDate forState:0];
-        }
+        
         if (self.write != nil) {
+            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+            NSLog(@"%@",self.goBackDate);
+            self.airPort.date = self.goBackDate;
             [nowDateBtn setTitle:self.twoGoBackDate forState:0];
             self.flag  = 3; // 随便标记一位， 在推进到填写订单的时候使用
         }
+        if (self.one != nil) {
+            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+            self.airPort.date = self.startDate;    // 不同的时候设置不同的搜索时间
+            [nowDateBtn setTitle:self.startDate forState:0];
+        }
+        
         self.dateArr = [NSArray array];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
@@ -179,7 +191,6 @@
     }
     if (day<10) {
         strDay = [NSString stringWithFormat:@"0%d",day];
-        // strDay = [[NSString alloc] initWithFormat:@"0%d",day];
     }
     else{
         strDay = [NSString stringWithFormat:@"%d",day];
@@ -189,14 +200,18 @@
     
     [dateformatter release];
 
-    NSArray * timeArr = [self.startDate componentsSeparatedByString:@"-"];
+    NSArray * timeArr = [self.airPort.date componentsSeparatedByString:@"-"];
     NSString * timeStr = [NSString stringWithFormat:@"%@%@%@",[timeArr objectAtIndex:0],[timeArr objectAtIndex:1],[timeArr objectAtIndex:2]];
     NSLog(@"deviceTime and startData %@,,%@",deviceTime,timeStr);
     NSLog(@"deviceTime %d,,%d",[deviceTime intValue],[timeStr intValue]);
     if ([deviceTime intValue] == [timeStr intValue]) {
 
+        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
         theDayBeforeBtn.enabled = NO;
         
+    }
+    else{
+        theDayBeforeBtn.enabled = YES;
     }
     
 }
@@ -254,10 +269,17 @@
 
 -(void)receive:(NSNotification *)not
 {
+    
     self.dateArr = [[not userInfo] objectForKey:@"arr"];
     
-    NSLog(@"**************  %d",self.dateArr.count);
+   // NSLog(@"**************  %d",self.dateArr.count);
     
+    if (self.write != nil) {
+        [self.searchBackFlightDateArr removeAllObjects];
+    }
+    else{
+        [self.searchFlightDateArr removeAllObjects];
+    }
     
     for (int i = 0; i<self.dateArr.count; i++) {
         SearchFlightData * s = [[SearchFlightData alloc] init] ;
@@ -280,8 +302,8 @@
         s.childConstructionFee = [dic objectForKey:@"childConstructionFee"];
         s.standerPrice = [dic objectForKey:@"standerPrice"];
         
-//        s.personPrice = [dic objectForKey:@"lowestPrice"];
-//        s.childPrice = [dic objectForKey:@"lowestChildTicket"];
+        s.personPrice = [dic objectForKey:@"lowestPrice"];
+        s.childPrice = [dic objectForKey:@"lowestChildTicket"];
         
         s.startPortName = self.startPort;  // 机场名字 如:（北京首都）
         s.endPortName = self.endPort;
@@ -294,14 +316,17 @@
             s.goOrBackFlag = @"2";
 
             s.backDate = self.goBackDate;
+          //  NSLog(@"**********************%@",self.goBackDate);
             s.startPortName = self.endPort;
             s.endPortName = self.startPort;
             //s.beginDate = self.;    // 此处先暂时写，
+            
             
             [self.searchBackFlightDateArr addObject:s];
         }
         else {
             s.goOrBackFlag = @"1";
+            
             [self.searchFlightDateArr addObject:s];
         }
         
@@ -415,6 +440,11 @@
         {
             NSArray *array =  [[NSBundle mainBundle] loadNibNamed:@"SelectResultCell" owner:self options:nil];
             cell = [array objectAtIndex:0];
+            
+            UISwipeGestureRecognizer * swipe  = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipe:)];
+            swipe.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionUp;
+            [cell addGestureRecognizer:swipe];
+            [swipe release];
         }
         
         if (self.write != nil  ||  self.netFlag == 1) {
@@ -518,7 +548,7 @@
         
         order.goBackDate = self.goBackDate;
         
-        SearchFlightData * data_;
+        SearchFlightData * data_ = nil;
         if (sortFlag == 1) {
             data_ = [sortArr objectAtIndex:indexPath.row];
         }
@@ -528,23 +558,19 @@
         else{
             
             data_ = [self.searchFlightDateArr objectAtIndex:indexPath.row];
-            
         }
         
         if (self.write != nil ||  self.netFlag == 1) {
             
             if (sortBackFlag == 2) {
-                NSLog(@"**********&&&&&&&&&&&  %d",sortBackArr.count);
+             
                 order.searchBackFlight = [sortBackArr objectAtIndex:indexPath.row];
                
             }
             else{
-                NSLog(@"**********&&&&&&&&&&&  %d",self.searchBackFlightDateArr.count);
                 order.searchBackFlight = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
-                 NSLog(@"%s,%d",__FUNCTION__,__LINE__);
             }
             
-            //NSLog(@"----%@",order.searchBackFlight.temporaryLabel);
             searchCabin * search = [[searchCabin alloc] initWithdpt:data.endPortThreeCode arr:data.startPortThreeCode date:self.goBackDate code:order.searchBackFlight.temporaryLabel edition:@"v1.0" source:@"xxxx"];
             order.searchCab = search;
             
@@ -556,14 +582,18 @@
             if (sortFlag == 1) {
                 [self.indexArr addObject:[sortArr objectAtIndex:indexPath.row]]; // indexArr是为了保存用户所有来回选取的记录， 最终去的最后一条
                 order.searchFlight = [sortArr objectAtIndex:indexPath.row];
+                data_ = [sortArr objectAtIndex:indexPath.row];
             }
             else{
                 [self.indexArr addObject:[self.searchFlightDateArr objectAtIndex:indexPath.row]]; // indexArr是为了保存用户所有来回选取的记录， 最终去的最后一条
                 order.searchFlight = [self.searchFlightDateArr objectAtIndex:indexPath.row];
+               
             }
+            
+            
 
-            NSLog(@"%@,%@,%@",data_.temporaryLabel,data_.startPortThreeCode,data_.endPortThreeCode);
-            searchCabin * search = [[searchCabin alloc] initWithdpt:data_.startPortThreeCode arr:data_.endPortThreeCode date:self.goDate code:data_.temporaryLabel edition:@"v1.0" source:@"xxxx"];
+            NSLog(@"%@,%@,%@,%@",data_.temporaryLabel,data_.startPortThreeCode,data_.endPortThreeCode,self.startDate);
+            searchCabin * search = [[searchCabin alloc] initWithdpt:data_.startPortThreeCode arr:data_.endPortThreeCode date:self.startDate code:data_.temporaryLabel edition:@"v1.0" source:@"xxxx"];
             order.searchCab = search;
         }
         
@@ -589,8 +619,10 @@
     else{
         if (timeSortFlag == 3) {
             
-            if (sortFlag == 1) {
+         //   if (sortFlag == 1) {
                 if (indexPath.row == 0) {
+                    
+                    NSLog(@"按照时间从早到晚排序");
                     
                     SearchFlightData * data1;
                     SearchFlightData * data2;
@@ -625,7 +657,7 @@
                             data1 = data2;
                             data2 = tempData;
                         }
-                    }
+            //        }
                     
                     //                for (SearchFlightData * da in sortArr) {
                     //                    NSLog(@"%@",da.beginTime);
@@ -701,6 +733,7 @@
         }
         else
         {
+            
             ShowSelectedCell *cell = (ShowSelectedCell *)[tableView cellForRowAtIndexPath:indexPath];
             cell.selectBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
             
@@ -789,8 +822,18 @@
     int year_ = 0;
     int day_ = 0;
     
+    NSString * tempDate = nil;
     
-    NSArray * timeArr = [self.startDate componentsSeparatedByString:@"-"];
+    if (self.write != nil) {
+        tempDate = self.goBackDate;
+        
+    }
+    else{
+        tempDate = self.startDate;
+       
+    }
+    
+    NSArray * timeArr = [tempDate componentsSeparatedByString:@"-"];
     
     year = [NSString stringWithFormat:@"%@",[timeArr objectAtIndex:0]];
     month = [NSString stringWithFormat:@"%@",[timeArr objectAtIndex:1]];
@@ -806,47 +849,47 @@
     if (day_ == 1) {
         switch ([[timeArr objectAtIndex:1] intValue]) {
             case 12:
-                self.startDate = [NSString stringWithFormat:@"%@-%d-%d",[timeArr objectAtIndex:0],11,30];
+                tempDate = [NSString stringWithFormat:@"%@-%d-%d",[timeArr objectAtIndex:0],11,30];
                 break;
             case 11:
-                self.startDate = [NSString stringWithFormat:@"%@-%d-%d",[timeArr objectAtIndex:0],10,31];
+                tempDate = [NSString stringWithFormat:@"%@-%d-%d",[timeArr objectAtIndex:0],10,31];
                 break;
             case 10:
-                self.startDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],9,30];
+                tempDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],9,30];
                 break;
             case 9:
-                self.startDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],8,31];
+                tempDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],8,31];
                 break;
             case 8:
-                self.startDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],7,31];
+                tempDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],7,31];
                 break;
             case 7:
-                self.startDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],6,30];
+                tempDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],6,30];
                 break;
             case 6:
-                self.startDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],5,31];
+                tempDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],5,31];
                 break;
             case 5:
-                self.startDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],4,30];
+                tempDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],4,30];
                 break;
             case 4:
-                self.startDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],3,31];
+                tempDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],3,31];
                 break;
             case 3:
                 if((year_%4==0&&year_%100!=0)||(year_%400==0))
                 {
-                    self.startDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],2,29];
+                    tempDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],2,29];
                 }
                 else{
-                    self.startDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],2,28];
+                    tempDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],2,28];
                 }
                 
                 break;
             case 2:
-                self.startDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],1,31];
+                tempDate = [NSString stringWithFormat:@"%@-0%d-%d",[timeArr objectAtIndex:0],1,31];
                 break;
             case 1:
-                self.startDate = [NSString stringWithFormat:@"%d-%d-%d",[[timeArr objectAtIndex:0] intValue]-1,12,31];
+                tempDate = [NSString stringWithFormat:@"%d-%d-%d",[[timeArr objectAtIndex:0] intValue]-1,12,31];
                 break;
 
                 
@@ -854,7 +897,7 @@
                 break;
         }
         
-        [nowDateBtn setTitle:self.startDate forState:0];
+        [nowDateBtn setTitle:tempDate forState:0];
         
         NSLog(@"判断月份减一    %@",self.startDate);
     }
@@ -877,38 +920,93 @@
             d = [NSString stringWithFormat:@"%d",day_-1];
         }
         
-        self.startDate = [NSString stringWithFormat:@"%d-%@-%@",year_,m,d];  // 修改出发日期的数值
+        tempDate = [NSString stringWithFormat:@"%d-%@-%@",year_,m,d];  // 修改出发日期的数值
        
         [nowDateBtn setTitle:[NSString stringWithFormat:@"%d月%d日",month_, day_ -1] forState:0];
 
     }
     
+   // self.startDate = tempDate;
+    
+    
     NSString * timeStr;
-    NSArray * arr = [self.startDate componentsSeparatedByString:@"-"];
+    NSArray * arr = [tempDate componentsSeparatedByString:@"-"];
    
 
     timeStr = [NSString stringWithFormat:@"%@%@%@",[arr objectAtIndex:0],[arr objectAtIndex:1],[arr objectAtIndex:2]];
 
 
-    NSLog(@"%d,,,,%d",[deviceTime intValue],[timeStr intValue]);
         
     if ([deviceTime intValue] >= [timeStr intValue]) {
-        NSLog(@"%d,%d",[deviceTime intValue],[timeStr intValue]);
         theDayBeforeBtn.enabled = NO;
+    }
+    
+    if (self.write != nil) {
+        self.goBackDate = tempDate;
+        
+    }
+    else{
+        self.startDate = tempDate;
+        
     }
 
     
-    self.airPort.date = self.startDate  ;
+    self.airPort.date = tempDate  ;
+    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
-    NSLog(@"查询时候用的时间 :  %@",self.airPort.date);
+//    NSLog(@"查询时候用的时间 :  %@",tempDate);
+    NSLog(@"查询时候用的时间 :  %@",self.startDate);
+
+
 
     [self.airPort searchAirPort];
 }
+
+-(void) setYear: (int) year month: (int) month day: (int) day {
+    
+    NSLog(@"******************************************");
+    
+    [leaveDate setYear:year month:month day:day];
+    NSString * strMonth;
+    NSString * strDay;
+    if (month<10) {
+        strMonth = [NSString stringWithFormat:@"0%d",month];
+    }
+    else{
+        strMonth = [NSString stringWithFormat:@"%d",month];
+    }
+    if (day<10) {
+        strDay = [NSString stringWithFormat:@"0%d",day];
+    }
+    else{
+        strDay = [NSString stringWithFormat:@"%d",day];
+    }
+    
+    if (self.write != nil) {
+        self.goBackDate = [NSString stringWithFormat:@"%d-%@-%@",year,strMonth,strDay];
+    }
+    else{
+        self.startDate = [NSString stringWithFormat:@"%d-%@-%@",year,strMonth,strDay];
+    }
+    NSLog(@"showCalendar  %d,%d,%d",year,month,day);
+}
+
+
 - (IBAction)showCalendar:(id)sender {
     
-    CCLog(@"显示日历");
+    [MonthDayCell selectYear:leaveDate.year month:leaveDate.month day:leaveDate.day];
+    
+    SelectCalendarController* controller = [[SelectCalendarController alloc] init];
+    [controller setDelegate:self];
+    [controller showCalendar];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 - (IBAction)enterTheDayAfter:(id)sender {
+    
+    theDayBeforeBtn.enabled = YES;  // 打开用户交互
+    
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     [HUD show:YES];
@@ -916,7 +1014,19 @@
    
   //  self.airPort.date =  self.startDate;
     
-    NSArray * timeArr = [self.startDate componentsSeparatedByString:@"-"];
+    NSString * tempDate = nil;
+    
+    if (self.write != nil) {
+        
+        tempDate = self.goBackDate;
+        
+    }
+    else{
+        tempDate = self.startDate;
+        
+    }
+    
+    NSArray * timeArr = [tempDate componentsSeparatedByString:@"-"];
     
     NSString * month = nil;
     NSString * year = nil;
@@ -934,27 +1044,72 @@
     year_ = [year intValue];
     day_ = [day intValue];
     
-    
+   // NSLog(@"month, year, day %d,%d,%d",month_,year_,day_);
     //NSLog(@"the day before %@",timeArr);
     
-    if (day_ == 1) {
-        switch ([[timeArr objectAtIndex:1] intValue]) {
-        }
+    if (month_ == 01 && day_ == 31 ) {
+        tempDate = [NSString stringWithFormat:@"%d%d%d",year_,2,1];
+    }
+    if ((month_ == 02 && day_ == 28) || (month_ == 02 && day_ == 29)) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_,3,1];
+    }
+    if (month_ == 03 && day_ == 31 ) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_,4,1];
+    }
+    if (month_ == 04 && day_ == 30 ) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_,5,1];
+    }
+    if (month_ == 05 && day_ == 31 ) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_,6,1];
+    }
+    if (month_ == 06 && day_ == 30 ) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_,7,1];
+    }
+    if (month_ == 07 && day_ == 31 ) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_,8,1];
+    }
+    if (month_ == 8 && day_ == 31 ) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_,9,1];
+    }
+    if (month_ == 9 && day_ == 30 ) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_,10,1];
+    }
+    if (month_ == 10 && day_ == 31 ) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_,11,1];
+    }
+    if (month_ == 11 && day_ == 30 ) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_,12,1];
+    }
+    if (month_ == 12 && day_ == 31 ) {
+        tempDate = [NSString stringWithFormat:@"%d-%d-%d",year_+1,1,1];
     }
     
-    self.startDate = [NSString stringWithFormat:@"%@-%@-%d",[timeArr objectAtIndex:0],[timeArr objectAtIndex:1],[[timeArr objectAtIndex:2]intValue]+1];
+    else{
+        
+        tempDate = [NSString stringWithFormat:@"%@-%@-%d",[timeArr objectAtIndex:0],[timeArr objectAtIndex:1],[[timeArr objectAtIndex:2]intValue]+1];
+    }
     
+    NSArray * dataArr = [tempDate componentsSeparatedByString:@"-"];
     
-    
-     NSLog(@"------%@",self.startDate);
-
-    [nowDateBtn setTitle:[NSString stringWithFormat:@"%@月%d日",[timeArr objectAtIndex:1],[[timeArr objectAtIndex:2]intValue] +1] forState:0];
+    [nowDateBtn setTitle:[NSString stringWithFormat:@"%@月%@日",[dataArr objectAtIndex:1],[dataArr objectAtIndex:2]]forState:0];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
-    self.airPort.date = self.startDate;
-    
-    
+    self.airPort.date = tempDate;
+ 
+    NSLog(@"返程时间  %@",tempDate);
+ 
     [self.airPort searchAirPort];
+    
+    if (self.write != nil) {
+        
+        self.goBackDate = tempDate;
+        
+    }
+    else{
+        self.startDate = tempDate;
+        
+    }
+
 }
 
 - (IBAction)siftByAirPort:(UIButton *)sender {

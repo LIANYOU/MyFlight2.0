@@ -81,14 +81,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   // if ([[self.cellTextArr objectAtIndex:0] isEqual:@"成人"]) {
+    if ([[self.cellTextArr objectAtIndex:0] isEqual:@"成人"]) {
         
-        return self.cellTitleArr.count;
-//    }
-//    else{
-//        
-//        return self.cellTitleArr.count-1;
-//    }
+        return 5;
+    }
+    else{
+        
+        return 6;
+    }
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,62 +98,77 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        static NSString *CellIdentifier = @"Cell";
+    
+    int flag = 0;
+    static NSString *CellIdentifier = @"Cell";
+    if ([[self.cellTextArr objectAtIndex:0] isEqual:@"成人"]) {
         
-        if (indexPath.row == 5) {
-            AddPersonSwitchCell *cell = (AddPersonSwitchCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (!cell)
-            {
-                [[NSBundle mainBundle] loadNibNamed:@"AddPersonSwitchCell" owner:self options:nil];
-                cell = self.addPersonSwithCell;
-            }
-            cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
-            [cell.swith addTarget:self action:@selector(switchOFFORON:) forControlEvents:UIControlEventValueChanged];
-            
-            return cell;
-            
-        }
-        else
+        flag = 4;
+    }
+    else
+    {
+        flag = 5;
+    }
+    if (indexPath.row == flag) {
+        NSLog(@"flag = %d",flag);
+         static NSString *CellIdentifier1 = @"Cell";
+        AddPersonSwitchCell *cell = (AddPersonSwitchCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+        if (!cell)
         {
-            AddPersonCell *cell = (AddPersonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (!cell)
-            {
-                [[NSBundle mainBundle] loadNibNamed:@"AddPersonCell" owner:self options:nil];
-                cell = self.addPersonCell;
-            }
-            if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4) {
-                cell.cellText.enabled = NO;
-                if (indexPath.row == 0) {
-                    cell.cellTitle.text = [self.cellTitleArr objectAtIndex:0];
-                    cell.cellText.text = [self.cellTextArr objectAtIndex:0];
-                }
-                if (indexPath.row==2) {
-                    cell.cellTitle.text = [self.cellTitleArr objectAtIndex:2];
-                    cell.cellText.text = [self.cellTextArr objectAtIndex:2];
-                }
-                if (indexPath.row==4) {
-                    cell.cellTitle.text = [self.cellTitleArr objectAtIndex:4];
-                    cell.cellText.text = [self.cellTextArr objectAtIndex:4];
-                }
-                
-                if (indexPath.row == 0) {
-                    identityType = cell.cellText.text;   // 儿童或者成人赋值
-                }
-                
-            }
-            else
-            {
-                if (indexPath.row == 1) {
-                    cell.cellText.tag = indexPath.row;
-                }
-                
-                cell.cellText.delegate = self;
-                cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
-                cell.cellText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
-            }
-            
-            return cell;
+            [[NSBundle mainBundle] loadNibNamed:@"AddPersonSwitchCell" owner:self options:nil];
+            cell = self.addPersonSwithCell;
         }
+        cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
+        [cell.swith addTarget:self action:@selector(switchOFFORON:) forControlEvents:UIControlEventValueChanged];
+        
+        return cell;
+        
+    }
+    
+    AddPersonCell *cell = (AddPersonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell)
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"AddPersonCell" owner:self options:nil];
+        cell = self.addPersonCell;
+    }
+    if (flag == 5) {
+        if (indexPath.row == 4) {
+            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+            cell.cellTitle.text = @"生日";
+         //   cell.cellText.placeholder = @"1990-03-09";
+        }
+    }
+    if (indexPath.row == 0 || indexPath.row == 2) {
+        cell.cellText.enabled = NO;
+        if (indexPath.row == 0) {
+            cell.cellTitle.text = [self.cellTitleArr objectAtIndex:0];
+            cell.cellText.text = [self.cellTextArr objectAtIndex:0];
+        }
+        if (indexPath.row==2) {
+            cell.cellTitle.text = [self.cellTitleArr objectAtIndex:2];
+            cell.cellText.text = [self.cellTextArr objectAtIndex:2];
+        }
+        
+        //                if (indexPath.row == 0) {
+        //                    identityType = cell.cellText.text;   // 儿童或者成人赋值
+        //                }
+        
+    }
+    else
+    {
+        if (indexPath.row == 1) {
+            cell.cellText.tag = indexPath.row;
+        }
+        
+      //  cell.cellText.delegate = self;
+        cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
+      //  cell.cellText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
+    }
+    
+    return cell;
+    
+    
+    
 
 
 }
