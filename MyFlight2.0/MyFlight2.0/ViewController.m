@@ -19,6 +19,7 @@
 #import "MyCenterUnLoginViewController.h"
 #import "AppConfigure.h"
 #import "MyCenterTable_1.h"
+#import "ChooseSeatOnlineViewController.h"
 
 
 @interface ViewController ()
@@ -103,7 +104,7 @@
 }
 
 - (IBAction)chooseSeatOnline:(id)sender {
-    WriteOrderViewController * travelAss = [[WriteOrderViewController alloc]init];
+    ChooseSeatOnlineViewController * travelAss = [[ChooseSeatOnlineViewController alloc]init];
     [self.navigationController pushViewController:travelAss animated:YES];
     [travelAss release];
     CCLog(@"显示在线选座");

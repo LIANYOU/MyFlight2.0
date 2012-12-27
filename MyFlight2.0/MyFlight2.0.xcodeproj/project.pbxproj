@@ -192,6 +192,16 @@
 		1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852CC7D16837F5600431A9B /* TravePhoneCell.xib */; };
 		1896E5EF168C6554006F883B /* TravelTrafficViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */; };
 		189F5D48168A014700A3494F /* AttentionFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F5D47168A014700A3494F /* AttentionFlight.m */; };
+		18AD3304168C6EF40065BF08 /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD32F6168C6EF40065BF08 /* CheckInViewController.m */; };
+		18AD3305168C6EF40065BF08 /* CheckInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD32F7168C6EF40065BF08 /* CheckInViewController.xib */; };
+		18AD3306168C6EF40065BF08 /* ChooseFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD32F9168C6EF40065BF08 /* ChooseFlightViewController.m */; };
+		18AD3307168C6EF40065BF08 /* ChooseFlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD32FA168C6EF40065BF08 /* ChooseFlightViewController.xib */; };
+		18AD3308168C6EF40065BF08 /* ChooseSeatOnlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD32FC168C6EF40065BF08 /* ChooseSeatOnlineViewController.m */; };
+		18AD3309168C6EF40065BF08 /* ChooseSeatOnlineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD32FD168C6EF40065BF08 /* ChooseSeatOnlineViewController.xib */; };
+		18AD330A168C6EF40065BF08 /* FlightInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD32FF168C6EF40065BF08 /* FlightInformationViewController.m */; };
+		18AD330B168C6EF40065BF08 /* FlightInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD3300168C6EF40065BF08 /* FlightInformationViewController.xib */; };
+		18AD330C168C6EF40065BF08 /* PickSeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD3302168C6EF40065BF08 /* PickSeatViewController.m */; };
+		18AD330D168C6EF40065BF08 /* PickSeatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD3303168C6EF40065BF08 /* PickSeatViewController.xib */; };
 		18C30D1016853E5E009B0A54 /* icon_screening_click_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D0C16853E5E009B0A54 /* icon_screening_click_.png */; };
 		18C30D1116853E5E009B0A54 /* btn_sort_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D0D16853E5E009B0A54 /* btn_sort_.png */; };
 		18C30D1216853E5E009B0A54 /* btn_sort_click_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D0E16853E5E009B0A54 /* btn_sort_click_.png */; };
@@ -701,6 +711,21 @@
 		1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelTrafficViewController.xib; sourceTree = "<group>"; };
 		189F5D46168A014700A3494F /* AttentionFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionFlight.h; sourceTree = "<group>"; };
 		189F5D47168A014700A3494F /* AttentionFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionFlight.m; sourceTree = "<group>"; };
+		18AD32F5168C6EF40065BF08 /* CheckInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInViewController.h; sourceTree = "<group>"; };
+		18AD32F6168C6EF40065BF08 /* CheckInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInViewController.m; sourceTree = "<group>"; };
+		18AD32F7168C6EF40065BF08 /* CheckInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInViewController.xib; sourceTree = "<group>"; };
+		18AD32F8168C6EF40065BF08 /* ChooseFlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseFlightViewController.h; sourceTree = "<group>"; };
+		18AD32F9168C6EF40065BF08 /* ChooseFlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseFlightViewController.m; sourceTree = "<group>"; };
+		18AD32FA168C6EF40065BF08 /* ChooseFlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseFlightViewController.xib; sourceTree = "<group>"; };
+		18AD32FB168C6EF40065BF08 /* ChooseSeatOnlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSeatOnlineViewController.h; sourceTree = "<group>"; };
+		18AD32FC168C6EF40065BF08 /* ChooseSeatOnlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSeatOnlineViewController.m; sourceTree = "<group>"; };
+		18AD32FD168C6EF40065BF08 /* ChooseSeatOnlineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseSeatOnlineViewController.xib; sourceTree = "<group>"; };
+		18AD32FE168C6EF40065BF08 /* FlightInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightInformationViewController.h; sourceTree = "<group>"; };
+		18AD32FF168C6EF40065BF08 /* FlightInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightInformationViewController.m; sourceTree = "<group>"; };
+		18AD3300168C6EF40065BF08 /* FlightInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightInformationViewController.xib; sourceTree = "<group>"; };
+		18AD3301168C6EF40065BF08 /* PickSeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickSeatViewController.h; sourceTree = "<group>"; };
+		18AD3302168C6EF40065BF08 /* PickSeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickSeatViewController.m; sourceTree = "<group>"; };
+		18AD3303168C6EF40065BF08 /* PickSeatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickSeatViewController.xib; sourceTree = "<group>"; };
 		18C30D0C16853E5E009B0A54 /* icon_screening_click_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_screening_click_.png; sourceTree = "<group>"; };
 		18C30D0D16853E5E009B0A54 /* btn_sort_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_sort_.png; sourceTree = "<group>"; };
 		18C30D0E16853E5E009B0A54 /* btn_sort_click_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_sort_click_.png; sourceTree = "<group>"; };
@@ -1696,6 +1721,7 @@
 		1823C9C4166F243F0079CA3F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18AD32F3168C6ED10065BF08 /* chooseSeat */,
 				18D196C6168161CC00FEE73A /* TravelAssistant */,
 				18E37CF6167DAC2E0086B3F8 /* FlightCondition */,
 				18E37CE2167D7FDF0086B3F8 /* More */,
@@ -1758,6 +1784,28 @@
 				18DB9B3F168AB73C00CE975F /* GetAttentionFlight.m */,
 			);
 			name = attentionFlight;
+			sourceTree = "<group>";
+		};
+		18AD32F3168C6ED10065BF08 /* chooseSeat */ = {
+			isa = PBXGroup;
+			children = (
+				18AD32F5168C6EF40065BF08 /* CheckInViewController.h */,
+				18AD32F6168C6EF40065BF08 /* CheckInViewController.m */,
+				18AD32F7168C6EF40065BF08 /* CheckInViewController.xib */,
+				18AD32F8168C6EF40065BF08 /* ChooseFlightViewController.h */,
+				18AD32F9168C6EF40065BF08 /* ChooseFlightViewController.m */,
+				18AD32FA168C6EF40065BF08 /* ChooseFlightViewController.xib */,
+				18AD32FB168C6EF40065BF08 /* ChooseSeatOnlineViewController.h */,
+				18AD32FC168C6EF40065BF08 /* ChooseSeatOnlineViewController.m */,
+				18AD32FD168C6EF40065BF08 /* ChooseSeatOnlineViewController.xib */,
+				18AD32FE168C6EF40065BF08 /* FlightInformationViewController.h */,
+				18AD32FF168C6EF40065BF08 /* FlightInformationViewController.m */,
+				18AD3300168C6EF40065BF08 /* FlightInformationViewController.xib */,
+				18AD3301168C6EF40065BF08 /* PickSeatViewController.h */,
+				18AD3302168C6EF40065BF08 /* PickSeatViewController.m */,
+				18AD3303168C6EF40065BF08 /* PickSeatViewController.xib */,
+			);
+			name = chooseSeat;
 			sourceTree = "<group>";
 		};
 		18C30D3916859846009B0A54 /* Calendar */ = {
@@ -2458,17 +2506,19 @@
 				18DF893F1688202400D2DDAE /* ShowSelectedResultViewController.xib in Resources */,
 				18DF8950168824E600D2DDAE /* HistoryFlightQuery.sqlite in Resources */,
 				140D979E1689570800D8934E /* CommonContactDetailViewController.xib in Resources */,
-
 				18DB9B47168ADC0C00CE975F /* LookFlightConditionCell.xib in Resources */,
 				1896E5EF168C6554006F883B /* TravelTrafficViewController.xib in Resources */,
-
 				149B770A168BE3E1006281A3 /* MyCenterCell.xib in Resources */,
 				149B7710168BF3A1006281A3 /* MyCenterSecondCell.xib in Resources */,
 				149B7719168C0A8C006281A3 /* MyCenterTable_1.xib in Resources */,
 				149B771F168C2014006281A3 /* AddPersonViewController.xib in Resources */,
 				149B7724168C2690006281A3 /* AddPersonCell0.xib in Resources */,
 				149B77AC168C4FE1006281A3 /* MyCenterUnLoginCell.xib in Resources */,
-
+				18AD3305168C6EF40065BF08 /* CheckInViewController.xib in Resources */,
+				18AD3307168C6EF40065BF08 /* ChooseFlightViewController.xib in Resources */,
+				18AD3309168C6EF40065BF08 /* ChooseSeatOnlineViewController.xib in Resources */,
+				18AD330B168C6EF40065BF08 /* FlightInformationViewController.xib in Resources */,
+				18AD330D168C6EF40065BF08 /* PickSeatViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2598,11 +2648,9 @@
 				18DF894E168824E600D2DDAE /* HistoryCheckDataBase.m in Sources */,
 				18DF894F168824E600D2DDAE /* HistoryCheckInfoData.m in Sources */,
 				140D979D1689570800D8934E /* CommonContactDetailViewController.m in Sources */,
-
 				189F5D48168A014700A3494F /* AttentionFlight.m in Sources */,
 				18DB9B40168AB73C00CE975F /* GetAttentionFlight.m in Sources */,
 				18DB9B45168ADBFA00CE975F /* LookFlightConditionCell.m in Sources */,
-
 				140D98161689DFA400D8934E /* CommontContactSingle.m in Sources */,
 				149B7708168BE3C3006281A3 /* MyCenterCell.m in Sources */,
 				149B770E168BF386006281A3 /* MyCenterSecondCell.m in Sources */,
@@ -2610,7 +2658,11 @@
 				149B771E168C2014006281A3 /* AddPersonViewController.m in Sources */,
 				149B7722168C2679006281A3 /* AddPersonCell0.m in Sources */,
 				149B77AA168C4FBF006281A3 /* MyCenterUnLoginCell.m in Sources */,
-
+				18AD3304168C6EF40065BF08 /* CheckInViewController.m in Sources */,
+				18AD3306168C6EF40065BF08 /* ChooseFlightViewController.m in Sources */,
+				18AD3308168C6EF40065BF08 /* ChooseSeatOnlineViewController.m in Sources */,
+				18AD330A168C6EF40065BF08 /* FlightInformationViewController.m in Sources */,
+				18AD330C168C6EF40065BF08 /* PickSeatViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
