@@ -109,11 +109,50 @@
     
 }
 
+
+
+//编辑常用联系人 新方法
+- (void) editCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate{
+    
+    
+    
+    
+    [LoginInNetworkHelper editCommonPassengerWithPassengerData:passengerData andDelegate:delegate];
+    
+    
+    
+}
+
+
+
+
+//删除常用联系人
+- (void) deleteCommonPassengerWithPassengerId:(NSString *) passengerId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+    
+    
+    [LoginInNetworkHelper deleteCommonPassengerWithPassengerId:passengerId userDic:passengerInfo andDelegate:delegate];
+    
+}
+
+
+
 //增加常用联系人
-- (void) addCommonPassengerWithMemberId:(NSString *) memberId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate{
+- (void) addCommonPassengerWithPassengerName:(NSString *) name type:(NSString *) type certType:(NSString *) certType certNo:(NSString *)certNo userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate{
     
     
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
     
+//    封装数据
+    [dic setObject:name forKey:KEY_Passenger_Name];
+    [dic setObject:type forKey:KEY_Passenger_Type];
+    [dic setObject:certType forKey:KEY_Passenger_CertType];
+    [dic setObject:certNo forKey:KEY_Passenger_CertNo];
+    
+    
+        
+    [LoginInNetworkHelper addCommonPassenger:dic delegate:delegate];
     
     
 }
@@ -145,4 +184,21 @@
     
 }
 
+
+//心愿旅行卡 充值
+- (void) makeAccountFullWithRechargeCardNo:(NSString *) cardNo cardPasswd:(NSString *) pwd andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+ 
+}
+
+
+
+- (void) updatePassWdWithOldPasswd:(NSString *) oldPasswd newPasswd:(NSString *) newPasswd andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+    
+    
+    
+}
 @end

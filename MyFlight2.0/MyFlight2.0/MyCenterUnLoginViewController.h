@@ -10,5 +10,13 @@
 
 @interface MyCenterUnLoginViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
+@property (retain, nonatomic) IBOutlet UIView *thisView;
+
+@property (retain, nonatomic) IBOutlet UILabel *nameLabel;
+
+@property (retain, nonatomic) IBOutlet UILabel *unPayDealLabel;
+
+
+
 
 @end

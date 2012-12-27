@@ -45,8 +45,8 @@
     [super viewDidLoad];
     
     
-    //默认设置先回到我的个人中心
-    self.loginSuccessReturnType = Login_Success_ReturnMyCenterDefault_Type;
+//    //默认设置先回到我的个人中心
+//    self.loginSuccessReturnType = Login_Success_ReturnMyCenterDefault_Type;
     
     
     loginBusiness = [[LoginBusiness alloc] init];
@@ -146,6 +146,7 @@
 #pragma mark 登录成功时的操作 
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
+//    用户输入什么就会记录 用户账户的默认值 
     
     [[NSUserDefaults standardUserDefaults] setObject:logNumber.text forKey:KEY_Default_AccountName];
     

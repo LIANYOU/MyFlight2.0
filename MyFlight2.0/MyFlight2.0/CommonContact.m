@@ -11,4 +11,19 @@
 @implementation CommonContact
 
 
+
+- (id) initWithName:(NSString *) name type:(NSString *) type certType:(NSString *) certType certNo:(NSString *) certNO contactId:(NSString *) contactId{
+    
+    if (self=[super init]) {
+        
+        self.name = name;
+        self.type = type;
+        self.certType = certType;
+        self.certNo = certNO;
+        self.contactId = contactId;
+    }
+    
+    return self;
+    
+}
 @end

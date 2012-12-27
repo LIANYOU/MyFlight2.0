@@ -10,6 +10,11 @@
 #import "ServiceDelegate.h"
 @interface CommonContactViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ServiceDelegate>
 
+@property(nonatomic,retain)NSMutableArray *resultArray;
+
+
+@property (retain, nonatomic) IBOutlet UITableView *thisTableView;
+
 
 
 @end

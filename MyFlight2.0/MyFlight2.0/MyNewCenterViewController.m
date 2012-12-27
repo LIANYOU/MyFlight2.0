@@ -48,6 +48,7 @@
     
 }
 
+//
 - (void) loginOut{
     
     
@@ -71,22 +72,16 @@
     [backBtn1 release];
     
     
-//    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
-//    histroyBut.frame = CGRectMake(215, 5, 30, 30);
-//    [histroyBut setTitle:@"退出" forState:UIControlStateNormal];
-//    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_2words_.png"]];
-//    [histroyBut addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    UIBarButtonItem *histroyBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
-//    self.navigationItem.rightBarButtonItem=histroyBtn;
-//    [histroyBtn release];file://localhost/Users/LIANYOU/MyFlight2.0/MyFlight2.0/MyFlight2.0/icon_add_.png
-  
+
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonSystemItemSave target:self action:@selector(loginOut)];
     
-//    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_add_.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(loginOut)];
-//   
-//    self.navigationItem.rightBarButtonItem = barItem;
-//    [barItem release];
+    right.tintColor = [UIColor colorWithRed:35/255.0 green:103/255.0 blue:188/255.0 alpha:1];
     
+    self.navigationItem.rightBarButtonItem = right;
+
+    [right release];
+    
+       
 }
 
 
@@ -101,6 +96,9 @@
      NSString *meg =[info objectForKey:KEY_message];
     
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+    
+    
     
     
     
@@ -150,7 +148,9 @@
 
 - (void)viewDidLoad
 {
+   
     [super viewDidLoad];
+    
     LoginBusiness *busi = [[LoginBusiness alloc] init];
     
     NSString *memberId =Default_UserMemberId_Value;
@@ -159,8 +159,6 @@
     [busi getAccountInfoWithMemberId:memberId andDelegate:self];
     
     
-    
-   
     [self setNav];
     // Do any additional setup after loading the view from its nib.
 }

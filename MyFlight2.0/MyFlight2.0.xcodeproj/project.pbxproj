@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		140D979D1689570800D8934E /* CommonContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140D979B1689570700D8934E /* CommonContactDetailViewController.m */; };
 		140D979E1689570800D8934E /* CommonContactDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140D979C1689570700D8934E /* CommonContactDetailViewController.xib */; };
+		140D98161689DFA400D8934E /* CommontContactSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 140D98151689DFA300D8934E /* CommontContactSingle.m */; };
 		141523871682C12000E2FF0E /* LoginBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523861682C12000E2FF0E /* LoginBusiness.m */; };
 		1415238D1682C3BE00E2FF0E /* LoginInNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1415238C1682C3BE00E2FF0E /* LoginInNetworkHelper.m */; };
 		141523921682CC3C00E2FF0E /* IsLoginInSingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 141523911682CC3C00E2FF0E /* IsLoginInSingle.m */; };
@@ -91,6 +92,18 @@
 		14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */; };
 		14805BA4167875E900836353 /* bg_pek.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA3167875E900836353 /* bg_pek.png */; };
 		14805BA61678760B00836353 /* icon_return.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA51678760B00836353 /* icon_return.png */; };
+		149B7708168BE3C3006281A3 /* MyCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7707168BE3C3006281A3 /* MyCenterCell.m */; };
+		149B770A168BE3E1006281A3 /* MyCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B7709168BE3E1006281A3 /* MyCenterCell.xib */; };
+		149B770E168BF386006281A3 /* MyCenterSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B770D168BF383006281A3 /* MyCenterSecondCell.m */; };
+		149B7710168BF3A1006281A3 /* MyCenterSecondCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B770F168BF3A1006281A3 /* MyCenterSecondCell.xib */; };
+		149B7718168C0A8C006281A3 /* MyCenterTable_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7716168C0A88006281A3 /* MyCenterTable_1.m */; };
+		149B7719168C0A8C006281A3 /* MyCenterTable_1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B7717168C0A8A006281A3 /* MyCenterTable_1.xib */; };
+		149B771E168C2014006281A3 /* AddPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B771C168C2014006281A3 /* AddPersonViewController.m */; };
+		149B771F168C2014006281A3 /* AddPersonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B771D168C2014006281A3 /* AddPersonViewController.xib */; };
+		149B7722168C2679006281A3 /* AddPersonCell0.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7721168C2677006281A3 /* AddPersonCell0.m */; };
+		149B7724168C2690006281A3 /* AddPersonCell0.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B7723168C268F006281A3 /* AddPersonCell0.xib */; };
+		149B77AA168C4FBF006281A3 /* MyCenterUnLoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B77A9168C4FBB006281A3 /* MyCenterUnLoginCell.m */; };
+		149B77AC168C4FE1006281A3 /* MyCenterUnLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B77AB168C4FE1006281A3 /* MyCenterUnLoginCell.xib */; };
 		14ED61ED1672F16D0019DC23 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E21672F16D0019DC23 /* FMDatabase.m */; };
 		14ED61EE1672F16D0019DC23 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E41672F16D0019DC23 /* FMDatabaseAdditions.m */; };
 		14ED61EF1672F16D0019DC23 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E61672F16D0019DC23 /* FMDatabasePool.m */; };
@@ -420,6 +433,8 @@
 		140D979A1689570700D8934E /* CommonContactDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonContactDetailViewController.h; sourceTree = "<group>"; };
 		140D979B1689570700D8934E /* CommonContactDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonContactDetailViewController.m; sourceTree = "<group>"; };
 		140D979C1689570700D8934E /* CommonContactDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonContactDetailViewController.xib; sourceTree = "<group>"; };
+		140D98141689DFA200D8934E /* CommontContactSingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommontContactSingle.h; sourceTree = "<group>"; };
+		140D98151689DFA300D8934E /* CommontContactSingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommontContactSingle.m; sourceTree = "<group>"; };
 		141523851682C12000E2FF0E /* LoginBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBusiness.h; sourceTree = "<group>"; };
 		141523861682C12000E2FF0E /* LoginBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBusiness.m; sourceTree = "<group>"; };
 		1415238B1682C3BE00E2FF0E /* LoginInNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInNetworkHelper.h; sourceTree = "<group>"; };
@@ -545,6 +560,25 @@
 		14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPortDataBaseSingleton.m; sourceTree = "<group>"; };
 		14805BA3167875E900836353 /* bg_pek.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pek.png; sourceTree = "<group>"; };
 		14805BA51678760B00836353 /* icon_return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_return.png; sourceTree = "<group>"; };
+		149B7706168BE3C2006281A3 /* MyCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterCell.h; sourceTree = "<group>"; };
+		149B7707168BE3C3006281A3 /* MyCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterCell.m; sourceTree = "<group>"; };
+		149B7709168BE3E1006281A3 /* MyCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterCell.xib; sourceTree = "<group>"; };
+		149B770B168BEA14006281A3 /* ColorUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUility.h; sourceTree = "<group>"; };
+		149B770C168BF383006281A3 /* MyCenterSecondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterSecondCell.h; sourceTree = "<group>"; };
+		149B770D168BF383006281A3 /* MyCenterSecondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterSecondCell.m; sourceTree = "<group>"; };
+		149B770F168BF3A1006281A3 /* MyCenterSecondCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterSecondCell.xib; sourceTree = "<group>"; };
+		149B7715168C0A83006281A3 /* MyCenterTable_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterTable_1.h; sourceTree = "<group>"; };
+		149B7716168C0A88006281A3 /* MyCenterTable_1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterTable_1.m; sourceTree = "<group>"; };
+		149B7717168C0A8A006281A3 /* MyCenterTable_1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterTable_1.xib; sourceTree = "<group>"; };
+		149B771B168C2014006281A3 /* AddPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonViewController.h; sourceTree = "<group>"; };
+		149B771C168C2014006281A3 /* AddPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonViewController.m; sourceTree = "<group>"; };
+		149B771D168C2014006281A3 /* AddPersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonViewController.xib; sourceTree = "<group>"; };
+		149B7720168C2676006281A3 /* AddPersonCell0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonCell0.h; sourceTree = "<group>"; };
+		149B7721168C2677006281A3 /* AddPersonCell0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonCell0.m; sourceTree = "<group>"; };
+		149B7723168C268F006281A3 /* AddPersonCell0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonCell0.xib; sourceTree = "<group>"; };
+		149B77A8168C4FBA006281A3 /* MyCenterUnLoginCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterUnLoginCell.h; sourceTree = "<group>"; };
+		149B77A9168C4FBB006281A3 /* MyCenterUnLoginCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterUnLoginCell.m; sourceTree = "<group>"; };
+		149B77AB168C4FE1006281A3 /* MyCenterUnLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterUnLoginCell.xib; sourceTree = "<group>"; };
 		14ED61E11672F16D0019DC23 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		14ED61E21672F16D0019DC23 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		14ED61E31672F16D0019DC23 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -1019,7 +1053,7 @@
 				145A2CB516841D82000DAAA1 /* addCommonContact */,
 				141523AE1683707700E2FF0E /* CommonContact */,
 				141523A316835D5200E2FF0E /* personalInfo */,
-				141523A216835CAB00E2FF0E /* edit */,
+				141523A216835CAB00E2FF0E /* center */,
 				1415239D16834BBF00E2FF0E /* MyNewCenterViewController.h */,
 				1415239E16834BBF00E2FF0E /* MyNewCenterViewController.m */,
 				1415239F16834BBF00E2FF0E /* MyNewCenterViewController.xib */,
@@ -1030,11 +1064,17 @@
 			name = newMyCenter;
 			sourceTree = "<group>";
 		};
-		141523A216835CAB00E2FF0E /* edit */ = {
+		141523A216835CAB00E2FF0E /* center */ = {
 			isa = PBXGroup;
 			children = (
+				149B771A168C0EDB006281A3 /* cell */,
+				149B7715168C0A83006281A3 /* MyCenterTable_1.h */,
+				149B7716168C0A88006281A3 /* MyCenterTable_1.m */,
+				149B7717168C0A8A006281A3 /* MyCenterTable_1.xib */,
+				149B77A8168C4FBA006281A3 /* MyCenterUnLoginCell.h */,
+				149B77A9168C4FBB006281A3 /* MyCenterUnLoginCell.m */,
 			);
-			name = edit;
+			name = center;
 			sourceTree = "<group>";
 		};
 		141523A316835D5200E2FF0E /* personalInfo */ = {
@@ -1260,6 +1300,12 @@
 				145A2CB716841E07000DAAA1 /* AddContactViewController.h */,
 				145A2CB816841E07000DAAA1 /* AddContactViewController.m */,
 				145A2CB916841E07000DAAA1 /* AddContactViewController.xib */,
+				149B771B168C2014006281A3 /* AddPersonViewController.h */,
+				149B771C168C2014006281A3 /* AddPersonViewController.m */,
+				149B771D168C2014006281A3 /* AddPersonViewController.xib */,
+				149B7720168C2676006281A3 /* AddPersonCell0.h */,
+				149B7721168C2677006281A3 /* AddPersonCell0.m */,
+				149B7723168C268F006281A3 /* AddPersonCell0.xib */,
 			);
 			name = addCommonContact;
 			sourceTree = "<group>";
@@ -1364,6 +1410,8 @@
 				1469871A167EF31000E9B30D /* UserAccount.m */,
 				14698721167EFB1E00E9B30D /* CommonContact.h */,
 				14698722167EFB1E00E9B30D /* CommonContact.m */,
+				140D98141689DFA200D8934E /* CommontContactSingle.h */,
+				140D98151689DFA300D8934E /* CommontContactSingle.m */,
 			);
 			name = CommonContactInfo;
 			sourceTree = "<group>";
@@ -1427,6 +1475,7 @@
 				18DC00AF1679C87C008C6B8D /* TicketCheckUility.h */,
 				146987801680966F00E9B30D /* MyCenterUility.h */,
 				145A2D271684369C000DAAA1 /* UIHelperUility.h */,
+				149B770B168BEA14006281A3 /* ColorUility.h */,
 			);
 			name = configure;
 			sourceTree = "<group>";
@@ -1455,6 +1504,20 @@
 				14805BA3167875E900836353 /* bg_pek.png */,
 			);
 			name = TicketCheck;
+			sourceTree = "<group>";
+		};
+		149B771A168C0EDB006281A3 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				149B770C168BF383006281A3 /* MyCenterSecondCell.h */,
+				149B770D168BF383006281A3 /* MyCenterSecondCell.m */,
+				149B770F168BF3A1006281A3 /* MyCenterSecondCell.xib */,
+				149B7706168BE3C2006281A3 /* MyCenterCell.h */,
+				149B7707168BE3C3006281A3 /* MyCenterCell.m */,
+				149B7709168BE3E1006281A3 /* MyCenterCell.xib */,
+				149B77AB168C4FE1006281A3 /* MyCenterUnLoginCell.xib */,
+			);
+			name = cell;
 			sourceTree = "<group>";
 		};
 		14ED61E01672F16D0019DC23 /* FMDB */ = {
@@ -2362,6 +2425,12 @@
 				18DF893F1688202400D2DDAE /* ShowSelectedResultViewController.xib in Resources */,
 				18DF8950168824E600D2DDAE /* HistoryFlightQuery.sqlite in Resources */,
 				140D979E1689570800D8934E /* CommonContactDetailViewController.xib in Resources */,
+				149B770A168BE3E1006281A3 /* MyCenterCell.xib in Resources */,
+				149B7710168BF3A1006281A3 /* MyCenterSecondCell.xib in Resources */,
+				149B7719168C0A8C006281A3 /* MyCenterTable_1.xib in Resources */,
+				149B771F168C2014006281A3 /* AddPersonViewController.xib in Resources */,
+				149B7724168C2690006281A3 /* AddPersonCell0.xib in Resources */,
+				149B77AC168C4FE1006281A3 /* MyCenterUnLoginCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2491,6 +2560,13 @@
 				18DF894E168824E600D2DDAE /* HistoryCheckDataBase.m in Sources */,
 				18DF894F168824E600D2DDAE /* HistoryCheckInfoData.m in Sources */,
 				140D979D1689570800D8934E /* CommonContactDetailViewController.m in Sources */,
+				140D98161689DFA400D8934E /* CommontContactSingle.m in Sources */,
+				149B7708168BE3C3006281A3 /* MyCenterCell.m in Sources */,
+				149B770E168BF386006281A3 /* MyCenterSecondCell.m in Sources */,
+				149B7718168C0A8C006281A3 /* MyCenterTable_1.m in Sources */,
+				149B771E168C2014006281A3 /* AddPersonViewController.m in Sources */,
+				149B7722168C2679006281A3 /* AddPersonCell0.m in Sources */,
+				149B77AA168C4FBF006281A3 /* MyCenterUnLoginCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

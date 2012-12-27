@@ -12,8 +12,16 @@
 #import "UIQuickHelp.h"
 #import "AppConfigure.h"
 #import "AddContactViewController.h"
+#import "CommonContactDetailViewController.h"
+#import "AppConfigure.h"
+#import "CommontContactSingle.h"
+#import "CommonContact.h"
 @interface CommonContactViewController ()
-
+{
+    
+    
+    
+}
 @end
 
 @implementation CommonContactViewController
@@ -56,32 +64,99 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    
+    CommontContactSingle *single = [CommontContactSingle shareCommonContact];
+    
+    
+    [self.resultArray removeAllObjects];
+    
+    self.resultArray =single.passengerArray;
+   
+    
+    
+    
+    NSLog(@"网络返回的数据为：%d", [self.resultArray count]);
+    
+    for (CommonContact *data in self.resultArray) {
+    
+        
+        NSLog(@"数据：%@",data.name);
+    }
+    
+[ self.thisTableView reloadData];
+
     
     
 }
-//
+//添加联系人
 -(void) addCommonPassenger{
     AddContactViewController *controller = [[AddContactViewController alloc] init];
     
     [self.navigationController pushViewController:controller animated:YES];
     
     [controller release];
+    
+    
+    
+    
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    LoginBusiness  *bis = [[LoginBusiness alloc] init];
+- (void) back{
     
-    [bis getCommonPassengerWithMemberId:@"1351876318736518" andDelegate:self];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark -
+#pragma mark 设置导航栏
+- (void) setNav{
     
-    self.title = @"常用乘机人";
+    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(10, 5, 30, 31);
+    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
+    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem=backBtn1;
+    [backBtn1 release];
+    
     
     
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addCommonPassenger)];
     
+    right.tintColor = Right_BarItem_Blue;
+    
     self.navigationItem.rightBarButtonItem = right;
     
+    [right release];
+    
+    
+}
+
+
+
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    _resultArray = [[NSMutableArray alloc] init];
+    
+    
+    [self setNav];
+    
+    LoginBusiness  *bis = [[LoginBusiness alloc] init];
+    
+    NSString *memberId =Default_UserMemberId_Value;
+    
+    CCLog(@"在常用联系人查询界面 memberId= %@",memberId);
+    
+    [bis getCommonPassengerWithMemberId:memberId andDelegate:self];
+    
+    self.title = @"常用乘机人";
+    
+    
+      
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -105,8 +180,11 @@
 {
     
     // Return the number of rows in the section.
-    return 3;
+    
+    return [self.resultArray count];
 }
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -122,10 +200,24 @@
         cell  = [array objectAtIndex:0];
         
     }
+   
+    CommonContact *data = [self.resultArray objectAtIndex:indexPath.row];
+    NSString *string = nil;
     
-    cell.contactName.text = @"ceshid";
-    cell.personType  =[NSString stringWithFormat:@"(%@)",@"成人"];
-    cell.personId.text = @"131342534654646";
+    if ([data.type isEqualToString:@"01"]) {
+        
+        string = @"成人";
+        
+    } else{
+        
+        string = @"儿童";
+        
+    }
+    
+    
+    cell.contactName.text = data.name;
+    cell.personType  =[NSString stringWithFormat:@"(%@)",string];
+    cell.personId.text = data.certNo;
     
     
     return cell;
@@ -174,18 +266,30 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+  
+    
+    CommonContactDetailViewController *controller = [[CommonContactDetailViewController alloc] init];
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    
+    [controller release];
+    
+    
+    
+    
+    
 }
 
 
 
 
 
+- (void)dealloc {
+    [_thisTableView release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setThisTableView:nil];
+    [super viewDidUnload];
+}
 @end

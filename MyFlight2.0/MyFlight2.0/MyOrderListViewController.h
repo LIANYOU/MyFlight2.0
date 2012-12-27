@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MyOrderListViewController : UIViewController
-
+#import "SVSegmentedControl.h"
+@interface MyOrderListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    
+    SVSegmentedControl * segmented;
+}
 
 
 

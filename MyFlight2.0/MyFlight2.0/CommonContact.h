@@ -16,5 +16,5 @@
 @property(nonatomic,retain)NSString *certNo; //证件号码 儿童时为出生日期
 @property(nonatomic,retain)NSString *contactId; //乘机人ID 
 
-
+- (id) initWithName:(NSString *) name type:(NSString *) type certType:(NSString *) certType certNo:(NSString *) certNO contactId:(NSString *) contactId;
 @end

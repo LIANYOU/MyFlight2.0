@@ -56,6 +56,8 @@
     return [resultDic autorelease];
 
 }
+
+
 - (id) init{
     
     if (self=[super init]) {
