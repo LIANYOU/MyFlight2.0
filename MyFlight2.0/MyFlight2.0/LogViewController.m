@@ -46,7 +46,7 @@
     
     
     //默认设置先回到我的个人中心
-    self.loginSuccessReturnType = Login_Success_ReturnMyCenterDefault_Type;
+   // self.loginSuccessReturnType = Login_Success_ReturnMyCenterDefault_Type;
     
     
     loginBusiness = [[LoginBusiness alloc] init];

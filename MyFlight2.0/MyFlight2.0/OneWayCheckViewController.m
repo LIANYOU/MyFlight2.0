@@ -52,7 +52,9 @@ int searchFlag = 1; // 单程和往返的标记位
 
 - (void)viewDidLoad
 {
-    
+    if (Default_IsUserLogin_Value) {
+        NSLog(@"登陆");
+    }
 
     UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(10, 5, 30, 31);
@@ -324,7 +326,7 @@ int searchFlag = 1; // 单程和往返的标记位
             strDay = [NSString stringWithFormat:@"%d",day];
         }
         oneGoData = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay];
-        NSLog(@"**************************%@",oneGoData);
+//        NSLog(@"**************************%@",oneGoData);
         delegataFlag = 10;
     }
     
@@ -425,7 +427,7 @@ int searchFlag = 1; // 单程和往返的标记位
     
     if (searchFlag == 1) {
         
-        NSLog(@"------------%@%@%@",oneStartCode,oneEndCode,oneGoData);
+        NSLog(@"首页单程机票查询条件 ：%@%@%@",oneStartCode,oneEndCode,oneGoData);
         searchAirPort = [[SearchAirPort alloc] initWithdpt:oneStartCode arr:oneEndCode date:oneGoData ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
         show.startPort = oneStartAirPort.text;
@@ -440,7 +442,7 @@ int searchFlag = 1; // 单程和往返的标记位
           }
     else{
        
-        NSLog(@"+++++++++++++%@%@%@",startCode,endCode,oneGoData);
+        NSLog(@"首页往返机票查询条件 ： %@%@%@",startCode,endCode,oneGoData);
         searchAirPort = [[SearchAirPort alloc] initWithdpt:startCode arr:endCode date:oneGoData ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
         show.startPort = startAirport.text;

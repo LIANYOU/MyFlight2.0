@@ -23,8 +23,11 @@
 
 @interface ShowSelectedResultViewController ()
 {
-    NSMutableArray * sortArr;  // 去程筛选以后的数组
-    NSMutableArray * sortBackArr; // 返程筛选以后的数组
+     NSMutableArray   * sortArr;  // 去程筛选以后的数组
+     NSMutableArray * sortBackArr; // 返程筛选以后的数组
+    
+    int airPortNameBtnSelect;  // 判断是否点击了按照航空公司筛选的按钮
+    
     int sortFlag;  // 是否经过去程筛选的标记位
     int sortBackFlag;  // 返程筛选标记位
     
@@ -52,10 +55,12 @@
     
     self.indexFlag = 1000;
     
-    self.searchFlightDateArr = [NSMutableArray array];
-    self.searchBackFlightDateArr = [NSMutableArray array];
-    self.indexArr = [NSMutableArray array];
-    self.tempTwoCodeArr = [NSMutableArray array];  // 缓存已经得到的二字码
+
+    
+    self.searchFlightDateArr = [[NSMutableArray alloc] initWithCapacity:5];
+    self.searchBackFlightDateArr = [[NSMutableArray alloc] initWithCapacity:5];
+    self.indexArr = [[NSMutableArray alloc] initWithCapacity:5];
+    self.tempTwoCodeArr = [[NSMutableArray alloc] initWithCapacity:5];  // 缓存已经得到的二字码
     
     sortFlag = 0;
     sortBackFlag = 0;
@@ -91,26 +96,54 @@
     
     dicCode = [[NSDictionary alloc] initWithContentsOfFile:dataPath];
     
+//    UISwipeGestureRecognizer * ges = [self.showResultTableView valueForKey:@"_swipe"];
+//    ges.delegate = self;
     
-   
+    UISwipeGestureRecognizer * swipe  = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeGesture:)];
+    swipe.direction = UISwipeGestureRecognizerDirectionLeft;
+
+    [self.showResultTableView addGestureRecognizer:swipe];
+    [swipe release];
+    
+    UISwipeGestureRecognizer * swipe1  = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeGesture:)];
+    swipe1.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [self.showResultTableView addGestureRecognizer:swipe1];
+    [swipe1 release];
 
     self.showResultTableView.separatorColor = [UIColor clearColor];
 
-   // NSLog(@"%@",dicCode.allKeys);
     [super viewDidLoad];
     
 }
 
--(void)swipe:(UISwipeGestureRecognizer * )swipe//轻扫
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return YES;
+}
+-(void)swipeGesture:(UISwipeGestureRecognizer * )swipe//轻扫
 {
 
-    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
-    
-    
-    
     if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
-        [self enterTheDayBefore:nil];
-        NSLog(@"左边");
+        
+        
+        [UIView animateWithDuration:0.001 animations:^(void)  //不用回调
+         {
+             self.showResultTableView.frame = CGRectMake(320, 44, 320, 480);
+           //  self.navigationController.view.frame = CGRectMake(160, 0, 320, 480);
+
+         }  completion:^(BOOL finished)
+         {
+             [UIView animateWithDuration:0.5 animations:^{
+                 self.showResultTableView.frame = CGRectMake(0, 44, 320, 480);
+             } completion:^(BOOL finished) {
+                 self.airPort.date = @"2012-12-30";
+                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+                 [self.airPort searchAirPort];
+                           
+             }];
+         }];
+      //  NSLog(@"左边");
     }
     if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
          NSLog(@"右边");
@@ -120,6 +153,13 @@
 {
         
     [super viewWillAppear:YES];
+    
+    //****** 所有标记为清空
+   // sortFlag = 0;  // 是否经过去程筛选的标记位
+   // sortBackFlag = 0;  // 返程筛选标记位
+    
+    airPortNameFlag = 0;   // 按照航空公司排序标记
+    timeSortFlag = 0;
     
     self.showResultTableView.delegate = self;
     self.showResultTableView.dataSource = self;
@@ -144,16 +184,15 @@
     self.navigationItem.titleView = label;
 
     if (self.one != nil || self.write != nil) {
-        
+       
         if (self.write != nil) {
-            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
-            NSLog(@"%@",self.goBackDate);
+   
             self.airPort.date = self.goBackDate;
             [nowDateBtn setTitle:self.twoGoBackDate forState:0];
             self.flag  = 3; // 随便标记一位， 在推进到填写订单的时候使用
         }
         if (self.one != nil) {
-            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+            
             self.airPort.date = self.startDate;    // 不同的时候设置不同的搜索时间
             [nowDateBtn setTitle:self.startDate forState:0];
         }
@@ -202,17 +241,20 @@
 
     NSArray * timeArr = [self.airPort.date componentsSeparatedByString:@"-"];
     NSString * timeStr = [NSString stringWithFormat:@"%@%@%@",[timeArr objectAtIndex:0],[timeArr objectAtIndex:1],[timeArr objectAtIndex:2]];
-    NSLog(@"deviceTime and startData %@,,%@",deviceTime,timeStr);
-    NSLog(@"deviceTime %d,,%d",[deviceTime intValue],[timeStr intValue]);
+    
+    NSLog(@"系统时间和查询时候的时间 %d,,%d",[deviceTime intValue],[timeStr intValue]);
     if ([deviceTime intValue] == [timeStr intValue]) {
 
-        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
         theDayBeforeBtn.enabled = NO;
         
     }
     else{
         theDayBeforeBtn.enabled = YES;
     }
+    
+    
+    
+    NSLog(@"返程数据 %d",self.searchBackFlightDateArr.count);
     
 }
 - (void)didReceiveMemoryWarning
@@ -291,7 +333,7 @@
         s.palntType = [TransitionString transitionPalntType:[dic objectForKey:@"plantype"]];
         s.beginTime = [dic objectForKey:@"dptTime"];
         s.endTime = [dic objectForKey:@"arrTime"];
-        s.pay = [dic objectForKey:@"lowestPrice"]; // 价格
+        s.pay = [[dic objectForKey:@"lowestPrice"] intValue]; // 价格
         s.discount = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"lowestCabinCode"]]; // 仓位折扣
         s.ticketCount = [TransitionString transitionSeatNum:[dic objectForKey:@"lowestSeatNum"]]; // 剩余票数
         s.cabinsArr = [dic objectForKey:@"Cabins"];
@@ -319,6 +361,9 @@
           //  NSLog(@"**********************%@",self.goBackDate);
             s.startPortName = self.endPort;
             s.endPortName = self.startPort;
+            s.beginDate = self.goBackDate;
+            s.startPortThreeCode = self.endThreeCode;
+            s.endPortThreeCode = self.startThreeCode;
             //s.beginDate = self.;    // 此处先暂时写，
             
             
@@ -395,7 +440,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.sortTableView) {
-
+        
         if ( timeSortFlag == 3) {
             self.sortTableView.frame = CGRectMake(0, 282, 320, 86);
             return 2;
@@ -407,12 +452,18 @@
         }
     }
     else{
-        if (airPortNameFlag == 4) {
-            return sortArr.count;
+        
+        if (timeSortFlag == 3 || airPortNameFlag == 4 || airPortNameBtnSelect ==1) {   // 判断如果是经过排序并且是返程
+         
+            if (sortBackFlag == 2) {
+                return sortBackArr.count;
+            }
+            else{
+                return sortArr.count;
+            }
+            
         }
-        if ( timeSortFlag == 3) {
-            return 2;
-        }
+       
         else{
             return self.dateArr.count;
         }
@@ -441,26 +492,34 @@
             NSArray *array =  [[NSBundle mainBundle] loadNibNamed:@"SelectResultCell" owner:self options:nil];
             cell = [array objectAtIndex:0];
             
-            UISwipeGestureRecognizer * swipe  = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipe:)];
-            swipe.direction = UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionUp;
-            [cell addGestureRecognizer:swipe];
-            [swipe release];
+
         }
         
         if (self.write != nil  ||  self.netFlag == 1) {
             if (sortBackFlag == 2) {
+            
                 data = [sortBackArr objectAtIndex:indexPath.row];
             }
             else
             {
+               
                 data = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
             }
         }
+//        if (airPortNameBtnSelect != 1 ) {
+//            if (sortBackFlag == 2) {
+//                data = [sortBackArr objectAtIndex:indexPath.row];
+//            }
+//            else{
+//                data = [sortArr objectAtIndex:indexPath.row];
+//            }
+//        }
         else
         {
             if (sortFlag == 1) {
+              
                 data = [sortArr objectAtIndex:indexPath.row];
-
+            
             }
             else{
                 data = [self.searchFlightDateArr objectAtIndex:indexPath.row];
@@ -488,7 +547,7 @@
         cell.palntType.text = data.palntType;
         cell.beginTime.text = data.beginTime;
         cell.endTime.text = data.endTime;
-        cell.pay.text = data.pay; // Y仓价格
+        cell.pay.text =[NSString stringWithFormat:@"%d",data.pay] ; // Y仓价格
         cell.discount.text = data.discount; // 仓位折扣
         cell.ticketCount.text = data.ticketCount; // 剩余票数
         
@@ -549,35 +608,29 @@
         order.goBackDate = self.goBackDate;
         
         SearchFlightData * data_ = nil;
-        if (sortFlag == 1) {
-            data_ = [sortArr objectAtIndex:indexPath.row];
-        }
-        if (self.write != nil ||  self.netFlag == 1) {
-            data_ = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
-        }
-        else{
-            
-            data_ = [self.searchFlightDateArr objectAtIndex:indexPath.row];
-        }
-        
-        if (self.write != nil ||  self.netFlag == 1) {
-            
-            if (sortBackFlag == 2) {
-             
+
+        if (self.write != nil ||  self.netFlag == 1) {    // 返程的时候走的方法
+              
+            if (sortBackFlag == 2) {  // 经过返程筛选
+                
+                data_ = [sortBackArr objectAtIndex:indexPath.row];
+                
                 order.searchBackFlight = [sortBackArr objectAtIndex:indexPath.row];
-               
+                
             }
             else{
                 order.searchBackFlight = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
+                
+                data_ = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
             }
             
-            searchCabin * search = [[searchCabin alloc] initWithdpt:data.endPortThreeCode arr:data.startPortThreeCode date:self.goBackDate code:order.searchBackFlight.temporaryLabel edition:@"v1.0" source:@"xxxx"];
+            searchCabin * search = [[searchCabin alloc] initWithdpt:data_.startPortThreeCode arr:data_.endPortThreeCode date:self.goBackDate code:order.searchBackFlight.temporaryLabel edition:@"v1.0" source:@"xxxx"];
             order.searchCab = search;
             
             self.indexFlag = indexPath.row;  // 标记一下。
         }
         
-        if (self.indexFlag == 1000) {
+        if (self.indexFlag == 1000) {   //  标记单程走这个方法
             
             if (sortFlag == 1) {
                 [self.indexArr addObject:[sortArr objectAtIndex:indexPath.row]]; // indexArr是为了保存用户所有来回选取的记录， 最终去的最后一条
@@ -587,12 +640,9 @@
             else{
                 [self.indexArr addObject:[self.searchFlightDateArr objectAtIndex:indexPath.row]]; // indexArr是为了保存用户所有来回选取的记录， 最终去的最后一条
                 order.searchFlight = [self.searchFlightDateArr objectAtIndex:indexPath.row];
-               
+                data_ = [self.searchFlightDateArr objectAtIndex:indexPath.row];
             }
-            
-            
-
-            NSLog(@"%@,%@,%@,%@",data_.temporaryLabel,data_.startPortThreeCode,data_.endPortThreeCode,self.startDate);
+        
             searchCabin * search = [[searchCabin alloc] initWithdpt:data_.startPortThreeCode arr:data_.endPortThreeCode date:self.startDate code:data_.temporaryLabel edition:@"v1.0" source:@"xxxx"];
             order.searchCab = search;
         }
@@ -614,172 +664,206 @@
         self.one = nil;
         
         [order release];
-
+        
     }
     else{
-        if (timeSortFlag == 3) {
-            
-         //   if (sortFlag == 1) {
+        if (airPortNameBtnSelect != 1) {
+            if (self.write != nil ||  self.netFlag == 1) {
                 if (indexPath.row == 0) {
-                    
-                    NSLog(@"按照时间从早到晚排序");
-                    
-                    SearchFlightData * data1;
-                    SearchFlightData * data2;
-                    SearchFlightData * tempData;
-                    
-                    int k = 0;
-                    
-                    for (int i = 0; i<sortArr.count-1; i++)
-                    {
-                        
-                        k = i;
-                        
-                        for (int j = i+1; j<sortArr.count; j++) {
-                            data2 = [sortArr objectAtIndex:j];
-                            data1 = [sortArr objectAtIndex:i];
-                            
-                            NSString * string = data2.beginTime;
-                            NSArray * timeArr = [string componentsSeparatedByString:@":"];
-                            NSString * str = [NSString stringWithFormat:@"%@%@",[timeArr objectAtIndex:0],[timeArr objectAtIndex:1]];
-                            int time2 = [str intValue];
-                            
-                            NSString * string1 = data1.beginTime;
-                            NSArray * timeArr1 = [string1 componentsSeparatedByString:@":"];
-                            NSString * str1 = [NSString stringWithFormat:@"%@%@",[timeArr1 objectAtIndex:0],[timeArr objectAtIndex:1]];
-                            int time1 = [str1 intValue];
-                            
-                            if (time1 < time2) {
-                                k = j;
-                            }
-                            
-                            tempData = data1;
-                            data1 = data2;
-                            data2 = tempData;
-                        }
-            //        }
-                    
-                    //                for (SearchFlightData * da in sortArr) {
-                    //                    NSLog(@"%@",da.beginTime);
-                    //                 }
+                    NSLog(@"do nothing");
                 }
-                if (indexPath.row == 1)
-                {
-                    SearchFlightData * data1 = nil;
-                    SearchFlightData * data2 = nil;
-                    SearchFlightData *tmpData1 = nil;
-                    SearchFlightData * tempData = nil;
+                if (indexPath.row == 1) {
                     
-                    int k = 0;
+                    NSSortDescriptor * sortDescriptor;
+                    sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"pay" ascending:YES] autorelease];
+                    NSArray * sortByPayArr = [NSArray arrayWithObject:sortDescriptor ] ;
                     
-                    for (int i = 0; i<sortArr.count-1; i++)
-                    {
-                        
-                         k = i;
-                        
-                        
-                        //待交换
-                         tmpData1 = [sortArr objectAtIndex:i];
-                       
-                        
-                        
-                        for (int j = i+1; j<sortArr.count; j++) {
-                            
-                            data2 = [sortArr objectAtIndex:j];
-                            //待比较
-                            data1 = [sortArr objectAtIndex:k];
-                            
-                            NSString * string = data2.pay;
-                            
-                            int time2 = [string intValue];
-                            
-                            NSString * string1 = data1.pay;
-                             NSLog(@"time1 = %@",string1);
-                            NSLog(@"time2 = %@",string);
-                            int time1 = [string1 intValue];
-                            
-                            if (time1 > time2) {
-                                k = j;
-                                
-                                
-                                NSLog(@"*********k= %d************",k);
-                            }
-                            
-                            
-                        }
-                        
-                        SearchFlightData * tempK = [sortArr objectAtIndex:k];
-                        
-                        NSLog(@"=======比较完成%@与,%@ 所在下标 %d交换顺序 &&&&&&&&&&&&&&&",tmpData1.pay,tempK.pay,k);
-                                                
-                        tempData = tmpData1;
-                        tmpData1 = tempK;
-                        tempK = tempData;
-                        
-                        
-                    }
+                    NSArray * atttt = [self.searchBackFlightDateArr sortedArrayUsingDescriptors:sortByPayArr] ;
                     
-                    for (SearchFlightData * da in sortArr) {
-                        NSLog(@"%@",da.pay);
-                    }
+                    [sortBackArr release];
+                    sortBackArr =[[NSMutableArray alloc] initWithArray: atttt ];
+
+                    [self.showResultTableView reloadData];
                 }
-            
-            
-            
+                
+                
                 self.backView.hidden = YES;
                 self.sortTableView.hidden = YES;
                 return;
             }
+            
+            if (self.indexFlag == 1000) {  // 去程排序
+                
+                if (indexPath.row == 0) {
+                    NSLog(@"do nothing");
+                }
+                
+                if (indexPath.row == 1) {
+                    
+                    NSSortDescriptor * sortDescriptor;
+                    sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"pay" ascending:YES] autorelease];
+                    NSArray * sortByPayArr = [NSArray arrayWithObject:sortDescriptor ] ;
+                    
+                    NSArray * atttt = [self.searchFlightDateArr sortedArrayUsingDescriptors:sortByPayArr] ;
+                    
+                    [sortArr release];
+                    sortArr =[[NSMutableArray alloc] initWithArray: atttt ];
+                    
+                    for (SearchFlightData * sa in sortArr) {
+                        NSLog(@"%d",sa.pay);
+                    }
+                    
+                    [self.showResultTableView reloadData];
+                }
+                
+                
+                self.backView.hidden = YES;
+                self.sortTableView.hidden = YES;
+                return;
+
+            }
         }
-        else
+        if (timeSortFlag == 3) {
+            
+            if (self.write != nil ||  self.netFlag == 1) {  // 返程排序
+                
+                if (indexPath.row == 0) {   // 按照时间从早到晚排序
+
+                    NSSortDescriptor * sortDescriptor;
+                    sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"beginTime" ascending:YES] autorelease];
+                    NSArray * sortByPayArr = [NSArray arrayWithObject:sortDescriptor ] ;
+                    
+                    NSArray * atttt = [sortBackArr sortedArrayUsingDescriptors:sortByPayArr] ;
+                    
+                    [sortBackArr release];
+                    sortBackArr =[[NSMutableArray alloc] initWithArray: atttt ];
+
+                    
+                }
+                if (indexPath.row == 1)  // 按照价格从高到底排序
+                {
+
+                    NSSortDescriptor * sortDescriptor;
+                    sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"pay" ascending:YES] autorelease];
+                    NSArray * sortByPayArr = [NSArray arrayWithObject:sortDescriptor ] ;
+                    
+                    NSArray * atttt = [sortBackArr sortedArrayUsingDescriptors:sortByPayArr] ;
+                    
+                    [sortBackArr release];
+                    sortBackArr =[[NSMutableArray alloc] initWithArray: atttt ];
+                    
+                }
+                [self.showResultTableView reloadData];
+                self.backView.hidden = YES;
+                self.sortTableView.hidden = YES;
+                return;
+                
+            }
+            
+            if (self.indexFlag == 1000) {  // 去程排序
+                
+                if (indexPath.row == 0) {   // 按照时间从早到晚排序
+                    
+                    NSSortDescriptor * sortDescriptor;
+                    sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"beginTime" ascending:YES] autorelease];
+                    NSArray * sortByPayArr = [NSArray arrayWithObject:sortDescriptor ] ;
+                    
+                    NSArray * atttt = [sortArr sortedArrayUsingDescriptors:sortByPayArr];
+                    
+                    [sortArr release];
+                    sortArr =[[NSMutableArray alloc] initWithArray: atttt ];
+                    
+                    
+                }
+                if (indexPath.row == 1)  // 按照价格从高到底排序
+                {
+                    
+                    NSSortDescriptor * sortDescriptor;
+                    sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"pay" ascending:YES] autorelease];
+                    NSArray * sortByPayArr = [NSArray arrayWithObject:sortDescriptor ] ;
+                    
+                    NSArray * atttt = [sortArr sortedArrayUsingDescriptors:sortByPayArr] ;
+                    
+                    [sortArr release];
+                    sortArr =[[NSMutableArray alloc] initWithArray: atttt ];
+
+                }
+                [self.showResultTableView reloadData];
+                self.backView.hidden = YES;
+                self.sortTableView.hidden = YES;
+                return;
+            }
+            
+   
+        }
+        else    // 筛选部分
         {
             
             ShowSelectedCell *cell = (ShowSelectedCell *)[tableView cellForRowAtIndexPath:indexPath];
             cell.selectBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
             
+            
+            
             if (self.indexFlag == 1000) {  // 去程筛选
+                
                 sortFlag = 1;
                 if (indexPath.row == 0) {   // 如果点击的是第一行，就是不限航空公司
                     
                     sortArr = self.searchFlightDateArr;
+                    
                 }
                 else
                 {
+                    
                     NSString * string = cell.airportName.text;
                     
+                  //  [sortArr removeAllObjects];
+                  //  NSLog(@"%d",self.searchFlightDateArr.count);
+                    
                     for (SearchFlightData * searchData in self.searchFlightDateArr) {
+                        
                         if ([searchData.airPort isEqualToString:string]) {
                             [sortArr addObject:searchData];
                         }
                     }
                     
                 }
+                [self.showResultTableView reloadData];
+                self.backView.hidden = YES;
+                self.sortTableView.hidden = YES;
                 
             }
             
             if (self.write != nil ||  self.netFlag == 1) {  // 返程筛选
+               
                 sortBackFlag = 2;
                 if (indexPath.row == 0) {
+                    
                     sortBackArr = self.searchBackFlightDateArr;
                 }
                 else{
+               //      [sortBackArr removeAllObjects];
                     NSString * string = cell.airportName.text;
-                    
+                   
                     for (SearchFlightData * searchData in self.searchBackFlightDateArr) {
                         if ([searchData.airPort isEqualToString:string]) {
+
                             [sortBackArr addObject:searchData];
                         }
                     }
                 }
+                [self.showResultTableView reloadData];
+                self.backView.hidden = YES;
+                self.sortTableView.hidden = YES;
+
             }
-            [self.showResultTableView reloadData];
-            self.backView.hidden = YES;
-            self.sortTableView.hidden = YES;
         }
     }
     
     
 }
+
+
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView  // 开始滚动的时候隐藏筛选菜单
 {
@@ -997,11 +1081,18 @@
     
     [MonthDayCell selectYear:leaveDate.year month:leaveDate.month day:leaveDate.day];
     
-    SelectCalendarController* controller = [[SelectCalendarController alloc] init];
-    [controller setDelegate:self];
-    [controller showCalendar];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    SelectCalendarController *logVC=[[[SelectCalendarController alloc]init] autorelease];
+    [logVC setDelegate:self];
+    [logVC showCalendar];
+    logVC.one = self;
+    UINavigationController *navigation=[[UINavigationController alloc]initWithRootViewController:logVC];
+    navigation.navigationBar.barStyle=UIBarStyleDefault;
+    [navigation.navigationBar setBackgroundImage:[UIImage imageNamed:@"title_bar1.png"]forBarMetrics:UIBarMetricsDefault];
+  
+    [self presentModalViewController:navigation animated:YES];
+    
+    
+    
 }
 - (IBAction)enterTheDayAfter:(id)sender {
     
@@ -1114,10 +1205,14 @@
 
 - (IBAction)siftByAirPort:(UIButton *)sender {
     
+    airPortNameBtnSelect = 1;
+    
     airPortNameFlag = 4;
     timeSortFlag = 0;
+    
     sortArr = [[NSMutableArray alloc] init];
     sortBackArr = [[NSMutableArray alloc] init];
+    
     self.backView.hidden = NO;
     self.sortTableView.hidden = NO;
     
@@ -1128,6 +1223,14 @@
 
     airPortNameFlag = 0;
     timeSortFlag = 3;
+
+    if (airPortNameBtnSelect != 1) {
+        sortArr = [[NSMutableArray alloc] init];
+        sortBackArr = [[NSMutableArray alloc] init];
+        
+    }
+    
+    
     self.backView.hidden = NO;
     self.sortTableView.hidden = NO;
     

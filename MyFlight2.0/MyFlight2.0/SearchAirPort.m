@@ -110,7 +110,7 @@
     self.allData = [NSMutableData data];
     
    // http://223.202.36.179:9580
-    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://test.51you.com/web/phone/prod/flight/flightSearchPhone.jsp"]];
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/flightSearchPhone.jsp"]];
     [request setPostValue:[self.dpt stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"dpt"];
     [request setPostValue:[self.arr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"arr"];
     [request setPostValue:[self.date stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"date"];

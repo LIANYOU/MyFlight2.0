@@ -13,6 +13,9 @@
 #import "ShowSelectedResultViewController.h"
 #import "BigCell.h"
 #import "NewChooseSpaceCell.h"
+#import "AttentionFlight.h"
+#import "AppConfigure.h"
+#import "GetAttentionFlight.h"
 #define FONT_SIZE 8.0f
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 100.0f
@@ -51,13 +54,7 @@
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受舱位数据" object:nil];
-    [self.searchCab searchCabin];
-    
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    
-    [HUD show:YES];
+
 
 
     
@@ -68,10 +65,7 @@
         data = self.searchBackFlight;
     }
     else{
-        NSLog(@"searchFligth");
-       
         data = self.searchFlight;
-        NSLog(@"-----  %@",data.beginDate);
     }
     self.flightCode.text =data.temporaryLabel;
     
@@ -81,13 +75,49 @@
     self.payArr = [NSMutableArray array];
     self.childPayArr = [NSMutableArray arrayWithCapacity:5];
     self.indexArr = [NSMutableArray array];
+    
+    // 调去查看舱位数据信息
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受舱位数据" object:nil];
+    [self.searchCab searchCabin];
+   
+    
+    // 调取应经关注的航班的信息
+    NSString * memberID = Default_UserMemberId_Value;
+    NSString * hwID = HWID_VALUE;
+    
+    GetAttentionFlight * flight = [[GetAttentionFlight alloc] initWithMemberId:memberID
+                                                                  andOrgSource:@"51YOU"
+                                                                       andType:@"P"
+                                                                      andToken:hwID
+                                                                     andSource:@"1"
+                                                                       andHwid:hwID andServiceCode:@"01"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lookReceive:) name:@"获得已经关注航班信息" object:nil];
+    [flight getAttentionFlight];
 
-
+    
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    [HUD show:YES];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
-
+-(void)lookReceive:(NSNotification *)not
+{
+    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+    self.lookReceive = [NSArray array];
+    self.lookReceive = [[not userInfo] objectForKey:@"arr"];
+    for (NSDictionary * dic_ in self.lookReceive) {
+         NSLog(@"已经关注的航班号 %@",[dic_ objectForKey:@"flightNum"]);
+        if ([data.temporaryLabel isEqualToString:[dic_ objectForKey:@"flightNum"]]) {
+            [self.lookFlightBtn setTitle:@"     取消关注" forState:0];
+           
+        }
+    }
+}
 -(void)receive:(NSNotification *)not
 {
     self.dateArr  = [[NSMutableArray alloc] init];
@@ -115,13 +145,15 @@
      
     }
  
-     NSLog(@"*****************%d,%d,%d",self.dateArr.count,self.payArr.count,self.childPayArr.count);
+ //    NSLog(@"*****************%d,%d,%d",self.dateArr.count,self.payArr.count,self.childPayArr.count);
     
     [self.showTableView reloadData];
 
     [HUD removeFromSuperview];
 	[HUD release];
 	HUD = nil;
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 
 }
 - (void)didReceiveMemoryWarning
@@ -145,6 +177,7 @@
     [_headView release];
     [_bigCell release];
     [_newCell release];
+    [_lookFlightBtn release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -161,21 +194,11 @@
     [self setHeadView:nil];
     [self setBigCell:nil];
     [self setNewCell:nil];
+    [self setLookFlightBtn:nil];
     [super viewDidUnload];
 }
 
-//#pragma mark - Table view data source
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 103;
-//}
-//
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//
-//    return self.headView;
-//}
+
 
 #pragma mark - Table view data source
 
@@ -189,12 +212,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (self.searchBackFlight != nil) {
-//        return self.searchBackFlight.cabinsArr.count;
-//    }
-//    else{
-//        return self.searchFlight.cabinsArr.count;
-//    }
     
     return self.dateArr.count+1;
     
@@ -206,28 +223,13 @@
     }
     else
     {
-//        if (flag == 10) {
-//            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
-//            NSString * string = [self.changeInfoArr objectAtIndex:indexPath.row-1];
-//            CGSize size = [string sizeWithFont:[UIFont systemFontOfSize:12]
-//                             constrainedToSize:CGSizeMake(280, [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding])];
-//            flag = 0;
-//            return 44+size.height;
-//        }
-//       else
-//       {
-//           return 44;
-//       }
         
         _firstCellText = [self.tempArr objectAtIndex:indexPath.row-1];
         
         CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f);//可接受的最大大小的字符串
         
         CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
-        
-        //   CGFloat height = MAX(size.height, 44.0f);
-        //   NSLog(@"%f",size.height);
-        return size.height+50.0f;
+        return size.height+51.0f;
 
     }
 }
@@ -243,7 +245,7 @@
             cell = self.bigCell;
         }
         
-        NSLog(@"  == ===== %@%@%@%@   %@",data.airPort,data.palntType,data.beginTime,data.endTime,data.beginDate);
+        NSLog(@"选择舱位bigCell的信息 %@%@%@%@%@%@%@",data.airPort,data.palntType,data.beginTime,data.endTime,data.beginDate,data.startPortThreeCode,data.endPortThreeCode);
         if ([data.goOrBackFlag isEqualToString:@"1"]) {
             cell.scheduleDate.text = data.beginDate;
         }
@@ -251,7 +253,6 @@
             cell.scheduleDate.text = data.backDate;
         }
         cell.airPort.text = data.airPort;
-        
         cell.palntType.text = data.palntType;
         cell.beginTime.text = data.beginTime;
         cell.endTime.text = data.endTime;
@@ -411,7 +412,94 @@
 
 }
 
+- (IBAction)lookFlight:(UIButton *)sender {
+    
+    // 只发push....
+    
+    if (self.lookReceive.count >=5) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您关注的航班已经达到5条,不能继续添加" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+    
+    NSString * type = nil;
+    
+    if ([sender.titleLabel.text isEqualToString:@"     关注航班"]) {
 
+        type = @"P";
+    }
+    else{
+
+        type = @"C";
+    }
+    
+    self.lookFlightArr = [NSDictionary dictionary];
+    
+    NSString * memberId = Default_UserMemberId_Value;
+    NSString * hwId = HWID_VALUE;
+    
+    NSLog(@"关注航班的条件 : %@, %@ , %@, %@ ,%@ ,%@, %@",data.temporaryLabel,data.beginDate,data.startPortThreeCode,data.endPortThreeCode,data.beginTime,data.endTime,type
+          );
+    
+    AttentionFlight * attention = [[AttentionFlight alloc] initWithMemberId:memberId
+                                                               andorgSource:@"51YOU"
+                                                                     andFno:data.temporaryLabel
+                                                                   andFdate:data.beginDate
+                                                                     andDpt:data.startPortThreeCode
+                                                                     andArr:data.endPortThreeCode
+                                                                 andDptTime:data.beginTime
+                                                                 andArrTime:data.endTime
+                                                                 andDptName:nil
+                                                                 andArrName:nil
+                                                                    andType:type
+                                                                  andSendTo:nil
+                                                                 andMessage:nil
+                                                                   andToken:hwId
+                                                                  andSource:@"1"
+                                                                    andHwId:hwId
+                                                             andServiceCode:@"01"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveLookFlightData:) name:@"关注航班" object:nil];
+    [attention lookFlightAttention];
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    [HUD show:YES];
+
+}
+
+-(void)receiveLookFlightData:(NSNotification *) not
+{
+    
+    self.lookFlightArr = [[not userInfo] objectForKey:@"arr"];
+    NSString * string = [self.lookFlightArr objectForKey:@"message"];
+    
+    NSLog(@"%@",self.lookFlightArr);
+    
+    if (string == @"") {
+        if ([self.lookFlightBtn.titleLabel.text isEqualToString:@"     关注航班"]) {
+  
+            [self.lookFlightBtn setTitle:@"     取消关注" forState:0];
+        }
+        else{
+
+            [self.lookFlightBtn setTitle:@"     关注航班" forState:0];
+        }
+
+    }
+    
+    else{
+        NSLog(@"取消或者关注航班失败");
+    }
+    
+     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    
+    [HUD removeFromSuperview];
+	[HUD release];
+	HUD = nil;
+}
 
 #pragma mark -- alertView delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

@@ -44,7 +44,15 @@ static SelectCalendarController *_instance;
 -(void) selectDate {
     
     [_delegate setYear:[MonthDayCell selectedYear] month:[MonthDayCell selectedMonth] day:[MonthDayCell selectedDay]];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if (self.one != nil) {
+        self.one = nil;
+        [self dismissModalViewControllerAnimated:YES];
+
+    }
+    else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)viewDidLoad

@@ -35,7 +35,7 @@
     self.allData = [NSMutableData data];
     
     
-    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://test.51you.com/web/phone/prod/flight/searchCabin.jsp"]];
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/searchCabin.jsp"]];
     [request setPostValue:[self.dpt stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"dpt"];
     [request setPostValue:[self.arr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"arr"];
     [request setPostValue:[self.date stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"date"];
@@ -43,7 +43,7 @@
     [request setPostValue:self.edition forKey:@"edition"];
     [request setPostValue:self.source forKey:@"source"];
     
-    NSLog(@"%@,,%@,,%@,,%@,,%@",self.dpt,self.arr,self.date,self.edition,self.source);
+    NSLog(@"查询舱位时的数据 %@, %@ ,%@,,%@,,%@,,%@",self.code,self.dpt,self.arr,self.date,self.edition,self.source);
     
     [request setCompletionBlock:^{
         
