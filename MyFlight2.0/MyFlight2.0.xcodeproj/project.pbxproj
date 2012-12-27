@@ -177,6 +177,7 @@
 		1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE871683629B00349FE1 /* BaggageViewController.xib */; };
 		18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18478C64167332AD00D3AFCD /* SearchFlightCondition.m */; };
 		1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852CC7D16837F5600431A9B /* TravePhoneCell.xib */; };
+		189F5D48168A014700A3494F /* AttentionFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F5D47168A014700A3494F /* AttentionFlight.m */; };
 		18C30D1016853E5E009B0A54 /* icon_screening_click_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D0C16853E5E009B0A54 /* icon_screening_click_.png */; };
 		18C30D1116853E5E009B0A54 /* btn_sort_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D0D16853E5E009B0A54 /* btn_sort_.png */; };
 		18C30D1216853E5E009B0A54 /* btn_sort_click_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D0E16853E5E009B0A54 /* btn_sort_click_.png */; };
@@ -261,6 +262,9 @@
 		18D1979E1682D05B00FEE73A /* TravelTrafficViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1979C1682D05900FEE73A /* TravelTrafficViewController.m */; };
 		18D1979F1682D05B00FEE73A /* TravelTrafficViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1979D1682D05A00FEE73A /* TravelTrafficViewController.xib */; };
 		18D88B5E167AC3F4003EA0C5 /* AirPortCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */; };
+		18DB9B40168AB73C00CE975F /* GetAttentionFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB9B3F168AB73C00CE975F /* GetAttentionFlight.m */; };
+		18DB9B45168ADBFA00CE975F /* LookFlightConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB9B44168ADBFA00CE975F /* LookFlightConditionCell.m */; };
+		18DB9B47168ADC0C00CE975F /* LookFlightConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DB9B46168ADC0C00CE975F /* LookFlightConditionCell.xib */; };
 		18DC00631679BC38008C6B8D /* Arrow_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18DC00241679BC38008C6B8D /* Arrow_white.png */; };
 		18DC00641679BC38008C6B8D /* arrowhead.png in Resources */ = {isa = PBXBuildFile; fileRef = 18DC00251679BC38008C6B8D /* arrowhead.png */; };
 		18DC00651679BC38008C6B8D /* bar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 18DC00261679BC38008C6B8D /* bar_bg.png */; };
@@ -660,6 +664,8 @@
 		18478C63167332AD00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
 		18478C64167332AD00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
 		1852CC7D16837F5600431A9B /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
+		189F5D46168A014700A3494F /* AttentionFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionFlight.h; sourceTree = "<group>"; };
+		189F5D47168A014700A3494F /* AttentionFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionFlight.m; sourceTree = "<group>"; };
 		18C30D0C16853E5E009B0A54 /* icon_screening_click_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_screening_click_.png; sourceTree = "<group>"; };
 		18C30D0D16853E5E009B0A54 /* btn_sort_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_sort_.png; sourceTree = "<group>"; };
 		18C30D0E16853E5E009B0A54 /* btn_sort_click_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_sort_click_.png; sourceTree = "<group>"; };
@@ -776,6 +782,11 @@
 		18D1979C1682D05900FEE73A /* TravelTrafficViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelTrafficViewController.m; sourceTree = "<group>"; };
 		18D1979D1682D05A00FEE73A /* TravelTrafficViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelTrafficViewController.xib; sourceTree = "<group>"; };
 		18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirPortCode.plist; sourceTree = "<group>"; };
+		18DB9B3E168AB73C00CE975F /* GetAttentionFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAttentionFlight.h; sourceTree = "<group>"; };
+		18DB9B3F168AB73C00CE975F /* GetAttentionFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAttentionFlight.m; sourceTree = "<group>"; };
+		18DB9B43168ADBFA00CE975F /* LookFlightConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookFlightConditionCell.h; sourceTree = "<group>"; };
+		18DB9B44168ADBFA00CE975F /* LookFlightConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookFlightConditionCell.m; sourceTree = "<group>"; };
+		18DB9B46168ADC0C00CE975F /* LookFlightConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LookFlightConditionCell.xib; sourceTree = "<group>"; };
 		18DC00241679BC38008C6B8D /* Arrow_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow_white.png; sourceTree = "<group>"; };
 		18DC00251679BC38008C6B8D /* arrowhead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowhead.png; sourceTree = "<group>"; };
 		18DC00261679BC38008C6B8D /* bar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_bg.png; sourceTree = "<group>"; };
@@ -1581,6 +1592,7 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				189F5D44168A00F700A3494F /* attentionFlight */,
 				145A2D861685EC85000DAAA1 /* historyCheck */,
 				14698717167ED85800E9B30D /* Login */,
 				148059CE1676E65D00836353 /* CityAndAirPorts */,
@@ -1672,6 +1684,17 @@
 				1827BE5A1683541E00349FE1 /* l_ZH.png */,
 			);
 			path = "航空公司图标";
+			sourceTree = "<group>";
+		};
+		189F5D44168A00F700A3494F /* attentionFlight */ = {
+			isa = PBXGroup;
+			children = (
+				189F5D46168A014700A3494F /* AttentionFlight.h */,
+				189F5D47168A014700A3494F /* AttentionFlight.m */,
+				18DB9B3E168AB73C00CE975F /* GetAttentionFlight.h */,
+				18DB9B3F168AB73C00CE975F /* GetAttentionFlight.m */,
+			);
+			name = attentionFlight;
 			sourceTree = "<group>";
 		};
 		18C30D3916859846009B0A54 /* Calendar */ = {
@@ -1773,6 +1796,19 @@
 				18D1970D16816C6C00FEE73A /* triangle_icon_up.png */,
 			);
 			path = "出行小秘书";
+			sourceTree = "<group>";
+		};
+		18DB9B42168ADB0F00CE975F /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				18E37D01167DAC880086B3F8 /* SearchFlightConditionCell.h */,
+				18E37D02167DAC880086B3F8 /* SearchFlightConditionCell.m */,
+				18E37D03167DAC880086B3F8 /* SearchFlightConditionCell.xib */,
+				18DB9B43168ADBFA00CE975F /* LookFlightConditionCell.h */,
+				18DB9B44168ADBFA00CE975F /* LookFlightConditionCell.m */,
+				18DB9B46168ADC0C00CE975F /* LookFlightConditionCell.xib */,
+			);
+			name = cell;
 			sourceTree = "<group>";
 		};
 		18DC00231679BC38008C6B8D /* 机票预订 */ = {
@@ -1902,15 +1938,13 @@
 		18E37CF6167DAC2E0086B3F8 /* FlightCondition */ = {
 			isa = PBXGroup;
 			children = (
+				18DB9B42168ADB0F00CE975F /* cell */,
 				18E37CF7167DAC5D0086B3F8 /* SearchFlightConditionController.h */,
 				18E37CF8167DAC5D0086B3F8 /* SearchFlightConditionController.m */,
 				18E37CF9167DAC5D0086B3F8 /* SearchFlightConditionController.xib */,
 				18E37CFC167DAC730086B3F8 /* ShowFligthConditionController.h */,
 				18E37CFD167DAC730086B3F8 /* ShowFligthConditionController.m */,
 				18E37CFE167DAC730086B3F8 /* ShowFligthConditionController.xib */,
-				18E37D01167DAC880086B3F8 /* SearchFlightConditionCell.h */,
-				18E37D02167DAC880086B3F8 /* SearchFlightConditionCell.m */,
-				18E37D03167DAC880086B3F8 /* SearchFlightConditionCell.xib */,
 				18E37D06167DAC9A0086B3F8 /* DetailFlightConditionViewController.h */,
 				18E37D07167DAC9A0086B3F8 /* DetailFlightConditionViewController.m */,
 				18E37D08167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib */,
@@ -2362,6 +2396,7 @@
 				18DF893F1688202400D2DDAE /* ShowSelectedResultViewController.xib in Resources */,
 				18DF8950168824E600D2DDAE /* HistoryFlightQuery.sqlite in Resources */,
 				140D979E1689570800D8934E /* CommonContactDetailViewController.xib in Resources */,
+				18DB9B47168ADC0C00CE975F /* LookFlightConditionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2491,6 +2526,9 @@
 				18DF894E168824E600D2DDAE /* HistoryCheckDataBase.m in Sources */,
 				18DF894F168824E600D2DDAE /* HistoryCheckInfoData.m in Sources */,
 				140D979D1689570800D8934E /* CommonContactDetailViewController.m in Sources */,
+				189F5D48168A014700A3494F /* AttentionFlight.m in Sources */,
+				18DB9B40168AB73C00CE975F /* GetAttentionFlight.m in Sources */,
+				18DB9B45168ADBFA00CE975F /* LookFlightConditionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

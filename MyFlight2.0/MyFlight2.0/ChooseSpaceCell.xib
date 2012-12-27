@@ -287,7 +287,7 @@
 				<real value="72" key="IBUIRowHeight"/>
 			</object>
 			<object class="IBUITableViewCell" id="836718747">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="303110553">
@@ -481,6 +481,7 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 70}</string>
+				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="303110553"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

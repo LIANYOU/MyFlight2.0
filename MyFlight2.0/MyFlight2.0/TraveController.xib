@@ -650,7 +650,6 @@
 										<int key="NSvFlags">256</int>
 										<string key="NSFrame">{{268, 218}, {10, 15}}</string>
 										<reference key="NSSuperview" ref="482404145"/>
-										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">4</int>
@@ -1107,7 +1106,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="icon_arrowhead_.png">{10, 15}</string>
-			<string key="line.png">{640, 2}</string>
+			<string key="line.png">{640, 4}</string>
 			<string key="line_short.png">{596, 4}</string>
 			<string key="white_block2.png">{290, 150}</string>
 		</dictionary>

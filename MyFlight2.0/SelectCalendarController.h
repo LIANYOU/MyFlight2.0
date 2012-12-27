@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CalendarView.h"
 #import "ViewControllerDelegate.h"
-
+#import "ShowSelectedResultViewController.h"
 @interface SelectCalendarController : UIViewController {
 
     id <ViewControllerDelegate> _delegate;
 }
+
+@property (nonatomic, retain) ShowSelectedResultViewController * one;
 
 -(void) setDelegate: (id <ViewControllerDelegate>) delegate;
 

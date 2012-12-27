@@ -15,12 +15,13 @@
 #import "MBProgressHUD.h"
 #import "Date.h"
 #import "ViewControllerDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 @class OneWayCheckViewController;
 @class ShowSelectedCell;
 
 #import "SearchFlightData.h"
-@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,MBProgressHUDDelegate,UITabBarControllerDelegate,ViewControllerDelegate>
+@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,MBProgressHUDDelegate,UITabBarControllerDelegate,ViewControllerDelegate,UIGestureRecognizerDelegate>
 {
     
     NSString * navigationTitle;
@@ -75,6 +76,8 @@
 @property (retain, nonatomic) IBOutlet ShowSelectedCell *selectedCell;
 
 
+
+
 @property (retain, nonatomic) NSString * startPort;  // 传值
 @property (retain, nonatomic) NSString * endPort;
 @property (retain, nonatomic) NSString * startThreeCode;
@@ -98,7 +101,6 @@
 - (IBAction)enterTheDayAfter:(id)sender;  //进入下一天的查询结果
 - (IBAction)siftByAirPort:(UIButton *)sender;     // 按照航空公司进行筛选查询结果
 - (IBAction)sortByDate:(UIButton *)sender;        // 对查询结果按时间进行排序
-
 
 
 @end

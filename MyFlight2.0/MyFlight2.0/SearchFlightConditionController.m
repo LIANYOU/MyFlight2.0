@@ -15,8 +15,14 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
+#import "GetAttentionFlight.h"
+#import "LookFlightConditionCell.h"
+#import "AttentionFlight.h"
 @interface SearchFlightConditionController ()
 
+{
+    int btnTag;  // 判断取消关注的是哪一个
+}
 @end
 
 @implementation SearchFlightConditionController
@@ -45,7 +51,7 @@
     myConditionListView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
     myConditionListView.backgroundColor = [UIColor blackColor];
     myConditionListTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
-    myConditionListTableView.backgroundColor = [UIColor redColor];
+    myConditionListTableView.backgroundColor = FOREGROUND_COLOR;
     myConditionListTableView.dataSource = self;
     myConditionListTableView.delegate = self;
     [myConditionListView addSubview:myConditionListTableView];
@@ -128,6 +134,8 @@
 
     [dateformatter release];
     
+    _lookFlightArr = [[NSMutableArray alloc] initWithCapacity:5];
+    
     
     [self getListData];
     
@@ -156,6 +164,7 @@
     [_flightNumber release];
     [_selectedByDate release];
     
+    [_lookCell release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -167,6 +176,7 @@
     [self setFlightNumber:nil];
     [self setSelectedByDate:nil];
     
+    [self setLookCell:nil];
     [super viewDidUnload];
 }
 
@@ -272,48 +282,32 @@
 }
 
 -(void)getListData{
-    myListData = [[NSMutableData alloc]init];
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Flight/GetBookFlightMovement.json"];
     
+    NSString * memberID = Default_UserMemberId_Value;
+    NSString * hwID = HWID_VALUE;
     
-    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:@"XXX" forKey:@"memberId"];
-    [request setPostValue:@"51YOU" forKey:@"orgSource"];
-    [request setPostValue:@"PUSH" forKey:@"type"];
-    [request setPostValue:@"iphone" forKey:@"source"];
-    [request setPostValue:CURRENT_DEVICEID_VALUE forKey:@"hwId"];
-    [request setPostValue:@"01" forKey:@"serviceCode"];    
+    GetAttentionFlight * flight = [[GetAttentionFlight alloc] initWithMemberId:memberID
+                                                                  andOrgSource:@"51YOU"
+                                                                       andType:@"P"
+                                                                      andToken:hwID
+                                                                     andSource:@"1"
+                                                                       andHwid:hwID
+                                                                andServiceCode:@"01"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"获得已经关注航班信息" object:nil];
     
-    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
-    NSLog(@"getListData :%@",request);
-    
-    [request setCompletionBlock:^{
-        
-        NSData * jsonData = [request responseData] ;
-        
-        NSString * temp = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-        NSDictionary * getListDic = [temp objectFromJSONString];
-       
-        NSDictionary * secDic = [getListDic objectForKey:@"result"];
-        resultString = [secDic objectForKey:@"message"];
-        
-        if ([resultString isEqualToString:@"您订阅的航班会出现在这里，方便您对航班动态进行实时查看，去试试吧~"]) {
-            NSLog(@"无数据");
-        }
-    }];
-    
-    [request setFailedBlock:^{
-        NSError *error = [request error];
-        NSLog(@"getList Error : %@", error.localizedDescription);
-    }];
-    
-    [request setDelegate:self];
-    [request startAsynchronous];
-    
+    [flight getAttentionFlight];
 }
 
+-(void)receive:(NSNotification *) not
+{
+
+    self.lookFlightArr = [[not userInfo] objectForKey:@"arr"];
+    NSLog(@"%@",self.lookFlightArr);
+
+    [myConditionListTableView reloadData];
+
+}
 -(void)getData{
     myData = [[NSMutableData alloc]init];
     // Do any additional setup after loading the view from its nib.
@@ -392,17 +386,105 @@
 
 
 #pragma mark - tableView代理
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 94;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectio{
+    
+    return self.lookFlightArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    LookFlightConditionCell *cell = [myConditionListTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell)
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"LookFlightConditionCell" owner:self options:nil];
+        cell = self.lookCell;
+        
     }
-    cell.textLabel.text = @"cell";
+    
+    NSDictionary * dic = [self.lookFlightArr objectAtIndex:indexPath.row];
+    
+    cell.fno.text = [dic objectForKey:@"flightNum"];
+    cell.company.text = [dic objectForKey:@"flightCompany"];
+    cell.data.text = [dic objectForKey:@"deptDate"];
+   // cell.today = [dic ]   // 今天，明天，昨天 
+    cell.realTime.text = [dic objectForKey:@"realDeptTime"];
+    cell.excepterTime.text = [dic objectForKey:@"expectedArrTime"];
+    cell.startAirPort.text = [dic objectForKey:@"deptAirport"];
+    cell.endAirPort.text = [dic objectForKey:@"deptAirport"];
+    cell.station.text = [dic objectForKey:@"flightState"];
+    cell.closeBtn.tag = indexPath.row;
+    [cell.closeBtn addTarget:self action:@selector(deleteLookFlight:) forControlEvents:UIControlEventTouchUpInside];
+
     return cell;
+}
+
+
+#pragma mark - 取消关注航班
+
+-(void)deleteLookFlight:(UIButton *)btn
+{
+    NSString * memberID = Default_UserMemberId_Value;
+    NSString * hwID = HWID_VALUE;
+    
+    NSDictionary * dic = [self.lookFlightArr objectAtIndex:btn.tag];
+    
+    btnTag = btn.tag;
+    
+    NSLog(@"在航班动态里边取消航班时候的取消条件 %@，%@，%@，%@，%@，%@，%@",[dic objectForKey:@"flightNum"],[dic objectForKey:@"deptDate"],[dic objectForKey:@"flightDepcode"],[dic objectForKey:@"flightArrcode"],[dic objectForKey:@"deptTime"],[dic objectForKey:@"arrTime"],[dic objectForKey:@"arrAirport"]);
+    
+    AttentionFlight * attention = [[AttentionFlight alloc] initWithMemberId:memberID
+                                                               andorgSource:@"51YOU"
+                                                                     andFno:[dic objectForKey:@"flightNum"]
+                                                                   andFdate:[dic objectForKey:@"deptDate"]
+                                                                     andDpt:[dic objectForKey:@"flightDepcode"]
+                                                                     andArr:[dic objectForKey:@"flightArrcode"]
+                                                                 andDptTime:[dic objectForKey:@"deptTime"]
+                                                                 andArrTime:[dic objectForKey:@"arrTime"]
+                                                                 andDptName:nil
+                                                                 andArrName:nil
+                                                                    andType:@"C"
+                                                                  andSendTo:nil
+                                                                 andMessage:nil
+                                                                   andToken:hwID
+                                                                  andSource:@"1"
+                                                                    andHwId:hwID
+                                                             andServiceCode:@"01"];
+    
+
+
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDelFlightData:) name:@"关注航班" object:nil];
+    [attention lookFlightAttention];
+    
+
+}
+-(void)receiveDelFlightData:(NSNotification *)not
+{
+    NSDictionary * array = [[not userInfo] objectForKey:@"arr"];
+    NSString * string = [array objectForKey:@"message"];
+    
+    NSLog(@"-----%@",array);
+    
+    if (string == @"") {
+        
+//        [self.lookFlightArr removeObjectAtIndex:btnTag];
+//        [myConditionListTableView reloadData];
+        
+        NSLog(@"取消航班成功");
+    }
+    
+    else{
+        NSLog(@"取消航班失败");
+    }
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+
 }
 @end

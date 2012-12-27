@@ -23,6 +23,8 @@
 @property (retain, nonatomic) IBOutlet UITableView *showTableView;
 @property (retain, nonatomic) IBOutlet ChooseSpaceCell *spaceCell;
 
+@property (retain, nonatomic) NSDictionary * lookFlightArr;  // 接收关注航班返回的数据
+@property (retain, nonatomic) NSArray * lookReceive; // 获取用户已经关注的航班的数目
 
 @property(nonatomic,retain) NSArray * spaceNameArr;  // 存放cell的仓明（超值经济舱，经济舱）
 @property(nonatomic,assign) int indexFlag;
@@ -67,5 +69,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *endAirPortName;
 
 - (void)changeFlightInfo:(UIButton *)sender;
+
+
+@property (retain, nonatomic) IBOutlet UIButton *lookFlightBtn;
+
+- (IBAction)lookFlight:(UIButton *)sender;
 
 @end

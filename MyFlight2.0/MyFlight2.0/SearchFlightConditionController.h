@@ -10,6 +10,9 @@
 #import "SVSegmentedControl.h"
 #import "ChooseAirPortViewController.h"
 #import "AppConfigure.h"
+
+@class LookFlightConditionCell;
+
 @interface SearchFlightConditionController : UIViewController<SVSegmentedControlDelegate,ChooseAirPortViewControllerDelegate,UITableViewDataSource,UITableViewDelegate>{
     SVSegmentedControl * mySegmentController;
     NSString * startAirPortCode;
@@ -28,6 +31,13 @@
     NSMutableString * type;    //提醒类型
     NSMutableString * resultString; //查询结果
 }
+
+
+@property (retain, nonatomic) IBOutlet LookFlightConditionCell *lookCell;
+
+@property (retain, nonatomic) NSMutableArray * lookFlightArr;
+
+
 @property (nonatomic,retain)IBOutlet UILabel * flightTimeByNumber;
 
 @property (retain, nonatomic) IBOutlet UILabel *startAirPort;
