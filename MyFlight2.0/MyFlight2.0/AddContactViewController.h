@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AddContactViewController : UIViewController
+#import "ServiceDelegate.h"
+@interface AddContactViewController : UIViewController<ServiceDelegate>
 
 
 @property (retain, nonatomic) IBOutlet UILabel *personTypeLabel;

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CommonContactDetailViewController : UIViewController
+#import "ServiceDelegate.h"
+@interface CommonContactDetailViewController : UIViewController<ServiceDelegate>
 
 @end

@@ -91,7 +91,7 @@
 #define KEY_Account_token @"token"
 #define KEY_Account_Mobile @"mobile"
 #define KEY_Account_Password @"pwd"
-
+#define KEY_Account_Code @"code"
 
 
 
@@ -144,8 +144,39 @@ enum  {
 
 //常用乘机人查询
 
-#define CommomPassenger_URL_index @"/web/phone/prod/flight/memberPassengerSearch.jsp"
-#define CommomPassenger_URL  GET_RIGHT_URL_WITH_Index(CommomPassenger_URL_index)
+#define SearchCommomPassenger_URL_index @"/web/phone/prod/flight/memberPassengerSearch.jsp"
+#define SearchCommomPassenger_URL  GET_RIGHT_URL_WITH_Index(SearchCommomPassenger_URL_index)
+
+
+//常用联系人增加
+#define AddCommomPassenger_URL_index  @"/web/phone/prod/flight/memberPassengerAdd.jsp"
+
+#define AddCommomPassenger_URL  GET_RIGHT_URL_WITH_Index(AddCommomPassenger_URL_index)
+
+
+
+
+//常用联系人删除
+
+
+#define DeleteCommomPassenger_URL_index @"/web/phone/prod/flight/memberPassengerDel.jsp"
+
+#define DeleteCommomPassenger_URL GET_RIGHT_URL_WITH_Index(DeleteCommomPassenger_URL_index)
+
+//常用联系人编辑
+ 
+#define UpdateCommomPassenger_URL_index @"/web/phone/prod/flight/memberPassengerUpdate.jsp"
+
+
+#define UpdateCommomPassenger_URL  GET_RIGHT_URL_WITH_Index(UpdateCommomPassenger_URL_index)
+
+
+
+
+
+
+
+
 
 
 
@@ -176,6 +207,16 @@ enum  {
 
 #define FindPwd_ResetPwd_URL  GET_RIGHT_URL_WITH_Index(FindPwd_ResetPwd_URL_Index)
 
+
+
+
+
+//常用联系人 查询参数名称
+#define KEY_Passenger_Name @"name"
+#define KEY_Passenger_Type @"type"
+#define KEY_Passenger_CertType @"certType"
+#define KEY_Passenger_CertNo @"certNo"
+#define KEY_Passenger_Id @"id"
 
 
 #endif

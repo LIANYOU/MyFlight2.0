@@ -7,12 +7,16 @@
 //
 
 #import "AddContactViewController.h"
-
+#import "LoginBusiness.h"
 @interface AddContactViewController ()
 
 @end
 
 @implementation AddContactViewController
+
+
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,7 +32,8 @@
     [super viewDidLoad];
     self.title = @"添加乘机人";
     
-    
+    LoginBusiness *bis = [[LoginBusiness alloc] init];
+    [bis addCommonPassengerWithPassengerName:@"李老师" type:@"01" certType:@"0" certNo:@"341221198911234119" userDic:nil andDelegate:self];
     
     
     
@@ -52,4 +57,29 @@
 }
 - (IBAction)personInputInfoBn:(id)sender {
 }
+
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    
+}
+
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    
+    
+}
+
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+    
+    
+    
+}
+
+
+
+
 @end

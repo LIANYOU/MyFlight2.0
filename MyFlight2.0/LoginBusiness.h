@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "ServiceDelegate.h"
+#import "CommonContact.h"
+
 @interface LoginBusiness : NSObject
 
 @property(nonatomic,assign)id<ServiceDelegate> delegate;
@@ -38,11 +40,18 @@
 //编辑常用联系人 
 - (void) editCommonPassengerWithMemberId:(NSString *) memberId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
 
+//编辑常用联系人 新方法
+- (void) editCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate;
+
+
 //增加常用联系人
-- (void) addCommonPassengerWithMemberId:(NSString *) memberId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
+- (void) addCommonPassengerWithPassengerName:(NSString *) name type:(NSString *) type certType:(NSString *) certType certNo:(NSString *)certNo userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
+//增加联系人新方法
+- (void) addCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate;
+
 
 //删除常用联系人
-- (void) deleteCommonPassengerWithMemberId:(NSString *) memberId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
+- (void) deleteCommonPassengerWithPassengerId:(NSString *) passengerId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
 
 
 //找回密码操作
@@ -55,6 +64,23 @@
 //重置密码
 
 - (void) findPassWd_ResetPassWdWithNewPwd:(NSString *) newPwd mobile:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate;
+
+
+
+
+//修改密码
+
+- (void) updatePassWdWithOldPasswd:(NSString *) oldPasswd newPasswd:(NSString *) newPasswd andDelegate:(id<ServiceDelegate>) delegate;
+
+
+
+
+//心愿旅行卡 充值
+
+- (void) makeAccountFullWithRechargeCardNo:(NSString *) cardNo cardPasswd:(NSString *) pwd andDelegate:(id<ServiceDelegate>) delegate;
+
+
+
 
 
 //- (void) makeAccountFullWith 

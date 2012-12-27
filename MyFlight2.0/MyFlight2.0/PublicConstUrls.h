@@ -22,7 +22,7 @@
 
 #define KEY_Default_IsRememberPwd @"isRememberPwd"
 #define KEY_Default_UserMobile @"userMobile" //手机号
-
+#define KEY_Default_Code @"user_code"
 #define KEY_Default_Token  @"userToken"
 //
 
@@ -35,6 +35,7 @@
 
 #define Default_AccountName_Value [[NSUserDefaults standardUserDefaults] stringForKey:KEY_Default_AccountName]
 
+#define Default_UserMemberCode_Value [[NSUserDefaults standardUserDefaults] stringForKey:KEY_Default_Code]
 
 //公共返回结果字段标志
 

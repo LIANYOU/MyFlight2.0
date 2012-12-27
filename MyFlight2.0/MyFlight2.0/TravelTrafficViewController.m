@@ -26,7 +26,8 @@
 }
 
 - (void)viewDidLoad
-{//tableView x=0 y=64
+{
+    //tableView x=0 y=64
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    arrRect = CGRectMake(0, 64, 320, 370);
@@ -42,7 +43,9 @@
     navLabel.textColor = [UIColor whiteColor];
     navLabel.font = [UIFont systemFontOfSize:14];
     navLabel.textAlignment = NSTextAlignmentRight;
+    
     navLabel.text = [NSString stringWithFormat:@"%@市区-机场",self.airPortName];
+    
     navImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"triangle_white_down.png"]];
     navImageView.frame = CGRectMake(135, 17, 10, 10);
     [navgationView addSubview:navImageView];
@@ -77,6 +80,9 @@
 //    [myTitleView addGestureRecognizer:tap];
 //    [tap release];
     
+    
+    
+    
     UIColor * myFirstColor = [UIColor colorWithRed:244/255.0 green:239/255.0 blue:231/225.0 alpha:1.0f];
     UIColor * mySceColor = [UIColor colorWithRed:10/255.0 green:91/255.0 blue:173/255.0 alpha:1];
     NSArray * titleNameArray = [[NSArray alloc]initWithObjects:@"机场大巴",@"机场快轨",@"出租车", nil];
@@ -85,6 +91,7 @@
     segmented.backgroundImage = [UIImage imageNamed:@"tab_bg.png"];
     segmented.textColor = myFirstColor;
     segmented.center = CGPointMake(160, 23);
+    
     //segmented.thumb.backgroundImage = [UIImage imageNamed:@"tab.png"];
     
     segmented.height = 38;
@@ -115,6 +122,10 @@
 }
 
 -(void)mySegmentValueChange:(SVSegmentedControl *)sender{
+    
+    
+    
+    
     
     if (segmented.selectedIndex == 0) {
         trfficType = 0;//机场大巴

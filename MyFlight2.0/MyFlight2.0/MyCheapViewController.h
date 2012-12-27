@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SVSegmentedControl.h"
 @interface MyCheapViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
+{
+    
+    
+    SVSegmentedControl * segmented;
+}
 @end

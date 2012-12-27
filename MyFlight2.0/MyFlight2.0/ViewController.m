@@ -16,6 +16,11 @@
 #import "WriteOrderViewController.h"
 #import "ChooseSpaceViewController.h"
 #import "MyNewCenterViewController.h"
+#import "MyCenterUnLoginViewController.h"
+#import "AppConfigure.h"
+#import "MyCenterTable_1.h"
+
+
 @interface ViewController ()
 
 @end
@@ -55,10 +60,31 @@
 - (IBAction)showMyCenter:(id)sender {
     CCLog(@"显示我的中心");
 
+    id controller =nil;
     
-    MyNewCenterViewController *myCenter = [[MyNewCenterViewController alloc] init];
+    MyNewCenterViewController *myCenter = nil;
+    MyCenterUnLoginViewController *unLogin = nil;
     
-    [self.navigationController pushViewController:myCenter animated:YES];
+    BOOL  isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:KEY_Default_IsUserLogin];
+    isLogin = true;
+    CCLog(@"用户登陆 %d",isLogin);
+    
+    if (isLogin) {
+        
+        myCenter = [[MyNewCenterViewController alloc] init];
+        controller = myCenter;
+        
+    } else{
+        
+        
+      unLogin = [[MyCenterUnLoginViewController alloc] init];
+        controller = unLogin;
+        
+        
+    }
+    
+       
+    [self.navigationController pushViewController:controller animated:YES];
     [myCenter release];
     
 }

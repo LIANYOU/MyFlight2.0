@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ServiceDelegate.h"
-
+#import "CommonContact.h"
 @interface LoginInNetworkHelper : NSObject
 
 //登录操作 
@@ -38,6 +38,14 @@
 
 
 
+//编辑常用联系人 新方法
++ (BOOL) editCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate;
+
+
+//删除常用联系人
+
++ (BOOL) deleteCommonPassengerWithPassengerId:(NSString *) passengerId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
+
 
 
 //找回密码操作
@@ -47,4 +55,15 @@
 + (BOOL) findPasswd_VerCodeIsRight:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate;
 
 + (BOOL) findPassWd_ResetPassWdWithNewPwd:(NSString *) newPwd mobile:(NSString *) mobile code:(NSString *) code andDelegate:(id<ServiceDelegate>) delegate;
+
+
+
+
+//用心愿旅行卡充值
++ (BOOL) makeAccountFullWithRechargeCardNo:(NSString *) cardNo cardPasswd:(NSString *) pwd andDelegate:(id<ServiceDelegate>) delegate;
+
+
+
+
+
 @end

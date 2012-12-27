@@ -20,6 +20,7 @@
 }
 
 
+//属性 传值 记录 登录的类型 
 @property(nonatomic,retain)NSString  *loginSuccessReturnType;
 
 
