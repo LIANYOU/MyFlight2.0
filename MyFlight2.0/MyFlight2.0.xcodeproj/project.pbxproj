@@ -216,6 +216,20 @@
 		18C30D5816859927009B0A54 /* SelectCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D5716859927009B0A54 /* SelectCalendarController.m */; };
 		18C30D6116859DD7009B0A54 /* ChineseCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D5E16859DD7009B0A54 /* ChineseCalendar.m */; };
 		18C30D6216859DD7009B0A54 /* WeekDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6016859DD7009B0A54 /* WeekDayCell.m */; };
+		18C48A07168D4C2000A981A4 /* AddPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C489FE168D4C2000A981A4 /* AddPersonController.m */; };
+		18C48A08168D4C2000A981A4 /* AddPersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C489FF168D4C2000A981A4 /* AddPersonController.xib */; };
+		18C48A09168D4C2000A981A4 /* AddPersonSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A01168D4C2000A981A4 /* AddPersonSwitchCell.m */; };
+		18C48A0A168D4C2000A981A4 /* AddPersonSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C48A02168D4C2000A981A4 /* AddPersonSwitchCell.xib */; };
+		18C48A0B168D4C2000A981A4 /* IdentityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A04168D4C2000A981A4 /* IdentityViewController.m */; };
+		18C48A10168D503A00A981A4 /* AddPersonCoustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A0F168D503900A981A4 /* AddPersonCoustomCell.m */; };
+		18C48A12168D504E00A981A4 /* AddPersonCoustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C48A11168D504D00A981A4 /* AddPersonCoustomCell.xib */; };
+		18C48A17168D7B6700A981A4 /* DiscountCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A15168D7B6700A981A4 /* DiscountCouponController.m */; };
+		18C48A18168D7B6700A981A4 /* DiscountCouponController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C48A16168D7B6700A981A4 /* DiscountCouponController.xib */; };
+		18C48A1B168D838100A981A4 /* UseDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A1A168D838100A981A4 /* UseDiscountCell.m */; };
+		18C48A1D168D83A000A981A4 /* UseDiscountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C48A1C168D839F00A981A4 /* UseDiscountCell.xib */; };
+		18C48A20168D86FF00A981A4 /* GoldCoinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A1F168D86FE00A981A4 /* GoldCoinCell.m */; };
+		18C48A22168D870D00A981A4 /* GoldCoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C48A21168D870D00A981A4 /* GoldCoinCell.xib */; };
+		18C48A26168D8B3A00A981A4 /* UseGoldPay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A25168D8B3A00A981A4 /* UseGoldPay.m */; };
 		18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C9E6D81685C96100A1453C /* circle_green_change.png */; };
 		18CB6D0F16843C580025F42F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB6D0D16843C580025F42F /* PostViewController.m */; };
 		18CB6D1016843C580025F42F /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D0E16843C580025F42F /* PostViewController.xib */; };
@@ -223,13 +237,6 @@
 		18CB6D15168453780025F42F /* bg_blue__.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D14168453780025F42F /* bg_blue__.png */; };
 		18CB6D61168467F90025F42F /* ShowSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB6D60168467F90025F42F /* ShowSelectedCell.m */; };
 		18CB6D641684680D0025F42F /* ShowSelectedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D631684680D0025F42F /* ShowSelectedCell.xib */; };
-		18CC772E167711FF001106FB /* AddPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC772C167711FF001106FB /* AddPersonController.m */; };
-		18CC772F167711FF001106FB /* AddPersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CC772D167711FF001106FB /* AddPersonController.xib */; };
-		18CC773216771442001106FB /* AddPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC773116771442001106FB /* AddPersonCell.m */; };
-		18CC773416771462001106FB /* AddPersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CC773316771462001106FB /* AddPersonCell.xib */; };
-		18CC773C16771806001106FB /* AddPersonSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC773B16771805001106FB /* AddPersonSwitchCell.m */; };
-		18CC773E1677181A001106FB /* AddPersonSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CC773D16771819001106FB /* AddPersonSwitchCell.xib */; };
-		18CC774116771D8E001106FB /* IdentityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CC774016771D8E001106FB /* IdentityViewController.m */; };
 		18D01986168217C10096852E /* searchCabin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01985168217C10096852E /* searchCabin.m */; };
 		18D0198D168218AD0096852E /* ChooseSpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01988168218AD0096852E /* ChooseSpaceCell.m */; };
 		18D0198E168218AD0096852E /* ChooseSpaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D01989168218AD0096852E /* ChooseSpaceCell.xib */; };
@@ -436,6 +443,7 @@
 		18E88FEC167F0237002FCC62 /* DrawFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88FEA167F022C002FCC62 /* DrawFlightViewController.m */; };
 		18E88FED167F0237002FCC62 /* DrawFlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E88FEB167F0231002FCC62 /* DrawFlightViewController.xib */; };
 		18E8901A1680549B002FCC62 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E8901916805493002FCC62 /* AddressBookUI.framework */; };
+		18E8B675168C9AAC009EC8C5 /* OrderFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E8B674168C9AAC009EC8C5 /* OrderFlight.m */; };
 		18EAE7B016705F7300CA6265 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE7AF16705F7300CA6265 /* CustomTableView.m */; };
 		18EAE7B316705F9E00CA6265 /* CustomTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAE7B216705F9E00CA6265 /* CustomTableView.xib */; };
 		18EAE7BA1670699B00CA6265 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAE7B91670699B00CA6265 /* CustomTableViewCell.m */; };
@@ -747,6 +755,28 @@
 		18C30D5E16859DD7009B0A54 /* ChineseCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseCalendar.m; sourceTree = "<group>"; };
 		18C30D5F16859DD7009B0A54 /* WeekDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekDayCell.h; sourceTree = "<group>"; };
 		18C30D6016859DD7009B0A54 /* WeekDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekDayCell.m; sourceTree = "<group>"; };
+		18C489FD168D4C2000A981A4 /* AddPersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonController.h; sourceTree = "<group>"; };
+		18C489FE168D4C2000A981A4 /* AddPersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonController.m; sourceTree = "<group>"; };
+		18C489FF168D4C2000A981A4 /* AddPersonController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonController.xib; sourceTree = "<group>"; };
+		18C48A00168D4C2000A981A4 /* AddPersonSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonSwitchCell.h; sourceTree = "<group>"; };
+		18C48A01168D4C2000A981A4 /* AddPersonSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonSwitchCell.m; sourceTree = "<group>"; };
+		18C48A02168D4C2000A981A4 /* AddPersonSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonSwitchCell.xib; sourceTree = "<group>"; };
+		18C48A03168D4C2000A981A4 /* IdentityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentityViewController.h; sourceTree = "<group>"; };
+		18C48A04168D4C2000A981A4 /* IdentityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityViewController.m; sourceTree = "<group>"; };
+		18C48A0E168D503900A981A4 /* AddPersonCoustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonCoustomCell.h; sourceTree = "<group>"; };
+		18C48A0F168D503900A981A4 /* AddPersonCoustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonCoustomCell.m; sourceTree = "<group>"; };
+		18C48A11168D504D00A981A4 /* AddPersonCoustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonCoustomCell.xib; sourceTree = "<group>"; };
+		18C48A14168D7B6700A981A4 /* DiscountCouponController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountCouponController.h; sourceTree = "<group>"; };
+		18C48A15168D7B6700A981A4 /* DiscountCouponController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCouponController.m; sourceTree = "<group>"; };
+		18C48A16168D7B6700A981A4 /* DiscountCouponController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiscountCouponController.xib; sourceTree = "<group>"; };
+		18C48A19168D838100A981A4 /* UseDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseDiscountCell.h; sourceTree = "<group>"; };
+		18C48A1A168D838100A981A4 /* UseDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseDiscountCell.m; sourceTree = "<group>"; };
+		18C48A1C168D839F00A981A4 /* UseDiscountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UseDiscountCell.xib; sourceTree = "<group>"; };
+		18C48A1E168D86FE00A981A4 /* GoldCoinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoldCoinCell.h; sourceTree = "<group>"; };
+		18C48A1F168D86FE00A981A4 /* GoldCoinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoldCoinCell.m; sourceTree = "<group>"; };
+		18C48A21168D870D00A981A4 /* GoldCoinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoldCoinCell.xib; sourceTree = "<group>"; };
+		18C48A24168D8B3A00A981A4 /* UseGoldPay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseGoldPay.h; sourceTree = "<group>"; };
+		18C48A25168D8B3A00A981A4 /* UseGoldPay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseGoldPay.m; sourceTree = "<group>"; };
 		18C9E6D81685C96100A1453C /* circle_green_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_green_change.png; sourceTree = "<group>"; };
 		18CB6D0C16843C580025F42F /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		18CB6D0D16843C580025F42F /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
@@ -756,17 +786,6 @@
 		18CB6D5F168467F90025F42F /* ShowSelectedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedCell.h; sourceTree = "<group>"; };
 		18CB6D60168467F90025F42F /* ShowSelectedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedCell.m; sourceTree = "<group>"; };
 		18CB6D631684680D0025F42F /* ShowSelectedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedCell.xib; sourceTree = "<group>"; };
-		18CC772B167711FF001106FB /* AddPersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonController.h; sourceTree = "<group>"; };
-		18CC772C167711FF001106FB /* AddPersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonController.m; sourceTree = "<group>"; };
-		18CC772D167711FF001106FB /* AddPersonController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonController.xib; sourceTree = "<group>"; };
-		18CC773016771442001106FB /* AddPersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonCell.h; sourceTree = "<group>"; };
-		18CC773116771442001106FB /* AddPersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonCell.m; sourceTree = "<group>"; };
-		18CC773316771462001106FB /* AddPersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonCell.xib; sourceTree = "<group>"; };
-		18CC773A16771804001106FB /* AddPersonSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonSwitchCell.h; sourceTree = "<group>"; };
-		18CC773B16771805001106FB /* AddPersonSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonSwitchCell.m; sourceTree = "<group>"; };
-		18CC773D16771819001106FB /* AddPersonSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonSwitchCell.xib; sourceTree = "<group>"; };
-		18CC773F16771D8D001106FB /* IdentityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentityViewController.h; sourceTree = "<group>"; };
-		18CC774016771D8E001106FB /* IdentityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentityViewController.m; sourceTree = "<group>"; };
 		18D01984168217C10096852E /* searchCabin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchCabin.h; sourceTree = "<group>"; };
 		18D01985168217C10096852E /* searchCabin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchCabin.m; sourceTree = "<group>"; };
 		18D01987168218AD0096852E /* ChooseSpaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSpaceCell.h; sourceTree = "<group>"; };
@@ -1020,6 +1039,8 @@
 		18E88FEA167F022C002FCC62 /* DrawFlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawFlightViewController.m; sourceTree = "<group>"; };
 		18E88FEB167F0231002FCC62 /* DrawFlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawFlightViewController.xib; sourceTree = "<group>"; };
 		18E8901916805493002FCC62 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		18E8B673168C9AAC009EC8C5 /* OrderFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderFlight.h; sourceTree = "<group>"; };
+		18E8B674168C9AAC009EC8C5 /* OrderFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderFlight.m; sourceTree = "<group>"; };
 		18EAE7AE16705F7300CA6265 /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
 		18EAE7AF16705F7300CA6265 /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
 		18EAE7B216705F9E00CA6265 /* CustomTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableView.xib; sourceTree = "<group>"; };
@@ -1305,6 +1326,7 @@
 		14539523166F2C6800417F61 /* TicketCheck */ = {
 			isa = PBXGroup;
 			children = (
+				18C48A13168D7B2C00A981A4 /* discountCoupon */,
 				18080174167DB95400CD5F9A /* TravelItinerary */,
 				1807541A167C26B6007B42A4 /* lowOrder */,
 				14805B9716786F3C00836353 /* chooseAirPorts */,
@@ -1680,6 +1702,8 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18C48A23168D8AEE00A981A4 /* useDiscount */,
+				18E8B671168C9A58009EC8C5 /* scheduleFlight */,
 				189F5D44168A00F700A3494F /* attentionFlight */,
 				145A2D861685EC85000DAAA1 /* historyCheck */,
 				14698717167ED85800E9B30D /* Login */,
@@ -1831,20 +1855,45 @@
 			name = Calendar;
 			sourceTree = "<group>";
 		};
+		18C48A13168D7B2C00A981A4 /* discountCoupon */ = {
+			isa = PBXGroup;
+			children = (
+				18C48A14168D7B6700A981A4 /* DiscountCouponController.h */,
+				18C48A15168D7B6700A981A4 /* DiscountCouponController.m */,
+				18C48A16168D7B6700A981A4 /* DiscountCouponController.xib */,
+				18C48A19168D838100A981A4 /* UseDiscountCell.h */,
+				18C48A1A168D838100A981A4 /* UseDiscountCell.m */,
+				18C48A1C168D839F00A981A4 /* UseDiscountCell.xib */,
+				18C48A1E168D86FE00A981A4 /* GoldCoinCell.h */,
+				18C48A1F168D86FE00A981A4 /* GoldCoinCell.m */,
+				18C48A21168D870D00A981A4 /* GoldCoinCell.xib */,
+			);
+			name = discountCoupon;
+			sourceTree = "<group>";
+		};
+		18C48A23168D8AEE00A981A4 /* useDiscount */ = {
+			isa = PBXGroup;
+			children = (
+				18C48A24168D8B3A00A981A4 /* UseGoldPay.h */,
+				18C48A25168D8B3A00A981A4 /* UseGoldPay.m */,
+			);
+			name = useDiscount;
+			sourceTree = "<group>";
+		};
 		18D01F0616782C2A002C13DB /* addPerson */ = {
 			isa = PBXGroup;
 			children = (
-				18CC772B167711FF001106FB /* AddPersonController.h */,
-				18CC772C167711FF001106FB /* AddPersonController.m */,
-				18CC772D167711FF001106FB /* AddPersonController.xib */,
-				18CC773016771442001106FB /* AddPersonCell.h */,
-				18CC773116771442001106FB /* AddPersonCell.m */,
-				18CC773316771462001106FB /* AddPersonCell.xib */,
-				18CC773A16771804001106FB /* AddPersonSwitchCell.h */,
-				18CC773B16771805001106FB /* AddPersonSwitchCell.m */,
-				18CC773D16771819001106FB /* AddPersonSwitchCell.xib */,
-				18CC773F16771D8D001106FB /* IdentityViewController.h */,
-				18CC774016771D8E001106FB /* IdentityViewController.m */,
+				18C489FD168D4C2000A981A4 /* AddPersonController.h */,
+				18C489FE168D4C2000A981A4 /* AddPersonController.m */,
+				18C489FF168D4C2000A981A4 /* AddPersonController.xib */,
+				18C48A00168D4C2000A981A4 /* AddPersonSwitchCell.h */,
+				18C48A01168D4C2000A981A4 /* AddPersonSwitchCell.m */,
+				18C48A02168D4C2000A981A4 /* AddPersonSwitchCell.xib */,
+				18C48A03168D4C2000A981A4 /* IdentityViewController.h */,
+				18C48A04168D4C2000A981A4 /* IdentityViewController.m */,
+				18C48A0E168D503900A981A4 /* AddPersonCoustomCell.h */,
+				18C48A0F168D503900A981A4 /* AddPersonCoustomCell.m */,
+				18C48A11168D504D00A981A4 /* AddPersonCoustomCell.xib */,
 			);
 			name = addPerson;
 			sourceTree = "<group>";
@@ -2148,6 +2197,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		18E8B671168C9A58009EC8C5 /* scheduleFlight */ = {
+			isa = PBXGroup;
+			children = (
+				18E8B673168C9AAC009EC8C5 /* OrderFlight.h */,
+				18E8B674168C9AAC009EC8C5 /* OrderFlight.m */,
+			);
+			name = scheduleFlight;
+			sourceTree = "<group>";
+		};
 		18EAE79416703AA000CA6265 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2250,9 +2308,6 @@
 				18E508C216747B840003BD0C /* grayArrow@2x.png in Resources */,
 				18E508C316747B840003BD0C /* whiteArrow.png in Resources */,
 				18E508C416747B840003BD0C /* whiteArrow@2x.png in Resources */,
-				18CC772F167711FF001106FB /* AddPersonController.xib in Resources */,
-				18CC773416771462001106FB /* AddPersonCell.xib in Resources */,
-				18CC773E1677181A001106FB /* AddPersonSwitchCell.xib in Resources */,
 				14805B8C16782CF500836353 /* AirPortDataBase.sqlite in Resources */,
 				14805B8E1678349200836353 /* DataBaseVersionConfigure.plist in Resources */,
 				14805BA4167875E900836353 /* bg_pek.png in Resources */,
@@ -2519,6 +2574,12 @@
 				18AD3309168C6EF40065BF08 /* ChooseSeatOnlineViewController.xib in Resources */,
 				18AD330B168C6EF40065BF08 /* FlightInformationViewController.xib in Resources */,
 				18AD330D168C6EF40065BF08 /* PickSeatViewController.xib in Resources */,
+				18C48A08168D4C2000A981A4 /* AddPersonController.xib in Resources */,
+				18C48A0A168D4C2000A981A4 /* AddPersonSwitchCell.xib in Resources */,
+				18C48A12168D504E00A981A4 /* AddPersonCoustomCell.xib in Resources */,
+				18C48A18168D7B6700A981A4 /* DiscountCouponController.xib in Resources */,
+				18C48A1D168D83A000A981A4 /* UseDiscountCell.xib in Resources */,
+				18C48A22168D870D00A981A4 /* GoldCoinCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2558,10 +2619,6 @@
 				18E508BC16747B840003BD0C /* EGORefreshTableHeaderView.m in Sources */,
 				18DD1D391675BF7A006B59AB /* TransitionString.m in Sources */,
 				18DD1D3C1675D01E006B59AB /* SearchFlightData.m in Sources */,
-				18CC772E167711FF001106FB /* AddPersonController.m in Sources */,
-				18CC773216771442001106FB /* AddPersonCell.m in Sources */,
-				18CC773C16771806001106FB /* AddPersonSwitchCell.m in Sources */,
-				18CC774116771D8E001106FB /* IdentityViewController.m in Sources */,
 				14805B8616782A8E00836353 /* AirPortDataBase.m in Sources */,
 				14805B8A16782B2B00836353 /* AirPortData.m in Sources */,
 				14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */,
@@ -2663,6 +2720,15 @@
 				18AD3308168C6EF40065BF08 /* ChooseSeatOnlineViewController.m in Sources */,
 				18AD330A168C6EF40065BF08 /* FlightInformationViewController.m in Sources */,
 				18AD330C168C6EF40065BF08 /* PickSeatViewController.m in Sources */,
+				18E8B675168C9AAC009EC8C5 /* OrderFlight.m in Sources */,
+				18C48A07168D4C2000A981A4 /* AddPersonController.m in Sources */,
+				18C48A09168D4C2000A981A4 /* AddPersonSwitchCell.m in Sources */,
+				18C48A0B168D4C2000A981A4 /* IdentityViewController.m in Sources */,
+				18C48A10168D503A00A981A4 /* AddPersonCoustomCell.m in Sources */,
+				18C48A17168D7B6700A981A4 /* DiscountCouponController.m in Sources */,
+				18C48A1B168D838100A981A4 /* UseDiscountCell.m in Sources */,
+				18C48A20168D86FF00A981A4 /* GoldCoinCell.m in Sources */,
+				18C48A26168D8B3A00A981A4 /* UseGoldPay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

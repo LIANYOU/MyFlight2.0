@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@class AddPersonCell;
+@class ChoosePersonController;
+@class AddPersonCoustomCell;
 @class AddPersonSwitchCell;
 @interface AddPersonController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 {
@@ -19,8 +20,12 @@
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *addPersonTableView;
-@property (retain, nonatomic) IBOutlet AddPersonCell *addPersonCell;
+
+@property (retain, nonatomic) IBOutlet AddPersonCoustomCell *addPersonCoustomCell;
+
 @property (retain, nonatomic) IBOutlet AddPersonSwitchCell *addPersonSwithCell;
+
+@property (retain, nonatomic) ChoosePersonController * choose;
 
 @property(nonatomic,retain) NSArray * cellTitleArr;
 @property(nonatomic,retain) NSMutableArray * cellTextArr;

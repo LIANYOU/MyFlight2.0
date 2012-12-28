@@ -14,6 +14,8 @@
 #import "ChoosePersonController.h"
 #import "TraveController.h"
 #import "LogViewController.h"
+#import "DiscountCouponController.h"
+#import "UseGoldPay.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -271,20 +273,20 @@
     if (section == 0) {
         return _tempView;
     }
-    else
+    else{
         return nil;
-    
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (self.flag==1) { // 单程
         
-        return 2;
+        return 3;
     }
     else if(self.flag == 3)
     { 
-        return 3;   // 往返的时候返回3个分区
+        return 4;   // 往返的时候返回3个分区
     }
     return 1;
 }
@@ -296,8 +298,10 @@
         switch (section)
         {
             case 0:
-                return 1;
+                return 0;
             case 1:
+                return 1;
+            case 2:
                 return 7;
             default:
                 break;
@@ -308,15 +312,17 @@
     {
         switch (section)
         {
-        case 0:
-            return 1;
-        case 1:
-            return 1;
-        case 2:
-            return 7;
-        default:
-            break;
-       }
+            case 0:
+                return 0;
+            case 1:
+                return 1;
+            case 2:
+                return 1;
+            case 3:
+                return 7;
+            default:
+                break;
+        }
 
     }
     return 0;
@@ -326,9 +332,12 @@
 {
     if (self.flag == 1) {  // 单程
         if (indexPath.section == 0) {
+            return 0;
+        }
+        if (indexPath.section == 1) {
             return 100;
         }
-        if (indexPath.section == 1 && indexPath.row == 0) {
+        if (indexPath.section == 2 && indexPath.row == 0) {
             
            firstCellText = [self.firstCelTextArr objectAtIndex:0];
             
@@ -336,12 +345,20 @@
             
             CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
             
-            CGFloat height = MAX(size.height, 44.0f);
+            CGFloat height = MAX(size.height, 50.0f);
            
             return height;
             
         }
-        if (indexPath.section == 1 && indexPath.row == 1) {
+        if (indexPath.row == 4 && indexPath.section == 1) {
+            if (Default_IsUserLogin_Value) {
+                return 50;
+            }
+            else{
+                return 0;
+            }
+        }
+        if (indexPath.section == 2 && indexPath.row == 1) {
             return 100;
         }
         else{
@@ -350,10 +367,16 @@
 
     }
     else{
-        if (indexPath.section == 0 || indexPath.section == 1) {
+        if (indexPath.section == 0) {
+            return 0;
+        }
+        if (indexPath.section == 1 ) {
             return 100;
         }
-        if (indexPath.section == 2 && indexPath.row == 0) {
+        if (indexPath.section == 2 ) {
+            return 100;
+        }
+        if (indexPath.section == 3 && indexPath.row == 0) {
             firstCellText = [self.firstCelTextArr objectAtIndex:0];
             
             CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f);//可接受的最大大小的字符串
@@ -365,7 +388,7 @@
             return height;
 
         }
-        if (indexPath.section == 2 && indexPath.row == 1) {
+        if (indexPath.section == 3 && indexPath.row == 1) {
             return 100;
         }
         else{
@@ -379,7 +402,11 @@
 {
     if (self.flag == 3) {   // 往返
         switch (indexPath.section) {
-        case 0:
+                case 0:
+            {
+                return nil;
+            }
+        case 1:
         {
             static NSString *CellIdentifier = @"Cell1";
             WriteOrderCell *cell = (WriteOrderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -408,7 +435,7 @@
             return cell;
             break;
         }
-         case 1:
+         case 2:
         {
             static NSString *CellIdentifier = @"Cell1";
             WriteOrderCell *cell = (WriteOrderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -433,7 +460,7 @@
             break;
             
         }
-        case 2:
+        case 3:
         {
             if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 6) {
                 static NSString *CellIdentifier = @"Cell3";
@@ -454,11 +481,11 @@
                         
                         cell.secondLable.lineBreakMode = UILineBreakModeCharacterWrap;
                         
-                        cell.secondLable.frame = CGRectMake(110, 0, 196, MAX(size.height, 44.0f));
+                        cell.secondLable.frame = CGRectMake(110, 0, 196, MAX(size.height, 50.0f));
                         
-                        cell.firstLable.frame = CGRectMake(21, 0, 196, MAX(size.height, 44.0f));
+                        cell.firstLable.frame = CGRectMake(21, 0, 196, MAX(size.height, 50.0f));
                         
-                        cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 44.0f));
+                        cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 50.0f));
                         
                         cell.secondLable.text = firstCellText;
                         
@@ -499,19 +526,17 @@
                     cell = self.writeOrderDetailsCell;
                 }
                 [cell.addPerson addTarget:self action:@selector(addPersonFormAddressBook) forControlEvents:UIControlEventTouchUpInside];
-//                cell.personName = [self.cellTitleArr objectAtIndex:1];
-//                cell.phoneNumber = [self.cellTitleArr objectAtIndex:2];
+
                 cell.nameField.delegate = self;
                 cell.phoneField.delegate = self;
                 
                 cell.nameField.text = [addPersonArr objectAtIndex:0];
                 cell.phoneField.text = [addPersonArr objectAtIndex:1];
                 
-               // cell.userInteractionEnabled = NO;
-                
                 return cell;
             }
             if (indexPath.row == 4) {
+
                 static NSString *CellIdentifier = @"Cell5";
                 WirterOrderTwoLineCell *cell = (WirterOrderTwoLineCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                 if (!cell)
@@ -519,8 +544,17 @@
                     [[NSBundle mainBundle] loadNibNamed:@"WirterOrderTwoLineCell" owner:self options:nil];
                     cell = self.wirterOrderTwoLineCell;
                 }
-                //cell = [self.cellTitleArr objectAtIndex:1];
-                return cell;
+                if (Default_IsUserLogin_Value) {
+                
+                    return cell;
+
+                }
+                else
+                {
+                    cell.hidden = YES;
+                    return cell;
+                }
+                
             }
             break;
             
@@ -531,6 +565,10 @@
     {
         switch (indexPath.section) {
             case 0:
+            {
+                return nil;
+            }
+            case 1:
             {
                 static NSString *CellIdentifier = @"Cell1";
                 WriteOrderCell *cell = (WriteOrderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -555,7 +593,7 @@
                 return cell;
                 break;
             }
-            case 1:
+            case 2:
             {
                 if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 6) {
                     static NSString *CellIdentifier = @"Cell3";
@@ -577,15 +615,15 @@
                           
                             cell.secondLable.lineBreakMode = UILineBreakModeCharacterWrap;
                              
-                            cell.secondLable.frame = CGRectMake(110, 0, 196, MAX(size.height, 44.0f));
+                            cell.secondLable.frame = CGRectMake(110, 0, 196, MAX(size.height, 50.0f));
                             
-                            cell.firstLable.frame = CGRectMake(23, 0, 196, MAX(size.height, 44.0f));
+                            cell.firstLable.frame = CGRectMake(23, 0, 196, MAX(size.height, 50.0f));
                             
-                            cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 44.0f));
+                            cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 50.0f));
                             
                             cell.secondLable.text = firstCellText;
                             
-                            cell.imageLabel.frame = CGRectMake(10, MAX(size.height, 44.0f)/2-6, 7, 21);
+                            cell.imageLabel.frame = CGRectMake(10, MAX(size.height, 50.0f)/2-6, 7, 21);
                             
                             break;
                         case 2:
@@ -633,6 +671,7 @@
                     return cell;
                 }
                 if (indexPath.row == 4) {
+                   
                     static NSString *CellIdentifier = @"Cell5";
                     WirterOrderTwoLineCell *cell = (WirterOrderTwoLineCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                     if (!cell)
@@ -640,8 +679,17 @@
                         [[NSBundle mainBundle] loadNibNamed:@"WirterOrderTwoLineCell" owner:self options:nil];
                         cell = self.wirterOrderTwoLineCell;
                     }
-                    //cell = [self.cellTitleArr objectAtIndex:1];
-                    return cell;
+                    if (Default_IsUserLogin_Value) {
+                        
+                        return cell;
+                        
+                    }
+                    else
+                    {
+                        cell.hidden = YES;
+                        return cell;
+                    }
+
                 }
                 break;
                 
@@ -734,7 +782,6 @@
             [self.navigationController pushViewController:choose animated:YES];
         }
     }
-
     if (indexPath.row == 2) {
 
         BuyInsuranceViewController * insurance = [[BuyInsuranceViewController alloc] init];
@@ -779,7 +826,7 @@
     if (indexPath.row == 3) {
         
         TraveController * trave = [[TraveController alloc] init];
-    
+        
         trave.flag = self.traveType;
         
         [trave getDate:^(NSString *schedule, NSString *postPay, int chooseBtnIndex) {
@@ -788,7 +835,7 @@
             
             self.traveType = chooseBtnIndex;
             
-             cell.secondLable.text = schedule;
+            cell.secondLable.text = schedule;
             
             if ([postPay isEqualToString:@"快递"]) {
                 
@@ -802,16 +849,43 @@
                 self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
                 self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
             }
-
+            
             NSLog(@"%@,%@",schedule,postPay);
             
-           
-          
+            
+            
         }];
         
         [self.navigationController pushViewController:trave animated:YES];
         [trave release];
         
+    }
+    if (indexPath.row == 4) {
+        
+        NSString * sign = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,@"xx",Default_Token_Value];
+        NSString *signReal =GET_SIGN(sign);
+
+        
+        UseGoldPay * gold = [[UseGoldPay alloc] initWithIsOpenAccount:@"true"
+                                                          andMemberId:Default_UserMemberId_Value
+                                                              andSign:signReal
+                                                        andOrderPrice:[NSString stringWithFormat:@"%d",[self.goPay intValue] + [self.backPay intValue]]
+                                                        andTotalPrice:self.allPay.text
+                                                          andProdType:@"01"
+                                                            andSource:@"xx"
+                                                        andAirCompany:nil
+                                                               andDpt:nil
+                                                               andArr:nil
+                                                           andDisount:nil
+                                                      andInsuranceNum:nil
+                                               andInsuranceTotalPrice:nil
+                                                              andHwld:HWID_VALUE];
+        
+        DiscountCouponController * discount = [[DiscountCouponController alloc] init];
+        
+        discount.gold = gold;
+        [self.navigationController pushViewController:discount animated:YES];
+        [discount release];
     }
 }
 - (IBAction)payMoney:(id)sender {

@@ -7,7 +7,7 @@
 //
 
 #import "AddPersonController.h"
-#import "AddPersonCell.h"
+#import "AddPersonCoustomCell.h"
 #import "AddPersonSwitchCell.h"
 #import "IdentityViewController.h"
 @interface AddPersonController ()
@@ -27,8 +27,13 @@
 
 - (void)viewDidLoad
 {
+    if (self.choose != nil) {
+        self.navigationItem.title = @"编辑乘机人";
+    }
+    else{
+        self.navigationItem.title = @"添加乘机人";
+    }
     
-    self.navigationItem.title = @"添加乘机人";
     
     self.cellTitleArr = [NSArray arrayWithObjects:@"身  份 *",@"姓  名 *",@"证件类型 *",@"证件号码 *",@"生  日 *",@"保存为常用乘机人", nil];
  
@@ -47,6 +52,18 @@
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];;
+    
+    
+    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
+    histroyBut.frame = CGRectMake(230, 5, 40, 30);
+    [histroyBut setTitle:@"保存" forState:0];
+    histroyBut.titleLabel.font = [UIFont systemFontOfSize:13];
+    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_save_.png"]];
+    [histroyBut addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *histroyBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+    self.navigationItem.rightBarButtonItem=histroyBtn;
+    [histroyBtn release];
 
     
     [super viewDidLoad];
@@ -61,14 +78,14 @@
 
 - (void)dealloc {
     [_addPersonTableView release];
-    [_addPersonCell release];
     [_addPersonSwithCell release];
+    [_addPersonCoustomCell release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setAddPersonTableView:nil];
-    [self setAddPersonCell:nil];
     [self setAddPersonSwithCell:nil];
+    [self setAddPersonCoustomCell:nil];
     [super viewDidUnload];
 }
 
@@ -81,36 +98,35 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([[self.cellTextArr objectAtIndex:0] isEqual:@"成人"]) {
-        
-        return 5;
-    }
-    else{
+   
         
         return 6;
-    }
+
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    if ([[self.cellTextArr objectAtIndex:0] isEqual:@"成人"]) {
+        if (indexPath.row == 4) {
+            return 0;
+        }
+        else
+        {
+            return 44;
+        }
+    }
+    else{
+        return 44;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    int flag = 0;
-    static NSString *CellIdentifier = @"Cell";
-    if ([[self.cellTextArr objectAtIndex:0] isEqual:@"成人"]) {
-        
-        flag = 4;
-    }
-    else
-    {
-        flag = 5;
-    }
-    if (indexPath.row == flag) {
-        NSLog(@"flag = %d",flag);
+
+
+    if (indexPath.row == 5) {
+      
          static NSString *CellIdentifier1 = @"Cell";
         AddPersonSwitchCell *cell = (AddPersonSwitchCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
         if (!cell)
@@ -125,51 +141,45 @@
         
     }
     
-    AddPersonCell *cell = (AddPersonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell)
-    {
-        [[NSBundle mainBundle] loadNibNamed:@"AddPersonCell" owner:self options:nil];
-        cell = self.addPersonCell;
-    }
-    if (flag == 5) {
-        if (indexPath.row == 4) {
-            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
-            cell.cellTitle.text = @"生日";
-         //   cell.cellText.placeholder = @"1990-03-09";
-        }
-    }
-    if (indexPath.row == 0 || indexPath.row == 2) {
-        cell.cellText.enabled = NO;
-        if (indexPath.row == 0) {
-            cell.cellTitle.text = [self.cellTitleArr objectAtIndex:0];
-            cell.cellText.text = [self.cellTextArr objectAtIndex:0];
-        }
-        if (indexPath.row==2) {
-            cell.cellTitle.text = [self.cellTitleArr objectAtIndex:2];
-            cell.cellText.text = [self.cellTextArr objectAtIndex:2];
+    else{
+        static NSString *CellIdentifier = @"Cell";
+        AddPersonCoustomCell *cell = (AddPersonCoustomCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell)
+        {
+            [[NSBundle mainBundle] loadNibNamed:@"AddPersonCoustomCell" owner:self options:nil];
+            cell = self.addPersonCoustomCell;
         }
         
-        //                if (indexPath.row == 0) {
-        //                    identityType = cell.cellText.text;   // 儿童或者成人赋值
-        //                }
         
-    }
-    else
-    {
-        if (indexPath.row == 1) {
-            cell.cellText.tag = indexPath.row;
-        }
-        
-      //  cell.cellText.delegate = self;
-        cell.cellTitle.text = [self.cellTitleArr objectAtIndex:indexPath.row];
-      //  cell.cellText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
-    }
-    
-    return cell;
-    
-    
-    
+        if ([[self.cellTextArr objectAtIndex:0] isEqual:@"成人"]) {
+            if (indexPath.row == 4) {
+                cell.hidden = YES;
+            }
+            if (indexPath.row == 0 || indexPath.row == 2) {
+                cell.secText.enabled = NO;
+            }
+            if (indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4) {
+                cell.secText.delegate = self;
+            }
+            
+            cell.fristLabel.text = [self.cellTitleArr objectAtIndex:indexPath.row];
+            cell.secText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
 
+        }
+        
+        else
+        {
+            if (indexPath.row == 0 || indexPath.row == 2) {
+                cell.secText.enabled = NO;
+            }
+            cell.fristLabel.text = [self.cellTitleArr objectAtIndex:indexPath.row];
+            cell.secText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
+        }
+
+        
+        return cell;
+    
+    }
 
 }
 
@@ -226,14 +236,6 @@
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    int flag  = textField.tag;
-    if (flag == 1) {
-        name = textField.text;
-    }
-}
-
 -(void)getDate:(void (^) (NSString * name, NSString * identity))string
 {
     [blocks release];
@@ -243,5 +245,10 @@
 {
   //  blocks(name,identityType);
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)save
+{
+    
 }
 @end

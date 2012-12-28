@@ -9,6 +9,7 @@
 #import "ChoosePersonController.h"
 #import "ChoosePersonCell.h"
 #import "AddPersonController.h"
+#import "AddPersonController.h"
 @interface ChoosePersonController ()
 {
     int childNumber;  // 儿童个数
@@ -78,7 +79,7 @@
 #pragma mark - Table view data source
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 103;
+    return 150;
 }
 
 
@@ -87,7 +88,7 @@
     
     UIView * myView =[[[UIView alloc] init] autorelease];
     
-    self.addBtn.frame = CGRectMake(10, 10, 300, 36);
+    self.addBtn.frame = CGRectMake(10, 30, 300, 36);
     [myView addSubview:self.addBtn];
     
     return myView;
@@ -107,7 +108,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,7 +154,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    AddPersonController * add = [[AddPersonController alloc] init];
+    add.choose = self;
+    [self.navigationController pushViewController:add animated:YES];
+    [add release];
 }
 
 #pragma mark - 批量选择点选时的操作

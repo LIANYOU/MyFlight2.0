@@ -1,14 +1,14 @@
 //
-//  AddPersonCell.m
+//  AddPersonCoustomCell.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 12-12-11.
+//  Created by WangJian on 12-12-28.
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import "AddPersonCell.h"
+#import "AddPersonCoustomCell.h"
 
-@implementation AddPersonCell
+@implementation AddPersonCoustomCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,8 +27,8 @@
 }
 
 - (void)dealloc {
-    [_cellTitle release];
-    [_cellText release];
+    [_fristLabel release];
+    [_secText release];
     [super dealloc];
 }
 @end
