@@ -104,6 +104,14 @@
 		149B7724168C2690006281A3 /* AddPersonCell0.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B7723168C268F006281A3 /* AddPersonCell0.xib */; };
 		149B77AA168C4FBF006281A3 /* MyCenterUnLoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B77A9168C4FBB006281A3 /* MyCenterUnLoginCell.m */; };
 		149B77AC168C4FE1006281A3 /* MyCenterUnLoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B77AB168C4FE1006281A3 /* MyCenterUnLoginCell.xib */; };
+		149B77F7168D46C4006281A3 /* FlightBookingBusinessHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B77F6168D46C4006281A3 /* FlightBookingBusinessHelper.m */; };
+		149B77FB168D519C006281A3 /* flightContactVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B77FA168D519C006281A3 /* flightContactVo.m */; };
+		149B77FF168D529D006281A3 /* flightItineraryVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B77FE168D529D006281A3 /* flightItineraryVo.m */; };
+		149B7803168D55AB006281A3 /* flightPassengerVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7802168D55AB006281A3 /* flightPassengerVo.m */; };
+		149B7807168D6ACB006281A3 /* payVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7806168D6ACB006281A3 /* payVo.m */; };
+		149B780B168D8132006281A3 /* bookingGoFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780A168D8132006281A3 /* bookingGoFlightVo.m */; };
+		149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780D168D8FD1006281A3 /* bookingFlightVo.m */; };
+		149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7810168D9775006281A3 /* bookingReturnFlightVo.m */; };
 		14ED61ED1672F16D0019DC23 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E21672F16D0019DC23 /* FMDatabase.m */; };
 		14ED61EE1672F16D0019DC23 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E41672F16D0019DC23 /* FMDatabaseAdditions.m */; };
 		14ED61EF1672F16D0019DC23 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E61672F16D0019DC23 /* FMDatabasePool.m */; };
@@ -601,6 +609,23 @@
 		149B77A8168C4FBA006281A3 /* MyCenterUnLoginCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterUnLoginCell.h; sourceTree = "<group>"; };
 		149B77A9168C4FBB006281A3 /* MyCenterUnLoginCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterUnLoginCell.m; sourceTree = "<group>"; };
 		149B77AB168C4FE1006281A3 /* MyCenterUnLoginCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterUnLoginCell.xib; sourceTree = "<group>"; };
+		149B77F5168D46C4006281A3 /* FlightBookingBusinessHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightBookingBusinessHelper.h; sourceTree = "<group>"; };
+		149B77F6168D46C4006281A3 /* FlightBookingBusinessHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightBookingBusinessHelper.m; sourceTree = "<group>"; };
+		149B77F9168D519C006281A3 /* flightContactVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flightContactVo.h; sourceTree = "<group>"; };
+		149B77FA168D519C006281A3 /* flightContactVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = flightContactVo.m; sourceTree = "<group>"; };
+		149B77FD168D529D006281A3 /* flightItineraryVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flightItineraryVo.h; sourceTree = "<group>"; };
+		149B77FE168D529D006281A3 /* flightItineraryVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = flightItineraryVo.m; sourceTree = "<group>"; };
+		149B7801168D55AB006281A3 /* flightPassengerVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flightPassengerVo.h; sourceTree = "<group>"; };
+		149B7802168D55AB006281A3 /* flightPassengerVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = flightPassengerVo.m; sourceTree = "<group>"; };
+		149B7805168D6ACB006281A3 /* payVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = payVo.h; sourceTree = "<group>"; };
+		149B7806168D6ACB006281A3 /* payVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = payVo.m; sourceTree = "<group>"; };
+		149B7809168D8132006281A3 /* bookingGoFlightVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bookingGoFlightVo.h; sourceTree = "<group>"; };
+		149B780A168D8132006281A3 /* bookingGoFlightVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bookingGoFlightVo.m; sourceTree = "<group>"; };
+		149B780C168D8FD1006281A3 /* bookingFlightVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bookingFlightVo.h; sourceTree = "<group>"; };
+		149B780D168D8FD1006281A3 /* bookingFlightVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bookingFlightVo.m; sourceTree = "<group>"; };
+		149B780F168D9774006281A3 /* bookingReturnFlightVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bookingReturnFlightVo.h; sourceTree = "<group>"; };
+		149B7810168D9775006281A3 /* bookingReturnFlightVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bookingReturnFlightVo.m; sourceTree = "<group>"; };
+		149B7813168D9ABE006281A3 /* flightBookingUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flightBookingUility.h; sourceTree = "<group>"; };
 		14ED61E11672F16D0019DC23 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		14ED61E21672F16D0019DC23 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		14ED61E31672F16D0019DC23 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -1076,6 +1101,7 @@
 		141523821682C06800E2FF0E /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				149B77F4168D4689006281A3 /* flightbookBusiness */,
 				141523841682C09F00E2FF0E /* userBusiness */,
 			);
 			name = Business;
@@ -1527,6 +1553,7 @@
 		148059D01676E6BE00836353 /* configure */ = {
 			isa = PBXGroup;
 			children = (
+				149B7812168D97D7006281A3 /* constClassInfo */,
 				14805A0E1676F04B00836353 /* AppConfigure.h */,
 				14805A0F1676F0DF00836353 /* AirPortsUility.h */,
 				14805A101676F13000836353 /* PublicConstUrls.h */,
@@ -1576,6 +1603,84 @@
 				149B77AB168C4FE1006281A3 /* MyCenterUnLoginCell.xib */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		149B77F2168D42FE006281A3 /* flightBooking */ = {
+			isa = PBXGroup;
+			children = (
+				149B7808168D810F006281A3 /* bookingFlightVo */,
+				149B7804168D6AB3006281A3 /* payVo */,
+				149B7800168D559C006281A3 /* flightPassengerVo */,
+				149B77FC168D5263006281A3 /* flightItineraryVo */,
+				149B77F8168D5133006281A3 /* flightContactVo */,
+			);
+			name = flightBooking;
+			sourceTree = "<group>";
+		};
+		149B77F4168D4689006281A3 /* flightbookBusiness */ = {
+			isa = PBXGroup;
+			children = (
+				149B77F5168D46C4006281A3 /* FlightBookingBusinessHelper.h */,
+				149B77F6168D46C4006281A3 /* FlightBookingBusinessHelper.m */,
+			);
+			name = flightbookBusiness;
+			sourceTree = "<group>";
+		};
+		149B77F8168D5133006281A3 /* flightContactVo */ = {
+			isa = PBXGroup;
+			children = (
+				149B77F9168D519C006281A3 /* flightContactVo.h */,
+				149B77FA168D519C006281A3 /* flightContactVo.m */,
+			);
+			name = flightContactVo;
+			sourceTree = "<group>";
+		};
+		149B77FC168D5263006281A3 /* flightItineraryVo */ = {
+			isa = PBXGroup;
+			children = (
+				149B77FD168D529D006281A3 /* flightItineraryVo.h */,
+				149B77FE168D529D006281A3 /* flightItineraryVo.m */,
+			);
+			name = flightItineraryVo;
+			sourceTree = "<group>";
+		};
+		149B7800168D559C006281A3 /* flightPassengerVo */ = {
+			isa = PBXGroup;
+			children = (
+				149B7801168D55AB006281A3 /* flightPassengerVo.h */,
+				149B7802168D55AB006281A3 /* flightPassengerVo.m */,
+			);
+			name = flightPassengerVo;
+			sourceTree = "<group>";
+		};
+		149B7804168D6AB3006281A3 /* payVo */ = {
+			isa = PBXGroup;
+			children = (
+				149B7805168D6ACB006281A3 /* payVo.h */,
+				149B7806168D6ACB006281A3 /* payVo.m */,
+			);
+			name = payVo;
+			sourceTree = "<group>";
+		};
+		149B7808168D810F006281A3 /* bookingFlightVo */ = {
+			isa = PBXGroup;
+			children = (
+				149B7809168D8132006281A3 /* bookingGoFlightVo.h */,
+				149B780A168D8132006281A3 /* bookingGoFlightVo.m */,
+				149B780C168D8FD1006281A3 /* bookingFlightVo.h */,
+				149B780D168D8FD1006281A3 /* bookingFlightVo.m */,
+				149B780F168D9774006281A3 /* bookingReturnFlightVo.h */,
+				149B7810168D9775006281A3 /* bookingReturnFlightVo.m */,
+			);
+			name = bookingFlightVo;
+			sourceTree = "<group>";
+		};
+		149B7812168D97D7006281A3 /* constClassInfo */ = {
+			isa = PBXGroup;
+			children = (
+				149B7813168D9ABE006281A3 /* flightBookingUility.h */,
+			);
+			name = constClassInfo;
 			sourceTree = "<group>";
 		};
 		14ED61E01672F16D0019DC23 /* FMDB */ = {
@@ -1702,8 +1807,12 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+
 				18C48A23168D8AEE00A981A4 /* useDiscount */,
 				18E8B671168C9A58009EC8C5 /* scheduleFlight */,
+
+				149B77F2168D42FE006281A3 /* flightBooking */,
+
 				189F5D44168A00F700A3494F /* attentionFlight */,
 				145A2D861685EC85000DAAA1 /* historyCheck */,
 				14698717167ED85800E9B30D /* Login */,
@@ -2720,6 +2829,7 @@
 				18AD3308168C6EF40065BF08 /* ChooseSeatOnlineViewController.m in Sources */,
 				18AD330A168C6EF40065BF08 /* FlightInformationViewController.m in Sources */,
 				18AD330C168C6EF40065BF08 /* PickSeatViewController.m in Sources */,
+
 				18E8B675168C9AAC009EC8C5 /* OrderFlight.m in Sources */,
 				18C48A07168D4C2000A981A4 /* AddPersonController.m in Sources */,
 				18C48A09168D4C2000A981A4 /* AddPersonSwitchCell.m in Sources */,
@@ -2729,6 +2839,16 @@
 				18C48A1B168D838100A981A4 /* UseDiscountCell.m in Sources */,
 				18C48A20168D86FF00A981A4 /* GoldCoinCell.m in Sources */,
 				18C48A26168D8B3A00A981A4 /* UseGoldPay.m in Sources */,
+
+				149B77F7168D46C4006281A3 /* FlightBookingBusinessHelper.m in Sources */,
+				149B77FB168D519C006281A3 /* flightContactVo.m in Sources */,
+				149B77FF168D529D006281A3 /* flightItineraryVo.m in Sources */,
+				149B7803168D55AB006281A3 /* flightPassengerVo.m in Sources */,
+				149B7807168D6ACB006281A3 /* payVo.m in Sources */,
+				149B780B168D8132006281A3 /* bookingGoFlightVo.m in Sources */,
+				149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */,
+				149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

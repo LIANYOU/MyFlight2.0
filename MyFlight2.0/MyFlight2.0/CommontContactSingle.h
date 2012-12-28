@@ -14,6 +14,7 @@
 
 @property(nonatomic,retain)CommonContact *commonPassengerData;
 @property(nonatomic,retain)NSMutableArray *passengerArray;
+
 + (id) shareCommonContact;
 
 @end
