@@ -150,6 +150,10 @@
 {
    
     [super viewDidLoad];
+    NSString * string = KEY_FlightBook_FlightVo__aircraftType_WithType(@"Go");
+    
+    NSLog(@"type *************** =%@",string);
+    
     
     LoginBusiness *busi = [[LoginBusiness alloc] init];
     

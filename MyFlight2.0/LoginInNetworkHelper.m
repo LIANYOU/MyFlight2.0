@@ -283,8 +283,18 @@
                 CCLog(@"用户code为%@",single.userAccount.code);
                 
                 CCLog(@"用户手机号码为：%@", [defaultUser objectForKey:KEY_Default_UserMobile]);
-                [delegate requestDidFinishedWithRightMessage:messageDic];
                 
+                
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
+                    
+                    CCLog(@"用户代理不为空");
+                    [delegate requestDidFinishedWithRightMessage:messageDic];
+
+                    
+                    
+                }
+                
+                                
             } else{
                 
                 //message 长度不为0 有错误信息
@@ -326,7 +336,7 @@
     
     [formRequst startAsynchronous];
     
-    [messageDic autorelease];
+//    [messageDic autorelease];
     
     return true;
     
@@ -842,6 +852,8 @@
     
     
     CCLog(@"修改常用联系人的姓名：%@ 类型：%@ 证件类型：%@ 证件号码：%@ 乘机人ID:%@",name,type,certType,certNo,ContactId);
+    
+    
     
     NSString *memberId = Default_UserMemberId_Value;
     NSString *memberCode = Default_UserMemberCode_Value;
