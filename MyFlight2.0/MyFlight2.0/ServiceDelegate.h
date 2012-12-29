@@ -14,6 +14,9 @@
 
 - (void)requestDidFinished:(NSDictionary *) info;
 
+
+
+
 //访问网络失败
 - (void) requestDidFailed:(NSDictionary *) info;
 

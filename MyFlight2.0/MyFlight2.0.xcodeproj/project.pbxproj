@@ -1572,7 +1572,6 @@
 		145394EF166F220D00417F61 /* MyFlight2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				1469874D1680300900E9B30D /* service */,
 				148059D01676E6BE00836353 /* configure */,
 				180E223C16718FFF002A7228 /* RelatedResources */,
 				1427937F167078DA00E2E1E3 /* images */,
@@ -2115,6 +2114,7 @@
 			isa = PBXGroup;
 			children = (
 				18AD32F3168C6ED10065BF08 /* chooseSeat */,
+				1469874D1680300900E9B30D /* service */,
 				18D196C6168161CC00FEE73A /* TravelAssistant */,
 				18E37CF6167DAC2E0086B3F8 /* FlightCondition */,
 				18E37CE2167D7FDF0086B3F8 /* More */,
@@ -3436,6 +3436,7 @@
 				149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */,
 				149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */,
 
+
 				A8A0A835168EA92100FCBD23 /* SinaWeibo.m in Sources */,
 				A8A0A836168EA92100FCBD23 /* SinaWeiboAuthorizeView.m in Sources */,
 				A8A0A837168EA92100FCBD23 /* SinaWeiboRequest.m in Sources */,
@@ -3476,6 +3477,8 @@
 				A8A0AA46168ED43500FCBD23 /* SBJsonWriter.m in Sources */,
 
 				18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */,
+
+
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;

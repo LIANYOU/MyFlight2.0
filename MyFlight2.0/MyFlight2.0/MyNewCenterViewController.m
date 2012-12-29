@@ -155,6 +155,12 @@
     NSLog(@"type *************** =%@",string);
     
     
+    int i = 0;
+    
+    NSString *str = [NSString stringWithFormat:@"flightPassengerVoList[%d].flightPassengerVo.name",i];
+
+    CCLog(@"str *****************((()()()()()()(=%@",str);
+    
     LoginBusiness *busi = [[LoginBusiness alloc] init];
     
     NSString *memberId =Default_UserMemberId_Value;
@@ -166,6 +172,10 @@
     [self setNav];
     // Do any additional setup after loading the view from its nib.
 }
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

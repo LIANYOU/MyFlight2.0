@@ -14,9 +14,18 @@
 #import "flightContactVo.h"
 #import "bookingGoFlightVo.h"
 #import "bookingReturnFlightVo.h"
+
+
 @interface FlightBookingBusinessHelper : NSObject
 
 
-+ (void) flightBookingWithGoflight:(NSDictionary *) infoDic bookingGoFlightVo:(bookingGoFlightVo *)  bookingGoFlightVo bookingReturnFlightVo:(bookingReturnFlightVo *) bookingReturnFlightVo flightContactVo:(flightContactVo *) flightContactVo flightItineraryVo:(flightItineraryVo *) flightItineraryVo flightPassengerVo:(flightPassengerVo *)flightPassengerVo payVo:(payVo *)payVo delegate:(id<ServiceDelegate>) delegate ;
++ (void) flightBookingWithGoflight:(NSDictionary *) infoDic
+                 bookingGoFlightVo:(bookingGoFlightVo *)bookingGoFlightVo
+             bookingReturnFlightVo:(bookingReturnFlightVo *)bookingReturnFlightVo
+                   flightContactVo:(flightContactVo *)flightContactVo
+                 flightItineraryVo:(flightItineraryVo *) flightItineraryVo
+                 flightPassengerVo:(NSMutableArray *)flightPassengerVoArray
+                             payVo:(payVo *)payVo
+                          delegate:(id<ServiceDelegate>) delegate ;
 
 @end
