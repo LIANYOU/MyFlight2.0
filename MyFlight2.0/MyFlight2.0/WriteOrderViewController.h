@@ -13,7 +13,7 @@
 #import "WirterOrderTwoLineCell.h"
 #import "WriterOrderCommonCell.h"
 #import "SearchFlightData.h"
-
+#import "flightItineraryVo.h"
 #import <AddressBookUI/AddressBookUI.h>
 
 
@@ -23,6 +23,8 @@
     NSString * stringAfterJoin ;  // 拼接好的string
     
     NSString * firstCellText;
+    
+    flightItineraryVo * flightItinerary;
     
     NSMutableArray * nameAndPhone;      //联系人名字和电话号码
     UIButton * sendMessageBtn;

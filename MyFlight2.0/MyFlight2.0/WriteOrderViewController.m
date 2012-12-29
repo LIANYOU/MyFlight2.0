@@ -18,8 +18,11 @@
 #import "UseGoldPay.h"
 #import "flightContactVo.h"
 #import "flightPassengerVo.h"
-
+#import "flightItineraryVo.h"
+#import "payVo.h"
 #import "bookingGoFlightVo.h"
+#import "FlightBookingBusinessHelper.h"
+#import "bookingReturnFlightVo.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -854,6 +857,19 @@
         
         [trave getDate:^(NSString *schedule, NSString *postPay, int chooseBtnIndex) {
             
+            
+            /// **************  填写行程单配送信息
+            flightItinerary = [[flightItineraryVo alloc] init];
+            flightItinerary.deliveryType = @"0";
+            flightItinerary.address = nil;
+            flightItinerary.city = nil;
+            flightItinerary.mobile = nil;
+            flightItinerary.postCode = nil;
+            flightItinerary.catchUser = nil;
+            flightItinerary.isAccessibilityElement = NO;
+            
+            
+            
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             
             self.traveType = chooseBtnIndex;
@@ -964,8 +980,29 @@
     go.flightOrgin = @"B2B";
     
     
+    bookingReturnFlightVo * bookReturn = [[bookingReturnFlightVo alloc] init];
     
     
+    
+    payVo * pay  = [[payVo alloc] init];
+    pay.isNeedPayPwd = NO;
+    pay.isNeedAccount = NO;
+    pay.needNotSilver = NO;
+    pay.payPassword = nil;
+    pay.captcha = nil;
+    
+    flightContactVo * contactVo = [[flightContactVo alloc] init];
+    contactVo.name = [addPersonArr objectAtIndex:0];
+    contactVo.mobile = [addPersonArr objectAtIndex:1];
+    
+    [FlightBookingBusinessHelper flightBookingWithGoflight:nil
+                                         bookingGoFlightVo:go
+                                     bookingReturnFlightVo:bookReturn
+                                           flightContactVo:contactVo
+                                         flightItineraryVo:flightItinerary
+                                         flightPassengerVo:self.personArray
+                                                     payVo:pay
+                                                  delegate:self];
     
 }
 
