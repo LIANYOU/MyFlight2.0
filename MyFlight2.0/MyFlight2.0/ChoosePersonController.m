@@ -10,6 +10,11 @@
 #import "ChoosePersonCell.h"
 #import "AddPersonController.h"
 #import "AddPersonController.h"
+#import "AppConfigure.h"
+#import "UIQuickHelp.h"
+#import "CommontContactSingle.h"
+#import "CommonContact.h"
+#import "LoginBusiness.h"
 @interface ChoosePersonController ()
 {
     int childNumber;  // 儿童个数
@@ -41,6 +46,8 @@
     self.nameDic = [NSMutableDictionary dictionaryWithCapacity:5];
     self.identityNumberDic = [NSMutableDictionary dictionaryWithCapacity:5];
     self.typeDic = [NSMutableDictionary dictionaryWithCapacity:5];
+    self.flightPassengerIdDic = [NSMutableDictionary dictionaryWithCapacity:5];
+    self.certTypeDic = [NSMutableDictionary dictionaryWithCapacity:5];
     
     UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(10, 5, 30, 31);
@@ -64,7 +71,13 @@
     [backBtn2 release];
 
 
-    self.dataArr = [NSMutableArray arrayWithObjects:@"儿童",@"成人",@"儿童",@"成人",@"成人", nil];
+    self.dataArr = [[NSMutableArray alloc] init];
+    
+    LoginBusiness *bis =[[LoginBusiness alloc] init];
+        
+    [bis getCommonPassengerWithMemberId:Default_UserMemberId_Value andDelegate:self];
+    
+    [bis release];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -104,7 +117,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.dataArr.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -141,7 +154,12 @@
         cell.btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"ico_def_.png"]];
     }
     
-    cell.type.text = [self.dataArr objectAtIndex:indexPath.row];
+    
+    CommonContact * com = [self.dataArr objectAtIndex:indexPath.row];
+    
+    cell.name.text = com.name;
+    cell.type.text = com.type;
+    cell.identityNumber.text = com.certNo;
     
     [cell.btn addTarget:self action:@selector(selectMore:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -190,19 +208,24 @@
 {
     for(NSString * str in self.selectArr)
     {
-        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[str intValue] inSection:0];
-        ChoosePersonCell *cell = (ChoosePersonCell *)[self.showTableView cellForRowAtIndexPath:indexPath];
+        int index = [str intValue];
         
-        [self.nameDic setObject:cell.name.text forKey:str];
-        [self.typeDic setObject:cell.type.text forKey:str];
-        [self.identityNumberDic setObject:cell.identityNumber.text forKey:str];
+        CommonContact * com = [self.dataArr objectAtIndex:index];
+        
+        
+        [self.nameDic             setObject:com.name forKey:str];
+        [self.typeDic             setObject:com.type forKey:str];
+        [self.identityNumberDic   setObject:com.certNo  forKey:str];
+        [self.flightPassengerIdDic setObject:com.contactId forKey:str];
+        [self.certTypeDic          setObject:com.certType forKey:str];
+        
     }
-    
-    blocks(self.nameDic,self.identityNumberDic,self.typeDic,self.selectArr);
+
+    blocks(self.nameDic,self.identityNumberDic,self.typeDic,self.flightPassengerIdDic,self.certTypeDic,self.selectArr);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)getDate:(void (^) (NSMutableDictionary * name, NSMutableDictionary * identity ,NSMutableDictionary * type, NSMutableArray * arr))string
+-(void)getDate:(void (^) (NSMutableDictionary * name, NSMutableDictionary * identity ,NSMutableDictionary * type, NSMutableDictionary *flightPassengerIdDic,NSMutableDictionary * certTypeDic,NSMutableArray * arr))string
 {
     [blocks release];
     blocks = [string copy];
@@ -219,4 +242,41 @@
     [self setAddBtn:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - 
+
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+}
+
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+
+    CommontContactSingle *sin = [CommontContactSingle shareCommonContact];
+    
+    NSArray * arr = [NSArray arrayWithArray:sin.passengerArray];
+    
+    for (CommonContact * common in arr) {
+        [self.dataArr addObject:common];
+    }
+    
+    [self.showTableView reloadData];
+}
+
+
+
 @end

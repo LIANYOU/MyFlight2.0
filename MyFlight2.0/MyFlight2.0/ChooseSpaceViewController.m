@@ -62,6 +62,7 @@
     self.showTableView.dataSource = self;
     
     if (self.searchBackFlight != nil) {
+        
         data = self.searchBackFlight;
     }
     else{
@@ -107,7 +108,6 @@
 }
 -(void)lookReceive:(NSNotification *)not
 {
-    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
     self.lookReceive = [NSArray array];
     self.lookReceive = [[not userInfo] objectForKey:@"arr"];
     for (NSDictionary * dic_ in self.lookReceive) {
@@ -320,16 +320,20 @@
             
             SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:self.searchFlight.endPortThreeCode arr:self.searchFlight.startPortThreeCode date:self.goBackDate ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
             
-            self.searchFlight.pay = [self.payArr objectAtIndex:indexPath.row-1]; // 保存成人去程金额
+            self.searchFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue]; // 保存成人去程金额
+            
+            self.searchFlight.ticketCount = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"seatNum"];
+            if ([self.searchFlight.ticketCount isEqualToString:@"A"]) {
+                self.searchFlight.ticketCount = @"10";
+            }
+            self.searchFlight.childPrice = [self.childPayArr objectAtIndex:indexPath.row-1];
+            self.searchFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
+            self.searchFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
+     
             
             ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
-            
-            show.payMoney = [self.payArr objectAtIndex:indexPath.row-1];
-            show.childPayMoney = [self.childPayArr objectAtIndex:indexPath.row-1];   // 传递儿童的价格
-          //  NSLog(@"show.payMoney  %@, childPayMoney  %@",show.payMoney,show.childPayMoney);
-            show.airPort = searchAirPort;
-            show.cabin = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
-            
+
+            show.airPort = searchAirPort;            
             
             show.netFlag = 1;  // 等与1  ，在返回到返程列表的时候 不需要联网
             show.write = self;
@@ -339,39 +343,35 @@
         
         else
         {
+            
+            if (self.flag == 1) {
+                self.searchFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue];
+                self.searchFlight.ticketCount = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"seatNum"];
+                if ([self.searchFlight.ticketCount isEqualToString:@"A"]) {
+                    self.searchFlight.ticketCount = @"10";
+                }
+                self.searchFlight.childPrice = [self.childPayArr objectAtIndex:indexPath.row-1];
+                self.searchFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
+                self.searchFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
+            }
+            else{
+                self.searchBackFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue];                  
+                self.searchBackFlight.ticketCount = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"seatNum"];
+                if ([self.searchBackFlight.ticketCount isEqualToString:@"A"]) {
+                    self.searchBackFlight.ticketCount = @"10";
+                }
+                self.searchBackFlight.childPrice = [self.childPayArr objectAtIndex:indexPath.row-1];
+                self.searchBackFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
+                self.searchBackFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
+
+            }
+            
             WriteOrderViewController * insurance = [[WriteOrderViewController alloc] init];
             insurance.flag = self.flag;
-            
+
             insurance.searchDate = self.searchFlight;
             
             insurance.searchBackDate = self.searchBackFlight;
-
-//            insurance.searchDate.cabinNumber =  [insurance.searchDate.cabinNumberArr objectAtIndex:indexPath.row-1];
-//            
-//            insurance.searchBackDate.cabinNumber = [insurance.searchBackDate.cabinNumberArr objectAtIndex:indexPath.row-1];
-            
-//            NSLog(@"%d,%d",self.searchFlight.cabinsArr.count,self.searchBackFlight.cabinsArr.count);
-            
-//            insurance.searchDate.pay = [[self.searchFlight.cabinsArr objectAtIndex:indexPath.row-1]objectForKey:@"price"];
-//            
-//            insurance.searchBackDate.pay = [[self.searchBackFlight.cabinsArr objectAtIndex:indexPath.row-1] objectForKey:@"price"];
-            
-            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
-            
-            NSString * str = [self.payArr objectAtIndex:indexPath.row-1];
-            NSString * str2 = [self.childPayArr objectAtIndex:indexPath.row-1];
-            NSString * str1 = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
-            
-            insurance.goCabin = self.goCabin;
-            insurance.backCabin = str1;
-            
-            insurance.goPay = self.goPay;
-            insurance.backPay = str;
-            insurance.childGopay = self.childGoPay;
-            insurance.childBackPay = str2;
-            
-            NSLog(@"%@,%@",insurance.goPay,str);
-            NSLog(@"%@,%@",self.childGoPay,str2);  // 此处都儿童成人价格都正确
             
             [self.navigationController pushViewController:insurance animated:YES];
             [insurance release];

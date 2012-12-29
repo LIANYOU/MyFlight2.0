@@ -16,6 +16,10 @@
 #import "LogViewController.h"
 #import "DiscountCouponController.h"
 #import "UseGoldPay.h"
+#import "flightContactVo.h"
+#import "flightPassengerVo.h"
+
+#import "bookingGoFlightVo.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -53,21 +57,15 @@
 
 -(void)calculateAllPay
 {
-    
-    self.PerStanderPrice.text =[NSString stringWithFormat:@"￥%d",[self.goPay intValue] + [self.backPay intValue]] ;  // 票面价
-    
-    // self.PerStanderPrice.text = self.searchDate.standerPrice;
+    // *****  填写bigView里边的信息
+    self.PerStanderPrice.text =[NSString stringWithFormat:@"￥%d",self.searchDate.pay + self.searchBackDate.pay] ;  // 票面价
     self.personAdultBaf.text = [NSString stringWithFormat:@"￥%d",[self.searchDate.adultBaf intValue] + [self.searchBackDate.adultBaf intValue]];
     self.PersonConstructionFee.text = [NSString stringWithFormat:@"￥%d",[self.searchDate.constructionFee intValue] + [self.searchBackDate.constructionFee intValue]];
     self.Personinsure.text = @"￥0";   // 保险
     self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];
     
-    self.bigUpPayMoney.text = [NSString stringWithFormat:@"￥%d",([self.searchDate.adultBaf intValue]+[self.searchDate.constructionFee intValue]+goPay+backPay+[self.searchDate.constructionFee intValue]+[self.searchBackDate.adultBaf intValue])];  //  暂时还没有把保险加入总额；
-    self.allPay.text = [NSString stringWithFormat:@"￥%d",([self.searchDate.adultBaf intValue]+[self.searchDate.constructionFee intValue]+goPay+backPay+[self.searchDate.constructionFee intValue]+[self.searchBackDate.adultBaf intValue])];  //  暂时还没有把保险加入总额；
     
-    
-    
-    self.childStanderPrice.text = [NSString stringWithFormat:@"￥%d",[self.childBackPay intValue]+[self.childGopay intValue]];
+    self.childStanderPrice.text = [NSString stringWithFormat:@"￥%d",[self.searchDate.childPrice intValue] +[self.searchBackDate.childPrice intValue]];
     self.childBaf.text =[NSString stringWithFormat:@"￥%d", [self.searchDate.childBaf intValue] + [self.searchBackDate.childBaf intValue]];
     self.childConstructionFee.text =[NSString stringWithFormat:@"￥%d", [self.searchDate.childConstructionFee intValue] + [self.searchBackDate.childConstructionFee intValue]];
     self.childInsure.text = @"￥0";
@@ -75,59 +73,39 @@
     
     //********* 计算订单总额......
     
-    int personMoney = [self.backPay intValue]+[self.goPay intValue];   // 单程是时候最后赋值的是self.backPay
+    int personMoney = self.searchDate.pay + self.searchBackDate.pay;   // 单程是时候最后赋值的是self.backPay
     int airPortName = [self.searchDate.constructionFee intValue] + [self.searchBackDate.constructionFee intValue];
     int oil = [self.searchDate.adultBaf intValue]+[self.searchBackDate.adultBaf intValue];
-   // int allInsure = 0;  // 所有人要买就都买一份保险
     
-    int childPersonMoney = [self.childBackPay intValue] + [self.childGopay intValue];
+    int childPersonMoney = [self.searchDate.childPrice intValue] +[self.searchBackDate.childPrice intValue];
     int childAirPortName = [self.searchDate.childConstructionFee intValue] + [self.searchBackDate.childConstructionFee intValue];
     int childOil = [self.searchDate.childBaf intValue] + [self.searchBackDate.childBaf intValue];
     
     
     newPersonAllPay = (personMoney+airPortName+oil)*personNumber;
     newChildAllPay = (childPersonMoney+childAirPortName+childOil);
-    //newChildAllPay = (childPersonMoney+childAirPortName+childOil)*childNumber;
     
     finalPay = newPersonAllPay + newChildAllPay;
-  //  NSLog(@"%d,%d",newPersonAllPay,newChildAllPay);
     
-    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay+0];  // 暂时的 此处还没有添加保险金额
+    
+    self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay+0];
+    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay+0]; // 默认开始进入没有儿童
     self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay+0];
     
 }
 - (void)viewDidLoad
 {
-    
-    //
     personNumber = 1;  // 默认一个成人
     childNumber = 0;
     
-    [self calculateAllPay];
     
-   // self.cellTitleArr = [NSArray arrayWithObjects:@"乘机人",@"联系人",@"联系电话",@"购买保险",@"行程单",@"账户资金/优惠券抵用",@"活动促销减免", nil];
+    NSLog(@"%d,%@",self.searchDate.pay,self.searchBackDate.childPrice);
+    NSLog(@"%@,%@",self.searchDate.ticketCount,self.searchBackDate.ticketCount);
+    
+    [self calculateAllPay];
+
     self.firstCelTextArr = [NSMutableArray arrayWithObject:@""];
     self.navigationItem.title = @"填写订单";
-    
-    // NSLog(@"-------%d",[self.goPay intValue]);  // 如果是单程的时候按照self.backPay 计算。
-     goPay = [self.goPay intValue];
-     backPay = [self.backPay intValue];
-    
-    int airPortName = [self.searchDate.constructionFee intValue];
-    int oil = [self.searchDate.adultBaf intValue];
-
-    
-    self.upPayMoney.text = [NSString stringWithFormat:@"%d",([self.goPay intValue]+[self.backPay intValue]+airPortName+oil)];  // 暂时的 此处还没有添加保险金额
-    self.allPay.text = [NSString stringWithFormat:@"%d",([self.goPay intValue]+[self.backPay intValue]+airPortName+oil)];
-    
-//    NSLog(@"%@,%@",self.searchDate.personPrice,self.searchDate.childPrice);
-//    NSLog(@"%@",self.searchDate.cabinNumber);
-//    NSLog(@"%@,%@",self.searchBackDate.personPrice,self.searchBackDate.childPrice);
-//    NSLog(@"%@",self.searchBackDate.cabinNumber);
-
-    //******** headView
-
-    
     
     self.orderTableView.delegate = self;
     self.orderTableView.dataSource = self;
@@ -157,6 +135,7 @@
 
     self.indexArr = [[NSMutableArray alloc] init];
     addPersonArr = [[NSMutableArray alloc]initWithObjects:@" ",@" ", nil];
+    self.indexGoldArr = [[NSMutableArray alloc] initWithCapacity:5];
     
     self.tempView = self.headView;
     self.headViewHegiht = 40;
@@ -428,7 +407,7 @@
             cell.endTime.text = self.searchDate.endTime;
             cell.startAirPortName.text = self.searchDate.startPortName;
             cell.endAirPortName.text = self.searchDate.endPortName;
-            cell.plantType.text = self.goCabin;
+            cell.plantType.text = self.searchDate.cabinNumber;
             
             cell.date.text = self.searchDate.beginDate;
                        
@@ -453,7 +432,7 @@
             cell.endTime.text = self.searchBackDate.endTime;
             cell.startAirPortName.text = self.searchBackDate.startPortName;
             cell.endAirPortName.text = self.searchBackDate.endPortName;
-            cell.plantType.text = self.backCabin;
+            cell.plantType.text = self.searchBackDate.cabinNumber;
             cell.date.text = self.searchBackDate.backDate;
             
             return cell;
@@ -587,7 +566,7 @@
                 cell.endTime.text = self.searchDate.endTime;
                 cell.startAirPortName.text = self.searchDate.startPortName;
                 cell.endAirPortName.text = self.searchDate.endPortName;
-                cell.plantType.text = self.backCabin;
+                cell.plantType.text = self.searchDate.cabinNumber;
                 cell.date.text = self.searchDate.beginDate;
                 
                 return cell;
@@ -681,6 +660,7 @@
                     }
                     if (Default_IsUserLogin_Value) {
                         
+                        cell.firLable.text = @"";
                         return cell;
                         
                     }
@@ -730,30 +710,75 @@
             
             stringAfterJoin = @"";
             
-            [choose getDate:^(NSMutableDictionary *name, NSMutableDictionary *identity, NSMutableDictionary *type, NSMutableArray * arr)
-            {
+            [choose getDate:^(NSMutableDictionary * name, NSMutableDictionary * identity ,NSMutableDictionary * type, NSMutableDictionary *flightPassengerIdDic,NSMutableDictionary * certTypeDic,NSMutableArray * arr)
+             {
+                 
+                 
                 
-                self.indexArr = arr;   // 把后边添加的标记的联系人传过来
-                
-                for (int i = 0; i<name.allKeys.count; i++) {
-                    
-                    NSString * str1 = [name objectForKey:[name.allKeys objectAtIndex:i]];
-                    NSString * str2 = [identity objectForKey:[identity.allKeys objectAtIndex:i]];
-                    NSString * str3 = [type objectForKey:[type.allKeys objectAtIndex:i]];
-                    
-                    NSString * string = [NSString stringWithFormat:@"%@%@\n%@",str1,str3,str2];
-                   
-                    if ([str3 isEqualToString:@"儿童"]) {
-                        childNumber = childNumber + 1;
+                 
+                 
+                 
+                 
+                 if (type.allKeys.count > [self.searchDate.ticketCount intValue]) {
+                     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请减少乘机人数目。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                     [alert show];
+                     [alert release];
+                     return ;
+                 }
+               
+                 if (self.searchBackDate.ticketCount != NULL) {
+                     
+                     if (type.allKeys.count > [self.searchBackDate.ticketCount intValue]) {
+
+                         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请减少乘机人数目。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                         [alert show];
+                         [alert release];
+                         return ;
+                     }
+                 }
+   
+                 
+                 self.indexArr = arr;   // 把后边添加的标记的联系人传过来
+                 
+                 
+                 self.personArray = [NSMutableArray array];
+                 
+                 
+                 for (int i = 0; i<name.allKeys.count; i++) {
+                     
+                     NSString * str1 = [name objectForKey:[name.allKeys objectAtIndex:i]];
+                     NSString * str2 = [identity objectForKey:[identity.allKeys objectAtIndex:i]];
+                     NSString * str3 = [type objectForKey:[type.allKeys objectAtIndex:i]];
+                     NSString * str4 = [flightPassengerIdDic objectForKey:[flightPassengerIdDic.allKeys objectAtIndex:i]];
+                     NSString * str5 = [certTypeDic objectForKey:[certTypeDic.allKeys objectAtIndex:i]];
+                     
+                     
+                     // *******  加入到填写订单时候的 flightPassengerVo
+                     flightPassengerVo * passenger = [[flightPassengerVo alloc] init];
+                     
+                     passenger.name = str1;
+                     passenger.certNo = str2;
+                     passenger.type = str3;
+                     passenger.flightPassengerId = str4;
+                     passenger.certType = str5;
+                     
+                     [self.personArray addObject:passenger];
+                     [passenger release];
+                     // **** 
+                     
+                     
+                     NSString * string = [NSString stringWithFormat:@"%@%@\n%@",str1,str3,str2];
+                     
+                     if ([str3 isEqualToString:@"儿童"]) {
+                         childNumber = childNumber + 1;
                     }
-                    
-                   
-                   // NSLog(@"%@,%@,%@",str1,str2,str3);
+
                     [self.stringArr addObject:string];
                 }
                   
                 personNumber = type.allKeys.count-childNumber;  // 此处获得了选择的成人和儿童的人数
                 
+   
                 for (int i = 0; i<self.stringArr.count; i++) {
                     
                     if ([stringAfterJoin isEqualToString:@""]) {
@@ -764,8 +789,7 @@
                     }
                     
                 }
-                
-             //   NSLog(@"ertong %d,%d",personNumber,childNumber);
+
                 // 动态修改定单的金额数
                 self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];  //  改变成人和儿童的数目
                 self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
@@ -790,7 +814,6 @@
         
         [insurance getDate:^(NSString *idntity,NSString * type) {
    
-            NSLog(@"%@,%@",idntity,type);
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             
             self.swithType = type;   // 记录开关状态
@@ -884,11 +907,65 @@
         DiscountCouponController * discount = [[DiscountCouponController alloc] init];
         
         discount.gold = gold;
+        discount.indexArr = self.indexGoldArr;
+        
+        [discount getDate:^(NSString *swithStation, NSString *silverOrDiscount, NSString *gold, NSMutableArray *arr) {
+            
+            self.indexGoldArr = arr;
+            
+            WirterOrderTwoLineCell * cell = (WirterOrderTwoLineCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
+            
+            cell.secLabel.text = [NSString stringWithFormat:@"%@/%@",silverOrDiscount,gold];
+            
+            NSLog(@"%@,%@,%@,%@",swithStation,silverOrDiscount,gold,arr);
+        }];
+        
         [self.navigationController pushViewController:discount animated:YES];
         [discount release];
     }
 }
 - (IBAction)payMoney:(id)sender {
+    bookingGoFlightVo * go = [[bookingGoFlightVo alloc] init];
+    
+    go.aircraftType = self.searchDate.palntType;
+    
+    go.airlineCompanyCode = self.searchDate.airPort;
+    
+    go.arrivalAirportCode = self.searchDate.endPortThreeCode;
+    
+    go.arrivalDateStr = self.searchDate.beginDate;
+    
+    go.arrivalTerminal = nil;
+    
+    go.arrivalTimeStr = self.searchDate.endTime;
+    
+    go.cabinCode = self.searchDate.cabinCode;
+    
+    go.departureAirportCode = self.searchDate.startPortThreeCode;
+    
+    go.departureDateStr = self.searchDate.beginDate;
+    
+    go.departureTerminal = nil;
+    
+    go.departureTimeStr = self.searchDate.beginTime;
+    
+    go.flightNo = self.searchDate.temporaryLabel; 
+    
+    go.flightType = @"1";
+    
+    go.orderType = @"0";
+    
+    go.prodType = @"0";
+    
+    go.rmk = nil;
+    
+    go.ticketType = @"0";
+    
+    go.flightOrgin = @"B2B";
+    
+    
+    
+    
     
 }
 

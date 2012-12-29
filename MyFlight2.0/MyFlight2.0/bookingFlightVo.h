@@ -12,17 +12,17 @@
 
 @interface bookingFlightVo : NSObject
 
-@property(nonatomic,retain)NSString *aircraftType; //机型
+@property(nonatomic,retain)NSString *aircraftType; //..机型
 
-@property(nonatomic,retain)NSString *airlineCompanyCode; //航空公司
+@property(nonatomic,retain)NSString *airlineCompanyCode; //..航空公司
 
-@property(nonatomic,retain)NSString *arrivalAirportCode; //到达机场code
+@property(nonatomic,retain)NSString *arrivalAirportCode; //..到达机场code
 
-@property(nonatomic,retain)NSString *arrivalDateStr; //到达日期（2010-12-20）
+@property(nonatomic,retain)NSString *arrivalDateStr; //..到达日期（2010-12-20）
 
-@property(nonatomic,retain)NSString *arrivalTerminal; //到达机场航站   可不填
+@property(nonatomic,retain)NSString *arrivalTerminal; //..到达机场航站   可不填
 
-@property(nonatomic,retain)NSString *arrivalTimeStr; //到达时间（11:35）
+@property(nonatomic,retain)NSString *arrivalTimeStr; //..到达时间（11:35）
 
 @property(nonatomic,retain)NSString *cabinCode;  //舱位编码
 

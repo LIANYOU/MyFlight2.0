@@ -26,4 +26,9 @@
     // Configure the view for the selected state
 }
 
+- (void)dealloc {
+    [_firLable release];
+    [_secLabel release];
+    [super dealloc];
+}
 @end

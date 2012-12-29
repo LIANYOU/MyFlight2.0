@@ -84,6 +84,11 @@
 @property (nonatomic,retain) NSString * swithType;  // 记录填写保险的状态
 @property (nonatomic,assign) int traveType;  // 记录填写行程单状态
 
+
+@property (nonatomic,retain) NSMutableArray * indexGoldArr;  // 记录使用优惠券是选择的那个个选项
+
+@property (nonatomic,retain) NSMutableArray * personArray;   
+
 - (IBAction)payMoney:(id)sender;  // 去支付订单
 - (IBAction)changeToBigHeadView:(id)sender;
 - (IBAction)changeToSmallHeadView:(id)sender;
