@@ -23,6 +23,8 @@
 #import "bookingGoFlightVo.h"
 #import "FlightBookingBusinessHelper.h"
 #import "bookingReturnFlightVo.h"
+#import "UIQuickHelp.h"
+
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -137,7 +139,7 @@
     [backBtn1 release];
 
     self.indexArr = [[NSMutableArray alloc] init];
-    addPersonArr = [[NSMutableArray alloc]initWithObjects:@" ",@" ", nil];
+    addPersonArr = [[NSMutableArray alloc]initWithObjects:@"王健",@"13120397709", nil];
     self.indexGoldArr = [[NSMutableArray alloc] initWithCapacity:5];
     
     self.tempView = self.headView;
@@ -866,9 +868,9 @@
             flightItinerary.mobile = nil;
             flightItinerary.postCode = nil;
             flightItinerary.catchUser = nil;
-            flightItinerary.isAccessibilityElement = NO;
+            flightItinerary.isPromptMailCost = @"0";
             
-            
+            NSLog(@"--------------------------------------------------- %@",flightItinerary.deliveryType);
             
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             
@@ -991,11 +993,14 @@
     pay.payPassword = nil;
     pay.captcha = nil;
     
+    NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:@"0",KEY_FlightBook_prodType,@"hello",KEY_FlightBook_rmk, nil];
+    
+    
     flightContactVo * contactVo = [[flightContactVo alloc] init];
     contactVo.name = [addPersonArr objectAtIndex:0];
     contactVo.mobile = [addPersonArr objectAtIndex:1];
     
-    [FlightBookingBusinessHelper flightBookingWithGoflight:nil
+    [FlightBookingBusinessHelper flightBookingWithGoflight:dic
                                          bookingGoFlightVo:go
                                      bookingReturnFlightVo:bookReturn
                                            flightContactVo:contactVo
@@ -1141,4 +1146,32 @@
     [self.navigationController pushViewController:log animated:YES];
     [log release];
 }
+
+
+#pragma mark -
+
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+}
+
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+
+    
+}
+
 @end

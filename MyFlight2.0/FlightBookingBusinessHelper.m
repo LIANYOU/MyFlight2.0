@@ -386,12 +386,23 @@
         
         NSString *data = [formRequst responseString];
         
+        NSString *codeRequ =[NSString stringWithFormat:@"%d",[formRequst responseStatusCode]];
+        
+        CCLog(@"网络返回的请求码是 %@",codeRequ);
+        
+        
+        
+        
         CCLog(@"网络返回的数据为：%@",data);
         
         NSError *error = nil;
         
         
         NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        
+        message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+        
+        NSLog(@"服务器返回的信息为：%@",message);
         
         if (!error) {
             

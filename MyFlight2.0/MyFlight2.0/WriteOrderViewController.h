@@ -14,10 +14,11 @@
 #import "WriterOrderCommonCell.h"
 #import "SearchFlightData.h"
 #import "flightItineraryVo.h"
+#import "ServiceDelegate.h"
 #import <AddressBookUI/AddressBookUI.h>
 
 
-@interface WriteOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ABPersonViewControllerDelegate,ABNewPersonViewControllerDelegate,ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate>
+@interface WriteOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ABPersonViewControllerDelegate,ABNewPersonViewControllerDelegate,ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate,ServiceDelegate>
 {
     IBOutlet UILabel *orderMoney;
     NSString * stringAfterJoin ;  // 拼接好的string
