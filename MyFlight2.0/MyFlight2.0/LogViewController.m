@@ -325,7 +325,10 @@
     
     [loginBusiness loginWithOAuth:userInfoDict andDelegate:self];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:sinaweiboLogined forKey:@"sinaweiboUserInfo"];
 }
+
 //记住密码按钮
 
 #pragma mark TencentQQ Delegate
@@ -336,6 +339,8 @@
     [userInfoDict setObject:_tencentOAuth.accessToken forKey:@"token"];
     
     [loginBusiness loginWithOAuth:userInfoDict andDelegate:self];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:_tencentOAuth forKey:@"tencentQQUserinfo"];
 }
 
 #pragma mark TencentWeibo Delegate
@@ -343,13 +348,14 @@
 //登录成功回调
 - (void)onSuccessLogin
 {
-
     NSMutableDictionary *userInfoDict = [[NSMutableDictionary alloc] init];
     [userInfoDict setObject:weiboEngine.openId forKey:@"usrId"];
     [userInfoDict setObject:@"tencentWeibo" forKey:@"source"];
     [userInfoDict setObject:weiboEngine.accessToken forKey:@"token"];
     
     [loginBusiness loginWithOAuth:userInfoDict andDelegate:self];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:weiboEngine forKey:@"tencentweiboUserInfo"];
 }
 
 //登录失败回调
