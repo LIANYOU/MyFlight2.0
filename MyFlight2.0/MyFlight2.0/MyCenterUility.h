@@ -28,6 +28,10 @@
 //拼接完成可用
 #define LOGIN_URL GET_RIGHT_URL_WITH_Index(LOGIN_URL_Index)
 
+//第三方登陆后，提交信息url
+#define OAUTHINFOCOMIT_URL_INDEX @"/web/phone/member/thirdPartyLogin.jsp"
+#define OAUTHINFOCOMIT_URL GET_RIGHT_URL_WITH_Index(OAUTHINFOCOMIT_URL_INDEX)
+
 #define KEY_Login_Account @"account" //登录账号
 #define KEY_Login_Pwd @"pwd" //登陆密码
 #define KEY_Login_Type @"type" //登录类型

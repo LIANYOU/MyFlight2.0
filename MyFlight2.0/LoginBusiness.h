@@ -17,6 +17,8 @@
 //登录
 - (void) loginWithName:(NSString *) name password:(NSString *) passwd andDelegate:(id<ServiceDelegate>) delegate;
 
+//第三方登陆
+-(void) loginWithOAuth:(NSMutableDictionary *) userInfo andDelegate:(id)delegate;
 
 //注册 
 - (void) registerWithAccount:(NSString *) name password:(NSString *) passwd yaCode:(NSString *)yzCode andDelegate:(id<ServiceDelegate>) delegate;
@@ -78,9 +80,6 @@
 //心愿旅行卡 充值
 
 - (void) makeAccountFullWithRechargeCardNo:(NSString *) cardNo cardPasswd:(NSString *) pwd andDelegate:(id<ServiceDelegate>) delegate;
-
-
-
 
 
 //- (void) makeAccountFullWith 

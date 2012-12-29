@@ -341,7 +341,91 @@
     return true;
     
 }
-
+//第三方登陆成功后提交到服务器
++(BOOL) submitOAuthDateToServer:(NSMutableDictionary *) userOAuthInfo delegate:(id<ServiceDelegate>) delegate{
+    NSString *usrId = [userOAuthInfo objectForKey:@"usrId"];
+    NSString *source = [userOAuthInfo objectForKey:@"source"];
+    NSString *token = [userOAuthInfo objectForKey:@"token"];
+    
+    
+    NSString *realUrl = [NSString stringWithFormat:@"usrId=%@&source=%@&token=%@&%@",usrId,source,token,PUBLIC_Parameter];
+    CCLog(@"realUrl =%@",realUrl);
+    
+    __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
+    __block NSString *message = nil;
+    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:OAUTHINFOCOMIT_URL]];
+    
+    [formRequst setPostValue:usrId forKey:@"usrId"];
+    [formRequst setPostValue:source forKey:@"source"];
+    [formRequst setPostValue:token forKey:@"token"];
+    [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
+    
+    //    [formRequst setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [formRequst setRequestMethod:@"POST"];
+    [formRequst setCompletionBlock:^{
+        NSString *data = [formRequst responseString];
+        //        CCLog(@"网络返回的数据为：%@",data);
+        NSError *error = nil;
+        NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        if (!error) {
+            CCLog(@"json解析格式正确");
+            message = [[[dic objectForKey:KEY_result] objectForKey:KEY_message] retain];
+            NSLog(@"服务器返回的信息为：%@",message);
+            CCLog(@"message 长度为%d",[message length]);
+            CCLog(@"成功登陆后返回的数据：%@",dic);
+            if ([message length]==0) {
+                NSLog(@"成功登陆后返回的数据：%@",data);
+                //执行保存用户信息
+                IsLoginInSingle *single = [IsLoginInSingle shareLoginSingle];
+                single.isLogin = YES;
+                single.token = [dic objectForKey:KEY_Account_token];
+                single.userAccount.memberId = [dic objectForKey:KEY_Account_MemberId];
+                single.userAccount.email  =[dic objectForKey:KEY_Account_Email];
+                single.userAccount.mobile = [dic objectForKey:KEY_Account_Mobile];
+                single.userAccount.code = [dic objectForKey:KEY_Account_Code];
+                NSUserDefaults *defaultUser = [NSUserDefaults standardUserDefaults];
+                //用户登录状态
+                [defaultUser setBool:YES forKey:KEY_Default_IsUserLogin];
+                //用户ID
+                [defaultUser setObject:single.userAccount.memberId forKey:KEY_Default_MemberId];
+                //                用户token
+                [defaultUser setObject:single.token forKey:KEY_Default_Token];
+                //                用户手机号码
+                [defaultUser setObject:single.userAccount.mobile forKey:KEY_Default_UserMobile];
+                [defaultUser setObject:single.userAccount.code forKey:KEY_Default_Code];
+                [defaultUser synchronize];
+                CCLog(@"用户的id为：%@",Default_UserMemberId_Value);
+                CCLog(@"用户code为%@",single.userAccount.code);
+                CCLog(@"用户手机号码为：%@", [defaultUser objectForKey:KEY_Default_UserMobile]);
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
+                    CCLog(@"用户代理不为空");
+                    [delegate requestDidFinishedWithRightMessage:messageDic];
+                    
+                }
+            } else{
+                //message 长度不为0 有错误信息
+                //                [messageDic setObject:message forKey:KEY_message];
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+            }
+        } else{
+            NSLog(@"解析有错误");
+            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+            [delegate requestDidFinishedWithFalseMessage:messageDic];
+            return ;
+        }
+    }];
+    
+    [formRequst setFailedBlock:^{
+        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+        [delegate requestDidFailed:messageDic];
+        CCLog(@"网络访问失败");
+    }];
+    
+    [formRequst startAsynchronous];
+    
+    //    [messageDic autorelease];
+    return true;
+}
 
 
 #pragma mark -

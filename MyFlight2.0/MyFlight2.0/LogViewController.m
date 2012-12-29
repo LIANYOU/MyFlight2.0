@@ -29,6 +29,8 @@
 @end
 
 @implementation LogViewController
+@synthesize weiboEngine;
+@synthesize sinaweibo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,8 +46,33 @@
 {
     [super viewDidLoad];
     
+    //新浪微博登陆初始化定义
+    sinaweibo = [[SinaWeibo alloc] initWithAppKey:sinaWeiboAppKey appSecret:sinaWeiboAppSecret appRedirectURI:sinaWeiboAppRedirectURI andDelegate:self];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *sinaweiboInfo = [defaults objectForKey:@"SinaWeiboAuthData"];
+    if ([sinaweiboInfo objectForKey:@"AccessTokenKey"] && [sinaweiboInfo objectForKey:@"ExpirationDateKey"] && [sinaweiboInfo objectForKey:@"UserIDKey"])
+    {
+        sinaweibo.accessToken = [sinaweiboInfo objectForKey:@"AccessTokenKey"];
+        sinaweibo.expirationDate = [sinaweiboInfo objectForKey:@"ExpirationDateKey"];
+        sinaweibo.userID = [sinaweiboInfo objectForKey:@"UserIDKey"];
+    }
     
+    //腾讯QQ登陆初始化定义
+    _permissions =  [[NSArray arrayWithObjects:
+					  @"get_user_info",@"add_share", @"add_topic",@"add_one_blog", @"list_album",
+					  @"upload_pic",@"list_photo", @"add_album", @"check_page_fans",nil] retain];
+	
+	_tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"100353306"
+											andDelegate:self];
+	_tencentOAuth.redirectURI = @"www.qq.com";
 
+    //腾讯微博登陆初始化定义
+    TCWBEngine *engine = [[TCWBEngine alloc] initWithAppKey:WiressSDKDemoAppKey andSecret:WiressSDKDemoAppSecret andRedirectUrl:@"http://www.51you.com/mobile/myflight.html"];
+    [engine setRootViewController:self];
+    self.weiboEngine = engine;
+    [engine release];
+    
+    
     //默认设置先回到我的个人中心
    // self.loginSuccessReturnType = Login_Success_ReturnMyCenterDefault_Type;
 
@@ -264,28 +291,81 @@
 
 //找回密码
 - (IBAction)LookForPassword:(id)sender {
-    
-    
     LookForPasswordFirstStepViewController *controller =[[LookForPasswordFirstStepViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
     
 }
 
 - (IBAction)LoginWithQQ:(id)sender {
-    
-    
+    [_tencentOAuth authorize:_permissions inSafari:NO];
 }
 
 - (IBAction)LoginWithTencentWeiBo:(id)sender {
+    [weiboEngine logInWithDelegate:self
+                         onSuccess:@selector(onSuccessLogin)
+                         onFailure:@selector(onFailureLogin:)];
 }
+
 
 - (IBAction)LoginWithWeiXin:(id)sender {
 }
 
 - (IBAction)LoginWithSinaWeiBo:(id)sender {
+    [sinaweibo logIn];
 }
 
+#pragma mark --SinaWeibo functions
+
+#pragma mark SinaWeibo Delegate
+-(void) sinaweiboDidLogIn:(SinaWeibo *)sinaweiboLogined{
+    NSMutableDictionary *userInfoDict = [[NSMutableDictionary alloc] init];
+    [userInfoDict setObject:sinaweiboLogined.userID forKey:@"usrId"];
+    [userInfoDict setObject:@"sinaweibo" forKey:@"source"];
+    [userInfoDict setObject:sinaweiboLogined.accessToken forKey:@"token"];
+    
+    [loginBusiness loginWithOAuth:userInfoDict andDelegate:self];
+    
+}
 //记住密码按钮
+
+#pragma mark TencentQQ Delegate
+- (void)tencentDidLogin {
+    NSMutableDictionary *userInfoDict = [[NSMutableDictionary alloc] init];
+    [userInfoDict setObject:_tencentOAuth.openId forKey:@"usrId"];
+    [userInfoDict setObject:@"tencentQQ" forKey:@"source"];
+    [userInfoDict setObject:_tencentOAuth.accessToken forKey:@"token"];
+    
+    [loginBusiness loginWithOAuth:userInfoDict andDelegate:self];
+}
+
+#pragma mark TencentWeibo Delegate
+
+//登录成功回调
+- (void)onSuccessLogin
+{
+
+    NSMutableDictionary *userInfoDict = [[NSMutableDictionary alloc] init];
+    [userInfoDict setObject:weiboEngine.openId forKey:@"usrId"];
+    [userInfoDict setObject:@"tencentWeibo" forKey:@"source"];
+    [userInfoDict setObject:weiboEngine.accessToken forKey:@"token"];
+    
+    [loginBusiness loginWithOAuth:userInfoDict andDelegate:self];
+}
+
+//登录失败回调
+- (void)onFailureLogin:(NSError *)error
+{
+    NSString *message = [[NSString alloc] initWithFormat:@"%@",[NSNumber numberWithInteger:[error code]]];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[error domain]
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+    [message release];
+}
+
 
 #pragma mark -
 #pragma mark 是否记住密码

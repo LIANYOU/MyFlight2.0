@@ -13,6 +13,8 @@
 #import "AirPortDataBase.h"
 #import "AirPortDataBaseSingleton.h"
 #import "IsLoginInSingle.h"
+#import "LogViewController.h"
+
 @implementation AppDelegate
 @synthesize window=_window,viewController = _viewController;
 
@@ -39,6 +41,7 @@
     self.window.rootViewController = nav;
     [nav release];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -67,8 +70,7 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -85,7 +87,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
-    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
@@ -101,5 +102,13 @@
     single.isLogin = NO;
     
 }
+/**
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    NSLog(@"handurl is :%@",url);
+    NSString *urlString = [NSString stringWithFormat:@"%@",url];
+    
+    return [self.sinaweibo handleOpenURL:url];
+}
+**/
 
 @end

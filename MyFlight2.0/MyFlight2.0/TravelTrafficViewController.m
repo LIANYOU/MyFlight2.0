@@ -42,7 +42,7 @@
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.font = [UIFont systemFontOfSize:14];
-    navLabel.textAlignment = NSTextAlignmentRight;
+    navLabel.textAlignment = UITextAlignmentRight;
     
     navLabel.text = [NSString stringWithFormat:@"%@市区-机场",self.airPortName];
     

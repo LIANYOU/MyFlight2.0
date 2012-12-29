@@ -26,6 +26,11 @@
     
 }
 
+//新浪微博登陆
+-(void) loginWithOAuth:(NSMutableDictionary *) userInfo andDelegate:(id)delegate{
+    [LoginInNetworkHelper submitOAuthDateToServer:userInfo delegate:delegate];
+}
+
 //注册 密码可能要求输入确认密码
 - (void) registerWithAccount:(NSString *)name password:(NSString *)passwd yaCode:(NSString *)yzCode andDelegate:(id<ServiceDelegate>)delegate{
     
@@ -201,4 +206,5 @@
     
     
 }
+
 @end

@@ -9,17 +9,33 @@
 #import <UIKit/UIKit.h>
 #import "ServiceDelegate.h"
 #import "AppConfigure.h"
+#import "SinaWeibo.h"
+#import "AppDelegate.h"
+#import "SinaWeibo.h"
+#import "TencentOAuth.h"
+#import "TCWBEngine.h"
+
 //登陆界面  
-@interface LogViewController : UIViewController<ServiceDelegate>
+@interface LogViewController : UIViewController<ServiceDelegate,SinaWeiboDelegate,TencentSessionDelegate>
 {
     IBOutlet UITextField *logPassword;   // 登陆密码
     IBOutlet UITextField *logNumber;     // 登陆账号
     
     IBOutlet UIScrollView *ScrollerView;
     
+    //新浪微博定义
+    SinaWeibo *sinaweibo;
+    NSDictionary *userInfo; //存储通过新浪微博账号登陆的，用户信息
+    
+    //腾讯QQ微博登陆定义
+    TencentOAuth* _tencentOAuth;
+    NSMutableArray* _permissions;
+    
+    //腾讯微博登陆定义
+    TCWBEngine                  *weiboEngine;
 }
-
-
+@property (nonatomic, retain) TCWBEngine   *weiboEngine;
+@property (readonly, nonatomic) SinaWeibo *sinaweibo;
 //属性 传值 记录 登录的类型 
 @property(nonatomic,retain)NSString  *loginSuccessReturnType;
 

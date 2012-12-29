@@ -14,6 +14,11 @@
 //登录操作 
 + (BOOL) requestWithUrl:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
 
+//第三方登陆成功后提交到服务器
+//http://223.202.36.172:8380/web/phone/member/thirdPartyLogin.jsp
++(BOOL) submitOAuthDateToServer:(NSMutableDictionary *) userOAuthInfo delegate:(id<ServiceDelegate>) delegate;
+
+
 //注册操作 
 + (BOOL) registerWithUrl:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
 
@@ -61,9 +66,6 @@
 
 //用心愿旅行卡充值
 + (BOOL) makeAccountFullWithRechargeCardNo:(NSString *) cardNo cardPasswd:(NSString *) pwd andDelegate:(id<ServiceDelegate>) delegate;
-
-
-
 
 
 @end
