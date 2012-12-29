@@ -17,6 +17,13 @@
 
 @property(nonatomic,retain)NSString *type; //乘客类型 ：02儿童 01成人
 
+@property(nonatomic,retain)NSString *goInsuranceNum; //去程保险数
+@property(nonatomic,retain)NSString *returnInsuranceNum; //返程保险数
+
+
+
+
+
 - (id) initWithType:(NSString *) type certType:(NSString *)certType name:(NSString *)name flightPassengerId:(NSString *) flightPassengerId certNo:(NSString *) certNo;
 
 

@@ -1309,7 +1309,6 @@
 		145394EF166F220D00417F61 /* MyFlight2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				1469874D1680300900E9B30D /* service */,
 				148059D01676E6BE00836353 /* configure */,
 				180E223C16718FFF002A7228 /* RelatedResources */,
 				1427937F167078DA00E2E1E3 /* images */,
@@ -1807,12 +1806,9 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-
 				18C48A23168D8AEE00A981A4 /* useDiscount */,
 				18E8B671168C9A58009EC8C5 /* scheduleFlight */,
-
 				149B77F2168D42FE006281A3 /* flightBooking */,
-
 				189F5D44168A00F700A3494F /* attentionFlight */,
 				145A2D861685EC85000DAAA1 /* historyCheck */,
 				14698717167ED85800E9B30D /* Login */,
@@ -1855,6 +1851,7 @@
 			isa = PBXGroup;
 			children = (
 				18AD32F3168C6ED10065BF08 /* chooseSeat */,
+				1469874D1680300900E9B30D /* service */,
 				18D196C6168161CC00FEE73A /* TravelAssistant */,
 				18E37CF6167DAC2E0086B3F8 /* FlightCondition */,
 				18E37CE2167D7FDF0086B3F8 /* More */,
@@ -2829,7 +2826,6 @@
 				18AD3308168C6EF40065BF08 /* ChooseSeatOnlineViewController.m in Sources */,
 				18AD330A168C6EF40065BF08 /* FlightInformationViewController.m in Sources */,
 				18AD330C168C6EF40065BF08 /* PickSeatViewController.m in Sources */,
-
 				18E8B675168C9AAC009EC8C5 /* OrderFlight.m in Sources */,
 				18C48A07168D4C2000A981A4 /* AddPersonController.m in Sources */,
 				18C48A09168D4C2000A981A4 /* AddPersonSwitchCell.m in Sources */,
@@ -2839,7 +2835,6 @@
 				18C48A1B168D838100A981A4 /* UseDiscountCell.m in Sources */,
 				18C48A20168D86FF00A981A4 /* GoldCoinCell.m in Sources */,
 				18C48A26168D8B3A00A981A4 /* UseGoldPay.m in Sources */,
-
 				149B77F7168D46C4006281A3 /* FlightBookingBusinessHelper.m in Sources */,
 				149B77FB168D519C006281A3 /* flightContactVo.m in Sources */,
 				149B77FF168D529D006281A3 /* flightItineraryVo.m in Sources */,
@@ -2848,7 +2843,6 @@
 				149B780B168D8132006281A3 /* bookingGoFlightVo.m in Sources */,
 				149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */,
 				149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
