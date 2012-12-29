@@ -44,6 +44,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"返回金币数目" object:nil];
     [self.gold searchGold];
     
+    
+    self.swithStation = @"YES";  // 默认开关是开着的
+    
+    
+    self.selectArr = [NSMutableArray arrayWithCapacity:5];
+    self.selectArr = self.indexArr;
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -144,6 +151,27 @@
             cell.name.text = @"使用优惠券";
         }
         
+        cell.selectBtn.tag=indexPath.row;
+        
+        selectedSign=NO;
+        
+        if (self.selectArr.count!=0) {
+            
+            for (NSString *thisRow in self.selectArr) {
+                int a=[thisRow intValue];
+                if (indexPath.row==a) {
+                    selectedSign=YES;
+                    cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
+                    break;
+                }
+            }
+        }
+        if (selectedSign==NO) {
+            cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+        }
+
+        
+        [cell.selectBtn addTarget:self action:@selector(selectMore:) forControlEvents:UIControlEventTouchUpInside];
         
         return cell;
 
@@ -170,6 +198,42 @@
     }
 }
 
+
+#pragma mark - 点选时的操作
+
+-(void)selectMore:(UIButton *)btn
+{
+    
+    
+    if (self.selectArr.count!=0) {
+        for (NSString *thisRow in self.selectArr) {
+            
+            int a=[thisRow intValue];
+            if (btn.tag==a) {
+       
+                [self.selectArr removeObject:thisRow];
+                
+                btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+                return;
+            }
+            else{
+                UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:a inSection:0]];
+                cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+                
+                [self.selectArr removeAllObjects];
+                                                            
+            }
+        }
+    }
+
+
+    [self.selectArr addObject: [NSString stringWithFormat:@"%d",btn.tag]];
+    
+    btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
+    
+ 
+
+}
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -197,18 +261,47 @@
 
 -(void)back
 {
+    NSString * string = nil;
+    NSString * goldString = nil;
+    for(NSString * str in self.selectArr)
+    {
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[str intValue] inSection:0];
+        UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:indexPath];
+        string = [NSString stringWithFormat:@"%@",cell.name.text];
+        
+    }
+    
+    NSIndexPath * index = [NSIndexPath indexPathForRow:0 inSection:1];
+    GoldCoinCell *cell = (GoldCoinCell *)[self.showDiscountTableView cellForRowAtIndexPath:index];
+    goldString = [NSString stringWithFormat:@"%@",cell.payLabel.text];
+
+    
+//    if (self.swi) {
+//        <#statements#>
+//    }
+    
+    blocks(self.swithStation, string ,goldString, self.selectArr);
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 - (IBAction)swithOFFOrON:(UISwitch *)sender {
     
     BOOL setting = sender.isOn;//获得开关状态
     if(setting)
     {
+        self.swithStation = @"ON";
         self.showDiscountTableView.hidden = NO;
         
     }else {
+        self.swithStation = @"YES";
         self.showDiscountTableView.hidden = YES;
     }
 
+}
+
+-(void)getDate:(void (^) (NSString * swithStation, NSString * silverOrDiscount ,NSString * gold, NSMutableArray * arr))string
+{
+    [blocks release];
+    blocks = [string copy];
 }
 @end

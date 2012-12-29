@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface WirterOrderTwoLineCell : UITableViewCell
+@property (retain, nonatomic) IBOutlet UILabel *firLable;
+@property (retain, nonatomic) IBOutlet UILabel *secLabel;
 
 @end

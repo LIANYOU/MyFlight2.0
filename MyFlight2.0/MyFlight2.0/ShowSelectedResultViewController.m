@@ -619,6 +619,7 @@
                 
             }
             else{
+            
                 order.searchBackFlight = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
                 
                 data_ = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
@@ -654,9 +655,9 @@
         
         order.flag = self.flag;
         
-        order.goPay = self.payMoney;    // 此处上一个页面记录的传递的是成人的去程价格
-        order.goCabin = self.cabin;
-        order.childGoPay = self.childPayMoney;
+//        order.goPay = self.payMoney;    // 此处上一个页面记录的传递的是成人的去程价格
+//        order.goCabin = self.cabin;
+//        order.childGoPay = self.childPayMoney;
         
         [self.navigationController pushViewController:order animated:YES];
         

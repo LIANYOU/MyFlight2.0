@@ -27,10 +27,11 @@
 @property (retain, nonatomic)  NSString *palntType;       // 机型         如:747机型
 @property (retain, nonatomic)  NSString *beginTime;       // 飞机起飞的时间 08:00 
 @property (retain, nonatomic)  NSString *endTime;         // 飞机到达的时间 12:00
-@property (assign, nonatomic)  int pay;             // 需支付的金额
+@property (assign, nonatomic)  int pay;                   // 需支付的金额
 @property (retain, nonatomic)  NSString *discount;        // 机票折扣
 @property (retain, nonatomic)  NSString *ticketCount;     // 机票剩余数
 
+@property (retain, nonatomic)  NSString * cabinCode;      // 舱位 “Z”
 @property (retain, nonatomic)  NSArray * cabinsArr;       // 存放某航班所有舱位的信息
 @property (retain, nonatomic)  NSMutableArray * cabinNumberArr;   // 存放某一航班的所有cabinNumber舱位的信息
 @property (retain, nonatomic)  NSString * cabinNumber;   // (格式 “经济舱 Z” );

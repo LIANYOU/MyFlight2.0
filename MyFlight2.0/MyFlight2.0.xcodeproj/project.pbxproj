@@ -198,6 +198,8 @@
 		1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE871683629B00349FE1 /* BaggageViewController.xib */; };
 		18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18478C64167332AD00D3AFCD /* SearchFlightCondition.m */; };
 		1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852CC7D16837F5600431A9B /* TravePhoneCell.xib */; };
+		18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18630442168EAA1C0022CB2F /* WriteOrderViewController.m */; };
+		18630445168EAA1D0022CB2F /* WriteOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */; };
 		1896E5EF168C6554006F883B /* TravelTrafficViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */; };
 		189F5D48168A014700A3494F /* AttentionFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F5D47168A014700A3494F /* AttentionFlight.m */; };
 		18AD3304168C6EF40065BF08 /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD32F6168C6EF40065BF08 /* CheckInViewController.m */; };
@@ -252,8 +254,6 @@
 		18D01990168218AD0096852E /* ChooseSpaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D0198C168218AD0096852E /* ChooseSpaceViewController.xib */; };
 		18D01994168218FE0096852E /* BigCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01992168218FE0096852E /* BigCell.m */; };
 		18D01995168218FE0096852E /* BigCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D01993168218FE0096852E /* BigCell.xib */; };
-		18D01999168219EE0096852E /* WriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01997168219CC0096852E /* WriteOrderViewController.m */; };
-		18D0199A168219EE0096852E /* WriteOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D01998168219D90096852E /* WriteOrderViewController.xib */; };
 		18D0199E16821A910096852E /* WriteOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0199C16821A8F0096852E /* WriteOrderCell.m */; };
 		18D0199F16821A910096852E /* WriteOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D0199D16821A900096852E /* WriteOrderCell.xib */; };
 		18D019A316821AC80096852E /* WriteOrderDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D019A116821AC70096852E /* WriteOrderDetailsCell.m */; };
@@ -741,6 +741,9 @@
 		18478C63167332AD00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
 		18478C64167332AD00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
 		1852CC7D16837F5600431A9B /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
+		18630441168EAA1B0022CB2F /* WriteOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteOrderViewController.h; sourceTree = "<group>"; };
+		18630442168EAA1C0022CB2F /* WriteOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteOrderViewController.m; sourceTree = "<group>"; };
+		18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteOrderViewController.xib; sourceTree = "<group>"; };
 		1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelTrafficViewController.xib; sourceTree = "<group>"; };
 		189F5D46168A014700A3494F /* AttentionFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionFlight.h; sourceTree = "<group>"; };
 		189F5D47168A014700A3494F /* AttentionFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionFlight.m; sourceTree = "<group>"; };
@@ -822,9 +825,6 @@
 		18D01991168218FE0096852E /* BigCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigCell.h; sourceTree = "<group>"; };
 		18D01992168218FE0096852E /* BigCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigCell.m; sourceTree = "<group>"; };
 		18D01993168218FE0096852E /* BigCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigCell.xib; sourceTree = "<group>"; };
-		18D01996168219C80096852E /* WriteOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteOrderViewController.h; sourceTree = "<group>"; };
-		18D01997168219CC0096852E /* WriteOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteOrderViewController.m; sourceTree = "<group>"; };
-		18D01998168219D90096852E /* WriteOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteOrderViewController.xib; sourceTree = "<group>"; };
 		18D0199B16821A8E0096852E /* WriteOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteOrderCell.h; sourceTree = "<group>"; };
 		18D0199C16821A8F0096852E /* WriteOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteOrderCell.m; sourceTree = "<group>"; };
 		18D0199D16821A900096852E /* WriteOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteOrderCell.xib; sourceTree = "<group>"; };
@@ -1368,9 +1368,9 @@
 				142793691670412F00E2E1E3 /* BuyInsuranceViewController.h */,
 				1427936A1670412F00E2E1E3 /* BuyInsuranceViewController.m */,
 				1427936B1670412F00E2E1E3 /* BuyInsuranceViewController.xib */,
-				18D01996168219C80096852E /* WriteOrderViewController.h */,
-				18D01997168219CC0096852E /* WriteOrderViewController.m */,
-				18D01998168219D90096852E /* WriteOrderViewController.xib */,
+				18630441168EAA1B0022CB2F /* WriteOrderViewController.h */,
+				18630442168EAA1C0022CB2F /* WriteOrderViewController.m */,
+				18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */,
 				18DF893B1688202400D2DDAE /* ShowSelectedResultViewController.h */,
 				18DF893C1688202400D2DDAE /* ShowSelectedResultViewController.m */,
 				18DF893D1688202400D2DDAE /* ShowSelectedResultViewController.xib */,
@@ -1807,12 +1807,9 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-
 				18C48A23168D8AEE00A981A4 /* useDiscount */,
 				18E8B671168C9A58009EC8C5 /* scheduleFlight */,
-
 				149B77F2168D42FE006281A3 /* flightBooking */,
-
 				189F5D44168A00F700A3494F /* attentionFlight */,
 				145A2D861685EC85000DAAA1 /* historyCheck */,
 				14698717167ED85800E9B30D /* Login */,
@@ -2011,8 +2008,8 @@
 			isa = PBXGroup;
 			children = (
 				18D019B916821C160096852E /* ChoosePersonCell.h */,
-				18D019BA16821C160096852E /* ChoosePersonCell.m */,
 				18D019BB16821C160096852E /* ChoosePersonCell.xib */,
+				18D019BA16821C160096852E /* ChoosePersonCell.m */,
 				18D019B416821BF90096852E /* ChoosePersonController.h */,
 				18D019B516821BF90096852E /* ChoosePersonController.m */,
 				18D019B616821BF90096852E /* ChoosePersonController.xib */,
@@ -2580,7 +2577,6 @@
 				18D0198E168218AD0096852E /* ChooseSpaceCell.xib in Resources */,
 				18D01990168218AD0096852E /* ChooseSpaceViewController.xib in Resources */,
 				18D01995168218FE0096852E /* BigCell.xib in Resources */,
-				18D0199A168219EE0096852E /* WriteOrderViewController.xib in Resources */,
 				18D0199F16821A910096852E /* WriteOrderCell.xib in Resources */,
 				18D019A416821AC80096852E /* WriteOrderDetailsCell.xib in Resources */,
 				18D019A916821AE60096852E /* WriterOrderCommonCell.xib in Resources */,
@@ -2689,6 +2685,7 @@
 				18C48A18168D7B6700A981A4 /* DiscountCouponController.xib in Resources */,
 				18C48A1D168D83A000A981A4 /* UseDiscountCell.xib in Resources */,
 				18C48A22168D870D00A981A4 /* GoldCoinCell.xib in Resources */,
+				18630445168EAA1D0022CB2F /* WriteOrderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2765,7 +2762,6 @@
 				18D0198D168218AD0096852E /* ChooseSpaceCell.m in Sources */,
 				18D0198F168218AD0096852E /* ChooseSpaceViewController.m in Sources */,
 				18D01994168218FE0096852E /* BigCell.m in Sources */,
-				18D01999168219EE0096852E /* WriteOrderViewController.m in Sources */,
 				18D0199E16821A910096852E /* WriteOrderCell.m in Sources */,
 				18D019A316821AC80096852E /* WriteOrderDetailsCell.m in Sources */,
 				18D019A816821AE60096852E /* WriterOrderCommonCell.m in Sources */,
@@ -2829,7 +2825,6 @@
 				18AD3308168C6EF40065BF08 /* ChooseSeatOnlineViewController.m in Sources */,
 				18AD330A168C6EF40065BF08 /* FlightInformationViewController.m in Sources */,
 				18AD330C168C6EF40065BF08 /* PickSeatViewController.m in Sources */,
-
 				18E8B675168C9AAC009EC8C5 /* OrderFlight.m in Sources */,
 				18C48A07168D4C2000A981A4 /* AddPersonController.m in Sources */,
 				18C48A09168D4C2000A981A4 /* AddPersonSwitchCell.m in Sources */,
@@ -2839,7 +2834,6 @@
 				18C48A1B168D838100A981A4 /* UseDiscountCell.m in Sources */,
 				18C48A20168D86FF00A981A4 /* GoldCoinCell.m in Sources */,
 				18C48A26168D8B3A00A981A4 /* UseGoldPay.m in Sources */,
-
 				149B77F7168D46C4006281A3 /* FlightBookingBusinessHelper.m in Sources */,
 				149B77FB168D519C006281A3 /* flightContactVo.m in Sources */,
 				149B77FF168D529D006281A3 /* flightItineraryVo.m in Sources */,
@@ -2848,7 +2842,7 @@
 				149B780B168D8132006281A3 /* bookingGoFlightVo.m in Sources */,
 				149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */,
 				149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */,
-
+				18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

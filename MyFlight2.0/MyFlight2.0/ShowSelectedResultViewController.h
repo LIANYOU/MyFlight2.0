@@ -16,7 +16,6 @@
 #import "Date.h"
 #import "ViewControllerDelegate.h"
 #import <QuartzCore/QuartzCore.h>
-
 @class OneWayCheckViewController;
 @class ShowSelectedCell;
 
