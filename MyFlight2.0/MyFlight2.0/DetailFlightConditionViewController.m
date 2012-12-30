@@ -8,13 +8,17 @@
 
 #import "DetailFlightConditionViewController.h"
 #import "SMSViewController.h"
-@interface DetailFlightConditionViewController ()
 
+@interface DetailFlightConditionViewController ()
+@property(nonatomic,retain) NSString *shareMsg;
+@property(nonatomic,retain) NSString *shareMsgWithWeibo;
 @end
 
 @implementation DetailFlightConditionViewController
 @synthesize btnMessage,btnMoreShare,btnPhone,btnShare,planeCode,planeCompanyAndTime,planeState,from,arrive,fromFirstTime,fromFirstTimeName,fromResult,fromSceTime,fromSceTimeName,fromT,fromWeather,arriveFirstTime,arriveFirstTimeName,arriveResult,arriveSecTime,arriveSecTimeName,arriveT,arriveWeather,attentionThisPlaneBtn,littlePlaneBtn;
 @synthesize dic = _dic;
+@synthesize engine;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //注册微信号
+    [WXApi registerApp:tencentWeChatAppID];
     // Do any additional setup after loading the view from its nib.
     
     [self.btnMessage addTarget:self action:@selector(btnMessageClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -39,7 +45,7 @@
     
     
     myFlightConditionDetailData = [[FlightConditionDetailData alloc]initWithDictionary:self.dic];
-  
+    
     [flightLine setImage:[UIImage imageNamed:@"circle_green_change.png"]];
     flightLine.frame = CGRectMake(71, 111, 138, 33);
     flightLine.clipsToBounds = YES;
@@ -74,11 +80,16 @@
     
     
     [self fillAllData];
-  
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    [self screenShot];
 }
 
 -(void)fillAllData{
-//    NSLog(@"%@",self.dic);
+    //    NSLog(@"%@",self.dic);
     
     self.planeCode.text = myFlightConditionDetailData.flightNum;
     self.planeCompanyAndTime.text = [NSString stringWithFormat:@"%@ %@",myFlightConditionDetailData.flightCompany,myFlightConditionDetailData.deptDate];
@@ -93,12 +104,12 @@
     self.fromFirstTime.text = myFlightConditionDetailData.expectedDeptTime;
     self.fromSceTimeName.text = @"实际：";
     self.fromSceTime.text = myFlightConditionDetailData.realDeptTime;
-//    self.fromResult.text = @"";
+    //    self.fromResult.text = @"";
     self.arriveFirstTimeName.text = @"计划：";
     self.arriveFirstTime.text = myFlightConditionDetailData.expectedArrTime;
     self.arriveSecTimeName.text = @"实际：";
     self.arriveSecTime.text = myFlightConditionDetailData.realArrTime;
-//    self.arriveResult.text = @"";
+    //    self.arriveResult.text = @"";
     if ([myFlightConditionDetailData.flightState isEqualToString:@"起飞"]) {
         double totalTime = [self mxGetStringTimeDiff:myFlightConditionDetailData.expectedDeptTime timeE:myFlightConditionDetailData.expectedArrTime];
         
@@ -109,11 +120,11 @@
         NSString *  locationString=[dateformatter stringFromDate:senddate];
         NSLog(@"locationString : %@",locationString);
         
-    
-
+        
+        
         double curTime = [self mxGetStringTimeDiff:myFlightConditionDetailData.realDeptTime timeE:locationString];
         [dateformatter release];
-
+        
         NSLog(@"起飞：%f",curTime);
         NSLog(@"total:%f",totalTime);
         NSLog(@"时间百分比：%f",curTime/totalTime);
@@ -121,6 +132,9 @@
         frame.size.width=frame.size.width*(curTime/totalTime);
         flightLine.frame=frame;
     }
+    self.shareMsg = [NSString stringWithFormat:@"%@#%@#航班，计划于%@从%@机场%@起飞[飞机]，%@抵达%@机场%@。",myFlightConditionDetailData.deptDate,myFlightConditionDetailData.flightNum,myFlightConditionDetailData.expectedDeptTime,myFlightConditionDetailData.deptAirport,myFlightConditionDetailData.flightHTerminal,myFlightConditionDetailData.expectedArrTime,myFlightConditionDetailData.arrAirport,myFlightConditionDetailData.flightTerminal];
+    self.shareMsgWithWeibo = [NSString stringWithFormat:@"%@@my机票@新华旅行网",self.shareMsg];
+    
 }
 //短信btn
 -(void)btnMessageClick:(id)sender{
@@ -130,32 +144,389 @@
     [sendMessange release];
 }
 -(void)btnPhoneClick:(id)sender{
-   
+    
 }
 -(void)btnShareClick:(id)sender{
-  
+    //发送内容给微信
+    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachedictionary = [paths objectAtIndex:0];
+    NSString *filePath = [NSString stringWithFormat:@"%@/capture.png",cachedictionary];
+    
+    WXMediaMessage *message = [WXMediaMessage message];
+    [message setThumbImage:[self getSmallImageFromOriginalImage:[UIImage imageWithContentsOfFile:filePath]]];
+    
+    WXImageObject *ext = [WXImageObject object];
+    ext.imageData = [NSData dataWithContentsOfFile:filePath] ;
+    
+    message.title = @"分享一张图片";
+    message.mediaObject = ext;
+    message.description = self.shareMsg;
+    
+    SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
+    req.bText = NO;
+    req.message = message;
+    /**
+     设定发送到场景，还是会话
+     会话(WXSceneSession：0)或者朋友圈(WXSceneTimeline：1)
+     **/
+    //    req.scene = _scene;
+    
+    [WXApi sendReq:req];
 }
+
+#pragma mark -- 图片压缩
+-(UIImage *) getSmallImageFromOriginalImage:(UIImage *)image{
+    UIImage *originalImage = image;
+    UIImage *smallImage = nil;
+    CGSize originalSize = originalImage.size;
+    CGSize smallSize = CGSizeMake(originalSize.width / 4, originalSize.height / 4);
+    
+    CGFloat originalWidth = originalSize.width;
+    CGFloat originalHeigh = originalSize.height;
+    CGFloat smallWidth = smallSize.width;
+    CGFloat smallHeigh = smallSize.height;
+    CGFloat scaleFactor = 0.0;
+    CGFloat scaleWidth = smallWidth;
+    CGFloat scaleHeigh = smallHeigh;
+    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
+    
+    if (CGSizeEqualToSize(originalSize, smallSize) == NO) {
+        CGFloat widthFactory = smallWidth / originalWidth;
+        CGFloat heighFactory = smallHeigh / originalHeigh;
+        
+        if (widthFactory > heighFactory) {
+            scaleFactor = widthFactory;
+        }else {
+            scaleFactor = heighFactory;
+        }
+        scaleWidth = originalWidth * scaleFactor;
+        scaleHeigh = originalHeigh * scaleFactor;
+        if (widthFactory > heighFactory) {
+            thumbnailPoint.y = (smallHeigh - scaleHeigh) * 0.4;
+        }else {
+            thumbnailPoint.x = (smallWidth - scaleWidth) * 0.4;
+        }
+        UIGraphicsBeginImageContext(smallSize);
+        CGRect thumbnailRect = CGRectZero;
+        thumbnailRect.origin = thumbnailPoint;
+        thumbnailRect.size.height = scaleHeigh;
+        thumbnailRect.size.width = scaleWidth;
+        [originalImage drawInRect:thumbnailRect];
+        smallImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return smallImage;
+    }
+}
+
+
 -(void)btnMoreShareClick:(id)sender{
-    UIActionSheet * moreShare = [[UIActionSheet alloc]initWithTitle:@"更多分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到新浪微博",@"分享到短信",@"发邮件", nil];
+    UIActionSheet * moreShare = [[UIActionSheet alloc]initWithTitle:@"更多分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到新浪微博",@"分享到腾讯微博",@"短信分享",@"邮件分享", nil];
     [moreShare showInView:self.view];
 }
 #pragma mark - actionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachedictionary = [paths objectAtIndex:0];
     if (buttonIndex == 0) {
         //分享新浪微博
-        
+        SinaWeibo *sinaweibo = [self sinaweibo];
+        if (![sinaweibo isAuthValid]) {
+            [sinaweibo logIn];
+        }else{
+            [sinaweibo requestWithURL:@"statuses/upload.json"
+                               params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       self.shareMsgWithWeibo,@"status",
+                                       [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/capture.png",cachedictionary]], @"pic", nil]
+                           httpMethod:@"POST"
+                             delegate:self];
+        }
     }else if(buttonIndex == 1){
-        //分享到邮件
+        //分享到腾讯微博
+        engine = [[TCWBEngine alloc] initWithAppKey:WiressSDKDemoAppKey andSecret:WiressSDKDemoAppSecret andRedirectUrl:@"http://www.51you.com/mobile/myflight.html"];
         
+        if ([engine isAuthorizeExpired]) {
+            [engine logInWithDelegate:self onSuccess:@selector(loginSucess) onFailure:@selector(loginFailed)];
+        }else{
+            [engine setRootViewController:self];
+            [engine UIBroadCastMsgWithContent:self.shareMsgWithWeibo
+                                     andImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/capture.png",cachedictionary]]
+                                  parReserved:nil
+                                     delegate:self
+                                  onPostStart:@selector(postStart)
+                                onPostSuccess:@selector(createSuccess:)
+                                onPostFailure:@selector(createFail:)];
+        }
     }else if(buttonIndex == 2){
-        //发邮件
+        //发短信
+        Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
+        if (messageClass != nil) {
+            // Check whether the current device is configured for sending SMS messages
+            if ([messageClass canSendText]) {
+                [self displaySMSComposerSheet];
+            }
+            else {
+                UIAlertView *showMsg = [[UIAlertView alloc] initWithTitle:@"提示" message:@"设备没有短信功能" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
+                [showMsg show];
+                [showMsg release];
+            }
+        }
+        else {
+            UIAlertView *showMsg = [[UIAlertView alloc] initWithTitle:@"提示" message:@"iOS版本过低,iOS4.0以上才支持程序内发送短信" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
+            [showMsg show];
+            [showMsg release];
+        }
         
     }else if(buttonIndex == 3){
-       //取消
-        
+        //发邮件
+        MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+        mc.mailComposeDelegate = self;
+        if ([MFMailComposeViewController canSendMail]) {
+            [mc setSubject:@"航班信息分享"];
+            [mc setMessageBody:self.shareMsg isHTML:NO];
+            
+            NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+            NSString *cachedictionary = [paths objectAtIndex:0];
+            NSString *path = [NSString stringWithFormat:@"%@/capture.png",cachedictionary];
+            NSData *data = [NSData dataWithContentsOfFile:path];
+            [mc addAttachmentData:data mimeType:@"image/png" fileName:@"blood_orange"];
+            [self presentModalViewController:mc animated:YES];
+            [mc release];
+        }
+    }else if(buttonIndex == 4){
+        //取消
     }
     
 }
+
+#pragma mark --sendEmail functions
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error {
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail send canceled...");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved...");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent...");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail send errored: %@...", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -- sendSMS functions
+-(void)displaySMSComposerSheet
+{
+    MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
+    picker.messageComposeDelegate = self;
+    picker.body = self.shareMsg;
+    [self presentModalViewController:picker animated:YES];
+    [picker release];
+}
+#pragma mark -- sendSMS delegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                 didFinishWithResult:(MessageComposeResult)result {
+    
+    switch (result)
+    {
+        case MessageComposeResultCancelled:
+            break;
+        case MessageComposeResultSent:
+            break;
+        case MessageComposeResultFailed:{
+            UIAlertView *showMsg = [[UIAlertView alloc] initWithTitle:@"提示" message:@"短信发送失败" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
+            [showMsg show];
+            [showMsg release];}
+            break;
+        default:
+            break;
+    }
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark --SinaWeibo functions
+- (SinaWeibo *)sinaweibo
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    return appDelegate.justWeibo;
+}
+
+#pragma mark SinaWeibo Delegate
+-(void) sinaweiboDidLogIn:(SinaWeibo *)sinaweiboLogined{
+    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachedictionary = [paths objectAtIndex:0];
+    
+    SinaWeibo *sinaweibo = [self sinaweibo];
+    [sinaweibo requestWithURL:@"statuses/upload.json"
+                       params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                               self.shareMsgWithWeibo,@"status",
+                               [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/capture.png",cachedictionary]], @"pic", nil]
+                   httpMethod:@"POST"
+                     delegate:self];
+}
+
+-(void) showShareResultMsg:(NSString *) message{
+    UIAlertView *showMsg = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [showMsg show];
+    [showMsg release];
+}
+//截屏程序
+-(void) screenShot
+{
+    CGSize imageSize = [[UIScreen mainScreen] bounds].size;
+    if (NULL != UIGraphicsBeginImageContextWithOptions) {
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    }
+    else
+    {
+        UIGraphicsBeginImageContext(imageSize);
+    }
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    for (UIWindow * window in [[UIApplication sharedApplication] windows]) {
+        if (![window respondsToSelector:@selector(screen)] || [window screen] == [UIScreen mainScreen]) {
+            CGContextSaveGState(context);
+            CGContextTranslateCTM(context, [window center].x, [window center].y);
+            CGContextConcatCTM(context, [window transform]);
+            CGContextTranslateCTM(context, -[window bounds].size.width*[[window layer] anchorPoint].x, -[window bounds].size.height*[[window layer] anchorPoint].y);
+            [[window layer] renderInContext:context];
+            
+            CGContextRestoreGState(context);
+        }
+    }
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    NSData *imageData = UIImagePNGRepresentation(image);
+    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachedictionary = [paths objectAtIndex:0];
+    [imageData writeToFile:[NSString stringWithFormat:@"%@/capture.png",cachedictionary] atomically:YES];
+    
+}
+
+#pragma mark - tencentWeibo Share functions
+- (void)postStart {
+    NSLog(@"%s", __FUNCTION__);
+    //    [self showAlertMessage:@"开始发送"];
+}
+
+- (void)createSuccess:(NSDictionary *)dict {
+    [self showShareResultMsg:@"分享成功."];
+}
+
+- (void)createFail:(NSError *)error {
+    NSLog(@"error is %@",error);
+    //    [self showAlertMessage:@"发送失败！"];
+}
+
+#pragma mark - tencentWeibo login Delegate
+- (void)onSuccessLogin{
+    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachedictionary = [paths objectAtIndex:0];
+    
+    engine = [[TCWBEngine alloc] initWithAppKey:WiressSDKDemoAppKey andSecret:WiressSDKDemoAppSecret andRedirectUrl:@"http://www.51you.com/mobile/myflight.html"];
+    [engine setRootViewController:self];
+    [engine UIBroadCastMsgWithContent:self.shareMsgWithWeibo
+                             andImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/capture.png",cachedictionary]]
+                          parReserved:nil
+                             delegate:self
+                          onPostStart:@selector(postStart)
+                        onPostSuccess:@selector(createSuccess:)
+                        onPostFailure:@selector(createFail:)];
+    [self showShareResultMsg:@"分享成功."];
+}
+- (void)onFailureLogin:(NSError *)error{
+
+}
+
+#pragma mark - SinaWeiboRequest Delegate
+- (void)request:(SinaWeiboRequest *)request didFailWithError:(NSError *)error
+{
+    if ([request.url hasSuffix:@"users/show.json"]){
+    }
+    else if ([request.url hasSuffix:@"statuses/user_timeline.json"]){
+    }
+    else if ([request.url hasSuffix:@"statuses/update.json"]){
+        [self showShareResultMsg:@"分享失败."];
+    }
+    else if ([request.url hasSuffix:@"statuses/upload.json"]){
+        [self showShareResultMsg:@"分享失败."];
+    }
+}
+
+#pragma mark -- Tencent WeChat Delegate
+-(void) onReq:(BaseReq*)req
+{
+    if([req isKindOfClass:[GetMessageFromWXReq class]])
+    {
+        //        [self onRequestAppMessage];
+    }
+    else if([req isKindOfClass:[ShowMessageFromWXReq class]])
+    {
+        ShowMessageFromWXReq* temp = (ShowMessageFromWXReq*)req;
+        [self viewContent:temp.message];
+    }
+}
+
+- (void) viewContent:(WXMediaMessage *) msg
+{
+    //显示微信传过来的内容
+    WXAppExtendObject *obj = msg.mediaObject;
+    
+    NSString *strTitle = [NSString stringWithFormat:@"消息来自微信"];
+    NSString *strMsg = [NSString stringWithFormat:@"标题：%@ \n内容：%@ \n附带信息：%@ \n缩略图:%u bytes\n\n", msg.title, msg.description, obj.extInfo, msg.thumbData.length];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
+}
+
+-(void) onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        NSString *strTitle = [NSString stringWithFormat:@"发送结果"];
+        NSString *strMsg = [NSString stringWithFormat:@"发送媒体消息结果:%d", resp.errCode];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
+    else if([resp isKindOfClass:[SendAuthResp class]])
+    {
+        NSString *strTitle = [NSString stringWithFormat:@"Auth结果"];
+        NSString *strMsg = [NSString stringWithFormat:@"Auth结果:%d", resp.errCode];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
+}
+
+- (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
+{
+    if ([request.url hasSuffix:@"users/show.json"]){
+    }
+    else if ([request.url hasSuffix:@"statuses/user_timeline.json"]){
+    }
+    else if ([request.url hasSuffix:@"statuses/update.json"]){
+        [self showShareResultMsg:@"分享成功."];
+    }
+    else if ([request.url hasSuffix:@"statuses/upload.json"]){
+        [self showShareResultMsg:@"分享成功."];
+    }
+}
+
 #pragma mark - 算时间差
 - (double)mxGetStringTimeDiff:(NSString*)timeS timeE:(NSString*)timeE
 {

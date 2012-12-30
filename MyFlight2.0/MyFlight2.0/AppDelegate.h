@@ -18,12 +18,20 @@
 #define tencentWeiboAppSecret @"aaa2aa75a21502e6c6abb0bbbf64cb99"
 #define tencentWeiboAppRedirectURI @"http://www.51you.com/mobile/myflight.html"
 
+#define tencentWeChatAppID @"wx5b721ecc8556f12c"
+#define tencentWeChatAppKey @"fbfd760d82bcdee8a2500edda8cdd01d"
+
 #import <UIKit/UIKit.h>
 
 @class ViewController;//
+@class SinaWeibo;
 
-@interface AppDelegate : UIResponder  <UIApplicationDelegate>
-
+@interface AppDelegate : UIResponder  <UIApplicationDelegate>{
+    SinaWeibo *sinaweibo;
+    SinaWeibo *justWeibo;
+}
+@property (readonly, nonatomic) SinaWeibo *sinaweibo;
+@property (readonly, nonatomic) SinaWeibo *justWeibo;
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) ViewController *viewController;
