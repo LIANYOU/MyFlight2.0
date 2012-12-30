@@ -13,17 +13,26 @@
 @implementation AirPortDataBaseSingleton
 
 
+//以分区的形式 来封装数据 
 - (NSMutableDictionary *) getCorrectGroupedAirportsInfo{
     
     NSMutableDictionary *resultDic = [[NSMutableDictionary alloc] init];
     
-    NSMutableDictionary *resultHotDic = self.originHotAirPorts;
-    NSMutableDictionary *resultAllDic = self.originAllAirPorts;
     
     
+    NSMutableDictionary *resultHotDic = self.originHotAirPorts; //所有热门机场
+    
+    NSMutableDictionary *resultAllDic = self.originAllAirPorts; //所有的机场数据 
+    
+    
+   
+     
     
     for (NSString *key in [resultAllDic allKeys]) {
+        
+        
         NSString* letter = [[NSString stringWithFormat:@"%c", [key characterAtIndex:0]] uppercaseString];
+        
         NSMutableArray* section = [resultDic objectForKey:letter];
         
         if (!section) {

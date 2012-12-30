@@ -56,6 +56,7 @@ CCLog(@"分区的头部为：%d",[sectionTitles count]);
     
     [self initSectionTitles];
     resultDic = [[NSMutableDictionary alloc] init];
+    //数据库的单例
     AirPortDataBaseSingleton *air =[AirPortDataBaseSingleton shareAirPortBaseData];
     
     self.resultDic = air.correctAirPortsDic;
@@ -69,6 +70,7 @@ CCLog(@"分区的头部为：%d",[sectionTitles count]);
     
     
     CCLog(@"热门区域为：%d个",[self.resultHotArray count]);
+    
     NSLog(@"字典里面 一共有%d个分区",self.resultDic.count);
     
     // Do any additional setup after loading the view from its nib.
