@@ -48,18 +48,6 @@
     [self.view addSubview:checkInInfoTable];
     [checkInInfoTable release];
     
-//    UIButton *buttom = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [buttom setBackgroundImage:[UIImage imageNamed:@"clean_histroy_4words.png"] forState:UIControlStateNormal];
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_return_.png"]];
-//    imageView.frame = CGRectMake(20, 0, 30, 30);
-//    [buttom addSubview:imageView];
-//    [buttom addTarget:self action:@selector(leftNavigationBarItemClicked) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    UIBarButtonItem *leftNavigationItem = [[UIBarButtonItem alloc] initWithCustomView:buttom];
-//    self.navigationItem.leftBarButtonItem = leftNavigationItem;
-//    [leftNavigationItem release];
-    
-    
     self.view.backgroundColor = [UIColor colorWithRed:0.75f green:0.75f blue:0.75f alpha:1.0f];
 }
 

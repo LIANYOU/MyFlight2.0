@@ -20,6 +20,7 @@
 #import "AppConfigure.h"
 #import "MyCenterTable_1.h"
 #import "ChooseSeatOnlineViewController.h"
+#import "AirportMainScreenViewController.h"
 
 
 @interface ViewController ()
@@ -129,4 +130,12 @@
     [self.navigationController pushViewController:figth animated:YES];
     [figth release];
 }
+
+- (IBAction)showAirportMainScreen:(id)sender
+{
+    AirportMainScreenViewController *screen = [[AirportMainScreenViewController alloc] init];
+    [self.navigationController pushViewController:screen animated:YES];
+    [screen release];
+}
+
 @end
