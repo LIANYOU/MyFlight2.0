@@ -122,6 +122,7 @@
     NSLog(@"本地版本号为：%@",[dict objectForKey:@"DataBaseVersion"]);
     
     [dict setValue:newVersion forKey:@"DataBaseVersion"];
+    
     [dict writeToFile:[self getLocalDataBasePath] atomically:YES];
     
 }
@@ -333,6 +334,7 @@
     NSLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     
     FMDatabase *db =[self openDatabase];
+    
     
     FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,hotcity,cityName,air_x,air_y FROM AirPortDataBase "];
 //    NSMutableArray *resultArray =[[NSMutableArray alloc] init];

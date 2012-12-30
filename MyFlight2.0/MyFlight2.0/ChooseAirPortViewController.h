@@ -14,6 +14,7 @@
 
 @optional
 
+//选择机场的代理 
 - (void) ChooseAirPortViewController:(ChooseAirPortViewController *) controlelr chooseType:(NSInteger ) choiceType didSelectAirPortInfo:(AirPortData *) airPort;
 
 @end
@@ -27,10 +28,10 @@
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,retain)NSArray *resultHotArray;
 @property(nonatomic,retain)NSArray *allKeysArray;
-//属性传值
-@property(nonatomic,retain)NSString *startAirportName;
-@property(nonatomic,retain)NSString *endAirPortName;
-@property(nonatomic,assign)NSInteger choiceTypeOfAirPort;
+//属性传值 
+@property(nonatomic,retain)NSString *startAirportName; //出发机场
+@property(nonatomic,retain)NSString *endAirPortName; //到达机场 
+@property(nonatomic,assign)NSInteger choiceTypeOfAirPort; //选择的类型 单程 还是往返
 
 @property(nonatomic,assign)id<ChooseAirPortViewControllerDelegate> delegate;
 
