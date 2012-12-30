@@ -253,7 +253,7 @@
             cell.scheduleDate.text = data.backDate;
         }
         cell.airPort.text = data.airPort;
-        cell.palntType.text = data.palntType;
+        cell.palntType.text = [NSString stringWithFormat:@"%@机型",data.palntType];
         cell.beginTime.text = data.beginTime;
         cell.endTime.text = data.endTime;
         cell.beginAirPortName.text = data.startPortName;

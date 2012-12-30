@@ -926,14 +926,17 @@
         
         discount.gold = gold;
         discount.indexArr = self.indexGoldArr;
+        discount.type = self.swithTypeForGold;
         
         [discount getDate:^(NSString *swithStation, NSString *silverOrDiscount, NSString *gold, NSMutableArray *arr) {
+            
+            self.swithTypeForGold = swithStation;
             
             self.indexGoldArr = arr;
             
             WirterOrderTwoLineCell * cell = (WirterOrderTwoLineCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
-            
-            cell.secLabel.text = [NSString stringWithFormat:@"%@/%@",silverOrDiscount,gold];
+            cell.secLabel.text = @"账户资金/优惠券抵用";
+            cell.firLable.text = [NSString stringWithFormat:@"%@ %@",silverOrDiscount,gold];
             
             NSLog(@"%@,%@,%@,%@",swithStation,silverOrDiscount,gold,arr);
         }];
@@ -943,6 +946,7 @@
     }
 }
 - (IBAction)payMoney:(id)sender {
+    
     bookingGoFlightVo * go = [[bookingGoFlightVo alloc] init];
     
     go.aircraftType = self.searchDate.palntType;
@@ -987,9 +991,9 @@
     
     
     payVo * pay  = [[payVo alloc] init];
-    pay.isNeedPayPwd = NO;
-    pay.isNeedAccount = NO;
-    pay.needNotSilver = NO;
+    pay.isNeedPayPwd = @"no";
+    pay.isNeedAccount = @"no";
+    pay.needNotSilver = @"no";
     pay.payPassword = nil;
     pay.captcha = nil;
     
