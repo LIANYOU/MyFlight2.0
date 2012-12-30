@@ -89,6 +89,8 @@
 
 @property (assign, nonatomic) int flag; // 记录前边选择的是单程还是往返
 
+@property (assign, nonatomic) NSMutableArray *sortArr;
+@property (assign, nonatomic) NSMutableArray *sortBackArr;
 
 @property (retain, nonatomic) NSString * payMoney;  // 保存去程时候的金额和舱位
 @property (retain, nonatomic) NSString * cabin;

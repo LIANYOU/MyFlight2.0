@@ -12,14 +12,16 @@
 @class GoldCoinCell;
 @interface DiscountCouponController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 {
-   BOOL selectedSign;
+   
     
     void (^blocks) (NSString * swithStation, NSString * silverOrDiscount ,NSString * gold, NSMutableArray * arr);
 }
 
 @property (retain, nonatomic) NSMutableArray * selectArr;
 
+@property (retain, nonatomic) IBOutlet UISwitch *swith;
 @property (retain, nonatomic) NSString * swithStation;
+@property (retain, nonatomic) NSString * type;  // 开关状态
 
 @property (retain, nonatomic) IBOutlet UITableView *showDiscountTableView;
 @property (retain, nonatomic) IBOutlet UIView *sectionHeadViewOne;
