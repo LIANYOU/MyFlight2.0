@@ -34,6 +34,8 @@
     NSString *token = nil;
     
     
+    
+    
     if (Default_IsUserLogin_Value) {
         
         CCLog(@"机票订票 用户是否登录%d",Default_IsUserLogin_Value);
@@ -58,7 +60,12 @@
     
     NSString *source = SOURCE_VALUE;
     
-    NSString *timeSign = nil;
+    NSDate * datad=[NSDate date];
+    
+    NSLog(@"%f",datad.timeIntervalSince1970);
+    
+    
+    NSString *timeSign = [NSString stringWithFormat:@"%f",datad.timeIntervalSince1970];
     
     //    NSString *consumptionType =[infoDic objectForKey:KEY_FlightBook_consumptionType];
     
@@ -77,12 +84,7 @@
     __block NSString *message = nil;
     
     
-    
-    
-    
-    
-    
-    
+        
     if (Flight_DebugFlag) {
         
         
@@ -96,6 +98,13 @@
         CCLog(@"prodType = %@",prodType);
         
         CCLog(@"rmk =%@",rmk);
+        CCLog(@"HWid = %@",HWID_VALUE);
+        CCLog(@"sign = %@",sign);
+        CCLog(@"memnerId = %@",memberId);
+        CCLog(@"时间戳 %@",timeSign);
+        
+        
+        
         
         
         CCLog(@"*******************去程机票信息**********************");
