@@ -12,11 +12,15 @@
 
 //所有的原始热门机场数据
 @property(nonatomic,retain)NSMutableDictionary *originHotAirPorts;
-//所有机场数据
 
+//所有机场数据
 @property(nonatomic,retain)NSMutableDictionary *originAllAirPorts;
 
+
+//正确的机场数据 按照顺序排列
 @property(nonatomic,retain)NSMutableDictionary *correctAirPortsDic;
+
+
 
 + (id) shareAirPortBaseData;
 
