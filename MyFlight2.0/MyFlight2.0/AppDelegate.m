@@ -14,9 +14,12 @@
 #import "AirPortDataBaseSingleton.h"
 #import "IsLoginInSingle.h"
 #import "LogViewController.h"
+#import "DetailFlightConditionViewController.h"
 
 @implementation AppDelegate
 @synthesize window=_window,viewController = _viewController;
+@synthesize sinaweibo;
+@synthesize justWeibo;
 
 - (void)dealloc
 {
@@ -38,9 +41,17 @@
     [self performSelectorInBackground:@selector(getCityAndAirport) withObject:nil];
 
     
+    
     self.window.rootViewController = nav;
     [nav release];
     [self.window makeKeyAndVisible];
+    
+    LogViewController *logViewC = [[LogViewController alloc] initWithNibName:@"LogViewController" bundle:nil];
+    sinaweibo = [[SinaWeibo alloc] initWithAppKey:sinaWeiboAppKey appSecret:sinaWeiboAppSecret appRedirectURI:sinaWeiboAppRedirectURI andDelegate:logViewC];
+    
+    DetailFlightConditionViewController *detailView = [[DetailFlightConditionViewController alloc] initWithNibName:@"DetailFlightConditionViewController" bundle:nil];
+    justWeibo = [[SinaWeibo alloc] initWithAppKey:sinaWeiboAppKey appSecret:sinaWeiboAppSecret appRedirectURI:sinaWeiboAppRedirectURI andDelegate:detailView];
+    
     
     return YES;
 }
@@ -102,13 +113,13 @@
     single.isLogin = NO;
     
 }
-/**
+
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     NSLog(@"handurl is :%@",url);
     NSString *urlString = [NSString stringWithFormat:@"%@",url];
-    
+//    [WXApi handleOpenURL:url delegate:self];
     return [self.sinaweibo handleOpenURL:url];
 }
-**/
+
 
 @end

@@ -30,7 +30,7 @@
 
 @implementation LogViewController
 @synthesize weiboEngine;
-@synthesize sinaweibo;
+//@synthesize sinaweibo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,16 +47,8 @@
     [super viewDidLoad];
     
     //新浪微博登陆初始化定义
-    sinaweibo = [[SinaWeibo alloc] initWithAppKey:sinaWeiboAppKey appSecret:sinaWeiboAppSecret appRedirectURI:sinaWeiboAppRedirectURI andDelegate:self];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *sinaweiboInfo = [defaults objectForKey:@"SinaWeiboAuthData"];
-    if ([sinaweiboInfo objectForKey:@"AccessTokenKey"] && [sinaweiboInfo objectForKey:@"ExpirationDateKey"] && [sinaweiboInfo objectForKey:@"UserIDKey"])
-    {
-        sinaweibo.accessToken = [sinaweiboInfo objectForKey:@"AccessTokenKey"];
-        sinaweibo.expirationDate = [sinaweiboInfo objectForKey:@"ExpirationDateKey"];
-        sinaweibo.userID = [sinaweiboInfo objectForKey:@"UserIDKey"];
-    }
-    
+//    sinaweibo = [[SinaWeibo alloc] initWithAppKey:sinaWeiboAppKey appSecret:sinaWeiboAppSecret appRedirectURI:sinaWeiboAppRedirectURI andDelegate:self];
+
     //腾讯QQ登陆初始化定义
     _permissions =  [[NSArray arrayWithObjects:
 					  @"get_user_info",@"add_share", @"add_topic",@"add_one_blog", @"list_album",
@@ -311,11 +303,16 @@
 }
 
 - (IBAction)LoginWithSinaWeiBo:(id)sender {
+    SinaWeibo *sinaweibo = [self sinaweibo];
     [sinaweibo logIn];
 }
 
 #pragma mark --SinaWeibo functions
-
+- (SinaWeibo *)sinaweibo
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    return appDelegate.sinaweibo;
+}
 #pragma mark SinaWeibo Delegate
 -(void) sinaweiboDidLogIn:(SinaWeibo *)sinaweiboLogined{
     NSMutableDictionary *userInfoDict = [[NSMutableDictionary alloc] init];
@@ -325,8 +322,8 @@
     
     [loginBusiness loginWithOAuth:userInfoDict andDelegate:self];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:sinaweiboLogined forKey:@"sinaweiboUserInfo"];
+//    [[NSUserDefaults standardUserDefaults] setObject:sinaweiboLogined forKey:@"sinaweiboUserInfo"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 //记住密码按钮

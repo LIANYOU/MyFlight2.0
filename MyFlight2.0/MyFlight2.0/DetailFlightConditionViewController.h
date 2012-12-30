@@ -9,13 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "FlightConditionDetailData.h"
+#import "TCWBEngine.h"
+#import "SinaWeibo.h"
+#import "AppDelegate.h"
+#import "WXApi.h"
+#import <MessageUI/MessageUI.h>
 
-@interface DetailFlightConditionViewController : UIViewController<UIActionSheetDelegate>{
+@interface DetailFlightConditionViewController : UIViewController<UIActionSheetDelegate,SinaWeiboRequestDelegate,SinaWeiboDelegate,WXApiDelegate,MFMessageComposeViewControllerDelegate>{
     NSDictionary * _dic;
     FlightConditionDetailData * myFlightConditionDetailData;
     
     
-    
+    TCWBEngine *engine;
     IBOutlet UIButton * btnMessage;
     IBOutlet UIButton * btnPhone;
     IBOutlet UIButton * btnShare;
@@ -51,7 +56,9 @@
     
     UIView * mapView;   // 地图
     
+   
 }
+@property (nonatomic, retain) TCWBEngine   *engine;
 
 @property(nonatomic,retain) IBOutlet UIButton * btnMessage;
 @property(nonatomic,retain) IBOutlet UIButton * btnPhone;

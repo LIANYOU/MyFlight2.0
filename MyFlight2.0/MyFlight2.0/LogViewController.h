@@ -24,8 +24,7 @@
     IBOutlet UIScrollView *ScrollerView;
     
     //新浪微博定义
-    SinaWeibo *sinaweibo;
-    NSDictionary *userInfo; //存储通过新浪微博账号登陆的，用户信息
+//    SinaWeibo *sinaweibo;
     
     //腾讯QQ微博登陆定义
     TencentOAuth* _tencentOAuth;
@@ -35,8 +34,8 @@
     TCWBEngine                  *weiboEngine;
 }
 @property (nonatomic, retain) TCWBEngine   *weiboEngine;
-@property (readonly, nonatomic) SinaWeibo *sinaweibo;
-//属性 传值 记录 登录的类型 
+//@property (readonly, nonatomic) SinaWeibo *sinaweibo;
+//属性 传值 记录 登录的类型
 @property(nonatomic,retain)NSString  *loginSuccessReturnType;
 
 
