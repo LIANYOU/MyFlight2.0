@@ -15,7 +15,8 @@
 @end
 
 @implementation TravelPhoneViewController
-@synthesize airPort = _airPort;
+//@synthesize airPort = _airPort;
+@synthesize subAirPortData = _subAirPortData;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -117,7 +118,7 @@
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request setPostValue:@"AirportCommonlyPhone" forKey:@"RequestType"];
-    [request setPostValue:self.airPort forKey:@"ArilineCode"];
+    [request setPostValue:self.subAirPortData.apEname forKey:@"ArilineCode"];
     [request setPostValue:CURRENT_DEVICEID_VALUE forKey:@"hwId"];
     [request setPostValue:@"01" forKey:@"serviceCode"];
     [request setPostValue:@"v1.0" forKey:@"source"];
@@ -162,6 +163,7 @@
 }
 
 -(void)dealloc{
+    self.subAirPortData = nil;
     [titlelabel release];
     [phoneLabel release];
     [super dealloc];

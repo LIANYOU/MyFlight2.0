@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "SVSegmentedControl.h"
+#import "AirPortData.h"
 @interface TravelTrafficViewController : UIViewController
 {
+    AirPortData * _subAirPortData;
     NSString * _airPortCode;    //机场三字码
     NSInteger orientation;  //方向    0 = 去机场  ， 1 = 去市区
     NSInteger trfficType;   //交通类型  0 = 机场大巴，     1 = 出租车，   2 = 机场快轨
@@ -83,5 +85,6 @@
     
 }
 @property(nonatomic,retain) NSString * airPortCode;
+@property(nonatomic,retain)AirPortData * subAirPortData;
 @property(nonatomic,retain) NSString * airPortName;
 @end

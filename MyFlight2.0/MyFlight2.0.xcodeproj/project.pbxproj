@@ -201,6 +201,11 @@
 		1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852CC7D16837F5600431A9B /* TravePhoneCell.xib */; };
 		18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18630442168EAA1C0022CB2F /* WriteOrderViewController.m */; };
 		18630445168EAA1D0022CB2F /* WriteOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */; };
+
+
+		188B728C16915C69004F09B8 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B728B16915C69004F09B8 /* MapManager.m */; };
+		188B728F16916C7A004F09B8 /* Ann.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B728E16916C7A004F09B8 /* Ann.m */; };
+
 		18953997168EFA20008901F5 /* AirportMainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18953995168EFA20008901F5 /* AirportMainScreenViewController.m */; };
 		18953998168EFA20008901F5 /* AirportMainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18953996168EFA20008901F5 /* AirportMainScreenViewController.xib */; };
 		1896E5EF168C6554006F883B /* TravelTrafficViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */; };
@@ -866,6 +871,13 @@
 		18630441168EAA1B0022CB2F /* WriteOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteOrderViewController.h; sourceTree = "<group>"; };
 		18630442168EAA1C0022CB2F /* WriteOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteOrderViewController.m; sourceTree = "<group>"; };
 		18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteOrderViewController.xib; sourceTree = "<group>"; };
+
+
+		188B728A16915C69004F09B8 /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManager.h; sourceTree = "<group>"; };
+		188B728B16915C69004F09B8 /* MapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManager.m; sourceTree = "<group>"; };
+		188B728D16916C7A004F09B8 /* Ann.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ann.h; sourceTree = "<group>"; };
+		188B728E16916C7A004F09B8 /* Ann.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ann.m; sourceTree = "<group>"; };
+
 		18953994168EFA20008901F5 /* AirportMainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirportMainScreenViewController.h; sourceTree = "<group>"; };
 		18953995168EFA20008901F5 /* AirportMainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirportMainScreenViewController.m; sourceTree = "<group>"; };
 		18953996168EFA20008901F5 /* AirportMainScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AirportMainScreenViewController.xib; sourceTree = "<group>"; };
@@ -2109,6 +2121,7 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				188B728816915C30004F09B8 /* Map */,
 				18C48A23168D8AEE00A981A4 /* useDiscount */,
 				18E8B671168C9A58009EC8C5 /* scheduleFlight */,
 				149B77F2168D42FE006281A3 /* flightBooking */,
@@ -2207,6 +2220,17 @@
 				1827BE5A1683541E00349FE1 /* l_ZH.png */,
 			);
 			path = "航空公司图标";
+			sourceTree = "<group>";
+		};
+		188B728816915C30004F09B8 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				188B728A16915C69004F09B8 /* MapManager.h */,
+				188B728B16915C69004F09B8 /* MapManager.m */,
+				188B728D16916C7A004F09B8 /* Ann.h */,
+				188B728E16916C7A004F09B8 /* Ann.m */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 		18953992168EF991008901F5 /* AirportMainScreen */ = {
@@ -3564,7 +3588,12 @@
 				18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */,
 				18953997168EFA20008901F5 /* AirportMainScreenViewController.m in Sources */,
 				18D19A0A168FDFCC004861C3 /* AirportMainScreenSearchView.m in Sources */,
+
 				14ECFEC91691462100A99E6B /* AirportMainScreenTitleView.m in Sources */,
+
+				188B728C16915C69004F09B8 /* MapManager.m in Sources */,
+				188B728F16916C7A004F09B8 /* Ann.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

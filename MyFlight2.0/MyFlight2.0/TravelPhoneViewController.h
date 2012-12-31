@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AirPortData.h"
 @interface TravelPhoneViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     UITableView * myTableView;
     NSMutableData * myData;
@@ -20,7 +21,10 @@
     double allLength;
     double lengthPoint;
     NSMutableData * myTestData;
+    
+    AirPortData * _subAirPortData;
 }
-@property(nonatomic,retain) NSString * airPort;
+//@property(nonatomic,retain) NSString * airPort;
+@property(nonatomic,retain)AirPortData * subAirPortData;
 
 @end

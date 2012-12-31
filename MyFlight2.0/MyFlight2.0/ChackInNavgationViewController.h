@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AirPortData.h"
 @interface ChackInNavgationViewController : UIViewController{
     UITableView * myTableView;
     NSMutableData * myData;
     NSString * _airPortCode;
     NSMutableArray * rootArray;
     NSString * _myTitle;
+    
+    AirPortData * _subAirPortData;
 }
 @property(nonatomic,retain) NSString * airPortCode;
+@property(nonatomic,retain)AirPortData * subAirPortData;
 @property(nonatomic,retain)NSString * myTitle;
 @end

@@ -15,7 +15,9 @@
 @end
 
 @implementation TravelTrafficViewController
-@synthesize airPortCode = _airPortCode,airPortName = _airPortName;
+@synthesize airPortCode = _airPortCode;
+@synthesize airPortName = _airPortName;
+@synthesize subAirPortData = _subAirPortData;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -169,7 +171,7 @@
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request setPostValue:@"TrafficTools" forKey:@"RequestType"];
-    [request setPostValue:self.airPortCode forKey:@"ArilineCode"];
+    [request setPostValue:self.subAirPortData.apCode forKey:@"ArilineCode"];
 
     
     [request setPostValue:[NSString stringWithFormat:@"%d",mySegValue] forKey:@"TrafficType"];
@@ -297,7 +299,7 @@
     [navImageView release];
     [navgaitionLabel release];
     [navImageView release];
-    self.airPortCode = nil;
+    self.airPortName = nil;
     [super dealloc];
 }
 @end

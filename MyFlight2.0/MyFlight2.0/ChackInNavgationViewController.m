@@ -16,6 +16,7 @@
 
 @implementation ChackInNavgationViewController
 @synthesize airPortCode = _airPortCode,myTitle = _myTitle;
+@synthesize subAirPortData = _subAirPortData;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -141,6 +142,10 @@
 }
 
 -(void)dealloc{
+    self.myTitle = nil;
+    self.airPortCode = nil;
+    self.subAirPortData = nil;
+    
     [rootArray release];
     [super dealloc];
 }

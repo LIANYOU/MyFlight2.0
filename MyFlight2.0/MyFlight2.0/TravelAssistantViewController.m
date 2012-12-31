@@ -123,9 +123,8 @@
             NSLog(@"机场介绍");
             FlightCompanyDistrubuteViewController * fcd = [[FlightCompanyDistrubuteViewController alloc]init];
             if (self.myAirPortData) {
-                fcd.airPortCode = self.myAirPortData.apCode;
-            }else{
-                fcd.airPortCode = airPortCode;
+                fcd.subAirPortData = self.myAirPortData;
+                NSLog(@"");
             }
             [self.navigationController pushViewController:fcd animated:YES];
             [fcd release];
@@ -138,7 +137,7 @@
             NSLog(@"机场交通");
             TravelTrafficViewController * ttvc = [[TravelTrafficViewController alloc]init];
             if (self.myAirPortData) {
-                ttvc.airPortCode = self.myAirPortData.apCode;
+                ttvc.subAirPortData = self.myAirPortData;
                 ttvc.airPortName = self.myAirPortData.apName;
             }else{
                 ttvc.airPortCode = airPortCode;
@@ -148,6 +147,7 @@
         }else if (indexPath.row == 3){
             NSLog(@"值机柜台");
             ChackInNavgationViewController * cinav = [[ChackInNavgationViewController alloc]init];
+            cinav.subAirPortData = self.myAirPortData;
             cinav.airPortCode = self.myAirPortData.apCode;
             cinav.myTitle = self.myAirPortData.apName;
             [self.navigationController pushViewController:cinav animated:YES];
@@ -155,13 +155,14 @@
         }else if (indexPath.row == 4){
             NSLog(@"常用电话");
             TravelPhoneViewController * tpvc = [[TravelPhoneViewController alloc]init];
-            tpvc.airPort = self.myAirPortData.apCode;
+            tpvc.subAirPortData = self.myAirPortData;
             [self.navigationController pushViewController:tpvc animated:YES];
             [tpvc release];
             
         }else if (indexPath.row == 5){
             NSLog(@"航空公司分布");
             FlightCompanyDistrubuteController * fcdc = [[FlightCompanyDistrubuteController alloc]init];
+            fcdc.subAirPortData = self.myAirPortData;
             fcdc.airPortCode = self.myAirPortData.apCode;
             
             fcdc.myTitle = self.myAirPortData.apName;

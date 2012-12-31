@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AirPortData.h"
 
 @interface BaggageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
@@ -20,6 +20,9 @@
 
     NSMutableDictionary * dataDic;
     
+    
+    AirPortData * _subAirPortData;
 }
 @property(nonatomic,retain)NSString * myAirPortCode;
+@property(nonatomic,retain)AirPortData * subAirPortData;
 @end
