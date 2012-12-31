@@ -16,6 +16,7 @@
 
 @implementation BaggageViewController
 @synthesize myAirPortCode = _myAirPortCode;
+@synthesize subAirPortData = _subAirPortData;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -253,6 +254,8 @@
 
 
 -(void)dealloc{
+    self.subAirPortData = nil;
+    self.myAirPortCode = nil;
     [dataDic release];
     [sectionCount release];
     [super dealloc];

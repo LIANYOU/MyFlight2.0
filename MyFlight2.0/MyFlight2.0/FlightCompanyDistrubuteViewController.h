@@ -7,14 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface FlightCompanyDistrubuteViewController : UIViewController
+#import "AirPortData.h"
+#import <MapKit/MapKit.h>
+#import "MapManager.h"
+#import "Ann.h"
+@interface FlightCompanyDistrubuteViewController : UIViewController<MKMapViewDelegate>
 {
-    NSString * _airPortCode;
+//    NSString * _airPortCode;
+    AirPortData * _subAirPortData;
     NSMutableData * myData;
     UITextView * myTextView;
     UILabel * myTitleLabel;
+    UIView * myView;
+    
+    MKMapView * myMapView;
+    MapManager * myMapManager;
+    MKAnnotationView * myPlaneImageView;
 }
-@property(nonatomic,retain) NSString * airPortCode;
+//@property(nonatomic,retain) NSString * airPortCode;
+@property(nonatomic,retain)AirPortData * subAirPortData;
 
 @end

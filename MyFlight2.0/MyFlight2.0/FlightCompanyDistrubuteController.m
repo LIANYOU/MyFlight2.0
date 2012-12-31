@@ -16,6 +16,7 @@
 
 @implementation FlightCompanyDistrubuteController
 @synthesize airPortCode = _airPortCode,myTitle = _myTitle;
+@synthesize subAirPortData = _subAirPortData;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -90,7 +91,7 @@
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request setPostValue:@"AirlineAirway" forKey:@"RequestType"];
-    [request setPostValue:self.airPortCode forKey:@"ArilineCode"];
+    [request setPostValue:self.subAirPortData.apCode forKey:@"ArilineCode"];
     [request setPostValue:CURRENT_DEVICEID_VALUE forKey:@"hwId"];
     [request setPostValue:@"01" forKey:@"serviceCode"];
     [request setPostValue:@"v1.0" forKey:@"source"];
@@ -170,6 +171,7 @@
     return myButton;
 }
 -(void)dealloc{
+    self.subAirPortData = nil;
     [rootArray release];
     [super dealloc];
 }
