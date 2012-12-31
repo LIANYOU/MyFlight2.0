@@ -222,7 +222,7 @@
 {
     ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
     
-    chooseFlight.isQuery = NO;
+    chooseFlight.isQuery = YES;
     chooseFlight.passName = passengerName;
     chooseFlight.idNo = passportNumber;
     chooseFlight.depCity = departureAirport;

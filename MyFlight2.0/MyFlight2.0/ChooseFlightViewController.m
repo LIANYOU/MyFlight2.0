@@ -129,42 +129,32 @@
     [passengerInfoTable release];
     [flightInfoTable release];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    UIButton *confirm = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    button.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height > 500 ? 450:400, 300, 40);
+    confirm.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height > 500 ? 450:400, 300, 40);
     
-    [button addTarget:self action:@selector(confirmSelection) forControlEvents:UIControlEventTouchUpInside];
+    [confirm addTarget:self action:@selector(confirmSelection) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *confirm = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 40)];
-    
-    confirm.backgroundColor = [UIColor orangeColor];
     confirm.layer.borderColor = [[UIColor grayColor] CGColor];
     confirm.layer.borderWidth = 1.0f;
     confirm.layer.cornerRadius = 5.0f;
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 40)];
+    confirm.backgroundColor = [UIColor orangeColor];
     
     if(isQuery)
     {
-        label.text = @"查询值机进度";
+        [confirm setTitle:@"查询值机进度" forState:UIControlStateNormal];
     }
     else
     {
-        label.text = @"确定";
+        [confirm setTitle:@"确定" forState:UIControlStateNormal];
     }
     
-    label.font = [UIFont systemFontOfSize:20];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor clearColor];
+    confirm.titleLabel.font = [UIFont systemFontOfSize:20];
+    confirm.titleLabel.textAlignment = NSTextAlignmentCenter;
     
-    [confirm addSubview:label];
-    [label release];
+    [confirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    [button addSubview:confirm];
-    [confirm release];
-    
-    [self.view addSubview:button];
+    [self.view addSubview:confirm];
     
     self.view.backgroundColor = [UIColor colorWithRed:0.75f green:0.75f blue:0.75f alpha:1.0f];
 }
