@@ -88,7 +88,8 @@
 
 
 
-
+#pragma mark -
+#pragma mark 网络错误回调的方法 
 //网络错误回调的方法 
 - (void )requestDidFailed:(NSDictionary *)info{
     
@@ -104,6 +105,8 @@
     
 }
 
+#pragma mark -
+#pragma mark 网络返回错误信息回调的方法
 //网络返回错误信息回调的方法
 - (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
     
@@ -116,8 +119,16 @@
 }
 
 
+#pragma mark -
+#pragma mark 网络正确回调的方法
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
+    
+    
+    
+    
+    
+    
     
     
     

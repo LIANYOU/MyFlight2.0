@@ -81,6 +81,10 @@
 
 - (void) makeAccountFullWithRechargeCardNo:(NSString *) cardNo cardPasswd:(NSString *) pwd andDelegate:(id<ServiceDelegate>) delegate;
 
+//个人中心优惠券查询 
+- (void) getCouponListWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate;
+
+
 
 //- (void) makeAccountFullWith 
 

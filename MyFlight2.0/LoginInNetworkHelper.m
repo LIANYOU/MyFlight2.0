@@ -510,15 +510,21 @@
                 
                 // NSLog(@"成功登陆后返回的数据：%@",data);
                 
+                IsLoginInSingle *single = [IsLoginInSingle shareLoginSingle];
+                
+                single.userAccount.name = [[dic objectForKey:@"resultBean"] objectForKey:@"name"];
+                
+                single.userAccount.sex = [[dic objectForKey:@"resultBean"] objectForKey:@"sex"];
+                single.userAccount.addr = [[dic objectForKey:@"resultBean"] objectForKey:@"addr"];
+                single.userAccount.xinlvGoldMoeny = [[dic objectForKey:@"resultBean"] objectForKey:@"totalGoldNum"];
+                single.userAccount.xinlvSilverMoney = [[dic objectForKey:@"resultBean"] objectForKey:@"totalSilverNum"];
+                single.userAccount.account =[[dic objectForKey:@"resultBean"] objectForKey:@"account"];
+                
+                CCLog(@"查询到的用户名字为：%@",single.userAccount.name);
+                CCLog(@"xinlvGoldMoeny= %@", single.userAccount.xinlvGoldMoeny);
                 
                 
-                
-                
-                
-                
-                
-                
-                
+                               
                 [delegate requestDidFinishedWithRightMessage:messageDic];
                 
             } else{
@@ -1611,5 +1617,225 @@
     
     
     return true;
+}
+
+
+#pragma mark -
+#pragma mark 修改密码 
+
+
+//修改密码
++ (BOOL) updatePassWdWithOldPasswd:(NSString *) oldPasswd newPasswd:(NSString *) newPasswd andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+    NSString *memberId = Default_UserMemberId_Value;
+    NSString *token = Default_Token_Value;
+    
+    //   NSString *publicParm = PUBLIC_Parameter;
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@",memberId,oldPasswd,newPasswd,@"51you",token];
+    NSString *sign = GET_SIGN(urlString);
+    
+    CCLog(@"memberID = %@",memberId);
+    CCLog(@"sign = %@",sign);
+    
+    
+    __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
+    
+    __block NSString *message = nil;
+    
+    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:Update_Passwd_URL]];
+    
+    
+    [formRequst setPostValue:memberId forKey:KEY_Account_MemberId];
+    [formRequst setPostValue:oldPasswd forKey:@"oldPassword"];
+    [formRequst setPostValue:newPasswd forKey:@"newPassword"];
+    [formRequst setPostValue:@"51you" forKey:KEY_source];
+    [formRequst setPostValue:HWID_VALUE forKey:KEY_hwId];
+    [formRequst setPostValue:sign forKey:KEY_SIGN];
+    [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
+    
+    [formRequst setRequestMethod:@"POST"];
+    
+    [formRequst setCompletionBlock:^{
+        
+        NSString *data = [formRequst responseString];
+        
+             CCLog(@"网络返回的数据为：%@",data);
+        
+        NSError *error = nil;
+        
+        
+        NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        
+        if (!error) {
+            
+            CCLog(@"json解析格式正确");
+            
+            message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+            NSLog(@"服务器返回的信息为：%@",message);
+            
+            if ([message length]==0) {
+                
+                //                NSLog(@"成功登陆后返回的数据：%@",data);
+                
+                
+                
+                
+                
+                [delegate requestDidFinishedWithRightMessage:messageDic];
+                
+            } else{
+                
+                //message 长度不为0 有错误信息
+                [messageDic setObject:message forKey:KEY_message];
+                
+                
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+            }
+            
+            
+            
+        } else{
+            NSLog(@"解析有错误");
+            
+            
+            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+            [delegate requestDidFinishedWithFalseMessage:messageDic];
+            
+            return ;
+            
+        }
+        
+        
+        
+    }];
+    
+    [formRequst setFailedBlock:^{
+        
+        
+        
+        
+        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+        
+        [delegate requestDidFailed:messageDic];
+        
+        
+        
+    }];
+    
+      [formRequst startAsynchronous];
+    
+    
+    return true;
+    
+}
+
+
+
+//个人中心优惠券查询
++ (Boolean) getCouponListWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+    
+//    NSString *memberId = Default_UserMemberId_Value;
+    NSString *token = Default_Token_Value;
+    
+    //   NSString *publicParm = PUBLIC_Parameter;
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@",memberId,SOURCE_VALUE,token];
+    NSString *sign = GET_SIGN(urlString);
+    
+    CCLog(@"memberID = %@",memberId);
+    CCLog(@"sign = %@",sign);
+    
+    
+    __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
+    
+    __block NSString *message = nil;
+    
+    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:Coupon_List_URL]];
+    
+    
+    [formRequst setPostValue:memberId forKey:KEY_Account_MemberId];
+    [formRequst setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [formRequst setPostValue:sign forKey:KEY_SIGN];
+    [formRequst setPostValue:HWID_VALUE forKey:KEY_hwId];
+    [formRequst setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
+    [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
+    [formRequst setRequestMethod:@"POST"];
+    
+    [formRequst setCompletionBlock:^{
+        
+        NSString *data = [formRequst responseString];
+        
+        CCLog(@"网络返回的数据为：%@",data);
+        
+        NSError *error = nil;
+        
+        
+        NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        
+        if (!error) {
+            
+            CCLog(@"json解析格式正确");
+            
+            message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+            NSLog(@"服务器返回的信息为：%@",message);
+            
+            if ([message length]==0) {
+                
+                //                NSLog(@"成功登陆后返回的数据：%@",data);
+                
+                
+                
+                
+                
+                [delegate requestDidFinishedWithRightMessage:messageDic];
+                
+            } else{
+                
+                //message 长度不为0 有错误信息
+                [messageDic setObject:message forKey:KEY_message];
+                
+                
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+            }
+            
+            
+            
+        } else{
+            NSLog(@"解析有错误");
+            
+            
+            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+            [delegate requestDidFinishedWithFalseMessage:messageDic];
+            
+            return ;
+            
+        }
+        
+        
+        
+    }];
+    
+    [formRequst setFailedBlock:^{
+        
+        
+        
+        
+        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+        
+        [delegate requestDidFailed:messageDic];
+        
+        
+        
+    }];
+    
+    [formRequst startAsynchronous];
+    
+    
+    return true;
+    
 }
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ModifyPassWordViewController : UIViewController
+#import "ServiceDelegate.h"
+@interface ModifyPassWordViewController : UIViewController<ServiceDelegate,UITextFieldDelegate>
 
 
 @property (retain, nonatomic) IBOutlet UIView *modifyView;

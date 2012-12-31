@@ -12,7 +12,8 @@
 enum{
     
    START_AIRPORT_TYPE,
-   END_AIRPORT_TYPE
+   END_AIRPORT_TYPE,
+    AIRPORT_Big_Screen_ChooseType
     
 }chooseTypeOfAirPort;
 

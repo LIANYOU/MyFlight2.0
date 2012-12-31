@@ -202,7 +202,14 @@
 - (void) updatePassWdWithOldPasswd:(NSString *) oldPasswd newPasswd:(NSString *) newPasswd andDelegate:(id<ServiceDelegate>) delegate{
     
     
+    [LoginInNetworkHelper updatePassWdWithOldPasswd:oldPasswd newPasswd:newPasswd andDelegate:delegate];
+}
+
+//个人中心优惠券查询
+- (void) getCouponListWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate{
     
+    
+    [LoginInNetworkHelper getCouponListWithMemberId:memberId andDelegate:delegate];
     
     
 }

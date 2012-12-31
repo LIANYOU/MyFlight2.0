@@ -30,21 +30,21 @@
     NSString *doc_path=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
     //数据库路径
     NSString *sqlPath=[doc_path stringByAppendingPathComponent:@"AirPortDataBase.sqlite"];
-
+    
     //原始路径
     NSString *orignFilePath = [[NSBundle mainBundle] pathForResource:@"AirPortDataBase" ofType:@"sqlite"];
-        NSFileManager *fm = [NSFileManager defaultManager];
+    NSFileManager *fm = [NSFileManager defaultManager];
     if([fm fileExistsAtPath:sqlPath] == NO)//如果doc下没有数据库，从bundle里面拷贝过来
     {
-       
+        
         NSError *err = nil;
         if([fm copyItemAtPath:orignFilePath toPath:sqlPath error:&err] == NO)//如果拷贝失败
         {
-            NSLog(@"open database error %@",[err localizedDescription]);
+            CCLog(@"open database error %@",[err localizedDescription]);
             return nil;
         }
         
-        NSLog(@"document 下没有数据库文件，执行拷贝工作");
+        CCLog(@"document 下没有数据库文件，执行拷贝工作");
     }
     
     //初始化数据库
@@ -53,13 +53,13 @@
     //这个方法一定要执行
     if (![db open]) {
         
-        NSLog(@"数据库打开失败！");
+        CCLog(@"数据库打开失败！");
         return db;
     }
     
     
-    NSLog(@"打开成功");
-    NSLog(@"db=%@",db);
+    CCLog(@"打开成功");
+    
     return  db;
 }
 
@@ -86,11 +86,11 @@
         NSError *err = nil;
         if([fm copyItemAtPath:plistPath toPath:sqlPath error:&err] == NO)//如果拷贝失败
         {
-            NSLog(@"open database error %@",[err localizedDescription]);
+            CCLog(@"open database error %@",[err localizedDescription]);
             return nil;
         }
         
-        NSLog(@"document 下没有数据库版本文件，执行拷贝工作");
+        CCLog(@"document 下没有数据库版本文件，执行拷贝工作");
     }
     
     
@@ -103,7 +103,7 @@
     
     NSMutableDictionary *dict =[NSMutableDictionary dictionaryWithContentsOfFile:[self getLocalDataBasePath]];
     
-    NSLog(@"本地版本号为：%@",[dict objectForKey:@"DataBaseVersion"]);
+    CCLog(@"本地版本号为：%@",[dict objectForKey:@"DataBaseVersion"]);
     
     //    [dict setValue:@"1" forKey:@"DataBaseVersion"];
     //   [dict writeToFile:plistPath atomically:YES];
@@ -116,10 +116,10 @@
 + (void) updateLocalDataBaseVersion:(NSString *) newVersion{
     
     
-       
+    
     NSMutableDictionary *dict =[NSMutableDictionary dictionaryWithContentsOfFile:[self getLocalDataBasePath]];
     
-    NSLog(@"本地版本号为：%@",[dict objectForKey:@"DataBaseVersion"]);
+    CCLog(@"本地版本号为：%@",[dict objectForKey:@"DataBaseVersion"]);
     
     [dict setValue:newVersion forKey:@"DataBaseVersion"];
     
@@ -141,7 +141,7 @@
         //删除旧表
         [db executeUpdate:@"drop table AirPortDataBase"];
         [db executeUpdate:@"CREATE TABLE AirPortDataBase (apCode TEXT, apName TEXT, apEName TEXT, apLName TEXT, hotcity TEXT, cityName TEXT,air_x text,air_y text, id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE ) "];
-        NSLog(@"创建一个表格");
+        CCLog(@"创建一个表格");
         
         isDataBaseNew = true;
         
@@ -154,7 +154,7 @@
     //
     //    } else{
     //
-    //        NSLog(@"表已经存在");
+    //        CCLog(@"表已经存在");
     //    }
     //
     
@@ -172,7 +172,7 @@
 //初始化数据库
 + (BOOL) initDataBaseTable:(NSData *) jsonData{
     
-    NSLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     //解析json数据
     NSDictionary *dict = [jsonData objectFromJSONData];
     
@@ -185,12 +185,12 @@
     
     //    NSString * string = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
-    //    NSLog(@"服务器返回的数据为：%@",string);
+    //    CCLog(@"服务器返回的数据为：%@",string);
     
-    NSLog(@"数据库版本号为：%@",version);
-    NSLog(@"服务器返回的结果码是：%@",resultCode);
-    NSLog(@"机场的数目为：%@",airPortCount);
-    NSLog(@"服务器处理返回的信息为：%@",message);
+    CCLog(@"数据库版本号为：%@",version);
+    CCLog(@"服务器返回的结果码是：%@",resultCode);
+    CCLog(@"机场的数目为：%@",airPortCount);
+    CCLog(@"服务器处理返回的信息为：%@",message);
     NSArray *cityArray = [dict objectForKey:@"cities"];
     
     
@@ -199,15 +199,15 @@
     if (![LocalDatabaseVersion isEqualToString:version]&&![version isEqualToString:@""]) {
         
         
-        NSLog(@"服务器版本数据库有数据");
+        CCLog(@"服务器版本数据库有数据");
         [self updateLocalDataBaseVersion:version];
         
         
-        NSLog(@"数据库版本不一致"); //更新数据库
+        CCLog(@"数据库版本不一致"); //更新数据库
         if([message isEqualToString:@""])
         {
-            NSLog(@"成功取得数据");
-            NSLog(@"取得的城市有%d个",[cityArray count]);
+            CCLog(@"成功取得数据");
+            CCLog(@"取得的城市有%d个",[cityArray count]);
             
             
             for (NSDictionary * cityItem in cityArray)
@@ -246,7 +246,7 @@
             
         } else{
             
-            NSLog(@"服务器返回结果错误");
+            CCLog(@"服务器返回结果错误");
             
             //            UIAlertView *alrt = [[UIAlertView alloc] initWithTitle:@"更新结果" message:@"服务器无响应" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             //            [alrt show];
@@ -260,7 +260,7 @@
         
     } else{
         
-        NSLog(@"数据库版本一致无需更新");
+        CCLog(@"数据库版本一致无需更新");
     }
     
     return true;
@@ -295,8 +295,8 @@
     
     FMDatabase *db =[self openDatabase];
     
-    FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,hotcity,cityName,air_x,air_y FROM AirPortDataBase where hotcity=1"];
-//    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
+    FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,apEName,hotcity,cityName,air_x,air_y FROM AirPortDataBase where hotcity=1"];
+    //    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
     
     NSMutableDictionary *resultDic = [[NSMutableDictionary alloc] init];
     
@@ -310,12 +310,12 @@
         NSString *cityName = [resultSet stringForColumn:Column_cityName];
         NSString *air_x = [resultSet stringForColumn:Column_air_x];
         NSString *air_y = [resultSet stringForColumn:Column_air_y];
-        
+        NSString *apEName =[resultSet stringForColumn:Column_apEName];
         AirPortData *airPort = [[AirPortData alloc] initWithapCode:apCode apName:apName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
+        airPort.apEname=apEName;
+        //        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
         
-//        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
-        
-//        [resultArray addObject:dict];
+        //        [resultArray addObject:dict];
         
         [resultDic setObject:airPort forKey:apCode];
         
@@ -336,8 +336,8 @@
     FMDatabase *db =[self openDatabase];
     
     
-    FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,hotcity,cityName,air_x,air_y FROM AirPortDataBase "];
-//    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
+    FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,apEName,hotcity,cityName,air_x,air_y FROM AirPortDataBase "];
+    //    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
     
     NSMutableDictionary *resultDic =[[NSMutableDictionary alloc] init];
     
@@ -352,13 +352,14 @@
         NSString *cityName = [resultSet stringForColumn:Column_cityName];
         NSString *air_x = [resultSet stringForColumn:Column_air_x];
         NSString *air_y = [resultSet stringForColumn:Column_air_y];
+        NSString *apEName =[resultSet stringForColumn:Column_apEName];
         
         AirPortData *airPort = [[AirPortData alloc] initWithapCode:apCode apName:apName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
+        airPort.apEname=apEName;
+        //        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
+        //
+        //        [resultArray addObject:dict];
         
-//        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
-//        
-//        [resultArray addObject:dict];
-
         
         [resultDic setObject:airPort forKey:apCode];
         [airPort release];
@@ -371,5 +372,65 @@
     
 }
 
+
+
+//根据用户输入的条件查询 机场信息
++(NSMutableArray *) findAirPortByCondition:(NSString *) condition{
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    
+    FMDatabase *db =[self openDatabase];
+    
+    FMResultSet *resultSet = nil;
+    
+    NSMutableArray *resultDic =[[NSMutableArray alloc] init];
+    
+    if ([db tableExists:@"AirPortDataBase"]) {
+        
+        CCLog(@"存在表，可继续查询");
+        
+        NSString *sql=[NSString stringWithFormat:@"select DISTINCT * from AirPortDataBase where apName like '%@%%' or apEName like '%@%%'",condition,condition];
+        
+        CCLog(@"spl = %@",sql);
+        
+        CCLog(@"查询词为：%@",condition);
+        
+        
+        resultSet = [db executeQuery:sql];
+        
+        
+    }
+    
+    [resultDic removeAllObjects];
+    
+    while ([resultSet next]) {
+        
+        
+        
+        NSString *apCode = [resultSet stringForColumn:Column_apCode];
+        NSString *apName = [resultSet stringForColumn:Column_apName];
+        NSString *hotCity = [resultSet stringForColumn:Column_hotcity];
+        NSString *cityName = [resultSet stringForColumn:Column_cityName];
+        NSString *air_x = [resultSet stringForColumn:Column_air_x];
+        NSString *air_y = [resultSet stringForColumn:Column_air_y];
+        NSString *apEName =[resultSet stringForColumn:Column_apEName];
+        
+        AirPortData *airPort = [[AirPortData alloc] initWithapCode:apCode apName:apName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
+        airPort.apEname=apEName;
+        
+        
+        
+        [resultDic addObject:airPort];
+        [airPort release];
+        
+    }
+    
+    
+    
+    CCLog(@"根据查询条件 获取的机场数目为：%d",[resultDic count]);
+    
+    return [resultDic autorelease];
+    
+}
 
 @end

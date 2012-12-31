@@ -22,6 +22,10 @@
 
 
 
+//根据用户输入的条件查询 机场信息 
++(NSMutableArray *) findAirPortByCondition:(NSString *) condition;
+
+
 + (id) shareAirPortBaseData;
 
 
