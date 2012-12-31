@@ -30,13 +30,13 @@
     NSString *doc_path=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
     //数据库路径
     NSString *sqlPath=[doc_path stringByAppendingPathComponent:@"AirPortDataBase.sqlite"];
-
+    
     //原始路径
     NSString *orignFilePath = [[NSBundle mainBundle] pathForResource:@"AirPortDataBase" ofType:@"sqlite"];
-        NSFileManager *fm = [NSFileManager defaultManager];
+    NSFileManager *fm = [NSFileManager defaultManager];
     if([fm fileExistsAtPath:sqlPath] == NO)//如果doc下没有数据库，从bundle里面拷贝过来
     {
-       
+        
         NSError *err = nil;
         if([fm copyItemAtPath:orignFilePath toPath:sqlPath error:&err] == NO)//如果拷贝失败
         {
@@ -116,7 +116,7 @@
 + (void) updateLocalDataBaseVersion:(NSString *) newVersion{
     
     
-       
+    
     NSMutableDictionary *dict =[NSMutableDictionary dictionaryWithContentsOfFile:[self getLocalDataBasePath]];
     
     NSLog(@"本地版本号为：%@",[dict objectForKey:@"DataBaseVersion"]);
@@ -295,8 +295,8 @@
     
     FMDatabase *db =[self openDatabase];
     
-    FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,hotcity,cityName,air_x,air_y FROM AirPortDataBase where hotcity=1"];
-//    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
+    FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,apEName,hotcity,cityName,air_x,air_y FROM AirPortDataBase where hotcity=1"];
+    //    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
     
     NSMutableDictionary *resultDic = [[NSMutableDictionary alloc] init];
     
@@ -310,12 +310,12 @@
         NSString *cityName = [resultSet stringForColumn:Column_cityName];
         NSString *air_x = [resultSet stringForColumn:Column_air_x];
         NSString *air_y = [resultSet stringForColumn:Column_air_y];
-        
+        NSString *apEName =[resultSet stringForColumn:Column_apEName];
         AirPortData *airPort = [[AirPortData alloc] initWithapCode:apCode apName:apName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
+        airPort.apEname=apEName;
+        //        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
         
-//        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
-        
-//        [resultArray addObject:dict];
+        //        [resultArray addObject:dict];
         
         [resultDic setObject:airPort forKey:apCode];
         
@@ -336,8 +336,8 @@
     FMDatabase *db =[self openDatabase];
     
     
-    FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,hotcity,cityName,air_x,air_y FROM AirPortDataBase "];
-//    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
+    FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,apEName,hotcity,cityName,air_x,air_y FROM AirPortDataBase "];
+    //    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
     
     NSMutableDictionary *resultDic =[[NSMutableDictionary alloc] init];
     
@@ -352,13 +352,14 @@
         NSString *cityName = [resultSet stringForColumn:Column_cityName];
         NSString *air_x = [resultSet stringForColumn:Column_air_x];
         NSString *air_y = [resultSet stringForColumn:Column_air_y];
+        NSString *apEName =[resultSet stringForColumn:Column_apEName];
         
         AirPortData *airPort = [[AirPortData alloc] initWithapCode:apCode apName:apName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
+        airPort.apEname=apEName;
+        //        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
+        //
+        //        [resultArray addObject:dict];
         
-//        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
-//        
-//        [resultArray addObject:dict];
-
         
         [resultDic setObject:airPort forKey:apCode];
         [airPort release];
@@ -371,5 +372,39 @@
     
 }
 
+
+
+//根据用户输入的条件查询 机场信息
++(NSMutableDictionary *) findAirPortByCondition:(NSString *) condition{
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    
+    FMDatabase *db =[self openDatabase];
+    
+    FMResultSet *resultSet = nil;
+    
+    if ([db tableExists:@"AirPortDataBase"]) {
+        
+        CCLog(@"存在表，可继续查询");
+        
+//        NSString *sql=[NSString stringWithFormat:@"select DISTINCT * from AirPortDataBase where name like '%@%%'",self.searchBar.text];
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
 
 @end
