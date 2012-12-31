@@ -8,22 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ASIFormDataRequest.h"
+#import "JSONKit.h"
 
 @interface ChooseFlightViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     UITableView *passengerInfoTable;
-    NSArray *passengerTitleArray;
-    NSString *passengerName;
-    NSString *passengerID;
-    
     UITableView *flightInfoTable;
-    NSArray *flightInfoArray;
-    NSInteger flightCount;
+    
     NSInteger currentSelection;
+    
+    __block NSDictionary *responseDictionary;
 }
 
 @property (nonatomic, assign) BOOL isQuery;
 
-- (id) initWithNameAndID: (NSString *) name: (NSString *) ID;
+@property (nonatomic, retain) NSString *passName;
+@property (nonatomic, retain) NSString *idNo;
+@property (nonatomic, retain) NSString *depCity;
+@property (nonatomic, retain) NSString *isLogined;
+
+- (void) requestForData;
+- (void) confirmSelection;
 
 @end
