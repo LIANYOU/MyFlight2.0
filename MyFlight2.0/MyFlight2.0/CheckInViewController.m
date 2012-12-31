@@ -79,6 +79,13 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+    else
+    {
+        for(UIView *view in [cell subviews])
+        {
+            [view removeFromSuperview];
+        }
+    }
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 17, 64, 16)];
     
@@ -87,6 +94,7 @@
     title.textColor = [UIColor colorWithRed:0.1f green:0.4f blue:0.8f alpha:1.0f];
     title.textAlignment = NSTextAlignmentCenter;
     title.backgroundColor = [UIColor clearColor];
+    
     [cell addSubview:title];
     [title release];
     
@@ -113,6 +121,7 @@
     value.textColor = [UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f];
     value.textAlignment = NSTextAlignmentRight;
     value.backgroundColor = [UIColor clearColor];
+    
     [cell addSubview:value];
     [value release];
     
@@ -148,6 +157,7 @@
     
     [super dealloc];
 }
+
 - (void)viewDidUnload
 {
     [registerforCheckIn release];
@@ -157,37 +167,133 @@
     [super viewDidUnload];
 }
 
+- (void) changeName
+{
+    [passengerName release];
+    
+    passengerName = [input.text retain];
+    
+    [input removeFromSuperview];
+    
+    checkforProgress.enabled = YES;
+    registerforCheckIn.enabled = YES;
+    
+    [checkInInfoTable reloadData];
+}
+
+- (void) changePassportType
+{
+    
+}
+
+- (void) changePassportNumber
+{
+    [passportNumber release];
+    
+    passportNumber = [input.text retain];
+    
+    [input removeFromSuperview];
+    
+    checkforProgress.enabled = YES;
+    registerforCheckIn.enabled = YES;
+    
+    [checkInInfoTable reloadData];
+}
+
+- (void) cancelChange
+{
+    [input removeFromSuperview];
+}
+
 - (IBAction)checkIn:(UIButton *)sender
 {
-    CCLog(@"Ready to Check In\n");
     ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
+    
     chooseFlight.isQuery = NO;
+    chooseFlight.passName = passengerName;
+    chooseFlight.idNo = passportNumber;
+    chooseFlight.depCity = departureAirport;
+    
     [self.navigationController pushViewController:chooseFlight animated:YES];
     [chooseFlight release];
 }
 
 - (IBAction) progressQuery:(UIButton *)sender
 {
-    CCLog(@"Query Check In Progress\n");
     ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
-    chooseFlight.isQuery = YES;
+    
+    chooseFlight.isQuery = NO;
+    chooseFlight.passName = passengerName;
+    chooseFlight.idNo = passportNumber;
+    chooseFlight.depCity = departureAirport;
+    
     [self.navigationController pushViewController:chooseFlight animated:YES];
     [chooseFlight release];
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ChooseAirPortViewController *chooseAp;
+    chooseAp = [[ChooseAirPortViewController alloc] init];
+    
     switch (indexPath.row)
     {
+        case 0:
+            input = [[UITextField alloc] initWithFrame:CGRectMake(0, 150, 320, 50)];
+            
+            input.textColor = [UIColor blackColor];
+            input.textAlignment = UITextAlignmentCenter;
+            input.font = [UIFont systemFontOfSize:50.0f];
+            input.keyboardType = UIKeyboardTypeNamePhonePad;
+            
+            [input addTarget:self action:@selector(changeName) forControlEvents:UIControlEventEditingDidEndOnExit];
+            
+            checkforProgress.enabled = NO;
+            registerforCheckIn.enabled = NO;
+            
+            [self.view addSubview:input];
+            [input release];
+            
+            [input becomeFirstResponder];
+            
+            break;
         case 1:
-            CCLog(@"Change Passport Type\n");
+            NSLog(@"Change Passport Type\n");
+            break;
+        case 2:
+            input = [[UITextField alloc] initWithFrame:CGRectMake(0, 150, 320, 50)];
+            
+            input.textColor = [UIColor blackColor];
+            input.textAlignment = UITextAlignmentCenter;
+            input.font = [UIFont systemFontOfSize:50.0f];
+            input.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            
+            [input addTarget:self action:@selector(changePassportNumber) forControlEvents:UIControlEventEditingDidEndOnExit];
+            
+            checkforProgress.enabled = NO;
+            registerforCheckIn.enabled = NO;
+            
+            [self.view addSubview:input];
+            [input release];
+            
+            [input becomeFirstResponder];
+            
             break;
         case 3:
-            CCLog(@"Change Departure Airport\n");
+            chooseAp = [[ChooseAirPortViewController alloc] init];
+            
+            [self.navigationController pushViewController:chooseAp animated:YES];
+            [chooseAp release];
+            
             break;
         default:
             break;
     }
+}
+
+- (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger)choiceType didSelectAirPortInfo:(AirPortData *)airPort
+{
+    departureAirport = airPort.apCode;
 }
 
 @end

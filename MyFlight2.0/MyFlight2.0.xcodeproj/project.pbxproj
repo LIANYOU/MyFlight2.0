@@ -112,6 +112,7 @@
 		149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780D168D8FD1006281A3 /* bookingFlightVo.m */; };
 		149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7810168D9775006281A3 /* bookingReturnFlightVo.m */; };
 		14D18030168FF4860084CB48 /* AirPortDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */; };
+		14ECFEC91691462100A99E6B /* AirportMainScreenTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ECFEC81691462000A99E6B /* AirportMainScreenTitleView.m */; };
 		14ED61ED1672F16D0019DC23 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E21672F16D0019DC23 /* FMDatabase.m */; };
 		14ED61EE1672F16D0019DC23 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E41672F16D0019DC23 /* FMDatabaseAdditions.m */; };
 		14ED61EF1672F16D0019DC23 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61E61672F16D0019DC23 /* FMDatabasePool.m */; };
@@ -198,13 +199,10 @@
 		1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE871683629B00349FE1 /* BaggageViewController.xib */; };
 		18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18478C64167332AD00D3AFCD /* SearchFlightCondition.m */; };
 		1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852CC7D16837F5600431A9B /* TravePhoneCell.xib */; };
-
 		18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18630442168EAA1C0022CB2F /* WriteOrderViewController.m */; };
 		18630445168EAA1D0022CB2F /* WriteOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */; };
-
 		18953997168EFA20008901F5 /* AirportMainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18953995168EFA20008901F5 /* AirportMainScreenViewController.m */; };
 		18953998168EFA20008901F5 /* AirportMainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18953996168EFA20008901F5 /* AirportMainScreenViewController.xib */; };
-
 		1896E5EF168C6554006F883B /* TravelTrafficViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */; };
 		189F5D48168A014700A3494F /* AttentionFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F5D47168A014700A3494F /* AttentionFlight.m */; };
 		18AD3304168C6EF40065BF08 /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD32F6168C6EF40065BF08 /* CheckInViewController.m */; };
@@ -748,6 +746,8 @@
 		149B7810168D9775006281A3 /* bookingReturnFlightVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bookingReturnFlightVo.m; sourceTree = "<group>"; };
 		149B7813168D9ABE006281A3 /* flightBookingUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flightBookingUility.h; sourceTree = "<group>"; };
 		14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirPortDataBase.sqlite; sourceTree = "<group>"; };
+		14ECFEC71691462000A99E6B /* AirportMainScreenTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirportMainScreenTitleView.h; sourceTree = "<group>"; };
+		14ECFEC81691462000A99E6B /* AirportMainScreenTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirportMainScreenTitleView.m; sourceTree = "<group>"; };
 		14ED61E11672F16D0019DC23 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		14ED61E21672F16D0019DC23 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		14ED61E31672F16D0019DC23 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -863,15 +863,12 @@
 		18478C63167332AD00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
 		18478C64167332AD00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
 		1852CC7D16837F5600431A9B /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
-
 		18630441168EAA1B0022CB2F /* WriteOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteOrderViewController.h; sourceTree = "<group>"; };
 		18630442168EAA1C0022CB2F /* WriteOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteOrderViewController.m; sourceTree = "<group>"; };
 		18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteOrderViewController.xib; sourceTree = "<group>"; };
-
 		18953994168EFA20008901F5 /* AirportMainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirportMainScreenViewController.h; sourceTree = "<group>"; };
 		18953995168EFA20008901F5 /* AirportMainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirportMainScreenViewController.m; sourceTree = "<group>"; };
 		18953996168EFA20008901F5 /* AirportMainScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AirportMainScreenViewController.xib; sourceTree = "<group>"; };
-
 		1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelTrafficViewController.xib; sourceTree = "<group>"; };
 		189F5D46168A014700A3494F /* AttentionFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionFlight.h; sourceTree = "<group>"; };
 		189F5D47168A014700A3494F /* AttentionFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionFlight.m; sourceTree = "<group>"; };
@@ -2218,6 +2215,8 @@
 				18953994168EFA20008901F5 /* AirportMainScreenViewController.h */,
 				18953995168EFA20008901F5 /* AirportMainScreenViewController.m */,
 				18953996168EFA20008901F5 /* AirportMainScreenViewController.xib */,
+				14ECFEC71691462000A99E6B /* AirportMainScreenTitleView.h */,
+				14ECFEC81691462000A99E6B /* AirportMainScreenTitleView.m */,
 				18D19A08168FDFCC004861C3 /* AirportMainScreenSearchView.h */,
 				18D19A09168FDFCC004861C3 /* AirportMainScreenSearchView.m */,
 			);
@@ -2238,15 +2237,15 @@
 		18AD32F3168C6ED10065BF08 /* chooseSeat */ = {
 			isa = PBXGroup;
 			children = (
+				18AD32FB168C6EF40065BF08 /* ChooseSeatOnlineViewController.h */,
+				18AD32FC168C6EF40065BF08 /* ChooseSeatOnlineViewController.m */,
+				18AD32FD168C6EF40065BF08 /* ChooseSeatOnlineViewController.xib */,
 				18AD32F5168C6EF40065BF08 /* CheckInViewController.h */,
 				18AD32F6168C6EF40065BF08 /* CheckInViewController.m */,
 				18AD32F7168C6EF40065BF08 /* CheckInViewController.xib */,
 				18AD32F8168C6EF40065BF08 /* ChooseFlightViewController.h */,
 				18AD32F9168C6EF40065BF08 /* ChooseFlightViewController.m */,
 				18AD32FA168C6EF40065BF08 /* ChooseFlightViewController.xib */,
-				18AD32FB168C6EF40065BF08 /* ChooseSeatOnlineViewController.h */,
-				18AD32FC168C6EF40065BF08 /* ChooseSeatOnlineViewController.m */,
-				18AD32FD168C6EF40065BF08 /* ChooseSeatOnlineViewController.xib */,
 				18AD32FE168C6EF40065BF08 /* FlightInformationViewController.h */,
 				18AD32FF168C6EF40065BF08 /* FlightInformationViewController.m */,
 				18AD3300168C6EF40065BF08 /* FlightInformationViewController.xib */,
@@ -3288,7 +3287,6 @@
 				18AD3309168C6EF40065BF08 /* ChooseSeatOnlineViewController.xib in Resources */,
 				18AD330B168C6EF40065BF08 /* FlightInformationViewController.xib in Resources */,
 				18AD330D168C6EF40065BF08 /* PickSeatViewController.xib in Resources */,
-
 				18C48A08168D4C2000A981A4 /* AddPersonController.xib in Resources */,
 				18C48A0A168D4C2000A981A4 /* AddPersonSwitchCell.xib in Resources */,
 				18C48A12168D504E00A981A4 /* AddPersonCoustomCell.xib in Resources */,
@@ -3360,7 +3358,6 @@
 				A8A0AA15168ED20500FCBD23 /* test@2x.png in Resources */,
 				18630445168EAA1D0022CB2F /* WriteOrderViewController.xib in Resources */,
 				14D18030168FF4860084CB48 /* AirPortDataBase.sqlite in Resources */,
-
 				18953998168EFA20008901F5 /* AirportMainScreenViewController.xib in Resources */,
 				18D19A15168FEC05004861C3 /* btn_search.png in Resources */,
 				18D19A16168FEC05004861C3 /* Drop_down_long.png in Resources */,
@@ -3370,7 +3367,6 @@
 				18D19A1A168FEC05004861C3 /* icon_Refresh.png in Resources */,
 				18D19A1B168FEC05004861C3 /* icon_return_white.png in Resources */,
 				18D19A1C168FEC05004861C3 /* Thumbs.db in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3510,7 +3506,6 @@
 				18AD3308168C6EF40065BF08 /* ChooseSeatOnlineViewController.m in Sources */,
 				18AD330A168C6EF40065BF08 /* FlightInformationViewController.m in Sources */,
 				18AD330C168C6EF40065BF08 /* PickSeatViewController.m in Sources */,
-
 				18E8B675168C9AAC009EC8C5 /* OrderFlight.m in Sources */,
 				18C48A07168D4C2000A981A4 /* AddPersonController.m in Sources */,
 				18C48A09168D4C2000A981A4 /* AddPersonSwitchCell.m in Sources */,
@@ -3567,10 +3562,9 @@
 				A8A0AA45168ED43500FCBD23 /* SBJsonParser.m in Sources */,
 				A8A0AA46168ED43500FCBD23 /* SBJsonWriter.m in Sources */,
 				18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */,
-
 				18953997168EFA20008901F5 /* AirportMainScreenViewController.m in Sources */,
 				18D19A0A168FDFCC004861C3 /* AirportMainScreenSearchView.m in Sources */,
-
+				14ECFEC91691462100A99E6B /* AirportMainScreenTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

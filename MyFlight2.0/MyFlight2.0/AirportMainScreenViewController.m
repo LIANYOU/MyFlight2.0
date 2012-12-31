@@ -56,10 +56,12 @@
     NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/screen.jsp"];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+
+    [request setRequestMethod:@"POST"];
     
-    [request setPostValue:apName forKey:@"airport"];
+    [request setPostValue:titlebar.apCode forKey:@"airport"];
     
-    if(isIncoming)
+    if(titlebar.isIncoming)
     {
         [request setPostValue:@"1" forKey:@"type"];
     }
@@ -70,8 +72,6 @@
     
     [request setPostValue:[NSString stringWithFormat:@"%d", pageNum] forKey:@"pageNum"];
     [request setPostValue:edition forKey:@"edition"];
-    
-    [request setRequestMethod:@"POST"];
     
     if(flightNo != nil)
     {
@@ -130,17 +130,44 @@
     [request startAsynchronous];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [UIView animateWithDuration:0.5
+                      animations:^(void){
+                          titlebar.alpha = 1.0f;
+                      }];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [UIView animateWithDuration:0.5
+                     animations:^(void){
+                         titlebar.alpha = 0.0f;
+                     }];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     barCount = 25;
-    
-    apName = @"PEK";
-    isIncoming = NO;
     pageNum = 1;
     edition = @"v1.0";
+
+    titlebar = [[AirportMainScreenTitleView alloc] initWithFrame:CGRectMake(0, 0, 320, 75)];
+    
+    titlebar.delegate = self;
+    titlebar.alpha = 0.0f;
+    titlebar.apCode = @"PEK";
+    titlebar.apName = @"北京首都";
+    
+    [titlebar reloadApName];
+    
+    [self.navigationController.view addSubview:titlebar];
+    [titlebar release];
+    
+    [self requestForData:nil];
     
     screenTitle = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 135, (barCount + 1) * 30) style:UITableViewStylePlain];
     
@@ -279,8 +306,6 @@
     
     [self.view addSubview:search];
     [search release];
-    
-    [self requestForData:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -308,6 +333,13 @@
     if(cell == nil)
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+    }
+    else
+    {
+        for(UIView *view in [cell subviews])
+        {
+            [view removeFromSuperview];
+        }
     }
     
     NSArray *flightArray = [responseDictionary objectForKey:@"flight"];
@@ -490,6 +522,11 @@
     [super dealloc];
 }
 
+- (void) back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void) updatePageNumber
 {
     pageNum = 0;
@@ -520,6 +557,25 @@
 {
     [self refresh];
     [self requestForData:flightNo];
+}
+
+- (void) chooseAirPort:(NSString *)apName
+{
+    ChooseAirPortViewController *chooseAp = [[ChooseAirPortViewController alloc] init];
+    
+    chooseAp.delegate = self;
+    
+    [self.navigationController pushViewController:chooseAp animated:YES];
+    [chooseAp release];
+}
+
+- (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger)choiceType didSelectAirPortInfo:(AirPortData *)airPort
+{
+    titlebar.apCode = airPort.apCode;
+    titlebar.apName = airPort.apName;
+    
+    [titlebar reloadApName];
+    [self requestForData:nil];
 }
 
 @end
