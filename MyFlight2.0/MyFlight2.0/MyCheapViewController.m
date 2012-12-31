@@ -9,6 +9,9 @@
 #import "MyCheapViewController.h"
 #import "MyCheapCell.h"
 #import "SVSegmentedControl.h"
+#import "AppConfigure.h"
+#import "LoginBusiness.h"
+#import "UIQuickHelp.h"
 @interface MyCheapViewController ()
 
 @end
@@ -56,6 +59,10 @@
 
 -(void)mySegmentValueChange:(SVSegmentedControl *)sender{
     
+    
+    
+    
+    
 
     
     
@@ -66,6 +73,14 @@
 {
     [super viewDidLoad];
     [self initThisView];
+    LoginBusiness *bis = [[LoginBusiness alloc] init];
+    
+    NSString *memberId =Default_UserMemberId_Value;
+    
+    [bis getCouponListWithMemberId:memberId andDelegate:self];
+    
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -123,44 +138,6 @@
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
 
 #pragma mark - Table view delegate
 
@@ -174,6 +151,50 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+
+
+
+#pragma mark -
+#pragma mark 网络错误回调的方法
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    NSString *meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+    
+    
+}
+
+#pragma mark -
+#pragma mark 网络返回错误信息回调的方法
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    NSString *meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+#pragma mark -
+#pragma mark 网络正确回调的方法
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
+    
+    
+    
+    
+    
+    
+    
 }
 
 

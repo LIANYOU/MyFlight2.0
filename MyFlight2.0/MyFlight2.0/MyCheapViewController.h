@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SVSegmentedControl.h"
-@interface MyCheapViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+#import "ServiceDelegate.h"
+@interface MyCheapViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,ServiceDelegate>
 
 {
     

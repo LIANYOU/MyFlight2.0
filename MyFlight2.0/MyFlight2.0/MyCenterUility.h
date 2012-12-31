@@ -214,6 +214,11 @@ enum  {
 
 
 
+//修改密码
+#define Update_Passwd_URL_Index @"/web/phone/member/member_password_update.jsp"
+
+
+#define Update_Passwd_URL GET_RIGHT_URL_WITH_Index(Update_Passwd_URL_Index)
 
 //常用联系人 查询参数名称
 #define KEY_Passenger_Name @"name"
@@ -221,6 +226,21 @@ enum  {
 #define KEY_Passenger_CertType @"certType"
 #define KEY_Passenger_CertNo @"certNo"
 #define KEY_Passenger_Id @"id"
+
+
+//个人优惠券查询
+
+#define Coupon_List_URL_Index  @"/web/phone/active/coupon/personList.jsp"
+
+#define Coupon_List_URL GET_RIGHT_URL_WITH_Index(Coupon_List_URL_Index)
+
+
+
+
+
+
+
+
 
 
 #endif

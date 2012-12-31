@@ -643,10 +643,9 @@
 								<bool key="IBUIHighlighted">YES</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<bool key="IBUIReversesTitleShadowWhenHighlighted">YES</bool>
 								<object class="NSColor" key="IBUITintColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC45NDkwMTk2MDc4IDAuMzkwNjU0ODA2OSAwLjIwMjk2MTQ4NDQAA</bytes>
+									<bytes key="NSRGB">MC4wOTA0MjExNzc2MiAwLjIyMjExNjg5IDAuODczNjA0OTEwNwA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="409674647">
 									<int key="NSColorSpace">3</int>
@@ -970,7 +969,6 @@
 							<reference ref="847221775"/>
 							<reference ref="558672280"/>
 							<reference ref="6870438"/>
-							<reference ref="12434617"/>
 							<reference ref="583980943"/>
 							<reference ref="565115733"/>
 							<reference ref="929674307"/>
@@ -979,6 +977,7 @@
 							<reference ref="413737584"/>
 							<reference ref="229527993"/>
 							<reference ref="576999627"/>
+							<reference ref="12434617"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -1228,6 +1227,7 @@
 				<string key="44.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="45.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="46.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="1" key="46.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="47.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="48.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="49.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
