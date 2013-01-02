@@ -23,7 +23,7 @@
         
         self.backgroundColor = [UIColor blackColor];
         
-        leftItem = [[UIView alloc] initWithFrame:CGRectMake(10, 30, 40, 30)];
+        leftItem = [[UIView alloc] initWithFrame:CGRectMake(10, 25, 40, 30)];
         
         leftItem.layer.borderColor = [[UIColor whiteColor] CGColor];
         leftItem.layer.borderWidth = 1.0f;
@@ -44,7 +44,7 @@
         [self addSubview:leftItem];
         [leftItem release];
         
-        rightItem = [[UIView alloc] initWithFrame:CGRectMake(270, 30, 40, 30)];
+        rightItem = [[UIView alloc] initWithFrame:CGRectMake(270, 25, 40, 30)];
         
         rightItem.layer.borderColor = [[UIColor whiteColor] CGColor];
         rightItem.layer.borderWidth = 1.0f;
@@ -63,7 +63,7 @@
         [self addSubview:rightItem];
         [rightItem release];
         
-        pickAirPortItem = [[UIView alloc] initWithFrame:CGRectMake(70, 30, 100, 30)];
+        pickAirPortItem = [[UIView alloc] initWithFrame:CGRectMake(70, 25, 100, 30)];
         
         pickAirPortItem.layer.borderColor = [[UIColor whiteColor] CGColor];
         pickAirPortItem.layer.borderWidth = 1.0f;
@@ -76,7 +76,7 @@
         
         [self reloadApName];
         
-        incoming = [[UIView alloc] initWithFrame:CGRectMake(180, 30, 70, 30)];
+        incoming = [[UIView alloc] initWithFrame:CGRectMake(180, 25, 70, 30)];
         
         incoming.layer.borderColor = [[UIColor whiteColor] CGColor];
         incoming.layer.borderWidth = 1.0f;
@@ -108,7 +108,7 @@
         [self addSubview:incoming];
         [incoming release];
         
-        outgoing = [[UIView alloc] initWithFrame:CGRectMake(180, 30, 70, 30)];
+        outgoing = [[UIView alloc] initWithFrame:CGRectMake(180, 25, 70, 30)];
         
         outgoing.layer.borderColor = [[UIColor whiteColor] CGColor];
         outgoing.layer.borderWidth = 1.0f;
@@ -174,25 +174,50 @@
     else if([rightTouches count] != 0)
     {
         [self.delegate performSelector:@selector(requestForData:) withObject:nil];
-    }
-    else if([centerTouches count] != 0)
-    {
-        [self.delegate performSelector:@selector(chooseAirPort:) withObject:self.apCode];
         
-        [UIView animateWithDuration:0.5
+        [UIView animateWithDuration:0.25
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveLinear
                          animations:^(void){
-                             CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI / 2);
+                             CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 0.5);
                              UIImageView *view = [rightItem.subviews objectAtIndex:0];
                              view.transform = transform;
                          }
                          completion:^(BOOL finished){
-                             [UIView animateWithDuration:0.5
+                             [UIView animateWithDuration:0.25
+                                                   delay:0.0
+                                                 options:UIViewAnimationOptionCurveLinear
                                               animations:^(void){
                                                   CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
                                                   UIImageView *view = [rightItem.subviews objectAtIndex:0];
                                                   view.transform = transform;
+                                              }
+                                              completion:^(BOOL finished){
+                                                  [UIView animateWithDuration:0.25
+                                                                        delay:0.0
+                                                                      options:UIViewAnimationOptionCurveLinear
+                                                                   animations:^(void){
+                                                                       CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 1.5);
+                                                                       UIImageView *view = [rightItem.subviews objectAtIndex:0];
+                                                                       view.transform = transform;
+                                                                   }
+                                                                   completion:^(BOOL finished){
+                                                                       [UIView animateWithDuration:0.25
+                                                                                             delay:0.0
+                                                                                           options:UIViewAnimationOptionCurveLinear
+                                                                                        animations:^(void){
+                                                                                            CGAffineTransform transform = CGAffineTransformMakeRotation(0);
+                                                                                            UIImageView *view = [rightItem.subviews objectAtIndex:0];
+                                                                                            view.transform = transform;
+                                                                                        }
+                                                                                        completion:nil];
+                                                                   }];
                                               }];
                          }];
+    }
+    else if([centerTouches count] != 0)
+    {
+        [self.delegate performSelector:@selector(chooseAirPort:) withObject:self.apCode];
     }
     else if([inTouches count] != 0)
     {
@@ -205,8 +230,8 @@
                 [UIView animateWithDuration:0.5
                                  animations:^(void){
                                      beginAnimation = YES;
-                                     incoming.frame = CGRectMake(180, 20, 70, 30);
-                                     outgoing.frame = CGRectMake(180, 50, 70, 30);
+                                     incoming.frame = CGRectMake(180, 5, 70, 30);
+                                     outgoing.frame = CGRectMake(180, 45, 70, 30);
                                  }
                                  completion:^(BOOL finished){
                                      beginAnimation = NO;
@@ -222,8 +247,8 @@
                                  animations:^(void){
                                      beginAnimation = YES;
                                      [self bringSubviewToFront:incoming];
-                                     incoming.frame = CGRectMake(180, 30, 70, 30);
-                                     outgoing.frame = CGRectMake(180, 30, 70, 30);
+                                     incoming.frame = CGRectMake(180, 25, 70, 30);
+                                     outgoing.frame = CGRectMake(180, 25, 70, 30);
                                  }
                                  completion:^(BOOL finished){
                                      beginAnimation = NO;
@@ -245,8 +270,8 @@
                 [UIView animateWithDuration:0.5
                                  animations:^(void){
                                      beginAnimation = YES;
-                                     incoming.frame = CGRectMake(180, 20, 70, 30);
-                                     outgoing.frame = CGRectMake(180, 50, 70, 30);
+                                     incoming.frame = CGRectMake(180, 5, 70, 30);
+                                     outgoing.frame = CGRectMake(180, 45, 70, 30);
                                  }
                                  completion:^(BOOL finished){
                                      beginAnimation = NO;
@@ -262,8 +287,8 @@
                                  animations:^(void){
                                      beginAnimation = YES;
                                      [self bringSubviewToFront:outgoing];
-                                     incoming.frame = CGRectMake(180, 30, 70, 30);
-                                     outgoing.frame = CGRectMake(180, 30, 70, 30);
+                                     incoming.frame = CGRectMake(180, 25, 70, 30);
+                                     outgoing.frame = CGRectMake(180, 25, 70, 30);
                                  }
                                  completion:^(BOOL finished){
                                      beginAnimation = NO;

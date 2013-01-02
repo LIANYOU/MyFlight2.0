@@ -22,7 +22,6 @@
     AirportMainScreenTitleView *titlebar;
     AirportMainScreenSearchView *search;
     
-    NSInteger barCount;
     NSInteger pageNum;
     NSString *edition;
     

@@ -17,7 +17,7 @@
         // Initialization code
         self.backgroundColor = [UIColor blackColor];
         
-        leftItem = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 40, 30)];
+        leftItem = [[UIView alloc] initWithFrame:CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 5:19, 40, 30)];
         
         leftItem.layer.borderColor = [[UIColor whiteColor] CGColor];
         leftItem.layer.borderWidth = 1.0f;
@@ -36,7 +36,7 @@
         [self addSubview:leftItem];
         [leftItem release];
         
-        rightItem = [[UIView alloc] initWithFrame:CGRectMake(270, 10, 40, 30)];
+        rightItem = [[UIView alloc] initWithFrame:CGRectMake(270, [UIScreen mainScreen].bounds.size.height < 500 ? 5:19, 40, 30)];
         
         rightItem.layer.borderColor = [[UIColor whiteColor] CGColor];
         rightItem.layer.borderWidth = 1.0f;
@@ -55,7 +55,7 @@
         [self addSubview:rightItem];
         [rightItem release];
         
-        centerItem = [[UIView alloc] initWithFrame:CGRectMake(105, 10, 110, 30)];
+        centerItem = [[UIView alloc] initWithFrame:CGRectMake(105, [UIScreen mainScreen].bounds.size.height < 500 ? 5:19, 110, 30)];
         
         centerItem.layer.borderColor = [[UIColor whiteColor] CGColor];
         centerItem.layer.borderWidth = 1.0f;

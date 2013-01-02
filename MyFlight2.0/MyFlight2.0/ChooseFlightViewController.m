@@ -131,14 +131,14 @@
     
     UIButton *confirm = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    confirm.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height > 500 ? 450:400, 300, 40);
+    confirm.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 370:450, 300, 40);
     
     [confirm addTarget:self action:@selector(confirmSelection) forControlEvents:UIControlEventTouchUpInside];
     
+    confirm.backgroundColor = [UIColor orangeColor];
     confirm.layer.borderColor = [[UIColor grayColor] CGColor];
     confirm.layer.borderWidth = 1.0f;
     confirm.layer.cornerRadius = 5.0f;
-    confirm.backgroundColor = [UIColor orangeColor];
     
     if(isQuery)
     {

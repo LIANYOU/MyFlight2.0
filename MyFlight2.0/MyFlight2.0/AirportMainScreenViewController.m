@@ -130,107 +130,81 @@
     [request startAsynchronous];
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-    [UIView animateWithDuration:0.5
-                      animations:^(void){
-                          titlebar.alpha = 1.0f;
-                      }];
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [UIView animateWithDuration:0.5
-                     animations:^(void){
-                         titlebar.alpha = 0.0f;
-                     }];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    barCount = 25;
     pageNum = 1;
     edition = @"v1.0";
 
-    titlebar = [[AirportMainScreenTitleView alloc] initWithFrame:CGRectMake(0, 0, 320, 75)];
+    titlebar = [[AirportMainScreenTitleView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
     
     titlebar.delegate = self;
-    titlebar.alpha = 0.0f;
     titlebar.apCode = @"PEK";
     titlebar.apName = @"北京首都";
     
     [titlebar reloadApName];
     
-    [self.navigationController.view addSubview:titlebar];
+    [self.view addSubview:titlebar];
     [titlebar release];
     
     [self requestForData:nil];
     
-    screenTitle = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 135, (barCount + 1) * 30) style:UITableViewStylePlain];
-    
-    screenTitle.sectionHeaderHeight = 30.0f;
-    screenTitle.rowHeight = 30.0f;
-    screenTitle.separatorStyle = UITableViewCellSeparatorStyleNone;
-    screenTitle.scrollEnabled = NO;
-    
-    screenTitle.dataSource = self;
-    screenTitle.delegate = self;
-    
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 135, 30)];
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 80, 135, 10)];
     
     header.backgroundColor = [UIColor blackColor];
-    screenTitle.tableHeaderView = header;
-    [header release];
     
     UILabel *title;
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(30, 15, 60, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 60, 10)];
     title.text = @"航班号";
     title.textAlignment = UITextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:10.0f];
     title.textColor = [UIColor grayColor];
     title.backgroundColor = [UIColor clearColor];
     
-    [screenTitle.tableHeaderView addSubview:title];
+    [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(90, 15, 45, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 45, 10)];
     title.text = @"状态";
     title.textAlignment = UITextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:10.0f];
     title.textColor = [UIColor grayColor];
     title.backgroundColor = [UIColor clearColor];
     
-    [screenTitle.tableHeaderView addSubview:title];
+    [header addSubview:title];
     [title release];
+    
+    [self.view addSubview:header];
+    [header release];
+    
+    screenTitle = [[UITableView alloc] initWithFrame:CGRectMake(0, 90, 135, [UIScreen mainScreen].bounds.size.height < 500 ? 330:390) style:UITableViewStylePlain];
+    
+    screenTitle.rowHeight = 30.0f;
+    screenTitle.separatorStyle = UITableViewCellSeparatorStyleNone;
+    screenTitle.bounces = NO;
+    screenTitle.scrollEnabled = YES;
+    screenTitle.showsVerticalScrollIndicator = NO;
+    
+    screenTitle.dataSource = self;
+    screenTitle.delegate = self;
     
     [self.view addSubview:screenTitle];
     [screenTitle release];
     
-    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(135, 0, 185, (barCount + 1) * 30)];
+    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(135, 80, 185, [UIScreen mainScreen].bounds.size.height < 500 ? 340:400)];
     
     scroll.clipsToBounds = YES;
-    scroll.contentSize = CGSizeMake(505, (barCount + 1) * 30);
+    scroll.contentSize = CGSizeMake(505, [UIScreen mainScreen].bounds.size.height < 500 ? 340:400);
     scroll.showsHorizontalScrollIndicator = NO;
     scroll.showsVerticalScrollIndicator = NO;
     scroll.bounces = NO;
     
-    screenValue = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 505, (barCount + 1) * 30) style:UITableViewStylePlain];
+    header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 505, 10)];
     
-    screenValue.sectionHeaderHeight = 30.0f;
-    screenValue.rowHeight = 30.0f;
-    screenValue.separatorStyle = UITableViewCellSeparatorStyleNone;
-    screenValue.scrollEnabled = NO;
-    
-    screenValue.dataSource = self;
-    screenValue.delegate = self;
-    
-    header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 505, 30)];
-    
-    title = [[UILabel alloc] initWithFrame:CGRectMake(5, 15, 60, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 60, 10)];
     title.text = @"计划出发";
     title.textAlignment = UITextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:10.0f];
@@ -240,7 +214,7 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(65, 15, 60, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(65, 0, 60, 10)];
     title.text = @"实际出发";
     title.textAlignment = UITextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:10.0f];
@@ -250,7 +224,7 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(125, 15, 60, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(125, 0, 60, 10)];
     title.text = @"计划到达";
     title.textAlignment = UITextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:10.0f];
@@ -260,7 +234,7 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(185, 15, 60, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(185, 0, 60, 10)];
     title.text = @"实际到达";
     title.textAlignment = UITextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:10.0f];
@@ -270,7 +244,7 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(245, 15, 100, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(245, 0, 100, 10)];
     title.text = @"目的地机场";
     title.textAlignment = UITextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:10.0f];
@@ -280,7 +254,7 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(345, 15, 30, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(345, 0, 30, 10)];
     title.text = @"航站楼";
     title.textAlignment = UITextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:10.0f];
@@ -291,8 +265,20 @@
     [title release];
     
     header.backgroundColor = [UIColor blackColor];
-    screenValue.tableHeaderView = header;
+    
+    [scroll addSubview:header];
     [header release];
+    
+    screenValue = [[UITableView alloc] initWithFrame:CGRectMake(0, 10, 505, [UIScreen mainScreen].bounds.size.height < 500 ? 330:390) style:UITableViewStylePlain];
+    
+    screenValue.rowHeight = 30.0f;
+    screenValue.separatorStyle = UITableViewCellSeparatorStyleNone;
+    screenValue.bounces = NO;
+    screenValue.scrollEnabled = YES;
+    screenValue.showsVerticalScrollIndicator = NO;
+    
+    screenValue.dataSource = self;
+    screenValue.delegate = self;
     
     [scroll addSubview:screenValue];
     [screenValue release];
@@ -300,7 +286,7 @@
     [self.view addSubview:scroll];
     [scroll release];
     
-    search = [[AirportMainScreenSearchView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height < 500 ? 370:455, 320, 50)];
+    search = [[AirportMainScreenSearchView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height < 500 ? 420:480, 320, [UIScreen mainScreen].bounds.size.height < 500 ? 40:68)];
     
     search.delegate = self;
     
@@ -321,7 +307,7 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return barCount;
+    return 25;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -524,7 +510,7 @@
 
 - (void) back
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) updatePageNumber
@@ -565,8 +551,11 @@
     
     chooseAp.delegate = self;
     
-    [self.navigationController pushViewController:chooseAp animated:YES];
-    [chooseAp release];
+    [self presentViewController:chooseAp
+                       animated:YES
+                     completion:^(void){
+                         [chooseAp release];
+                     }];
 }
 
 - (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger)choiceType didSelectAirPortInfo:(AirPortData *)airPort
@@ -576,6 +565,20 @@
     
     [titlebar reloadApName];
     [self requestForData:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if(scrollView == screenTitle)
+    {
+        screenValue.contentOffset = screenTitle.contentOffset;
+    }
+    else if(scrollView == screenValue)
+    {
+        screenTitle.contentOffset = screenValue.contentOffset;
+    }
 }
 
 @end

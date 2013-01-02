@@ -29,16 +29,11 @@
     // Do any additional setup after loading the view from its nib.
     
     detailedTitleArray = [[NSArray alloc] initWithObjects:@"票    号", @"值机状态", @"航班号", @"座位号", @"乘机人", nil];
-    detailedValueArray = [[NSArray alloc] initWithObjects:@"999-85854411", @"已值机", @"hu2397", @"6A", @"降枫", nil];
     
-    flightNumber = @"海航HU7141";
-    
-    departCity = @"北京";
     departTime = @"17:15";
     departDate = @"2012-8-20";
     departAirport = @"北京首都  T1";
     
-    arrivalCity = @"成都";
     arrivalTime = @"17:15";
     arrivalDate = @"2012-8-20";
     arrivalAirport = @"北京首都  T1";
@@ -71,7 +66,24 @@
     [self.view addSubview:flightInfoTable];
     [flightInfoTable release];
     
-    cancelCheckInButtom.frame = CGRectMake(10, self.view.frame.size.height - 1100, self.view.frame.size.width - 20, 45);
+    UIButton *cancelCheckInButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    cancelCheckInButton.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 370:450, 300, 40);
+    
+    cancelCheckInButton.backgroundColor = [UIColor orangeColor];
+    cancelCheckInButton.layer.borderColor = [[UIColor grayColor] CGColor];
+    cancelCheckInButton.layer.borderWidth = 1.0;
+    cancelCheckInButton.layer.cornerRadius = 5.0;
+    
+    [cancelCheckInButton setTitle:@"取消值机" forState:UIControlStateNormal];
+    [cancelCheckInButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    cancelCheckInButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    cancelCheckInButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [cancelCheckInButton addTarget:self action:@selector(cancelCheckIn) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:cancelCheckInButton];
     
     self.view.backgroundColor = [UIColor colorWithRed:0.75f green:0.75f blue:0.75f alpha:1.0f];
 }
@@ -127,7 +139,7 @@
         
         UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(80, 16, 210, 12)];
         
-        value.text = [detailedValueArray objectAtIndex:indexPath.row];
+//        value.text = [detailedValueArray objectAtIndex:indexPath.row];
         value.font = [UIFont systemFontOfSize:12.0f];
         value.textAlignment = UITextAlignmentRight;
         value.textColor = [UIColor blackColor];
@@ -144,7 +156,7 @@
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 80, 14)];
             
-            label.text = [NSString stringWithFormat:@"%@ - %@", departCity, arrivalCity];
+            label.text = [NSString stringWithFormat:@"%@ - %@", self.deCity, self.arrCity];
             label.font = [UIFont systemFontOfSize:14.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor blackColor];
@@ -155,7 +167,7 @@
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(100, 15, 120, 14)];
             
-            label.text = flightNumber;
+            label.text = self.flightNo;
             label.font = [UIFont systemFontOfSize:14.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor blackColor];
@@ -248,18 +260,14 @@
     return cell;
 }
 
-- (IBAction) cancelCheckIn:(UIButton *) sender
+- (void) cancelCheckIn
 {
+    
 }
 
 - (void) dealloc
 {
     [detailedTitleArray release];
-    [detailedValueArray release];
-    
-    [departCity release];
-    [arrivalCity release];
-    [flightNumber release];
     
     [departTime release];
     [departDate release];
@@ -268,14 +276,11 @@
     [arrivalDate release];
     [arrivalAirport release];
     
-    [cancelCheckInButtom release];
     [super dealloc];
 }
 
 - (void)viewDidUnload
 {
-    [cancelCheckInButtom release];
-    cancelCheckInButtom = nil;
     [super viewDidUnload];
 }
 

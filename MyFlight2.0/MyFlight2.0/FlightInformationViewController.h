@@ -11,16 +11,10 @@
 
 @interface FlightInformationViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
-    IBOutlet UIButton *cancelCheckInButtom;
     UITableView *detailedInfoTable;
     NSArray *detailedTitleArray;
-    NSArray *detailedValueArray;
     
     UITableView *flightInfoTable;
-    
-    NSString *flightNumber;
-    NSString *departCity;
-    NSString *arrivalCity;
     
     NSString *departTime;
     NSString *departDate;
@@ -28,8 +22,20 @@
     NSString *arrivalTime;
     NSString *arrivalDate;
     NSString *arrivalAirport;
+    
+    __block NSDictionary *responseDictionary;
 }
 
-- (IBAction)cancelCheckIn:(UIButton *)sender;
+@property (retain, nonatomic) NSString *tktno;
+@property (retain, nonatomic) NSString *passName;
+@property (retain, nonatomic) NSString *passID;
+@property (retain, nonatomic) NSString *segIndex;
+@property (retain, nonatomic) NSString *isLogined;
+
+@property (retain, nonatomic) NSString *flightNo;
+@property (retain, nonatomic) NSString *deCity;
+@property (retain, nonatomic) NSString *arrCity;
+
+- (void) cancelCheckIn;
 
 @end

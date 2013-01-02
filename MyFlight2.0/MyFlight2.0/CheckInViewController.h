@@ -11,6 +11,7 @@
 #import "ChooseAirPortViewController.h"
 #import "ChooseFlightViewController.h"
 #import "AirPortData.h"
+#import "TextInputHelperViewController.h"
 
 @interface CheckInViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ChooseAirPortViewControllerDelegate>
 {
@@ -24,17 +25,17 @@
     NSString *passengerName;
     NSString *passportType;
     NSString *passportNumber;
-    NSString *departureAirport;
+    NSString *departureAirportName;
+    NSString *departureAirportCode;
     NSString *isLogined;
     
-    UITextField *input;
+    TextInputHelperViewController *input;
     
     __block NSDictionary *responseDictionary;
 }
 
-- (void) changeName;
-- (void) changePassportNumber;
-- (void) cancelChange;
+- (void) userDidInput;
+- (void) userCancelInput;
 
 - (IBAction)checkIn:(UIButton *)sender;
 - (IBAction)progressQuery:(UIButton *)sender;
