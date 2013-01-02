@@ -35,6 +35,7 @@
     IBOutlet UIButton *theDayBeforeBtn;
     IBOutlet UIButton *cancelSalesText;
     
+    IBOutlet UIImageView *backImageView;
     IBOutlet UIButton *sortBtn;
     IBOutlet UILabel *backImagelabel;
     IBOutlet UIButton *siftBtn;
@@ -89,12 +90,17 @@
 
 @property (assign, nonatomic) int flag; // 记录前边选择的是单程还是往返
 
-@property (assign, nonatomic) NSMutableArray *sortArr;
-@property (assign, nonatomic) NSMutableArray *sortBackArr;
+@property (retain, nonatomic) NSMutableArray *sortArr;
+@property (retain, nonatomic) NSMutableArray *sortBackArr;
 
 @property (retain, nonatomic) NSString * payMoney;  // 保存去程时候的金额和舱位
 @property (retain, nonatomic) NSString * cabin;
 @property (retain, nonatomic) NSString * childPayMoney; // 保存去程的时候儿童的价格
+
+
+
+@property (retain, nonatomic) IBOutlet UIView *grayView;
+
 
 - (IBAction)enterSales:(id)sender;        // 进入促销活动
 - (IBAction)enterTheDayBefore:(id)sender; // 进入前一天的查询结果

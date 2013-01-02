@@ -36,93 +36,18 @@
 
 -(void)searchAirPort
 {
-//    NSString * str1;
-//    if (self.dpt!=nil) {
-//        str1=[NSString stringWithFormat:@"dpt=%@",[self.dpt stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    }
-//    else
-//    {
-//        str1=@"";
-//    }
-//    NSString *str2;
-//    if (self.arr!=nil) {
-//        str2=[NSString stringWithFormat:@"&arr=%@",[self.arr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    }
-//    else
-//    {
-//        str2=@"";
-//    }
-//    NSString *str3;
-//    if (self.date!=nil) {
-//        str3=[NSString stringWithFormat:@"&date=%@",[self.date stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    }
-//    else
-//    {
-//        str3 = @"";
-//    }
-//
-//    NSString *str4;
-//    if (self.ftype) {
-//        str4=[NSString stringWithFormat:@"&ftype=%@",[self.ftype stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    }
-//    else
-//    {
-//        str4=@"";
-//    }
-//    NSString *str5;
-//    if (self.cabin) {
-//        str5=[NSString stringWithFormat:@"&cabin=%d",self.cabin];
-//    }
-//    else
-//    {
-//        str5=@"";
-//    }
-//    NSString *str6;
-//    if (self.carrier!=nil) {
-//        str6=[NSString stringWithFormat:@"&carrier=%@",[self.carrier stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    }
-//    else
-//    {
-//        str6=@"";
-//    }
-//    NSString *str7;
-//    if (self.dptTime) {
-//        str7=[NSString stringWithFormat:@"&dptTime=%d",self.dptTime];
-//    }
-//    else
-//    {
-//        str7=@"";
-//    }
-//    NSString *str8;
-//    if (self.qryFlag!=nil) {
-//        str8=[NSString stringWithFormat:@"&isource=%@",[self.qryFlag stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    }
-//    else
-//    {
-//        str8=@"";
-//    }
-    // http://test.51you.com/web/phone/prod/flight/flightSearchPhone.jsp
-    // http://test.51you.com/web/phone/prod/flight/flightSearchPhone.jsp
-//    NSString * search=[NSString stringWithFormat:@"http://test.51you.com/web/phone/prod/flight/flightSearchPhone.jsp?%@%@%@%@%@%@%@%@",str1,str2,str3,str4,str5,str6,str7,str8];
-//    
-//    NSLog(@"search = %@",search);
 
     self.allData = [NSMutableData data];
-    
-   // http://223.202.36.179:9580
+
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/flightSearchPhone.jsp"]];
     [request setPostValue:[self.dpt stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"dpt"];
     [request setPostValue:[self.arr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"arr"];
     [request setPostValue:[self.date stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"date"];
-//    [request setPostValue:[self.ftype stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"ftype"];
-//    [request setPostValue:[NSString stringWithFormat:@"%d",self.cabin] forKey:@"cabin"];
-//    [request setPostValue:[self.carrier stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"carrier"];
-//    [request setPostValue:[NSString stringWithFormat:@"%d",self.dptTime]  forKey:@"dptTime"];
-//    [request setPostValue:[self.dpt stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"dpt"];
     [request setPostValue:@"v1.0" forKey:@"edition"];
     [request setPostValue:[self.qryFlag stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"source"];
     
-    //__block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:search]];
+    NSLog(@"机场查询时候使用条件  %@, %@, %@",self.dpt,self.arr,self.date);
+    
     [request setCompletionBlock:^{
         
         self.allData = [request responseData];

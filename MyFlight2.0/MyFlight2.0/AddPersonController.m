@@ -10,6 +10,7 @@
 #import "AddPersonCoustomCell.h"
 #import "AddPersonSwitchCell.h"
 #import "IdentityViewController.h"
+#import "UIButton+BackButton.h"
 @interface AddPersonController ()
 
 @end
@@ -42,23 +43,14 @@
     self.addPersonTableView.delegate = self;
     self.addPersonTableView.dataSource = self;
     
-    
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];;
     
-    
-    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
-    histroyBut.frame = CGRectMake(230, 5, 40, 30);
-    [histroyBut setTitle:@"保存" forState:0];
-    histroyBut.titleLabel.font = [UIFont systemFontOfSize:13];
-    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_save_.png"]];
+    UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"保存"];
     [histroyBut addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *histroyBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];

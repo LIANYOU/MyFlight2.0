@@ -32,6 +32,7 @@
 
 @property (retain, nonatomic) UseGoldPay * gold;
 @property (retain, nonatomic) NSMutableArray * indexArr;
+@property (retain, nonatomic) NSMutableArray * nextSelectArr;// 下个界面选择的优惠券的种类
 
 @property (retain, nonatomic) NSString * accountAmount;  // 账户资金
 @property (retain, nonatomic) NSString * goldAmount;     // 金币数目

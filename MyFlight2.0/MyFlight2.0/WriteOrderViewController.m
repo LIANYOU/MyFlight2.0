@@ -25,7 +25,7 @@
 #import "bookingReturnFlightVo.h"
 #import "UIQuickHelp.h"
 
-
+#import "UIButton+BackButton.h"
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 100.0f
@@ -103,7 +103,7 @@
     personNumber = 1;  // 默认一个成人
     childNumber = 0;
     
-    
+    NSLog(@"%@\n--------------%@",self.searchDate.cabinInfo,self.searchBackDate.cabinInfo);
     NSLog(@"%d,%@",self.searchDate.pay,self.searchBackDate.childPrice);
     NSLog(@"%@,%@",self.searchDate.ticketCount,self.searchBackDate.ticketCount);
     
@@ -116,22 +116,15 @@
     self.orderTableView.dataSource = self;
     
     
-    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
-    histroyBut.frame = CGRectMake(260, 5, 40, 31);
-    histroyBut.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    [histroyBut setTitle:@"登陆" forState:UIControlStateNormal];
-    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_2words_.png"]];
+       
+    UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"登陆"];
     [histroyBut addTarget:self action:@selector(log) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
     self.navigationItem.rightBarButtonItem=backBtn2;
     [backBtn2 release];
 
-    
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
@@ -230,7 +223,7 @@
             self.childStanderPrice.hidden = YES;
             self.childConstructionFee.hidden = YES;
             self.childBaf.hidden = YES;
-            return self.headViewHegiht-30;
+            return self.headViewHegiht-29;
         }
         else{
             self.backLabel.hidden = NO;
@@ -386,78 +379,83 @@
 {
     if (self.flag == 3) {   // 往返
         switch (indexPath.section) {
-                case 0:
+            case 0:
             {
                 return nil;
             }
-        case 1:
-        {
-            static NSString *CellIdentifier = @"Cell1";
-            WriteOrderCell *cell = (WriteOrderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (!cell)
+            case 1:
             {
-                [[NSBundle mainBundle] loadNibNamed:@"WriteOrderCell" owner:self options:nil];
-                cell = self.writeOrderCell;
-            }
-          //  cell.bounds.origin.x = 50;
-            
-        
-            cell.backView.frame = CGRectMake(50, 0, 325, 80);
-            cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
-            cell.userInteractionEnabled = NO;
-            
-            cell.HUButton.text = self.searchDate.temporaryLabel;
-            cell.airPortName.text = self.searchDate.airPort;
-            cell.startTime.text = self.searchDate.beginTime;
-            cell.endTime.text = self.searchDate.endTime;
-            cell.startAirPortName.text = self.searchDate.startPortName;
-            cell.endAirPortName.text = self.searchDate.endPortName;
-            cell.plantType.text = self.searchDate.cabinNumber;
-            
-            cell.date.text = self.searchDate.beginDate;
-                       
-            return cell;
-            break;
-        }
-         case 2:
-        {
-            static NSString *CellIdentifier = @"Cell1";
-            WriteOrderCell *cell = (WriteOrderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            if (!cell)
-            {
-                [[NSBundle mainBundle] loadNibNamed:@"WriteOrderCell" owner:self options:nil];
-                cell = self.writeOrderCell;
-            }
-            cell.imageView.image = [UIImage imageNamed:@"bg_green__.png"];
-            cell.userInteractionEnabled = NO;
-            
-            cell.HUButton.text = self.searchBackDate.temporaryLabel;
-            cell.airPortName.text = self.searchBackDate.airPort;
-            cell.startTime.text = self.searchBackDate.beginTime;
-            cell.endTime.text = self.searchBackDate.endTime;
-            cell.startAirPortName.text = self.searchBackDate.startPortName;
-            cell.endAirPortName.text = self.searchBackDate.endPortName;
-            cell.plantType.text = self.searchBackDate.cabinNumber;
-            cell.date.text = self.searchBackDate.backDate;
-            
-            return cell;
-            break;
-            
-        }
-        case 3:
-        {
-            if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 6) {
-                static NSString *CellIdentifier = @"Cell3";
-                WriterOrderCommonCell *cell = (WriterOrderCommonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                static NSString *CellIdentifier = @"Cell1";
+                WriteOrderCell *cell = (WriteOrderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                 if (!cell)
                 {
-                    [[NSBundle mainBundle] loadNibNamed:@"WriterOrderCommonCell" owner:self options:nil];
+                    [[NSBundle mainBundle] loadNibNamed:@"WriteOrderCell" owner:self options:nil];
+                    cell = self.writeOrderCell;
+                }
+                
+                
+                cell.backView.frame = CGRectMake(50, 0, 325, 80);
+                cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
+              //  cell.userInteractionEnabled = NO;
+                
+                cell.HUButton.text = self.searchDate.temporaryLabel;
+                cell.airPortName.text = self.searchDate.airPort;
+                cell.startTime.text = self.searchDate.beginTime;
+                cell.endTime.text = self.searchDate.endTime;
+                cell.startAirPortName.text = self.searchDate.startPortName;
+                cell.endAirPortName.text = self.searchDate.endPortName;
+                cell.plantType.text = self.searchDate.cabinNumber;
+                
+                cell.changeTicket.tag = 1;
+                [cell.changeTicket addTarget:self action:@selector(changeInfo:) forControlEvents:UIControlEventTouchUpInside]; // 记录退改签
+                
+                cell.date.text = self.searchDate.beginDate;
+                
+                return cell;
+                break;
+            }
+            case 2:
+            {
+                static NSString *CellIdentifier = @"Cell1";
+                WriteOrderCell *cell = (WriteOrderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (!cell)
+                {
+                    [[NSBundle mainBundle] loadNibNamed:@"WriteOrderCell" owner:self options:nil];
+                    cell = self.writeOrderCell;
+                }
+                cell.imageView.image = [UIImage imageNamed:@"bg_green__.png"];
+             //   cell.userInteractionEnabled = NO;
+                
+                cell.HUButton.text = self.searchBackDate.temporaryLabel;
+                cell.airPortName.text = self.searchBackDate.airPort;
+                cell.startTime.text = self.searchBackDate.beginTime;
+                cell.endTime.text = self.searchBackDate.endTime;
+                cell.startAirPortName.text = self.searchBackDate.startPortName;
+                cell.endAirPortName.text = self.searchBackDate.endPortName;
+                cell.plantType.text = self.searchBackDate.cabinNumber;
+                cell.date.text = self.searchBackDate.backDate;
+                
+                cell.changeTicket.tag = 2;
+                [cell.changeTicket addTarget:self action:@selector(changeTwoInfo:) forControlEvents:UIControlEventTouchUpInside]; // 记录退改签
+                
+                return cell;
+                break;
+                
+            }
+            case 3:
+            {
+                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 6) {
+                    static NSString *CellIdentifier = @"Cell3";
+                    WriterOrderCommonCell *cell = (WriterOrderCommonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    if (!cell)
+                    {
+                        [[NSBundle mainBundle] loadNibNamed:@"WriterOrderCommonCell" owner:self options:nil];
                     cell = self.writerOrderCommonCell;
                 }
                 switch (indexPath.row) {
                     case 0:
                     {
-                         firstCellText = [self.firstCelTextArr objectAtIndex:0];;
+                        firstCellText = [self.firstCelTextArr objectAtIndex:0];;
                         
                         CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
                         
@@ -471,17 +469,17 @@
                         
                         cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 50.0f));
                         
+                        cell.imageLabel.frame = CGRectMake(10, MAX(size.height, 50.0f)/2-6, 7, 21);
+                        
                         cell.secondLable.text = firstCellText;
                         
                         cell.firstLable.text = @"乘机人";
-                     //   NSLog(@"++++++++   %@",cell.firstLable.text);
+                     
+                        break;
 
                     }
                         
-                    case 2:
-                        cell.firstLable.text = @"购买保险";
-                        cell.imageLabel.hidden = YES;
-                        break;
+                    
                     case 3:
                         cell.firstLable.text = @"行程单";
                         cell.imageLabel.hidden = YES;
@@ -495,6 +493,11 @@
                         cell.accessoryType = UITableViewCellAccessoryNone;
                         cell.imageLabel.hidden = YES;
                         break;
+                    case 2:
+                        cell.firstLable.text = @"购买保险";
+                        cell.imageLabel.hidden = YES;
+                        break;
+                        
                         
                     default:
                         break;
@@ -563,7 +566,7 @@
                 }
                 
                 cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
-                cell.userInteractionEnabled = NO;
+              //  cell.userInteractionEnabled = NO;
                 
                 cell.HUButton.text = self.searchDate.temporaryLabel;
                 cell.airPortName.text = self.searchDate.airPort;
@@ -574,6 +577,10 @@
                 cell.plantType.text = self.searchDate.cabinNumber;
                 cell.date.text = self.searchDate.beginDate;
                 
+                cell.changeTicket.tag = 1;
+                
+                [cell.changeTicket addTarget:self action:@selector(changeInfo:) forControlEvents:UIControlEventTouchUpInside]; // 记录退改签
+
                 return cell;
                 break;
             }
@@ -688,6 +695,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BOOL logFlag = FALSE;  // 此处保留一个flag判断是否用户已经登陆
+    
+    if (self.flag == 3) {
+        if (indexPath.section == 1) {
+            return;
+        }
+        if (indexPath.section == 2) {
+            return;
+        }
+    }
+    if (self.flag == 1) {
+        if (indexPath.section == 1) {
+            return;
+        }
+    }
+
     if (indexPath.row == 0) {
         
         personNumber = 1;
@@ -717,13 +739,8 @@
             
             [choose getDate:^(NSMutableDictionary * name, NSMutableDictionary * identity ,NSMutableDictionary * type, NSMutableDictionary *flightPassengerIdDic,NSMutableDictionary * certTypeDic,NSMutableArray * arr)
              {
-                 
-                 
-                
-                 
-                 
-                 
-                 
+
+           
                  if (type.allKeys.count > [self.searchDate.ticketCount intValue]) {
                      UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请减少乘机人数目。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                      [alert show];
@@ -969,9 +986,13 @@
     
     go.departureTerminal = nil;
     
+    int lenght = [self.searchDate.temporaryLabel length];
+
+    NSString * flightNo = [self.searchDate.temporaryLabel substringWithRange:NSMakeRange(2, lenght-2)];
+    
     go.departureTimeStr = self.searchDate.beginTime;
     
-    go.flightNo = self.searchDate.temporaryLabel; 
+    go.flightNo = flightNo;
     
     go.flightType = @"1";
     
@@ -1175,6 +1196,37 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
 
+    NSString * meg =@"预定成功";
+    
+     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+-(void)changeInfo:(UIButton *)btn
+{
+
+    NSString * string = nil;
+
+      
+    string =[NSString stringWithFormat:@"%@", self.searchDate.cabinInfo];
+
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"退改签信息" message:string delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
+    
+}
+-(void)changeTwoInfo:(UIButton *)btn
+{
+
+    NSString * string = nil;
+    
+    
+    string =[NSString stringWithFormat:@"%@", self.searchBackDate.cabinInfo];
+    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"退改签信息" message:string delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
     
 }
 

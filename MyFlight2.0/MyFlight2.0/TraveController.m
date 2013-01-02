@@ -7,7 +7,9 @@
 //
 
 #import "TraveController.h"
+#import "UIQuickHelp.h"
 #import "PostViewController.h"
+#import "UIButton+BackButton.h"
 @interface TraveController ()
 
 @end
@@ -34,55 +36,31 @@
     phone.delegate = self;
     city.delegate = self;
     
-    UIButton * backBtn_ = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn_.frame = CGRectMake(10, 5, 30, 31);
-    backBtn_.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn_.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn_ = [UIButton backButtonType:0 andTitle:@""];
     [backBtn_ addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn_];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
     
-    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
-    histroyBut.frame = CGRectMake(260, 5, 40, 31);
-    histroyBut.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    [histroyBut setTitle:@"确定" forState:UIControlStateNormal];
-    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_2words_.png"]];
+    UIButton *histroyBut = [UIButton backButtonType:2 andTitle:@"确定"];
     [histroyBut addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
     self.navigationItem.rightBarButtonItem=backBtn;
     [backBtn release];
 
+    [UIQuickHelp setRoundCornerForView:self.backView withRadius:8];
     
     noNeedBtn.tag = 1;
     helpYourselfBtn.tag = 2;
     post.tag = 3;
     
-//    if (self.flag == 1) {
-//        noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
-//        helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-//        post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-//    }
-//    if (self.flag == 2) {
-//        noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-//        helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
-//        post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-//
-//    }
-//    if (self.flag == 3) {
-//        post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
-//        helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-//        post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-//    }
-    
-//    else{
-        noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-        helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-        post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
 
-//    }
+    [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+    [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+    [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0]; 
+
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -99,9 +77,9 @@
     
     btnTag = sender.tag;
     
-    noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
-    helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-    post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+    [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+    [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+    [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
     
     self.postView.hidden = YES;
 }
@@ -111,9 +89,10 @@
     
     btnTag = sender.tag;
    
-    noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-    helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
-    post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+    [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+    [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+    [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+
     self.postView.hidden = YES;
 }
 
@@ -121,10 +100,11 @@
     _schedule_ = @"邮寄行程单";
     
     btnTag = sender.tag;
-   
-    noNeedBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-    helpYourselfBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-    post.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
+    
+    [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+    [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+    [post setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+
     self.postView.hidden = NO;
 }
 - (void)dealloc {
@@ -137,6 +117,7 @@
     [address release];
     [phone release];
     [type release];
+    [_backView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -157,6 +138,7 @@
     phone = nil;
     [type release];
     type = nil;
+    [self setBackView:nil];
     [super viewDidUnload];
 }
 

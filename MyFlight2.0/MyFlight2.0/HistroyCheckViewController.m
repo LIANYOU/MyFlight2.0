@@ -11,6 +11,7 @@
 #import "HistoryCheckInfoData.h"
 #import "HistoryCell.h"
 #import "OneWayCheckViewController.h"
+#import "UIButton+BackButton.h"
 @interface HistroyCheckViewController ()
 {
     NSArray * hisroryArr;
@@ -53,21 +54,14 @@
     self.navigationItem.title = @"历史查询纪录";
     
     
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
 
-    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
-    histroyBut.frame = CGRectMake(250, 5, 60, 31);
-    histroyBut.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    [histroyBut setTitle:@"清除记录" forState:UIControlStateNormal];
-    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"clean_histroy_4words_.png"]];
+    UIButton * histroyBut = [UIButton backButtonType:4 andTitle:@"清除记录"];
     [histroyBut addTarget:self action:@selector(deleteHistroy) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem * backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];

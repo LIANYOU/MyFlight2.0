@@ -16,7 +16,9 @@
 #import "MonthDayCell.h"
 #import "SelectCalendarController.h"
 #import "HistoryCheckDataBase.h"
+#import "UIImage+scaleImage.h"
 
+#import "UIButton+BackButton.h"
 @interface OneWayCheckViewController ()
 {
     int delegataFlag;
@@ -34,12 +36,18 @@
     NSString * oneGoData;
     NSString * twoGoData;
     NSString * twoGoBack;
+    
+    
+    int todayCount;
+    int selectDayCount;
 }
 @end
 
 @implementation OneWayCheckViewController
 
 int searchFlag = 1; // 单程和往返的标记位
+
+int whatday(int year,int month,int day);
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,10 +64,10 @@ int searchFlag = 1; // 单程和往返的标记位
         NSLog(@"登陆");
     }
 
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    [self.selectButton setBackgroundImage:[UIImage imageNamed:@"orange_btn.png"] forState:1];
+    [self.selectButton setBackgroundImage:[UIImage imageNamed:@"orange_btn_click.png"] forState:UIControlStateHighlighted];
+    
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
@@ -68,7 +76,7 @@ int searchFlag = 1; // 单程和往返的标记位
     
     UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
     histroyBut.frame = CGRectMake(230, 5, 30, 30);
-    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_history_.png"]];
+    [histroyBut setImage:[UIImage imageNamed:@"icon_history.png"] forState:0];
     [histroyBut addTarget:self action:@selector(historySearch) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *histroyBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
@@ -114,7 +122,8 @@ int searchFlag = 1; // 单程和往返的标记位
     NSInteger year=[conponent year];
     NSInteger month=[conponent month];
     NSInteger day=[conponent day];
-    NSString * string = [NSString stringWithFormat:@"%d月%d日",month,day];
+    
+    todayCount = whatday(year, month, day);
     
     NSString * strMonth=nil;
     NSString * strDay=nil;
@@ -127,7 +136,7 @@ int searchFlag = 1; // 单程和往返的标记位
     }
     if (day<10) {
         strDay = [NSString stringWithFormat:@"0%d",day];
-       // strDay = [[NSString alloc] initWithFormat:@"0%d",day];
+       
     }
     else{
         strDay = [NSString stringWithFormat:@"%d",day];
@@ -136,6 +145,7 @@ int searchFlag = 1; // 单程和往返的标记位
     
     oneGoData = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay ];
    
+    NSString * string = [NSString stringWithFormat:@"%@-%@",strMonth,strDay];
     
     [startDate setText:string];
     oneSatrtDate.text = string;
@@ -152,19 +162,19 @@ int searchFlag = 1; // 单程和往返的标记位
     [super viewWillAppear:YES];
     
     // ******* 定义
-    UIColor * myFirstColor = [UIColor colorWithRed:244/255.0 green:239/255.0 blue:231/225.0 alpha:1.0f];
-    UIColor * mySceColor = [UIColor colorWithRed:10/255.0 green:91/255.0 blue:173/255.0 alpha:1];
+    UIColor * myFirstColor = [UIColor colorWithRed:186/255.0 green:195/255.0 blue:215/255.0 alpha:1.0f];
+    UIColor * mySceColor = [UIColor colorWithRed:20/255.0 green:89/255.0 blue:179/255.0 alpha:1];
     self.view.backgroundColor = myFirstColor;
     
     NSArray * array = [[NSArray alloc]initWithObjects:@"单程",@"往返", nil];
     mySegmentController  = [[SVSegmentedControl alloc]initWithSectionTitles:array];
     mySegmentController.textColor = myFirstColor;
-    //mySegmentController.thumb.backgroundImage = [UIImage imageNamed:@"block3_change.png"];
+//    mySegmentController.font = [UIFont fontWithName:@"Bold" size:20];
     mySegmentController.backgroundImage = [UIImage imageNamed:@"tab_bg.png"];
     mySegmentController.height = 40;
     mySegmentController.LKWidth = 150;
 
-  //  NSLog(@"______________________________ %@",self.flagType);
+
         if ([self.flagType isEqualToString:@"2"]) {
       
             mySegmentController.selectedIndex = 1;
@@ -186,8 +196,18 @@ int searchFlag = 1; // 单程和往返的标记位
 
    // mySegmentController.selectedIndex = 1; // 默认是单程
     mySegmentController.thumb.tintColor = [UIColor whiteColor];
+ //   mySegmentController.thumb.
     mySegmentController.center = CGPointMake(160, 36);
-    
+    mySegmentController.thumbEdgeInset = UIEdgeInsetsMake(2, 2, 3, 2);
+    mySegmentController.cornerRadius = 7;
+   
+
+    //[mySegmentController.thumb setBackgroundImage:[UIImage imageNamed:@"tab.png"]];
+//    [mySegmentController.thumb setBounds:CGRectMake(0, 0, 144, 10)];
+
+    [mySegmentController.thumb setMultipleTouchEnabled:NO];
+   // [mySegmentController.thumb setHighlightedBackgroundImage:[UIImage imageNamed:@"tab.png"]];
+
     mySegmentController.thumb.textColor = mySceColor;
     mySegmentController.thumb.textShadowColor = [UIColor clearColor];
     [array release];
@@ -274,6 +294,13 @@ int searchFlag = 1; // 单程和往返的标记位
     [twoEndTitle release];
     twoEndTitle = nil;
 
+    [self setSelectButton:nil];
+    [oneDayTitle release];
+    oneDayTitle = nil;
+    [dayTitle release];
+    dayTitle = nil;
+    [nextDayTitle release];
+    nextDayTitle = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -304,13 +331,38 @@ int searchFlag = 1; // 单程和往返的标记位
     [self.navigationController pushViewController:chooseAirPort animated:YES];    
 }
 
+int whatday(int year,int month,int day) /*计算给定年月日的某一天是当年的第几天*/
+{
+    int isleap(int);
+    int ans=0;
+    switch(month)
+    {
+        case 1:ans=0;break;
+        case 2:ans=31;break;
+        case 3:ans=59;break;
+        case 4:ans=90;break;
+        case 5:ans=120;break;
+        case 6:ans=151;break;
+        case 7:ans=181;break;
+        case 8:ans=212;break;
+        case 9:ans=243;break;
+        case 10:ans=273;break;
+        case 11:ans=304;break;
+        case 12:ans=334;break;
+    }
+    ans+=day;
+    if(((year%100!=0&&year%4==0)||year%400==0)&&month>2)ans++;
+    return ans;
+}
+
+
 -(void) setYear: (int) year month: (int) month day: (int) day {
     [leaveDate setYear:year month:month day:day];
     
-   
+    selectDayCount =  whatday( year, month,day);
+
     if (delegataFlag == 0) {
-        [oneSatrtDate setText:[NSString stringWithFormat:@"%d月%d日", month, day]];
-        [startDate setText:[NSString stringWithFormat:@"%d月%d日", month, day]];
+  
         NSString * strMonth;
         NSString * strDay;
         if (month<10) {
@@ -325,41 +377,43 @@ int searchFlag = 1; // 单程和往返的标记位
         else{
             strDay = [NSString stringWithFormat:@"%d",day];
         }
+        
+        [oneSatrtDate setText:[NSString stringWithFormat:@"%@-%@", strMonth, strDay]];
+        [startDate setText:[NSString stringWithFormat:@"%@-%@", strMonth, strDay]];
+        
         oneGoData = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay];
-//        NSLog(@"**************************%@",oneGoData);
+        
+        switch (selectDayCount- todayCount) {
+            case 0:
+                oneDayTitle.text = @"今天";
+                dayTitle.text = @"今天";
+                break;
+            case 1:
+                oneDayTitle.text = @"明天";
+                dayTitle.text = @"明天";
+          
+                break;
+                
+            case 2:
+                oneDayTitle.text = @"后天";
+                dayTitle.text = @"后天";
+          
+                break;
+                
+                
+            default:
+                oneDayTitle.text = @"";
+                dayTitle.text = @"";
+                break;
+        }
+
+        
+
         delegataFlag = 10;
     }
     
     if (delegataFlag == 1) {
-        [returnDate setText:[NSString stringWithFormat:@"%d月%d日", month, day]];
-        
-        NSString * strMonth;
-        NSString * strDay;
-        if (month<10) {
-            strMonth = [NSString stringWithFormat:@"0%d",month];
-        }
-        else{
-            strMonth = [NSString stringWithFormat:@"%d",month];
-        }
-        if (day<10) {
-            strDay = [NSString stringWithFormat:@"0%d",day];
-        }
-        else{
-            strDay = [NSString stringWithFormat:@"%d",day];
-        }
-        twoGoBack = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay];
-        
-        delegataFlag = 10;
-    }
 
-}
-/*
--(void) setBackYear:(int)year month:(int)month day:(int)day
-{
-    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
-    [leaveDate setYear:year month:month day:day];
-    if (delegataFlag == 1 || [self.flagType isEqualToString:@"2"]) {
-        [returnDate setText:[NSString stringWithFormat:@"%d月%d日", month, day]];
         
         NSString * strMonth;
         NSString * strDay;
@@ -375,14 +429,41 @@ int searchFlag = 1; // 单程和往返的标记位
         else{
             strDay = [NSString stringWithFormat:@"%d",day];
         }
+        
+        [returnDate setText:[NSString stringWithFormat:@"%@-%@", strMonth, strDay]];
+        
         twoGoBack = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay];
+        
+        switch (selectDayCount- todayCount) {
+            case 0:
+                nextDayTitle.text = @"今天";
+                break;
+            case 1:
+                nextDayTitle.text = @"明天";
+                
+                break;
+                
+            case 2:
+               nextDayTitle.text = @"后天";
+                
+                break;
+                
+                
+            default:
+                nextDayTitle.text = @"";
+                break;
+        }
+
         
         delegataFlag = 10;
     }
     
-   
+    
+    
+
 }
- */
+
+
 - (IBAction)getStartDate:(id)sender {
     delegataFlag = 0;
     [MonthDayCell selectYear:leaveDate.year month:leaveDate.month day:leaveDate.day];
@@ -419,7 +500,7 @@ int searchFlag = 1; // 单程和往返的标记位
 
 - (IBAction)select:(id)sender {
 
-    
+   
     SearchAirPort * searchAirPort;
     
     ShowSelectedResultViewController * show = [[ShowSelectedResultViewController alloc] init];
@@ -427,7 +508,7 @@ int searchFlag = 1; // 单程和往返的标记位
     
     if (searchFlag == 1) {
         
-        NSLog(@"首页单程机票查询条件 ：%@%@%@",oneStartCode,oneEndCode,oneGoData);
+     //   NSLog(@"首页单程机票查询条件 ：%@%@%@",oneStartCode,oneEndCode,oneGoData);
         searchAirPort = [[SearchAirPort alloc] initWithdpt:oneStartCode arr:oneEndCode date:oneGoData ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
         show.startPort = oneStartAirPort.text;
@@ -480,7 +561,7 @@ int searchFlag = 1; // 单程和往返的标记位
 }
 
 - (IBAction)changeAirPort:(id)sender {    
-    [UIView animateWithDuration:1.0 animations:^(void)  //不用回调
+    [UIView animateWithDuration:0.5 animations:^(void)  //不用回调
      {
          if (flag == 1) {
              CGAffineTransform moveTo = CGAffineTransformMakeTranslation(170, 0);
@@ -499,6 +580,7 @@ int searchFlag = 1; // 单程和往返的标记位
          
      }  completion:^(BOOL finished)
      {
+    
          
          if (flag == 2) {
              twoBeginImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
@@ -530,7 +612,7 @@ int searchFlag = 1; // 单程和往返的标记位
 
 - (IBAction)oneChangeAirPort:(id)sender {
     
-    [UIView animateWithDuration:1.0 animations:^(void)  //不用回调
+    [UIView animateWithDuration:0.5 animations:^(void)  //不用回调
      {
          if (oneFlag == 1) {
              CGAffineTransform moveTo = CGAffineTransformMakeTranslation(170, 0);
@@ -623,6 +705,10 @@ int searchFlag = 1; // 单程和往返的标记位
     [twoBeginTitle release];
     [twoEndTitle release];
 
+    [_selectButton release];
+    [oneDayTitle release];
+    [dayTitle release];
+    [nextDayTitle release];
     [super dealloc];
 }
 

@@ -30,6 +30,7 @@
     [_view release];
     [_wImage release];
     [_dImage release];
+    [_textView release];
     [super dealloc];
 }
 @end

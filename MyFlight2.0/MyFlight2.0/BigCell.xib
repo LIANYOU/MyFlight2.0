@@ -227,7 +227,7 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{268, 39}, {39, 21}}</string>
 										<reference key="NSSuperview" ref="725778453"/>
-										<reference key="NSNextKeyView" ref="806710637"/>
+										<reference key="NSNextKeyView" ref="390867350"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -246,6 +246,7 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{209, 62}, {70, 21}}</string>
 										<reference key="NSSuperview" ref="725778453"/>
+										<reference key="NSNextKeyView" ref="153994557"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -265,7 +266,7 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{106, 48}, {75, 20}}</string>
 										<reference key="NSSuperview" ref="725778453"/>
-										<reference key="NSNextKeyView" ref="153994557"/>
+										<reference key="NSNextKeyView" ref="806710637"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -273,6 +274,20 @@
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">icon_airplane_big.png</string>
 										</object>
+									</object>
+									<object class="IBUIImageView" id="390867350">
+										<reference key="NSNextResponder" ref="725778453"/>
+										<int key="NSvFlags">292</int>
+										<string key="NSFrame">{{0, 90}, {320, 1}}</string>
+										<reference key="NSSuperview" ref="725778453"/>
+										<reference key="NSNextKeyView"/>
+										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<object class="NSColor" key="IBUIBackgroundColor">
+											<int key="NSColorSpace">1</int>
+											<bytes key="NSRGB">MC44NzQ1MDk4MDM5IDAuODQ3MDU4ODIzNSAwLjgwNzg0MzEzNzMAA</bytes>
+										</object>
+										<bool key="IBUIUserInteractionEnabled">NO</bool>
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									</object>
 								</array>
 								<string key="NSFrameSize">{320, 90}</string>
@@ -436,6 +451,7 @@
 							<reference ref="386468861"/>
 							<reference ref="277703400"/>
 							<reference ref="437371882"/>
+							<reference ref="390867350"/>
 						</array>
 						<reference key="parent" ref="75832543"/>
 					</object>
@@ -489,6 +505,11 @@
 						<reference key="object" ref="277703400"/>
 						<reference key="parent" ref="725778453"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">87</int>
+						<reference key="object" ref="390867350"/>
+						<reference key="parent" ref="725778453"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -509,12 +530,13 @@
 				<string key="75.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="76.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="77.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="87.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">86</int>
+			<int key="maxID">87</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

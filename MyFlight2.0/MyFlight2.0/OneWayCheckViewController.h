@@ -25,11 +25,14 @@
     IBOutlet UILabel *startDate;
     IBOutlet UILabel *endAirport;
     IBOutlet UILabel *startAirport;
+    IBOutlet UILabel *dayTitle;
+    IBOutlet UILabel *nextDayTitle;
     
     
     IBOutlet UILabel *oneStartAirPort;
     IBOutlet UILabel *oneSatrtDate;
     IBOutlet UILabel *oneEndAirPort;
+    IBOutlet UILabel *oneDayTitle;
    
     // one
     IBOutlet UIView *beginView;
@@ -38,6 +41,7 @@
     IBOutlet UIImageView *endImage;
     IBOutlet UILabel *beginTitle;
     IBOutlet UILabel *endTitle;
+    
     
     // two
     IBOutlet UIView *twoBeginView;
@@ -67,6 +71,7 @@
 //@property (retain, nonatomic) IBOutlet UILabel *startAirport;
 //@property (retain, nonatomic) IBOutlet UILabel *endAirport;
 
+@property (retain, nonatomic) IBOutlet UIButton *selectButton;
 
 @property (retain, nonatomic) NSString * oneStartName;
 @property (retain, nonatomic) NSString * oneEndName;

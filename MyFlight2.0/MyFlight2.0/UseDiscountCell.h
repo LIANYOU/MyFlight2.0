@@ -11,5 +11,6 @@
 @interface UseDiscountCell : UITableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *name;
 @property (retain, nonatomic) IBOutlet UIButton *selectBtn;
+@property (retain, nonatomic) IBOutlet UILabel *secLebel;
 
 @end
