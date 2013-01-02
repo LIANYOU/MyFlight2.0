@@ -15,6 +15,8 @@
 #import "CommontContactSingle.h"
 #import "CommonContact.h"
 #import "LoginBusiness.h"
+#import "UIImage+scaleImage.h"
+#import "UIButton+BackButton.h"
 @interface ChoosePersonController ()
 {
     int childNumber;  // 儿童个数
@@ -49,21 +51,14 @@
     self.flightPassengerIdDic = [NSMutableDictionary dictionaryWithCapacity:5];
     self.certTypeDic = [NSMutableDictionary dictionaryWithCapacity:5];
     
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
     
-    UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];
-    histroyBut.frame = CGRectMake(260, 5, 40, 31);
-    histroyBut.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    [histroyBut setTitle:@"确定" forState:UIControlStateNormal];
-    histroyBut.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_2words_.png"]];
+    UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"确定"];
     [histroyBut addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
@@ -135,23 +130,36 @@
         cell = self.choosePersonCell;
         
     }
+    
     //判断是否已被选择
     cell.btn.tag=indexPath.row;
     selectedSign=NO;
    
+    cell.selectionStyle = 2;
+    
+    //cell.btn.frame = CGRectMake(10, 11, 22, 22);
     if (self.selectArr.count!=0) {
    
         for (NSString *thisRow in self.selectArr) {
             int a=[thisRow intValue];
             if (indexPath.row==a) {
                 selectedSign=YES;
-                cell.btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_choice_.png"]];
+                
+                UIImage * image=[UIImage imageNamed:@"icon_choice@2x.png"];
+              //  UIImage * toimage=[UIImage scaleImage:image toScale:0.5];
+                
+                [cell.btn setImage:image forState:0];
+                cell.btn.backgroundColor=[UIColor colorWithPatternImage:image];
                 break;
             }
         }
     }
     if (selectedSign==NO) {
-        cell.btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"ico_def_.png"]];
+        
+        UIImage * image=[UIImage imageNamed:@"ico_def@2x.png"];
+      //  UIImage * toimage=[UIImage scaleImage:image toScale:0.5];
+        [cell.btn setImage:image forState:0];
+        cell.btn.backgroundColor=[UIColor colorWithPatternImage:image];
     }
     
     
@@ -167,6 +175,20 @@
     return cell;
     
 }
+//- (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
+//
+//{
+//    
+//    
+//	UIGraphicsBeginImageContext(CGSizeMake(image.size.width * scaleSize, image.size.height * scaleSize));
+//                                [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height * scaleSize)];
+//                                UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+//                                UIGraphicsEndImageContext();
+//                                
+//                                
+//                                return scaledImage;
+//                                    
+//}
 
 #pragma mark - Table view delegate
 
@@ -187,15 +209,25 @@
             int a=[thisRow intValue];
             if (btn.tag==a) {
                 [self.selectArr removeObject:thisRow];
+                
+                UIImage * image=[UIImage imageNamed:@"ico_def@2x.png"];
+   
+
+                [btn setImage:image forState:0];
             
-                btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"ico_def_.png"]];
+                btn.backgroundColor=[UIColor colorWithPatternImage:image];
                 return;
             }
         }
     }
     
     [self.selectArr addObject: [NSString stringWithFormat:@"%d",btn.tag]];
-    btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_choice_.png"]];
+    
+    UIImage * image=[UIImage imageNamed:@"icon_choice@2x.png"];
+  //  UIImage * toimage=[UIImage scaleImage:image toScale:0.5];
+    
+    [btn setImage:image forState:0];
+    
 }
 
 

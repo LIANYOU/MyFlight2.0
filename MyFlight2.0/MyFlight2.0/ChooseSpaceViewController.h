@@ -20,6 +20,11 @@
     SearchFlightData * data;
     NSDictionary * dic;
 }
+
+
+@property (retain, nonatomic) IBOutlet UIButton *lookButton;
+
+
 @property (retain, nonatomic) IBOutlet UITableView *showTableView;
 @property (retain, nonatomic) IBOutlet ChooseSpaceCell *spaceCell;
 

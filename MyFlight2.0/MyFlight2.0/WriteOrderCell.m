@@ -38,6 +38,7 @@
     [_date release];
     [_plantType release];
     [_airPortName release];
+    [_changeTicket release];
     [super dealloc];
 }
 @end

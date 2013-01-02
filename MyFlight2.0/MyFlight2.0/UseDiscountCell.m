@@ -29,6 +29,7 @@
 - (void)dealloc {
     [_name release];
     [_selectBtn release];
+    [_secLebel release];
     [super dealloc];
 }
 @end

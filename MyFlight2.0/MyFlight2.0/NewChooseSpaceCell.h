@@ -14,6 +14,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *payMoney;
 @property (retain, nonatomic) IBOutlet UILabel *ticketCount;
 @property (retain, nonatomic) IBOutlet UILabel *discount;
+@property (retain, nonatomic) IBOutlet UIView *textView;
 @property (retain, nonatomic) IBOutlet UILabel *textCell;
 @property (retain, nonatomic) IBOutlet UIView *view;
 @property (retain, nonatomic) IBOutlet UIImageView *wImage;

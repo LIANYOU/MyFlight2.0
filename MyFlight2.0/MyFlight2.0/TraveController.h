@@ -34,6 +34,7 @@
 - (IBAction)helpYourself:(UIButton *)sender;
 - (IBAction)post:(UIButton *)sender;
 
+@property (retain, nonatomic) IBOutlet UIView *backView;
 @property (assign, nonatomic) int flag;  // 标记上次选择了哪一个btn
 @property (retain, nonatomic) IBOutlet UIView *postView;
 

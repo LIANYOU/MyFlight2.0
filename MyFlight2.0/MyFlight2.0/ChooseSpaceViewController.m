@@ -16,6 +16,7 @@
 #import "AttentionFlight.h"
 #import "AppConfigure.h"
 #import "GetAttentionFlight.h"
+#import "UIButton+BackButton.h"
 #define FONT_SIZE 8.0f
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 100.0f
@@ -44,10 +45,7 @@
 {
     self.navigationItem.title = @"选择舱位";
     
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
@@ -113,7 +111,8 @@
     for (NSDictionary * dic_ in self.lookReceive) {
          NSLog(@"已经关注的航班号 %@",[dic_ objectForKey:@"flightNum"]);
         if ([data.temporaryLabel isEqualToString:[dic_ objectForKey:@"flightNum"]]) {
-            [self.lookFlightBtn setTitle:@"     取消关注" forState:0];
+            [self.lookFlightBtn setTitle:@"取消关注" forState:0];
+            [self.lookFlightBtn setBackgroundImage:[UIImage imageNamed:@"btn_cancel.png"] forState:0];
            
         }
     }
@@ -178,6 +177,7 @@
     [_bigCell release];
     [_newCell release];
     [_lookFlightBtn release];
+    [_lookButton release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -195,6 +195,7 @@
     [self setBigCell:nil];
     [self setNewCell:nil];
     [self setLookFlightBtn:nil];
+    [self setLookButton:nil];
     [super viewDidUnload];
 }
 
@@ -229,7 +230,7 @@
         CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f);//可接受的最大大小的字符串
         
         CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
-        return size.height+51.0f;
+        return size.height+60.0f;
 
     }
 }
@@ -245,7 +246,7 @@
             cell = self.bigCell;
         }
         
-        NSLog(@"选择舱位bigCell的信息 %@%@%@%@%@%@%@",data.airPort,data.palntType,data.beginTime,data.endTime,data.beginDate,data.startPortThreeCode,data.endPortThreeCode);
+       // NSLog(@"选择舱位bigCell的信息 %@%@%@%@%@%@%@",data.airPort,data.palntType,data.beginTime,data.endTime,data.beginDate,data.startPortThreeCode,data.endPortThreeCode);
         if ([data.goOrBackFlag isEqualToString:@"1"]) {
             cell.scheduleDate.text = data.beginDate;
         }
@@ -291,13 +292,16 @@
         
         CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
         
-        cell.view.frame = CGRectMake(0, 0, 320, size.height+50.0f);
+        cell.view.frame = CGRectMake(0, 0, 320, size.height+60.0f);
         cell.textCell.lineBreakMode = UILineBreakModeCharacterWrap;
-        cell.textCell.frame = CGRectMake(10, 50, 290, size.height);
+        cell.textView.frame = CGRectMake(0, 60, 320, size.height);
+        cell.textCell.frame = CGRectMake(10,0, 300, size.height);
+        
+        cell.textView.backgroundColor = [UIColor colorWithRed:237/255.0 green:232/255.0 blue:226/255.0 alpha:1];
         cell.textCell.font = [UIFont systemFontOfSize:12.0f];
         cell.textCell.text = _firstCellText;
-        cell.wImage.frame = CGRectMake(0, size.height+50.0f, 320, 1);
-        cell.dImage.frame = CGRectMake(0, size.height+51.0f, 320, 1);
+        cell.wImage.frame = CGRectMake(0, size.height+60.0f, 320, 1);
+        cell.dImage.frame = CGRectMake(0, size.height+61.0f, 320, 1);
     
         
         [cell.changeSpace addTarget:self action:@selector(changeFlightInfo:) forControlEvents:UIControlEventTouchUpInside];
@@ -329,11 +333,12 @@
             self.searchFlight.childPrice = [self.childPayArr objectAtIndex:indexPath.row-1];
             self.searchFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
             self.searchFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
+            self.searchFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
      
             
             ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
 
-            show.airPort = searchAirPort;            
+            show.airPort = searchAirPort;
             
             show.netFlag = 1;  // 等与1  ，在返回到返程列表的时候 不需要联网
             show.write = self;
@@ -345,6 +350,7 @@
         {
             
             if (self.flag == 1) {
+                
                 self.searchFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue];
                 self.searchFlight.ticketCount = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"seatNum"];
                 if ([self.searchFlight.ticketCount isEqualToString:@"A"]) {
@@ -353,6 +359,8 @@
                 self.searchFlight.childPrice = [self.childPayArr objectAtIndex:indexPath.row-1];
                 self.searchFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
                 self.searchFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
+                self.searchFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
+                
             }
             else{
                 self.searchBackFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue];                  
@@ -363,6 +371,7 @@
                 self.searchBackFlight.childPrice = [self.childPayArr objectAtIndex:indexPath.row-1];
                 self.searchBackFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
                 self.searchBackFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
+                self.searchBackFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
 
             }
             
@@ -425,7 +434,7 @@
     
     NSString * type = nil;
     
-    if ([sender.titleLabel.text isEqualToString:@"     关注航班"]) {
+    if ([sender.titleLabel.text isEqualToString:@"关注航班"]) {
 
         type = @"P";
     }
@@ -479,13 +488,17 @@
     NSLog(@"%@",self.lookFlightArr);
     
     if (string == @"") {
-        if ([self.lookFlightBtn.titleLabel.text isEqualToString:@"     关注航班"]) {
+        if ([self.lookFlightBtn.titleLabel.text isEqualToString:@"关注航班"]) {
   
-            [self.lookFlightBtn setTitle:@"     取消关注" forState:0];
+            [self.lookFlightBtn setTitle:@"取消关注" forState:0];
+       
+            [self.lookFlightBtn setBackgroundImage:[UIImage imageNamed:@"btn_cancel.png"] forState:0];
         }
         else{
 
-            [self.lookFlightBtn setTitle:@"     关注航班" forState:0];
+            [self.lookFlightBtn setTitle:@"关注航班" forState:0];
+      
+            [self.lookFlightBtn setBackgroundImage:[UIImage imageNamed:@"btn_attention.png"] forState:0];
         }
 
     }
@@ -495,6 +508,9 @@
     }
     
      [[NSNotificationCenter defaultCenter]removeObserver:self];
+    
+    
+    
     
     [HUD removeFromSuperview];
 	[HUD release];
@@ -523,8 +539,8 @@
 
 -(void)back
 {
-    //ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
-    //show.netFlag = 1;  // 返回时候不需要联网
+//    ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
+//    show.netFlag = 1;  // 返回时候不需要联网
     [self.navigationController popViewControllerAnimated:YES];
 
 }

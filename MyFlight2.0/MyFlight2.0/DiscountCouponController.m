@@ -9,6 +9,8 @@
 #import "DiscountCouponController.h"
 #import "UseDiscountCell.h"
 #import "GoldCoinCell.h"
+#import "UIButton+BackButton.h"
+#import "ChooseDiscountCouponController.h"
 @interface DiscountCouponController ()
 {
     BOOL selectedSign;
@@ -33,10 +35,8 @@
     
     self.navigationItem.title = @"账户资金/优惠券抵用";
     
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
@@ -262,29 +262,38 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+     UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:indexPath];
+
+    if (indexPath.row == 1) {
+     
+        ChooseDiscountCouponController * choose =  [[ChooseDiscountCouponController alloc] init];
+        [choose getDate:^(NSString *name, NSString *count, NSMutableArray *arr) {
+            cell.name.text = name;
+            cell.secLebel.text = [NSString stringWithFormat:@"%@",count];
+            self.nextSelectArr = [NSMutableArray arrayWithArray:arr];
+        }];
+        choose.indexArr = self.nextSelectArr;
+        [self.navigationController pushViewController:choose animated:YES];
+        [choose release];
+    }
+
   
-    UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:indexPath];
+   
     
     if (self.selectArr.count!=0) {
         for (NSString *thisRow in self.selectArr) {
             
             int a=[thisRow intValue];
-            if (indexPath.row == a) {
-                
-                [self.selectArr removeObject:thisRow];
-                
-                cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
-                return;
-            }
-            else{
+
                 UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:a inSection:0]];
                 cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
                 
                 [self.selectArr removeAllObjects];
-                
-            }
+
         }
     }
+    
     
     
     [self.selectArr addObject: [NSString stringWithFormat:@"%d",indexPath.row]];
@@ -292,7 +301,7 @@
     cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
     
     
-   
+       
 }
 
 - (void)dealloc {

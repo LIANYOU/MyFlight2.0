@@ -20,4 +20,5 @@
 @property (retain, nonatomic) IBOutlet UILabel *date;
 @property (retain, nonatomic) IBOutlet UILabel *plantType;
 @property (retain, nonatomic) IBOutlet UILabel *airPortName;
+@property (retain, nonatomic) IBOutlet UIButton *changeTicket;
 @end
