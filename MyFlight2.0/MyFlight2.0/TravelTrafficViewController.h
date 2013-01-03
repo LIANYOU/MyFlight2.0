@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "SVSegmentedControl.h"
 #import "AirPortData.h"
+
+#import "CoachTableViewController.h"
+#import "SubwayTableViewController.h"
+#import "TaxiTableViewController.h"
+
 @interface TravelTrafficViewController : UIViewController
 {
     AirPortData * _subAirPortData;
@@ -83,6 +88,13 @@
     
     IBOutlet UIView * taxiDetailView;   //taxi详情view
     
+    
+    CoachTableViewController * coachTableViewController;
+    SubwayTableViewController * subwayTableViewController;
+    TaxiTableViewController * taxiTableViewController;
+    
+    UITableViewController * currViewController;
+    UIView * contentView;
 }
 @property(nonatomic,retain) NSString * airPortCode;
 @property(nonatomic,retain)AirPortData * subAirPortData;

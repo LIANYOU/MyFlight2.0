@@ -17,6 +17,9 @@
     UIColor * _myBlueColor;
     UIColor * _myRedColor;
     UIColor * _myGreenColor;
+    
+    NSString * _deptAirPortCode;
+    NSString * _arrAirPortCode;
 }
 @property (retain, nonatomic) IBOutlet UIView *HeadView;
 @property (retain, nonatomic) IBOutlet UITableView *showTableView;
@@ -26,4 +29,7 @@
 
 @property (nonatomic,retain) SearchFlightCondition * searchCondition;
 
+
+@property(nonatomic,retain) NSString * deptAirPortCode;
+@property(nonatomic,retain) NSString * arrAirPortCode;
 @end

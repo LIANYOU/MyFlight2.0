@@ -14,8 +14,8 @@
 #import "AppDelegate.h"
 #import "WXApi.h"
 #import <MessageUI/MessageUI.h>
-
-@interface DetailFlightConditionViewController : UIViewController<UIActionSheetDelegate,SinaWeiboRequestDelegate,SinaWeiboDelegate,WXApiDelegate,MFMessageComposeViewControllerDelegate>{
+#import <MapKit/MapKit.h>
+@interface DetailFlightConditionViewController : UIViewController<UIActionSheetDelegate,SinaWeiboRequestDelegate,SinaWeiboDelegate,WXApiDelegate,MFMessageComposeViewControllerDelegate,MKMapViewDelegate>{
     NSDictionary * _dic;
     FlightConditionDetailData * myFlightConditionDetailData;
     
@@ -54,9 +54,12 @@
     IBOutlet UIButton * attentionThisPlaneBtn; //关注该航班
     IBOutlet UIImageView * flightLine;  //绿色的弧线，显示飞机飞行进度条
     
-    UIView * mapView;   // 地图
-    
-   
+    MKMapView * myMapView;
+    UIView * myFlightView;
+    NSString * _deptAirPortCode;
+    NSString * _arrAirPortCode;
+
+
 }
 @property (nonatomic, retain) TCWBEngine   *engine;
 
@@ -93,4 +96,9 @@
 
 @property(nonatomic,retain)IBOutlet UIButton * attentionThisPlaneBtn; //关注该航班
 @property(nonatomic,retain)NSDictionary * dic;
+
+
+@property(nonatomic,retain) NSString * deptAirPortCode;     //出发机场3字码 -- 地图要用
+@property(nonatomic,retain) NSString * arrAirPortCode;
+
 @end

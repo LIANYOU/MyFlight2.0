@@ -34,6 +34,8 @@
 //前景色（浅色）
 #define FOREGROUND_COLOR [UIColor colorWithRed:248/255.0 green:245/255.0 blue:241/255.0 alpha:1]
 //字体颜色（灰色）
-#define FONT_COLOR  [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
+#define FONT_COLOR_GRAY  [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1]
+//字体颜色（红色）
+#define FONT_COLOR_RED [UIColor colorWithRed:251/255.0 green:101/255.0 blue:43/255.0 alpha:1]
 
 #endif

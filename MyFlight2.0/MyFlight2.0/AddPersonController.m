@@ -48,7 +48,7 @@
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
-    [backBtn1 release];;
+    [backBtn1 release];
     
     UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"保存"];
     [histroyBut addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];

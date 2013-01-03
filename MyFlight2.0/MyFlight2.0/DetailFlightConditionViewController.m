@@ -8,7 +8,9 @@
 
 #import "DetailFlightConditionViewController.h"
 #import "SMSViewController.h"
-
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
+#import "JSONKit.h"
 @interface DetailFlightConditionViewController ()
 @property(nonatomic,retain) NSString *shareMsg;
 @property(nonatomic,retain) NSString *shareMsgWithWeibo;
@@ -18,6 +20,7 @@
 @synthesize btnMessage,btnMoreShare,btnPhone,btnShare,planeCode,planeCompanyAndTime,planeState,from,arrive,fromFirstTime,fromFirstTimeName,fromResult,fromSceTime,fromSceTimeName,fromT,fromWeather,arriveFirstTime,arriveFirstTimeName,arriveResult,arriveSecTime,arriveSecTimeName,arriveT,arriveWeather,attentionThisPlaneBtn,littlePlaneBtn;
 @synthesize dic = _dic;
 @synthesize engine;
+@synthesize deptAirPortCode = _deptAirPortCode, arrAirPortCode = _arrAirPortCode;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +34,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //地图
+    [self aboutMap];
+   
+    
     //注册微信号
     [WXApi registerApp:tencentWeChatAppID];
     // Do any additional setup after loading the view from its nib.
@@ -214,8 +221,8 @@
         [originalImage drawInRect:thumbnailRect];
         smallImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        return smallImage;
     }
+    return smallImage;
 }
 
 
@@ -553,8 +560,150 @@
 }
 
 
+#pragma mark - 所有地图相关初始化
+-(void)aboutMap{
+    
+    myMapView = [[MKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, [[UIScreen mainScreen]bounds].size.height - 20 - 50)];
+    myMapView.delegate = self;
+  
+
+}
+
+
+
+
 //飞行地图
 - (IBAction)littleFlightClick:(id)sender {
+    [self getFlightMapData];
+    myFlightView = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height)]autorelease];
+    myFlightView.backgroundColor = [UIColor redColor];
+    [myFlightView addSubview:myMapView];
+    UIButton * myBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    myBtn.frame = CGRectMake(0, 0, 50, 40);
+    [myBtn addTarget:self action:@selector(backToDetail) forControlEvents:UIControlEventTouchUpInside];
+    [myFlightView addSubview:myBtn];
+    [UIView transitionFromView:self.view toView:myFlightView duration:0.75 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL isFinish){
+        
+    }];
+}
+
+-(void)backToDetail{
+    [UIView transitionFromView:myFlightView toView:self.view duration:0.75 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL isFinish){
+        
+    }];
+}
+
+
+
+
+
+-(void)getFlightMapData{
+    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/flightRoute.jsp"];
     
+    //请求
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    
+    
+    [request setPostValue:self.deptAirPortCode forKey:@"dpt"];
+    [request setPostValue:self.arrAirPortCode forKey:@"arr"];
+    
+    
+    [request setPostValue:@"google" forKey:@"mapType"];
+    
+    [request setPostValue:myFlightConditionDetailData.realDeptTime forKey:@"deptTime"];
+    
+    [request setPostValue:myFlightConditionDetailData.realArrTime forKey:@"arrTime"];
+    
+    //请求完成
+    [request setCompletionBlock:^{
+        NSString * str = [request responseString];
+        
+        NSDictionary * myDic = [str objectFromJSONString];
+        NSLog(@"dic : %@",myDic);
+        
+        [self fillMapPoint:myDic];
+    }];
+    //请求失败
+    [request setFailedBlock:^{
+        NSError *error = [request error];
+        NSLog(@"Error : %@", error.localizedDescription);
+    }];
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
+}
+
+-(void)fillMapPoint:(NSDictionary *)dic{
+    NSMutableArray *overlays = [[NSMutableArray alloc] init];
+
+    CLLocationCoordinate2D centerDept;
+    NSArray * pointArray = [dic objectForKey:@"routeList"];
+    centerDept.latitude = ([[[pointArray objectAtIndex:0] objectForKey:@"latitude"]doubleValue] + [[[pointArray objectAtIndex:2] objectForKey:@"latitude"]doubleValue])/2.0;
+    centerDept.longitude = ([[[pointArray objectAtIndex:0] objectForKey:@"longitude"]doubleValue] + [[[pointArray objectAtIndex:2] objectForKey:@"longitude"]doubleValue])/2.0;
+    
+    MKCoordinateSpan span;
+    span.latitudeDelta = 25;
+    span.longitudeDelta = 25;
+    
+    MKCoordinateRegion region = {
+        centerDept,span
+    };
+    myMapView.region = region;
+    
+    //画线数组
+    CLLocationCoordinate2D pointsToUse[2];
+    CLLocationCoordinate2D coords;
+    coords.latitude = [[[pointArray objectAtIndex:0] objectForKey:@"latitude"]doubleValue];
+    coords.longitude = [[[pointArray objectAtIndex:0] objectForKey:@"longitude"]doubleValue];
+    pointsToUse[0] = coords;
+    NSLog(@"1 : %f,%f",coords.latitude,coords.longitude);
+    
+    coords.latitude = [[[pointArray objectAtIndex:2] objectForKey:@"latitude"]doubleValue];
+    coords.longitude = [[[pointArray objectAtIndex:2] objectForKey:@"longitude"]doubleValue];
+    pointsToUse[1] = coords;
+    NSLog(@"2 : %f,%f",coords.latitude,coords.longitude);
+    
+   
+    MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:pointsToUse count:2];
+    lineOne.title = @"blue";
+    [overlays addObject:lineOne];
+    [myMapView addOverlays:overlays];
+    [lineOne release];
+    [myMapView reloadInputViews];
+}
+
+
+#pragma mark - 大头针图片
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    MKPinAnnotationView *pinView = nil;
+    
+    static NSString *defaultPinID = @"myPin";
+    pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+    if ( pinView == nil ) pinView = [[[MKPinAnnotationView alloc]
+                                      initWithAnnotation:annotation reuseIdentifier:defaultPinID] autorelease];
+    pinView.pinColor = MKPinAnnotationColorRed;
+    pinView.canShowCallout = YES;
+    pinView.animatesDrop = YES;
+    return pinView;
+}
+
+#pragma mark - 地图画线
+-(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[MKPolyline class]]) {
+        NSLog(@"yes");
+        MKPolylineView *lineview=[[[MKPolylineView alloc] initWithOverlay:overlay] autorelease];
+        lineview.strokeColor=[[UIColor blueColor] colorWithAlphaComponent:1];
+        lineview.lineWidth=4.0;
+        return lineview;
+    }
+    return nil;
+}
+
+
+#pragma mark - dealloc
+-(void)dealloc{
+    
+    [super dealloc];
 }
 @end

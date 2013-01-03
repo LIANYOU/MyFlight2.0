@@ -33,9 +33,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
     airPortCode = [[NSString alloc]initWithString:@"PEK"];
     self.view.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 270) style:UITableViewStylePlain];
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 320) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.scrollEnabled = NO;
@@ -43,9 +46,9 @@
     [self.view addSubview:myTableView];
     
     // Do any additional setup after loading the view from its nib.
-    imageArray  = [[NSArray alloc]initWithObjects:[UIImage imageNamed:@"icon_Orders.png"],[UIImage imageNamed:@"icon_luggage.png"], [UIImage imageNamed:@"icon_Traffic.png"], [UIImage imageNamed:@"icon_checkin.png"], [UIImage imageNamed:@"icon_telphone.png"], [UIImage imageNamed:@"icon_Distributed.png"],  nil];
+    imageArray  = [[NSArray alloc]initWithObjects:[UIImage imageNamed:@"icon_Orders.png"],[UIImage imageNamed:@"icon_luggage.png"], [UIImage imageNamed:@"icon_Traffic.png"], [UIImage imageNamed:@"icon_checkin.png"], [UIImage imageNamed:@"icon_telphone.png"], [UIImage imageNamed:@"icon_Distributed.png"],[UIImage imageNamed:@"icon_Distributed.png"],  nil];
     NSLog(@"image count : %d",[imageArray count]);
-    titleArray = [[NSArray alloc]initWithObjects:@"机场介绍",@"行李规定",@"机场交通",@"值机柜台",@"常用电话",@"航空公司分布", nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"机场介绍",@"行李规定",@"机场交通",@"值机柜台",@"常用电话",@"航空公司分布",@"天气预报" ,nil];
     
     
     //导航栏rightItem
@@ -80,7 +83,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,10 +118,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (self.myAirPortData.apCode = nil) {
-//        UIAlertView * chooseAlert = [[UIAlertView alloc]initWithTitle:@"机场未选择" message:@"是否选择机场" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"是", nil];
-//        [chooseAlert show];
-//    }else{
+    if (self.myAirPortData == nil) {
+        UIAlertView * chooseAirPortAlert = [[UIAlertView alloc]initWithTitle:@"未选择机场" message:@"现在选择机场吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [chooseAirPortAlert show];
+        [chooseAirPortAlert release];
+    }else{
         if (indexPath.row == 0) {
             NSLog(@"机场介绍");
             FlightCompanyDistrubuteViewController * fcd = [[FlightCompanyDistrubuteViewController alloc]init];
@@ -166,12 +170,13 @@
             fcdc.airPortCode = self.myAirPortData.apCode;
             
             fcdc.myTitle = self.myAirPortData.apName;
-            
-            
             [self.navigationController pushViewController:fcdc animated:YES];
             [fcdc release];
+        }else if(indexPath.row == 6){
+            NSLog(@"天气预报");
+            
         }
-//    }
+    }
 }
 
 -(void)rightItemClick:(id)arg{
@@ -193,6 +198,23 @@
     NSLog(@"myairPortData : %@",self.myAirPortData.apCode);
     titleLable.text = airPort.apName;
     
+}
+
+#pragma mark - alert代理方法
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"%d",buttonIndex);
+    if (buttonIndex == 1) {
+        ChooseAirPortViewController *controller = [[ChooseAirPortViewController alloc] init];
+        //默认出发机场
+        controller.startAirportName = @"";
+        //默认到达机场
+        controller.endAirPortName = @"";
+        //选择的类型
+        controller.choiceTypeOfAirPort = START_AIRPORT_TYPE;
+        controller.delegate =self;
+        
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 -(void)dealloc{

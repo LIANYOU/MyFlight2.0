@@ -39,18 +39,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     self.view.backgroundColor = BACKGROUND_COLOR;
     self.navigationItem.title = @"已关注航班列表";
-    selectView = [[UIView alloc]initWithFrame:CGRectMake(0,-self.view.bounds.size.height, 320, self.view.bounds.size.height)];
+    selectView = [[UIView alloc]initWithFrame:CGRectMake(0,-[[UIScreen mainScreen]bounds].size.height, 320, [[UIScreen mainScreen]bounds].size.height)];
     selectView.backgroundColor = BACKGROUND_COLOR;
     isAttention = NO;
     
     
     
     //航班动态列表
-    myConditionListView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
+    myConditionListView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height)];
     myConditionListView.backgroundColor = [UIColor blackColor];
-    myConditionListTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
+    myConditionListTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height)];
     myConditionListTableView.backgroundColor = FOREGROUND_COLOR;
     myConditionListTableView.dataSource = self;
     myConditionListTableView.delegate = self;
@@ -58,7 +60,7 @@
     [self.view addSubview:myConditionListView];
     
     //遮罩
-    shade = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height)];
+    shade = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height)];
     shade.backgroundColor = [UIColor blackColor];
     shade.alpha = 0.5;
     shade.userInteractionEnabled = NO;
@@ -114,6 +116,7 @@
     self.selectedByAirPort.backgroundColor = [UIColor clearColor];
     self.selectedByDate.frame = CGRectMake(320, 460-390, 320, 378);
     self.selectedByDate.backgroundColor  = [UIColor clearColor];
+    self.selectedByDate.hidden = YES;
     [selectView addSubview:self.selectedByAirPort];
     [selectView addSubview:self.selectedByDate];
     
@@ -181,20 +184,36 @@
 }
 
 
-- (IBAction)searchFligth:(id)sender {
-    if (mySegmentController.selectedIndex == 0) {
+- (IBAction)chooseDateBtnClick:(id)sender {
+    [self.flightNumber resignFirstResponder];
+}
 
-        SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:nil fdate:nil dpt:startAirPortCode arr:arrAirPortCode hwld:nil];
-        ShowFligthConditionController * show = [[ShowFligthConditionController alloc] init];
-        show.searchCondition = search;
-        
-        [self.navigationController pushViewController:show animated:YES];
-        [search release];
-        [show release];
+- (IBAction)searchFligth:(id)sender {
+    //收键盘
+    [self.flightNumber resignFirstResponder];
+    
+    if (mySegmentController.selectedIndex == 0) {
+        if ([startAirPortCode isEqualToString:arrAirPortCode]) {
+            UIAlertView * theSameAirPort = [[UIAlertView alloc]initWithTitle:@"机场相同" message:@"出发机场不能与到达机场相同" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [theSameAirPort show];
+            [theSameAirPort release];
+            
+        }else{
+            SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:nil fdate:nil dpt:startAirPortCode arr:arrAirPortCode hwld:nil];
+            ShowFligthConditionController * show = [[ShowFligthConditionController alloc] init];
+            show.searchCondition = search;
+            show.deptAirPortCode = startAirPortCode;
+            show.arrAirPortCode = arrAirPortCode;
+            [self.navigationController pushViewController:show animated:YES];
+            [search release];
+            [show release];
+        }
     }else {
         SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:self.flightNumber.text fdate:self.flightTimeByNumber.text dpt:nil arr:nil hwld:nil];
         ShowFligthConditionController * show = [[ShowFligthConditionController alloc] init];
         show.searchCondition = search;
+        show.deptAirPortCode = startAirPortCode;
+        show.arrAirPortCode = arrAirPortCode;
         [self.navigationController pushViewController:show animated:YES];
         [search release];
         [show release];
@@ -204,7 +223,9 @@
 }
 
 - (IBAction)chooseStartAirPort:(id)sender {
-    
+    //收键盘
+    [self.flightNumber resignFirstResponder];
+
     ChooseAirPortViewController *controller = [[ChooseAirPortViewController alloc] init];
     //默认出发机场 
     controller.startAirportName = self.startAirPort.text;
@@ -220,6 +241,9 @@
 }
 
 - (IBAction)chooseEndAirPort:(id)sender {
+    //收键盘
+    [self.flightNumber resignFirstResponder];
+    
     
     ChooseAirPortViewController *controller = [[ChooseAirPortViewController alloc] init];
     //默认出发机场
@@ -234,6 +258,8 @@
 }
 
 -(void)mySegmentValueChange:(SVSegmentedControl *)arg{
+    //收键盘
+    [self.flightNumber resignFirstResponder];
     if (arg.selectedIndex == 1) {
         /*
          |a    b    0|
@@ -242,18 +268,26 @@
          
          |tx   ty   1|
          */
+        self.selectedByDate.hidden = NO;
+        self.selectedByAirPort.hidden = NO;
         [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:1];
-
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(mySegmentValueOne)];
         CGAffineTransform moveTo = CGAffineTransformMakeTranslation(320, 0);
         CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-320, 0);
         self.selectedByAirPort.layer.affineTransform = moveTo;
         self.selectedByDate.layer.affineTransform = moveFrom;
         [UIView commitAnimations];
         
+        
     }else if (arg.selectedIndex == 0){
+        self.selectedByDate.hidden = NO;
+        self.selectedByAirPort.hidden = NO;
         [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:1];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(mySegmentValueTwo)];
         CGAffineTransform moveTo1 = CGAffineTransformMakeTranslation(320, 0);
         CGAffineTransform moveFrom1 = CGAffineTransformMakeTranslation(0, 0);
         self.selectedByAirPort.layer.affineTransform = moveFrom1;
@@ -263,16 +297,26 @@
 }
 
 
+#pragma mark - 两种查询方法切换后的隐藏
+-(void)mySegmentValueOne{
+    self.selectedByAirPort.hidden = YES;
+}
+-(void)mySegmentValueTwo{
+    self.selectedByDate.hidden = YES;
+}
+
 - (IBAction)returnClicked:(id)sender {
     [self.flightNumber resignFirstResponder];
 }
 
+#pragma mark - 选择机场
 - (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger)choiceType didSelectAirPortInfo:(AirPortData *)airPortP{
+    
     
     if (choiceType==START_AIRPORT_TYPE ) {
         //获得用户的出发机场 
         self.startAirPort.text = airPortP.apName;
-                startAirPortCode = [NSString stringWithString:airPortP.apCode];
+        startAirPortCode = [NSString stringWithString:airPortP.apCode];
     } else if(choiceType==END_AIRPORT_TYPE){
         //获得用户的到达机场
         self.endAirPort.text = airPortP.apName;
@@ -308,6 +352,8 @@
     [myConditionListTableView reloadData];
 
 }
+
+#pragma mark - 废弃的方法
 -(void)getData{
     myData = [[NSMutableData alloc]init];
     // Do any additional setup after loading the view from its nib.
@@ -347,10 +393,10 @@
     [request startAsynchronous];
     
 }
-
-
+#pragma mark - 导航右键点击事件响应方法
 -(void)attentionTapEvent:(UITapGestureRecognizer *)tap{
     isAttention = !isAttention;
+    selectView.hidden = NO;
     rightsuperView.userInteractionEnabled = NO;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
@@ -371,6 +417,7 @@
         [btnImageView setImage:[UIImage imageNamed:@"icon_del_attention.png"]];
     }else{
         self.title = @"已关注航班列表";
+        selectView.hidden = YES;
         [btnImageView setImage:[UIImage imageNamed:@"add_Attention.png"]];
     }
     [UIView beginAnimations:nil context:NULL];
@@ -462,7 +509,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDelFlightData:) name:@"关注航班" object:nil];
     [attention lookFlightAttention];
-    
 
 }
 -(void)receiveDelFlightData:(NSNotification *)not
@@ -487,4 +533,11 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 
 }
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+   
+    NSLog(@"收键盘");
+    [self.flightNumber resignFirstResponder];
+}
+
 @end

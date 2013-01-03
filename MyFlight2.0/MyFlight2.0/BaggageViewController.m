@@ -128,20 +128,20 @@
     
     UILabel * label1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 320, 15)];
     [cell addSubview:label1];
-    label1.textColor = FONT_COLOR;
+    label1.textColor = FONT_COLOR_GRAY;
     label1.backgroundColor = [UIColor clearColor];
     label1.font = [UIFont systemFontOfSize:14];
     [label1 release];
     
     UILabel * label2 = [[UILabel alloc]initWithFrame:CGRectMake(10, 25, 320, 15)];
-    label2.textColor = FONT_COLOR;
+    label2.textColor = FONT_COLOR_GRAY;
     label2.backgroundColor = [UIColor clearColor];
     label2.font = [UIFont systemFontOfSize:14];
     [cell addSubview:label2];
     [label2 release];
     
     UILabel * label3 = [[UILabel alloc]initWithFrame:CGRectMake(10, 45, 320, 15)];
-    label3.textColor = FONT_COLOR;
+    label3.textColor = FONT_COLOR_GRAY;
     label3.backgroundColor = [UIColor clearColor];
     label3.font = [UIFont systemFontOfSize:14];
     [cell addSubview:label3];
@@ -149,14 +149,14 @@
     
     
     UILabel * label4 = [[UILabel alloc]initWithFrame:CGRectMake(10, 65, 320, 15)];
-    label4.textColor = FONT_COLOR;
+    label4.textColor = FONT_COLOR_GRAY;
     label4.backgroundColor = [UIColor clearColor];
     label4.font = [UIFont systemFontOfSize:14];
     [cell addSubview:label4];
     [label4 release];
     
     UILabel * label5 = [[UILabel alloc]initWithFrame:CGRectMake(10, 85, 320, 15)];
-    label5.textColor = FONT_COLOR;
+    label5.textColor = FONT_COLOR_GRAY;
     label5.backgroundColor = [UIColor clearColor];
     label5.font = [UIFont systemFontOfSize:14];
     [cell addSubview:label5];
@@ -205,7 +205,7 @@
     [request setPostValue:@"iphone" forKey:@"source"];
     [request setPostValue:CURRENT_DEVICEID_VALUE forKey:@"hwId"];
     [request setPostValue:@"01" forKey:@"serviceCode"];
-    [request setPostValue:@"v3.0" forKey:@"edition"];
+    [request setPostValue:@"1" forKey:@"edition"];
     [request setDefaultResponseEncoding:NSUTF8StringEncoding];
     NSLog(@"request :%@",request);
     

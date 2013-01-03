@@ -10,7 +10,7 @@
 #import "SVSegmentedControl.h"
 #import "ChooseAirPortViewController.h"
 #import "AppConfigure.h"
-
+#import "AirPortData.h"
 @class LookFlightConditionCell;
 
 @interface SearchFlightConditionController : UIViewController<SVSegmentedControlDelegate,ChooseAirPortViewControllerDelegate,UITableViewDataSource,UITableViewDelegate>{
@@ -30,6 +30,9 @@
     
     NSMutableString * type;    //提醒类型
     NSMutableString * resultString; //查询结果
+    
+    AirPortData * myAirPortData;
+    
 }
 
 
@@ -50,6 +53,9 @@
 
 @property (retain, nonatomic) IBOutlet UIView *selectedByAirPort;
 - (IBAction)selectedInquireType:(UISegmentedControl *)sender;
+
+
+- (IBAction)chooseDateBtnClick:(id)sender;
 
 - (IBAction)searchFligth:(id)sender;
 
