@@ -133,7 +133,24 @@
         CCLog(@"********************返程机票信息***************************");
         
         
-        
+        CCLog(@"aircraftType = %@",bookingReturnFlightVo.aircraftType);
+        CCLog(@"airlineCompanyCode =%@",bookingReturnFlightVo.airlineCompanyCode);
+        CCLog(@"arrivalAirportCode = %@",bookingReturnFlightVo.arrivalAirportCode);
+        CCLog(@"arrivalDateStr = %@",bookingReturnFlightVo.arrivalDateStr);
+        CCLog(@"arrivalTerminal = %@",bookingReturnFlightVo.arrivalTerminal);
+        CCLog(@"arrivalTimeStr =%@",bookingReturnFlightVo.arrivalTimeStr);
+        CCLog(@"cabinCode =%@",bookingReturnFlightVo.cabinCode);
+        CCLog(@"departureAirportCode =%@",bookingReturnFlightVo.departureAirportCode);
+        CCLog(@"departureDateStr = %@",bookingReturnFlightVo.departureDateStr);
+        CCLog(@"departureTerminal =%@",bookingReturnFlightVo.departureTerminal);
+        CCLog(@"departureTimeStr =%@",bookingReturnFlightVo.departureTimeStr);
+        CCLog(@"flightNo = %@",bookingReturnFlightVo.flightNo);
+        CCLog(@"flightType = %@",bookingReturnFlightVo.flightType);
+        CCLog(@"orderType = %@",bookingReturnFlightVo.orderType);
+        CCLog(@"prodType = %@",bookingReturnFlightVo.prodType);
+        CCLog(@"rmk = %@",bookingReturnFlightVo.rmk);
+        CCLog(@"ticketType = %@",bookingReturnFlightVo.ticketType);
+        CCLog(@"flightOrgin = %@",bookingReturnFlightVo.flightOrgin);
         
         
         
@@ -395,6 +412,9 @@
         
         NSString *data = [formRequst responseString];
         
+        
+       
+        
         NSString *codeRequ =[NSString stringWithFormat:@"%d",[formRequst responseStatusCode]];
         
         CCLog(@"网络返回的请求码是 %@",codeRequ);
@@ -410,6 +430,16 @@
         NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
         
         message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+        
+        
+        
+        NSString * orderId = [dic objectForKey:@"orderId"];
+        NSString * code = [dic objectForKey:@"code"];
+        NSString * memberId = [dic objectForKey:@"memberId"];
+        
+        NSArray * arr = [NSArray arrayWithObjects:orderId,code,memberId, nil];
+        
+        NSDictionary * dictionary = [NSDictionary dictionaryWithObject:arr forKey:@"dic"];
         
         NSLog(@"服务器返回的信息为：%@",message);
         
@@ -428,7 +458,7 @@
                 
                 if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     
-                    [delegate requestDidFinishedWithRightMessage:messageDic];
+                    [delegate requestDidFinishedWithRightMessage:dictionary];
                     
                 }
                 

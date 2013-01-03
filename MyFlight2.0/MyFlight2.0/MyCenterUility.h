@@ -237,10 +237,11 @@ enum  {
 
 
 
+//获取订单详情
 
+#define GetDetailOrder_URL_Index @"/web/phone/order/flight/orderFlightDetail.jsp"
 
-
-
+#define GetDetailOrder_URL GET_RIGHT_URL_WITH_Index(GetDetailOrder_URL_Index)
 
 
 #endif

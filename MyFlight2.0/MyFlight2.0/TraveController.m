@@ -160,6 +160,7 @@
 -(void)back
 {
   
+    
     blocks(_schedule_,type.text,btnTag);
     [self.navigationController popViewControllerAnimated:YES];
 }

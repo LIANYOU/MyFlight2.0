@@ -379,7 +379,6 @@
 		18D105391682B33B00F112D2 /* TravelAssistantViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1052F1682B33B00F112D2 /* TravelAssistantViewController.xib */; };
 		18D1053B1682B33B00F112D2 /* TravelPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D105331682B33B00F112D2 /* TravelPhoneViewController.m */; };
 		18D1053C1682B33B00F112D2 /* TravelPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */; };
-		18D1053D1682B33B00F112D2 /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D105351682B33B00F112D2 /* TravePhoneCell.xib */; };
 		18D10548168334FC00F112D2 /* ico_def_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D10546168334FC00F112D2 /* ico_def_.png */; };
 		18D10549168334FC00F112D2 /* icon_choice_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D10547168334FC00F112D2 /* icon_choice_.png */; };
 		18D1970E16816C6C00FEE73A /* icon_checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970316816C6C00FEE73A /* icon_checkin.png */; };
@@ -397,7 +396,6 @@
 		18D197991682C92400FEE73A /* FlightCompanyDistrubuteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D197971682C92100FEE73A /* FlightCompanyDistrubuteController.m */; };
 		18D1979A1682C92400FEE73A /* FlightCompanyDistrubuteController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D197981682C92200FEE73A /* FlightCompanyDistrubuteController.xib */; };
 		18D1979E1682D05B00FEE73A /* TravelTrafficViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1979C1682D05900FEE73A /* TravelTrafficViewController.m */; };
-
 		18D19A0A168FDFCC004861C3 /* AirportMainScreenSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D19A09168FDFCC004861C3 /* AirportMainScreenSearchView.m */; };
 		18D19A15168FEC05004861C3 /* btn_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D19A0D168FEC05004861C3 /* btn_search.png */; };
 		18D19A16168FEC05004861C3 /* Drop_down_long.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D19A0E168FEC05004861C3 /* Drop_down_long.png */; };
@@ -407,19 +405,37 @@
 		18D19A1A168FEC05004861C3 /* icon_Refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D19A12168FEC05004861C3 /* icon_Refresh.png */; };
 		18D19A1B168FEC05004861C3 /* icon_return_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D19A13168FEC05004861C3 /* icon_return_white.png */; };
 		18D19A1C168FEC05004861C3 /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = 18D19A14168FEC05004861C3 /* Thumbs.db */; };
-
 		18D41A0C169136BB0014B371 /* UIImage+scaleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */; };
 		18D70A9F16941B0700B11636 /* ChooseDiscountCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70A9D16941B0700B11636 /* ChooseDiscountCouponController.m */; };
 		18D70AA016941B0700B11636 /* ChooseDiscountCouponController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70A9E16941B0700B11636 /* ChooseDiscountCouponController.xib */; };
 		18D70AA316941C6D00B11636 /* discountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70AA216941C6D00B11636 /* discountCell.m */; };
 		18D70AA516941C8000B11636 /* discountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70AA416941C8000B11636 /* discountCell.xib */; };
-
+		18D70AB316946DB100B11636 /* DetailsOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70AB116946DB100B11636 /* DetailsOrderViewController.m */; };
+		18D70AB416946DB100B11636 /* DetailsOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70AB216946DB100B11636 /* DetailsOrderViewController.xib */; };
+		18D70ABC1694789200B11636 /* PassengerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70ABB1694789100B11636 /* PassengerCell.m */; };
+		18D70ABE169478A200B11636 /* PassengerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70ABD169478A100B11636 /* PassengerCell.xib */; };
+		18D70AC116947BC500B11636 /* JourneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70AC016947BC500B11636 /* JourneyCell.m */; };
+		18D70AC316947BD500B11636 /* JourneyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70AC216947BD400B11636 /* JourneyCell.xib */; };
+		18D70AC616947D4E00B11636 /* LinkmanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70AC516947D4D00B11636 /* LinkmanCell.m */; };
+		18D70AC816947D5F00B11636 /* LinkmanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70AC716947D5F00B11636 /* LinkmanCell.xib */; };
+		18D70ACB169482E000B11636 /* FlightConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70ACA169482DE00B11636 /* FlightConditionCell.m */; };
+		18D70ACD169482F900B11636 /* FlightConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70ACC169482F800B11636 /* FlightConditionCell.xib */; };
 		18D88B5E167AC3F4003EA0C5 /* AirPortCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */; };
 		18DB9B40168AB73C00CE975F /* GetAttentionFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB9B3F168AB73C00CE975F /* GetAttentionFlight.m */; };
 		18DB9B45168ADBFA00CE975F /* LookFlightConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB9B44168ADBFA00CE975F /* LookFlightConditionCell.m */; };
 		18DB9B47168ADC0C00CE975F /* LookFlightConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DB9B46168ADC0C00CE975F /* LookFlightConditionCell.xib */; };
 		18DD1D391675BF7A006B59AB /* TransitionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D381675BF7A006B59AB /* TransitionString.m */; };
 		18DD1D3C1675D01E006B59AB /* SearchFlightData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D3B1675D01D006B59AB /* SearchFlightData.m */; };
+		18DDB3A016951998004CEC75 /* OrderDetaile.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB39F16951998004CEC75 /* OrderDetaile.m */; };
+		18DDB3A916952262004CEC75 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3A716952261004CEC75 /* PayViewController.m */; };
+		18DDB3AA16952262004CEC75 /* PayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DDB3A816952261004CEC75 /* PayViewController.xib */; };
+		18DDB3AE169526B2004CEC75 /* OrderReturnInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3AD169526B2004CEC75 /* OrderReturnInfo.m */; };
+		18DDB3B516955A41004CEC75 /* FlightConditionWj.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3B416955A41004CEC75 /* FlightConditionWj.m */; };
+		18DDB3B816955D2B004CEC75 /* Passenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3B716955D2A004CEC75 /* Passenger.m */; };
+		18DDB3BB16955EE6004CEC75 /* PostInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3BA16955EE6004CEC75 /* PostInfo.m */; };
+		18DDB3BE16955F83004CEC75 /* LinkPersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3BD16955F83004CEC75 /* LinkPersonInfo.m */; };
+		18DDB3C116956244004CEC75 /* InFlightConditionWJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3C016956243004CEC75 /* InFlightConditionWJ.m */; };
+		18DDB3C416956965004CEC75 /* OrderBasicInfoWJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3C316956964004CEC75 /* OrderBasicInfoWJ.m */; };
 		18DF892F16881F8B00D2DDAE /* OneWayCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF892D16881F8B00D2DDAE /* OneWayCheckViewController.m */; };
 		18DF893016881F8B00D2DDAE /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF892E16881F8B00D2DDAE /* OneWayCheckViewController.xib */; };
 		18DF893416881FAD00D2DDAE /* HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF893216881FAD00D2DDAE /* HistoryCell.m */; };
@@ -1128,7 +1144,6 @@
 		18D105321682B33B00F112D2 /* TravelPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelPhoneViewController.h; sourceTree = "<group>"; };
 		18D105331682B33B00F112D2 /* TravelPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelPhoneViewController.m; sourceTree = "<group>"; };
 		18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelPhoneViewController.xib; sourceTree = "<group>"; };
-		18D105351682B33B00F112D2 /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
 		18D10546168334FC00F112D2 /* ico_def_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_def_.png; sourceTree = "<group>"; };
 		18D10547168334FC00F112D2 /* icon_choice_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_choice_.png; sourceTree = "<group>"; };
 		18D1970316816C6C00FEE73A /* icon_checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checkin.png; sourceTree = "<group>"; };
@@ -1148,7 +1163,6 @@
 		18D197981682C92200FEE73A /* FlightCompanyDistrubuteController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightCompanyDistrubuteController.xib; sourceTree = "<group>"; };
 		18D1979B1682D05700FEE73A /* TravelTrafficViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelTrafficViewController.h; sourceTree = "<group>"; };
 		18D1979C1682D05900FEE73A /* TravelTrafficViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelTrafficViewController.m; sourceTree = "<group>"; };
-
 		18D19A08168FDFCC004861C3 /* AirportMainScreenSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirportMainScreenSearchView.h; sourceTree = "<group>"; };
 		18D19A09168FDFCC004861C3 /* AirportMainScreenSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirportMainScreenSearchView.m; sourceTree = "<group>"; };
 		18D19A0D168FEC05004861C3 /* btn_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_search.png; sourceTree = "<group>"; };
@@ -1159,7 +1173,6 @@
 		18D19A12168FEC05004861C3 /* icon_Refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Refresh.png; sourceTree = "<group>"; };
 		18D19A13168FEC05004861C3 /* icon_return_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_return_white.png; sourceTree = "<group>"; };
 		18D19A14168FEC05004861C3 /* Thumbs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thumbs.db; sourceTree = "<group>"; };
-
 		18D41A09169136850014B371 /* UIImage_scaleImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImage_scaleImage.h; sourceTree = "<group>"; };
 		18D41A0A169136BB0014B371 /* UIImage+scaleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+scaleImage.h"; sourceTree = "<group>"; };
 		18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+scaleImage.m"; sourceTree = "<group>"; };
@@ -1169,7 +1182,21 @@
 		18D70AA116941C6D00B11636 /* discountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = discountCell.h; sourceTree = "<group>"; };
 		18D70AA216941C6D00B11636 /* discountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = discountCell.m; sourceTree = "<group>"; };
 		18D70AA416941C8000B11636 /* discountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = discountCell.xib; sourceTree = "<group>"; };
-
+		18D70AB016946DB100B11636 /* DetailsOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsOrderViewController.h; sourceTree = "<group>"; };
+		18D70AB116946DB100B11636 /* DetailsOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsOrderViewController.m; sourceTree = "<group>"; };
+		18D70AB216946DB100B11636 /* DetailsOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsOrderViewController.xib; sourceTree = "<group>"; };
+		18D70ABA1694789100B11636 /* PassengerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassengerCell.h; sourceTree = "<group>"; };
+		18D70ABB1694789100B11636 /* PassengerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassengerCell.m; sourceTree = "<group>"; };
+		18D70ABD169478A100B11636 /* PassengerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassengerCell.xib; sourceTree = "<group>"; };
+		18D70ABF16947BC400B11636 /* JourneyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JourneyCell.h; sourceTree = "<group>"; };
+		18D70AC016947BC500B11636 /* JourneyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JourneyCell.m; sourceTree = "<group>"; };
+		18D70AC216947BD400B11636 /* JourneyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JourneyCell.xib; sourceTree = "<group>"; };
+		18D70AC416947D4C00B11636 /* LinkmanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkmanCell.h; sourceTree = "<group>"; };
+		18D70AC516947D4D00B11636 /* LinkmanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkmanCell.m; sourceTree = "<group>"; };
+		18D70AC716947D5F00B11636 /* LinkmanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkmanCell.xib; sourceTree = "<group>"; };
+		18D70AC9169482DD00B11636 /* FlightConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightConditionCell.h; sourceTree = "<group>"; };
+		18D70ACA169482DE00B11636 /* FlightConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightConditionCell.m; sourceTree = "<group>"; };
+		18D70ACC169482F800B11636 /* FlightConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightConditionCell.xib; sourceTree = "<group>"; };
 		18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirPortCode.plist; sourceTree = "<group>"; };
 		18DB9B3E168AB73C00CE975F /* GetAttentionFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAttentionFlight.h; sourceTree = "<group>"; };
 		18DB9B3F168AB73C00CE975F /* GetAttentionFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAttentionFlight.m; sourceTree = "<group>"; };
@@ -1181,6 +1208,25 @@
 		18DD1D381675BF7A006B59AB /* TransitionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionString.m; sourceTree = "<group>"; };
 		18DD1D3A1675D01D006B59AB /* SearchFlightData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightData.h; sourceTree = "<group>"; };
 		18DD1D3B1675D01D006B59AB /* SearchFlightData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightData.m; sourceTree = "<group>"; };
+		18DDB39E16951998004CEC75 /* OrderDetaile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetaile.h; sourceTree = "<group>"; };
+		18DDB39F16951998004CEC75 /* OrderDetaile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetaile.m; sourceTree = "<group>"; };
+		18DDB3A616952261004CEC75 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
+		18DDB3A716952261004CEC75 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
+		18DDB3A816952261004CEC75 /* PayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayViewController.xib; sourceTree = "<group>"; };
+		18DDB3AC169526B2004CEC75 /* OrderReturnInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderReturnInfo.h; sourceTree = "<group>"; };
+		18DDB3AD169526B2004CEC75 /* OrderReturnInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderReturnInfo.m; sourceTree = "<group>"; };
+		18DDB3B316955A41004CEC75 /* FlightConditionWj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightConditionWj.h; sourceTree = "<group>"; };
+		18DDB3B416955A41004CEC75 /* FlightConditionWj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightConditionWj.m; sourceTree = "<group>"; };
+		18DDB3B616955D2A004CEC75 /* Passenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Passenger.h; sourceTree = "<group>"; };
+		18DDB3B716955D2A004CEC75 /* Passenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Passenger.m; sourceTree = "<group>"; };
+		18DDB3B916955EE6004CEC75 /* PostInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostInfo.h; sourceTree = "<group>"; };
+		18DDB3BA16955EE6004CEC75 /* PostInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostInfo.m; sourceTree = "<group>"; };
+		18DDB3BC16955F82004CEC75 /* LinkPersonInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkPersonInfo.h; sourceTree = "<group>"; };
+		18DDB3BD16955F83004CEC75 /* LinkPersonInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkPersonInfo.m; sourceTree = "<group>"; };
+		18DDB3BF16956243004CEC75 /* InFlightConditionWJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InFlightConditionWJ.h; sourceTree = "<group>"; };
+		18DDB3C016956243004CEC75 /* InFlightConditionWJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InFlightConditionWJ.m; sourceTree = "<group>"; };
+		18DDB3C216956964004CEC75 /* OrderBasicInfoWJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderBasicInfoWJ.h; sourceTree = "<group>"; };
+		18DDB3C316956964004CEC75 /* OrderBasicInfoWJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderBasicInfoWJ.m; sourceTree = "<group>"; };
 		18DF892C16881F8B00D2DDAE /* OneWayCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWayCheckViewController.h; sourceTree = "<group>"; };
 		18DF892D16881F8B00D2DDAE /* OneWayCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneWayCheckViewController.m; sourceTree = "<group>"; };
 		18DF892E16881F8B00D2DDAE /* OneWayCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneWayCheckViewController.xib; sourceTree = "<group>"; };
@@ -1485,6 +1531,7 @@
 		141523821682C06800E2FF0E /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				18DDB39C1695196A004CEC75 /* OrderDetaile */,
 				149B77F4168D4689006281A3 /* flightbookBusiness */,
 				141523841682C09F00E2FF0E /* userBusiness */,
 			);
@@ -1607,12 +1654,9 @@
 		1427937F167078DA00E2E1E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
-
 				18D19A0C168FEC04004861C3 /* 机场大屏 */,
-
 				18CB487A16918A6B00780BB7 /* 我的订单 */,
 				18CB47CD16914CE100780BB7 /* 机票预订 */,
-
 				1827BE361683541D00349FE1 /* 航空公司图标 */,
 				18D1970216816C6C00FEE73A /* 出行小秘书 */,
 				146986B0167DCB5700E9B30D /* 登录 */,
@@ -1746,6 +1790,7 @@
 		14539523166F2C6800417F61 /* TicketCheck */ = {
 			isa = PBXGroup;
 			children = (
+				18D70AAE16946D5000B11636 /* detailsOrder */,
 				18C48A13168D7B2C00A981A4 /* discountCoupon */,
 				18080174167DB95400CD5F9A /* TravelItinerary */,
 				1807541A167C26B6007B42A4 /* lowOrder */,
@@ -1768,6 +1813,9 @@
 				18DF893B1688202400D2DDAE /* ShowSelectedResultViewController.h */,
 				18DF893C1688202400D2DDAE /* ShowSelectedResultViewController.m */,
 				18DF893D1688202400D2DDAE /* ShowSelectedResultViewController.xib */,
+				18DDB3A616952261004CEC75 /* PayViewController.h */,
+				18DDB3A716952261004CEC75 /* PayViewController.m */,
+				18DDB3A816952261004CEC75 /* PayViewController.xib */,
 			);
 			name = TicketCheck;
 			sourceTree = "<group>";
@@ -2004,6 +2052,7 @@
 		149B77F2168D42FE006281A3 /* flightBooking */ = {
 			isa = PBXGroup;
 			children = (
+				18DDB3AB16952688004CEC75 /* OrderReturnInfo */,
 				149B7808168D810F006281A3 /* bookingFlightVo */,
 				149B7804168D6AB3006281A3 /* payVo */,
 				149B7800168D559C006281A3 /* flightPassengerVo */,
@@ -2203,6 +2252,7 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18DDB3AF16955876004CEC75 /* orderReturn */,
 				188B728816915C30004F09B8 /* Map */,
 				18C48A23168D8AEE00A981A4 /* useDiscount */,
 				18E8B671168C9A58009EC8C5 /* scheduleFlight */,
@@ -2620,6 +2670,29 @@
 			path = "机场大屏";
 			sourceTree = "<group>";
 		};
+		18D70AAE16946D5000B11636 /* detailsOrder */ = {
+			isa = PBXGroup;
+			children = (
+				18DDB3CF16956FBD004CEC75 /* thisCell */,
+				18D70AB016946DB100B11636 /* DetailsOrderViewController.h */,
+				18D70AB116946DB100B11636 /* DetailsOrderViewController.m */,
+				18D70AB216946DB100B11636 /* DetailsOrderViewController.xib */,
+				18D70ABA1694789100B11636 /* PassengerCell.h */,
+				18D70ABB1694789100B11636 /* PassengerCell.m */,
+				18D70ABD169478A100B11636 /* PassengerCell.xib */,
+				18D70ABF16947BC400B11636 /* JourneyCell.h */,
+				18D70AC016947BC500B11636 /* JourneyCell.m */,
+				18D70AC216947BD400B11636 /* JourneyCell.xib */,
+				18D70AC416947D4C00B11636 /* LinkmanCell.h */,
+				18D70AC516947D4D00B11636 /* LinkmanCell.m */,
+				18D70AC716947D5F00B11636 /* LinkmanCell.xib */,
+				18D70AC9169482DD00B11636 /* FlightConditionCell.h */,
+				18D70ACA169482DE00B11636 /* FlightConditionCell.m */,
+				18D70ACC169482F800B11636 /* FlightConditionCell.xib */,
+			);
+			name = detailsOrder;
+			sourceTree = "<group>";
+		};
 		18DB9B42168ADB0F00CE975F /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2631,6 +2704,50 @@
 				18DB9B46168ADC0C00CE975F /* LookFlightConditionCell.xib */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		18DDB39C1695196A004CEC75 /* OrderDetaile */ = {
+			isa = PBXGroup;
+			children = (
+				18DDB39E16951998004CEC75 /* OrderDetaile.h */,
+				18DDB39F16951998004CEC75 /* OrderDetaile.m */,
+			);
+			name = OrderDetaile;
+			sourceTree = "<group>";
+		};
+		18DDB3AB16952688004CEC75 /* OrderReturnInfo */ = {
+			isa = PBXGroup;
+			children = (
+				18DDB3AC169526B2004CEC75 /* OrderReturnInfo.h */,
+				18DDB3AD169526B2004CEC75 /* OrderReturnInfo.m */,
+			);
+			name = OrderReturnInfo;
+			sourceTree = "<group>";
+		};
+		18DDB3AF16955876004CEC75 /* orderReturn */ = {
+			isa = PBXGroup;
+			children = (
+				18DDB3B316955A41004CEC75 /* FlightConditionWj.h */,
+				18DDB3B416955A41004CEC75 /* FlightConditionWj.m */,
+				18DDB3C216956964004CEC75 /* OrderBasicInfoWJ.h */,
+				18DDB3C316956964004CEC75 /* OrderBasicInfoWJ.m */,
+				18DDB3B616955D2A004CEC75 /* Passenger.h */,
+				18DDB3B716955D2A004CEC75 /* Passenger.m */,
+				18DDB3B916955EE6004CEC75 /* PostInfo.h */,
+				18DDB3BA16955EE6004CEC75 /* PostInfo.m */,
+				18DDB3BC16955F82004CEC75 /* LinkPersonInfo.h */,
+				18DDB3BD16955F83004CEC75 /* LinkPersonInfo.m */,
+				18DDB3BF16956243004CEC75 /* InFlightConditionWJ.h */,
+				18DDB3C016956243004CEC75 /* InFlightConditionWJ.m */,
+			);
+			name = orderReturn;
+			sourceTree = "<group>";
+		};
+		18DDB3CF16956FBD004CEC75 /* thisCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = thisCell;
 			sourceTree = "<group>";
 		};
 		18E0B6CD167183D300968F01 /* choosePerson */ = {
@@ -3325,7 +3442,6 @@
 				1827BE7E1683541E00349FE1 /* l_ZH.png in Resources */,
 				1827BE841683582000349FE1 /* ChackInNavgationViewController.xib in Resources */,
 				1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */,
-				18D1053D1682B33B00F112D2 /* TravePhoneCell.xib in Resources */,
 				141523A116834BBF00E2FF0E /* MyNewCenterViewController.xib in Resources */,
 				141523A816835D7300E2FF0E /* PersonalInfoViewController.xib in Resources */,
 				141523AD1683683300E2FF0E /* PersonInfotoShowViewController.xib in Resources */,
@@ -3446,7 +3562,6 @@
 				A8A0AA15168ED20500FCBD23 /* test@2x.png in Resources */,
 				18630445168EAA1D0022CB2F /* WriteOrderViewController.xib in Resources */,
 				14D18030168FF4860084CB48 /* AirPortDataBase.sqlite in Resources */,
-
 				18953998168EFA20008901F5 /* AirportMainScreenViewController.xib in Resources */,
 				18D19A15168FEC05004861C3 /* btn_search.png in Resources */,
 				18D19A16168FEC05004861C3 /* Drop_down_long.png in Resources */,
@@ -3456,7 +3571,6 @@
 				18D19A1A168FEC05004861C3 /* icon_Refresh.png in Resources */,
 				18D19A1B168FEC05004861C3 /* icon_return_white.png in Resources */,
 				18D19A1C168FEC05004861C3 /* Thumbs.db in Resources */,
-
 				18CB482116914CE200780BB7 /* add_attention.png in Resources */,
 				18CB482216914CE200780BB7 /* Arrow_white.png in Resources */,
 				18CB482316914CE200780BB7 /* arrowhead.png in Resources */,
@@ -3551,7 +3665,12 @@
 				18CB488C16918A6C00780BB7 /* triangle_icon_up.png in Resources */,
 				18D70AA016941B0700B11636 /* ChooseDiscountCouponController.xib in Resources */,
 				18D70AA516941C8000B11636 /* discountCell.xib in Resources */,
-
+				18D70AB416946DB100B11636 /* DetailsOrderViewController.xib in Resources */,
+				18D70ABE169478A200B11636 /* PassengerCell.xib in Resources */,
+				18D70AC316947BD500B11636 /* JourneyCell.xib in Resources */,
+				18D70AC816947D5F00B11636 /* LinkmanCell.xib in Resources */,
+				18D70ACD169482F900B11636 /* FlightConditionCell.xib in Resources */,
+				18DDB3AA16952262004CEC75 /* PayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3747,19 +3866,30 @@
 				A8A0AA45168ED43500FCBD23 /* SBJsonParser.m in Sources */,
 				A8A0AA46168ED43500FCBD23 /* SBJsonWriter.m in Sources */,
 				18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */,
-
 				18953997168EFA20008901F5 /* AirportMainScreenViewController.m in Sources */,
 				18D19A0A168FDFCC004861C3 /* AirportMainScreenSearchView.m in Sources */,
 				14ECFEC91691462100A99E6B /* AirportMainScreenTitleView.m in Sources */,
 				188B728C16915C69004F09B8 /* MapManager.m in Sources */,
 				188B728F16916C7A004F09B8 /* Ann.m in Sources */,
 				14A90B811693E67C002B862C /* TextInputHelperViewController.m in Sources */,
-
 				18D41A0C169136BB0014B371 /* UIImage+scaleImage.m in Sources */,
 				18CB4879169155D400780BB7 /* UIButton+BackButton.m in Sources */,
 				18D70A9F16941B0700B11636 /* ChooseDiscountCouponController.m in Sources */,
 				18D70AA316941C6D00B11636 /* discountCell.m in Sources */,
-
+				18D70AB316946DB100B11636 /* DetailsOrderViewController.m in Sources */,
+				18D70ABC1694789200B11636 /* PassengerCell.m in Sources */,
+				18D70AC116947BC500B11636 /* JourneyCell.m in Sources */,
+				18D70AC616947D4E00B11636 /* LinkmanCell.m in Sources */,
+				18D70ACB169482E000B11636 /* FlightConditionCell.m in Sources */,
+				18DDB3A016951998004CEC75 /* OrderDetaile.m in Sources */,
+				18DDB3A916952262004CEC75 /* PayViewController.m in Sources */,
+				18DDB3AE169526B2004CEC75 /* OrderReturnInfo.m in Sources */,
+				18DDB3B516955A41004CEC75 /* FlightConditionWj.m in Sources */,
+				18DDB3B816955D2B004CEC75 /* Passenger.m in Sources */,
+				18DDB3BB16955EE6004CEC75 /* PostInfo.m in Sources */,
+				18DDB3BE16955F83004CEC75 /* LinkPersonInfo.m in Sources */,
+				18DDB3C116956244004CEC75 /* InFlightConditionWJ.m in Sources */,
+				18DDB3C416956965004CEC75 /* OrderBasicInfoWJ.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

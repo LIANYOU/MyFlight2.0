@@ -22,7 +22,7 @@
 #import "ChooseSeatOnlineViewController.h"
 #import "AirportMainScreenViewController.h"
 
-
+#import "DetailsOrderViewController.h"
 @interface ViewController ()
 
 @end
@@ -112,7 +112,7 @@
 }
 
 - (IBAction)showRegularPassengerController:(id)sender {
-    ChooseSpaceViewController * log = [[ChooseSpaceViewController alloc] init];
+    DetailsOrderViewController * log = [[DetailsOrderViewController alloc] init];
     [self.navigationController pushViewController:log animated:YES];
     [log release];
 

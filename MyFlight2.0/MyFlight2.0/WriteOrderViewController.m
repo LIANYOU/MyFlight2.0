@@ -25,6 +25,8 @@
 #import "bookingReturnFlightVo.h"
 #import "UIQuickHelp.h"
 
+#import "PayViewController.h"
+#import "OrderDetaile.h"
 #import "UIButton+BackButton.h"
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -42,6 +44,8 @@
     int personNumber; // 成人个数
   
     int finalPay;  // 最终支付的价格
+    
+    int insuranceFlag;  // 判断有没有购买保险
     
     NSMutableArray * addPersonArr;
 }
@@ -396,8 +400,7 @@
                 
                 cell.backView.frame = CGRectMake(50, 0, 325, 80);
                 cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
-              //  cell.userInteractionEnabled = NO;
-                
+                [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:0];
                 cell.HUButton.text = self.searchDate.temporaryLabel;
                 cell.airPortName.text = self.searchDate.airPort;
                 cell.startTime.text = self.searchDate.beginTime;
@@ -424,7 +427,7 @@
                     cell = self.writeOrderCell;
                 }
                 cell.imageView.image = [UIImage imageNamed:@"bg_green__.png"];
-             //   cell.userInteractionEnabled = NO;
+                [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_green_rule.png"] forState:0];
                 
                 cell.HUButton.text = self.searchBackDate.temporaryLabel;
                 cell.airPortName.text = self.searchBackDate.airPort;
@@ -566,6 +569,7 @@
                 }
                 
                 cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
+                [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:0];
               //  cell.userInteractionEnabled = NO;
                 
                 cell.HUButton.text = self.searchDate.temporaryLabel;
@@ -784,6 +788,9 @@
                      passenger.flightPassengerId = str4;
                      passenger.certType = str5;
                      
+                     passenger.goInsuranceNum = @"0";
+                     passenger.returnInsuranceNum = @"0";
+                     
                      [self.personArray addObject:passenger];
                      [passenger release];
                      // **** 
@@ -842,6 +849,10 @@
                          
             if (idntity != nil) {
                 
+                for (flightPassengerVo * passenger in self.personArray) {
+                    passenger.goInsuranceNum = @"1";
+                }
+                insuranceFlag = 1;
                 cell.secondLable.text = [NSString stringWithFormat:@"20元/份*%d人",personNumber+childNumber];
                 self.Personinsure.text = @"20";
                 self.childInsure.text = @"20";
@@ -854,6 +865,11 @@
                 cell.secondLable.text = @"";
                 self.Personinsure.text = @"0";
                 self.childInsure.text = @"0";
+                insuranceFlag = 0;
+                for (flightPassengerVo * passenger in self.personArray) {
+                    passenger.goInsuranceNum = @"0";
+                }
+
                 
                 self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
                 self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
@@ -887,7 +903,7 @@
             flightItinerary.catchUser = nil;
             flightItinerary.isPromptMailCost = @"0";
             
-            NSLog(@"--------------------------------------------------- %@",flightItinerary.deliveryType);
+       
             
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             
@@ -897,18 +913,18 @@
             
             if ([postPay isEqualToString:@"快递"]) {
                 
-                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
-                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
-                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) +20];
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
+                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
+                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +insuranceFlag*20*(personNumber+childNumber)+20];
             }
             
             else{
-                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) ];
-                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
-                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +insuranceFlag*20*(personNumber+childNumber)];
+                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber+insuranceFlag*20*(personNumber+childNumber)];
+                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +insuranceFlag*20*(personNumber+childNumber)];
             }
             
-            NSLog(@"%@,%@",schedule,postPay);
+       
             
             
             
@@ -967,50 +983,50 @@
     bookingGoFlightVo * go = [[bookingGoFlightVo alloc] init];
     
     go.aircraftType = self.searchDate.palntType;
-    
     go.airlineCompanyCode = self.searchDate.airPort;
-    
     go.arrivalAirportCode = self.searchDate.endPortThreeCode;
-    
     go.arrivalDateStr = self.searchDate.beginDate;
-    
     go.arrivalTerminal = nil;
-    
     go.arrivalTimeStr = self.searchDate.endTime;
-    
     go.cabinCode = self.searchDate.cabinCode;
-    
     go.departureAirportCode = self.searchDate.startPortThreeCode;
-    
     go.departureDateStr = self.searchDate.beginDate;
-    
     go.departureTerminal = nil;
-    
     int lenght = [self.searchDate.temporaryLabel length];
-
-    NSString * flightNo = [self.searchDate.temporaryLabel substringWithRange:NSMakeRange(2, lenght-2)];
-    
-    go.departureTimeStr = self.searchDate.beginTime;
-    
-    go.flightNo = flightNo;
-    
-    go.flightType = @"1";
-    
+    NSString * flightNo = [self.searchDate.temporaryLabel substringWithRange:NSMakeRange(2, lenght-2)];    
+    go.departureTimeStr = self.searchDate.beginTime;    
+    go.flightNo = flightNo;    
+    go.flightType = @"2";
     go.orderType = @"0";
-    
     go.prodType = @"0";
-    
     go.rmk = nil;
-    
     go.ticketType = @"0";
-    
-    go.flightOrgin = @"B2B";
-    
+    go.flightOrgin = @"B2B";    
     
     bookingReturnFlightVo * bookReturn = [[bookingReturnFlightVo alloc] init];
     
+    bookReturn.aircraftType = self.searchBackDate.palntType;
+    bookReturn.airlineCompanyCode = self.searchBackDate.airPort;
+    bookReturn.arrivalAirportCode = self.searchBackDate.endPortThreeCode;
+    bookReturn.arrivalDateStr = self.searchBackDate.beginDate;
+    bookReturn.arrivalTerminal = nil;
+    bookReturn.arrivalTimeStr = self.searchBackDate.endTime;
+    bookReturn.cabinCode = self.searchBackDate.cabinCode;
+    bookReturn.departureAirportCode = self.searchBackDate.startPortThreeCode;
+    bookReturn.departureDateStr = self.searchBackDate.beginDate;
+    bookReturn.departureTerminal = nil;
+    int lenght1 = [self.searchBackDate.temporaryLabel length];
+    NSString * flightNo1 = [self.searchBackDate.temporaryLabel substringWithRange:NSMakeRange(2, lenght1-2)];
+    bookReturn.departureTimeStr = self.searchBackDate.beginTime;
+    bookReturn.flightNo = flightNo1;
+    bookReturn.flightType = @"2";
+    bookReturn.orderType = @"0";
+    bookReturn.prodType = @"0";
+    bookReturn.rmk = nil;
+    bookReturn.ticketType = @"0";
+    bookReturn.flightOrgin = @"B2B";
     
-    
+
     payVo * pay  = [[payVo alloc] init];
     pay.isNeedPayPwd = @"no";
     pay.isNeedAccount = @"no";
@@ -1018,7 +1034,16 @@
     pay.payPassword = nil;
     pay.captcha = nil;
     
-    NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:@"0",KEY_FlightBook_prodType,@"hello",KEY_FlightBook_rmk, nil];
+    
+    NSString * type = nil;
+    if (self.flag == 1) {
+        type = @"0";
+    }
+    else{
+        type = @"1";
+    }
+    
+    NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:type,KEY_FlightBook_prodType,@"hello",KEY_FlightBook_rmk, nil];
     
     
     flightContactVo * contactVo = [[flightContactVo alloc] init];
@@ -1034,6 +1059,7 @@
                                                      payVo:pay
                                                   delegate:self];
     
+    
 }
 
 
@@ -1043,10 +1069,6 @@
     picker.peoplePickerDelegate = self;
     [self presentModalViewController:picker animated:YES];
     [picker release];
-    
-//    ABAddressBookRef addressBook = ABAddressBookCreate();
-//    CFArrayRef results = ABAddressBookCopyArrayOfAllPeople(addressBook);
-    
 }
 
 -(void)back
@@ -1198,8 +1220,21 @@
 
     NSString * meg =@"预定成功";
     
-     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+
     
+    NSArray * arr = [info objectForKey:@"dic"];
+  
+    NSString * sign = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
+    
+    OrderDetaile * order = [[OrderDetaile alloc] initWithOrderId:[arr objectAtIndex:0] andMemberId:[arr objectAtIndex:2] andCheckCode:[arr objectAtIndex:1] sndSign:GET_SIGN(sign) sndSource:SOURCE_VALUE andHwId:HWID_VALUE andEdition:EDITION_VALUE andDelegate:self];
+    
+    
+    PayViewController * pay = [[PayViewController alloc] init];
+    pay.orderDetaile = order;
+    [self.navigationController pushViewController:pay animated:YES];
+    [pay release];
+
 }
 
 
