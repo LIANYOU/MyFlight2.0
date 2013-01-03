@@ -92,6 +92,10 @@
         
        
         [self.remembePasswordBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];
+        
+        logPassword.text = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_Default_Password];
+        
+        
     } else{
         
         [self.remembePasswordBn setBackgroundImage:[UIImage imageNamed:@"ico_def.png"] forState:UIControlStateNormal];
@@ -102,7 +106,7 @@
     
     logNumber.text = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_Default_AccountName];
     
-    logPassword.text = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_Default_Password];
+    
     
     ScrollerView.contentSize = CGSizeMake(320, 600);
     self.title = @"账户登录";
@@ -191,7 +195,7 @@
     }
     
     
-    [UIQuickHelp showAlertViewWithTitle:@"登陆成功" message:@"即将跳转" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [UIQuickHelp showAlertViewWithTitle:@"登录成功" message:@"即将跳转" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
     
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_Default_Token];
     NSString *memberID = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_Default_MemberId];

@@ -240,7 +240,7 @@
             
             CCLog(@"message 长度为%d",[message length]);
             
-//            CCLog(@"成功登陆后返回的数据：%@",dic);
+            //            CCLog(@"成功登陆后返回的数据：%@",dic);
             
             if ([message length]==0) {
                 
@@ -290,16 +290,16 @@
                     
                     CCLog(@"用户代理不为空");
                     [delegate requestDidFinishedWithRightMessage:messageDic];
-
+                    
                     
                     
                 }
                 
-                                
+                
             } else{
                 
                 //message 长度不为0 有错误信息
-            [messageDic setObject:message forKey:KEY_message];
+                [messageDic setObject:message forKey:KEY_message];
                 
                 
                 [delegate requestDidFinishedWithFalseMessage:messageDic];
@@ -337,7 +337,7 @@
     
     [formRequst startAsynchronous];
     
-//    [messageDic autorelease];
+    //    [messageDic autorelease];
     
     return true;
     
@@ -525,7 +525,7 @@
                 CCLog(@"xinlvGoldMoeny= %@", single.userAccount.xinlvGoldMoeny);
                 
                 
-                               
+                
                 [delegate requestDidFinishedWithRightMessage:messageDic];
                 
             } else{
@@ -582,14 +582,14 @@
 //编辑账号
 + (BOOL) editAccountInfo:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate{
     
-        
+    
     NSString *memberID = [bodyDic objectForKey:@"memberId"];
     NSString *name = [bodyDic objectForKey:@"name"];
     NSString *sex = [bodyDic objectForKey:@"sex"];
     NSString *address = [bodyDic objectForKey:@"address"];
     
     
-   
+    
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@",memberID,SOURCE_VALUE,Default_Token_Value];
     NSString *sign = GET_SIGN(urlString);
     
@@ -694,7 +694,7 @@
     [formRequst startAsynchronous];
     
     
-        
+    
     return true;
     
 }
@@ -704,7 +704,7 @@
 
 
 #pragma mark -
-#pragma mark 常用乘机人查询 现在是mock 接口
+#pragma mark 常用乘机人查询 **********************************Ok
 //常用乘机人查询
 
 +(BOOL) getCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate{
@@ -897,7 +897,7 @@
 
 
 #pragma mark -
-#pragma mark 增加常用联系人
+#pragma mark 增加常用联系人 ********************************Ok
 //增加常用联系人
 + (BOOL) addCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate{
     
@@ -1035,15 +1035,11 @@
 
 
 #pragma mark -
-#pragma mark 编辑常用联系人
+#pragma mark 编辑常用联系人 *********************ok
 
 //编辑常用联系人 新方法
 
 + (BOOL) editCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate{
-    
-    
-    
-    
     
     NSString *name = passengerData.name;
     NSString *type = passengerData.type;
@@ -1054,9 +1050,6 @@
     
     
     CCLog(@"修改常用联系人的姓名：%@ 类型：%@ 证件类型：%@ 证件号码：%@ 乘机人ID:%@",name,type,certType,certNo,ContactId);
-    
-    
-    
     NSString *memberId = Default_UserMemberId_Value;
     NSString *memberCode = Default_UserMemberCode_Value;
     CCLog(@"memberId = %@ memberCode = %@",memberId,memberCode);
@@ -1081,7 +1074,8 @@
     
     
     [formRequst setPostValue:memberId forKey:KEY_Account_MemberId];
-    [formRequst setPostValue:memberCode forKey:@"memberCode"];
+    //    [formRequst setPostValue:memberCode forKey:@"memberCode"];
+    
     [formRequst setPostValue:SOURCE_VALUE forKey:KEY_source];
     [formRequst setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
     
@@ -1093,11 +1087,11 @@
     [formRequst setPostValue:sign forKey:KEY_SIGN];
     
     [formRequst setPostValue:ContactId forKey:@"passengerId"];
-
-    [formRequst setPostValue:name forKey:@"memberPassengerVoList[0].name"];
-    [formRequst setPostValue:type forKey:@"memberPassengerVoList[0].type"];
-    [formRequst setPostValue:certType forKey:@"memberPassengerVoList[0].certType"];
-    [formRequst setPostValue:certNo forKey:@"memberPassengerVoList[0].certNo"];
+    
+    [formRequst setPostValue:name forKey:@"name"];
+    [formRequst setPostValue:type forKey:@"type"];
+    [formRequst setPostValue:certType forKey:@"certType"];
+    [formRequst setPostValue:certNo forKey:@"certNo"];
     
     
     
@@ -1196,14 +1190,14 @@
 
 
 #pragma mark -
-#pragma mark 删除常用联系人
+#pragma mark 删除常用联系人 %%%%%%%%%%%%%%%%ok
 //删除常用联系人
 
 + (BOOL) deleteCommonPassengerWithPassengerId:(NSString *) passengerId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate{
     
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     //假数据
-    NSString *thisPassageId = @"07cbc7f1efe34f098a7d6fc0731f5ca5";
+    NSString *thisPassageId = passengerId;
     
     //    真实的数据
     //    NSString *thisPassageId = passengerId;
@@ -1256,12 +1250,7 @@
     [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
     
     [formRequst setPostValue:thisPassageId forKey:@"memberPassengerVoList[0].id"];
-    
-    
-    
     [formRequst setRequestMethod:@"POST"];
-    
-    
     
     [formRequst setCompletionBlock:^{
         
@@ -1453,7 +1442,7 @@
     
     
     
-//    NSString *publicParm = PUBLIC_Parameter;
+    //    NSString *publicParm = PUBLIC_Parameter;
     NSString *mobileNumber = mobile;
     
     CCLog(@"用户请求找回密码操作 输入的手机号为：%@",mobile);
@@ -1533,8 +1522,8 @@
         
     }];
     
-      [formRequst startAsynchronous];
-     
+    [formRequst startAsynchronous];
+    
     return true;
 }
 
@@ -1733,7 +1722,7 @@
 
 
 #pragma mark -
-#pragma mark 修改密码 
+#pragma mark 修改密码  ok
 
 
 //修改密码
@@ -1746,17 +1735,12 @@
     //   NSString *publicParm = PUBLIC_Parameter;
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@",memberId,oldPasswd,newPasswd,@"51you",token];
     NSString *sign = GET_SIGN(urlString);
+    CCLog(@"密码修改界面 …………………………………………");
+    CCLog(@"原密码 ：%@",oldPasswd);
+    CCLog(@"新密码 ：%@",newPasswd);
     
     CCLog(@"memberID = %@",memberId);
     CCLog(@"sign = %@",sign);
-    
-    NSData *data =[oldPasswd dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSString *oldPwd = [data base64Encoding];
-    
-    NSData *data2= [newPasswd dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSString *newPwd = [data2 base64Encoding];
     
     
     
@@ -1768,8 +1752,8 @@
     
     
     [formRequst setPostValue:memberId forKey:KEY_Account_MemberId];
-    [formRequst setPostValue:oldPwd forKey:@"oldPassword"];
-    [formRequst setPostValue:newPwd forKey:@"newPassword"];
+    [formRequst setPostValue:oldPasswd forKey:@"oldPassword"];
+    [formRequst setPostValue:newPasswd forKey:@"newPassword"];
     [formRequst setPostValue:@"51you" forKey:KEY_source];
     [formRequst setPostValue:HWID_VALUE forKey:KEY_hwId];
     [formRequst setPostValue:sign forKey:KEY_SIGN];
@@ -1781,7 +1765,7 @@
         
         NSString *data = [formRequst responseString];
         
-             CCLog(@"网络返回的数据为：%@",data);
+        CCLog(@"网络返回的数据为：%@",data);
         
         NSError *error = nil;
         
@@ -1845,7 +1829,7 @@
         
     }];
     
-      [formRequst startAsynchronous];
+    [formRequst startAsynchronous];
     
     
     return true;
@@ -1859,7 +1843,7 @@
     
     
     
-//    NSString *memberId = Default_UserMemberId_Value;
+    //    NSString *memberId = Default_UserMemberId_Value;
     NSString *token = Default_Token_Value;
     
     //   NSString *publicParm = PUBLIC_Parameter;

@@ -8,8 +8,12 @@
 
 #import "HomeMoreController.h"
 #import "MoreCell.h"
+#import "FrequentMainViewController.h"
 @interface HomeMoreController ()
-
+{
+    NSArray *imageArray;
+    
+}
 @end
 
 @implementation HomeMoreController
@@ -28,6 +32,8 @@
     self.arr = [NSArray arrayWithObjects:@"出行小秘书",@"我订阅的低价航线",@"航空公司常旅客专区",@"设置",@"社交账户绑定",@"新功能引导",@"关于我们", nil];
     
     self.navigationItem.title = @"更多";
+    imageArray = [[NSArray alloc]initWithObjects:[UIImage imageNamed:@"icon_Assistant.png"],[UIImage imageNamed:@"icon_Assistant.png"],[UIImage imageNamed:@"icon_Flyer.png"],[UIImage imageNamed:@"icon_Setup.png"],[UIImage imageNamed:@"icon_Bind.png"],[UIImage imageNamed:@"icon_Guide.png"],[UIImage imageNamed:@"icon_aboutus.png"],nil];
+    
     
     [super viewDidLoad];
     
@@ -68,67 +74,81 @@
     }
     
     if (indexPath.section == 0) {
+        cell.imaeView.image = [imageArray objectAtIndex:indexPath.row];
         cell.firstLabel.text = [_arr objectAtIndex:indexPath.row];
     }
     else{
         cell.firstLabel.text = [_arr objectAtIndex:indexPath.row + 3];
+        cell.imaeView.image = [imageArray objectAtIndex:indexPath.row + 3];
     }
     
-
+    
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    
+    
+    NSInteger selectIndex = indexPath.row;
+    
+    id controller = nil;
+    
+    
+    if (indexPath.section==0) {
+        switch (selectIndex) {
+            case 0:
+                
+                CCLog(@"进入出行小秘书界面");
+                
+                
+                break;
+            case 1:
+                CCLog(@"进入我订阅的低价航线界面");
+                break;
+            case 2:
+                CCLog(@"进入航空公司常旅客专区界面");
+                
+                controller =[[FrequentMainViewController alloc] init];
+                
+                break;
+            default:
+                break;
+        }
+    }
+    
+    if (indexPath.section==1) {
+        
+        switch (selectIndex) {
+            case 0:
+                
+                CCLog(@"进去设置界面");
+                
+                break;
+            case 1:
+                CCLog(@"进入社交账号绑定界面");
+                
+                break;
+            case 2:
+                CCLog(@"新功能引导页");
+                break;
+            case  3:
+                CCLog(@"关于我们");
+                break;
+            default:
+                break;
+        }
+        
+    }
+    
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+    
 }
 
 - (void)dealloc {
