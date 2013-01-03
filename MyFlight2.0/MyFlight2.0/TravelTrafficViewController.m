@@ -10,6 +10,8 @@
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
+
+
 @interface TravelTrafficViewController ()
 
 @end
@@ -31,6 +33,40 @@
 {
     //tableView x=0 y=64
     [super viewDidLoad];
+    self.view.backgroundColor = BACKGROUND_COLOR;
+    //机场大巴
+    coachTableViewController = [[CoachTableViewController alloc]initWithStyle:UITableViewStylePlain];
+    coachTableViewController.subAirPortData = self.subAirPortData;
+    [coachTableViewController getData];
+    [self addChildViewController:coachTableViewController];
+    
+    //机场快线
+    subwayTableViewController = [[SubwayTableViewController alloc]initWithStyle:UITableViewStylePlain];
+    subwayTableViewController.subAirPortData = self.subAirPortData;
+    [self addChildViewController:subwayTableViewController];
+    
+    //出租车
+    taxiTableViewController = [[TaxiTableViewController alloc]initWithStyle:UITableViewStylePlain];
+    taxiTableViewController.subAirPortData = self.subAirPortData;
+    [self addChildViewController:taxiTableViewController];
+    NSLog(@"%d",[[self childViewControllers] count]);
+    
+    currViewController = coachTableViewController;
+    if (currViewController) {
+        NSLog(@"currViewController is OK");
+    }else{
+        NSLog(@"currViewController is not ok");
+    }
+    contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 30, 320, [[UIScreen mainScreen]bounds].size.height - 30 - 44 - 20)];
+    [contentView addSubview:coachTableViewController.view];
+    [self.view addSubview:contentView];
+    
+    
+    
+    
+    
+    
+    
     // Do any additional setup after loading the view from its nib.
 //    arrRect = CGRectMake(0, 64, 320, 370);
 //    fromRect = CGRectMake(0, 0, 320, 370);
@@ -110,33 +146,69 @@
     [self.view addSubview:segmented];
     
     //第一次请求
-    [self getData];
-    
-    //机场大巴
+//    [self getData];
     
     
-    //机场快线
   
-    
-    //出租车
-  
-    
 }
 
 -(void)mySegmentValueChange:(SVSegmentedControl *)sender{
     
-    
-    
-    
-    
     if (segmented.selectedIndex == 0) {
         trfficType = 0;//机场大巴
         
+        //更改nav的标题
+        if (coachTableViewController.orientationCoach == 1) {
+            navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
+        }else{
+            navLabel.text = [NSString stringWithFormat:@"%@市区-机场",self.airPortName];
+        }
+        
+        //判断是否是当前controller,不是的话就做动画切换
+        if ([currViewController isEqual:coachTableViewController]) {
+            NSLog(@"当前");
+        }else{
+            [self transitionFromViewController:currViewController toViewController:coachTableViewController duration:0.75 options:UIViewAnimationOptionTransitionCurlUp animations:nil completion:^(BOOL isFinish){
+                currViewController = coachTableViewController;
+            }];
+        }
     }else if (segmented.selectedIndex == 1){
         trfficType = 2;//机场快轨
         
+        if (subwayTableViewController.orientationSubway == 1) {
+            navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
+        }else{
+            navLabel.text = [NSString stringWithFormat:@"%@市区-机场",self.airPortName];
+        }
+        
+        
+        
+        if ([currViewController isEqual:subwayTableViewController]) {
+            NSLog(@"当前");
+        }else{
+            [subwayTableViewController getData];
+            [self transitionFromViewController:currViewController toViewController:subwayTableViewController duration:0.75 options:UIViewAnimationOptionTransitionCurlUp animations:nil completion:^(BOOL isFinish){
+                currViewController = subwayTableViewController;
+            }];
+        }
     }else if (segmented.selectedIndex == 2){
         trfficType = 1;//出租车
+        
+        if (taxiTableViewController.orientationTaxi == 1) {
+            navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
+        }else{
+            navLabel.text = [NSString stringWithFormat:@"%@市区-机场",self.airPortName];
+        }
+        
+        
+        
+        if ([currViewController isEqual:taxiTableViewController]) {
+            NSLog(@"当前");
+        }else{
+            [self transitionFromViewController:currViewController toViewController:taxiTableViewController duration:0.75 options:UIViewAnimationOptionTransitionCurlUp animations:nil completion:^(BOOL isFinish){
+                currViewController = taxiTableViewController;
+            }];
+        }
     }
     
     
@@ -166,11 +238,13 @@
     myData = [[NSMutableData alloc]init];
     // Do any additional setup after loading the view from its nib.
     
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Web/AirportGuide.json"];
+    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/traffic.jsp"];
     
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:@"TrafficTools" forKey:@"RequestType"];
+   
+    
+    [request setPostValue:@"1" forKey:@"edition"];
     [request setPostValue:self.subAirPortData.apCode forKey:@"ArilineCode"];
 
     
@@ -192,13 +266,14 @@
     //请求完成
     [request setCompletionBlock:^{
         NSString * str = [request responseString];
-        NSLog(@"str : %@",str);
+
         NSDictionary * myDic = [str objectFromJSONString];
         NSLog(@"dic : %@",myDic);
         NSArray * array = [myDic objectForKey:@"TrafficTools"];
         NSLog(@"%d",[array count]);
         //填数据
-        [self fillData];
+//        [self fillData];
+        
     }];
     //请求失败
     [request setFailedBlock:^{
@@ -233,32 +308,38 @@
         if (orientationCoach == 0) {
             orientationCoach = 1;
             navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
-            [self getData];
+            coachTableViewController.orientationCoach = orientationCoach;
+            [coachTableViewController refreshGetData];
         }else{
             orientationCoach = 0;
             navLabel.text = [NSString stringWithFormat:@"%@市区-机场",self.airPortName];
-            [self getData];
+            coachTableViewController.orientationCoach = orientationCoach;
+            [coachTableViewController refreshGetData];
         }
         
     }else if (segmented.selectedIndex == 1){
         if (orientationSubway == 0) {
             orientationSubway = 1;
             navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
-            [self getData];
+            subwayTableViewController.orientationSubway = orientationSubway;
+            [subwayTableViewController refreshGetData];
         }else{
             orientationSubway = 0;
             navLabel.text = [NSString stringWithFormat:@"%@市区-机场",self.airPortName];
-            [self getData];
+            subwayTableViewController.orientationSubway = orientationSubway;
+            [subwayTableViewController refreshGetData];
         }
-    }else if (segmented.selectedIndex == 1){
+    }else if (segmented.selectedIndex == 2){
         if (orientationTaxi == 0) {
             orientationTaxi = 1;
             navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
-            [self getData];
+            taxiTableViewController.orientationTaxi = orientationTaxi;
+            [taxiTableViewController refreshGetData];
         }else{
             orientationTaxi = 0;
             navLabel.text = [NSString stringWithFormat:@"%@市区-机场",self.airPortName];
-            [self getData];
+            taxiTableViewController.orientationTaxi = orientationTaxi;
+            [taxiTableViewController refreshGetData];
         }
     }
 }
@@ -296,6 +377,11 @@
 }
 
 -(void)dealloc{
+    [coachTableViewController release];
+    [subwayTableViewController release];
+    [taxiTableViewController release];
+    
+    
     [navImageView release];
     [navgaitionLabel release];
     [navImageView release];

@@ -64,7 +64,7 @@
     [goToWebViewBtn addSubview:btnLabel];
     [btnLabel release];
     [goToWebViewBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    btnLabel.backgroundColor = [UIColor blueColor];
+    btnLabel.backgroundColor = [UIColor clearColor];
     [myView addSubview:goToWebViewBtn];
     [goToWebViewBtn release];
     
@@ -183,6 +183,7 @@
     myMapView.region = region;
     
     myMapManager = [[MapManager alloc]initMyManager];
+    myMapView.showsUserLocation = YES;
     NSLog(@"%@,%@",self.subAirPortData.air_x,self.subAirPortData.air_y);
     NSLog(@"%f,%f",[self.subAirPortData.air_x doubleValue], [self.subAirPortData.air_y doubleValue]);
     
@@ -195,10 +196,15 @@
 }
 
 -(void)addMap{
-    myMapView = [[MKMapView alloc]initWithFrame:CGRectMake(0,[[UIScreen mainScreen] bounds].size.height - 175 , 320, 175)];
+    myMapView = [[MKMapView alloc]initWithFrame:CGRectMake(0,[[UIScreen mainScreen] bounds].size.height - 180 , 320, 180)];
     CLLocationCoordinate2D center;
-    center.latitude = 40;
-    center.longitude = 117;
+    if (self.subAirPortData.air_x == nil) {
+        center.latitude = 40;
+        center.longitude = 117;
+    }else{
+        center.latitude = [self.subAirPortData.air_x doubleValue];
+        center.longitude = [self.subAirPortData.air_x doubleValue];
+    }
     
     MKCoordinateSpan span;
     span.latitudeDelta = 0.1;
@@ -209,7 +215,9 @@
     };
     
     myMapView.region = region;
-    [myView addSubview:myMapView];
+//    myMapView.showsUserLocation = YES;
+
+    [self.view addSubview:myMapView];
 
 }
 

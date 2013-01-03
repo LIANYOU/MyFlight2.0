@@ -51,7 +51,7 @@
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
-    [backBtn1 release];;
+    [backBtn1 release];
     
     
     UIButton * histroyBut = [UIButton buttonWithType:UIButtonTypeCustom];

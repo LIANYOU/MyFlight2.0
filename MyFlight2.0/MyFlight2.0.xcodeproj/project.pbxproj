@@ -201,11 +201,8 @@
 		1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852CC7D16837F5600431A9B /* TravePhoneCell.xib */; };
 		18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18630442168EAA1C0022CB2F /* WriteOrderViewController.m */; };
 		18630445168EAA1D0022CB2F /* WriteOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */; };
-
-
 		188B728C16915C69004F09B8 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B728B16915C69004F09B8 /* MapManager.m */; };
 		188B728F16916C7A004F09B8 /* Ann.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B728E16916C7A004F09B8 /* Ann.m */; };
-
 		18953997168EFA20008901F5 /* AirportMainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18953995168EFA20008901F5 /* AirportMainScreenViewController.m */; };
 		18953998168EFA20008901F5 /* AirportMainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18953996168EFA20008901F5 /* AirportMainScreenViewController.xib */; };
 		1896E5EF168C6554006F883B /* TravelTrafficViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */; };
@@ -316,6 +313,9 @@
 		18D19A1A168FEC05004861C3 /* icon_Refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D19A12168FEC05004861C3 /* icon_Refresh.png */; };
 		18D19A1B168FEC05004861C3 /* icon_return_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D19A13168FEC05004861C3 /* icon_return_white.png */; };
 		18D19A1C168FEC05004861C3 /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = 18D19A14168FEC05004861C3 /* Thumbs.db */; };
+		18D36423169528E0005CF80C /* CoachTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36422169528E0005CF80C /* CoachTableViewController.m */; };
+		18D36427169528F3005CF80C /* SubwayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36426169528F3005CF80C /* SubwayTableViewController.m */; };
+		18D3642A1695290F005CF80C /* TaxiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D364291695290F005CF80C /* TaxiTableViewController.m */; };
 		18D88B5E167AC3F4003EA0C5 /* AirPortCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */; };
 		18DB9B40168AB73C00CE975F /* GetAttentionFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB9B3F168AB73C00CE975F /* GetAttentionFlight.m */; };
 		18DB9B45168ADBFA00CE975F /* LookFlightConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB9B44168ADBFA00CE975F /* LookFlightConditionCell.m */; };
@@ -871,13 +871,10 @@
 		18630441168EAA1B0022CB2F /* WriteOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteOrderViewController.h; sourceTree = "<group>"; };
 		18630442168EAA1C0022CB2F /* WriteOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteOrderViewController.m; sourceTree = "<group>"; };
 		18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteOrderViewController.xib; sourceTree = "<group>"; };
-
-
 		188B728A16915C69004F09B8 /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManager.h; sourceTree = "<group>"; };
 		188B728B16915C69004F09B8 /* MapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManager.m; sourceTree = "<group>"; };
 		188B728D16916C7A004F09B8 /* Ann.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ann.h; sourceTree = "<group>"; };
 		188B728E16916C7A004F09B8 /* Ann.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ann.m; sourceTree = "<group>"; };
-
 		18953994168EFA20008901F5 /* AirportMainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirportMainScreenViewController.h; sourceTree = "<group>"; };
 		18953995168EFA20008901F5 /* AirportMainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirportMainScreenViewController.m; sourceTree = "<group>"; };
 		18953996168EFA20008901F5 /* AirportMainScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AirportMainScreenViewController.xib; sourceTree = "<group>"; };
@@ -1031,6 +1028,12 @@
 		18D19A12168FEC05004861C3 /* icon_Refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Refresh.png; sourceTree = "<group>"; };
 		18D19A13168FEC05004861C3 /* icon_return_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_return_white.png; sourceTree = "<group>"; };
 		18D19A14168FEC05004861C3 /* Thumbs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thumbs.db; sourceTree = "<group>"; };
+		18D36421169528E0005CF80C /* CoachTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachTableViewController.h; sourceTree = "<group>"; };
+		18D36422169528E0005CF80C /* CoachTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachTableViewController.m; sourceTree = "<group>"; };
+		18D36425169528F3005CF80C /* SubwayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubwayTableViewController.h; sourceTree = "<group>"; };
+		18D36426169528F3005CF80C /* SubwayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubwayTableViewController.m; sourceTree = "<group>"; };
+		18D364281695290F005CF80C /* TaxiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxiTableViewController.h; sourceTree = "<group>"; };
+		18D364291695290F005CF80C /* TaxiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxiTableViewController.m; sourceTree = "<group>"; };
 		18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirPortCode.plist; sourceTree = "<group>"; };
 		18DB9B3E168AB73C00CE975F /* GetAttentionFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAttentionFlight.h; sourceTree = "<group>"; };
 		18DB9B3F168AB73C00CE975F /* GetAttentionFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAttentionFlight.m; sourceTree = "<group>"; };
@@ -2383,6 +2386,12 @@
 				1827BE801683581D00349FE1 /* ChackInNavgationViewController.h */,
 				1827BE811683581E00349FE1 /* ChackInNavgationViewController.m */,
 				1827BE821683581F00349FE1 /* ChackInNavgationViewController.xib */,
+				18D36421169528E0005CF80C /* CoachTableViewController.h */,
+				18D36422169528E0005CF80C /* CoachTableViewController.m */,
+				18D36425169528F3005CF80C /* SubwayTableViewController.h */,
+				18D36426169528F3005CF80C /* SubwayTableViewController.m */,
+				18D364281695290F005CF80C /* TaxiTableViewController.h */,
+				18D364291695290F005CF80C /* TaxiTableViewController.m */,
 			);
 			name = TravelAssistant;
 			sourceTree = "<group>";
@@ -3588,12 +3597,12 @@
 				18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */,
 				18953997168EFA20008901F5 /* AirportMainScreenViewController.m in Sources */,
 				18D19A0A168FDFCC004861C3 /* AirportMainScreenSearchView.m in Sources */,
-
 				14ECFEC91691462100A99E6B /* AirportMainScreenTitleView.m in Sources */,
-
 				188B728C16915C69004F09B8 /* MapManager.m in Sources */,
 				188B728F16916C7A004F09B8 /* Ann.m in Sources */,
-
+				18D36423169528E0005CF80C /* CoachTableViewController.m in Sources */,
+				18D36427169528F3005CF80C /* SubwayTableViewController.m in Sources */,
+				18D3642A1695290F005CF80C /* TaxiTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

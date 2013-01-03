@@ -14,7 +14,7 @@
 @end
 
 @implementation ShowFligthConditionController
-
+@synthesize deptAirPortCode = _deptAirPortCode,arrAirPortCode = _arrAirPortCode;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -162,6 +162,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * dic = [self.dateArr objectAtIndex:indexPath.row];
     DetailFlightConditionViewController * detail = [[DetailFlightConditionViewController alloc]init];
+    detail.deptAirPortCode = self.deptAirPortCode;
+    detail.arrAirPortCode = self.arrAirPortCode;
     detail.dic = dic;
     [self.navigationController pushViewController:detail animated:YES];
     

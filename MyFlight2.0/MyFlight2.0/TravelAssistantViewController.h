@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChooseAirPortViewController.h"
 #import "AirPortData.h"
-@interface TravelAssistantViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ChooseAirPortViewControllerDelegate>
+@interface TravelAssistantViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ChooseAirPortViewControllerDelegate,UIAlertViewDelegate>
 {
     UITableView * myTableView;
     NSArray * imageArray;
