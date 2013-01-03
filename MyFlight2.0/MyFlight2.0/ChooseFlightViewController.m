@@ -7,8 +7,6 @@
 //
 
 #import "ChooseFlightViewController.h"
-#import "FlightInformationViewController.h"
-#import "PickSeatViewController.h"
 
 @interface ChooseFlightViewController ()
 
@@ -17,10 +15,10 @@
 @implementation ChooseFlightViewController
 
 @synthesize isQuery;
+
 @synthesize passName;
 @synthesize idNo;
 @synthesize depCity;
-@synthesize isLogined;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,7 +42,6 @@
     [request setPostValue:self.idNo forKey:@"idNo"];
     [request setPostValue:self.depCity forKey:@"depCity"];
     [request setPostValue:@"1" forKey:@"source"];
-    [request setPostValue:self.isLogined forKey:@"isLogined"];
     
     [request setCompletionBlock:^(void){
         
@@ -153,6 +150,7 @@
     confirm.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     [confirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [confirm setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     
     [self.view addSubview:confirm];
     
@@ -170,8 +168,17 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    
+    if(cell == nil)
+    {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    else
+    {
+        for(UIView *view in [cell subviews])
+        {
+            [view removeFromSuperview];
+        }
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -203,10 +210,10 @@
         
         switch (indexPath.row) {
             case 0:
-                value.text = [responseDictionary objectForKey:@"passName"];
+                value.text = self.passName;
                 break;
             case 1:
-                value.text = [responseDictionary objectForKey:@"mobilePhone"];
+                value.text = self.idNo;
                 break;
             default:
                 break;
@@ -277,7 +284,12 @@
         
         label = [[UILabel alloc] initWithFrame:CGRectMake(190, 15, 75, 10)];
         
-        label.text = [flight objectForKey:@"takeoffDateTime"];
+        NSRange range;
+        
+        range.length = 14;
+        range.location = 10;
+        
+        label.text = [[flight objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:range withString:@""];
         label.font = [UIFont systemFontOfSize:10.0f];
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
@@ -287,7 +299,10 @@
         
         label = [[UILabel alloc] initWithFrame:CGRectMake(190, 35, 75, 10)];
         
-        label.text = [flight objectForKey:@"takeoffDateTime"];
+        range.length = 10;
+        range.location = 0;
+        
+        label.text = [[flight objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:range withString:@""];
         label.font = [UIFont systemFontOfSize:10.0f];
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
@@ -342,19 +357,93 @@
         if([self isQuery])
         {
             FlightInformationViewController *flightInformation = [[FlightInformationViewController alloc] init];
+            
+            flightInformation.org = [responseDictionary objectForKey:@"departure"];
+            flightInformation.passName = self.passName;
+            flightInformation.idNo = self.idNo;
+            
             [self.navigationController pushViewController:flightInformation animated:YES];
             [flightInformation release];
         }
         else
         {
-            PickSeatViewController *pickSeat = [[PickSeatViewController alloc] init];
-            [self.navigationController pushViewController:pickSeat animated:YES];
-            [pickSeat release];
+            NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/cussCheckHandler.jsp"];
+            
+            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+            
+            [request setRequestMethod:@"POST"];
+            [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+            
+            NSDictionary *segs = [[responseDictionary objectForKey:@"segs"] objectAtIndex:currentSelection];
+            
+            [request setPostValue:[segs objectForKey:@"tktNo"] forKey:@"tktno"];
+            [request setPostValue:self.passName forKey:@"passName"];
+            [request setPostValue:self.idNo forKey:@"id"];
+            [request setPostValue:[segs objectForKey:@"segIndex"] forKey:@"segIndex"];
+            [request setPostValue:@"1" forKey:@"source"];
+            
+            [request setCompletionBlock:^(void){
+                
+                NSData *response = [request responseData];
+                
+                NSError *error = nil;
+                
+                NSDictionary *responseDict = [response objectFromJSONDataWithParseOptions:JKSerializeOptionNone error:&error];
+                
+                if(error != nil)
+                {
+                    NSLog(@"JSON Parse Failed\n");
+                }
+                else
+                {
+                    NSLog(@"JSON Parse Succeeded\n");
+                    
+                    NSDictionary *result = [responseDict objectForKey:@"result"];
+                    
+                    if([[result objectForKey:@"resultCode"] isEqualToString:@""])
+                    {
+                        for(NSString *string in [responseDict allKeys])
+                        {
+                            NSLog(@"%@\n",string);
+                        }
+                        for(NSString *string in [responseDict allValues])
+                        {
+                            NSLog(@"%@\n",string);
+                        }
+                        
+                        PickSeatViewController *pickSeat = [[PickSeatViewController alloc] init];
+                        
+                        pickSeat.tktno = [responseDict objectForKey:@"tktNo"];
+                        pickSeat.segIndex = [responseDict objectForKey:@"segIndex"];
+                        pickSeat.passName = [responseDict objectForKey:@"passName"];
+                        pickSeat.airline = [responseDict objectForKey:@"airline"];
+                        pickSeat.orgId = [responseDict objectForKey:@"orgId"];
+                        pickSeat.org = [responseDict objectForKey:@"org"];
+                        pickSeat.symbols = [responseDict objectForKey:@"symbols"];
+                        
+                        
+                        [self.navigationController pushViewController:pickSeat animated:YES];
+                        [pickSeat release];
+                    }
+                    else
+                    {
+                        NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+                        // information incorrect
+                    }
+                }
+            }];
+            
+            [request setFailedBlock:^(void){
+                NSLog(@"JSON Request Failed\n");
+            }];
+            
+            [request setDelegate:self];
+            [request startAsynchronous];
         }
     }
     else
     {
-        NSLog(@"Warning: no flight picked\n");
+        // error : must pick a flight
     }
 }
 

@@ -7,7 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "SeatMapView.h"
+#import "ASIFormDataRequest.h"
+#import "JSONKit.h"
 
 @interface PickSeatViewController : UIViewController
+{
+    SeatMapView *map;
+    
+    UILabel *title;
+    
+    __block NSDictionary *responseDictionary;
+}
+
+@property (retain, nonatomic) NSString *tktno;
+@property (retain, nonatomic) NSString *segIndex;
+@property (retain, nonatomic) NSString *passName;
+@property (retain, nonatomic) NSString *airline;
+@property (retain, nonatomic) NSString *orgId;
+@property (retain, nonatomic) NSString *org;
+@property (retain, nonatomic) NSString *symbols;
+
+- (void) requestForData;
+- (void) updateTitle;
+- (void) checkIn;
 
 @end

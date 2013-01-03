@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "PickSeatViewController.h"
+#import "FlightInformationViewController.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 
@@ -26,7 +28,6 @@
 @property (nonatomic, retain) NSString *passName;
 @property (nonatomic, retain) NSString *idNo;
 @property (nonatomic, retain) NSString *depCity;
-@property (nonatomic, retain) NSString *isLogined;
 
 - (void) requestForData;
 - (void) confirmSelection;
