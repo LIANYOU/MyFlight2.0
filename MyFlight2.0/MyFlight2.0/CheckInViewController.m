@@ -28,13 +28,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    titleArray = [[NSArray alloc] initWithObjects:@"姓      名", @"证件类型", @"证件号码", @"出发机场", nil];
+    titleArray = [[NSArray alloc] initWithObjects:@"姓      名", @"证件类型", @"证件号码", @"出发城市", nil];
     
-    passengerName = @"降枫";
-    passportType = @"身份证";
-    passportNumber = @"123456789012345678";
-    departureAirportName = @"北京首都机场";
-    departureAirportCode = @"PEK";
+    passName = @"降枫";
+    idNo = @"123456789012345678";
+    depCity = @"北京";
+    depCityCode = @"010";
+    
+    passportType = 0;
     
     checkInInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 30, 300, 200) style:UITableViewStylePlain];
     
@@ -49,17 +50,49 @@
     [self.view addSubview:checkInInfoTable];
     [checkInInfoTable release];
     
+    registerforCheckIn.backgroundColor = [UIColor orangeColor];
+    
+    UIButton *checkIn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    checkIn.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 320:400, 300, 40);
+    
+    checkIn.backgroundColor = [UIColor orangeColor];
+    checkIn.layer.borderColor = [[UIColor grayColor] CGColor];
+    checkIn.layer.borderWidth = 1.0;
+    checkIn.layer.cornerRadius = 5.0;
+    
+    [checkIn setTitle:@"办理值机" forState:UIControlStateNormal];
+    [checkIn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [checkIn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    checkIn.titleLabel.font = [UIFont systemFontOfSize:20];
+    checkIn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [checkIn addTarget:self action:@selector(checkIn) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:checkIn];
+    
+    UIButton *progressQuery = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    progressQuery.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 370:450, 300, 40);
+    
+    progressQuery.backgroundColor = [UIColor orangeColor];
+    progressQuery.layer.borderColor = [[UIColor grayColor] CGColor];
+    progressQuery.layer.borderWidth = 1.0;
+    progressQuery.layer.cornerRadius = 5.0;
+    
+    [progressQuery setTitle:@"查询进度" forState:UIControlStateNormal];
+    [progressQuery setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [progressQuery setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    progressQuery.titleLabel.font = [UIFont systemFontOfSize:20];
+    progressQuery.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [progressQuery addTarget:self action:@selector(progressQuery) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:progressQuery];
+    
     self.view.backgroundColor = [UIColor colorWithRed:0.75f green:0.75f blue:0.75f alpha:1.0f];
-}
-
-- (void) leftNavigationBarItemClicked
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void) rightNavigationBarItemClicked
-{
-    return;
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -104,16 +137,19 @@
     
     switch (indexPath.row) {
         case 0:
-            value.text = passengerName;
+            value.text = passName;
             break;
         case 1:
-            value.text = passportType;
+            if(passportType == 0)
+            {
+                value.text = @"身份证";
+            }
             break;
         case 2:
-            value.text = passportNumber;
+            value.text = idNo;
             break;
         case 3:
-            value.text = departureAirportName;
+            value.text = depCity;
             break;
         default:
             break;
@@ -152,11 +188,10 @@
     [checkforProgress release];
     
     [titleArray release];
-    [passengerName release];
-    [passportType release];
-    [passportNumber release];
-    [departureAirportName release];
-    [departureAirportCode release];
+    [passName release];
+    [idNo release];
+    [depCity release];
+    [depCityCode release];
     
     [super dealloc];
 }
@@ -175,12 +210,22 @@
     switch(input.keyboardType)
     {
         case UIKeyboardTypeNumbersAndPunctuation:
-            [passportNumber release];
-            passportNumber = [[input text] retain];
+            if(passportType == 0)
+            {
+                if(input.text.length != 18)
+                {
+                    // error : invalid idNo
+                }
+                else
+                {
+                    [idNo release];
+                    idNo = [input.text retain];
+                }
+            }
             break;
         case UIKeyboardTypeNamePhonePad:
-            [passengerName release];
-            passengerName = [[input text] retain];
+            [passName release];
+            passName = [[input text] retain];
         default:
             break;
     }
@@ -195,27 +240,27 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)checkIn:(UIButton *)sender
+- (void) checkIn
 {
     ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
     
     chooseFlight.isQuery = NO;
-    chooseFlight.passName = passengerName;
-    chooseFlight.idNo = passportNumber;
-    chooseFlight.depCity = departureAirportCode;
+    chooseFlight.passName = passName;
+    chooseFlight.idNo = idNo;
+    chooseFlight.depCity = depCityCode;
     
     [self.navigationController pushViewController:chooseFlight animated:YES];
     [chooseFlight release];
 }
 
-- (IBAction) progressQuery:(UIButton *)sender
+- (void) progressQuery
 {
     ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
     
     chooseFlight.isQuery = YES;
-    chooseFlight.passName = passengerName;
-    chooseFlight.idNo = passportNumber;
-    chooseFlight.depCity = departureAirportCode;
+    chooseFlight.passName = passName;
+    chooseFlight.idNo = idNo;
+    chooseFlight.depCity = depCityCode;
     
     [self.navigationController pushViewController:chooseFlight animated:YES];
     [chooseFlight release];
@@ -240,7 +285,7 @@
             
             break;
         case 1:
-            NSLog(@"Change Passport Type\n");
+//            UIPickerView *picker = [UIPickerView alloc] initWithFrame
             break;
         case 2:
             input = [[TextInputHelperViewController alloc] initWithKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
@@ -270,8 +315,8 @@
 
 - (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger)choiceType didSelectAirPortInfo:(AirPortData *)airPort
 {
-    departureAirportName = airPort.apName;
-    departureAirportCode = airPort.apCode;
+    depCity = airPort.cityName;
+    depCityCode = airPort.cityName;
     
     [checkInInfoTable reloadData];
 }

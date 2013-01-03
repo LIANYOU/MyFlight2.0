@@ -14,6 +14,10 @@
 
 @implementation FlightInformationViewController
 
+@synthesize org;
+@synthesize passName;
+@synthesize idNo;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -23,22 +27,81 @@
     return self;
 }
 
+- (void) requestForData
+{
+    NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/getCussQueryHandler.jsp"];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    
+    [request setPostValue:self.org forKey:@"org"];
+    [request setPostValue:@"HUAIRNEW" forKey:@"orgId"];
+    [request setPostValue:self.passName forKey:@"passName"];
+    [request setPostValue:self.idNo forKey:@"idNo"];
+    [request setPostValue:@"1" forKey:@"currentPageNo"];
+    
+    [request setCompletionBlock:^(void){
+        
+        NSData *response = [request responseData];
+        
+        NSError *error = nil;
+        
+        [responseDictionary release];
+        
+        responseDictionary = [[response objectFromJSONDataWithParseOptions:JKSerializeOptionNone error:&error] retain];
+        
+        if(error != nil)
+        {
+            NSLog(@"JSON Parse Failed\n");
+        }
+        else
+        {
+            NSLog(@"JSON Parse Succeeded\n");
+            
+            NSDictionary *result = [responseDictionary objectForKey:@"result"];
+            
+            if([[result objectForKey:@"resultCode"] isEqualToString:@""])
+            {
+                [detailedInfoTable reloadData];
+                [flightInfoTable reloadData];
+                
+                for(NSString *string in [responseDictionary allKeys])
+                {
+                    NSLog(@"%@\n",string);
+                }
+                for(NSString *string in [responseDictionary allValues])
+                {
+                    NSLog(@"%@\n",string);
+                }
+            }
+            else
+            {
+                NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+            }
+        }
+    }];
+    
+    [request setFailedBlock:^(void){
+        NSLog(@"JSON Request Failed\n");
+    }];
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    detailedTitleArray = [[NSArray alloc] initWithObjects:@"票    号", @"值机状态", @"航班号", @"座位号", @"乘机人", nil];
+    [self requestForData];
     
-    departTime = @"17:15";
-    departDate = @"2012-8-20";
-    departAirport = @"北京首都  T1";
+    detailedTitleArray = [[NSArray alloc] initWithObjects:@"电子票号", @"值机状态", @"乘机人", @"座位号", @"登机号", @"登机时间", nil];
     
-    arrivalTime = @"17:15";
-    arrivalDate = @"2012-8-20";
-    arrivalAirport = @"北京首都  T1";
-    
-    detailedInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, 300, 220)];
+    detailedInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, 300, 264)];
     
     detailedInfoTable.rowHeight = 44.0f;
     detailedInfoTable.layer.borderColor = [[UIColor grayColor] CGColor];
@@ -49,7 +112,7 @@
     detailedInfoTable.dataSource = self;
     detailedInfoTable.scrollEnabled = NO;
     
-    flightInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 240, 300, 88)];
+    flightInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 284, 300, 88)];
     
     flightInfoTable.rowHeight = 44.0f;
     flightInfoTable.layer.borderColor = [[UIColor grayColor] CGColor];
@@ -77,6 +140,7 @@
     
     [cancelCheckInButton setTitle:@"取消值机" forState:UIControlStateNormal];
     [cancelCheckInButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cancelCheckInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     
     cancelCheckInButton.titleLabel.font = [UIFont systemFontOfSize:20];
     cancelCheckInButton.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -98,7 +162,7 @@
 {
     if(tableView == detailedInfoTable)
     {
-        return 5;
+        return 6;
     }
     else
     {
@@ -121,6 +185,15 @@
     {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+    else
+    {
+        for(UIView *view in [cell subviews])
+        {
+            [view removeFromSuperview];
+        }
+    }
+    
+    NSDictionary *cussInfo = [[responseDictionary objectForKey:@"cussInfo"] objectAtIndex:0];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -139,7 +212,33 @@
         
         UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(80, 16, 210, 12)];
         
-//        value.text = [detailedValueArray objectAtIndex:indexPath.row];
+        switch (indexPath.row) {
+            case 0:
+                value.text = [cussInfo objectForKey:@"etNo"];
+                break;
+            case 1:
+                if([[cussInfo objectForKey:@"result"] isEqualToString:@"1"])
+                {
+                    value.text = @"已值机";
+                    value.textColor = [UIColor greenColor];
+                }
+                break;
+            case 2:
+                value.text = [cussInfo objectForKey:@"name_ch"];
+                break;
+            case 3:
+                value.text = [cussInfo objectForKey:@"seatNo"];
+                break;
+            case 4:
+                value.text = [cussInfo objectForKey:@"bordingNo"];
+                break;
+            case 5:
+                value.text = [NSString stringWithFormat:@"%@:%@", [[cussInfo objectForKey:@"bdt"] stringByReplacingCharactersInRange:NSMakeRange(2, 2) withString:@""], [[cussInfo objectForKey:@"bdt"] stringByReplacingCharactersInRange:NSMakeRange(0, 2) withString:@""]];
+                break;
+            default:
+                break;
+        }
+        
         value.font = [UIFont systemFontOfSize:12.0f];
         value.textAlignment = UITextAlignmentRight;
         value.textColor = [UIColor blackColor];
@@ -154,9 +253,9 @@
         {
             UILabel *label;
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 80, 14)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 120, 14)];
             
-            label.text = [NSString stringWithFormat:@"%@ - %@", self.deCity, self.arrCity];
+            label.text = [NSString stringWithFormat:@"%@ - %@", [cussInfo objectForKey:@"departure_cn"], [cussInfo objectForKey:@"arrival_cn"]];
             label.font = [UIFont systemFontOfSize:14.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor blackColor];
@@ -165,9 +264,9 @@
             [cell addSubview:label];
             [label release];
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(100, 15, 120, 14)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(140, 15, 120, 14)];
             
-            label.text = self.flightNo;
+            label.text = [NSString stringWithFormat:@"%@%@", [cussInfo objectForKey:@"airlinecode"], [cussInfo objectForKey:@"airlineNo"]];
             label.font = [UIFont systemFontOfSize:14.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor blackColor];
@@ -182,7 +281,7 @@
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(10, 14, 80, 16)];
             
-            label.text = departTime;
+            label.text = [NSString stringWithFormat:@"%@:%@", [[cussInfo objectForKey:@"deptime"] stringByReplacingCharactersInRange:NSMakeRange(2, 2) withString:@""], [[cussInfo objectForKey:@"deptime"] stringByReplacingCharactersInRange:NSMakeRange(0, 2) withString:@""]];
             label.font = [UIFont systemFontOfSize:16.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor blackColor];
@@ -193,7 +292,7 @@
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(45, 11, 80, 10)];
             
-            label.text = departDate;
+//            label.text = departDate;
             label.font = [UIFont systemFontOfSize:10.0f];
             label.textAlignment = UITextAlignmentRight;
             label.textColor = [UIColor grayColor];
@@ -204,7 +303,7 @@
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(45, 25, 80, 10)];
             
-            label.text = departAirport;
+//            label.text = departAirport;
             label.font = [UIFont systemFontOfSize:10.0f];
             label.textAlignment = UITextAlignmentRight;
             label.textColor = [UIColor blackColor];
@@ -215,7 +314,7 @@
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(175, 14, 80, 16)];
             
-            label.text = departTime;
+//            label.text = departTime;
             label.font = [UIFont systemFontOfSize:16.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor blackColor];
@@ -226,7 +325,7 @@
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(210, 11, 80, 10)];
             
-            label.text = departDate;
+//            label.text = departDate;
             label.font = [UIFont systemFontOfSize:10.0f];
             label.textAlignment = UITextAlignmentRight;
             label.textColor = [UIColor grayColor];
@@ -237,7 +336,7 @@
             
             label = [[UILabel alloc] initWithFrame:CGRectMake(210, 25, 80, 10)];
             
-            label.text = departAirport;
+//            label.text = departAirport;
             label.font = [UIFont systemFontOfSize:10.0f];
             label.textAlignment = UITextAlignmentRight;
             label.textColor = [UIColor blackColor];
@@ -262,19 +361,72 @@
 
 - (void) cancelCheckIn
 {
+    NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/getPwHandler.jsp"];
     
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *cussInfo = [[responseDictionary objectForKey:@"cussInfo"] objectAtIndex:0];
+    
+    [request setPostValue:[cussInfo objectForKey:@"recNo"] forKey:@"recNo"];
+    [request setPostValue:[cussInfo objectForKey:@"pwId"] forKey:@"pwId"];
+    [request setPostValue:[cussInfo objectForKey:@"org"] forKey:@"org"];
+    [request setPostValue:[cussInfo objectForKey:@"orgId"] forKey:@"orgId"];
+    [request setPostValue:[responseDictionary objectForKey:@"passName"] forKey:@"passName"];
+    [request setPostValue:[responseDictionary objectForKey:@"idNo"] forKey:@"idNo"];
+    [request setPostValue:[cussInfo objectForKey:@"etNo"] forKey:@"etNo"];
+    
+    [request setCompletionBlock:^(void){
+        
+        NSData *response = [request responseData];
+        
+        NSError *error = nil;
+        
+        NSDictionary *responseDict = [response objectFromJSONDataWithParseOptions:JKSerializeOptionNone error:&error];
+        
+        if(error != nil)
+        {
+            NSLog(@"JSON Parse Failed\n");
+        }
+        else
+        {
+            NSLog(@"JSON Parse Succeeded\n");
+            
+            NSDictionary *result = [responseDict objectForKey:@"result"];
+            
+            if([[result objectForKey:@"resultCode"] isEqualToString:@""])
+            {
+                for(NSString *string in [responseDict allKeys])
+                {
+                    NSLog(@"%@\n",string);
+                }
+                for(NSString *string in [responseDict allValues])
+                {
+                    NSLog(@"%@\n",string);
+                }
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+            }
+        }
+    }];
+    
+    [request setFailedBlock:^(void){
+        NSLog(@"JSON Request Failed\n");
+    }];
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
 }
 
 - (void) dealloc
 {
     [detailedTitleArray release];
-    
-    [departTime release];
-    [departDate release];
-    [departAirport release];
-    [arrivalTime release];
-    [arrivalDate release];
-    [arrivalAirport release];
     
     [super dealloc];
 }

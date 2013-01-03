@@ -39,11 +39,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    textInput = [[UITextField alloc] initWithFrame:CGRectMake(0, 150, 320, 50)];
+    textInput = [[UITextField alloc] initWithFrame:CGRectMake(20, 150, 280, 50)];
     
     textInput.textColor = [UIColor blackColor];
     textInput.textAlignment = UITextAlignmentCenter;
-    textInput.font = [UIFont systemFontOfSize:50.0f];
+    textInput.font = [UIFont systemFontOfSize:20.0f];
     textInput.keyboardType = self.keyboardType;
     
     [textInput addTarget:self action:@selector(endOnExit) forControlEvents:UIControlEventEditingDidEndOnExit];

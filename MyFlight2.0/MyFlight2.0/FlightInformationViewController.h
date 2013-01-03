@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ASIFormDataRequest.h"
+#import "JSONKit.h"
 
 @interface FlightInformationViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
@@ -16,25 +18,14 @@
     
     UITableView *flightInfoTable;
     
-    NSString *departTime;
-    NSString *departDate;
-    NSString *departAirport;
-    NSString *arrivalTime;
-    NSString *arrivalDate;
-    NSString *arrivalAirport;
-    
     __block NSDictionary *responseDictionary;
 }
 
-@property (retain, nonatomic) NSString *tktno;
+@property (retain, nonatomic) NSString *org;
 @property (retain, nonatomic) NSString *passName;
-@property (retain, nonatomic) NSString *passID;
-@property (retain, nonatomic) NSString *segIndex;
-@property (retain, nonatomic) NSString *isLogined;
+@property (retain, nonatomic) NSString *idNo;
 
-@property (retain, nonatomic) NSString *flightNo;
-@property (retain, nonatomic) NSString *deCity;
-@property (retain, nonatomic) NSString *arrCity;
+- (void) requestForData;
 
 - (void) cancelCheckIn;
 

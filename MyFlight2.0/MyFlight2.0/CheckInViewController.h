@@ -22,12 +22,12 @@
     
     NSArray *titleArray;
     
-    NSString *passengerName;
-    NSString *passportType;
-    NSString *passportNumber;
-    NSString *departureAirportName;
-    NSString *departureAirportCode;
-    NSString *isLogined;
+    NSString *passName;
+    NSString *idNo;
+    NSString *depCity;
+    NSString *depCityCode;
+    
+    unsigned char passportType;
     
     TextInputHelperViewController *input;
     
@@ -37,7 +37,7 @@
 - (void) userDidInput;
 - (void) userCancelInput;
 
-- (IBAction)checkIn:(UIButton *)sender;
-- (IBAction)progressQuery:(UIButton *)sender;
+- (void) checkIn;
+- (void) progressQuery;
 
 @end
