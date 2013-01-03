@@ -12,7 +12,15 @@
 #import "AppConfigure.h"
 #import "LoginBusiness.h"
 #import "UIQuickHelp.h"
-@interface MyCheapViewController ()
+#import "MyCheapCouponHelper.h"
+#import "CouponsInfo.h"
+@interface MyCheapViewController (){
+    
+    NSArray *tmpArray;
+    //    NSArray *uselistArray;
+    //    NSArray *noUseListArray;
+    //    NSArray *outOfDateListArray;
+}
 
 @end
 
@@ -26,6 +34,40 @@
     }
     return self;
 }
+
+
+- (void) back{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark -
+#pragma mark 设置导航栏
+- (void) setNav{
+    
+    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(10, 5, 30, 31);
+    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
+    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem=backBtn1;
+    [backBtn1 release];
+    
+    
+//    
+//    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonSystemItemSave target:self action:@selector(loginOut)];
+//    
+//    right.tintColor = [UIColor colorWithRed:35/255.0 green:103/255.0 blue:188/255.0 alpha:1];
+//    
+//    self.navigationItem.rightBarButtonItem = right;
+//    
+//    [right release];
+    
+    
+}
+
 
 - (void) initThisView{
     
@@ -51,19 +93,37 @@
     segmented.tintColor = [UIColor colorWithRed:22/255.0f green:74.0/255.0f blue:178.0/255.0f alpha:1.0f];
     
     [segmented addTarget:self action:@selector(mySegmentValueChange:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:segmented];
+    [self.headerView addSubview:segmented];
     
-
+    
 }
 
 
 -(void)mySegmentValueChange:(SVSegmentedControl *)sender{
     
+    NSInteger index = sender.selectedIndex;
+    switch (index) {
+        case 0:
+            tmpArray = self.uselistArray;
+            
+            [self.thisTableView reloadData];
+            break;
+        case 1:
+            tmpArray =self.noUseListArray;
+            [self.thisTableView reloadData];
+            break;
+        case 2:
+            
+            
+            
+            tmpArray = self.outOfDateListArray;
+            [self.thisTableView reloadData];
+            break;
+        default:
+            break;
+    }
     
     
-    
-    
-
     
     
 }
@@ -73,11 +133,25 @@
 {
     [super viewDidLoad];
     [self initThisView];
-    LoginBusiness *bis = [[LoginBusiness alloc] init];
+    [self setNav];
+    
+    self.thisTableView.tableFooterView = self.tableFoot;
+    
+    //    uselistArray = [[NSArray alloc] init];
+    //    noUseListArray = [[NSArray alloc] init];
+    //    outOfDateListArray =[[NSArray alloc] init];
+    //
+    //    tmpArray = uselistArray;
+    
+    //    LoginBusiness *bis = [[LoginBusiness alloc] init];
+    
+    
     
     NSString *memberId =Default_UserMemberId_Value;
     
-    [bis getCouponListWithMemberId:memberId andDelegate:self];
+    [MyCheapCouponHelper getCouponInfoListWithMemberId:memberId andDelegate:self];
+    
+    //    [bis getCouponListWithMemberId:memberId andDelegate:self];
     
     
     
@@ -109,9 +183,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     // Return the number of rows in the section.
-    return 3;
+    return [tmpArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,11 +201,27 @@
         cell = [array objectAtIndex:0];
     }
     
-
-    cell.youHuiQuanName.text = @"新华旅行";
-    cell.moneyLabel.text= @"￥100";
-    cell.timeLabel.text =@"有效期至2012-12-13至2013-11-23";
     
+    
+    CouponsInfo *data = [tmpArray objectAtIndex:indexPath.row];
+    
+    NSString *price = [NSString stringWithFormat:@"￥%@",data.price];
+    
+    
+    NSString *string = [NSString stringWithFormat:@"有效期至%@至%@",data.dateStart,data.dateEnd];
+    
+    cell.youHuiQuanName.text = data.name;
+    cell.moneyLabel.text= price;
+    cell.timeLabel.text =string;
+    if ([cell.timeLabel.text isEqualToString:@""]) {
+        
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        
+    } else{
+        
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
     
     
     
@@ -143,14 +233,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    
+
+    [UIQuickHelp showAlertViewWithTitle:@"优惠券使用规则" message:@"本优惠券，只限单人单次单张使用，过期不侯，谢谢！！" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
 }
 
 
@@ -187,16 +273,34 @@
 #pragma mark -
 #pragma mark 网络正确回调的方法
 //网络正确回调的方法
-- (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
     
+    self.uselistArray = [[info objectForKey:@"resultDic"] objectForKey:KEY_CouponListOfUse];
+    self.noUseListArray = [[info objectForKey:@"resultDic"] objectForKey:KEY_CouponListOfNoUse];
+    self.outOfDateListArray = [[info objectForKey:@"resultDic"] objectForKey:KEY_CouponListOfOutOfDate];
     
     
+    tmpArray = self.uselistArray;
+    [self.thisTableView reloadData];
     
+    CCLog(@"网络返回的数据count = %d",[tmpArray count]);
     
     
 }
 
 
 
+- (void)dealloc {
+    [_thisTableView release];
+    [_headerView release];
+    [_tableFoot release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setThisTableView:nil];
+    [self setHeaderView:nil];
+    [self setTableFoot:nil];
+    [super viewDidUnload];
+}
 @end

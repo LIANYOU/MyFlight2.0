@@ -45,7 +45,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{27, 6}, {76, 21}}</string>
 								<reference key="NSSuperview" ref="114317952"/>
-								<reference key="NSNextKeyView" ref="942822672"/>
+								<reference key="NSNextKeyView" ref="30036277"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -119,7 +119,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{27, 30}, {55, 21}}</string>
 								<reference key="NSSuperview" ref="114317952"/>
-								<reference key="NSNextKeyView" ref="30036277"/>
+								<reference key="NSNextKeyView" ref="504457356"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -149,7 +149,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{133, 30}, {58, 21}}</string>
 								<reference key="NSSuperview" ref="114317952"/>
-								<reference key="NSNextKeyView" ref="1042066845"/>
+								<reference key="NSNextKeyView" ref="756900301"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -191,7 +191,7 @@
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{104, 0}, {2, 60}}</string>
 								<reference key="NSSuperview" ref="114317952"/>
-								<reference key="NSNextKeyView" ref="504457356"/>
+								<reference key="NSNextKeyView" ref="942822672"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
@@ -207,6 +207,7 @@
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{207, 0}, {2, 60}}</string>
 								<reference key="NSSuperview" ref="114317952"/>
+								<reference key="NSNextKeyView" ref="1042066845"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
@@ -354,7 +355,7 @@
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.CustomClassName">MyCenterTableView</string>
+				<string key="-1.CustomClassName">MyCenterTable_1</string>
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

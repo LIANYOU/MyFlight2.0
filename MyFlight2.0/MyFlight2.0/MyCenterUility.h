@@ -234,6 +234,17 @@ enum  {
 
 #define Coupon_List_URL GET_RIGHT_URL_WITH_Index(Coupon_List_URL_Index)
 
+//优惠券激活接口
+#define MakeCoupon_active_URL_Index @"/web/phone/active/coupon/activation.jsp"
+
+#define MakeCoupon_active_URL GET_RIGHT_URL_WITH_Index(MakeCoupon_active_URL_Index)
+
+//优惠券使用情况
+
+#define KEY_CouponListOfUse @"use" //已使用
+
+#define KEY_CouponListOfNoUse @"nouse" //未使用
+#define KEY_CouponListOfOutOfDate @"outOfDate" //已过期
 
 
 

@@ -106,13 +106,13 @@
     NSInteger number =0;
     
     if (section == 0) {
-        number = 1;
+        return 1;
     } else if (section==1){
         
-        number = 2;
+        return 2;
     } else{
         
-        number = 4;
+        return 4;
     }
     
     
@@ -135,7 +135,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             
-            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:nil options:nil];
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:self options:nil];
             
             cell = [array objectAtIndex:0];
         }
@@ -158,7 +158,7 @@
             
             if (cell == nil) {
                 
-                NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterSecondCell" owner:nil options:nil];
+                NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterSecondCell" owner:self options:nil];
                 
                 cell = [array objectAtIndex:0];
             }
@@ -172,19 +172,22 @@
         if (indexPath.row==1){
             
             
-            static NSString *CellIdentifier = @"Cell";
+            static NSString *CellIdentifier = @"Cell_1";
             
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
                 
-                NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:nil options:nil];
-                
-                cell = [array objectAtIndex:0];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
-            MyCenterCell *thisCell = (MyCenterCell *) cell;
-            thisCell.titleLabel.text = @"我的优惠券";
-            thisCell.detailLabel.text = @"";
-            thisCell.imageView.image = [UIImage imageNamed:@"icon_Coupon.png"];
+            
+            cell.imageView.image = [UIImage imageNamed:@"icon_Coupon.png"];
+
+            cell.textLabel.text = @"我的优惠券";
+            
+//            MyCenterCell *thisCell = (MyCenterCell *) cell;
+//            thisCell.titleLabel.text = @"我的优惠券";
+//            thisCell.detailLabel.text = @"";
+//            thisCell.imageView.image = [UIImage imageNamed:@"icon_Coupon.png"];
             
             
         }
@@ -198,12 +201,13 @@
     if(indexPath.section==2){
         
         
-        static NSString *CellIdentifier = @"Cell";
+        static NSString *CellIdentifier = @"Cell0";
         
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
         if (cell == nil) {
             
-            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:nil options:nil];
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:self options:nil];
             
             cell = [array objectAtIndex:0];
         }
@@ -240,6 +244,9 @@
 
 
 - (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     NSLog(@"第%d分区 第%d行",indexPath.section,indexPath.row);
     if (indexPath.section==0) {

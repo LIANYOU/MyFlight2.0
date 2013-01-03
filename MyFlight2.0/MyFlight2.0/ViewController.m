@@ -66,12 +66,14 @@
     
     MyNewCenterViewController *myCenter = nil;
     MyCenterUnLoginViewController *unLogin = nil;
+//    MyCenterTable_1 *myCenter = nil;
     
     BOOL  isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:KEY_Default_IsUserLogin];
     isLogin = true;
     CCLog(@"用户登陆 %d",isLogin);
     
     if (isLogin) {
+//        myCenter = [[MyCenterTable_1 alloc] init];
         
         myCenter = [[MyNewCenterViewController alloc] init];
         controller = myCenter;

@@ -91,6 +91,7 @@
 		14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */; };
 		14805BA4167875E900836353 /* bg_pek.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA3167875E900836353 /* bg_pek.png */; };
 		14805BA61678760B00836353 /* icon_return.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA51678760B00836353 /* icon_return.png */; };
+		14984B50169406110037B8CE /* MyCheapCouponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14984B4F169406110037B8CE /* MyCheapCouponHelper.m */; };
 		149B7708168BE3C3006281A3 /* MyCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7707168BE3C3006281A3 /* MyCenterCell.m */; };
 		149B770A168BE3E1006281A3 /* MyCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B7709168BE3E1006281A3 /* MyCenterCell.xib */; };
 		149B770E168BF386006281A3 /* MyCenterSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B770D168BF383006281A3 /* MyCenterSecondCell.m */; };
@@ -749,6 +750,8 @@
 		14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPortDataBaseSingleton.m; sourceTree = "<group>"; };
 		14805BA3167875E900836353 /* bg_pek.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pek.png; sourceTree = "<group>"; };
 		14805BA51678760B00836353 /* icon_return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_return.png; sourceTree = "<group>"; };
+		14984B4E169406110037B8CE /* MyCheapCouponHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCheapCouponHelper.h; sourceTree = "<group>"; };
+		14984B4F169406110037B8CE /* MyCheapCouponHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCheapCouponHelper.m; sourceTree = "<group>"; };
 		149B7706168BE3C2006281A3 /* MyCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterCell.h; sourceTree = "<group>"; };
 		149B7707168BE3C3006281A3 /* MyCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterCell.m; sourceTree = "<group>"; };
 		149B7709168BE3E1006281A3 /* MyCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterCell.xib; sourceTree = "<group>"; };
@@ -1498,6 +1501,8 @@
 				1415238C1682C3BE00E2FF0E /* LoginInNetworkHelper.m */,
 				141523851682C12000E2FF0E /* LoginBusiness.h */,
 				141523861682C12000E2FF0E /* LoginBusiness.m */,
+				14984B4E169406110037B8CE /* MyCheapCouponHelper.h */,
+				14984B4F169406110037B8CE /* MyCheapCouponHelper.m */,
 			);
 			name = userBusiness;
 			sourceTree = "<group>";
@@ -1834,6 +1839,21 @@
 				18DF894D168824E600D2DDAE /* HistoryFlightQuery.sqlite */,
 			);
 			name = historyCheck;
+			sourceTree = "<group>";
+		};
+		14633DA816951EE300701518 /* FrequentFlyer */ = {
+			isa = PBXGroup;
+			children = (
+				14633DAA16951F1400701518 /* logininview */,
+			);
+			name = FrequentFlyer;
+			sourceTree = "<group>";
+		};
+		14633DAA16951F1400701518 /* logininview */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = logininview;
 			sourceTree = "<group>";
 		};
 		146986B0167DCB5700E9B30D /* 登录 */ = {
@@ -2676,6 +2696,7 @@
 		18E37CE2167D7FDF0086B3F8 /* More */ = {
 			isa = PBXGroup;
 			children = (
+				14633DA816951EE300701518 /* FrequentFlyer */,
 				18E37CE3167D80550086B3F8 /* HomeMoreController.h */,
 				18E37CE4167D80550086B3F8 /* HomeMoreController.m */,
 				18E37CE5167D80550086B3F8 /* HomeMoreController.xib */,
@@ -3753,12 +3774,16 @@
 				14ECFEC91691462100A99E6B /* AirportMainScreenTitleView.m in Sources */,
 				188B728C16915C69004F09B8 /* MapManager.m in Sources */,
 				188B728F16916C7A004F09B8 /* Ann.m in Sources */,
+
 				14A90B811693E67C002B862C /* TextInputHelperViewController.m in Sources */,
 
 				18D41A0C169136BB0014B371 /* UIImage+scaleImage.m in Sources */,
 				18CB4879169155D400780BB7 /* UIButton+BackButton.m in Sources */,
 				18D70A9F16941B0700B11636 /* ChooseDiscountCouponController.m in Sources */,
 				18D70AA316941C6D00B11636 /* discountCell.m in Sources */,
+
+
+				14984B50169406110037B8CE /* MyCheapCouponHelper.m in Sources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
