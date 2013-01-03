@@ -335,15 +335,16 @@
         if (Flight_DebugFlag) {
             
             CCLog(@"******************乘客信息************************");
-            CCLog(@"乘机人id passengerId =%@",passengerId);
+            CCLog(@"乘机人数目 %@",passengerNum);
+            CCLog(@"乘机人id passengerId =%@",flightPassengerVo.flightPassengerId);
             
-            CCLog(@"乘机人passName = %@",passName);
-            CCLog(@"证件类型 certtype =%@",certtype);
-            CCLog(@"证件号码 certNo =%@",certNo);
+            CCLog(@"乘机人passName = %@",flightPassengerVo.name);
+            CCLog(@"证件类型 certtype =%@",flightPassengerVo.certType);
+            CCLog(@"证件号码 certNo =%@",flightPassengerVo.certNo);
             CCLog(@"乘客类型 passType = %@",passType);
             
-            CCLog(@"去程保险数目 goInsuranceNum  =%@",goInsuranceNum);
-            CCLog(@"返程保险数目 returnInsuranceNum =%@",returnInsuranceNum);
+            CCLog(@"去程保险数目 goInsuranceNum  =%@",flightPassengerVo.goInsuranceNum);
+            CCLog(@"返程保险数目 returnInsuranceNum =%@",flightPassengerVo.returnInsuranceNum);
             
             
             

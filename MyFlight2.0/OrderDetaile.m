@@ -40,7 +40,7 @@
     return self;
 }
 
--(void) getOrderDetailInfo
+-(void) getOrderDetailInfo :(NSString *) searchType
 {
     __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
     
@@ -93,7 +93,7 @@
             if ([message length]==0) {
                 
                                       
-                [self analysisData:dic];   // 处理解析数据
+                [self analysisData:dic andSearchType:searchType];   // 处理解析数据
                                 
             } else{
                 
@@ -142,7 +142,7 @@
 }
 
 
--(void) analysisData:(NSDictionary *)dic
+-(void) analysisData:(NSDictionary *)dic andSearchType:(NSString *)type
 {
     
 
@@ -154,13 +154,12 @@
     order.payStsCh = [dic objectForKey:@"payStsCh"];
     order.totalMoney = [dic objectForKey:@"totalMoney"];
     
+    
     FlightConditionWj * flight = [[FlightConditionWj alloc] init];
-    InFlightConditionWJ * inFlight = [[InFlightConditionWJ alloc] init];
     
-    NSDictionary * outDic = [NSDictionary dictionaryWithObject:dic forKey:@"outBookingFlight"];
-    NSDictionary * inDic = [NSDictionary dictionaryWithObject:dic forKey:@"inBookingFlight"];
+    NSDictionary * outDic = [dic objectForKey:@"outBookingFlight"];
     
-    flight.depAirPortCN = [outDic objectForKey:@"depAirPortCN"];
+    flight.depAirPortCN = [outDic objectForKey:@"depAirportCN"];
     flight.arrAirportCN = [outDic objectForKey:@"arrAirportCN"];
     flight.airlineCompany = [outDic objectForKey:@"airlineCompany"];
     flight.airlineCompanyCode = [outDic objectForKey:@"airlineCompanyCode"];
@@ -173,43 +172,59 @@
     flight.arrivalTime = [outDic objectForKey:@"arrivalTime"];
     flight.cabinRule = [outDic objectForKey:@"cabinRule"];
     
-    inFlight.depAirPortCN = [inDic objectForKey:@"depAirPortCN"];
-    inFlight.arrAirportCN = [inDic objectForKey:@"arrAirportCN"];
-    inFlight.airlineCompany = [inDic objectForKey:@"airlineCompany"];
-    inFlight.airlineCompanyCode = [inDic objectForKey:@"airlineCompanyCode"];
-    inFlight.aircraftType = [inDic objectForKey:@"aircraftType"];
-    inFlight.flightNo = [inDic objectForKey:@"flightNo"];
-    inFlight.cabinCode = [inDic objectForKey:@"cabinCode"];
-    inFlight.cabinCN = [inDic objectForKey:@"cabinCN"];
-    inFlight.departureDate = [inDic objectForKey:@"departureDate"];
-    inFlight.departureTime = [inDic objectForKey:@"departureTime"];
-    inFlight.arrivalTime = [inDic objectForKey:@"arrivalTime"];
-    inFlight.cabinRule = [inDic objectForKey:@"cabinRule"];
+
+ 
     
+    InFlightConditionWJ * inFlight = [[InFlightConditionWJ alloc] init];
     
-    
-    Passenger * passenger = [[Passenger alloc] init];
-    
-    NSArray * arr = [NSArray arrayWithObject:[dic objectForKey:@"flightPassenger"]];
+    if ([type isEqualToString:@"1"]) {   //  返程判断条件
+        
+      
+        NSDictionary * inDic = [dic objectForKey:@"inBookingFlight"];
+        
+        inFlight.depAirPortCN = [inDic objectForKey:@"depAirportCN"];
+        inFlight.arrAirportCN = [inDic objectForKey:@"arrAirportCN"];
+        inFlight.airlineCompany = [inDic objectForKey:@"airlineCompany"];
+        inFlight.airlineCompanyCode = [inDic objectForKey:@"airlineCompanyCode"];
+        inFlight.aircraftType = [inDic objectForKey:@"aircraftType"];
+        inFlight.flightNo = [inDic objectForKey:@"flightNo"];
+        inFlight.cabinCode = [inDic objectForKey:@"cabinCode"];
+        inFlight.cabinCN = [inDic objectForKey:@"cabinCN"];
+        inFlight.departureDate = [inDic objectForKey:@"departureDate"];
+        inFlight.departureTime = [inDic objectForKey:@"departureTime"];
+        inFlight.arrivalTime = [inDic objectForKey:@"arrivalTime"];
+        inFlight.cabinRule = [inDic objectForKey:@"cabinRule"];
+
+    }
+
+    NSArray * arr = [dic objectForKey:@"flightPassenger"];
     NSMutableArray * passengerArr = [NSMutableArray array];
     
     for (NSDictionary * dici in arr) {
-        passenger.name = [dici objectForKey:@"name"];
-        passenger.certType = [dici objectForKey:@"certType"];
-        passenger.certNo = [dici objectForKey:@"certNo"];
-        passenger.insuranceCode = [dici objectForKey:@"insuranceCode"];
-        passenger.etNo = [dici objectForKey:@"etNo"];
         
+        Passenger * passenger = [[Passenger alloc] init];
+        
+        passenger.name = [dici objectForKey:@"name"];
+        
+        passenger.certType = [dici objectForKey:@"certType"];
+   
+        passenger.certNo = [dici objectForKey:@"certNo"];
+     
+        passenger.insuranceCode = [dici objectForKey:@"insuranceCode"];
+
+        passenger.etNo = [dici objectForKey:@"etNo"];
+ 
         [passengerArr addObject:passenger];
+        
+        [passenger release];
     }
-    
+
     PostInfo * post = [[PostInfo alloc] init];
     
     post.deliveryType = [[dic objectForKey:@"itinerary"] objectForKey:@"deliveryType"];
     post.catchUser = [[dic objectForKey:@"itinerary"] objectForKey:@"catchUser"];
     post.mobile = [[dic objectForKey:@"itinerary"] objectForKey:@"mobile"];
     post.address = [[dic objectForKey:@"itinerary"] objectForKey:@"address"];
-
     
     LinkPersonInfo * link = [[LinkPersonInfo alloc] init];
     
@@ -231,7 +246,7 @@
     [inFlight release];
     [post release];
     [link release];
-    [passenger release];
+    
     
 }
 @end

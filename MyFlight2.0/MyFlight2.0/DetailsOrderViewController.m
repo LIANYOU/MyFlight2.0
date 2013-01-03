@@ -17,7 +17,7 @@
 #import "PublicConstUrls.h"
 #import "UIButton+BackButton.h"
 
-
+#import "OrderBasicInfoWJ.h"
 #import "FlightConditionWj.h"
 #import "Passenger.h"
 #import "PostInfo.h"
@@ -57,7 +57,7 @@
 
     
     self.detaile.delegate = self;
-    [self.detaile getOrderDetailInfo];
+    [self.detaile getOrderDetailInfo:self.searchType];
 
     self.tempView = nil;
     
@@ -85,6 +85,8 @@
     [_four release];
     [_five release];
 
+
+    [_WjCell release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -101,6 +103,7 @@
     [self setFour:nil];
     [self setFive:nil];
 
+    [self setWjCell:nil];
     [super viewDidUnload];
 }
 
@@ -146,10 +149,17 @@
             return 1;
             break;
         case 1:
-            return 2;
+            if (self.inFlight.depAirPortCN != nil) {
+                return 2;
+            }
+            else{
+                return 1;
+            }
+            
             break;
         case 2:
-            return 2;
+           
+            return self.personArray.count;
             break;
         case 3:
             return 1;
@@ -192,32 +202,46 @@
 {
     
     if (indexPath.section == 0) {
-//        static NSString *CellIdentifier = @"Cell5";
-//        OrderBasicCell *cell = (OrderBasicCell *)[self.showTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if (!cell)
-//        {
-//            [[NSBundle mainBundle] loadNibNamed:@"OrderBasicCell" owner:self options:nil];
-//            cell = self.basicCell;
-//            
-//        }
-//        
-//        hight = self.tempView.frame.size.height;
-//        cell.infoView.frame = CGRectMake(0, 190, 320, self.tempView.frame.size.height);
-//        [cell.infoView addSubview:self.tempView];
-//        
-//        if (hight == 0.000000) {
-//           
-//            [self.bigView removeFromSuperview];
-//        }
-//        
-//        self.showTableView.separatorColor = [UIColor grayColor];
-//        
-//        [cell.orderAllPay addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        
-//        return cell;
+        static NSString *CellIdentifier = @"Cell5";
+        WJOrderBasicCell *cell = (WJOrderBasicCell *)[self.showTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell)
+        {
+            [[NSBundle mainBundle] loadNibNamed:@"WJOrderBasicCell" owner:self options:nil];
+            cell = self.WjCell;
+            
+        }
+        
+        hight = self.tempView.frame.size.height;
+        cell.infoView.frame = CGRectMake(0, 190, 320, self.tempView.frame.size.height);
+        [cell.infoView addSubview:self.tempView];
+        
+        if (hight == 0.000000) {
+           
+            [self.bigView removeFromSuperview];
+        }
+        
+        self.showTableView.separatorColor = [UIColor grayColor];
+        
+        [cell.orderAllPay addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if (self.order != nil) {
+           
+            cell.orderNo.text = self.order.code;
+            cell.orderData.text = self.order.createDate;
+            cell.orderStation.text = self.order.stsCh;
+            cell.payStation.text = self.order.payStsCh;
+            [cell.orderAllPay setTitle:self.order.totalMoney forState:0 ];
+        }
+       
+        
+        
+        return cell;
+        
+ 
+
     }
     if (indexPath.section == 1) {
+        
         static NSString *CellIdentifier = @"Cell1";
         FlightConditionCell *cell = (FlightConditionCell *)[self.showTableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (!cell)
@@ -227,6 +251,44 @@
             
         }
         self.showTableView.separatorColor = [UIColor clearColor];
+        
+        if (indexPath.row == 0) {
+            [cell.imageView setImage:[UIImage imageNamed:@"bg_blue__.png"]];
+            cell.HUButton.text = self.flight.flightNo;
+            cell.endAirPortName.text = self.flight.arrAirportCN;
+            cell.startAirPortName.text = self.flight.depAirPortCN;
+            cell.endTime.text = self.flight.arrivalTime;
+            cell.startTime.text = self.flight.departureTime;
+            cell.date.text = self.flight.departureDate;
+            cell.plantType.text = self.flight.aircraftType;
+            cell.airPortName.text = self.flight.airlineCompany;
+            
+            cell.changeTicket.tag = indexPath.row;
+       
+            [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:0];
+            [cell.changeTicket addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+        }
+        
+        if (self.inFlight != nil && indexPath.row == 1) {
+            
+            [cell.imageView setImage:[UIImage imageNamed:@"bg_green__.png"]];
+            cell.HUButton.text = self.inFlight.flightNo;
+            cell.endAirPortName.text = self.inFlight.arrAirportCN;
+            cell.startAirPortName.text = self.inFlight.depAirPortCN;
+            cell.endTime.text = self.inFlight.arrivalTime;
+            cell.startTime.text = self.inFlight.departureTime;
+            cell.date.text = self.inFlight.departureDate;
+            cell.plantType.text = self.inFlight.aircraftType;
+            cell.airPortName.text = self.inFlight.airlineCompany;
+            
+            cell.changeTicket.tag = indexPath.row;
+             [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_green_rule.png"] forState:0];
+            [cell.changeTicket addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        
         return cell;
     }
 
@@ -243,6 +305,21 @@
         if (indexPath.row == 1) {
             cell.image.hidden = YES;
         }
+        
+        for (int i = 0; i<self.personArray.count; i++) {
+            
+            Passenger * p = [self.personArray objectAtIndex:i];
+            
+            if (indexPath.row == i) {                
+                cell.name.text = p.name;
+                cell.number.text = p.certNo;
+                cell.orderNo.text = p.etNo;
+                cell.orderInfo.text = p.insuranceCode;
+                
+            }
+        }
+        
+        
         return cell;
     }
 
@@ -256,6 +333,11 @@
             cell = self.journeyCell;
             
         }
+        
+        cell.sendType.text = self.post.deliveryType;
+        cell.name.text = self.post.catchUser;
+        cell.iphone.text = self.post.mobile;
+        cell.address.text = self.post.address;
         
         return cell;
 
@@ -271,6 +353,10 @@
             cell = self.linkCell;
             
         }
+        
+        cell.nsme.text = self.person.name;
+        cell.phone.text = self.person.iphone;
+        
         return cell;
     
     }
@@ -318,11 +404,47 @@
     
     NSArray * arr = [info objectForKey:@"newDic"];
     
+    
+    self.order = [arr objectAtIndex:0];
+    self.flight = [arr objectAtIndex:1];
+    self.inFlight = [arr objectAtIndex:2];
+    self.personArray = [NSArray arrayWithArray:[arr objectAtIndex:3]];
+    self.post = [arr objectAtIndex:4];
+    self.person = [arr objectAtIndex:5];
+    
+    NSLog(@"%@",self.order.code );
+    NSLog(@"%@",self.flight.depAirPortCN );
+    NSLog(@"%@",self.inFlight.depAirPortCN );
+    NSLog(@"%@",self.post.deliveryType );
+    NSLog(@"--------- %@",self.person.name );
+    NSLog(@"%d",self.personArray.count);
+    for (Passenger * p in self.personArray) {
+        NSLog(@"%@",p.name);
+    }
+    
+    [self.showTableView reloadData];
 
 }
 
 -(void)back
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
+-(void)showInfo:(UIButton *)btn
+{
+    NSString * string = nil;
+    if (btn.tag == 0) {
+        string = self.flight.cabinRule;
+    }
+    else{
+        string = self.inFlight.cabinRule;
+    }
+    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"退改签信息" message:string delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
+    
 }
 @end

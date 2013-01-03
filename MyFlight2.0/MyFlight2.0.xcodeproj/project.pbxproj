@@ -437,6 +437,8 @@
 		18DDB3BE16955F83004CEC75 /* LinkPersonInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3BD16955F83004CEC75 /* LinkPersonInfo.m */; };
 		18DDB3C116956244004CEC75 /* InFlightConditionWJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3C016956243004CEC75 /* InFlightConditionWJ.m */; };
 		18DDB3C416956965004CEC75 /* OrderBasicInfoWJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3C316956964004CEC75 /* OrderBasicInfoWJ.m */; };
+		18DDB3FD16957A89004CEC75 /* WJOrderBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3FC16957A87004CEC75 /* WJOrderBasicCell.m */; };
+		18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DDB3FE16957A9A004CEC75 /* WJOrderBasicCell.xib */; };
 		18DF892F16881F8B00D2DDAE /* OneWayCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF892D16881F8B00D2DDAE /* OneWayCheckViewController.m */; };
 		18DF893016881F8B00D2DDAE /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF892E16881F8B00D2DDAE /* OneWayCheckViewController.xib */; };
 		18DF893416881FAD00D2DDAE /* HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF893216881FAD00D2DDAE /* HistoryCell.m */; };
@@ -1230,6 +1232,9 @@
 		18DDB3C016956243004CEC75 /* InFlightConditionWJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InFlightConditionWJ.m; sourceTree = "<group>"; };
 		18DDB3C216956964004CEC75 /* OrderBasicInfoWJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderBasicInfoWJ.h; sourceTree = "<group>"; };
 		18DDB3C316956964004CEC75 /* OrderBasicInfoWJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderBasicInfoWJ.m; sourceTree = "<group>"; };
+		18DDB3FB16957A86004CEC75 /* WJOrderBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJOrderBasicCell.h; sourceTree = "<group>"; };
+		18DDB3FC16957A87004CEC75 /* WJOrderBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJOrderBasicCell.m; sourceTree = "<group>"; };
+		18DDB3FE16957A9A004CEC75 /* WJOrderBasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WJOrderBasicCell.xib; sourceTree = "<group>"; };
 		18DF892C16881F8B00D2DDAE /* OneWayCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWayCheckViewController.h; sourceTree = "<group>"; };
 		18DF892D16881F8B00D2DDAE /* OneWayCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneWayCheckViewController.m; sourceTree = "<group>"; };
 		18DF892E16881F8B00D2DDAE /* OneWayCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneWayCheckViewController.xib; sourceTree = "<group>"; };
@@ -2766,6 +2771,9 @@
 		18DDB3CF16956FBD004CEC75 /* thisCell */ = {
 			isa = PBXGroup;
 			children = (
+				18DDB3FB16957A86004CEC75 /* WJOrderBasicCell.h */,
+				18DDB3FC16957A87004CEC75 /* WJOrderBasicCell.m */,
+				18DDB3FE16957A9A004CEC75 /* WJOrderBasicCell.xib */,
 			);
 			name = thisCell;
 			sourceTree = "<group>";
@@ -3692,6 +3700,7 @@
 				18D70AC816947D5F00B11636 /* LinkmanCell.xib in Resources */,
 				18D70ACD169482F900B11636 /* FlightConditionCell.xib in Resources */,
 				18DDB3AA16952262004CEC75 /* PayViewController.xib in Resources */,
+				18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3892,18 +3901,12 @@
 				14ECFEC91691462100A99E6B /* AirportMainScreenTitleView.m in Sources */,
 				188B728C16915C69004F09B8 /* MapManager.m in Sources */,
 				188B728F16916C7A004F09B8 /* Ann.m in Sources */,
-
 				14A90B811693E67C002B862C /* TextInputHelperViewController.m in Sources */,
 				18D41A0C169136BB0014B371 /* UIImage+scaleImage.m in Sources */,
 				18CB4879169155D400780BB7 /* UIButton+BackButton.m in Sources */,
 				18D70A9F16941B0700B11636 /* ChooseDiscountCouponController.m in Sources */,
 				18D70AA316941C6D00B11636 /* discountCell.m in Sources */,
-
-
-
 				14984B50169406110037B8CE /* MyCheapCouponHelper.m in Sources */,
-
-
 				18D70AB316946DB100B11636 /* DetailsOrderViewController.m in Sources */,
 				18D70ABC1694789200B11636 /* PassengerCell.m in Sources */,
 				18D70AC116947BC500B11636 /* JourneyCell.m in Sources */,
@@ -3918,7 +3921,7 @@
 				18DDB3BE16955F83004CEC75 /* LinkPersonInfo.m in Sources */,
 				18DDB3C116956244004CEC75 /* InFlightConditionWJ.m in Sources */,
 				18DDB3C416956965004CEC75 /* OrderBasicInfoWJ.m in Sources */,
-
+				18DDB3FD16957A89004CEC75 /* WJOrderBasicCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

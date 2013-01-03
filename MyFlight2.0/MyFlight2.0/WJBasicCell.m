@@ -1,14 +1,14 @@
 //
-//  LinkmanCell.m
+//  WJBasicCell.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 13-1-2.
+//  Created by WangJian on 13-1-3.
 //  Copyright (c) 2013年 LIAN YOU. All rights reserved.
 //
 
-#import "LinkmanCell.h"
+#import "WJBasicCell.h"
 
-@implementation LinkmanCell
+@implementation WJBasicCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,9 +26,4 @@
     // Configure the view for the selected state
 }
 
-- (void)dealloc {
-    [_nsme release];
-    [_phone release];
-    [super dealloc];
-}
 @end

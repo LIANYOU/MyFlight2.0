@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderDetaile.h"
+
+
+
 @interface PayViewController : UIViewController
 
 @property (nonatomic, retain) OrderDetaile * orderDetaile;
+
+@property (nonatomic, retain) NSString * searchType;
+
 @end

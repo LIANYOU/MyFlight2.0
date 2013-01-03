@@ -10,11 +10,11 @@
 
 @interface OrderBasicInfoWJ : NSObject
 
-@property (nonatomic, retain) NSString * code;
-@property (nonatomic, retain) NSString * createDate;
-@property (nonatomic, retain) NSString * stsCh;
-@property (nonatomic, retain) NSString * payStsCh;
-@property (nonatomic, retain) NSString * totalMoney;
+@property (nonatomic, retain) NSString * code;  // 订单号
+@property (nonatomic, retain) NSString * createDate; // 创建日期
+@property (nonatomic, retain) NSString * stsCh;   // 订单状态
+@property (nonatomic, retain) NSString * payStsCh;// 支付状态
+@property (nonatomic, retain) NSString * totalMoney;// 总额
 
 
 @end

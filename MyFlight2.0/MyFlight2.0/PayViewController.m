@@ -60,6 +60,7 @@
 {
     DetailsOrderViewController * detail = [[DetailsOrderViewController alloc] init];
     detail.detaile = self.orderDetaile;
+    detail.searchType = self.searchType;
     [self.navigationController pushViewController:detail animated:YES];
     [detail release];
 }
