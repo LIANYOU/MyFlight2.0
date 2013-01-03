@@ -12,7 +12,7 @@
 @implementation LoginBusiness
 
 //登陆
-- (void) loginWithName:(NSString *)name password:(NSString *)passwd andDelegate:(id)delegate{
+- (void) loginWithName:(NSString *)name password:(NSString *)passwd andDelegate:(id<ServiceDelegate>)delegate{
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
     [dic setObject:name forKey:KEY_Login_Account];
@@ -27,7 +27,7 @@
 }
 
 //新浪微博登陆
--(void) loginWithOAuth:(NSMutableDictionary *) userInfo andDelegate:(id)delegate{
+-(void) loginWithOAuth:(NSMutableDictionary *) userInfo andDelegate:(id<ServiceDelegate>)delegate{
     [LoginInNetworkHelper submitOAuthDateToServer:userInfo delegate:delegate];
 }
 

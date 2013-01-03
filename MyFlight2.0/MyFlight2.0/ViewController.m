@@ -69,7 +69,7 @@
 //    MyCenterTable_1 *myCenter = nil;
     
     BOOL  isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:KEY_Default_IsUserLogin];
-    isLogin = true;
+//    isLogin = true;
     CCLog(@"用户登陆 %d",isLogin);
     
     if (isLogin) {

@@ -63,6 +63,31 @@
 		145A2D6F16855F42000DAAA1 /* ModifyPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D6D16855F40000DAAA1 /* ModifyPassWordViewController.xib */; };
 		145A2D7516858609000DAAA1 /* MyCheapFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2D7316858609000DAAA1 /* MyCheapFlightViewController.m */; };
 		145A2D7616858609000DAAA1 /* MyCheapFlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145A2D7416858609000DAAA1 /* MyCheapFlightViewController.xib */; };
+		14633DE6169528C700701518 /* FrequentMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14633DE4169528C700701518 /* FrequentMainViewController.m */; };
+		14633DE7169528C700701518 /* FrequentMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14633DE5169528C700701518 /* FrequentMainViewController.xib */; };
+		14633E2916952EF500701518 /* icon_aboutus.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E2216952EF500701518 /* icon_aboutus.png */; };
+		14633E2A16952EF500701518 /* icon_Assistant.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E2316952EF500701518 /* icon_Assistant.png */; };
+		14633E2B16952EF500701518 /* icon_Bind.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E2416952EF500701518 /* icon_Bind.png */; };
+		14633E2C16952EF500701518 /* icon_Flyer.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E2516952EF500701518 /* icon_Flyer.png */; };
+		14633E2D16952EF500701518 /* icon_Guide.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E2616952EF500701518 /* icon_Guide.png */; };
+		14633E2E16952EF500701518 /* icon_Setup.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E2716952EF500701518 /* icon_Setup.png */; };
+		14633E2F16952EF500701518 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E2816952EF500701518 /* logo.png */; };
+		14633E33169543BC00701518 /* LoginForFrequentFlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14633E31169543BC00701518 /* LoginForFrequentFlayer.m */; };
+		14633E34169543BC00701518 /* LoginForFrequentFlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14633E32169543BC00701518 /* LoginForFrequentFlayer.xib */; };
+		14633E3A1695645C00701518 /* FrequentFlyNetWorkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14633E391695645C00701518 /* FrequentFlyNetWorkHelper.m */; };
+		14633E3F1695668B00701518 /* SPHFrequentMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14633E3D1695668B00701518 /* SPHFrequentMainViewController.m */; };
+		14633E401695668B00701518 /* SPHFrequentMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14633E3E1695668B00701518 /* SPHFrequentMainViewController.xib */; };
+		14633E4A16956DE300701518 /* btn_tep_green_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E4216956DE300701518 /* btn_tep_green_click.png */; };
+		14633E4B16956DE300701518 /* btn_tep_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E4316956DE300701518 /* btn_tep_green.png */; };
+		14633E4C16956DE300701518 /* icon_img_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E4416956DE300701518 /* icon_img_click.png */; };
+		14633E4D16956DE300701518 /* icon_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E4516956DE300701518 /* icon_img.png */; };
+		14633E4E16956DE300701518 /* icon_prompt_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E4616956DE300701518 /* icon_prompt_click.png */; };
+		14633E4F16956DE300701518 /* icon_prompt.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E4716956DE300701518 /* icon_prompt.png */; };
+		14633E5016956DE300701518 /* icon_registration_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E4816956DE300701518 /* icon_registration_click.png */; };
+		14633E5116956DE300701518 /* icon_registration.png in Resources */ = {isa = PBXBuildFile; fileRef = 14633E4916956DE300701518 /* icon_registration.png */; };
+		14633E561695A7FE00701518 /* QueryLeijiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14633E541695A7FE00701518 /* QueryLeijiViewController.m */; };
+		14633E571695A7FE00701518 /* QueryLeijiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14633E551695A7FE00701518 /* QueryLeijiViewController.xib */; };
+		14633E631695AC1900701518 /* MyCheapCouponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14633E621695AC1900701518 /* MyCheapCouponHelper.m */; };
 		146986BC167DCB5700E9B30D /* gray_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B1167DCB5700E9B30D /* gray_btn.png */; };
 		146986BD167DCB5700E9B30D /* green_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B2167DCB5700E9B30D /* green_btn.png */; };
 		146986BE167DCB5700E9B30D /* icon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B3167DCB5700E9B30D /* icon_qq.png */; };
@@ -91,7 +116,6 @@
 		14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */; };
 		14805BA4167875E900836353 /* bg_pek.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA3167875E900836353 /* bg_pek.png */; };
 		14805BA61678760B00836353 /* icon_return.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA51678760B00836353 /* icon_return.png */; };
-		14984B50169406110037B8CE /* MyCheapCouponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14984B4F169406110037B8CE /* MyCheapCouponHelper.m */; };
 		149B7708168BE3C3006281A3 /* MyCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7707168BE3C3006281A3 /* MyCenterCell.m */; };
 		149B770A168BE3E1006281A3 /* MyCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B7709168BE3E1006281A3 /* MyCenterCell.xib */; };
 		149B770E168BF386006281A3 /* MyCenterSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B770D168BF383006281A3 /* MyCenterSecondCell.m */; };
@@ -722,6 +746,38 @@
 		145A2D7216858609000DAAA1 /* MyCheapFlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCheapFlightViewController.h; sourceTree = "<group>"; };
 		145A2D7316858609000DAAA1 /* MyCheapFlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCheapFlightViewController.m; sourceTree = "<group>"; };
 		145A2D7416858609000DAAA1 /* MyCheapFlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCheapFlightViewController.xib; sourceTree = "<group>"; };
+		14633DE3169528C700701518 /* FrequentMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentMainViewController.h; sourceTree = "<group>"; };
+		14633DE4169528C700701518 /* FrequentMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentMainViewController.m; sourceTree = "<group>"; };
+		14633DE5169528C700701518 /* FrequentMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrequentMainViewController.xib; sourceTree = "<group>"; };
+		14633E2216952EF500701518 /* icon_aboutus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_aboutus.png; sourceTree = "<group>"; };
+		14633E2316952EF500701518 /* icon_Assistant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Assistant.png; sourceTree = "<group>"; };
+		14633E2416952EF500701518 /* icon_Bind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Bind.png; sourceTree = "<group>"; };
+		14633E2516952EF500701518 /* icon_Flyer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Flyer.png; sourceTree = "<group>"; };
+		14633E2616952EF500701518 /* icon_Guide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Guide.png; sourceTree = "<group>"; };
+		14633E2716952EF500701518 /* icon_Setup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Setup.png; sourceTree = "<group>"; };
+		14633E2816952EF500701518 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		14633E30169543BC00701518 /* LoginForFrequentFlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginForFrequentFlayer.h; sourceTree = "<group>"; };
+		14633E31169543BC00701518 /* LoginForFrequentFlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginForFrequentFlayer.m; sourceTree = "<group>"; };
+		14633E32169543BC00701518 /* LoginForFrequentFlayer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginForFrequentFlayer.xib; sourceTree = "<group>"; };
+		14633E3616954D1400701518 /* FrequentFlyUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentFlyUility.h; sourceTree = "<group>"; };
+		14633E381695645C00701518 /* FrequentFlyNetWorkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentFlyNetWorkHelper.h; sourceTree = "<group>"; };
+		14633E391695645C00701518 /* FrequentFlyNetWorkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentFlyNetWorkHelper.m; sourceTree = "<group>"; };
+		14633E3C1695668B00701518 /* SPHFrequentMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHFrequentMainViewController.h; sourceTree = "<group>"; };
+		14633E3D1695668B00701518 /* SPHFrequentMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHFrequentMainViewController.m; sourceTree = "<group>"; };
+		14633E3E1695668B00701518 /* SPHFrequentMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPHFrequentMainViewController.xib; sourceTree = "<group>"; };
+		14633E4216956DE300701518 /* btn_tep_green_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_tep_green_click.png; sourceTree = "<group>"; };
+		14633E4316956DE300701518 /* btn_tep_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_tep_green.png; sourceTree = "<group>"; };
+		14633E4416956DE300701518 /* icon_img_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_img_click.png; sourceTree = "<group>"; };
+		14633E4516956DE300701518 /* icon_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_img.png; sourceTree = "<group>"; };
+		14633E4616956DE300701518 /* icon_prompt_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_prompt_click.png; sourceTree = "<group>"; };
+		14633E4716956DE300701518 /* icon_prompt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_prompt.png; sourceTree = "<group>"; };
+		14633E4816956DE300701518 /* icon_registration_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_registration_click.png; sourceTree = "<group>"; };
+		14633E4916956DE300701518 /* icon_registration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_registration.png; sourceTree = "<group>"; };
+		14633E531695A7FE00701518 /* QueryLeijiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryLeijiViewController.h; sourceTree = "<group>"; };
+		14633E541695A7FE00701518 /* QueryLeijiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryLeijiViewController.m; sourceTree = "<group>"; };
+		14633E551695A7FE00701518 /* QueryLeijiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QueryLeijiViewController.xib; sourceTree = "<group>"; };
+		14633E611695AC1900701518 /* MyCheapCouponHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCheapCouponHelper.h; sourceTree = "<group>"; };
+		14633E621695AC1900701518 /* MyCheapCouponHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCheapCouponHelper.m; sourceTree = "<group>"; };
 		146986B1167DCB5700E9B30D /* gray_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_btn.png; sourceTree = "<group>"; };
 		146986B2167DCB5700E9B30D /* green_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_btn.png; sourceTree = "<group>"; };
 		146986B3167DCB5700E9B30D /* icon_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_qq.png; sourceTree = "<group>"; };
@@ -766,8 +822,6 @@
 		14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPortDataBaseSingleton.m; sourceTree = "<group>"; };
 		14805BA3167875E900836353 /* bg_pek.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pek.png; sourceTree = "<group>"; };
 		14805BA51678760B00836353 /* icon_return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_return.png; sourceTree = "<group>"; };
-		14984B4E169406110037B8CE /* MyCheapCouponHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCheapCouponHelper.h; sourceTree = "<group>"; };
-		14984B4F169406110037B8CE /* MyCheapCouponHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCheapCouponHelper.m; sourceTree = "<group>"; };
 		149B7706168BE3C2006281A3 /* MyCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterCell.h; sourceTree = "<group>"; };
 		149B7707168BE3C3006281A3 /* MyCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterCell.m; sourceTree = "<group>"; };
 		149B7709168BE3E1006281A3 /* MyCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterCell.xib; sourceTree = "<group>"; };
@@ -1535,6 +1589,7 @@
 			isa = PBXGroup;
 			children = (
 				18DDB39C1695196A004CEC75 /* OrderDetaile */,
+				14633E371695643200701518 /* FrequentFly */,
 				149B77F4168D4689006281A3 /* flightbookBusiness */,
 				141523841682C09F00E2FF0E /* userBusiness */,
 			);
@@ -1544,12 +1599,12 @@
 		141523841682C09F00E2FF0E /* userBusiness */ = {
 			isa = PBXGroup;
 			children = (
+				14633E611695AC1900701518 /* MyCheapCouponHelper.h */,
+				14633E621695AC1900701518 /* MyCheapCouponHelper.m */,
 				1415238B1682C3BE00E2FF0E /* LoginInNetworkHelper.h */,
 				1415238C1682C3BE00E2FF0E /* LoginInNetworkHelper.m */,
 				141523851682C12000E2FF0E /* LoginBusiness.h */,
 				141523861682C12000E2FF0E /* LoginBusiness.m */,
-				14984B4E169406110037B8CE /* MyCheapCouponHelper.h */,
-				14984B4F169406110037B8CE /* MyCheapCouponHelper.m */,
 			);
 			name = userBusiness;
 			sourceTree = "<group>";
@@ -1659,6 +1714,8 @@
 		1427937F167078DA00E2E1E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				14633E4116956DCE00701518 /* 航空公司常旅客 */,
+				14633E2116952EE000701518 /* 更多 */,
 				18D19A0C168FEC04004861C3 /* 机场大屏 */,
 				18CB487A16918A6B00780BB7 /* 我的订单 */,
 				18CB47CD16914CE100780BB7 /* 机票预订 */,
@@ -1892,6 +1949,9 @@
 		14633DA816951EE300701518 /* FrequentFlyer */ = {
 			isa = PBXGroup;
 			children = (
+				14633E521695A59100701518 /* 飞行累积查询 */,
+				14633E3B1695664B00701518 /* FrequentFlyPage */,
+				14633DE11695286700701518 /* mainPage */,
 				14633DAA16951F1400701518 /* logininview */,
 			);
 			name = FrequentFlyer;
@@ -1900,8 +1960,87 @@
 		14633DAA16951F1400701518 /* logininview */ = {
 			isa = PBXGroup;
 			children = (
+				14633E30169543BC00701518 /* LoginForFrequentFlayer.h */,
+				14633E31169543BC00701518 /* LoginForFrequentFlayer.m */,
+				14633E32169543BC00701518 /* LoginForFrequentFlayer.xib */,
 			);
 			name = logininview;
+			sourceTree = "<group>";
+		};
+		14633DE11695286700701518 /* mainPage */ = {
+			isa = PBXGroup;
+			children = (
+				14633DE3169528C700701518 /* FrequentMainViewController.h */,
+				14633DE4169528C700701518 /* FrequentMainViewController.m */,
+				14633DE5169528C700701518 /* FrequentMainViewController.xib */,
+			);
+			name = mainPage;
+			sourceTree = "<group>";
+		};
+		14633E2116952EE000701518 /* 更多 */ = {
+			isa = PBXGroup;
+			children = (
+				14633E2216952EF500701518 /* icon_aboutus.png */,
+				14633E2316952EF500701518 /* icon_Assistant.png */,
+				14633E2416952EF500701518 /* icon_Bind.png */,
+				14633E2516952EF500701518 /* icon_Flyer.png */,
+				14633E2616952EF500701518 /* icon_Guide.png */,
+				14633E2716952EF500701518 /* icon_Setup.png */,
+				14633E2816952EF500701518 /* logo.png */,
+			);
+			name = "更多";
+			sourceTree = "<group>";
+		};
+		14633E3516954CE700701518 /* frequentFly */ = {
+			isa = PBXGroup;
+			children = (
+				14633E3616954D1400701518 /* FrequentFlyUility.h */,
+			);
+			name = frequentFly;
+			sourceTree = "<group>";
+		};
+		14633E371695643200701518 /* FrequentFly */ = {
+			isa = PBXGroup;
+			children = (
+				14633E381695645C00701518 /* FrequentFlyNetWorkHelper.h */,
+				14633E391695645C00701518 /* FrequentFlyNetWorkHelper.m */,
+			);
+			name = FrequentFly;
+			sourceTree = "<group>";
+		};
+		14633E3B1695664B00701518 /* FrequentFlyPage */ = {
+			isa = PBXGroup;
+			children = (
+				14633E3C1695668B00701518 /* SPHFrequentMainViewController.h */,
+				14633E3D1695668B00701518 /* SPHFrequentMainViewController.m */,
+				14633E3E1695668B00701518 /* SPHFrequentMainViewController.xib */,
+			);
+			name = FrequentFlyPage;
+			sourceTree = "<group>";
+		};
+		14633E4116956DCE00701518 /* 航空公司常旅客 */ = {
+			isa = PBXGroup;
+			children = (
+				14633E4216956DE300701518 /* btn_tep_green_click.png */,
+				14633E4316956DE300701518 /* btn_tep_green.png */,
+				14633E4416956DE300701518 /* icon_img_click.png */,
+				14633E4516956DE300701518 /* icon_img.png */,
+				14633E4616956DE300701518 /* icon_prompt_click.png */,
+				14633E4716956DE300701518 /* icon_prompt.png */,
+				14633E4816956DE300701518 /* icon_registration_click.png */,
+				14633E4916956DE300701518 /* icon_registration.png */,
+			);
+			name = "航空公司常旅客";
+			sourceTree = "<group>";
+		};
+		14633E521695A59100701518 /* 飞行累积查询 */ = {
+			isa = PBXGroup;
+			children = (
+				14633E531695A7FE00701518 /* QueryLeijiViewController.h */,
+				14633E541695A7FE00701518 /* QueryLeijiViewController.m */,
+				14633E551695A7FE00701518 /* QueryLeijiViewController.xib */,
+			);
+			name = "飞行累积查询";
 			sourceTree = "<group>";
 		};
 		146986B0167DCB5700E9B30D /* 登录 */ = {
@@ -2017,6 +2156,7 @@
 		148059D01676E6BE00836353 /* configure */ = {
 			isa = PBXGroup;
 			children = (
+				14633E3516954CE700701518 /* frequentFly */,
 				149B7812168D97D7006281A3 /* constClassInfo */,
 				14805A0E1676F04B00836353 /* AppConfigure.h */,
 				14805A0F1676F0DF00836353 /* AirPortsUility.h */,
@@ -3692,6 +3832,25 @@
 				18D70AC816947D5F00B11636 /* LinkmanCell.xib in Resources */,
 				18D70ACD169482F900B11636 /* FlightConditionCell.xib in Resources */,
 				18DDB3AA16952262004CEC75 /* PayViewController.xib in Resources */,
+				14633DE7169528C700701518 /* FrequentMainViewController.xib in Resources */,
+				14633E2916952EF500701518 /* icon_aboutus.png in Resources */,
+				14633E2A16952EF500701518 /* icon_Assistant.png in Resources */,
+				14633E2B16952EF500701518 /* icon_Bind.png in Resources */,
+				14633E2C16952EF500701518 /* icon_Flyer.png in Resources */,
+				14633E2D16952EF500701518 /* icon_Guide.png in Resources */,
+				14633E2E16952EF500701518 /* icon_Setup.png in Resources */,
+				14633E2F16952EF500701518 /* logo.png in Resources */,
+				14633E34169543BC00701518 /* LoginForFrequentFlayer.xib in Resources */,
+				14633E401695668B00701518 /* SPHFrequentMainViewController.xib in Resources */,
+				14633E4A16956DE300701518 /* btn_tep_green_click.png in Resources */,
+				14633E4B16956DE300701518 /* btn_tep_green.png in Resources */,
+				14633E4C16956DE300701518 /* icon_img_click.png in Resources */,
+				14633E4D16956DE300701518 /* icon_img.png in Resources */,
+				14633E4E16956DE300701518 /* icon_prompt_click.png in Resources */,
+				14633E4F16956DE300701518 /* icon_prompt.png in Resources */,
+				14633E5016956DE300701518 /* icon_registration_click.png in Resources */,
+				14633E5116956DE300701518 /* icon_registration.png in Resources */,
+				14633E571695A7FE00701518 /* QueryLeijiViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3892,18 +4051,11 @@
 				14ECFEC91691462100A99E6B /* AirportMainScreenTitleView.m in Sources */,
 				188B728C16915C69004F09B8 /* MapManager.m in Sources */,
 				188B728F16916C7A004F09B8 /* Ann.m in Sources */,
-
 				14A90B811693E67C002B862C /* TextInputHelperViewController.m in Sources */,
 				18D41A0C169136BB0014B371 /* UIImage+scaleImage.m in Sources */,
 				18CB4879169155D400780BB7 /* UIButton+BackButton.m in Sources */,
 				18D70A9F16941B0700B11636 /* ChooseDiscountCouponController.m in Sources */,
 				18D70AA316941C6D00B11636 /* discountCell.m in Sources */,
-
-
-
-				14984B50169406110037B8CE /* MyCheapCouponHelper.m in Sources */,
-
-
 				18D70AB316946DB100B11636 /* DetailsOrderViewController.m in Sources */,
 				18D70ABC1694789200B11636 /* PassengerCell.m in Sources */,
 				18D70AC116947BC500B11636 /* JourneyCell.m in Sources */,
@@ -3918,7 +4070,12 @@
 				18DDB3BE16955F83004CEC75 /* LinkPersonInfo.m in Sources */,
 				18DDB3C116956244004CEC75 /* InFlightConditionWJ.m in Sources */,
 				18DDB3C416956965004CEC75 /* OrderBasicInfoWJ.m in Sources */,
-
+				14633DE6169528C700701518 /* FrequentMainViewController.m in Sources */,
+				14633E33169543BC00701518 /* LoginForFrequentFlayer.m in Sources */,
+				14633E3A1695645C00701518 /* FrequentFlyNetWorkHelper.m in Sources */,
+				14633E3F1695668B00701518 /* SPHFrequentMainViewController.m in Sources */,
+				14633E561695A7FE00701518 /* QueryLeijiViewController.m in Sources */,
+				14633E631695AC1900701518 /* MyCheapCouponHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

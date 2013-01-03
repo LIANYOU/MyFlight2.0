@@ -63,13 +63,13 @@
     
     CommonContact *contact = [[CommonContact alloc] initWithName:@"李测试" type:@"01" certType:@"0" certNo:@"555555555555555" contactId:@"2de69decad604966abbc8b802677dc82"];
     
-    
+    NSString *passId = @"2de69decad604966abbc8b802677dc82";
     
     LoginBusiness *bis =[[LoginBusiness alloc] init];
     
-//    [bis deleteCommonPassengerWithPassengerId:nil userDic:nil andDelegate:self];
+   [bis deleteCommonPassengerWithPassengerId:passId userDic:nil andDelegate:self];
     
-    [bis editCommonPassengerWithPassengerData:contact andDelegate:self];
+//    [bis editCommonPassengerWithPassengerData:contact andDelegate:self];
     
     [bis release];
     [contact release];

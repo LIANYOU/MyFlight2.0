@@ -18,7 +18,7 @@
 - (void) loginWithName:(NSString *) name password:(NSString *) passwd andDelegate:(id<ServiceDelegate>) delegate;
 
 //第三方登陆
--(void) loginWithOAuth:(NSMutableDictionary *) userInfo andDelegate:(id)delegate;
+-(void) loginWithOAuth:(NSMutableDictionary *) userInfo andDelegate:(id<ServiceDelegate>)delegate;
 
 //注册 
 - (void) registerWithAccount:(NSString *) name password:(NSString *) passwd yaCode:(NSString *)yzCode andDelegate:(id<ServiceDelegate>) delegate;
