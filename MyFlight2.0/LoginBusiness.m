@@ -66,6 +66,18 @@
 //编辑账号信息
 - (void) editAccountInfoWithMemberId:(NSString *) memberId userName:(NSString *) name userSex:(NSString *) sex userAddress:(NSString *) address  andDelegate:(id<ServiceDelegate>) delegate{
     
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithCapacity:5];
+    
+   
+    
+    [dic setObject:memberId forKey:@"memberId"];
+    [dic setObject:name forKey:@"name"];
+    [dic setObject:sex forKey:@"sex"];
+    [dic setObject:address forKey:@"address"];
+    
+    [LoginInNetworkHelper editAccountInfo:dic delegate:delegate];
+    [dic release];
+    
     
     
 }

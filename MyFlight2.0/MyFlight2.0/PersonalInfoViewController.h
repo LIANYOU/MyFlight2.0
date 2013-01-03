@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PersonalInfoViewController : UIViewController
+#import "ServiceDelegate.h"
+@interface PersonalInfoViewController : UIViewController<ServiceDelegate>
 
 //用户名字 
 @property (retain, nonatomic) IBOutlet UITextField *personalName;
