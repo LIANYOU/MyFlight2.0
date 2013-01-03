@@ -1,14 +1,14 @@
 //
-//  LinkmanCell.m
+//  WJOrderBasicCell.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 13-1-2.
+//  Created by WangJian on 13-1-3.
 //  Copyright (c) 2013年 LIAN YOU. All rights reserved.
 //
 
-#import "LinkmanCell.h"
+#import "WJOrderBasicCell.h"
 
-@implementation LinkmanCell
+@implementation WJOrderBasicCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,8 +27,17 @@
 }
 
 - (void)dealloc {
-    [_nsme release];
-    [_phone release];
+    [_orderNo release];
+    [_orderData release];
+    [_orderStation release];
+    [_payStation release];
+    [_orderAllPay release];
+    [_infoView release];
+    [_discount release];
+    [_discountPay release];
+    [_slive release];
+    [_gold release];
+    [_payOnline release];
     [super dealloc];
 }
 @end

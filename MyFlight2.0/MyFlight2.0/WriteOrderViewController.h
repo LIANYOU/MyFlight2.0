@@ -57,6 +57,9 @@
 @property (retain, nonatomic) IBOutlet UILabel *bigUpPayMoney;
 
 
+@property (retain, nonatomic) NSString * searchType;
+
+
 //*****headView  property
 @property (retain, nonatomic) IBOutlet UILabel *PerStanderPrice;
 @property (retain, nonatomic) IBOutlet UILabel *PersonConstructionFee;

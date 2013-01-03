@@ -804,7 +804,8 @@
 
                     [self.stringArr addObject:string];
                 }
-                  
+                 
+             
                 personNumber = type.allKeys.count-childNumber;  // 此处获得了选择的成人和儿童的人数
                 
    
@@ -1035,15 +1036,15 @@
     pay.captcha = nil;
     
     
-    NSString * type = nil;
+    
     if (self.flag == 1) {
-        type = @"0";
+        self.searchType = @"0";
     }
     else{
-        type = @"1";
+        self.searchType = @"1";
     }
     
-    NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:type,KEY_FlightBook_prodType,@"hello",KEY_FlightBook_rmk, nil];
+    NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:self.searchType,KEY_FlightBook_prodType,@"hello",KEY_FlightBook_rmk, nil];
     
     
     flightContactVo * contactVo = [[flightContactVo alloc] init];
@@ -1232,6 +1233,7 @@
     
     PayViewController * pay = [[PayViewController alloc] init];
     pay.orderDetaile = order;
+    pay.searchType = self.searchType;
     [self.navigationController pushViewController:pay animated:YES];
     [pay release];
 

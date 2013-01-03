@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LinkmanCell : UITableViewCell
+@property (retain, nonatomic) IBOutlet UILabel *nsme;
+@property (retain, nonatomic) IBOutlet UILabel *phone;
 
 @end

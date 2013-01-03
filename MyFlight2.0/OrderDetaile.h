@@ -31,8 +31,8 @@
           andDelegate:(id<ServiceDelegate>) delegate;
 
 
--(void) getOrderDetailInfo;
+-(void) getOrderDetailInfo : (NSString *) searchType;
 
--(void) analysisData:(NSDictionary *)dic;
+-(void) analysisData:(NSDictionary *)dic andSearchType:(NSString *) type;
 
 @end
