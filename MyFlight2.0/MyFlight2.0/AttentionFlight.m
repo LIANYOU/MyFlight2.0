@@ -11,6 +11,7 @@
 #import "JSONKit.h"
 
 @implementation AttentionFlight
+@synthesize delegate = _delegate;
 -(id) initWithMemberId:(NSString *)memberId
           andorgSource:(NSString *)orgSource
                 andFno:(NSString *)fno
@@ -91,7 +92,7 @@
         NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:dictionary,@"arr", nil];
         NSNotification * not = [NSNotification notificationWithName:@"关注航班" object:self userInfo:dic];
         [[NSNotificationCenter defaultCenter] postNotification:not];
-        
+//        [self.delegate reloadConditionTableviewData];
     }];
     [request setFailedBlock:^{
         NSError *error = [request error];

@@ -11,9 +11,16 @@
 #import "ChooseAirPortViewController.h"
 #import "AppConfigure.h"
 #import "AirPortData.h"
+
+#pragma mark - 日历
+#import "Date.h"
+#import "ViewControllerDelegate.h"
+#import "SelectCalendarController.h"
+#import "MonthDayCell.h"
+#import "AttentionFlight.h"
 @class LookFlightConditionCell;
 
-@interface SearchFlightConditionController : UIViewController<SVSegmentedControlDelegate,ChooseAirPortViewControllerDelegate,UITableViewDataSource,UITableViewDelegate>{
+@interface SearchFlightConditionController : UIViewController<SVSegmentedControlDelegate,ChooseAirPortViewControllerDelegate,UITableViewDataSource,UITableViewDelegate,ViewControllerDelegate,AttentionFlightDelegate>{
     SVSegmentedControl * mySegmentController;
     NSString * startAirPortCode;
     NSString * arrAirPortCode;
@@ -33,6 +40,13 @@
     
     AirPortData * myAirPortData;
     
+    UIImageView * animationView;//查询无结果动画view
+    
+    
+    Date * leaveDate;   //通过获取到的日期
+    int todayCount;
+    int selectDayCount;
+    UIButton * animationBtn;//大按钮（有动画的按钮）
 }
 
 
@@ -52,8 +66,14 @@
 @property (retain, nonatomic) IBOutlet UIView *selectedByDate;
 
 @property (retain, nonatomic) IBOutlet UIView *selectedByAirPort;
+
+@property (retain,nonatomic)IBOutlet UILabel * whichDateLabel;  //今天、明天或者后天
+@property (retain,nonatomic)IBOutlet UILabel * whichDataLabelAirPort;
+@property (nonatomic,retain)IBOutlet UILabel * listCellState;   //关注列表的状态
+
 - (IBAction)selectedInquireType:(UISegmentedControl *)sender;
 
+-(void)attentionTapEvent;
 
 - (IBAction)chooseDateBtnClick:(id)sender;
 

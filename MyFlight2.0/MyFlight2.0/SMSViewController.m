@@ -224,7 +224,7 @@
 
 -(void)sendMessageTap:(UITapGestureRecognizer *)tap{
     [[tap.view superview] viewWithTag:100];
-    UIAlertView * tapAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除", nil];
+//    UIAlertView * tapAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除", nil];
 }
 
 -(void)dealloc{

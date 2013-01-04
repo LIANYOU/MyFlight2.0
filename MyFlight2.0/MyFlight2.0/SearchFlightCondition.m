@@ -73,7 +73,7 @@
         str5=@"";
     }
     
-     NSString * search=[NSString stringWithFormat:@"http://test.51you.com/web/phone/prod/flight/flightMovement.jsp?%@%@%@%@%@",str1,str2,str3,str4,str5];
+     NSString * search=[NSString stringWithFormat:@"http://223.202.36.179:9580/web/phone/prod/flight/flightMovement.jsp?%@%@%@%@%@",str1,str2,str3,str4,str5];
     NSLog(@"search:%@",search);
    
     self.allData = [NSMutableData data];

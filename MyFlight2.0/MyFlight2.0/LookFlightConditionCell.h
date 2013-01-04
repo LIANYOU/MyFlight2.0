@@ -21,6 +21,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *station;
 @property (retain, nonatomic) IBOutlet UIButton *closeBtn;
 
-
+@property(retain,nonatomic) IBOutlet UIImageView * bootImageView;
 
 @end
