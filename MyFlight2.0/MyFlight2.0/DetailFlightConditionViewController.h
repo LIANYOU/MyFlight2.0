@@ -15,7 +15,7 @@
 #import "WXApi.h"
 #import <MessageUI/MessageUI.h>
 #import <MapKit/MapKit.h>
-@interface DetailFlightConditionViewController : UIViewController<UIActionSheetDelegate,SinaWeiboRequestDelegate,SinaWeiboDelegate,WXApiDelegate,MFMessageComposeViewControllerDelegate,MKMapViewDelegate>{
+@interface DetailFlightConditionViewController : UIViewController<UIActionSheetDelegate,SinaWeiboRequestDelegate,SinaWeiboDelegate,WXApiDelegate,MFMessageComposeViewControllerDelegate,MKMapViewDelegate,MFMailComposeViewControllerDelegate>{
     NSDictionary * _dic;
     FlightConditionDetailData * myFlightConditionDetailData;
     

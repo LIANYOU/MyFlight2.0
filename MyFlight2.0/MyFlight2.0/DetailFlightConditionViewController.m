@@ -11,6 +11,12 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
+#import "AppConfigure.h"
+#import "GetAttentionFlight.h"
+#import "AttentionFlight.h"
+
+#import "SearchFlightConditionController.h"
+
 @interface DetailFlightConditionViewController ()
 @property(nonatomic,retain) NSString *shareMsg;
 @property(nonatomic,retain) NSString *shareMsgWithWeibo;
@@ -60,7 +66,7 @@
     
     //判断提前还是晚点
     if ([myFlightConditionDetailData.realDeptTime isEqualToString:@"-"]) {
-        NSLog(@"---------------------");
+        NSLog(@"航班动态  时间中有“-”，还没到达 ---------------------");
         self.fromResult.text = @"";
         self.arriveResult.text = @"";
     }else{
@@ -89,6 +95,63 @@
     [self fillAllData];
     
 }
+
+#pragma mark - 关注该航班按钮响应
+- (IBAction)attentThisPlane:(id)sender {
+    NSString * memberID = Default_UserMemberId_Value;
+    NSString * hwID = HWID_VALUE;
+   
+    
+    
+    
+    //提醒的类型，P:PUSH,  M:短信,  PM:PUSH+短信，  C:取消
+    NSString * pushType = @"P";
+/*    
+    要发送的人订制时必填
+    手机接收格式, 多个手机号使用分号分割
+    type-name-mobile
+    type:J接机人 S:送机人
+    name:姓名
+    mobile:手机号
+    
+    NSString * sendTo = @"J-张三-13100000000";
+*/
+    AttentionFlight * attention = [[AttentionFlight alloc]initWithMemberId:memberID andorgSource:@"51YOU" andFno:myFlightConditionDetailData.flightNum andFdate:@"2013-1-4" andDpt:myFlightConditionDetailData.flightDepcode andArr:myFlightConditionDetailData.flightArrcode andDptTime:myFlightConditionDetailData.deptTime andArrTime:myFlightConditionDetailData.arrTime andDptName:nil andArrName:nil andType:pushType andSendTo:nil andMessage:nil andToken:hwID andSource:@"1" andHwId:hwID andServiceCode:@"01"];
+    
+    
+    NSLog(@"关注航班的条件 : %@, %@ , %@, %@ ,%@ , %@",myFlightConditionDetailData.flightNum,myFlightConditionDetailData.flightDepcode,myFlightConditionDetailData.flightArrcode,myFlightConditionDetailData.deptTime,myFlightConditionDetailData.arrTime,pushType);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDelFlightData:) name:@"关注航班" object:nil];
+    [attention lookFlightAttention];
+    
+}
+-(void)receiveDelFlightData:(NSNotification *)not
+{
+    NSDictionary * array = [[not userInfo] objectForKey:@"arr"];
+    NSString * string = [array objectForKey:@"message"];
+    
+    NSLog(@"-----%@",array);
+    
+    if (string == @"") {
+        NSLog(@"关注航班成功");
+
+        for (id obj in self.navigationController.childViewControllers) {
+            if ([obj isKindOfClass:[SearchFlightConditionController class]]) {
+                [(SearchFlightConditionController *)obj attentionTapEvent];
+                [self.navigationController popToViewController:obj animated:YES];
+            }
+        }
+      
+    }
+    
+    else{
+        NSLog(@"关注航班失败");
+    }
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    
+}
+
 
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];

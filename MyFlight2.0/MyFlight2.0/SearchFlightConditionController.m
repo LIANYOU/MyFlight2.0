@@ -17,15 +17,18 @@
 #import "JSONKit.h"
 #import "GetAttentionFlight.h"
 #import "LookFlightConditionCell.h"
-#import "AttentionFlight.h"
+
 @interface SearchFlightConditionController ()
 
 {
     int btnTag;  // 判断取消关注的是哪一个
+
 }
 @end
 
 @implementation SearchFlightConditionController
+int whichDay(int year,int month,int day);
+
 @synthesize flightTimeByNumber;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,8 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
+
     self.view.backgroundColor = BACKGROUND_COLOR;
     self.navigationItem.title = @"已关注航班列表";
     selectView = [[UIView alloc]initWithFrame:CGRectMake(0,-[[UIScreen mainScreen]bounds].size.height, 320, [[UIScreen mainScreen]bounds].size.height)];
@@ -49,15 +51,33 @@
     
     
     
-    //航班动态列表
+    //航班动态列表,上面放一个tableview,动画也放这上面
     myConditionListView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height)];
-    myConditionListView.backgroundColor = [UIColor blackColor];
+    myConditionListView.backgroundColor = FOREGROUND_COLOR;
     myConditionListTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height)];
     myConditionListTableView.backgroundColor = FOREGROUND_COLOR;
     myConditionListTableView.dataSource = self;
     myConditionListTableView.delegate = self;
-    [myConditionListView addSubview:myConditionListTableView];
+//    [myConditionListView addSubview:myConditionListTableView]; //在btn之后加
+    myConditionListTableView.hidden = YES;
     [self.view addSubview:myConditionListView];
+
+   
+    //动画
+//    animationView = [[UIImageView alloc]initWithFrame:CGRectMake(0, [[UIScreen mainScreen]bounds].size.height/2 - 160 - 32, 320, 320)];
+    animationView = [[UIImageView alloc]initWithFrame:CGRectMake(10,40 , 300, 300)];
+    NSArray * animationImageArray = [NSArray arrayWithObjects:[UIImage imageNamed:@"dong1.png"],[UIImage imageNamed:@"dong2.png"], nil];
+    animationView.animationImages = animationImageArray;
+    animationView.animationDuration = .35;
+    animationView.hidden = YES;
+//    [myConditionListView addSubview:animationView];
+    animationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [animationBtn addSubview:animationView];
+    animationBtn.frame = CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height);
+    [animationBtn addTarget:self action:@selector(attentionTapEvent) forControlEvents:UIControlEventTouchUpInside];
+    [myConditionListView addSubview:animationBtn];
+    [myConditionListView addSubview:myConditionListTableView];
+    
     
     //遮罩
     shade = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height)];
@@ -72,9 +92,9 @@
     //定制导航右键
     rightsuperView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 85, 72)];
     btnImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 13, 85, 62)];
-    [btnImageView setImage:[UIImage imageNamed:@"add_Attention.png"]];
+    [btnImageView setImage:[UIImage imageNamed:@"add_Attention_condition.png"]];
     [rightsuperView addSubview:btnImageView];
-    UITapGestureRecognizer * attentionTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(attentionTapEvent:)];
+    UITapGestureRecognizer * attentionTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(attentionTapEvent)];
     [rightsuperView addGestureRecognizer:attentionTap];
     [attentionTap release];
     
@@ -131,7 +151,11 @@
     NSInteger year=[conponent year];
     NSInteger month=[conponent month];
     NSInteger day=[conponent day];
-    NSString *  nsDateString= [NSString  stringWithFormat:@"%4d-%2d-%2d",year,month,day];
+    
+     todayCount = whichDay(year, month, day);
+
+    
+    NSString *  nsDateString= [NSString  stringWithFormat:@"%4d-%02d-%02d",year,month,day];
     [self.time setText:nsDateString];
     [self.flightTimeByNumber setText:nsDateString];
 
@@ -144,7 +168,13 @@
     
     
     [self.view addSubview:selectView];
+    
+    self.whichDateLabel.text = @"今天";
+    self.whichDataLabelAirPort.text = @"今天";
     // Do any additional setup after loading the view from its nib.
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDelFlightData:) name:@"关注航班" object:nil];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"获得已经关注航班信息" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -183,10 +213,84 @@
     [super viewDidUnload];
 }
 
-
+#pragma mark - 点击日期按钮
 - (IBAction)chooseDateBtnClick:(id)sender {
     [self.flightNumber resignFirstResponder];
+    
+    [MonthDayCell selectYear:leaveDate.year month:leaveDate.month day:leaveDate.day];
+    SelectCalendarController* controller = [[SelectCalendarController alloc] init];
+    [controller setDelegate:self];
+    [controller showCalendar];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
+
+
+//计算显示 今天、明天或者后天（日期按钮）
+/*计算给定年月日的某一天是当年的第几天*/
+int whichDay(int year,int month,int day)
+{
+    int isleap(int);
+    int ans=0;
+    switch(month)
+    {
+        case 1:ans=0;break;
+        case 2:ans=31;break;
+        case 3:ans=59;break;
+        case 4:ans=90;break;
+        case 5:ans=120;break;
+        case 6:ans=151;break;
+        case 7:ans=181;break;
+        case 8:ans=212;break;
+        case 9:ans=243;break;
+        case 10:ans=273;break;
+        case 11:ans=304;break;
+        case 12:ans=334;break;
+    }
+    ans += day;
+    if(((year%100!=0&&year%4==0)||year%400==0)&&month>2)ans++;
+    return ans;
+}
+
+//日历代理，获得日期
+-(void) setYear: (int) year month: (int) month day: (int) day {
+    [leaveDate setYear:year month:month day:day];
+    NSLog(@"leaveDate : %d,%d,%d",year,month,day);
+    NSString * chooseDateStr = [NSString stringWithFormat:@"%d-%02d-%02d",year,month,day];
+    [self.time setText:chooseDateStr];
+    [self.flightTimeByNumber setText:chooseDateStr];
+    
+    selectDayCount =  whichDay(year, month, day);
+    NSLog(@"%d",selectDayCount- todayCount);
+    switch (selectDayCount- todayCount) {
+        case 0:{
+            self.whichDateLabel.text = @"今天";
+            self.whichDataLabelAirPort.text = @"今天";
+            break;
+        }
+        case 1:{
+            self.whichDateLabel.text = @"明天";
+            self.whichDataLabelAirPort.text = @"明天";
+
+            break;
+        }
+        case 2:{
+            self.whichDateLabel.text = @"后天";
+            self.whichDataLabelAirPort.text = @"后天";
+
+            break;
+        }
+        default:
+            self.whichDateLabel.text = @"";
+            self.whichDataLabelAirPort.text = @"";
+            break;
+    }
+}
+
+
+
+
+#pragma mark - 点击查询按钮事件
 
 - (IBAction)searchFligth:(id)sender {
     //收键盘
@@ -199,7 +303,13 @@
             [theSameAirPort release];
             
         }else{
-            SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:nil fdate:nil dpt:startAirPortCode arr:arrAirPortCode hwld:nil];
+            if (startAirPortCode == nil) {
+                startAirPortCode = @"PEK";
+            }
+            if (arrAirPortCode == nil) {
+                arrAirPortCode = @"SHA";
+            }
+            SearchFlightCondition * search = [[SearchFlightCondition alloc] initWithfno:nil fdate:self.time.text dpt:startAirPortCode arr:arrAirPortCode hwld:nil];
             ShowFligthConditionController * show = [[ShowFligthConditionController alloc] init];
             show.searchCondition = search;
             show.deptAirPortCode = startAirPortCode;
@@ -221,9 +331,12 @@
     
 
 }
+#pragma mark - 
 
+#pragma mark - 选择机场
 - (IBAction)chooseStartAirPort:(id)sender {
     //收键盘
+    
     [self.flightNumber resignFirstResponder];
 
     ChooseAirPortViewController *controller = [[ChooseAirPortViewController alloc] init];
@@ -256,6 +369,7 @@
     
     [self.navigationController pushViewController:controller animated:YES];
 }
+#pragma mark - 
 
 -(void)mySegmentValueChange:(SVSegmentedControl *)arg{
     //收键盘
@@ -325,6 +439,7 @@
     }
 }
 
+#pragma mark - 获得已经关注航班信息
 -(void)getListData{
     
     NSString * memberID = Default_UserMemberId_Value;
@@ -338,17 +453,27 @@
                                                                        andHwid:hwID
                                                                 andServiceCode:@"01"];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"获得已经关注航班信息" object:nil];
-    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"获得已经关注航班信息" object:nil];
     [flight getAttentionFlight];
 }
 
+#pragma mark - 接受到数据后
 -(void)receive:(NSNotification *) not
 {
 
     self.lookFlightArr = [[not userInfo] objectForKey:@"arr"];
-    NSLog(@"%@",self.lookFlightArr);
+    NSLog(@"获得已经关注航班信息 : %@",self.lookFlightArr);
 
+    if (self.lookFlightArr) {
+        animationView.hidden = YES;
+        [animationView stopAnimating];
+        myConditionListTableView.hidden = NO;
+        [myConditionListTableView reloadData];
+    }else{
+        animationView.hidden = NO;
+        myConditionListTableView.hidden = YES;
+        [animationView startAnimating];
+    }
     [myConditionListTableView reloadData];
 
 }
@@ -394,7 +519,7 @@
     
 }
 #pragma mark - 导航右键点击事件响应方法
--(void)attentionTapEvent:(UITapGestureRecognizer *)tap{
+-(void)attentionTapEvent{
     isAttention = !isAttention;
     selectView.hidden = NO;
     rightsuperView.userInteractionEnabled = NO;
@@ -418,7 +543,7 @@
     }else{
         self.title = @"已关注航班列表";
         selectView.hidden = YES;
-        [btnImageView setImage:[UIImage imageNamed:@"add_Attention.png"]];
+        [btnImageView setImage:[UIImage imageNamed:@"add_Attention_condition.png"]];
     }
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDidStopSelector:@selector(animationTwoIsStop)];
@@ -451,7 +576,14 @@
     {
         [[NSBundle mainBundle] loadNibNamed:@"LookFlightConditionCell" owner:self options:nil];
         cell = self.lookCell;
-        
+//        UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input.png"]];
+//        imageView.alpha = 0.5;
+//        imageView.frame = CGRectMake(10, 35, 300, 50);
+//        [cell addSubview:imageView];
+//        [imageView release];
+        cell.bootImageView.backgroundColor = [UIColor whiteColor];
+//        cell.bootImageView.frame = CGRectMake(10, 35, 300, 50);
+//        [cell.bootImageView.layer  :4];
     }
     
     NSDictionary * dic = [self.lookFlightArr objectAtIndex:indexPath.row];
@@ -459,9 +591,8 @@
     cell.fno.text = [dic objectForKey:@"flightNum"];
     cell.company.text = [dic objectForKey:@"flightCompany"];
     cell.data.text = [dic objectForKey:@"deptDate"];
-   // cell.today = [dic ]   // 今天，明天，昨天 
-    cell.realTime.text = [dic objectForKey:@"realDeptTime"];
-    cell.excepterTime.text = [dic objectForKey:@"expectedArrTime"];
+    cell.realTime.text = [dic objectForKey:@"deptTime"];
+    cell.excepterTime.text = [dic objectForKey:@"arrTime"];
     cell.startAirPort.text = [dic objectForKey:@"deptAirport"];
     cell.endAirPort.text = [dic objectForKey:@"deptAirport"];
     cell.station.text = [dic objectForKey:@"flightState"];
@@ -507,10 +638,17 @@
 
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDelFlightData:) name:@"关注航班" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDelFlightData:) name:@"关注航班" object:nil];
     [attention lookFlightAttention];
+    attention.delegate = self;
 
 }
+
+-(void)reloadConditionTableviewData{
+    
+    [myConditionListTableView reloadData];
+}
+
 -(void)receiveDelFlightData:(NSNotification *)not
 {
     NSDictionary * array = [[not userInfo] objectForKey:@"arr"];
@@ -519,9 +657,10 @@
     NSLog(@"-----%@",array);
     
     if (string == @"") {
-        
-//        [self.lookFlightArr removeObjectAtIndex:btnTag];
+        //重新获取关注列表
+        [self getListData];
 //        [myConditionListTableView reloadData];
+        
         
         NSLog(@"取消航班成功");
     }
@@ -530,7 +669,7 @@
         NSLog(@"取消航班失败");
     }
     
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self];
 
 }
 
@@ -538,6 +677,8 @@
    
     NSLog(@"收键盘");
     [self.flightNumber resignFirstResponder];
+    
 }
+
 
 @end

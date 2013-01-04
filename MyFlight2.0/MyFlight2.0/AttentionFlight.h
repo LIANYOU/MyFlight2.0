@@ -7,11 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+@protocol AttentionFlightDelegate <NSObject>
+-(void)reloadConditionTableviewData;
+@end
+
 
 @interface AttentionFlight : NSObject
-
+{
+    id <AttentionFlightDelegate>_delegate;
+}
 @property(nonatomic,retain)NSDictionary * dictionary;  // 请求返回的数据转换成字典进行解析
 @property(nonatomic,retain)NSData * allData;           // 保存请求返回的数据
+@property(nonatomic,assign)id <AttentionFlightDelegate>delegate;
 
 
 @property (nonatomic, retain) NSString * memberId;

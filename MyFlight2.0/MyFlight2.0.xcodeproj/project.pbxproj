@@ -443,6 +443,8 @@
 		18D36423169528E0005CF80C /* CoachTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36422169528E0005CF80C /* CoachTableViewController.m */; };
 		18D36427169528F3005CF80C /* SubwayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36426169528F3005CF80C /* SubwayTableViewController.m */; };
 		18D3642A1695290F005CF80C /* TaxiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D364291695290F005CF80C /* TaxiTableViewController.m */; };
+		18D364391696713B005CF80C /* dong1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D3643716967139005CF80C /* dong1.png */; };
+		18D3643A1696713B005CF80C /* dong2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D364381696713A005CF80C /* dong2.png */; };
 		18D41A0C169136BB0014B371 /* UIImage+scaleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */; };
 		18D70A9F16941B0700B11636 /* ChooseDiscountCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70A9D16941B0700B11636 /* ChooseDiscountCouponController.m */; };
 		18D70AA016941B0700B11636 /* ChooseDiscountCouponController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70A9E16941B0700B11636 /* ChooseDiscountCouponController.xib */; };
@@ -518,7 +520,7 @@
 		18E37D10167DACB40086B3F8 /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E37D0E167DACB40086B3F8 /* SVSegmentedThumb.m */; };
 		18E37D13167DAD050086B3F8 /* FlightConditionDetailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E37D12167DAD050086B3F8 /* FlightConditionDetailData.m */; };
 		18E4BC3F167A04B4009858A0 /* myline.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC3E167A04B4009858A0 /* myline.png */; };
-		18E4BC55167A072E009858A0 /* add_Attention.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC41167A072D009858A0 /* add_Attention.png */; };
+		18E4BC55167A072E009858A0 /* add_Attention_condition.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC41167A072D009858A0 /* add_Attention_condition.png */; };
 		18E4BC56167A072E009858A0 /* att_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC42167A072D009858A0 /* att_btn.png */; };
 		18E4BC57167A072E009858A0 /* att_btn_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC43167A072D009858A0 /* att_btn_click.png */; };
 		18E4BC58167A072E009858A0 /* block3.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E4BC44167A072D009858A0 /* block3.png */; };
@@ -1260,6 +1262,8 @@
 		18D36426169528F3005CF80C /* SubwayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubwayTableViewController.m; sourceTree = "<group>"; };
 		18D364281695290F005CF80C /* TaxiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxiTableViewController.h; sourceTree = "<group>"; };
 		18D364291695290F005CF80C /* TaxiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxiTableViewController.m; sourceTree = "<group>"; };
+		18D3643716967139005CF80C /* dong1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dong1.png; sourceTree = "<group>"; };
+		18D364381696713A005CF80C /* dong2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dong2.png; sourceTree = "<group>"; };
 		18D41A09169136850014B371 /* UIImage_scaleImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImage_scaleImage.h; sourceTree = "<group>"; };
 		18D41A0A169136BB0014B371 /* UIImage+scaleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+scaleImage.h"; sourceTree = "<group>"; };
 		18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+scaleImage.m"; sourceTree = "<group>"; };
@@ -1376,7 +1380,7 @@
 		18E37D11167DAD050086B3F8 /* FlightConditionDetailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightConditionDetailData.h; sourceTree = "<group>"; };
 		18E37D12167DAD050086B3F8 /* FlightConditionDetailData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightConditionDetailData.m; sourceTree = "<group>"; };
 		18E4BC3E167A04B4009858A0 /* myline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myline.png; sourceTree = "<group>"; };
-		18E4BC41167A072D009858A0 /* add_Attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_Attention.png; sourceTree = "<group>"; };
+		18E4BC41167A072D009858A0 /* add_Attention_condition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_Attention_condition.png; sourceTree = "<group>"; };
 		18E4BC42167A072D009858A0 /* att_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = att_btn.png; sourceTree = "<group>"; };
 		18E4BC43167A072D009858A0 /* att_btn_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = att_btn_click.png; sourceTree = "<group>"; };
 		18E4BC44167A072D009858A0 /* block3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block3.png; sourceTree = "<group>"; };
@@ -3053,7 +3057,7 @@
 			isa = PBXGroup;
 			children = (
 				18C9E6D81685C96100A1453C /* circle_green_change.png */,
-				18E4BC41167A072D009858A0 /* add_Attention.png */,
+				18E4BC41167A072D009858A0 /* add_Attention_condition.png */,
 				18E4BC42167A072D009858A0 /* att_btn.png */,
 				18E4BC43167A072D009858A0 /* att_btn_click.png */,
 				18E4BC44167A072D009858A0 /* block3.png */,
@@ -3074,6 +3078,8 @@
 				18E4BC53167A072E009858A0 /* icon_tep_click.png */,
 				18E4BC69167AC293009858A0 /* myBtn.png */,
 				18E4BC6A167AC295009858A0 /* tabbar.png */,
+				18D3643716967139005CF80C /* dong1.png */,
+				18D364381696713A005CF80C /* dong2.png */,
 				18E4BC54167A072E009858A0 /* Thumbs.db */,
 			);
 			path = "航班动态";
@@ -3520,7 +3526,7 @@
 				18D01F1516783569002C13DB /* Un sel.png in Resources */,
 				18D01F1616783569002C13DB /* sel.png in Resources */,
 				18E4BC3F167A04B4009858A0 /* myline.png in Resources */,
-				18E4BC55167A072E009858A0 /* add_Attention.png in Resources */,
+				18E4BC55167A072E009858A0 /* add_Attention_condition.png in Resources */,
 				18E4BC56167A072E009858A0 /* att_btn.png in Resources */,
 				18E4BC57167A072E009858A0 /* att_btn_click.png in Resources */,
 				18E4BC58167A072E009858A0 /* block3.png in Resources */,
@@ -3914,6 +3920,8 @@
 				14ECC07F1695650E008191E1 /* pitch_on.png in Resources */,
 				14ECC0801695650E008191E1 /* seat1.png in Resources */,
 				14ECC08C1695B120008191E1 /* Thumbs.db in Resources */,
+				18D364391696713B005CF80C /* dong1.png in Resources */,
+				18D3643A1696713B005CF80C /* dong2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
