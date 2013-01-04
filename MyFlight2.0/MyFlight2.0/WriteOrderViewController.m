@@ -893,6 +893,7 @@
         
         [trave getDate:^(NSString *schedule, NSString *postPay, int chooseBtnIndex) {
             
+            NSLog(@"%@,,,%@,,,%d",schedule,postPay,chooseBtnIndex);
             
             /// **************  填写行程单配送信息
             flightItinerary = [[flightItineraryVo alloc] init];
@@ -968,10 +969,29 @@
             
             self.indexGoldArr = arr;
             
+           
+            
             WirterOrderTwoLineCell * cell = (WirterOrderTwoLineCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             cell.secLabel.text = @"账户资金/优惠券抵用";
-            cell.firLable.text = [NSString stringWithFormat:@"%@ %@",silverOrDiscount,gold];
-            
+            if ([swithStation isEqualToString:@"OFF"]) {
+                cell.firLable.text = @"使用银币，优惠券和金币及资金账户";
+            }
+            else
+            {
+                NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+                if (arr.count != 0) {
+                    if ([[arr objectAtIndex:0] isEqualToString:@"0"]) {
+                        cell.firLable.text = [NSString stringWithFormat:@"使用银币￥%@",silverOrDiscount];  // 使用银币
+                    }
+                    else{
+                        cell.firLable.text = [NSString stringWithFormat:@"使用优惠券%@",silverOrDiscount];   // 使用优惠券
+                    }
+
+                }
+                
+            }
+           
+            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
             NSLog(@"%@,%@,%@,%@",swithStation,silverOrDiscount,gold,arr);
         }];
         
@@ -1036,12 +1056,22 @@
     pay.captcha = nil;
     
     
-    
     if (self.flag == 1) {
         self.searchType = @"0";
+         go.flightType = @"1";
+        
+        bookReturn.flightType = nil;
+        bookReturn.orderType = nil;
+        bookReturn.prodType = nil;
+        bookReturn.rmk = nil;
+        bookReturn.ticketType = nil;
+        bookReturn.flightOrgin = nil;
+
     }
     else{
+        
         self.searchType = @"1";
+         go.flightType = @"2";
     }
     
     NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:self.searchType,KEY_FlightBook_prodType,@"hello",KEY_FlightBook_rmk, nil];

@@ -92,8 +92,10 @@
         
         self.allData = [request responseData];
         
-        self.dictionary = [self.allData objectFromJSONData];
+       
         
+        self.dictionary = [self.allData objectFromJSONData];
+                
         dictionary = [[self.dictionary objectForKey:@"result"] objectForKey:@"message"];
         
         NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.dictionary,@"arr", nil];

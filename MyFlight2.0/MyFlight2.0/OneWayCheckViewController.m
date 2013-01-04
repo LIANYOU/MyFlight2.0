@@ -146,11 +146,15 @@ int whatday(int year,int month,int day);
     oneGoData = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay ];
    
     NSString * string = [NSString stringWithFormat:@"%@-%@",strMonth,strDay];
+    NSString * string1 = [NSString stringWithFormat:@"%@-%02d",strMonth,[strDay intValue]+1];
     
     [startDate setText:string];
+    [returnDate setText:string1];
+    [nextDayTitle setText:@"明天"];
     oneSatrtDate.text = string;
     
-    
+    twoGoBack = [[NSString alloc] initWithFormat:@"%4d-%@",year,string1];
+  
     [dateformatter release];
     
     [super viewDidLoad];
@@ -523,7 +527,7 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
           }
     else{
        
-        NSLog(@"首页往返机票查询条件 ： %@%@%@",startCode,endCode,oneGoData);
+        NSLog(@"首页往返机票查询条件 ： %@%@%@，%@",startCode,endCode,oneGoData,twoGoBack);
         searchAirPort = [[SearchAirPort alloc] initWithdpt:startCode arr:endCode date:oneGoData ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
         show.startPort = startAirport.text;

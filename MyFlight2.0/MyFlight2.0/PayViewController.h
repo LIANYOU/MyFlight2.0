@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderDetaile.h"
+#import "Umpay.h"
 
 
-
-@interface PayViewController : UIViewController
+@interface PayViewController : UIViewController<UmpayDelegate>
 
 @property (nonatomic, retain) OrderDetaile * orderDetaile;
 

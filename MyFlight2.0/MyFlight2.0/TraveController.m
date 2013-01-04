@@ -56,11 +56,33 @@
     helpYourselfBtn.tag = 2;
     post.tag = 3;
     
-
     [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
     [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-    [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0]; 
+    [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
 
+    
+    if (self.flag == 1) {
+        [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+        [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+        [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+
+    }
+    if (self.flag == 2) {
+        [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+        [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+        [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+        
+    }
+    if (self.flag == 3) {
+        [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+        [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+        [post setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+        
+        self.postView.hidden = NO;
+    }
+
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

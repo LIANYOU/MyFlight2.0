@@ -11,6 +11,9 @@
 #import "GoldCoinCell.h"
 #import "UIButton+BackButton.h"
 #import "ChooseDiscountCouponController.h"
+#import "CheckPassword.h"
+#import "AppConfigure.h"
+#import "UIQuickHelp.h"
 @interface DiscountCouponController ()
 {
     BOOL selectedSign;
@@ -34,6 +37,8 @@
     self.showDiscountTableView.dataSource = self;
     
     self.navigationItem.title = @"账户资金/优惠券抵用";
+    
+    self.tempText.inputAccessoryView = self.keyBoardBar;
     
     
     UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
@@ -82,10 +87,13 @@
 {
     NSDictionary * dic = [[not userInfo] objectForKey:@"arr"];
     
+    self.captchaListArr = [NSArray array];
+    
+    self.captchaListArr = [dic objectForKey:@"captchaList"];
     self.accountAmount = [NSString stringWithFormat:@"%@",[dic objectForKey:@"accountAmount"]];
     self.goldAmount = [NSString stringWithFormat:@"%@",[dic objectForKey:@"goldAmount"]];
     self.silverAmount = [NSString stringWithFormat:@"%@",[dic objectForKey:@"silverAmount"]];
-    
+
     [self.showDiscountTableView reloadData];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -206,13 +214,14 @@
             
         }
         
-        cell.payLabel.text = [NSString stringWithFormat:@"￥%@",self.accountAmount];
+        cell.payLabel.text = [NSString stringWithFormat:@"￥%d",[self.accountAmount intValue]+[self.goldAmount intValue]];
         
-        if ([self.accountAmount isEqualToString:@"0.00"]) {
+                
+        if ([cell.payLabel.text isEqualToString:@"0.00"]) {
             cell.useBtn.enabled = NO;
         }
         
-        cell.userInteractionEnabled = NO;
+        cell.selectionStyle = 0;
         
         [cell.useBtn addTarget:self action:@selector(payNow) forControlEvents:UIControlEventTouchUpInside];
         
@@ -222,9 +231,25 @@
 
 -(void)payNow
 {
-    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+    [self.tempText becomeFirstResponder];
+    [self.text becomeFirstResponder];
 }
-
+- (IBAction)sure:(id)sender {
+    
+    NSString * string = [NSString stringWithFormat:@"%@%@%@%@",Default_UserMemberId_Value,self.text.text,SOURCE_VALUE,Default_Token_Value];
+    
+    CheckPassword * password = [[CheckPassword alloc] initWithMemberId:Default_UserMemberId_Value
+                                                             andSource:SOURCE_VALUE
+                                                               andHwId:HWID_VALUE
+                                                               andSign:GET_SIGN(string)
+                                                            andEdition:EDITION_VALUE
+                                                           andDelegate:self];
+    password.delegate = self;
+    
+    [password getPassword];
+    
+    [self.text resignFirstResponder];
+}
 #pragma mark - 点选时的操作
 
 -(void)selectMore:(UIButton *)btn
@@ -268,6 +293,7 @@
     if (indexPath.row == 1) {
      
         ChooseDiscountCouponController * choose =  [[ChooseDiscountCouponController alloc] init];
+        choose.captchaList = self.captchaListArr;
         [choose getDate:^(NSString *name, NSString *count, NSMutableArray *arr) {
             cell.name.text = name;
             cell.secLebel.text = [NSString stringWithFormat:@"%@",count];
@@ -312,6 +338,10 @@
     [_discountCell release];
     [_goldCell release];
     [_swith release];
+    [_text release];
+    [_keyBoardBar release];
+    [_keyText release];
+    [_tempText release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -322,6 +352,10 @@
     [self setDiscountCell:nil];
     [self setGoldCell:nil];
     [self setSwith:nil];
+    [self setText:nil];
+    [self setKeyBoardBar:nil];
+    [self setKeyText:nil];
+    [self setTempText:nil];
     [super viewDidUnload];
 }
 
@@ -329,29 +363,20 @@
 {
     NSString * string = nil;
     NSString * goldString = nil;
-    for(NSString * str in self.selectArr)
-    {
-        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[str intValue] inSection:0];
-        UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:indexPath];
-        string = [NSString stringWithFormat:@"%@",cell.name.text];
-        
-    }
-    
+
     NSIndexPath * index = [NSIndexPath indexPathForRow:0 inSection:1];
     GoldCoinCell *cell = (GoldCoinCell *)[self.showDiscountTableView cellForRowAtIndexPath:index];
     goldString = [NSString stringWithFormat:@"%@",cell.payLabel.text];
 
-    NSLog(@"%@,%@,%@,%@",self.swithStation,string,goldString,self.selectArr);
-
-    
-    if ([self.swithStation isEqualToString:@"OFF"]) {   // 总开关关闭
-        string = @"";
-        goldString = @"不使用优惠券银币和账户余额";
-        [self.selectArr removeAllObjects];
-    }
-    
-    if (string == nil) {
-        string = @"不使用优惠券和银币";
+    if (self.selectArr.count != 0) {
+        if ([[self.selectArr objectAtIndex:0] isEqual:@"0"]) {
+            string = self.silverAmount;  // 使用银币
+        }
+        else{  // 使用优惠券
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+            UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:indexPath];
+            string = cell.secLebel.text;
+        }
     }
     
     
@@ -378,5 +403,36 @@
 {
     [blocks release];
     blocks = [string copy];
+}
+
+
+#pragma mark -
+
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+}
+
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"预约成功" message:@"有符合要求的折扣信息时，会提醒您。您可以在我的帐户里查看订阅的航线低价信息。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    
+    [alert show];
+    [alert release];
+    
 }
 @end

@@ -253,7 +253,8 @@
         self.showTableView.separatorColor = [UIColor clearColor];
         
         if (indexPath.row == 0) {
-            [cell.imageView setImage:[UIImage imageNamed:@"bg_blue__.png"]];
+           [cell.imageBtn setBackgroundImage:[UIImage imageNamed:@"bg_blue.png"] forState:0];
+           [cell.imageBtn setBackgroundImage:[UIImage imageNamed:@"bg_blue.png"] forState:UIControlStateHighlighted];
             cell.HUButton.text = self.flight.flightNo;
             cell.endAirPortName.text = self.flight.arrAirportCN;
             cell.startAirPortName.text = self.flight.depAirPortCN;
@@ -266,14 +267,18 @@
             cell.changeTicket.tag = indexPath.row;
        
             [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:0];
+   
             [cell.changeTicket addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
             
             
         }
         
-        if (self.inFlight != nil && indexPath.row == 1) {
+      //  if (self.inFlight != nil && indexPath.row == 1)
+        if (indexPath.row == 1){
             
-            [cell.imageView setImage:[UIImage imageNamed:@"bg_green__.png"]];
+            [cell.imageBtn setBackgroundImage:[UIImage imageNamed:@"bg_green.png"] forState:0];
+            [cell.imageBtn setBackgroundImage:[UIImage imageNamed:@"bg_green.png"] forState:UIControlStateHighlighted];
+
             cell.HUButton.text = self.inFlight.flightNo;
             cell.endAirPortName.text = self.inFlight.arrAirportCN;
             cell.startAirPortName.text = self.inFlight.depAirPortCN;

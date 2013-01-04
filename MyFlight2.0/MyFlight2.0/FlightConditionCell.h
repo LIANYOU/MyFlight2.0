@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FlightConditionCell : UITableViewCell
+@property (retain, nonatomic) IBOutlet UIButton *imageBtn;
 @property (retain, nonatomic) IBOutlet UIImageView *imageView;
 @property (retain, nonatomic) IBOutlet UILabel *HUButton;
 @property (retain, nonatomic) IBOutlet UILabel *endAirPortName;
