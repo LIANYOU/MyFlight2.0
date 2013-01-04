@@ -9,6 +9,7 @@
 #import "HomeMoreController.h"
 #import "MoreCell.h"
 #import "FrequentMainViewController.h"
+#import "SettingForAppViewController.h"
 @interface HomeMoreController ()
 {
     NSArray *imageArray;
@@ -127,7 +128,7 @@
             case 0:
                 
                 CCLog(@"进去设置界面");
-                
+                controller = [[SettingForAppViewController alloc] init];
                 break;
             case 1:
                 CCLog(@"进入社交账号绑定界面");

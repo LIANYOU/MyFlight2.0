@@ -8,9 +8,16 @@
 
 #import "SPHFrequentMainViewController.h"
 #import "AppConfigure.h"
+#import "QueryLeijiViewController.h"
+#import "DetailForLichengViewController.h"
+#import "WarmTipViewController.h"
+#import "DetailInfoWithImageViewController.h"
+#import "LiChengBudengViewController.h"
 @interface SPHFrequentMainViewController (){
     
     NSArray *nameArray;
+    
+    
 }
 
 @end
@@ -29,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     
     self.footView.frame  =CGRectMake(0, MainHeight_withoutNavBar-54, 320, 54);
@@ -50,8 +58,8 @@
     }
     
     
-//   MainHeight
-//    CCLog(@"高度 ：%@",MainHeight);
+    //   MainHeight
+    //    CCLog(@"高度 ：%@",MainHeight);
     
     CCLog(@"%f",MainHeight);
     CCLog(@"%f",MainWidth);
@@ -60,7 +68,7 @@
     
     CCLog(@"宽度为:%f",[[UIScreen mainScreen] bounds].size.width);
     
-    nameArray = [[NSArray alloc] initWithObjects:@"里程累积/兑换标准查询",@"里程补登",@"里程详情查询",@"申请加入金鹏俱乐部会员", nil];
+    nameArray = [[NSArray alloc] initWithObjects:@"里程累积/兑换标准查询",@"里程补登",@"里程详情查询", nil];
     self.thisTableView.tableHeaderView  = self.FucktableviewHeader;
     // Do any additional setup after loading the view from its nib.
 }
@@ -104,7 +112,7 @@
 {
     
     // Return the number of rows in the section.
-    return 4;
+    return [nameArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,14 +123,14 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-  cell.contentView.backgroundColor = [UIColor clearColor];
-
+    cell.contentView.backgroundColor = [UIColor clearColor];
+    
     
     cell.textLabel.text = [nameArray objectAtIndex:indexPath.row];
     
     cell.textLabel.backgroundColor = [UIColor clearColor];
     
-       
+    
     return cell;
 }
 
@@ -131,17 +139,82 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    LiChengBudengViewController *firstController = [[LiChengBudengViewController alloc] init];
+    DetailInfoWithImageViewController *secondController = [[DetailInfoWithImageViewController alloc] init];
+    WarmTipViewController *thirdController = [[WarmTipViewController alloc] init];
+    
+    
+    
+    
+    UIImage *image1 = [UIImage imageNamed:@"icon_registration.png"];
+    UITabBarItem *firstItem = [[UITabBarItem alloc] initWithTitle:@"里程补登" image:image1 tag:500];
+    firstController.tabBarItem= firstItem;
+    
+       
+    UIImage *image2 = [UIImage imageNamed:@"icon_prompt.png"];
+    UITabBarItem *secondItem = [[UITabBarItem alloc] initWithTitle:@"图示说明" image:image2 tag:501];
+    secondController.tabBarItem = secondItem;
+    
+    
+    
+    UIImage *image3 = [UIImage imageNamed:@"icon_img.png"];
+    UITabBarItem *thirdItem = [[UITabBarItem alloc] initWithTitle:@"温馨提示" image:image3 tag:501];
+    thirdController.tabBarItem = thirdItem;
+    
+    
+    UINavigationController *nav1 =[[UINavigationController alloc] initWithRootViewController:firstController];
+    
+      [firstController release];
+    
+     
+    NSArray *conArray = [[NSArray alloc] initWithObjects:nav1,secondController,thirdController ,nil];
+    
+    [secondController release];
+    [thirdController release];
+    
+    UITabBarController *tabController= [[UITabBarController alloc] init];
+    
+    
+    tabController.viewControllers = conArray;
+    
+    tabController.selectedIndex = 0;
+    
     NSInteger selectIndex = indexPath.row;
+    
+    
     id controller = nil;
     
     switch (selectIndex) {
         case 0:
+            controller = [[QueryLeijiViewController alloc] init];
+            break;
+        case 1:
+            
+            controller = tabController;
+            
+            
+            
+//            [self presentModalViewController:tabController animated:YES];
             
             break;
-            
+        case 2:
+         controller = [[DetailForLichengViewController alloc] init];
+            break;
         default:
+            
             break;
     }
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    
+    [controller release];
+    [nav1 release];
+    
+   
+    
 }
 
 

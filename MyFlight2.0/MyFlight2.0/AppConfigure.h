@@ -19,6 +19,22 @@
 #import "FrequentFlyUility.h"
 
 
+#define  KEY_Default_StartAirPort @"startAirPort"
+//默认到达机场
+#define KEY_Default_EndAirPort @"endAirPort"
+
+//默认出发机场 根据用户设置里面得来
+#define  Default_StartAirPort [[NSUserDefaults standardUserDefaults] objectForKey:KEY_Default_StartAirPort]
+//默认到达机场
+#define Default_EndAirPort [[NSUserDefaults standardUserDefaults] objectForKey:KEY_Default_EndAirPort]
+
+
+
+
+
+
+
+
 #define ScreenHeight [[UIScreen mainScreen] bounds].size.height  //屏幕高度
 
 #define ScreenWidth [[UIScreen mainScreen] bounds].size.width //屏幕宽度
