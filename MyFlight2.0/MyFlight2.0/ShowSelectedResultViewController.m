@@ -35,7 +35,10 @@
     int sortBackTimeFlag;
         
     int airPortNameFlag;   // 按照航空公司排序标记
-    int timeSortFlag;  // 按照时间排序的标记位  
+    int timeSortFlag;  // 按照时间排序的标记位
+    
+    
+    int lowOrderFlag;  // 判断是不是进入了低价预约，， 回来的时候不用联网
     
     NSString * deviceTime; // 获取当前时间
 }
@@ -177,6 +180,8 @@
     
     self.twoCodeArr = [[NSMutableArray alloc] init];
     
+  
+    
     if (self.write != nil || self.netFlag == 1) {
         navigationTitle = [NSString stringWithFormat:@"%@ -- %@",self.endPort,self.startPort];
     }
@@ -192,38 +197,42 @@
     self.navigationItem.titleView = label;
     
 
-    if (self.one != nil || self.write != nil) {
-       
-        if (self.write != nil) {
-   
-            self.airPort.date = self.goBackDate;
+    if (lowOrderFlag != 10) {
+        if (self.one != nil || self.write != nil) {
             
-            NSArray * array = [self.airPort.date componentsSeparatedByString:@"-"];
+            if (self.write != nil) {
+                
+                self.airPort.date = self.goBackDate;
+                
+                NSArray * array = [self.airPort.date componentsSeparatedByString:@"-"];
+                
+                [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",[array objectAtIndex:1],[array objectAtIndex:2]] forState:0];
+                
+                self.flag  = 3; // 随便标记一位， 在推进到填写订单的时候使用
+            }
+            if (self.one != nil) {
+                
+                self.airPort.date = self.startDate;    // 不同的时候设置不同的搜索时间
+                
+                NSArray * array = [self.airPort.date componentsSeparatedByString:@"-"];
+                
+                [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",[array objectAtIndex:1],[array objectAtIndex:2]] forState:0];
+                
+            }
             
-            [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",[array objectAtIndex:1],[array objectAtIndex:2]] forState:0];
+            self.dateArr = [NSArray array];
             
-            self.flag  = 3; // 随便标记一位， 在推进到填写订单的时候使用
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+            [self.airPort searchAirPort];
+            
+            HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+            [self.navigationController.view addSubview:HUD];
+            
+            [HUD show:YES];
         }
-        if (self.one != nil) {
-            
-            self.airPort.date = self.startDate;    // 不同的时候设置不同的搜索时间
-            
-            NSArray * array = [self.airPort.date componentsSeparatedByString:@"-"];
-          
-            [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",[array objectAtIndex:1],[array objectAtIndex:2]] forState:0];
-           
-        }
-        
-        self.dateArr = [NSArray array];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
-        [self.airPort searchAirPort];
-        
-        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:HUD];
-    
-        [HUD show:YES];
     }
+    
+    
     
     //获得系统时间
     NSDate *  senddate=[NSDate date];
@@ -337,7 +346,7 @@
     self.dateArr = [[not userInfo] objectForKey:@"arr"];
     
     if (self.write != nil || self.netFlag == 1) {
-        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+       
         [self.searchBackFlightDateArr removeAllObjects];
     }
     else{
@@ -345,6 +354,7 @@
     }
     
     for (int i = 0; i<self.dateArr.count; i++) {
+        
         SearchFlightData * s = [[SearchFlightData alloc] init] ;
         
         NSDictionary * dic = [self.dateArr objectAtIndex:i];
@@ -477,6 +487,7 @@
             return self.dateArr.count;
         }
        
+        
         if (timeSortFlag == 3 || airPortNameFlag == 4 ) {   // 判断如果是经过排序
          
             if (self.sortBackArr.count != 0) {
@@ -640,6 +651,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CalendarFlag = 0;
+    lowOrderFlag = 0;
     if (tableView == self.showResultTableView)
     {
         ChooseSpaceViewController * order = [[ChooseSpaceViewController alloc] init];
@@ -1262,7 +1274,25 @@
 
 -(void)lowOrder
 {
+    lowOrderFlag = 10;
     LowOrderController * low = [[LowOrderController alloc] init];
+    
+    if (self.write != nil || self.netFlag == 1) {
+        low.start = self.endPort;
+        low.end = self.startPort;
+        low.startCode = self.endThreeCode;
+        low.endCode = self.startThreeCode;
+        
+    }
+    else{
+        
+        low.start = self.startPort;
+        low.end = self.endPort;
+        
+        low.startCode = self.startThreeCode;
+        low.endCode = self.endThreeCode;
+    }
+
     [self.navigationController pushViewController:low animated:YES];
 }
 

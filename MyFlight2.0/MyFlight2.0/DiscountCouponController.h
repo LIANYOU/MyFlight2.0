@@ -8,14 +8,26 @@
 
 #import <UIKit/UIKit.h>
 #import "UseGoldPay.h"
+#import "ServiceDelegate.h"
 @class UseDiscountCell;
 @class GoldCoinCell;
-@interface DiscountCouponController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface DiscountCouponController : UIViewController <UITableViewDataSource,UITableViewDelegate,ServiceDelegate>
 {
-   
-    
+
     void (^blocks) (NSString * swithStation, NSString * silverOrDiscount ,NSString * gold, NSMutableArray * arr);
 }
+
+
+/// ************   keyBar
+@property (retain, nonatomic) IBOutlet UITextField *tempText;
+@property (retain, nonatomic) IBOutlet UITextField *text;
+@property (retain, nonatomic) IBOutlet UIView *keyBoardBar;
+@property (retain, nonatomic) IBOutlet UITextField *keyText;
+- (IBAction)sure:(id)sender;
+///**************
+
+
+@property (nonatomic, retain) NSArray * captchaListArr;
 
 @property (retain, nonatomic) NSMutableArray * selectArr;
 

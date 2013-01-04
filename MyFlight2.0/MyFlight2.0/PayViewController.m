@@ -64,4 +64,16 @@
     [self.navigationController pushViewController:detail animated:YES];
     [detail release];
 }
+
+#pragma mark ---------  支付
+
++ (BOOL)pay:(NSString *)tradeNo payType:(NSString*)payType  window:(UIWindow *)window delegate:(id <UmpayDelegate>)delegate
+{
+    
+}
+- (void)onPayResult:(NSString*)orderId  resultCode:(NSString*)resultCode
+      resultMessage:(NSString*)resultMessage
+{
+    
+}
 @end

@@ -70,7 +70,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.captchaList.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -104,11 +104,19 @@
         }
     }
     if (selectedSign==NO) {
-
-         [cell.selectBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+        
+        [cell.selectBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
     }
-
+    
     cell.selectionStyle = 0;
+    
+    NSDictionary * dic = [self.captchaList objectAtIndex:indexPath.row];
+    
+    cell.name.text = [dic objectForKey:@"name"];
+    cell.count.text = @"0";
+    cell.beginDate.text = [dic objectForKey:@"startDate"];
+    cell.endDate.text = [dic objectForKey:@"endDate"];
+    
     
     return cell;
 }
