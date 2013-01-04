@@ -114,9 +114,9 @@
 }
 
 - (IBAction)showRegularPassengerController:(id)sender {
-    DetailsOrderViewController * log = [[DetailsOrderViewController alloc] init];
-    [self.navigationController pushViewController:log animated:YES];
-    [log release];
+//    DetailsOrderViewController * log = [[DetailsOrderViewController alloc] init];
+//    [self.navigationController pushViewController:log animated:YES];
+//    [log release];
 
     CCLog(@"显示航空公司常旅客");
 }
