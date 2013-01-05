@@ -10,6 +10,10 @@
 #import "AppConfigure.h"
 #import "UIQuickHelp.h"
 #import "SPHFrequentMainViewController.h"
+#import "FrequentFlyNetWorkHelper.h"
+#import "isFrequentPassengerLogin.h"
+#import "FrequentPassengerData.h"
+#import "AirCompanyDataBase.h"
 @interface LoginForFrequentFlayer (){
     
     BOOL isRemember;
@@ -28,29 +32,35 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+
+- (void) initThisView{
+    
+    
+    
+    isRemember = [[NSUserDefaults standardUserDefaults] boolForKey:KEY_FrequentFly_isRememberPwd];
+    
+    
     
     if (isRemember) {
         
-    [self.rememberPwdStateBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];
+        [self.rememberPwdStateBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];
         
         self.passwdLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_FrequentFly_User_pwd];
         
-        
-    } else{
+     } else{
         
         [self.rememberPwdStateBn setBackgroundImage:[UIImage imageNamed:@"ico_def.png"] forState:UIControlStateNormal];
-        
-        
     }
     
+      self.accountLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_FrequentFly_User_Account];
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initThisView];
+    [AirCompanyDataBase initDataBase];
     
-    self.accountLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_FrequentFly_User_Account];
     
-    
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,6 +81,7 @@
     [self setRememberPwdStateBn:nil];
     [super viewDidUnload];
 }
+//回收键盘
 - (IBAction)backKeyBoard:(id)sender {
     
     NSLog(@"回收键盘");
@@ -79,8 +90,6 @@
 }
 
 - (IBAction)rememberPwdBn:(id)sender {
-    
-    
     
     if (isRemember) {
         //不记住密码
@@ -110,8 +119,6 @@
         
         
         [self.rememberPwdStateBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];
-        
-        
     }
     
     
@@ -151,33 +158,37 @@
     
     //    用户输入什么就会记录 用户账户的默认值
     
-    [[NSUserDefaults standardUserDefaults] setObject:self.accountLabel.text forKey:KEY_FrequentFly_User_Account];
+        
     
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    
-    if (isRemember) {
+   
         
         [[NSUserDefaults standardUserDefaults] setObject:self.passwdLabel.text forKey:KEY_FrequentFly_User_pwd];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         
-    } else{
+//    } else{
+//        
+//        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_FrequentFly_User_pwd];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//    }
+    
+    
+//    isFrequentPassengerLogin *single = [isFrequentPassengerLogin shareFrequentPassLogin];
+//    
+//    NSString *cardNo = single.frequentPassData.cardNo;
+//    NSString *pwd = self.passwdLabel.text;
+//    
+//    
+//    [FrequentFlyNetWorkHelper getMemberPointInfoWithCardNo:cardNo passwd:pwd ndDelegate:self];
+    
         
-        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_FrequentFly_User_pwd];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
+    SPHFrequentMainViewController *con =[[SPHFrequentMainViewController alloc] init];
+    [self.navigationController pushViewController:con animated:YES];
     
     
     [UIQuickHelp showAlertViewWithTitle:@"登录成功" message:@"即将跳转" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
     
     
-    
-    
-    
-        
-       
     
 }
 
@@ -186,12 +197,31 @@
 
 - (IBAction)goToMyviewpage:(id)sender {
     
-    SPHFrequentMainViewController *controller = [[SPHFrequentMainViewController alloc] init];
+       NSString *account = [self.accountLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *pwd = [self.passwdLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    CCLog(@"登录名字 ：%@",account);
     
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    CCLog(@"密码是 %@",pwd);
     
+    if ([account isEqualToString:@""]) {
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"您还没有输入账号，请输入" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    } else if([pwd isEqualToString:@""]){
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"您还没有输入密码，请输入" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    } else{
+        
+        
+        
+        [[NSUserDefaults standardUserDefaults] setObject:self.accountLabel.text forKey:KEY_FrequentFly_User_Account];
+        
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        
+        [FrequentFlyNetWorkHelper loginWithName:self.accountLabel.text password:self.passwdLabel.text andDelegate:self];
+
+    }
     
+   
     
 }
 @end

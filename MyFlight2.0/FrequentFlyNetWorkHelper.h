@@ -14,4 +14,14 @@
 + (BOOL) loginWithName:(NSString *) name password:(NSString *) passwd andDelegate:(id<ServiceDelegate>) delegate;
 
 
+//查询 里程
+
++ (BOOL)getMemberPointInfoWithCardNo:(NSString *) cardNo passwd:(NSString *) pwd ndDelegate:(id<ServiceDelegate>) delegate;
+
+
+
+//累积标准查询
+
+//+ (BOOL) GetPointstoTicket
+
 @end

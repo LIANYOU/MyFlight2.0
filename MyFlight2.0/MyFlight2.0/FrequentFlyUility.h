@@ -18,8 +18,16 @@
 #define KEY_FrequentFly_User_pwd @"frequentPwd"
 
 
+#define FrequentFly_URL_Index @"/3GPlusPlatform/User/SearchFfpMember.json"
+
+#define  FrequentFly_URL @"http://223.202.36.172:8380/3GPlusPlatform/User/SearchFfpMember.json"
 
 
 
+
+//查询 里程
+
+
+#define FrequentFly_GetMemberPoint_URL @"http://223.202.36.172:8380/3GPlusPlatform/User/GetMemberPoint.json"
 
 #endif

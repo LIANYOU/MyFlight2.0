@@ -13,6 +13,8 @@
 #import "WarmTipViewController.h"
 #import "DetailInfoWithImageViewController.h"
 #import "LiChengBudengViewController.h"
+#import "isFrequentPassengerLogin.h"
+#import "LiChengDetailData.h"
 @interface SPHFrequentMainViewController (){
     
     NSArray *nameArray;
@@ -33,15 +35,33 @@
     return self;
 }
 
+
+
+
+- (void) initThisView{
+    
+    self.footView.frame  =CGRectMake(0, MainHeight_withoutNavBar-54, 320, 54);
+    [self.view addSubview:self.footView];
+    
+    self.thisTableView.backgroundView.backgroundColor = [UIColor clearColor];
+    self.thisTableView.tableHeaderView  = self.FucktableviewHeader;
+    
+    isFrequentPassengerLogin *single =[isFrequentPassengerLogin shareFrequentPassLogin];
+    self.cardNumber.text =single.frequentPassData.cardNo;
+    self.nameLabel.text = single.frequentPassData.name;
+    self.lichengLabel.text =single.lichengData.balance;
+      
+}
+
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    [self initThisView];
     
-    
-    self.footView.frame  =CGRectMake(0, MainHeight_withoutNavBar-54, 320, 54);
-    [self.view addSubview:self.footView];
-    self.thisTableView.backgroundView.backgroundColor = [UIColor clearColor];
     
     
     
@@ -69,7 +89,7 @@
     CCLog(@"宽度为:%f",[[UIScreen mainScreen] bounds].size.width);
     
     nameArray = [[NSArray alloc] initWithObjects:@"里程累积/兑换标准查询",@"里程补登",@"里程详情查询", nil];
-    self.thisTableView.tableHeaderView  = self.FucktableviewHeader;
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -194,10 +214,7 @@
         case 1:
             
             controller = tabController;
-            
-            
-            
-//            [self presentModalViewController:tabController animated:YES];
+            //[self presentModalViewController:tabController animated:YES];
             
             break;
         case 2:

@@ -43,10 +43,10 @@
     nameArray =[[NSArray alloc] initWithObjects:@"常用联系人信息",@"我订阅的低价航线",@"用心愿旅行卡充值", nil];
     
 
-    thistableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
-    thistableView.dataSource =self;
-    thistableView.delegate =self;
-    thistableView.backgroundColor = [UIColor clearColor];
+//    thistableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
+//    thistableView.dataSource =self;
+//    thistableView.delegate =self;
+//    thistableView.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor =View_BackGround_Color;
     
     [self.view addSubview:thistableView];
@@ -144,7 +144,8 @@
         
         thisCell.titleLabel.text = @"个人资料";
         thisCell.detailLabel.text = @"13161188680";
-        thisCell.imageView.image = [UIImage imageNamed:@"icon_acc.png"];
+        thisCell.thisImageView.image = [UIImage imageNamed:@"icon_acc.png"];
+        
         
     }
     

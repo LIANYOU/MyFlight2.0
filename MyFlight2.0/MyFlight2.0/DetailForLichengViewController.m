@@ -8,13 +8,14 @@
 
 #import "DetailForLichengViewController.h"
 #import "DetailForLiChengCell.h"
-
+#import "isFrequentPassengerLogin.h"
+#import "LiChengDetailData.h"
 
 @interface DetailForLichengViewController ()
 {
     
     NSArray *nameArray;
-    NSArray *detailArray;
+    NSMutableArray *detailArray;
     
 }
 @end
@@ -30,12 +31,34 @@
     return self;
 }
 
+
+- (void) initDataArray{
+        
+    detailArray = [[NSMutableArray alloc] init];
+    isFrequentPassengerLogin *single =[isFrequentPassengerLogin shareFrequentPassLogin];
+    
+    [detailArray addObject:single.lichengData.cardNo];
+    [detailArray addObject:single.lichengData.grade];
+    [detailArray addObject:single.lichengData.balance];
+    [detailArray addObject:single.lichengData.expireDate];
+    
+    [detailArray addObject:single.lichengData.airlinePoints];
+    [detailArray addObject:single.lichengData.notAirlinePoints];
+    [detailArray addObject:single.lichengData.upgradePoints];
+    [detailArray addObject:single.lichengData.upgradeSegments];
+    [detailArray addObject:single.lichengData.expirePoints];
+    [detailArray addObject:single.lichengData.otherPoints];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    nameArray = [[NSArray alloc] initWithObjects:@"金鹏卡号",@"会员级别",@"总里程余额",@"里程过期日",@"航空里程",@"非航空里程",@"升级/定级里程",@"升级/定级航段",@"过期里程",@"其他里程", nil];
+    [self initDataArray];
     
-    // Do any additional setup after loading the view from its nib.
+    nameArray = [[NSArray alloc] initWithObjects:@"金鹏卡号",@"会员级别",@"总里程余额",@"里程过期日",@"航空里程",@"非航空里程",@"升级/定级里程",@"升级/定级航段",@"过期里程",@"其他里程", nil];
+
+        
+       // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,7 +99,7 @@
     
     
     cell.nameLabel.text = [nameArray objectAtIndex:indexPath.row];
-    
+    cell.thisDetailLabel.text =[detailArray objectAtIndex:indexPath.row];
     // Configure the cell...
     
     return cell;

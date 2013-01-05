@@ -33,7 +33,7 @@
     self.arr = [NSArray arrayWithObjects:@"出行小秘书",@"我订阅的低价航线",@"航空公司常旅客专区",@"设置",@"社交账户绑定",@"新功能引导",@"关于我们", nil];
     
     self.navigationItem.title = @"更多";
-    imageArray = [[NSArray alloc]initWithObjects:[UIImage imageNamed:@"icon_Assistant.png"],[UIImage imageNamed:@"icon_Assistant.png"],[UIImage imageNamed:@"icon_Flyer.png"],[UIImage imageNamed:@"icon_Setup.png"],[UIImage imageNamed:@"icon_Bind.png"],[UIImage imageNamed:@"icon_Guide.png"],[UIImage imageNamed:@"icon_aboutus.png"],nil];
+    imageArray = [[NSArray alloc]initWithObjects:[UIImage imageNamed:@"icon_Assistant.png"],[UIImage imageNamed:@"icon_rss.png"],[UIImage imageNamed:@"icon_Flyer.png"],[UIImage imageNamed:@"icon_Setup.png"],[UIImage imageNamed:@"icon_Bind.png"],[UIImage imageNamed:@"icon_Guide.png"],[UIImage imageNamed:@"icon_aboutus.png"],nil];
     
     
     [super viewDidLoad];

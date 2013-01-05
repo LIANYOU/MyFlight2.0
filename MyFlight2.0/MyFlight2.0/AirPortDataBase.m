@@ -138,8 +138,10 @@
     
     
     if (isDataBaseNew==false) {
+        
         //删除旧表
         [db executeUpdate:@"drop table AirPortDataBase"];
+        
         [db executeUpdate:@"CREATE TABLE AirPortDataBase (apCode TEXT, apName TEXT, apEName TEXT, apLName TEXT, hotcity TEXT, cityName TEXT,air_x text,air_y text, id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE ) "];
         CCLog(@"创建一个表格");
         
