@@ -14,6 +14,7 @@
 #import "TravelTrafficViewController.h"
 #import "ChackInNavgationViewController.h"
 #import "BaggageViewController.h"
+#import "WeatherViewController.h"
 @interface TravelAssistantViewController ()
 
 @end
@@ -174,6 +175,10 @@
             [fcdc release];
         }else if(indexPath.row == 6){
             NSLog(@"天气预报");
+            WeatherViewController * weather = [[WeatherViewController alloc]init];
+            weather.subAirPortData = self.myAirPortData;
+            [self.navigationController pushViewController:weather animated:YES];
+            [weather release];
             
         }
     }

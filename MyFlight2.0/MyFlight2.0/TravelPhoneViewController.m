@@ -63,46 +63,45 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 4, 160, 32)];
-    titlelabel.font = [UIFont systemFontOfSize:14];
-    if ([phoneInfoArray count] == 0) {
-        NSLog(@"phoneInfoArray count == 0");
-    }else{
-        NSDictionary * dic1 = [phoneInfoArray objectAtIndex:1];
-        NSString * phoneStr = [dic1 objectForKey:@"department"];
-        NSLog(@"phoneStr : %@",phoneStr);
-        titlelabel.text = [[phoneInfoArray objectAtIndex:indexPath.row]objectForKey:@"department"];
-    }
-    
-    
-    titlelabel.backgroundColor = [UIColor clearColor];
-    [cell addSubview:titlelabel];
-    
-    phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 4, 100, 32)];
-    phoneLabel.font = [UIFont systemFontOfSize:14];
-    if ([phoneInfoArray count] == 0) {
-        NSLog(@"phoneInfoArray count == 0");
-    }else{
-        NSDictionary * dic1 = [phoneInfoArray objectAtIndex:1];
-        NSString * phoneStr = [dic1 objectForKey:@"phone"];
-        NSLog(@"phoneStr : %@",phoneStr);
-        phoneLabel.text = [[phoneInfoArray objectAtIndex:indexPath.row]objectForKey:@"phone"];
-    }
-    phoneLabel.backgroundColor = [UIColor clearColor];
-    [cell addSubview:phoneLabel];
-    
-    UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"line_gray.png"]];
-    imageView.frame = CGRectMake(0, 42, 320, 2);
-    [cell addSubview:imageView];
-    [imageView release];
-    
-    UIImageView * phoneImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_tep_travel.png"]];
-    phoneImage.frame = CGRectMake(290, 12, 20, 20);
-    [cell addSubview:phoneImage];
-    [phoneImage release];
+        titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 4, 160, 32)];
+        titlelabel.font = [UIFont systemFontOfSize:14];
+        if ([phoneInfoArray count] == 0) {
+            NSLog(@"phoneInfoArray count == 0");
+        }else{
+            NSDictionary * dic1 = [phoneInfoArray objectAtIndex:1];
+            NSString * phoneStr = [dic1 objectForKey:@"title"];
+            NSLog(@"phoneStr : %@",phoneStr);
+            titlelabel.text = [[phoneInfoArray objectAtIndex:indexPath.row]objectForKey:@"title"];
+        }
+        
+        
+        titlelabel.backgroundColor = [UIColor clearColor];
+        [cell addSubview:titlelabel];
+        
+        phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 4, 100, 32)];
+        phoneLabel.font = [UIFont systemFontOfSize:14];
+        if ([phoneInfoArray count] == 0) {
+            NSLog(@"phoneInfoArray count == 0");
+        }else{
+            NSDictionary * dic1 = [phoneInfoArray objectAtIndex:1];
+            NSString * phoneStr = [dic1 objectForKey:@"phone"];
+            NSLog(@"phoneStr : %@",phoneStr);
+            phoneLabel.text = [[phoneInfoArray objectAtIndex:indexPath.row]objectForKey:@"phone"];
+        }
+        phoneLabel.backgroundColor = [UIColor clearColor];
+        [cell addSubview:phoneLabel];
+        
+        UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"line_gray.png"]];
+        imageView.frame = CGRectMake(0, 42, 320, 2);
+        [cell addSubview:imageView];
+        [imageView release];
+        
+        UIImageView * phoneImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_tep_travel.png"]];
+        phoneImage.frame = CGRectMake(290, 12, 20, 20);
+        [cell addSubview:phoneImage];
+        [phoneImage release];
 
+    }
     
     return cell;
         
@@ -112,25 +111,27 @@
     myData = [[NSMutableData alloc]init];
     // Do any additional setup after loading the view from its nib.
     
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Web/AirportGuide.json"];
+    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/tel.jsp"];
     
     
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:@"AirportCommonlyPhone" forKey:@"RequestType"];
-    [request setPostValue:self.subAirPortData.apEname forKey:@"ArilineCode"];
+    [request setPostValue:self.subAirPortData.apCode forKey:@"airportCode"];
     [request setPostValue:CURRENT_DEVICEID_VALUE forKey:@"hwId"];
     [request setPostValue:@"01" forKey:@"serviceCode"];
     [request setPostValue:@"v1.0" forKey:@"source"];
+    [request setPostValue:@"1" forKey:@"edition"];
+
+
     
     //请求完成
     [request setCompletionBlock:^{
         NSString * str = [request responseString];
-
+        NSLog(@"电话str : %@",str);
         
         NSDictionary * dic = [str objectFromJSONString];
-        NSLog(@"block before : %d",[[dic valueForKey:@"AirportCommonlyPhone"]count]);
-        [phoneInfoArray addObjectsFromArray:[dic valueForKey:@"AirportCommonlyPhone"]];
+        NSLog(@"block before : %d",[[dic valueForKey:@"airportPhone"]count]);
+        [phoneInfoArray addObjectsFromArray:[dic valueForKey:@"airportPhone"]];
         didFinish = YES;
         [myTableView reloadData];
     }];

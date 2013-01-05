@@ -10,11 +10,11 @@
 #import "SVSegmentedControl.h"
 #import "AirPortData.h"
 
-#import "CoachTableViewController.h"
-#import "SubwayTableViewController.h"
-#import "TaxiTableViewController.h"
+//#import "CoachTableViewController.h"
+//#import "SubwayTableViewController.h"
+//#import "TaxiTableViewController.h"
 
-@interface TravelTrafficViewController : UIViewController
+@interface TravelTrafficViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 {
     AirPortData * _subAirPortData;
     NSString * _airPortCode;    //机场三字码
@@ -38,13 +38,16 @@
     //大巴
     IBOutlet UIView * coachView;
     NSMutableDictionary * coachDic;
+    NSMutableDictionary * coachDicFromAirPort;
     //机场快线
     IBOutlet UIView * subwayView;
     NSMutableDictionary * subwayDic;
+    NSMutableDictionary * subwayDicFromAirPort;
     
     //出租车
     IBOutlet UIView * taxiView;
     NSMutableDictionary * taxiDic;
+    NSMutableDictionary * taxiDicFromAirPort;
     
     NSInteger coachListCount;       //多少辆大巴
     IBOutlet UIView * coachSingleList;//机场大巴单个列表（包括详情）
@@ -89,12 +92,28 @@
     IBOutlet UIView * taxiDetailView;   //taxi详情view
     
     
-    CoachTableViewController * coachTableViewController;
-    SubwayTableViewController * subwayTableViewController;
-    TaxiTableViewController * taxiTableViewController;
-    
-    UITableViewController * currViewController;
+    UITableView * coachTableView;
+    UITableView * subwayTableView;
+    UITableView * taxiTableView;
     UIView * contentView;
+    UITableView * currTableView;
+    CGRect rightRect;
+    CGRect centerRect;
+    
+    BOOL * flagOpenOrCloseCoach; //开关状态
+    BOOL * flagOpenOrCloseCoachFromAirPort;
+    NSArray * sectionCountCoach; //一共有多少个section
+    NSArray * sectionCountCoachFromAirPort; //机场到市区
+    
+    BOOL * flagOpenOrCloseSubway; //开关状态
+    BOOL * flagOpenOrCloseSubwayFromAirPort; //开关状态
+    NSArray * sectionCountSubway; //一共有多少个section
+    NSArray * sectionCountSubwayFromAirPort;    //
+    
+    BOOL * flagOpenOrCloseTaxi; //开关状态
+    BOOL * flagOpenOrCloseTaxiFromAirPort; //开关状态
+    NSArray * sectionCountTaxi; //一共有多少个section
+    NSArray * sectionCountTaxiFromAirPort;
 }
 @property(nonatomic,retain) NSString * airPortCode;
 @property(nonatomic,retain)AirPortData * subAirPortData;

@@ -481,6 +481,8 @@
 		18D3642A1695290F005CF80C /* TaxiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D364291695290F005CF80C /* TaxiTableViewController.m */; };
 		18D364391696713B005CF80C /* dong1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D3643716967139005CF80C /* dong1.png */; };
 		18D3643A1696713B005CF80C /* dong2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D364381696713A005CF80C /* dong2.png */; };
+		18D364B81697BB4D005CF80C /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D364B61697BB4D005CF80C /* WeatherViewController.m */; };
+		18D364B91697BB4D005CF80C /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D364B71697BB4D005CF80C /* WeatherViewController.xib */; };
 		18D41A0C169136BB0014B371 /* UIImage+scaleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */; };
 		18D70A9F16941B0700B11636 /* ChooseDiscountCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70A9D16941B0700B11636 /* ChooseDiscountCouponController.m */; };
 		18D70AA016941B0700B11636 /* ChooseDiscountCouponController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70A9E16941B0700B11636 /* ChooseDiscountCouponController.xib */; };
@@ -1366,6 +1368,9 @@
 		18D364291695290F005CF80C /* TaxiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxiTableViewController.m; sourceTree = "<group>"; };
 		18D3643716967139005CF80C /* dong1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dong1.png; sourceTree = "<group>"; };
 		18D364381696713A005CF80C /* dong2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dong2.png; sourceTree = "<group>"; };
+		18D364B51697BB4D005CF80C /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
+		18D364B61697BB4D005CF80C /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
+		18D364B71697BB4D005CF80C /* WeatherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
 		18D41A09169136850014B371 /* UIImage_scaleImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImage_scaleImage.h; sourceTree = "<group>"; };
 		18D41A0A169136BB0014B371 /* UIImage+scaleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+scaleImage.h"; sourceTree = "<group>"; };
 		18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+scaleImage.m"; sourceTree = "<group>"; };
@@ -3140,6 +3145,9 @@
 				1827BE801683581D00349FE1 /* ChackInNavgationViewController.h */,
 				1827BE811683581E00349FE1 /* ChackInNavgationViewController.m */,
 				1827BE821683581F00349FE1 /* ChackInNavgationViewController.xib */,
+				18D364B51697BB4D005CF80C /* WeatherViewController.h */,
+				18D364B61697BB4D005CF80C /* WeatherViewController.m */,
+				18D364B71697BB4D005CF80C /* WeatherViewController.xib */,
 				18D36421169528E0005CF80C /* CoachTableViewController.h */,
 				18D36422169528E0005CF80C /* CoachTableViewController.m */,
 				18D36425169528F3005CF80C /* SubwayTableViewController.h */,
@@ -4251,6 +4259,7 @@
 
 
 
+
 				18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */,
 				18D364391696713B005CF80C /* dong1.png in Resources */,
 				18D3643A1696713B005CF80C /* dong2.png in Resources */,
@@ -4288,6 +4297,12 @@
 
 				14AF4246169806AD00C7C2CA /* AirCompanyDataBase.sqlite in Resources */,
 				14AF424B169816CC00C7C2CA /* ResultForLeijiViewCell.xib in Resources */,
+
+
+				18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */,
+				18D364391696713B005CF80C /* dong1.png in Resources */,
+				18D3643A1696713B005CF80C /* dong2.png in Resources */,
+				18D364B91697BB4D005CF80C /* WeatherViewController.xib in Resources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4519,6 +4534,7 @@
 				18D3642A1695290F005CF80C /* TaxiTableViewController.m in Sources */,
 				14ECC083169599B2008191E1 /* SeatMapView.m in Sources */,
 				18DDB3FD16957A89004CEC75 /* WJOrderBasicCell.m in Sources */,
+
 				18EBFA5516966BCA0079F3EC /* LowTextFiledCell.m in Sources */,
 				18EBFA9916967BE80079F3EC /* LowOrderWJ.m in Sources */,
 				18EBFAB11696E5AE0079F3EC /* CheckPassword.m in Sources */,
@@ -4554,6 +4570,10 @@
 				14AF423B1697EE8E00C7C2CA /* LiChengDetailData.m in Sources */,
 				14AF42441698038A00C7C2CA /* AirCompanyDataBase.m in Sources */,
 				14AF4249169816B400C7C2CA /* ResultForLeijiViewCell.m in Sources */,
+
+
+				18D364B81697BB4D005CF80C /* WeatherViewController.m in Sources */,
+
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
