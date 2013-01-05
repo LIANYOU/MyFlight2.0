@@ -73,6 +73,7 @@
         BuyString = nil;
 
     }
+    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
     blocks(BuyString,swithType);
     [self.navigationController popViewControllerAnimated:YES];
 }

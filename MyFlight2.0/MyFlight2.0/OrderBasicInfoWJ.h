@@ -16,5 +16,7 @@
 @property (nonatomic, retain) NSString * payStsCh;// 支付状态
 @property (nonatomic, retain) NSString * totalMoney;// 总额
 
+@property (nonatomic, retain) NSString * actualMoney;// 总额
 
+@property (nonatomic, retain) NSString * flyType; // 单程，往返
 @end

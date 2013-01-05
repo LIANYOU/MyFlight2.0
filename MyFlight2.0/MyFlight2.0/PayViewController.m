@@ -11,6 +11,8 @@
 #import "PublicConstUrls.h"
 #import "UIButton+BackButton.h"
 #import "DetailsOrderViewController.h"
+#import "UIQuickHelp.h"
+#import "PublicConstUrls.h"
 @interface PayViewController ()
 
 @end
@@ -44,7 +46,8 @@
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
 
-    
+    self.payOnline.delegate = self;
+    [self.payOnline getBackInfo];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -65,6 +68,34 @@
     [detail release];
 }
 
+#pragma mark -
+
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+}
+
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+    
+    NSArray * arr = [info objectForKey:@"dic"];
+    NSLog(@"========================= %@",arr);
+ 
+}
+
 #pragma mark ---------  支付
 
 + (BOOL)pay:(NSString *)tradeNo payType:(NSString*)payType  window:(UIWindow *)window delegate:(id <UmpayDelegate>)delegate
@@ -76,4 +107,7 @@
 {
     
 }
+
+
+
 @end

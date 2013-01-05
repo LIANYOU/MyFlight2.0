@@ -24,7 +24,7 @@
     
     int btnTag;
     
-    void (^blocks) (NSString *schedule, NSString *postPay, int chooseBtnIndex);
+    void (^blocks) (NSString *schedule, NSString *postPay, int chooseBtnIndex, NSArray * InfoArr);
 }
 
 @property(nonatomic,retain) NSString * schedule_;
@@ -38,7 +38,7 @@
 @property (assign, nonatomic) int flag;  // 标记上次选择了哪一个btn
 @property (retain, nonatomic) IBOutlet UIView *postView;
 
--(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex))string;
+-(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex , NSArray * InfoArr))string;
 - (IBAction)postType:(id)sender;
 
 @end

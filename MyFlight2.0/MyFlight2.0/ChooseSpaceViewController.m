@@ -19,7 +19,7 @@
 #import "UIButton+BackButton.h"
 #define FONT_SIZE 8.0f
 #define CELL_CONTENT_WIDTH 320.0f
-#define CELL_CONTENT_MARGIN 100.0f
+#define CELL_CONTENT_MARGIN 105.0f
 
 @interface ChooseSpaceViewController ()
 {
@@ -51,8 +51,6 @@
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
-
-
 
 
     
@@ -230,6 +228,7 @@
         CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f);//可接受的最大大小的字符串
         
         CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
+    
         return size.height+60.0f;
 
     }
@@ -291,6 +290,10 @@
         CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
         
         CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
+        
+//        if (size.height < 20) {
+//            size.height = 25;
+//        }
         
         cell.view.frame = CGRectMake(0, 0, 320, size.height+60.0f);
         cell.textCell.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -484,8 +487,6 @@
     
     self.lookFlightArr = [[not userInfo] objectForKey:@"arr"];
     NSString * string = [self.lookFlightArr objectForKey:@"message"];
-    
-    NSLog(@"%@",self.lookFlightArr);
     
     if (string == @"") {
         if ([self.lookFlightBtn.titleLabel.text isEqualToString:@"关注航班"]) {

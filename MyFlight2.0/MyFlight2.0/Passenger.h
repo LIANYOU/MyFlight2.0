@@ -15,4 +15,12 @@
 @property (nonatomic, retain) NSString * certNo;   // 证件号码
 @property (nonatomic, retain) NSString * insuranceCode; // 保单号
 @property (nonatomic, retain) NSString * etNo;  // 票号
+
+@property (nonatomic, retain) NSString * ticketPrice;  // 票面价
+@property (nonatomic, retain) NSString * constructionPrice;  // 机建费
+@property (nonatomic, retain) NSString * bafPrice;  // 燃油
+@property (nonatomic, retain) NSString * insurance;  // 保险
+
+@property (nonatomic, retain) NSString * type;// 儿童或成人
+
 @end

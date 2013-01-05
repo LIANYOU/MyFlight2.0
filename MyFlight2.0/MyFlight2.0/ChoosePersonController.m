@@ -137,7 +137,7 @@
    
     cell.selectionStyle = 2;
     
-    //cell.btn.frame = CGRectMake(10, 11, 22, 22);
+    cell.btn.frame = CGRectMake(0,0, 44, 44);
     if (self.selectArr.count!=0) {
    
         for (NSString *thisRow in self.selectArr) {
@@ -145,21 +145,22 @@
             if (indexPath.row==a) {
                 selectedSign=YES;
                 
-                UIImage * image=[UIImage imageNamed:@"icon_choice@2x.png"];
+                UIImage * image=[UIImage imageNamed:@"icon_choice.png"];
               //  UIImage * toimage=[UIImage scaleImage:image toScale:0.5];
                 
-                [cell.btn setImage:image forState:0];
-                cell.btn.backgroundColor=[UIColor colorWithPatternImage:image];
+                [cell.btn setBackgroundImage:image forState:0];
+                
+               
                 break;
             }
         }
     }
     if (selectedSign==NO) {
         
-        UIImage * image=[UIImage imageNamed:@"ico_def@2x.png"];
-      //  UIImage * toimage=[UIImage scaleImage:image toScale:0.5];
-        [cell.btn setImage:image forState:0];
-        cell.btn.backgroundColor=[UIColor colorWithPatternImage:image];
+        UIImage * image=[UIImage imageNamed:@"ico_def.png"];
+    
+        [cell.btn setBackgroundImage:image forState:0];
+        
     }
     
     
@@ -175,20 +176,7 @@
     return cell;
     
 }
-//- (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
-//
-//{
-//    
-//    
-//	UIGraphicsBeginImageContext(CGSizeMake(image.size.width * scaleSize, image.size.height * scaleSize));
-//                                [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height * scaleSize)];
-//                                UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-//                                UIGraphicsEndImageContext();
-//                                
-//                                
-//                                return scaledImage;
-//                                    
-//}
+
 
 #pragma mark - Table view delegate
 
@@ -210,12 +198,12 @@
             if (btn.tag==a) {
                 [self.selectArr removeObject:thisRow];
                 
-                UIImage * image=[UIImage imageNamed:@"ico_def@2x.png"];
+                UIImage * image=[UIImage imageNamed:@"ico_def.png"];
    
 
-                [btn setImage:image forState:0];
+               [btn setBackgroundImage:image forState:0];
             
-                btn.backgroundColor=[UIColor colorWithPatternImage:image];
+               
                 return;
             }
         }
@@ -223,10 +211,10 @@
     
     [self.selectArr addObject: [NSString stringWithFormat:@"%d",btn.tag]];
     
-    UIImage * image=[UIImage imageNamed:@"icon_choice@2x.png"];
-  //  UIImage * toimage=[UIImage scaleImage:image toScale:0.5];
+    UIImage * image=[UIImage imageNamed:@"icon_choice.png"];
+
     
-    [btn setImage:image forState:0];
+    [btn setBackgroundImage:image forState:0];
     
 }
 

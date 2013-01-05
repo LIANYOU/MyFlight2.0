@@ -28,6 +28,9 @@
 {
     BOOL select;
     
+    int personCount;  // 成人数
+    int childCount;  // 儿童个数
+    
     float hight;
 }
 @end
@@ -54,7 +57,7 @@
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
-
+    
     
     self.detaile.delegate = self;
     [self.detaile getOrderDetailInfo:self.searchType];
@@ -217,7 +220,7 @@
         
         if (hight == 0.000000) {
            
-            [self.bigView removeFromSuperview];
+            [self.tempView removeFromSuperview];
         }
         
         self.showTableView.separatorColor = [UIColor grayColor];
@@ -231,6 +234,8 @@
             cell.orderStation.text = self.order.stsCh;
             cell.payStation.text = self.order.payStsCh;
             [cell.orderAllPay setTitle:self.order.totalMoney forState:0 ];
+            cell.payOnline.text = self.order.actualMoney;
+            
         }
        
         
@@ -263,6 +268,8 @@
             cell.date.text = self.flight.departureDate;
             cell.plantType.text = self.flight.aircraftType;
             cell.airPortName.text = self.flight.airlineCompany;
+            
+            
             
             cell.changeTicket.tag = indexPath.row;
        
@@ -374,7 +381,12 @@
 -(void)change:(UIButton *)btn
 {
     if (hight == 0.000000) {
-        self.tempView = self.bigView;
+        if (childCount != 0) {
+            self.tempView = self.bigView;
+        }
+        else{
+            self.tempView = self.smallView;
+        }
     }
     else{
         self.tempView = nil;
@@ -417,15 +429,79 @@
     self.post = [arr objectAtIndex:4];
     self.person = [arr objectAtIndex:5];
     
-    NSLog(@"%@",self.order.code );
-    NSLog(@"%@",self.flight.depAirPortCN );
-    NSLog(@"%@",self.inFlight.depAirPortCN );
-    NSLog(@"%@",self.post.deliveryType );
-    NSLog(@"--------- %@",self.person.name );
-    NSLog(@"%d",self.personArray.count);
+//    NSLog(@"%@",self.order.code );
+//    NSLog(@"%@",self.flight.depAirPortCN );
+//    NSLog(@"%@",self.inFlight.depAirPortCN );
+//    NSLog(@"%@",self.post.deliveryType );
+//    NSLog(@"--------- %@",self.person.name );
+//    NSLog(@"%d",self.personArray.count);
+    
+    Passenger * person = [[Passenger alloc] init];
+    Passenger * goPerson = [[Passenger alloc] init];
+    Passenger * child = [[Passenger alloc] init];
+    Passenger * goChild = [[Passenger alloc] init];
+    
+    NSMutableArray * personArr = [[NSMutableArray alloc] init];
+    NSMutableArray * childArr = [[NSMutableArray alloc] init];
+    
+    personCount = 0;
+    childCount = 0;
+    
     for (Passenger * p in self.personArray) {
-        NSLog(@"%@",p.name);
+        
+        if ([p.type isEqualToString:@"01"]) {
+            
+            [personArr addObject:p];
+            person = p;
+            personCount = personCount + 1;
+        }
+        else{
+            [childArr addObject:p];
+            child = p;
+            childCount = childCount +1;
+        }
+        
     }
+    
+    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+    
+    if ([self.order.flyType isEqualToString:@"2"]) {
+        goPerson = [personArr objectAtIndex:0];
+             
+        personCount = personCount/2;
+        
+        
+        if (childCount != 0) {
+            goChild = [childArr objectAtIndex:0];
+            childCount = childCount/2;
+        }
+        
+
+    }
+    else{
+        goPerson = nil;
+        goChild = nil;
+    }
+    
+    NSLog(@"--------------  %d,%d",personCount,childCount);
+    
+    self.PerStanderPrice.text =[NSString stringWithFormat:@"%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]]; 
+    self.PersonConstructionFee.text =[NSString stringWithFormat:@"%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
+    self.personAdultBaf.text =[NSString stringWithFormat:@"%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
+    self.Personinsure.text = [NSString stringWithFormat:@"%d",[person.insurance intValue] + [goPerson.insurance intValue]]; 
+    self.personMuber.text = [NSString stringWithFormat:@"%d",personCount];
+    
+    self.smallPerStanderPrice.text = [NSString stringWithFormat:@"%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]];
+    self.smallPersonConstructionFee.text = [NSString stringWithFormat:@"%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
+    self.smallpersonAdultBaf.text = [NSString stringWithFormat:@"%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
+    self.smallPersoninsure.text = [NSString stringWithFormat:@"%d",[person.insurance intValue] + [goPerson.insurance intValue]];
+    self.smallpersonMuber.text = [NSString stringWithFormat:@"%d",personCount];
+    
+    self.childStanderPrice.text =[NSString stringWithFormat:@"%d",[child.ticketPrice intValue] + [child.ticketPrice intValue]]; 
+    self.childConstructionFee.text =[NSString stringWithFormat:@"%d",[child.constructionPrice intValue] + [child.constructionPrice intValue]] ;
+    self.childBaf.text = [NSString stringWithFormat:@"%d",[child.bafPrice intValue] + [child.bafPrice intValue]];
+    self.childInsure.text = [NSString stringWithFormat:@"%d",[child.insurance intValue] + [child.insurance intValue]];
+    self.childMunber.text = [NSString stringWithFormat:@"%d",childCount];
     
     [self.showTableView reloadData];
 

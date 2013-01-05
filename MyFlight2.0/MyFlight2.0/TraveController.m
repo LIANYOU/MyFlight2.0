@@ -164,7 +164,7 @@
     [super viewDidUnload];
 }
 
--(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex))string
+-(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex , NSArray * InfoArr))string
 {
     [blocks release];
     blocks = [string copy];
@@ -172,18 +172,23 @@
 }
 
 - (IBAction)postType:(id)sender {
+    
     PostViewController * postT = [[PostViewController alloc] init];
     [postT getDate:^(NSString *idntity) {
         type.text = idntity;
     }];
     [self.navigationController pushViewController:postT animated:YES];
     [postT release];
+    
 }
 -(void)back
 {
   
     
-    blocks(_schedule_,type.text,btnTag);
+    NSArray * arr = [NSArray arrayWithObjects:name.text,city.text,address.text,phone.text, nil];
+    
+    
+    blocks(_schedule_,type.text,btnTag, arr);
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -14,7 +14,7 @@
 @interface DiscountCouponController : UIViewController <UITableViewDataSource,UITableViewDelegate,ServiceDelegate>
 {
 
-    void (^blocks) (NSString * swithStation, NSString * silverOrDiscount ,NSString * gold, NSMutableArray * arr);
+    void (^blocks) (NSString * swithStation, NSString * silverOrDiscount ,NSString * gold, NSMutableArray * arr,NSString * password, NSString * ID);
 }
 
 
@@ -52,7 +52,7 @@
 
 - (IBAction)swithOFFOrON:(UISwitch *)sender;
 
--(void)getDate:(void (^) (NSString * swithStation, NSString * silverOrDiscount ,NSString * gold, NSMutableArray * arr))string;
+-(void)getDate:(void (^) (NSString * swithStation, NSString * silverOrDiscount ,NSString * gold, NSMutableArray * arr,NSString * password, NSString * ID))string;
 
 
 

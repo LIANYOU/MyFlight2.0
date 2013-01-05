@@ -17,6 +17,10 @@
 @interface DiscountCouponController ()
 {
     BOOL selectedSign;
+    
+    NSString * captchaID; // 优惠券ID
+    
+    int checkFlag; // 判断支付密码是否正确
 }
 @end
 
@@ -295,6 +299,7 @@
         ChooseDiscountCouponController * choose =  [[ChooseDiscountCouponController alloc] init];
         choose.captchaList = self.captchaListArr;
         [choose getDate:^(NSString *name, NSString *count, NSMutableArray *arr) {
+           
             cell.name.text = name;
             cell.secLebel.text = [NSString stringWithFormat:@"%@",count];
             self.nextSelectArr = [NSMutableArray arrayWithArray:arr];
@@ -361,26 +366,34 @@
 
 -(void)back
 {
+   
+    
     NSString * string = nil;
     NSString * goldString = nil;
 
-    NSIndexPath * index = [NSIndexPath indexPathForRow:0 inSection:1];
-    GoldCoinCell *cell = (GoldCoinCell *)[self.showDiscountTableView cellForRowAtIndexPath:index];
-    goldString = [NSString stringWithFormat:@"%@",cell.payLabel.text];
+    if (checkFlag == 100) {  // 支付密码验成功
+
+    goldString =[NSString stringWithFormat:@"%d",[self.accountAmount intValue]+[self.goldAmount intValue]] ;
+    }
 
     if (self.selectArr.count != 0) {
         if ([[self.selectArr objectAtIndex:0] isEqual:@"0"]) {
             string = self.silverAmount;  // 使用银币
         }
         else{  // 使用优惠券
+            
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
             UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:indexPath];
             string = cell.secLebel.text;
+            
+            int flag =[[self.nextSelectArr objectAtIndex:0] intValue];
+            captchaID = [[self.captchaListArr objectAtIndex:flag] objectForKey:@"id"];
+            
         }
     }
     
     
-    blocks(self.swithStation, string ,goldString, self.selectArr);
+    blocks(self.swithStation, string ,goldString, self.selectArr,self.text.text,captchaID);
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -390,16 +403,18 @@
     if(setting)
     {
         self.swithStation = @"ON";
+        
         self.showDiscountTableView.hidden = NO;
         
     }else {
+        [self.selectArr removeAllObjects];
         self.swithStation = @"OFF";
         self.showDiscountTableView.hidden = YES;
     }
 
 }
 
--(void)getDate:(void (^) (NSString * swithStation, NSString * silverOrDiscount ,NSString * gold, NSMutableArray * arr))string
+-(void)getDate:(void (^) (NSString * swithStation, NSString * silverOrDiscount ,NSString * gold, NSMutableArray * arr,NSString * password, NSString * ID))string
 {
     [blocks release];
     blocks = [string copy];
@@ -412,7 +427,7 @@
 - (void )requestDidFailed:(NSDictionary *)info{
     
     NSString * meg =[info objectForKey:KEY_message];
-    
+  
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
 }
 
@@ -420,7 +435,7 @@
 - (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
     
     NSString * meg =[info objectForKey:KEY_message];
-    
+
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
     
 }
@@ -429,8 +444,8 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"预约成功" message:@"有符合要求的折扣信息时，会提醒您。您可以在我的帐户里查看订阅的航线低价信息。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"支付密码验证成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    checkFlag = 100;
     [alert show];
     [alert release];
     
