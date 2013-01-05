@@ -73,7 +73,7 @@
     if (isLogin) {
 
         
-        controller = [[MyNewCenterViewController alloc] init];
+        controller = [[MyCenterTable_1 alloc] init];
         
                
     } else{

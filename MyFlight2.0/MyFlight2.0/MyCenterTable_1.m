@@ -12,11 +12,14 @@
 #import "AppConfigure.h"
 #import "PersonalInfoViewController.h"
 #import "PersonInfotoShowViewController.h"
+#import "MyCheapViewController.h"
+#import "MyOrderListViewController.h"
+#import "CommonContactViewController.h"
+#import "MyCheapViewController.h"
 @interface MyCenterTable_1 ()
 {
     
     UITableView * thistableView;
-
     NSArray *imageArray;
     NSArray *nameArray;
 }
@@ -39,20 +42,8 @@
     [super viewDidLoad];
     
     imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"icon_atv.png"],[UIImage imageNamed:@"icon_Coupon.png"],[UIImage imageNamed:@"icon_Recharge.png"] ,nil];
-    
     nameArray =[[NSArray alloc] initWithObjects:@"常用联系人信息",@"我订阅的低价航线",@"用心愿旅行卡充值", nil];
-    
-
-//    thistableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
-//    thistableView.dataSource =self;
-//    thistableView.delegate =self;
-//    thistableView.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor =View_BackGround_Color;
-    
-    [self.view addSubview:thistableView];
-    
-     
-        // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,7 +114,7 @@
 {
     
     
-    UITableViewCell *cell = nil;
+    
     
     
     
@@ -132,7 +123,7 @@
         NSLog(@"000000000000");
         static NSString *CellIdentifier = @"Cell";
         
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        MyCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             
             NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:self options:nil];
@@ -140,12 +131,11 @@
             cell = [array objectAtIndex:0];
         }
         
-        MyCenterCell *thisCell = (MyCenterCell * ) cell;
+        cell.titleLabel.text = @"个人资料";
+        cell.detailLabel.text = @"13161188680";
+        cell.thisImageView.image = [UIImage imageNamed:@"icon_acc.png"];
         
-        thisCell.titleLabel.text = @"个人资料";
-        thisCell.detailLabel.text = @"13161188680";
-        thisCell.thisImageView.image = [UIImage imageNamed:@"icon_acc.png"];
-        
+        return cell;
         
     }
     
@@ -155,7 +145,8 @@
         if (indexPath.row==0) {
             
             static NSString *CellIdentifier = @"second";
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            MyCenterSecondCell  *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             
             if (cell == nil) {
                 
@@ -164,10 +155,11 @@
                 cell = [array objectAtIndex:0];
             }
             
-            MyCenterSecondCell *thisCell =(MyCenterSecondCell *) cell;
-            thisCell.accountMoneyLabel.text = @"￥675";
-            thisCell.goldMoneyLabel.text = @"￥436";
-            thisCell.silverMoneyLabel.text= @"￥787";
+            
+            cell.accountMoneyLabel.text = @"￥675";
+            cell.goldMoneyLabel.text = @"￥436";
+            cell.silverMoneyLabel.text= @"￥787";
+            return  cell;
         }
         
         if (indexPath.row==1){
@@ -175,21 +167,19 @@
             
             static NSString *CellIdentifier = @"Cell_1";
             
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            MyCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
                 
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:self options:nil];
+                
+                cell = [array objectAtIndex:0];
             }
             
-            cell.imageView.image = [UIImage imageNamed:@"icon_Coupon.png"];
-
-            cell.textLabel.text = @"我的优惠券";
+            cell.titleLabel.text = @"我的优惠券";
+            cell.detailLabel.text = @"";
+            cell.thisImageView.image = [UIImage imageNamed:@"icon_Coupon.png"];
             
-//            MyCenterCell *thisCell = (MyCenterCell *) cell;
-//            thisCell.titleLabel.text = @"我的优惠券";
-//            thisCell.detailLabel.text = @"";
-//            thisCell.imageView.image = [UIImage imageNamed:@"icon_Coupon.png"];
-            
+            return  cell;
             
         }
         
@@ -204,7 +194,7 @@
         
         static NSString *CellIdentifier = @"Cell0";
         
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        MyCenterCell  *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         if (cell == nil) {
             
@@ -214,61 +204,100 @@
         }
         
         
-        MyCenterCell *thisCell = (MyCenterCell *) cell;
-        
         if(indexPath.row==0){
             
             
             
-            thisCell.titleLabel.text = @"我的订单";
-            thisCell.detailLabel.text = @"未支付订单(1)";
-            thisCell.imageView.image = [UIImage imageNamed:@"icon_Orders.png"];
+            cell.titleLabel.text = @"我的订单";
+            cell.detailLabel.text = @"未支付订单(1)";
+            cell.thisImageView.image = [UIImage imageNamed:@"icon_Orders.png"];
             
         } else{
             
             
-            thisCell.titleLabel.text = [nameArray objectAtIndex:indexPath.row-1];
+            cell.titleLabel.text = [nameArray objectAtIndex:indexPath.row-1];
             
-            thisCell.imageView.image = [imageArray objectAtIndex:indexPath.row-1];
-            thisCell.detailTextLabel.text =@"";
+            cell.thisImageView.image = [imageArray objectAtIndex:indexPath.row-1];
+            cell.detailTextLabel.text =@"";
             
             
         }
         
         
+        
+        return  cell;
+        
     }
     
+    return  nil;
     
-    return cell;
 }
 
 
 
-- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     NSLog(@"第%d分区 第%d行",indexPath.section,indexPath.row);
+    
+    id controller =nil;
+    
+    
     if (indexPath.section==0) {
         
         NSLog(@"第0分区执行");
         
-            
-            PersonInfotoShowViewController *controller = [[PersonInfotoShowViewController alloc] init];
-            
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
-
-              
-       
+        
+        controller = [[PersonInfotoShowViewController alloc] init];
+        
+        
     }
     
     
+    if (indexPath.section==1) {
+        
+        if (indexPath.row==1) {
+            
+            controller = [[MyCheapViewController alloc] init];
+            
+        }
+        
+    }
     
     
+    if (indexPath.section==2) {
+        
+        switch (indexPath.row) {
+            case 0:
+                
+                controller = [[MyOrderListViewController alloc] init];
+                
+                break;
+            case 1:
+                controller = [[CommonContactViewController alloc] init];
+                break;
+            case 2:
+                controller= [[MyCheapViewController alloc] init];
+                break;
+            default:
+                break;
+        }
+        
+            
+    }
     
+    
+       [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
     
     
 }
+
+
+
 @end
