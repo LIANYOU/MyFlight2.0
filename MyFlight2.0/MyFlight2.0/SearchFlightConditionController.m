@@ -54,7 +54,7 @@ int whichDay(int year,int month,int day);
     //航班动态列表,上面放一个tableview,动画也放这上面
     myConditionListView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height)];
     myConditionListView.backgroundColor = FOREGROUND_COLOR;
-    myConditionListTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height)];
+    myConditionListTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 30, 320, [[UIScreen mainScreen]bounds].size.height - 64-30)];
     myConditionListTableView.backgroundColor = FOREGROUND_COLOR;
     myConditionListTableView.dataSource = self;
     myConditionListTableView.delegate = self;

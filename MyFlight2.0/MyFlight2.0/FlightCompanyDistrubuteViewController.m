@@ -69,7 +69,7 @@
     [goToWebViewBtn release];
     
     //地图
-    [self addMap];
+//    [self addMap];
     
 /*
     UIView * bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, myView.bounds.size.height - 40, myView.bounds.size.width, 40)];
@@ -149,9 +149,15 @@
         
 //        NSArray * rootArray = [dic valueForKey:@"AirportGuide"];
 //        NSDictionary * subDic = [rootArray objectAtIndex:0];
-//
+//  
         myTextView.text = mystr;
         myTitleLabel.text = name;
+        
+
+//        NSLog(@"%@",[[[dic1 valueForKey:@"airportCoordinate"]objectAtIndex:0]componentsSeparatedByString:@","]);
+        airportCoordinateArray = [[NSMutableArray alloc]initWithArray:[[[dic1 valueForKey:@"airportCoordinate"]objectAtIndex:0]componentsSeparatedByString:@","]];
+         [self addMap];
+//        airportCoordinateArray = [[NSMutableArray alloc]initWithArray:tempArray];
     }];
     //请求失败
     [request setFailedBlock:^{
@@ -198,22 +204,22 @@
 -(void)addMap{
     myMapView = [[MKMapView alloc]initWithFrame:CGRectMake(0,[[UIScreen mainScreen] bounds].size.height - 180 , 320, 180)];
     CLLocationCoordinate2D center;
-    if (self.subAirPortData.air_x == nil) {
-        center.latitude = 40;
-        center.longitude = 117;
-    }else{
-        center.latitude = [self.subAirPortData.air_x doubleValue];
-        center.longitude = [self.subAirPortData.air_x doubleValue];
-    }
+
+    
+//    center.latitude = [[airportCoordinateArray objectAtIndex:0]doubleValue];
+//    center.longitude = [[airportCoordinateArray objectAtIndex:1]doubleValue];
+    NSLog(@"center :%f,%f",[[airportCoordinateArray objectAtIndex:0]doubleValue],[[airportCoordinateArray objectAtIndex:1]doubleValue]);
+    center.latitude = 40;
+    center.longitude = 117;
+    
     
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.1;
-    span.longitudeDelta = 0.1;
+    span.latitudeDelta = .4;
+    span.longitudeDelta = .4;
     
     MKCoordinateRegion region = {
         center,span
     };
-    
     myMapView.region = region;
 //    myMapView.showsUserLocation = YES;
 

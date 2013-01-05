@@ -23,6 +23,7 @@
     MKMapView * myMapView;
     MapManager * myMapManager;
     MKAnnotationView * myPlaneImageView;
+    NSMutableArray * airportCoordinateArray;//经纬度
 }
 //@property(nonatomic,retain) NSString * airPortCode;
 @property(nonatomic,retain)AirPortData * subAirPortData;
