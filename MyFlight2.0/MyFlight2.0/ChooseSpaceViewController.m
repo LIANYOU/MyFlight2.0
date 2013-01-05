@@ -291,9 +291,9 @@
         
         CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
         
-//        if (size.height < 20) {
-//            size.height = 25;
-//        }
+        if ( _firstCellText != @"" &&  size.height < 20) {
+            size.height = 25;
+        }
         
         cell.view.frame = CGRectMake(0, 0, 320, size.height+60.0f);
         cell.textCell.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -303,6 +303,8 @@
         cell.textView.backgroundColor = [UIColor colorWithRed:237/255.0 green:232/255.0 blue:226/255.0 alpha:1];
         cell.textCell.font = [UIFont systemFontOfSize:12.0f];
         cell.textCell.text = _firstCellText;
+        UIColor * myColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
+        cell.textCell.textColor = myColor;
         cell.wImage.frame = CGRectMake(0, size.height+60.0f, 320, 1);
         cell.dImage.frame = CGRectMake(0, size.height+61.0f, 320, 1);
     
