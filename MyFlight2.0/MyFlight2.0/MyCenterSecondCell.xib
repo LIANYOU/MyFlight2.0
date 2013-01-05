@@ -239,6 +239,7 @@
 					<int key="NSColorSpace">2</int>
 					<bytes key="NSRGB">MC45Njg2Mjc1MTI1IDAuOTUyOTQxMjM4OSAwLjkzNzI1NDk2NTMAA</bytes>
 				</object>
+				<bool key="IBUIUserInteractionEnabled">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="114317952"/>
 				<string key="IBUIReuseIdentifier">Second</string>
