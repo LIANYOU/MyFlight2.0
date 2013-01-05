@@ -64,32 +64,30 @@
 
     id controller =nil;
     
-    MyNewCenterViewController *myCenter = nil;
-    MyCenterUnLoginViewController *unLogin = nil;
-//    MyCenterTable_1 *myCenter = nil;
+
     
     BOOL  isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:KEY_Default_IsUserLogin];
-//    isLogin = true;
+   isLogin = true;
     CCLog(@"用户登陆 %d",isLogin);
     
     if (isLogin) {
-//        myCenter = [[MyCenterTable_1 alloc] init];
+
         
-        myCenter = [[MyNewCenterViewController alloc] init];
-        controller = myCenter;
+        controller = [[MyNewCenterViewController alloc] init];
         
+               
     } else{
         
         
-      unLogin = [[MyCenterUnLoginViewController alloc] init];
-        controller = unLogin;
+      controller = [[MyCenterUnLoginViewController alloc] init];
+     
         
         
     }
     
        
     [self.navigationController pushViewController:controller animated:YES];
-    [myCenter release];
+    [controller release];
     
 }
 

@@ -8,6 +8,7 @@
 
 #import "ChooseAirPortCompanyViewController.h"
 #import "AirPortCompanyData.h"
+#import "AirCompanyDataBase.h"
 @interface ChooseAirPortCompanyViewController ()
 
 {
@@ -42,7 +43,9 @@
     data.longName =@"";
     data.code = @"";
     
-    allCompannyArray = [[NSArray alloc] initWithObjects:@"深航",@"海航",@"国航",@"香港",@"东航",@"成都",@"南航", nil];
+//    allCompannyArray = [[NSArray alloc] initWithObjects:@"深航",@"海航",@"国航",@"香港",@"东航",@"成都",@"南航", nil];
+    
+    allCompannyArray = [[AirCompanyDataBase findAllAirCompany] retain];
     
     tmpArray = allCompannyArray;
     // Do any additional setup after loading the view from its nib.
@@ -56,6 +59,7 @@
 
 - (void)dealloc {
     [_thisTableView release];
+    [allCompannyArray release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -70,13 +74,12 @@
 #pragma mark TableViewDataSource
 //设置每个分组的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;{
-    NSLog(@"function %s line=%d",__FUNCTION__,__LINE__);
-    
+       
     return [tmpArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;{
-    NSLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+  
     //重用机制
     static NSString *cellIdentity=@"cell";
     
@@ -86,11 +89,16 @@
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault   reuseIdentifier:cellIdentity];
     }
     
-//    AirPortCompanyData *data = [tmpArray objectAtIndex:indexPath.row];
-//    cell.textLabel.text = data.shortName;
+    AirPortCompanyData *data = [tmpArray objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = data.shortName;
+    
     
     //具体定制每个列表项
-    cell.textLabel.text= [tmpArray objectAtIndex:indexPath.row];
+//    cell.textLabel.text= [tmpArray objectAtIndex:indexPath.row];
+    
+    
+    
     
     if ([cell.textLabel.text isEqualToString:self.selectedCompany]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -115,7 +123,7 @@
 //返回有几个分区，每个分区包含之前设置的行数
 - (NSInteger ) numberOfSectionsInTableView:(UITableView *)tableView{
     
-    NSLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    
     return 1;
 }
 
@@ -143,15 +151,13 @@
     
     thiscell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-    AirPortCompanyData *data = [[AirPortCompanyData alloc] init];
-//    AirPortCompanyData *data = [tmpArray objectAtIndex:indexPath.row];
-    data.shortName = [tmpArray objectAtIndex:indexPath.row];
+//    AirPortCompanyData *data = [[AirPortCompanyData alloc] init];
     
+   AirPortCompanyData *data = [tmpArray objectAtIndex:indexPath.row];
     
+//    data.shortName = [tmpArray objectAtIndex:indexPath.row];
     
-    if (_delegate&&[_delegate respondsToSelector:@selector(ChooseAirPortCompanyViewController:DidChooseCompany:)]) {
-        
-        
+      if (_delegate&&[_delegate respondsToSelector:@selector(ChooseAirPortCompanyViewController:DidChooseCompany:)]) {
         
         [_delegate ChooseAirPortCompanyViewController:self DidChooseCompany:data];
     }

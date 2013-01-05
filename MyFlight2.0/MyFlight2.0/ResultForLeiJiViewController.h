@@ -10,4 +10,15 @@
 
 @interface ResultForLeiJiViewController : UIViewController
 
+
+@property (retain, nonatomic) IBOutlet UIView *thisFuckHeadView;
+
+@property (retain, nonatomic) IBOutlet UILabel *companyName;
+
+@property (retain, nonatomic) IBOutlet UILabel *startAirPortLabel;
+
+@property (retain, nonatomic) IBOutlet UILabel *endAirPortLabel;
+
+
+
 @end

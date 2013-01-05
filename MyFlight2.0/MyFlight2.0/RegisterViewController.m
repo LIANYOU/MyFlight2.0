@@ -37,6 +37,20 @@
 {
     
     [UIQuickHelp setRoundCornerForView:self.thisView withRadius:8];
+    
+    [[self.thisView layer] setShadowOffset:CGSizeMake(1, 1)];
+    [self.thisView.layer setShadowRadius:3];
+    [self.thisView.layer setShadowOpacity:0.5];
+    [self.thisView.layer setShadowColor:[UIColor whiteColor].CGColor];
+    
+    
+//    [self.thisView.layer setCornerRadius:3];
+   [self.thisView.layer setBorderWidth:0.3];
+    [self.thisView.layer setBorderColor:[UIColor whiteColor].CGColor];
+//    
+//    [self.thisView.layer set]
+    
+    
     self.accountFiled.delegate = self;
     self.securityCodeField.delegate = self;
     self.passWordFiled.delegate = self;

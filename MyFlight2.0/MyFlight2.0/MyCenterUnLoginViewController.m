@@ -9,6 +9,8 @@
 #import "MyCenterUnLoginViewController.h"
 #import "UIQuickHelp.h"
 #import "MyCenterUnLoginCell.h"
+#import "UIImage+Scale.h"
+#import "UIImage+scaleImage.h"
 @interface MyCenterUnLoginViewController ()
 {
     
@@ -39,8 +41,9 @@
     UIImage *image2 = [UIImage imageNamed:@"icon_Orders.png"];
     UIImage *image3 = [UIImage imageNamed:@"icon_Recharge.png"];
     
-    imageArray =[[NSArray alloc] initWithObjects:image1,image2,image3, nil];
-    
+    imageArray =[[NSArray alloc] initWithObjects:image1,image2,image3,nil];
+                 
+                 
     nameArray = [[NSArray alloc] initWithObjects:@"个人资料",@"我的订单",@"我订阅的低价航线", nil];
     
     
@@ -103,6 +106,7 @@
   
     thisCell.thisimageView.image =[imageArray objectAtIndex:indexPath.row];
     
+//    thisCell.thisimageView.frame = CGRectMake(13, 10, 24, 24);
     
     if (indexPath.row==0) {
     

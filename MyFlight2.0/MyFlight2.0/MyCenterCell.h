@@ -11,7 +11,9 @@
 @interface MyCenterCell : UITableViewCell
 
 
-@property (retain, nonatomic) IBOutlet UIImageView *ImageView;
+
+@property (retain, nonatomic) IBOutlet UIImageView *thisImageView;
+
 
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;

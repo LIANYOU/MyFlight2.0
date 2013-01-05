@@ -33,7 +33,7 @@
     self.title = @"添加乘机人";
     
     LoginBusiness *bis = [[LoginBusiness alloc] init];
-    [bis addCommonPassengerWithPassengerName:@"李老师" type:@"01" certType:@"0" certNo:@"341221198911234119" userDic:nil andDelegate:self];
+    [bis addCommonPassengerWithPassengerName:@"代儿童" type:@"02" certType:@"9" certNo:@"2009-8-8" userDic:nil andDelegate:self];
     
     
     

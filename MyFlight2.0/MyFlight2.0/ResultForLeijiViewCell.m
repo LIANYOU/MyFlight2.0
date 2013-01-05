@@ -1,22 +1,20 @@
 //
-//  MyCenterUnLoginCell.m
+//  ResultForLeijiViewCell.m
 //  MyFlight2.0
 //
-//  Created by Davidsph on 12/27/12.
-//  Copyright (c) 2012 LIAN YOU. All rights reserved.
+//  Created by Davidsph on 1/5/13.
+//  Copyright (c) 2013 LIAN YOU. All rights reserved.
 //
 
-#import "MyCenterUnLoginCell.h"
+#import "ResultForLeijiViewCell.h"
 
-@implementation MyCenterUnLoginCell
+@implementation ResultForLeijiViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
-        self.thisimageView.frame = CGRectMake(13, 10, 24, 24);
-        
+        // Initialization code
     }
     return self;
 }
@@ -29,11 +27,8 @@
 }
 
 - (void)dealloc {
-    
-    [_thisimageView release];
-    
     [_nameLabel release];
-    [_detailLabel release];
+    [_thisDetailLabel release];
     [super dealloc];
 }
 @end

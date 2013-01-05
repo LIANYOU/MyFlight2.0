@@ -15,6 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
     }
     return self;
 }
@@ -27,9 +28,10 @@
 }
 
 - (void)dealloc {
-    [_ImageView release];
+  
     [_titleLabel release];
     [_detailLabel release];
+    [_thisImageView release];
     [super dealloc];
 }
 @end
