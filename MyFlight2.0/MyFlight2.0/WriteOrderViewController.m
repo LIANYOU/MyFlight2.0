@@ -24,6 +24,7 @@
 #import "FlightBookingBusinessHelper.h"
 #import "bookingReturnFlightVo.h"
 #import "UIQuickHelp.h"
+#import "PayOnline.h"
 
 #import "PayViewController.h"
 #import "OrderDetaile.h"
@@ -48,6 +49,19 @@
     int insuranceFlag;  // 判断有没有购买保险
     
     NSMutableArray * addPersonArr;
+    
+    NSString * silverString;// 银币
+    NSString * captchaString;  //优惠券
+    NSString * goldAndCount;// 金币和资金账户
+    NSString * passWord;    // 支付密码
+    NSString * captchaID;// 优惠券ID
+    
+   
+    
+    
+    BOOL selectDicount;
+    
+    
 }
 @end
 
@@ -121,7 +135,7 @@
     
     
        
-    UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"登陆"];
+    UIButton * histroyBut = [UIButton backButtonType:4 andTitle:@"登陆"];
     [histroyBut addTarget:self action:@selector(log) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
@@ -673,10 +687,11 @@
                     {
                         [[NSBundle mainBundle] loadNibNamed:@"WirterOrderTwoLineCell" owner:self options:nil];
                         cell = self.wirterOrderTwoLineCell;
+                        cell.firLable.text = @"";
                     }
                     if (Default_IsUserLogin_Value) {
                         
-                        cell.firLable.text = @"";
+                        
                         return cell;
                         
                     }
@@ -715,6 +730,25 @@
     }
 
     if (indexPath.row == 0) {
+        
+        
+        if (selectDicount) {     // 判断如果已经选择了优惠券，有重新选择乘机人，优惠券要重新选择
+            
+            int section;
+            if (self.flag == 1) {
+                section =2;
+            }
+            else{
+                section =3;
+            }
+            
+            WirterOrderTwoLineCell * cell = (WirterOrderTwoLineCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:section]];
+            
+            cell.secLabel.text = @"账户资金/优惠券抵用";
+            
+            cell.firLable.text = @"不使用银币，优惠券和金币及资金账户";
+        
+        }
         
         personNumber = 1;
         childNumber = 0; // 再次进入的时候清空初始人数；
@@ -798,7 +832,7 @@
                      
                      NSString * string = [NSString stringWithFormat:@"%@%@\n%@",str1,str3,str2];
                      
-                     if ([str3 isEqualToString:@"儿童"]) {
+                     if ([str3 isEqualToString:@"02"]) {
                          childNumber = childNumber + 1;
                     }
 
@@ -857,10 +891,22 @@
                 cell.secondLable.text = [NSString stringWithFormat:@"20元/份*%d人",personNumber+childNumber];
                 self.Personinsure.text = @"20";
                 self.childInsure.text = @"20";
-                            
-                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
-                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
-                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+                
+                if ([self.postType isEqualToString:@"快递"]) {
+                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
+                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
+                    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
+                }
+
+                else{
+                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+                    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+                }
+               
+                
+          //      newPersonAllPay =
+                
             }
             else{
                 cell.secondLable.text = @"";
@@ -872,9 +918,20 @@
                 }
 
                 
-                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
-                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
-                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
+                if ([self.postType isEqualToString:@"快递"]) {
+                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20 ];
+                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20];
+                    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20];
+                }
+                else
+                {
+                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
+                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
+                    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
+                }
+                
+                
+                
 
             }
            
@@ -891,19 +948,33 @@
         
         trave.flag = self.traveType;
         
-        [trave getDate:^(NSString *schedule, NSString *postPay, int chooseBtnIndex) {
+        [trave getDate:^(NSString *schedule, NSString *postPay, int chooseBtnIndex , NSArray * InfoArr) {
             
+            
+            self.postType = postPay;
             NSLog(@"%@,,,%@,,,%d",schedule,postPay,chooseBtnIndex);
             
             /// **************  填写行程单配送信息
             flightItinerary = [[flightItineraryVo alloc] init];
-            flightItinerary.deliveryType = @"0";
-            flightItinerary.address = nil;
-            flightItinerary.city = nil;
-            flightItinerary.mobile = nil;
-            flightItinerary.postCode = nil;
-            flightItinerary.catchUser = nil;
-            flightItinerary.isPromptMailCost = @"0";
+            flightItinerary.deliveryType = [NSString stringWithFormat:@"%d",chooseBtnIndex-1];
+            if (chooseBtnIndex == 3) {
+                flightItinerary.address = [InfoArr objectAtIndex:2];
+                flightItinerary.city = [InfoArr objectAtIndex:1];
+                flightItinerary.mobile = [InfoArr objectAtIndex:3];
+                flightItinerary.postCode = nil;
+                flightItinerary.catchUser = [InfoArr objectAtIndex:0];
+                flightItinerary.isPromptMailCost = @"0";
+
+            }
+            else{
+                flightItinerary.address = nil;
+                flightItinerary.city = nil;
+                flightItinerary.mobile = nil;
+                flightItinerary.postCode = nil;
+                flightItinerary.catchUser = nil;
+                flightItinerary.isPromptMailCost = @"0";
+
+            }
             
        
             
@@ -915,7 +986,7 @@
             
             if ([postPay isEqualToString:@"快递"]) {
                 
-                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",[self.upPayMoney.text intValue]+20];
                 self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
                 self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +insuranceFlag*20*(personNumber+childNumber)+20];
             }
@@ -937,6 +1008,8 @@
         
     }
     if (indexPath.row == 4) {
+        
+        selectDicount = true;
         
         NSString * sign = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,@"xx",Default_Token_Value];
         NSString *signReal =GET_SIGN(sign);
@@ -963,35 +1036,44 @@
         discount.indexArr = self.indexGoldArr;
         discount.type = self.swithTypeForGold;
         
-        [discount getDate:^(NSString *swithStation, NSString *silverOrDiscount, NSString *gold, NSMutableArray *arr) {
+        [discount getDate:^(NSString *swithStation, NSString *silverOrDiscount, NSString *gold, NSMutableArray *arr, NSString * password, NSString * ID) {
             
             self.swithTypeForGold = swithStation;
             
             self.indexGoldArr = arr;
-            
-           
+
             
             WirterOrderTwoLineCell * cell = (WirterOrderTwoLineCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             cell.secLabel.text = @"账户资金/优惠券抵用";
             if ([swithStation isEqualToString:@"OFF"]) {
-                cell.firLable.text = @"使用银币，优惠券和金币及资金账户";
+                cell.firLable.text = @"不使用银币，优惠券和金币及资金账户";
             }
             else
             {
-                NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+                goldAndCount = gold;  // 赋值金币和资金账户
+                passWord = password;
+                
                 if (arr.count != 0) {
                     if ([[arr objectAtIndex:0] isEqualToString:@"0"]) {
+                        
+                        silverString = silverOrDiscount;
                         cell.firLable.text = [NSString stringWithFormat:@"使用银币￥%@",silverOrDiscount];  // 使用银币
                     }
                     else{
+                        
+                        captchaString = silverOrDiscount;
+                        captchaID = ID;
                         cell.firLable.text = [NSString stringWithFormat:@"使用优惠券%@",silverOrDiscount];   // 使用优惠券
                     }
 
                 }
                 
             }
-           
-            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+   
+            self.upPayMoney.text = [NSString stringWithFormat:@"%d",[self.upPayMoney.text intValue]-[silverOrDiscount intValue]-[gold intValue]];
+            self.bigUpPayMoney.text = self.upPayMoney.text;
+            self.allPay.text = self.upPayMoney.text;
+            
             NSLog(@"%@,%@,%@,%@",swithStation,silverOrDiscount,gold,arr);
         }];
         
@@ -1049,12 +1131,47 @@
     
 
     payVo * pay  = [[payVo alloc] init];
-    pay.isNeedPayPwd = @"no";
-    pay.isNeedAccount = @"no";
-    pay.needNotSilver = @"no";
-    pay.payPassword = nil;
-    pay.captcha = nil;
-    
+    if (goldAndCount != nil || silverString != nil ) {
+        
+       
+        if (goldAndCount != nil && silverString != nil) {
+            pay.isNeedPayPwd = @"yes";
+            pay.isNeedAccount = @"yes";
+            pay.needNotSilver = @"no";
+            pay.payPassword = passWord;
+            pay.captcha = captchaID;
+        }
+        else{
+            
+            if (silverString != nil) {
+                pay.isNeedPayPwd = @"no";
+                pay.isNeedAccount = @"no";
+                pay.needNotSilver = @"no";  // 需要银币
+                pay.payPassword = passWord;
+                pay.captcha = captchaID;
+            }
+            else{
+                pay.isNeedPayPwd = @"yes";
+                pay.isNeedAccount = @"yes";
+                pay.needNotSilver = @"yes";  // 不需要银币
+                pay.payPassword = passWord;
+                pay.captcha = captchaID;
+
+            }
+        }
+ 
+    }
+    else
+    {
+        
+        pay.isNeedPayPwd = @"no";
+        pay.isNeedAccount = @"no";
+        pay.needNotSilver = @"yes";  // 都为空的时候就是不需要使用银币
+        pay.payPassword = passWord;
+        pay.captcha = captchaID;
+        
+    }
+  
     
     if (self.flag == 1) {
         self.searchType = @"0";
@@ -1255,7 +1372,11 @@
 
     
     NSArray * arr = [info objectForKey:@"dic"];
-  
+    // 支付
+    PayOnline * payOnline = [[PayOnline alloc] initWithProdType:@"01" payType:@"02" orderCode:[arr objectAtIndex:1] memberId:[arr objectAtIndex:2] actualPay:[arr objectAtIndex:3] source:@"iphone" hwId:HWID_VALUE serviceCode:@"01" captcha:captchaID andDelegate:self];
+
+    
+  // 获取订单详情
     NSString * sign = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
     
     OrderDetaile * order = [[OrderDetaile alloc] initWithOrderId:[arr objectAtIndex:0] andMemberId:[arr objectAtIndex:2] andCheckCode:[arr objectAtIndex:1] sndSign:GET_SIGN(sign) sndSource:SOURCE_VALUE andHwId:HWID_VALUE andEdition:EDITION_VALUE andDelegate:self];
@@ -1263,6 +1384,7 @@
     
     PayViewController * pay = [[PayViewController alloc] init];
     pay.orderDetaile = order;
+    pay.payOnline = payOnline;
     pay.searchType = self.searchType;
     [self.navigationController pushViewController:pay animated:YES];
     [pay release];

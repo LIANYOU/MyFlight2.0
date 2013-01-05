@@ -153,7 +153,8 @@
     order.stsCh = [dic objectForKey:@"stsCh"];
     order.payStsCh = [dic objectForKey:@"payStsCh"];
     order.totalMoney = [dic objectForKey:@"totalMoney"];
-    
+    order.actualMoney = [dic objectForKey:@"actualMoney"];
+    order.flyType = [dic objectForKey:@"flightType"];
     
     FlightConditionWj * flight = [[FlightConditionWj alloc] init];
     
@@ -205,15 +206,18 @@
         Passenger * passenger = [[Passenger alloc] init];
         
         passenger.name = [dici objectForKey:@"name"];
-        
         passenger.certType = [dici objectForKey:@"certType"];
-   
         passenger.certNo = [dici objectForKey:@"certNo"];
-     
         passenger.insuranceCode = [dici objectForKey:@"insuranceCode"];
-
         passenger.etNo = [dici objectForKey:@"etNo"];
- 
+        
+        passenger.ticketPrice = [dici objectForKey:@"ticketPrice"];
+        passenger.constructionPrice = [dici objectForKey:@"constructionPrice"];
+        passenger.bafPrice = [dici objectForKey:@"bafPrice"];
+        passenger.insurance = [dici objectForKey:@"insurance"];
+        
+        passenger.type = [dici objectForKey:@"type"];
+        
         [passengerArr addObject:passenger];
         
         [passenger release];

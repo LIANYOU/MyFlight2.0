@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "OrderDetaile.h"
 #import "Umpay.h"
-
-
-@interface PayViewController : UIViewController<UmpayDelegate>
+#import "PayOnline.h"
+#import "ServiceDelegate.h"
+@interface PayViewController : UIViewController<UmpayDelegate,ServiceDelegate>
 
 @property (nonatomic, retain) OrderDetaile * orderDetaile;
+@property (nonatomic, retain) PayOnline * payOnline;
 
 @property (nonatomic, retain) NSString * searchType;
 

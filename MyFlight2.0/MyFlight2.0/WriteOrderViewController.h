@@ -98,7 +98,7 @@
 @property (nonatomic,retain) NSMutableArray * personArray;
 
 
-
+@property (nonatomic,retain)  NSString * postType;
 
 - (IBAction)payMoney:(id)sender;  // 去支付订单
 - (IBAction)changeToBigHeadView:(id)sender;

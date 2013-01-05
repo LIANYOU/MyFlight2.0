@@ -28,6 +28,8 @@
     
 }
 
+@property (retain, nonatomic) NSArray * discountArr;  // 接受传递过来的优惠信息
+
 @property (retain, nonatomic) OrderBasicInfoWJ * order;
 @property (retain, nonatomic) FlightConditionWj * flight;
 @property (retain, nonatomic) InFlightConditionWJ * inFlight;
@@ -41,6 +43,30 @@
 @property (retain, nonatomic) IBOutlet UIView *three;
 @property (retain, nonatomic) IBOutlet UIView *four;
 @property (retain, nonatomic) IBOutlet UIView *five;
+
+
+
+// ********  展示成人和儿童的价格
+
+@property (retain, nonatomic) IBOutlet UILabel *PerStanderPrice;
+@property (retain, nonatomic) IBOutlet UILabel *PersonConstructionFee;
+@property (retain, nonatomic) IBOutlet UILabel *personAdultBaf;
+@property (retain, nonatomic) IBOutlet UILabel *personMuber;
+@property (retain, nonatomic) IBOutlet UILabel *Personinsure;
+
+
+@property (retain, nonatomic) IBOutlet UILabel *smallPerStanderPrice;
+@property (retain, nonatomic) IBOutlet UILabel *smallPersonConstructionFee;
+@property (retain, nonatomic) IBOutlet UILabel *smallpersonAdultBaf;
+@property (retain, nonatomic) IBOutlet UILabel *smallpersonMuber;
+@property (retain, nonatomic) IBOutlet UILabel *smallPersoninsure;
+
+@property (retain, nonatomic) IBOutlet UILabel *childStanderPrice;
+@property (retain, nonatomic) IBOutlet UILabel *childConstructionFee;
+@property (retain, nonatomic) IBOutlet UILabel *childBaf;
+@property (retain, nonatomic) IBOutlet UILabel *childMunber;
+@property (retain, nonatomic) IBOutlet UILabel *childInsure;
+
 
 
 @property (retain, nonatomic) NSString * searchType;

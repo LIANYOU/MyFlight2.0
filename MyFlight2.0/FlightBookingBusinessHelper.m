@@ -437,8 +437,10 @@
         NSString * orderId = [dic objectForKey:@"orderId"];
         NSString * code = [dic objectForKey:@"code"];
         NSString * memberId = [dic objectForKey:@"memberId"];
+        NSString * actualMoney = [dic objectForKey:@"actualMoney"];
         
-        NSArray * arr = [NSArray arrayWithObjects:orderId,code,memberId, nil];
+        
+        NSArray * arr = [NSArray arrayWithObjects:orderId,code,memberId,actualMoney, nil];
         
         NSDictionary * dictionary = [NSDictionary dictionaryWithObject:arr forKey:@"dic"];
         
