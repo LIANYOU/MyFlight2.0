@@ -11,9 +11,8 @@
 #import "ChooseAirPortViewController.h"
 #import "ChooseFlightViewController.h"
 #import "AirPortData.h"
-#import "TextInputHelperViewController.h"
 
-@interface CheckInViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ChooseAirPortViewControllerDelegate>
+@interface CheckInViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ChooseAirPortViewControllerDelegate, UIActionSheetDelegate>
 {
     UITableView *checkInInfoTable;
     
@@ -29,11 +28,12 @@
     
     unsigned char passportType;
     
-    TextInputHelperViewController *input;
+    UITextField *textInput;
     
     __block NSDictionary *responseDictionary;
 }
 
+- (void) back;
 - (void) userDidInput;
 - (void) userCancelInput;
 

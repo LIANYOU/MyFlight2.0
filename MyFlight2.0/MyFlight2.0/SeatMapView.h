@@ -9,10 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @interface SeatMapView : UIView
+{
+    NSInteger selectionX;
+    NSInteger selectionY;
+    
+    char *map;
+}
 
-@property (assign, nonatomic) NSInteger selectionX;
-@property (assign, nonatomic) NSInteger selectionY;
+@property (assign, nonatomic) NSInteger sectionX;
+@property (assign, nonatomic) NSInteger sectionY;
 
-- (void) drawSeatMap;
+- (void) drawSeatMap:(NSDictionary *) responseDictionary;
+- (NSString *) currentSeatChoosed:(NSDictionary *) responseDictionary;
 
 @end

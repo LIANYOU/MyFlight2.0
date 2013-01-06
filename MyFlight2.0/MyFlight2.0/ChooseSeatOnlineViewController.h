@@ -14,4 +14,6 @@
     NSArray *titleArray;
 }
 
+- (void) back;
+
 @end

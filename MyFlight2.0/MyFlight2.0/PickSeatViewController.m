@@ -81,7 +81,23 @@
                 }
                 
                 [self updateTitle];
-                [map drawSeatMap];
+                
+                NSDictionary *seatMap = [responseDictionary objectForKey:@"seatMap"];
+                
+                NSString *cabinType = [NSString stringWithFormat:@"column%@", [seatMap objectForKey:@"baseCabin"]];
+                
+                NSArray *stringArray = [[seatMap objectForKey:cabinType] objectForKey:@"string"];
+                
+                NSArray *rowArray = [[seatMap objectForKey:@"row"] objectForKey:@"_int"];
+                
+                map.sectionX = [stringArray count];
+                map.sectionY = [rowArray count];
+                
+                map.frame = CGRectMake(0, 0, map.sectionX * 40, map.sectionY * 40);
+                scroll.contentSize = CGSizeMake(map.sectionX * 40, map.sectionY * 40);
+                scroll.contentOffset = CGPointMake((scroll.contentSize.width - scroll.frame.size.width) / 2, (scroll.contentSize.height - scroll.frame.size.height) / 2);
+                
+                [map drawSeatMap:responseDictionary];
             }
             else
             {
@@ -105,6 +121,19 @@
     
     [self requestForData];
     
+    UIButton *navigationLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    navigationLeftButton.frame = CGRectMake(10, 5, 30, 31);
+    
+    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_.png"] forState:UIControlStateNormal];
+    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_click.png"] forState:UIControlStateHighlighted];
+    
+    [navigationLeftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *navigationLeftBarItem = [[UIBarButtonItem alloc] initWithCustomView:navigationLeftButton];
+    self.navigationItem.leftBarButtonItem = navigationLeftBarItem;
+    [navigationLeftBarItem release];
+    
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
     
     header.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.85f alpha:1.0f];
@@ -122,10 +151,15 @@
     [self.view addSubview:header];
     [header release];
     
-    map = [[SeatMapView alloc] initWithFrame:CGRectMake(10, 55, [UIScreen mainScreen].bounds.size.height < 500 ? 325:400, 400)];
+    scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 40, 300, [UIScreen mainScreen].bounds.size.height < 500 ? 290:370)];
     
-    [self.view addSubview:map];
+    map = [[SeatMapView alloc] initWithFrame:CGRectMake(0, 0, 300, [UIScreen mainScreen].bounds.size.height < 500 ? 290:370)];
+    
+    [scroll addSubview:map];
     [map release];
+    
+    [self.view addSubview:scroll];
+    [scroll release];
     
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 340:420, 300, 25)];
     
@@ -216,14 +250,11 @@
     
     checkIn.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 370:450, 300, 40);
     
-    checkIn.backgroundColor = [UIColor orangeColor];
-    checkIn.layer.borderColor = [[UIColor grayColor] CGColor];
-    checkIn.layer.borderWidth = 1.0;
-    checkIn.layer.cornerRadius = 5.0;
+    [checkIn setBackgroundImage:[UIImage imageNamed:@"orange_btn.png"] forState:UIControlStateNormal];
+    [checkIn setBackgroundImage:[UIImage imageNamed:@"orange_btn_click.png"] forState:UIControlStateHighlighted];
     
     [checkIn setTitle:@"确定" forState:UIControlStateNormal];
-    [checkIn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [checkIn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [checkIn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     checkIn.titleLabel.font = [UIFont systemFontOfSize:20];
     checkIn.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -231,6 +262,8 @@
     [checkIn addTarget:self action:@selector(checkIn) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:checkIn];
+    
+    self.view.backgroundColor = FOREGROUND_COLOR;
 }
 
 - (void) viewDidUnload
@@ -251,6 +284,11 @@
     title.text = [NSString stringWithFormat:@"%@  %@-%@-%@  %@-%@",[[responseDictionary objectForKey:@"segment"] objectForKey:@"flightNo"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"year"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"month"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"day"], [[responseDictionary objectForKey:@"segment"] objectForKey:@"depAirportCode"], [[responseDictionary objectForKey:@"segment"] objectForKey:@"arrAirportCode"]];
 }
 
+- (void) back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void) checkIn
 {
     NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/getPaHandler.jsp"];
@@ -264,32 +302,37 @@
     
     dictionary = [responseDictionary objectForKey:@"cussRequest"];
     
-    [request setPostValue:[responseDictionary objectForKey:@"tktno"] forKey:@"tktno"];
-    [request setPostValue:[responseDictionary objectForKey:@"segIndex"] forKey:@"segIndex"];
-    [request setPostValue:[responseDictionary objectForKey:@"passName"] forKey:@"passName"];
-    [request setPostValue:[responseDictionary objectForKey:@"org"] forKey:@"org"];
-    [request setPostValue:[responseDictionary objectForKey:@"airline"] forKey:@"airline"];
-    [request setPostValue:[responseDictionary objectForKey:@"orgId"] forKey:@"orgId"];
-    [request setPostValue:[responseDictionary objectForKey:@"etNo"] forKey:@"symbols"];
+    [request setPostValue:[dictionary objectForKey:@"tktno"] forKey:@"cussRequest.tktno"];
+    [request setPostValue:[dictionary objectForKey:@"segIndex"] forKey:@"cussRequest.segIndex"];
+    [request setPostValue:[dictionary objectForKey:@"passName"] forKey:@"cussRequest.passName"];
+    [request setPostValue:[dictionary objectForKey:@"org"] forKey:@"cussRequest.org"];
+    [request setPostValue:[dictionary objectForKey:@"airline"] forKey:@"cussRequest.airline"];
+    [request setPostValue:[dictionary objectForKey:@"orgId"] forKey:@"cussRequest.orgId"];
+    [request setPostValue:[dictionary objectForKey:@"symbols"] forKey:@"cussRequest.symbols"];
     
-    [request setPostValue:[responseDictionary objectForKey:@"recNo"] forKey:@"nameCh"];
-    [request setPostValue:[responseDictionary objectForKey:@"pwId"] forKey:@"name"];
-    [request setPostValue:[responseDictionary objectForKey:@"org"] forKey:@"ffpNumber"];
-    [request setPostValue:[responseDictionary objectForKey:@"orgId"] forKey:@"seatNo"];
-    [request setPostValue:[responseDictionary objectForKey:@"passName"] forKey:@"um"];
+    dictionary = [[[responseDictionary objectForKey:@"pass"] objectForKey:@"wsPrPassenger"] objectAtIndex:0];
     
-    [request setPostValue:[responseDictionary objectForKey:@"idNo"] forKey:@"depAirportCode"];
-    [request setPostValue:[responseDictionary objectForKey:@"etNo"] forKey:@"arrAirportCode"];
-    [request setPostValue:[responseDictionary objectForKey:@"pwId"] forKey:@"depTime"];
-    [request setPostValue:[responseDictionary objectForKey:@"org"] forKey:@"flightNo"];
-    [request setPostValue:[responseDictionary objectForKey:@"orgId"] forKey:@"cabin"];
+    [request setPostValue:[dictionary objectForKey:@"nameCh"] forKey:@"nameCh"];
+    [request setPostValue:[dictionary objectForKey:@"name"] forKey:@"name"];
+    [request setPostValue:[dictionary objectForKey:@"ffpNumber"] forKey:@"ffpNumber"];
+    [request setPostValue:[dictionary objectForKey:@"seatNo"] forKey:@"seatNo"];
+    [request setPostValue:[dictionary objectForKey:@"um"] forKey:@"um"];
     
-    [request setPostValue:[responseDictionary objectForKey:@"passName"] forKey:@"seatNos"];
-    [request setPostValue:[responseDictionary objectForKey:@"idNo"] forKey:@"ffpAirline"];
-    [request setPostValue:[responseDictionary objectForKey:@"etNo"] forKey:@"ffpNum"];
-    [request setPostValue:[responseDictionary objectForKey:@"recNo"] forKey:@"baseCabin"];
-    [request setPostValue:[responseDictionary objectForKey:@"pwId"] forKey:@"idInfoType"];
-    [request setPostValue:[responseDictionary objectForKey:@"org"] forKey:@"idInfo"];
+    dictionary = [responseDictionary objectForKey:@"segment"];
+    
+    [request setPostValue:[responseDictionary objectForKey:@"depAirportCode"] forKey:@"depAirportCode"];
+    [request setPostValue:[responseDictionary objectForKey:@"arrAirportCode"] forKey:@"arrAirportCode"];
+    [request setPostValue:[responseDictionary objectForKey:@"depTime"] forKey:@"depTime"];
+    [request setPostValue:[responseDictionary objectForKey:@"flightNo"] forKey:@"flightNo"];
+    [request setPostValue:[responseDictionary objectForKey:@"cabin"] forKey:@"cabin"];
+    
+    [request setPostValue:[map currentSeatChoosed:responseDictionary] forKey:@"seatNos"];
+    
+    [request setPostValue:@"HU" forKey:@"ffpAirline"];
+    [request setPostValue:[[[[responseDictionary objectForKey:@"pass"] objectForKey:@"wsPrPassenger"] objectAtIndex:0] objectForKey:@"ffpNumber"] forKey:@"ffpNumber"];
+    [request setPostValue:[[responseDictionary objectForKey:@"seatMap"] objectForKey:@"baseCabin"] forKey:@"baseCabin"];
+    [request setPostValue:[[[[[responseDictionary objectForKey:@"idInfo"] objectForKey:@"arrayOfXsdString"] objectAtIndex:0] objectForKey:@"string"] objectAtIndex:0] forKey:@"idInfoType"];
+    [request setPostValue:[[[[[responseDictionary objectForKey:@"idInfo"] objectForKey:@"arrayOfXsdString"] objectAtIndex:0] objectForKey:@"string"] objectAtIndex:1] forKey:@"idInfo"];
     
     [request setCompletionBlock:^(void){
         

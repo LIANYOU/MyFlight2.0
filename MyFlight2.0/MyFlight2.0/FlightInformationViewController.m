@@ -99,14 +99,30 @@
     
     [self requestForData];
     
+    UIButton *navigationLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    navigationLeftButton.frame = CGRectMake(10, 5, 30, 31);
+    
+    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_.png"] forState:UIControlStateNormal];
+    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_click.png"] forState:UIControlStateHighlighted];
+    
+    [navigationLeftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *navigationLeftBarItem = [[UIBarButtonItem alloc] initWithCustomView:navigationLeftButton];
+    self.navigationItem.leftBarButtonItem = navigationLeftBarItem;
+    [navigationLeftBarItem release];
+    
     detailedTitleArray = [[NSArray alloc] initWithObjects:@"电子票号", @"值机状态", @"乘机人", @"座位号", @"登机号", @"登机时间", nil];
     
     detailedInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, 300, 264)];
     
     detailedInfoTable.rowHeight = 44.0f;
-    detailedInfoTable.layer.borderColor = [[UIColor grayColor] CGColor];
+    detailedInfoTable.backgroundColor = FOREGROUND_COLOR;
+    detailedInfoTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    detailedInfoTable.layer.borderColor = [BORDER_COLOR CGColor];
     detailedInfoTable.layer.borderWidth = 1.0f;
-    detailedInfoTable.layer.cornerRadius = 5.0f;
+    detailedInfoTable.layer.cornerRadius = 10.0f;
     
     detailedInfoTable.delegate = self;
     detailedInfoTable.dataSource = self;
@@ -115,9 +131,12 @@
     flightInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 284, 300, 88)];
     
     flightInfoTable.rowHeight = 44.0f;
-    flightInfoTable.layer.borderColor = [[UIColor grayColor] CGColor];
+    flightInfoTable.backgroundColor = FOREGROUND_COLOR;
+    flightInfoTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    flightInfoTable.layer.borderColor = [BORDER_COLOR CGColor];
     flightInfoTable.layer.borderWidth = 1.0f;
-    flightInfoTable.layer.cornerRadius = 5.0f;
+    flightInfoTable.layer.cornerRadius = 10.0f;
     
     flightInfoTable.delegate = self;
     flightInfoTable.dataSource = self;
@@ -133,14 +152,11 @@
     
     cancelCheckInButton.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 370:450, 300, 40);
     
-    cancelCheckInButton.backgroundColor = [UIColor orangeColor];
-    cancelCheckInButton.layer.borderColor = [[UIColor grayColor] CGColor];
-    cancelCheckInButton.layer.borderWidth = 1.0;
-    cancelCheckInButton.layer.cornerRadius = 5.0;
+    [cancelCheckInButton setBackgroundImage:[UIImage imageNamed:@"orange_btn.png"] forState:UIControlStateNormal];
+    [cancelCheckInButton setBackgroundImage:[UIImage imageNamed:@"orange_btn_click.png"] forState:UIControlStateHighlighted];
     
     [cancelCheckInButton setTitle:@"取消值机" forState:UIControlStateNormal];
-    [cancelCheckInButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [cancelCheckInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [cancelCheckInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     cancelCheckInButton.titleLabel.font = [UIFont systemFontOfSize:20];
     cancelCheckInButton.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -149,7 +165,7 @@
     
     [self.view addSubview:cancelCheckInButton];
     
-    self.view.backgroundColor = [UIColor colorWithRed:0.75f green:0.75f blue:0.75f alpha:1.0f];
+    self.view.backgroundColor = BACKGROUND_COLOR;
 }
 
 - (void)didReceiveMemoryWarning
@@ -197,20 +213,42 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    UIView *line;
+    
+    if(indexPath.row != 0)
+    {
+        line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 1)];
+        
+        line.backgroundColor = [UIColor whiteColor];
+        
+        [cell addSubview:line];
+        [line release];
+    }
+    
+    if(indexPath.row != [tableView numberOfRowsInSection:indexPath.section] - 1)
+    {
+        line = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.rowHeight - 1, tableView.frame.size.width, 1)];
+        
+        line.backgroundColor = LINE_COLOR;
+        
+        [cell addSubview:line];
+        [line release];
+    }
+    
     if(tableView == detailedInfoTable)
     {
-        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 17, 48, 10)];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60, 17)];
         
         title.text = [detailedTitleArray objectAtIndex:indexPath.row];
-        title.font = [UIFont systemFontOfSize:10.0f];
+        title.font = [UIFont systemFontOfSize:14.0f];
         title.textAlignment = UITextAlignmentCenter;
-        title.textColor = [UIColor grayColor];
+        title.textColor = FONT_COLOR_LIGHT_GRAY;
         title.backgroundColor = [UIColor clearColor];
         
         [cell addSubview:title];
         [title release];
         
-        UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(80, 16, 210, 12)];
+        UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 210, 17)];
         
         switch (indexPath.row) {
             case 0:
@@ -239,9 +277,9 @@
                 break;
         }
         
-        value.font = [UIFont systemFontOfSize:12.0f];
+        value.font = [UIFont systemFontOfSize:14.0f];
         value.textAlignment = UITextAlignmentRight;
-        value.textColor = [UIColor blackColor];
+        value.textColor = FONT_COLOR_DEEP_GRAY;
         value.backgroundColor = [UIColor clearColor];
         
         [cell addSubview:value];
@@ -354,9 +392,14 @@
         }
     }
     
-    cell.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
+    cell.backgroundColor = FOREGROUND_COLOR;
     
     return cell;
+}
+
+- (void) back
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) cancelCheckIn

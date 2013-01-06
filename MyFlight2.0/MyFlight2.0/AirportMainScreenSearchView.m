@@ -17,13 +17,18 @@
         // Initialization code
         self.backgroundColor = [UIColor blackColor];
         
-        leftItem = [[UIView alloc] initWithFrame:CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 5:19, 40, 30)];
+        leftItem = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        leftItem.layer.borderColor = [[UIColor whiteColor] CGColor];
+        leftItem.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 5:19, 40, 30);
+        
+        leftItem.layer.borderColor = [[UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0] CGColor];
         leftItem.layer.borderWidth = 1.0f;
         leftItem.layer.cornerRadius = 10.0f;
         
         leftItem.layer.backgroundColor = [[UIColor blackColor] CGColor];
+        
+        [leftItem addTarget:self action:@selector(highlight:) forControlEvents:UIControlEventTouchDown];
+        [leftItem addTarget:self action:@selector(previous) forControlEvents:UIControlEventTouchUpInside];
         
         UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_before_white.png"]];
         
@@ -34,15 +39,19 @@
         [leftIcon release];
         
         [self addSubview:leftItem];
-        [leftItem release];
         
-        rightItem = [[UIView alloc] initWithFrame:CGRectMake(270, [UIScreen mainScreen].bounds.size.height < 500 ? 5:19, 40, 30)];
+        rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        rightItem.layer.borderColor = [[UIColor whiteColor] CGColor];
+        rightItem.frame = CGRectMake(270, [UIScreen mainScreen].bounds.size.height < 500 ? 5:19, 40, 30);
+        
+        rightItem.layer.borderColor = [[UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0] CGColor];
         rightItem.layer.borderWidth = 1.0f;
         rightItem.layer.cornerRadius = 10.0f;
         
         rightItem.layer.backgroundColor = [[UIColor blackColor] CGColor];
+        
+        [rightItem addTarget:self action:@selector(highlight:) forControlEvents:UIControlEventTouchDown];
+        [rightItem addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
         
         UIImageView *rightIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_next_white.png"]];
         
@@ -53,15 +62,19 @@
         [rightIcon release];
         
         [self addSubview:rightItem];
-        [rightItem release];
         
-        centerItem = [[UIView alloc] initWithFrame:CGRectMake(105, [UIScreen mainScreen].bounds.size.height < 500 ? 5:19, 110, 30)];
+        centerItem = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        centerItem.layer.borderColor = [[UIColor whiteColor] CGColor];
+        centerItem.frame = CGRectMake(105, [UIScreen mainScreen].bounds.size.height < 500 ? 5:19, 110, 30);
+        
+        centerItem.layer.borderColor = [[UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0] CGColor];
         centerItem.layer.borderWidth = 1.0f;
         centerItem.layer.cornerRadius = 10.0f;
         
         centerItem.layer.backgroundColor = [[UIColor blackColor] CGColor];
+        
+        [centerItem addTarget:self action:@selector(highlight:) forControlEvents:UIControlEventTouchDown];
+        [centerItem addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
         
         UIImageView *search = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn_search.png"]];
         
@@ -83,7 +96,6 @@
         [search release];
         
         [self addSubview:centerItem];
-        [centerItem release];
         
         [self setLeftIconInvisible];
         [self setRightIconInvisible];
@@ -124,44 +136,53 @@
 {
     [self.delegate performSelector:@selector(search:) withObject:textInput.text];
     
-    [textInput removeFromSuperview];
-    
-    centerItem.hidden = NO;
+    [textInput.superview removeFromSuperview];
 }
 
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (void) previous
 {
-    NSSet *leftTouches = [event touchesForView:leftItem];
-    NSSet *rightTouches = [event touchesForView:rightItem];
-    NSSet *centerTouches = [event touchesForView:centerItem];
+    [self.delegate performSelector:@selector(previousPage)];
+}
+
+- (void) search
+{
+    UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    if([leftTouches count] != 0)
-    {
-        [self.delegate performSelector:@selector(previousPage)];
-    }
-    else if([rightTouches count] != 0)
-    {
-        [self.delegate performSelector:@selector(nextPage)];
-    }
-    else if([centerTouches count] != 0)
-    {
-        centerItem.hidden = YES;
-        
-        textInput = [[UITextField alloc] initWithFrame:CGRectMake(0, 150, 320, 50)];
-        
-        textInput.keyboardType = UIKeyboardTypeASCIICapable;
-        textInput.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
-        textInput.textAlignment = UITextAlignmentCenter;
-        textInput.textColor = [UIColor whiteColor];
-        textInput.font = [UIFont systemFontOfSize:50.0f];
-        
-        [textInput addTarget:self action:@selector(userDidInput) forControlEvents:UIControlEventEditingDidEndOnExit];
-        
-        [self.superview addSubview:textInput];
-        [textInput release];
-        
-        [textInput becomeFirstResponder];
-    }
+    exitButton.frame = [UIScreen mainScreen].bounds;
+    exitButton.layer.backgroundColor = [[UIColor clearColor] CGColor];
+    exitButton.layer.borderWidth = 0.0f;
+    
+    [exitButton addTarget:exitButton action:@selector(removeFromSuperview) forControlEvents:UIControlEventTouchDown];
+    
+    textInput = [[UITextField alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height < 500 ? 203:291, 320, 40)];
+    
+    textInput.keyboardType = UIKeyboardTypeASCIICapable;
+    textInput.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    textInput.textAlignment = UITextAlignmentCenter;
+    textInput.textColor = [UIColor blueColor];
+    textInput.font = [UIFont systemFontOfSize:40.0f];
+    
+    textInput.backgroundColor = [UIColor yellowColor];
+    
+    [textInput addTarget:self action:@selector(userDidInput) forControlEvents:UIControlEventEditingDidEndOnExit];
+    
+    [exitButton addSubview:textInput];
+    [textInput release];
+    
+    [self.superview addSubview:exitButton];
+    
+    [textInput becomeFirstResponder];
+}
+
+- (void) next
+{
+    [self.delegate performSelector:@selector(nextPage)];
+}
+
+- (void) highlight:(UIButton *)sender
+{
+    sender.backgroundColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0];
+    [sender performSelector:@selector(setBackgroundColor:) withObject:[UIColor blackColor] afterDelay:0.25];
 }
 
 @end

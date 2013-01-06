@@ -23,13 +23,18 @@
         
         self.backgroundColor = [UIColor blackColor];
         
-        leftItem = [[UIView alloc] initWithFrame:CGRectMake(10, 25, 40, 30)];
+        leftItem = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        leftItem.layer.borderColor = [[UIColor whiteColor] CGColor];
+        leftItem.frame = CGRectMake(10, 25, 40, 30);
+        
+        leftItem.layer.borderColor = [[UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0] CGColor];
         leftItem.layer.borderWidth = 1.0f;
         leftItem.layer.cornerRadius = 10.0f;
         
         leftItem.layer.backgroundColor = [[UIColor blackColor] CGColor];
+        
+        [leftItem addTarget:self action:@selector(highlight:) forControlEvents:UIControlEventTouchDown];
+        [leftItem addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
         
         UIImageView *icon;
         
@@ -42,15 +47,19 @@
         [icon release];
         
         [self addSubview:leftItem];
-        [leftItem release];
         
-        rightItem = [[UIView alloc] initWithFrame:CGRectMake(270, 25, 40, 30)];
+        rightItem = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        rightItem.layer.borderColor = [[UIColor whiteColor] CGColor];
+        rightItem.frame = CGRectMake(270, 25, 40, 30);
+        
+        rightItem.layer.borderColor = [[UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0] CGColor];
         rightItem.layer.borderWidth = 1.0f;
         rightItem.layer.cornerRadius = 10.0f;
         
         rightItem.layer.backgroundColor = [[UIColor blackColor] CGColor];
+        
+        [rightItem addTarget:self action:@selector(highlight:) forControlEvents:UIControlEventTouchDown];
+        [rightItem addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
         
         icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_Refresh.png"]];
         
@@ -61,32 +70,38 @@
         [icon release];
         
         [self addSubview:rightItem];
-        [rightItem release];
         
-        pickAirPortItem = [[UIView alloc] initWithFrame:CGRectMake(70, 25, 100, 30)];
+        pickAirPortItem = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        pickAirPortItem.layer.borderColor = [[UIColor whiteColor] CGColor];
+        pickAirPortItem.frame = CGRectMake(70, 25, 100, 30);
+        pickAirPortItem.layer.borderColor = [[UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0] CGColor];
         pickAirPortItem.layer.borderWidth = 1.0f;
         pickAirPortItem.layer.cornerRadius = 10.0f;
         
         pickAirPortItem.layer.backgroundColor = [[UIColor blackColor] CGColor];
         
+        [pickAirPortItem addTarget:self action:@selector(highlight:) forControlEvents:UIControlEventTouchDown];
+        [pickAirPortItem addTarget:self action:@selector(chooseAirport) forControlEvents:UIControlEventTouchUpInside];
+        
         [self addSubview:pickAirPortItem];
-        [pickAirPortItem release];
         
         [self reloadApName];
         
-        incoming = [[UIView alloc] initWithFrame:CGRectMake(180, 25, 70, 30)];
+        incoming = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        incoming.layer.borderColor = [[UIColor whiteColor] CGColor];
+        incoming.frame = CGRectMake(180, 25, 70, 30);
+        incoming.layer.borderColor = [[UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0] CGColor];
         incoming.layer.borderWidth = 1.0f;
         incoming.layer.cornerRadius = 10.0f;
         
         incoming.layer.backgroundColor = [[UIColor blackColor] CGColor];
         
+//        [incoming addTarget:self action:@selector(highlight:) forControlEvents:UIControlEventTouchDown];
+        [incoming addTarget:self action:@selector(chooseIncoming) forControlEvents:UIControlEventTouchUpInside];
+        
         icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_before_white.png"]];
         
-        icon.frame = CGRectMake(5, 5, 20, 20);
+        icon.frame = CGRectMake(45, 5, 20, 20);
         icon.backgroundColor = [UIColor clearColor];
         
         [incoming addSubview:icon];
@@ -94,7 +109,7 @@
         
         UILabel *label;
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 45, 20)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 45, 20)];
         
         label.text = @"入港";
         label.textAlignment = UITextAlignmentCenter;
@@ -106,25 +121,28 @@
         [label release];
         
         [self addSubview:incoming];
-        [incoming release];
         
-        outgoing = [[UIView alloc] initWithFrame:CGRectMake(180, 25, 70, 30)];
+        outgoing = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        outgoing.layer.borderColor = [[UIColor whiteColor] CGColor];
+        outgoing.frame = CGRectMake(180, 25, 70, 30);
+        outgoing.layer.borderColor = [[UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0] CGColor];
         outgoing.layer.borderWidth = 1.0f;
         outgoing.layer.cornerRadius = 10.0f;
         
         outgoing.layer.backgroundColor = [[UIColor blackColor] CGColor];
         
+//        [outgoing addTarget:self action:@selector(highlight:) forControlEvents:UIControlEventTouchDown];
+        [outgoing addTarget:self action:@selector(chooseOutgoing) forControlEvents:UIControlEventTouchUpInside];
+        
         icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_before_white.png"]];
         
-        icon.frame = CGRectMake(5, 5, 20, 20);
+        icon.frame = CGRectMake(45, 5, 20, 20);
         icon.backgroundColor = [UIColor clearColor];
         
         [outgoing addSubview:icon];
         [icon release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 45, 20)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 45, 20)];
         
         label.text = @"出港";
         label.textAlignment = UITextAlignmentCenter;
@@ -136,7 +154,6 @@
         [label release];
         
         [self addSubview:outgoing];
-        [outgoing release];
         
         if(self.isIncoming)
         {
@@ -159,146 +176,159 @@
 }
 */
 
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (void) back
 {
-    NSSet *leftTouches = [event touchesForView:leftItem];
-    NSSet *rightTouches = [event touchesForView:rightItem];
-    NSSet *centerTouches = [event touchesForView:pickAirPortItem];
-    NSSet *inTouches = [event touchesForView:incoming];
-    NSSet *outTouches = [event touchesForView:outgoing];
+    [self.delegate performSelector:@selector(back)];
+}
+
+- (void) refresh
+{
+    [self.delegate performSelector:@selector(requestForData:) withObject:nil];
     
-    if([leftTouches count] != 0)
+//    [UIView animateWithDuration:0.25
+//                          delay:0.0
+//                        options:UIViewAnimationOptionCurveLinear
+//                     animations:^(void){
+//                         CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 0.5);
+//                         UIImageView *view = [rightItem.subviews objectAtIndex:0];
+//                         view.transform = transform;
+//                     }
+//                     completion:^(BOOL finished){
+//                         [UIView animateWithDuration:0.25
+//                                               delay:0.0
+//                                             options:UIViewAnimationOptionCurveLinear
+//                                          animations:^(void){
+//                                              CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
+//                                              UIImageView *view = [rightItem.subviews objectAtIndex:0];
+//                                              view.transform = transform;
+//                                          }
+//                                          completion:^(BOOL finished){
+//                                              [UIView animateWithDuration:0.25
+//                                                                    delay:0.0
+//                                                                  options:UIViewAnimationOptionCurveLinear
+//                                                               animations:^(void){
+//                                                                   CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 1.5);
+//                                                                   UIImageView *view = [rightItem.subviews objectAtIndex:0];
+//                                                                   view.transform = transform;
+//                                                               }
+//                                                               completion:^(BOOL finished){
+//                                                                   [UIView animateWithDuration:0.25
+//                                                                                         delay:0.0
+//                                                                                       options:UIViewAnimationOptionCurveLinear
+//                                                                                    animations:^(void){
+//                                                                                        CGAffineTransform transform = CGAffineTransformMakeRotation(0);
+//                                                                                        UIImageView *view = [rightItem.subviews objectAtIndex:0];
+//                                                                                        view.transform = transform;
+//                                                                                    }
+//                                                                                    completion:nil];
+//                                                               }];
+//                                          }];
+//                     }];
+}
+
+- (void) chooseAirport
+{
+    [self.delegate performSelector:@selector(chooseAirPort:) withObject:self.apCode];
+}
+
+- (void) chooseIncoming
+{
+    if(!isChoosing)
     {
-        [self.delegate performSelector:@selector(back)];
-    }
-    else if([rightTouches count] != 0)
-    {
-        [self.delegate performSelector:@selector(requestForData:) withObject:nil];
+        incoming.backgroundColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0];
         
-        [UIView animateWithDuration:0.25
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveLinear
-                         animations:^(void){
-                             CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 0.5);
-                             UIImageView *view = [rightItem.subviews objectAtIndex:0];
-                             view.transform = transform;
-                         }
-                         completion:^(BOOL finished){
-                             [UIView animateWithDuration:0.25
-                                                   delay:0.0
-                                                 options:UIViewAnimationOptionCurveLinear
-                                              animations:^(void){
-                                                  CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
-                                                  UIImageView *view = [rightItem.subviews objectAtIndex:0];
-                                                  view.transform = transform;
-                                              }
-                                              completion:^(BOOL finished){
-                                                  [UIView animateWithDuration:0.25
-                                                                        delay:0.0
-                                                                      options:UIViewAnimationOptionCurveLinear
-                                                                   animations:^(void){
-                                                                       CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 1.5);
-                                                                       UIImageView *view = [rightItem.subviews objectAtIndex:0];
-                                                                       view.transform = transform;
-                                                                   }
-                                                                   completion:^(BOOL finished){
-                                                                       [UIView animateWithDuration:0.25
-                                                                                             delay:0.0
-                                                                                           options:UIViewAnimationOptionCurveLinear
-                                                                                        animations:^(void){
-                                                                                            CGAffineTransform transform = CGAffineTransformMakeRotation(0);
-                                                                                            UIImageView *view = [rightItem.subviews objectAtIndex:0];
-                                                                                            view.transform = transform;
-                                                                                        }
-                                                                                        completion:nil];
-                                                                   }];
-                                              }];
-                         }];
+        if(!beginAnimation)
+        {
+            outgoing.hidden = NO;
+            
+            [UIView animateWithDuration:0.5
+                             animations:^(void){
+                                 beginAnimation = YES;
+                                 incoming.frame = CGRectMake(180, 5, 70, 30);
+                                 outgoing.frame = CGRectMake(180, 45, 70, 30);
+                             }
+                             completion:^(BOOL finished){
+                                 beginAnimation = NO;
+                                 isChoosing = YES;
+                             }];
+        }
     }
-    else if([centerTouches count] != 0)
+    else
     {
-        [self.delegate performSelector:@selector(chooseAirPort:) withObject:self.apCode];
+        incoming.backgroundColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0];
+        outgoing.backgroundColor = [UIColor blackColor];
+        
+        if(!beginAnimation)
+        {
+            [UIView animateWithDuration:0.5
+                             animations:^(void){
+                                 beginAnimation = YES;
+                                 [self bringSubviewToFront:incoming];
+                                 incoming.frame = CGRectMake(180, 25, 70, 30);
+                                 outgoing.frame = CGRectMake(180, 25, 70, 30);
+                             }
+                             completion:^(BOOL finished){
+                                 incoming.backgroundColor = [UIColor blackColor];
+                                 beginAnimation = NO;
+                                 isChoosing = NO;
+                                 self.isIncoming = YES;
+                                 [self.delegate performSelector:@selector(requestForData:) withObject:nil];
+                             }];
+        }
     }
-    else if([inTouches count] != 0)
+}
+
+- (void) chooseOutgoing
+{
+    if(!isChoosing)
     {
-        if(!isChoosing)
+        outgoing.backgroundColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0];
+        
+        if(!beginAnimation)
         {
-            if(!beginAnimation)
-            {
-                outgoing.hidden = NO;
-                
-                [UIView animateWithDuration:0.5
-                                 animations:^(void){
-                                     beginAnimation = YES;
-                                     incoming.frame = CGRectMake(180, 5, 70, 30);
-                                     outgoing.frame = CGRectMake(180, 45, 70, 30);
-                                 }
-                                 completion:^(BOOL finished){
-                                     beginAnimation = NO;
-                                     isChoosing = YES;
-                                 }];
-            }
-        }
-        else
-        {
-            if(!beginAnimation)
-            {
-                [UIView animateWithDuration:0.5
-                                 animations:^(void){
-                                     beginAnimation = YES;
-                                     [self bringSubviewToFront:incoming];
-                                     incoming.frame = CGRectMake(180, 25, 70, 30);
-                                     outgoing.frame = CGRectMake(180, 25, 70, 30);
-                                 }
-                                 completion:^(BOOL finished){
-                                     beginAnimation = NO;
-                                     isChoosing = NO;
-                                     self.isIncoming = YES;
-                                     [self.delegate performSelector:@selector(requestForData:) withObject:nil];
-                                 }];
-            }
+            incoming.hidden = NO;
+            
+            [UIView animateWithDuration:0.5
+                             animations:^(void){
+                                 beginAnimation = YES;
+                                 incoming.frame = CGRectMake(180, 5, 70, 30);
+                                 outgoing.frame = CGRectMake(180, 45, 70, 30);
+                             }
+                             completion:^(BOOL finished){
+                                 beginAnimation = NO;
+                                 isChoosing = YES;
+                             }];
         }
     }
-    else if([outTouches count] != 0)
+    else
     {
-        if(!isChoosing)
+        incoming.backgroundColor = [UIColor blackColor];
+        outgoing.backgroundColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0];
+        
+        if(!beginAnimation)
         {
-            if(!beginAnimation)
-            {
-                incoming.hidden = NO;
-                
-                [UIView animateWithDuration:0.5
-                                 animations:^(void){
-                                     beginAnimation = YES;
-                                     incoming.frame = CGRectMake(180, 5, 70, 30);
-                                     outgoing.frame = CGRectMake(180, 45, 70, 30);
-                                 }
-                                 completion:^(BOOL finished){
-                                     beginAnimation = NO;
-                                     isChoosing = YES;
-                                 }];
-            }
-        }
-        else
-        {
-            if(!beginAnimation)
-            {
-                [UIView animateWithDuration:0.5
-                                 animations:^(void){
-                                     beginAnimation = YES;
-                                     [self bringSubviewToFront:outgoing];
-                                     incoming.frame = CGRectMake(180, 25, 70, 30);
-                                     outgoing.frame = CGRectMake(180, 25, 70, 30);
-                                 }
-                                 completion:^(BOOL finished){
-                                     beginAnimation = NO;
-                                     isChoosing = NO;
-                                     self.isIncoming = NO;
-                                     [self.delegate performSelector:@selector(requestForData:) withObject:nil];
-                                 }];
-            }
+            [UIView animateWithDuration:0.5
+                             animations:^(void){
+                                 beginAnimation = YES;
+                                 [self bringSubviewToFront:outgoing];
+                                 incoming.frame = CGRectMake(180, 25, 70, 30);
+                                 outgoing.frame = CGRectMake(180, 25, 70, 30);
+                             }
+                             completion:^(BOOL finished){
+                                 outgoing.backgroundColor = [UIColor blackColor];
+                                 beginAnimation = NO;
+                                 isChoosing = NO;
+                                 self.isIncoming = NO;
+                                 [self.delegate performSelector:@selector(requestForData:) withObject:nil];
+                             }];
         }
     }
+}
+
+- (void) highlight:(UIButton *)sender
+{
+    sender.backgroundColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0];
+    [sender performSelector:@selector(setBackgroundColor:) withObject:[UIColor blackColor] afterDelay:0.25];
 }
 
 - (void) reloadApName

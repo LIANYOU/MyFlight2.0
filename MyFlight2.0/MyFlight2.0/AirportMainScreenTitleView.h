@@ -11,11 +11,11 @@
 
 @interface AirportMainScreenTitleView : UIView
 {
-    UIView *leftItem;
-    UIView *rightItem;
-    UIView *pickAirPortItem;
-    UIView *incoming;
-    UIView *outgoing;
+    UIButton *leftItem;
+    UIButton *rightItem;
+    UIButton *pickAirPortItem;
+    UIButton *incoming;
+    UIButton *outgoing;
     
     __block BOOL isChoosing;
     __block BOOL beginAnimation;
@@ -27,5 +27,13 @@
 @property (assign) BOOL isIncoming;
 
 - (void) reloadApName;
+
+- (void) back;
+- (void) refresh;
+- (void) chooseAirport;
+- (void) chooseIncoming;
+- (void) chooseOutgoing;
+
+- (void) highlight:(UIButton *) sender;
 
 @end

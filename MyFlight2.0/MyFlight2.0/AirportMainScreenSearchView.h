@@ -11,9 +11,9 @@
 
 @interface AirportMainScreenSearchView : UIView
 {
-    UIView *leftItem;
-    UIView *rightItem;
-    UIView *centerItem;
+    UIButton *leftItem;
+    UIButton *rightItem;
+    UIButton *centerItem;
     
     UITextField *textInput;
 }
@@ -25,5 +25,11 @@
 - (void) setRightIconVisible;
 - (void) setRightIconInvisible;
 - (void) userDidInput;
+
+- (void) previous;
+- (void) search;
+- (void) next;
+
+- (void) highlight:(UIButton *) sender;
 
 @end

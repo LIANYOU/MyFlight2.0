@@ -29,6 +29,7 @@
 @property (nonatomic, retain) NSString *idNo;
 @property (nonatomic, retain) NSString *depCity;
 
+- (void) back;
 - (void) requestForData;
 - (void) confirmSelection;
 

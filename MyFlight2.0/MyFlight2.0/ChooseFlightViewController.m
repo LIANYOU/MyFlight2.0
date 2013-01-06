@@ -100,6 +100,31 @@
     
     currentSelection = -1;
     
+    UIButton *navigationLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    navigationLeftButton.frame = CGRectMake(10, 5, 30, 31);
+    
+    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_.png"] forState:UIControlStateNormal];
+    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_click.png"] forState:UIControlStateHighlighted];
+    
+    [navigationLeftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *navigationLeftBarItem = [[UIBarButtonItem alloc] initWithCustomView:navigationLeftButton];
+    self.navigationItem.leftBarButtonItem = navigationLeftBarItem;
+    [navigationLeftBarItem release];
+    
+    UILabel *label;
+    
+    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 50, 20)];
+    
+    label.text = @"乘机人信息";
+    label.textColor = FONT_COLOR_GRAY;
+    label.font = [UIFont systemFontOfSize:10.0f];
+    label.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:label];
+    [label release];
+    
     passengerInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 30, 300, 100) style:UITableViewStylePlain];
     
     passengerInfoTable.delegate = self;
@@ -107,18 +132,31 @@
     passengerInfoTable.scrollEnabled = NO;
     
     passengerInfoTable.rowHeight = 50.0f;
-    passengerInfoTable.layer.borderColor = [[UIColor grayColor] CGColor];
-    passengerInfoTable.layer.borderWidth = 1.0f;
-    passengerInfoTable.layer.cornerRadius = 5.0f;
+    passengerInfoTable.backgroundColor = FOREGROUND_COLOR;
+    passengerInfoTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    flightInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 160, 300, 210) style:UITableViewStylePlain];
+    passengerInfoTable.layer.borderColor = [BORDER_COLOR CGColor];
+    passengerInfoTable.layer.borderWidth = 1.0f;
+    passengerInfoTable.layer.cornerRadius = 10.0f;
+    
+    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 135, 80, 20)];
+    
+    label.text = @"选择要值机的航班";
+    label.textColor = FONT_COLOR_GRAY;
+    label.font = [UIFont systemFontOfSize:10.0f];
+    label.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:label];
+    [label release];
+    
+    flightInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 160, 300, [UIScreen mainScreen].bounds.size.height < 500 ? 210:280) style:UITableViewStylePlain];
     
     flightInfoTable.delegate = self;
     flightInfoTable.dataSource = self;
     
     flightInfoTable.rowHeight = 70.0f;
     flightInfoTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    flightInfoTable.backgroundColor = [UIColor colorWithRed:0.75f green:0.75f blue:0.75f alpha:1.0f];
+    flightInfoTable.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:passengerInfoTable];
     [self.view addSubview:flightInfoTable];
@@ -132,10 +170,8 @@
     
     [confirm addTarget:self action:@selector(confirmSelection) forControlEvents:UIControlEventTouchUpInside];
     
-    confirm.backgroundColor = [UIColor orangeColor];
-    confirm.layer.borderColor = [[UIColor grayColor] CGColor];
-    confirm.layer.borderWidth = 1.0f;
-    confirm.layer.cornerRadius = 5.0f;
+    [confirm setBackgroundImage:[UIImage imageNamed:@"orange_btn.png"] forState:UIControlStateNormal];
+    [confirm setBackgroundImage:[UIImage imageNamed:@"orange_btn_click.png"] forState:UIControlStateHighlighted];
     
     if(isQuery)
     {
@@ -146,15 +182,14 @@
         [confirm setTitle:@"确定" forState:UIControlStateNormal];
     }
     
+    [confirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
     confirm.titleLabel.font = [UIFont systemFontOfSize:20];
     confirm.titleLabel.textAlignment = NSTextAlignmentCenter;
     
-    [confirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [confirm setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    
     [self.view addSubview:confirm];
     
-    self.view.backgroundColor = [UIColor colorWithRed:0.75f green:0.75f blue:0.75f alpha:1.0f];
+    self.view.backgroundColor = BACKGROUND_COLOR;
 }
 
 - (void)didReceiveMemoryWarning
@@ -185,6 +220,28 @@
     
     if(tableView == passengerInfoTable)
     {
+        UIView *line;
+        
+        if(indexPath.row != 0)
+        {
+            line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 1)];
+            
+            line.backgroundColor = [UIColor whiteColor];
+            
+            [cell addSubview:line];
+            [line release];
+        }
+        
+        if(indexPath.row != [tableView numberOfRowsInSection:indexPath.section] - 1)
+        {
+            line = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.rowHeight - 1, tableView.frame.size.width, 1)];
+            
+            line.backgroundColor = LINE_COLOR;
+            
+            [cell addSubview:line];
+            [line release];
+        }
+        
         UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10, 17, 48, 16)];
         
         switch (indexPath.row) {
@@ -220,25 +277,23 @@
         }
         
         value.font = [UIFont systemFontOfSize:16.0f];
-        value.textColor = [UIColor colorWithRed:0.1f green:0.4f blue:0.8f alpha:1.0f];
+        value.textColor = FONT_COLOR_DEEP_GRAY;
         value.textAlignment = NSTextAlignmentRight;
         value.backgroundColor = [UIColor clearColor];
         
         [cell addSubview:value];
         [value release];
         
-        cell.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
+        cell.backgroundColor = FOREGROUND_COLOR;
     }
     else
     {
-        cell.backgroundColor = [UIColor clearColor];
-        
         UIView *flightInfo = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 60)];
         
-        flightInfo.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
-        flightInfo.layer.borderColor = [[UIColor grayColor] CGColor];
+        flightInfo.backgroundColor = FOREGROUND_COLOR;
+        flightInfo.layer.borderColor = [BORDER_COLOR CGColor];
         flightInfo.layer.borderWidth = 1.0f;
-        flightInfo.layer.cornerRadius = 5.0f;
+        flightInfo.layer.cornerRadius = 10.0f;
         
         NSDictionary *flight = [[responseDictionary objectForKey:@"segs"] objectAtIndex:indexPath.row];
         
@@ -328,6 +383,8 @@
         
         [cell addSubview:flightInfo];
         [flightInfo release];
+        
+        cell.backgroundColor = [UIColor clearColor];
     }
     
     return cell;
@@ -348,6 +405,11 @@
             [tableView reloadData];
         }
     }
+}
+
+- (void) back
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) confirmSelection
@@ -420,7 +482,6 @@
                         pickSeat.orgId = [responseDict objectForKey:@"orgId"];
                         pickSeat.org = [responseDict objectForKey:@"org"];
                         pickSeat.symbols = [responseDict objectForKey:@"symbols"];
-                        
                         
                         [self.navigationController pushViewController:pickSeat animated:YES];
                         [pickSeat release];

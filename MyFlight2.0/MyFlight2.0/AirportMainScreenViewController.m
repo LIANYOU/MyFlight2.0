@@ -159,7 +159,7 @@
     
     title = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 60, 10)];
     title.text = @"航班号";
-    title.textAlignment = UITextAlignmentCenter;
+    title.textAlignment = UITextAlignmentLeft;
     title.font = [UIFont systemFontOfSize:10.0f];
     title.textColor = [UIColor grayColor];
     title.backgroundColor = [UIColor clearColor];
@@ -167,9 +167,9 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 45, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, 45, 10)];
     title.text = @"状态";
-    title.textAlignment = UITextAlignmentCenter;
+    title.textAlignment = UITextAlignmentLeft;
     title.font = [UIFont systemFontOfSize:10.0f];
     title.textColor = [UIColor grayColor];
     title.backgroundColor = [UIColor clearColor];
@@ -204,9 +204,9 @@
     
     header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 505, 10)];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 60, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 60, 10)];
     title.text = @"计划出发";
-    title.textAlignment = UITextAlignmentCenter;
+    title.textAlignment = UITextAlignmentLeft;
     title.font = [UIFont systemFontOfSize:10.0f];
     title.textColor = [UIColor grayColor];
     title.backgroundColor = [UIColor clearColor];
@@ -214,9 +214,9 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(65, 0, 60, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(70, 0, 60, 10)];
     title.text = @"实际出发";
-    title.textAlignment = UITextAlignmentCenter;
+    title.textAlignment = UITextAlignmentLeft;
     title.font = [UIFont systemFontOfSize:10.0f];
     title.textColor = [UIColor grayColor];
     title.backgroundColor = [UIColor clearColor];
@@ -224,9 +224,9 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(125, 0, 60, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(130, 0, 60, 10)];
     title.text = @"计划到达";
-    title.textAlignment = UITextAlignmentCenter;
+    title.textAlignment = UITextAlignmentLeft;
     title.font = [UIFont systemFontOfSize:10.0f];
     title.textColor = [UIColor grayColor];
     title.backgroundColor = [UIColor clearColor];
@@ -234,9 +234,9 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(185, 0, 60, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(190, 0, 60, 10)];
     title.text = @"实际到达";
-    title.textAlignment = UITextAlignmentCenter;
+    title.textAlignment = UITextAlignmentLeft;
     title.font = [UIFont systemFontOfSize:10.0f];
     title.textColor = [UIColor grayColor];
     title.backgroundColor = [UIColor clearColor];
@@ -244,9 +244,9 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(245, 0, 100, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(250, 0, 100, 10)];
     title.text = @"目的地机场";
-    title.textAlignment = UITextAlignmentCenter;
+    title.textAlignment = UITextAlignmentLeft;
     title.font = [UIFont systemFontOfSize:10.0f];
     title.textColor = [UIColor grayColor];
     title.backgroundColor = [UIColor clearColor];
@@ -254,9 +254,9 @@
     [header addSubview:title];
     [title release];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(345, 0, 30, 10)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(350, 0, 30, 10)];
     title.text = @"航站楼";
-    title.textAlignment = UITextAlignmentCenter;
+    title.textAlignment = UITextAlignmentLeft;
     title.font = [UIFont systemFontOfSize:10.0f];
     title.textColor = [UIColor grayColor];
     title.backgroundColor = [UIColor clearColor];
@@ -372,7 +372,7 @@
             label = [[UILabel alloc] initWithFrame:CGRectMake(30, 5, 60, 20)];
             
             label.text = [flightInfo objectForKey:@"flightNo"];
-            label.textAlignment = UITextAlignmentCenter;
+            label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor whiteColor];
             label.font = [UIFont systemFontOfSize:14.0f];
             label.backgroundColor = [UIColor clearColor];
@@ -383,7 +383,7 @@
             label = [[UILabel alloc] initWithFrame:CGRectMake(90, 5, 45, 20)];
             
             label.text = [flightInfo objectForKey:@"sts"];
-            label.textAlignment = UITextAlignmentCenter;
+            label.textAlignment = UITextAlignmentLeft;
             
             if([label.text isEqualToString:@"起飞"])
             {
@@ -408,7 +408,8 @@
     {
         block = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 505, 30)];
         
-        switch (indexPath.row % 2) {
+        switch(indexPath.row % 2)
+        {
             case 0:
                 block.backgroundColor = [UIColor colorWithRed:0.15f green:0.15f blue:0.15f alpha:1.0f];
                 break;
@@ -425,10 +426,10 @@
             
             UILabel *label;
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 60, 20)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 60, 20)];
             
             label.text = [flightInfo objectForKey:@"planStartTime"];
-            label.textAlignment = UITextAlignmentCenter;
+            label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor whiteColor];
             label.font = [UIFont systemFontOfSize:14.0f];
             label.backgroundColor = [UIColor clearColor];
@@ -436,10 +437,10 @@
             [block addSubview:label];
             [label release];
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(65, 5, 60, 20)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(70, 5, 60, 20)];
             
             label.text = [flightInfo objectForKey:@"realStartTime"];
-            label.textAlignment = UITextAlignmentCenter;
+            label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor whiteColor];
             label.font = [UIFont systemFontOfSize:14.0f];
             label.backgroundColor = [UIColor clearColor];
@@ -447,10 +448,10 @@
             [block addSubview:label];
             [label release];
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(125, 5, 60, 20)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(130, 5, 60, 20)];
             
             label.text = [flightInfo objectForKey:@"planEndTime"];
-            label.textAlignment = UITextAlignmentCenter;
+            label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor whiteColor];
             label.font = [UIFont systemFontOfSize:14.0f];
             label.backgroundColor = [UIColor clearColor];
@@ -458,10 +459,10 @@
             [block addSubview:label];
             [label release];
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(185, 5, 60, 20)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(190, 5, 60, 20)];
             
             label.text = [flightInfo objectForKey:@"realEndTime"];
-            label.textAlignment = UITextAlignmentCenter;
+            label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor whiteColor];
             label.font = [UIFont systemFontOfSize:14.0f];
             label.backgroundColor = [UIColor clearColor];
@@ -469,10 +470,10 @@
             [block addSubview:label];
             [label release];
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(245, 5, 100, 20)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(250, 5, 100, 20)];
             
             label.text = [flightInfo objectForKey:@"arrAirport"];
-            label.textAlignment = UITextAlignmentCenter;
+            label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor whiteColor];
             label.font = [UIFont systemFontOfSize:14.0f];
             label.backgroundColor = [UIColor clearColor];
@@ -480,10 +481,10 @@
             [block addSubview:label];
             [label release];
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(345, 5, 30, 20)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(350, 5, 30, 20)];
             
             label.text = [flightInfo objectForKey:@"arrTerminal"];
-            label.textAlignment = UITextAlignmentCenter;
+            label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor whiteColor];
             label.font = [UIFont systemFontOfSize:14.0f];
             label.backgroundColor = [UIColor clearColor];
