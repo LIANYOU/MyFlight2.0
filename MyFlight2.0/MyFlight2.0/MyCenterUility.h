@@ -247,12 +247,21 @@ enum  {
 #define KEY_CouponListOfOutOfDate @"outOfDate" //已过期
 
 
+//获取订单列表
+
+#define GetOrderList_URL_Index @"/web/phone/order/flight/orderFlightSearch.jsp"
+
+#define GetOrderList_URL GET_RIGHT_URL_WITH_Index(GetOrderList_URL_Index)
 
 //获取订单详情
 
 #define GetDetailOrder_URL_Index @"/web/phone/order/flight/orderFlightDetail.jsp"
 
 #define GetDetailOrder_URL GET_RIGHT_URL_WITH_Index(GetDetailOrder_URL_Index)
+
+
+
+
 
 
 #endif

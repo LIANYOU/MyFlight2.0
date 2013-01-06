@@ -17,6 +17,7 @@
 #import "UserAccount.h"
 
 #import "MyNewCenterViewController.h"
+#import "MyCenterTable_1.h"
 @interface LogViewController ()
 {
     
@@ -47,8 +48,8 @@
     [super viewDidLoad];
     
     //新浪微博登陆初始化定义
-//    sinaweibo = [[SinaWeibo alloc] initWithAppKey:sinaWeiboAppKey appSecret:sinaWeiboAppSecret appRedirectURI:sinaWeiboAppRedirectURI andDelegate:self];
-
+    //    sinaweibo = [[SinaWeibo alloc] initWithAppKey:sinaWeiboAppKey appSecret:sinaWeiboAppSecret appRedirectURI:sinaWeiboAppRedirectURI andDelegate:self];
+    
     //腾讯QQ登陆初始化定义
     _permissions =  [[NSArray arrayWithObjects:
 					  @"get_user_info",@"add_share", @"add_topic",@"add_one_blog", @"list_album",
@@ -57,7 +58,7 @@
 	_tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"100353306"
 											andDelegate:self];
 	_tencentOAuth.redirectURI = @"www.qq.com";
-
+    
     //腾讯微博登陆初始化定义
     TCWBEngine *engine = [[TCWBEngine alloc] initWithAppKey:WiressSDKDemoAppKey andSecret:WiressSDKDemoAppSecret andRedirectUrl:@"http://www.51you.com/mobile/myflight.html"];
     [engine setRootViewController:self];
@@ -66,23 +67,23 @@
     
     
     //默认设置先回到我的个人中心
-   // self.loginSuccessReturnType = Login_Success_ReturnMyCenterDefault_Type;
-
-//    //默认设置先回到我的个人中心
-//    self.loginSuccessReturnType = Login_Success_ReturnMyCenterDefault_Type;
-
+    // self.loginSuccessReturnType = Login_Success_ReturnMyCenterDefault_Type;
+    
+    //    //默认设置先回到我的个人中心
+    //    self.loginSuccessReturnType = Login_Success_ReturnMyCenterDefault_Type;
+    
     
     
     loginBusiness = [[LoginBusiness alloc] init];
     
-
+    
     
     
     
     loginSingle =[IsLoginInSingle shareLoginSingle];
     
     //默认记住密码
-//    isRemember = true;
+    //    isRemember = true;
     
     isRemember =[[NSUserDefaults standardUserDefaults] boolForKey:KEY_Default_IsRememberPwd];
     
@@ -90,7 +91,7 @@
     
     if (isRemember) {
         
-       
+        
         [self.remembePasswordBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];
         
         logPassword.text = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_Default_Password];
@@ -100,7 +101,7 @@
         
         [self.remembePasswordBn setBackgroundImage:[UIImage imageNamed:@"ico_def.png"] forState:UIControlStateNormal];
         
-
+        
     }
     
     
@@ -156,7 +157,7 @@
 
 
 #pragma mark -
-#pragma mark 请求有错误信息 
+#pragma mark 请求有错误信息
 
 - (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
     
@@ -171,23 +172,24 @@
 
 
 #pragma mark -
-#pragma mark 登录成功时的操作 
+#pragma mark 登录成功时的操作
+
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
-//    用户输入什么就会记录 用户账户的默认值 
+    //    用户输入什么就会记录 用户账户的默认值
     
     [[NSUserDefaults standardUserDefaults] setObject:logNumber.text forKey:KEY_Default_AccountName];
     
     
     [[NSUserDefaults standardUserDefaults] synchronize];
-
+    
     
     if (isRemember) {
         
         [[NSUserDefaults standardUserDefaults] setObject:logPassword.text forKey:KEY_Default_Password];
         [[NSUserDefaults standardUserDefaults] synchronize];
- 
-                
+        
+        
     } else{
         
         [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_Default_Password];
@@ -212,35 +214,47 @@
     
     if ([self.loginSuccessReturnType isEqualToString:Login_Success_ReturnMyCenterDefault_Type]) {
         
-         MyNewCenterViewController *center = [[MyNewCenterViewController alloc] init];
+//        MyNewCenterViewController *center = [[MyNewCenterViewController alloc] init];
+//        
+//        UINavigationController *con  =[[UINavigationController alloc] initWithRootViewController:center];
+//        
+//        [center release];
         
-        UINavigationController *con  =[[UINavigationController alloc] initWithRootViewController:center];
+        MyCenterTable_1 *controller = [[MyCenterTable_1 alloc] init];
         
-        [center release];
-       
-        
-//        [loginBusiness getAccountInfoWithMemberId:memberID andDelegate:center];
+        UINavigationController *con =[[UINavigationController alloc] initWithRootViewController:controller];
+        [controller release];
         
         
+//    [loginBusiness getAccountInfoWithMemberId:memberID andDelegate:controller];
+        
+        //更新界面
         [self presentViewController:con animated:YES completion:^{
             
+            if ([controller respondsToSelector:@selector(updateThisViewWhenSuccess)]) {
+                
+//                 [controller updateThisViewWhenSuccess];
+                
+            }
             
-            [center updateThisViewWhenSuccess];
+           
             
         }];
-          
+        
     } else{
         
         
-         [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
-        
+    
     
 }
 //登陆
 #pragma mark -
 #pragma mark 登录操作
 - (IBAction)beginLoging:(id)sender {
+    
+    
     
     //
     //    if ([logNumber.text isEqualToString:@""]) {
@@ -266,7 +280,7 @@
     
     [loginBusiness loginWithName:logNumber.text password:logPassword.text andDelegate:self];
     
- 
+    
     
     
     
@@ -326,8 +340,8 @@
     
     [loginBusiness loginWithOAuth:userInfoDict andDelegate:self];
     
-//    [[NSUserDefaults standardUserDefaults] setObject:sinaweiboLogined forKey:@"sinaweiboUserInfo"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
+    //    [[NSUserDefaults standardUserDefaults] setObject:sinaweiboLogined forKey:@"sinaweiboUserInfo"];
+    //    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 //记住密码按钮
@@ -390,7 +404,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:isRemember forKey:KEY_Default_IsRememberPwd];
         
         
-//        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_Default_Password];
+        //        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_Default_Password];
         
         [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -405,12 +419,12 @@
         isRemember = true;
         //记住密码
         [[NSUserDefaults standardUserDefaults] setBool:isRemember forKey:KEY_Default_IsRememberPwd];
-         [ [NSUserDefaults standardUserDefaults] synchronize];
+        [ [NSUserDefaults standardUserDefaults] synchronize];
         
         NSLog(@"******* 记住%d",[[NSUserDefaults standardUserDefaults] boolForKey:KEY_Default_IsRememberPwd]);
         
-//        [[NSUserDefaults standardUserDefaults] setObject:logPassword.text forKey:KEY_Default_Password];
-       
+        //        [[NSUserDefaults standardUserDefaults] setObject:logPassword.text forKey:KEY_Default_Password];
+        
         
         [self.remembePasswordBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];
         

@@ -8,6 +8,7 @@
 
 #import "IsLoginInSingle.h"
 #import "UserAccount.h"
+#import "AppConfigure.h"
 @implementation IsLoginInSingle
 
 
@@ -31,8 +32,13 @@
 
 - (void) updateUserDefault{
     
-    
-    
+    self.isLogin =false;
+    self.token = nil;
+//    self.userAccount = nil;
+    [[NSUserDefaults standardUserDefaults] setBool:false forKey:KEY_Default_IsUserLogin];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_Default_MemberId];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_Default_Token];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(id) shareLoginSingle{

@@ -16,12 +16,25 @@
 #import "MyOrderListViewController.h"
 #import "CommonContactViewController.h"
 #import "MyCheapViewController.h"
+
+#import "IsLoginInSingle.h"
+#import "MyCenterUnLoginViewController.h"
+
+#import "UIQuickHelp.h"
+#import "PhoneReChargeViewController.h"
+#import "LoginBusiness.h"
+
+#import "UserAccount.h"
 @interface MyCenterTable_1 ()
 {
     
     UITableView * thistableView;
     NSArray *imageArray;
     NSArray *nameArray;
+    
+        
+    
+    
 }
 
 @end
@@ -37,13 +50,119 @@
     return self;
 }
 
+
+- (void) viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:YES];
+}
+
+
+ - (void) updateThisViewWhenSuccess{
+ 
+ CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+ 
+ //用户已经登录的情况下 显示用户相关的信息
+ 
+ IsLoginInSingle *userSingle = [IsLoginInSingle shareLoginSingle];
+     
+               self.accountString = Default_AccountName_Value;
+ 
+                self.allAccountMoneyString= userSingle.userAccount.account;
+ 
+                self.goldMoneyString= userSingle.userAccount.xinlvGoldMoeny;
+            self.silverMoneyString= userSingle.userAccount.xinlvSilverMoney;
+     
+     MyCenterSecondCell *cell =(MyCenterSecondCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+     cell.accountMoneyLabel.text = self.allAccountMoneyString;
+     cell.goldMoneyLabel.text = self.goldMoneyString;
+     cell.silverMoneyLabel.text = self.silverMoneyString;
+     
+     MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+     thisCell.detailLabel.text = self.accountString;
+     
+     CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
+     CCLog(@"银币 %@",self.silverMoneyString);
+//    [self.thisTableView reloadData];
+ 
+ }
+
+
+
+
+- (void) loginOut{
+    //    NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
+    //
+    //    [user setBool:false forKey:KEY_Default_IsUserLogin];
+    //
+    
+    [[IsLoginInSingle shareLoginSingle] updateUserDefault];
+    
+    MyCenterUnLoginViewController *controller= [[MyCenterUnLoginViewController alloc] init];
+    UINavigationController *con = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    [controller release];
+    
+    [self presentModalViewController:con animated:YES];
+    
+    [con release];
+    
+    
+}
+
+
+#pragma mark -
+#pragma mark 设置导航栏
+- (void) setNav{
+    
+    //    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    backBtn.frame = CGRectMake(10, 5, 30, 31);
+    //    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
+    //    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    //    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    //
+    //    UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    //    self.navigationItem.leftBarButtonItem=backBtn1;
+    //    [backBtn1 release];
+    
+    
+    
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonSystemItemSave target:self action:@selector(loginOut)];
+    
+    right.tintColor = [UIColor colorWithRed:35/255.0 green:103/255.0 blue:188/255.0 alpha:1];
+    
+    self.navigationItem.rightBarButtonItem = right;
+    
+    [right release];
+    
+    
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    [self setNav];
+    
+    LoginBusiness *busi = [[LoginBusiness alloc] init];
+    
+    NSString *memberId =Default_UserMemberId_Value;
+    
+    CCLog(@"在个人中心界面 memberId= %@",memberId);
+    
+    [busi getAccountInfoWithMemberId:memberId andDelegate:self];
+    
+    
+    self.accountString = @"";
+    self.allAccountMoneyString = @"0";
+    self.goldMoneyString =@"0";
+    self.silverMoneyString =@"0";
+    
     imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"icon_atv.png"],[UIImage imageNamed:@"icon_Coupon.png"],[UIImage imageNamed:@"icon_Recharge.png"] ,nil];
     nameArray =[[NSArray alloc] initWithObjects:@"常用联系人信息",@"我订阅的低价航线",@"用心愿旅行卡充值", nil];
-    self.view.backgroundColor =View_BackGround_Color;
+//    self.view.backgroundColor =View_BackGround_Color;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,11 +247,11 @@
             
             NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:self options:nil];
             
-            cell = [array objectAtIndex:0];
+            cell = [[[array objectAtIndex:0] retain] autorelease];
         }
         
         cell.titleLabel.text = @"个人资料";
-        cell.detailLabel.text = @"13161188680";
+        cell.detailLabel.text = self.accountString;
         cell.thisImageView.image = [UIImage imageNamed:@"icon_acc.png"];
         
         return cell;
@@ -152,13 +271,14 @@
                 
                 NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterSecondCell" owner:self options:nil];
                 
-                cell = [array objectAtIndex:0];
+                cell = [[[array objectAtIndex:0] retain] autorelease];
             }
             
+            CCLog(@"金币*****%@",self.allAccountMoneyString);
             
-            cell.accountMoneyLabel.text = @"￥675";
-            cell.goldMoneyLabel.text = @"￥436";
-            cell.silverMoneyLabel.text= @"￥787";
+//            cell.accountMoneyLabel.text =self.allAccountMoneyString;
+//            cell.goldMoneyLabel.text = self.goldMoneyString;
+//            cell.silverMoneyLabel.text= self.silverMoneyString;
             return  cell;
         }
         
@@ -172,7 +292,7 @@
                 
                 NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:self options:nil];
                 
-                cell = [array objectAtIndex:0];
+                cell = [[[array objectAtIndex:0] retain] autorelease];
             }
             
             cell.titleLabel.text = @"我的优惠券";
@@ -200,7 +320,7 @@
             
             NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:self options:nil];
             
-            cell = [array objectAtIndex:0];
+            cell = [[[array objectAtIndex:0] retain] autorelease];
         }
         
         
@@ -284,20 +404,98 @@
             case 2:
                 controller= [[MyCheapViewController alloc] init];
                 break;
+            case 3:
+                controller = [[PhoneReChargeViewController alloc] init];
+                break;
+                
             default:
                 break;
         }
         
-            
+        
     }
     
     
-       [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:controller animated:YES];
     [controller release];
     
     
 }
 
 
+#pragma mark -
+#pragma mark 网络错误回调的方法
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    NSString *meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+}
 
+#pragma mark -
+#pragma mark 网络返回错误信息回调的方法
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    NSString *meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+#pragma mark -
+#pragma mark 网络正确回调的方法
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    
+//    [self updateThisViewWhenSuccess];
+    
+    
+    
+    IsLoginInSingle *userSingle = [IsLoginInSingle shareLoginSingle];
+    
+    
+    self.accountString = Default_AccountName_Value;
+    
+//    self.allAccountMoneyString= userSingle.userAccount.account;
+//    
+//    self.goldMoneyString= userSingle.userAccount.xinlvGoldMoeny;
+//    self.silverMoneyString= userSingle.userAccount.xinlvSilverMoney;
+//    
+//    MyCenterSecondCell *cell =(MyCenterSecondCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+//    cell.accountMoneyLabel.text = self.allAccountMoneyString;
+//    cell.goldMoneyLabel.text = self.goldMoneyString;
+//    cell.silverMoneyLabel.text = self.silverMoneyString;
+//    
+//    MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    thisCell.detailLabel.text = self.accountString;
+//    
+//    CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
+//    CCLog(@"银币 %@",self.silverMoneyString);
+    
+    
+    
+    
+}
+
+
+
+- (void)dealloc {
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    self.accountString =nil;
+    self.allAccountMoneyString =nil;
+    [_thisTableView release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+//    [self setThisTableView:nil];
+    [super viewDidUnload];
+}
 @end

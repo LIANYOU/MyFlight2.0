@@ -11,6 +11,13 @@
 #import "MyCenterUnLoginCell.h"
 #import "UIImage+Scale.h"
 #import "UIImage+scaleImage.h"
+#import "LogViewController.h"
+#import "AppConfigure.h"
+#import "MyOrderListViewController.h"
+
+
+
+
 @interface MyCenterUnLoginViewController ()
 {
     
@@ -34,7 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    /Users/LIANYOU/My机票iOS/切图/个人中心/icon_acc.png
+    
     
     UIImage *image1 = [UIImage imageNamed:@"icon_acc.png"];
     
@@ -42,8 +49,8 @@
     UIImage *image3 = [UIImage imageNamed:@"icon_Recharge.png"];
     
     imageArray =[[NSArray alloc] initWithObjects:image1,image2,image3,nil];
-                 
-                 
+    
+    
     nameArray = [[NSArray alloc] initWithObjects:@"个人资料",@"我的订单",@"我订阅的低价航线", nil];
     
     
@@ -75,7 +82,7 @@
 #pragma mark TableViewDataSource
 //设置每个分组的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;{
-//    NSLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    //    NSLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     
     return 3;
 }
@@ -103,19 +110,22 @@
     MyCenterUnLoginCell *thisCell = (MyCenterUnLoginCell *) cell;
     
     thisCell.nameLabel.text =[nameArray objectAtIndex:indexPath.row];
-  
+    
     thisCell.thisimageView.image =[imageArray objectAtIndex:indexPath.row];
     
-//    thisCell.thisimageView.frame = CGRectMake(13, 10, 24, 24);
+    //    thisCell.thisimageView.frame = CGRectMake(13, 10, 24, 24);
     
     if (indexPath.row==0) {
-    
+        
         thisCell.detailLabel.text = @"未登录";
+        thisCell.detailLabel.textColor =FONT_Blue_Color;
+        
     }
     if (indexPath.row==1) {
         
         
         thisCell.detailLabel.text = [NSString stringWithFormat:@"未支付订单(%d)",1];
+        thisCell.detailLabel.textColor = FONT_Orange_Color;
     }
     
     
@@ -140,11 +150,37 @@
 #pragma mark TableViewDelegate
 
 //选择列表项时，需要的进行的操作
-- (void) tableView:(UITableView *)tableView1 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    //
-      
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    id controller = nil;
+    
+    switch (indexPath.row) {
+        case 0:
+        {
+            LogViewController *con = [[LogViewController alloc] init];
+        
+            con.loginSuccessReturnType= Login_Success_ReturnMyCenterDefault_Type;
+            controller = con;
+            break;
+        }
+        case 1:
+            controller = [[MyOrderListViewController alloc] init];
+            break;
+        case 2:
+            break;
+        default:
+            break;
+    }
+    
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    
+    
+    
+    
 }
 
 

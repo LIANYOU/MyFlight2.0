@@ -88,5 +88,10 @@
 
 //- (void) makeAccountFullWith 
 
+//获取订单列表
+
+- (void) getOrderListWithCurrentPage:(NSString *) currentPage rowsOfPage:(NSString *) page  andDelegate:(id<ServiceDelegate>) delegate;
+
+
 
 @end

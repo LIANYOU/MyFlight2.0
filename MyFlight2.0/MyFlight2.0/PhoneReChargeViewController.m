@@ -1,29 +1,22 @@
 //
-//  MyOrderListViewController.m
+//  PhoneReChargeViewController.m
 //  MyFlight2.0
 //
-//  Created by Davidsph on 12/21/12.
-//  Copyright (c) 2012 LIAN YOU. All rights reserved.
+//  Created by Davidsph on 1/6/13.
+//  Copyright (c) 2013 LIAN YOU. All rights reserved.
 //
 
-#import "MyOrderListViewController.h"
-#import "MyOrderListCell.h"
-#import "MyOrderListCell.h"
+#import "PhoneReChargeViewController.h"
+#import "PhoneReChargeCell.h"
 #import "AppConfigure.h"
 #import "UIQuickHelp.h"
 #import "LoginBusiness.h"
-#import "OrderListModelData.h"
-@interface MyOrderListViewController ()
-
-
-{
-    NSArray *tmpArray;
-}
+@interface PhoneReChargeViewController ()
 
 
 @end
 
-@implementation MyOrderListViewController
+@implementation PhoneReChargeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,84 +27,10 @@
     return self;
 }
 
-
-
-- (void) viewWillDisappear:(BOOL)animated{
-    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
-    [super viewWillDisappear:animated];
-}
-
-
-- (void) initThisView{
-    
-    UIColor * myFirstColor = [UIColor colorWithRed:244/255.0 green:239/255.0 blue:231/225.0 alpha:1.0f];
-    UIColor * mySceColor = [UIColor colorWithRed:10/255.0 green:91/255.0 blue:173/255.0 alpha:1];
-    NSArray * titleNameArray = [[NSArray alloc]initWithObjects:@"未支付",@"待出行",@"全部", nil];
-    segmented = [[SVSegmentedControl alloc]initWithSectionTitles:titleNameArray];
-    [titleNameArray release];
-    segmented.backgroundImage = [UIImage imageNamed:@"tab_bg.png"];
-    segmented.textColor = myFirstColor;
-    segmented.center = CGPointMake(160, 23);
-    
-    //segmented.thumb.backgroundImage = [UIImage imageNamed:@"tab.png"];
-    
-    segmented.height = 38;
-    segmented.LKWidth = 100;
-    
-    segmented.thumb.textColor = mySceColor;
-    segmented.thumb.tintColor = [UIColor whiteColor];
-    segmented.thumb.textShadowColor = [UIColor clearColor];
-    segmented.crossFadeLabelsOnDrag = YES;
-    
-    segmented.tintColor = [UIColor colorWithRed:22/255.0f green:74.0/255.0f blue:178.0/255.0f alpha:1.0f];
-    
-    [segmented addTarget:self action:@selector(mySegmentValueChange:) forControlEvents:UIControlEventValueChanged];
-    [self.customView addSubview:segmented];
-    //    [self.view addSubview:segmented];
-    
-    
-}
-
-
-
--(void)mySegmentValueChange:(SVSegmentedControl *)sender{
-    
-    NSInteger index = sender.selectedIndex;
-    switch (index) {
-        case 0:
-            tmpArray = self.noPaylistArray;
-            
-            [self.thisTableView reloadData];
-            break;
-        case 1:
-            tmpArray =self.alreadlyListArray;
-            [self.thisTableView reloadData];
-            break;
-        case 2:
-            
-            
-            
-            tmpArray = self.allOrderListArray;
-            [self.thisTableView reloadData];
-            break;
-        default:
-            break;
-    }
-
-    
-    
-}
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initThisView];
-     self.thisTableView.tableHeaderView = self.thisHeadView;
-    LoginBusiness *bis = [[LoginBusiness alloc] init];
-    [bis getOrderListWithCurrentPage:@"1" rowsOfPage:@"100" andDelegate:self];
-    
-    
+    self.thisTableView.tableFooterView = self.thisFootView;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -122,57 +41,79 @@
 }
 
 
+- (void) textFieldDidEndEditing:(UITextField *)textField{
+    
+    if (textField.tag ==100) {
+        
+    
+        self.cardNOString = textField.text;
+        CCLog(@"卡号：%@",self.cardNOString);
+      
+    } else{
+        
+        self.passWd = textField.text;
+        
+        CCLog(@"密码为:%@",self.passWd);
+    }
+    
+     
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    
+    [textField resignFirstResponder];
+    return true;
+}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    
+
     // Return the number of rows in the section.
-    return [tmpArray count];
-}
-
-
-
-
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    
-    
-    return 60;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    MyOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PhoneReChargeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell==nil) {
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyOrderListCell" owner:self options:nil];
         
-        cell = [array objectAtIndex:0];
+        NSArray *array =[[NSBundle mainBundle] loadNibNamed:@"PhoneReChargeCell" owner:nil options:nil];
+        cell = [[[array objectAtIndex:0] retain] autorelease];
         
     }
-    OrderListModelData *data = [tmpArray objectAtIndex:indexPath.row];
     
+    if (indexPath.row ==0) {
+        
+        
+        cell.nameLabel.text = @"心愿旅行卡号";
+        cell.thisDetailLabel.placeholder = @"请填写心愿旅行卡卡号";
+        cell.thisDetailLabel.tag = 100;
+        self.accountField = cell.thisDetailLabel;
+        
+    } else{
+        
+        cell.nameLabel.text = @"卡密码";
+        cell.thisDetailLabel.placeholder = @"请输入密码";
+        cell.thisDetailLabel.tag = 200;
+        self.pwdField = cell.thisDetailLabel;
+        
+    }
+    cell.thisDetailLabel.delegate =self;
     
-    cell.totalMoney.text =data.totalMoney;
-    cell.orderState.text = data.payStsCH;
-    
-    cell.areaInfo.text = [NSString stringWithFormat:@"%@-%@",data.depAirportName,data.arrAirportName];
-    cell.orderTime.text = data.createTime;
-    
-    
-    
+    // Configure the cell...
     
     return cell;
 }
@@ -232,22 +173,50 @@
 
 
 
+
+
+
 - (void)dealloc {
-    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    [_thisFootView release];
     [_thisTableView release];
-    [_customView release];
-    [_thisHeadView release];
-//    [_thisTableView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
-    [self setThisTableView:nil];
-    [self setCustomView:nil];
-    [self setThisHeadView:nil];
+    [self setThisFootView:nil];
     [self setThisTableView:nil];
     [super viewDidUnload];
 }
+- (IBAction)makeCharge:(id)sender {
+    
+    
+    [self.pwdField resignFirstResponder];
+    [self.accountField resignFirstResponder];
+    
+    NSString *card =[self.accountField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *pwd = [self.pwdField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    CCLog(@"账号 ：%@",card);
+    CCLog(@"密码为：%@",pwd);
+    
+    if ([card length]==0) {
+        
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"卡号为空" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    }  else if([pwd length]==0){
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"密码为空，请输入密码" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
 
+        
+    } else{
+        
+        LoginBusiness *bis =[[LoginBusiness alloc] init];
+        
+        [bis makeAccountFullWithRechargeCardNo:self.cardNOString cardPasswd:self.passWd andDelegate:self];
+        [bis release];
+    }
+    
+    
+    
+    
+}
 
 
 
@@ -283,21 +252,17 @@
 #pragma mark -
 #pragma mark 网络正确回调的方法
 //网络正确回调的方法
-- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
     
     
-    self.noPaylistArray =[info objectForKey:@"noPayList"];
-    
-    self.alreadlyListArray =[info objectForKey:@"alreadyPayList"];
-    self.allOrderListArray =[info objectForKey:@"allOrderList"];
     
     
-    tmpArray =self.noPaylistArray;
-    [self.thisTableView reloadData];
     
     
     
 }
+
+
 
 
 @end

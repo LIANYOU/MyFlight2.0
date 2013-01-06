@@ -205,7 +205,7 @@
 //心愿旅行卡 充值
 - (void) makeAccountFullWithRechargeCardNo:(NSString *) cardNo cardPasswd:(NSString *) pwd andDelegate:(id<ServiceDelegate>) delegate{
     
-    
+    [LoginInNetworkHelper makeAccountFullWithRechargeCardNo:cardNo cardPasswd:pwd andDelegate:delegate];
  
 }
 
@@ -225,5 +225,19 @@
     
     
 }
+
+
+
+//获取订单列表
+
+- (void) getOrderListWithCurrentPage:(NSString *) currentPage rowsOfPage:(NSString *) page  andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+    
+    [LoginInNetworkHelper getOrderListWithCurrentPage:currentPage rowsOfPage:page andDelegate:delegate];
+    
+    
+}
+
 
 @end
