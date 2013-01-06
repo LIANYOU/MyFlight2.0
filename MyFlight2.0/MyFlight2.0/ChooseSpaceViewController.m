@@ -228,6 +228,10 @@
         CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f);//可接受的最大大小的字符串
         
         CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
+        
+        if ( _firstCellText != @"" &&  size.height < 20) {
+            size.height = 25;
+        }
     
         return size.height+60.0f;
 
@@ -321,6 +325,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    [self.showTableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     if (indexPath.row == 0) {
         
     }

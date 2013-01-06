@@ -23,6 +23,12 @@
 #import "AirportMainScreenViewController.h"
 
 #import "DetailsOrderViewController.h"
+
+
+
+
+#import "MyLowOrderListViewController.h"
+
 @interface ViewController ()
 
 @end
@@ -114,9 +120,9 @@
 }
 
 - (IBAction)showRegularPassengerController:(id)sender {
-//    DetailsOrderViewController * log = [[DetailsOrderViewController alloc] init];
-//    [self.navigationController pushViewController:log animated:YES];
-//    [log release];
+    MyLowOrderListViewController * log = [[MyLowOrderListViewController alloc] init];
+    [self.navigationController pushViewController:log animated:YES];
+    [log release];
 
     CCLog(@"显示航空公司常旅客");
 }

@@ -12,6 +12,8 @@
 #import "ViewControllerDelegate.h"
 #import "LowOrderCell.h"
 #import "LowTextFiledCell.h"
+#import <QuartzCore/QuartzCore.h>
+#import "ShowSelectedResultViewController.h"
 
 
 @interface LowOrderController : UIViewController<UITableViewDataSource,UITableViewDelegate, ViewControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,ServiceDelegate,UITextFieldDelegate,UIAlertViewDelegate>
@@ -39,10 +41,24 @@
 
 @property (retain, nonatomic) IBOutlet UIView *viewPicker;
 @property (retain, nonatomic) IBOutlet LowTextFiledCell *phoneCEll;
+@property (retain, nonatomic) IBOutlet UIView *bigBiew;
+@property (retain, nonatomic) IBOutlet UIView *smallView;
+
+@property (retain, nonatomic) IBOutlet UIView *beginView;
+@property (retain, nonatomic) IBOutlet UIView *endView;
+@property (retain, nonatomic) IBOutlet UIImageView *twoBeginImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *twoEndImageView;
+@property (retain, nonatomic) IBOutlet UILabel *twoBeginTitle;
+@property (retain, nonatomic) IBOutlet UILabel *twoEndTitle;
+
+
+
+@property (retain, nonatomic) ShowSelectedResultViewController * show;
 
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *btnCancel;
 @property (retain, nonatomic) IBOutlet UIBarButtonItem *btnDone;
 @property (retain, nonatomic) IBOutlet UIPickerView *pickerSort;
 - (IBAction)orderNow:(id)sender;
+- (IBAction)changAirPort:(id)sender;
 
 @end
