@@ -25,6 +25,7 @@
 @property (retain, nonatomic) IBOutlet UIView *headerView;
 
 @property (retain, nonatomic) IBOutlet UITableView *thisTableView;
+
 @property(nonatomic,retain)NSArray *uselistArray;
 @property(nonatomic,retain)NSArray *noUseListArray;
 @property(nonatomic,retain)NSArray  *outOfDateListArray;

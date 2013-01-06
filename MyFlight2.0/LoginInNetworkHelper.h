@@ -76,4 +76,11 @@
 //个人中心优惠券查询
 + (Boolean) getCouponListWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate;
 
+
+
+//获取订单列表
+
++ (BOOL) getOrderListWithCurrentPage:(NSString *) currentPage rowsOfPage:(NSString *) page  andDelegate:(id<ServiceDelegate>) delegate;
+
+
 @end

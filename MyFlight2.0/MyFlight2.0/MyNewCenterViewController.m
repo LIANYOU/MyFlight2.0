@@ -46,6 +46,7 @@
     [self.navigationController popViewControllerAnimated:YES];
     
     
+    
 }
 
 //
@@ -97,12 +98,6 @@
      NSString *meg =[info objectForKey:KEY_message];
     
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-    
-    
-    
-    
-    
-    
 }
 
 #pragma mark -
@@ -110,8 +105,7 @@
 //网络返回错误信息回调的方法
 - (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
     
-    
-    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     NSString *meg =[info objectForKey:KEY_message];
     
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
@@ -121,6 +115,7 @@
 
 #pragma mark -
 #pragma mark 网络正确回调的方法
+
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
     
@@ -128,17 +123,11 @@
     
     
     
-    
-    
-    
-    
-    
+ 
     
     
     
 }
-
-
 
 - (void) updateThisViewWhenSuccess{
     
@@ -157,21 +146,13 @@
 }
 
 
+
+
 - (void)viewDidLoad
 {
    
     [super viewDidLoad];
-    NSString * string = KEY_FlightBook_FlightVo__aircraftType_WithType(@"Go");
-    
-    NSLog(@"type *************** =%@",string);
-    
-    
-    int i = 0;
-    
-    NSString *str = [NSString stringWithFormat:@"flightPassengerVoList[%d].flightPassengerVo.name",i];
 
-    CCLog(@"str *****************((()()()()()()(=%@",str);
-    
     LoginBusiness *busi = [[LoginBusiness alloc] init];
     
     NSString *memberId =Default_UserMemberId_Value;
@@ -179,9 +160,10 @@
     CCLog(@"在个人中心界面 memberId= %@",memberId);
     [busi getAccountInfoWithMemberId:memberId andDelegate:self];
     
-    
     [self setNav];
+    
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 

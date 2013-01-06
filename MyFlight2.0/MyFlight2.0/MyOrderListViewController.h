@@ -8,13 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "SVSegmentedControl.h"
-@interface MyOrderListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "ServiceDelegate.h"
+@interface MyOrderListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ServiceDelegate>
 {
     
     SVSegmentedControl * segmented;
 }
 
+@property (retain, nonatomic) IBOutlet UIView *customView;
+
+@property (retain, nonatomic) IBOutlet UITableView *thisTableView;
+
+@property (retain, nonatomic) IBOutlet UIView *thisHeadView;
 
 
+
+@property(nonatomic,retain)NSArray *noPaylistArray;
+@property(nonatomic,retain)NSArray *alreadlyListArray;
+@property(nonatomic,retain)NSArray  *allOrderListArray;
 
 @end

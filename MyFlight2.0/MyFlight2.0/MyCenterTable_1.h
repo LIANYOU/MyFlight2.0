@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ServiceDelegate.h"
+@interface MyCenterTable_1 : UIViewController<UITableViewDelegate,UITableViewDataSource,ServiceDelegate>
 
-@interface MyCenterTable_1 : UIViewController<UITableViewDelegate,UITableViewDataSource>
+
+@property (retain, nonatomic) IBOutlet UITableView *thisTableView;
+
+
+
+@property(nonatomic,retain)NSString *accountString;
+@property(nonatomic,retain)NSString *allAccountMoneyString;
+@property(nonatomic,retain)NSString *goldMoneyString;
+@property(nonatomic,retain)NSString *silverMoneyString;
+
 
 @end

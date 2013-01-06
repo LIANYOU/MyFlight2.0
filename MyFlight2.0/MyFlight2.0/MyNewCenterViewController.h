@@ -12,10 +12,6 @@
 
 
 
-
-
-
-
 //用户名
 @property (retain, nonatomic) IBOutlet UILabel *userNameLabel;
 

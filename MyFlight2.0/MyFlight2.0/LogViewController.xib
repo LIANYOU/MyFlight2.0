@@ -852,7 +852,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="icon_choice.png">{44, 44}</string>
+			<string key="icon_choice.png">{88, 88}</string>
 			<string key="icon_qq.png">{60, 60}</string>
 			<string key="icon_tencent.png">{60, 60}</string>
 			<string key="icon_wechat.png">{60, 60}</string>

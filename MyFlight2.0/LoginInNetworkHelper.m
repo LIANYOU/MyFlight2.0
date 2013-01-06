@@ -17,6 +17,7 @@
 #import "UserAccount.h"
 #import "CommonContact.h"
 #import "CommontContactSingle.h"
+#import "OrderListModelData.h"
 @implementation LoginInNetworkHelper
 
 #pragma mark -
@@ -266,6 +267,7 @@
                 
                 //用户登录状态
                 [defaultUser setBool:YES forKey:KEY_Default_IsUserLogin];
+                
                 //用户ID
                 [defaultUser setObject:single.userAccount.memberId forKey:KEY_Default_MemberId];
                 //                用户token
@@ -1714,6 +1716,111 @@
 + (BOOL) makeAccountFullWithRechargeCardNo:(NSString *) cardNo cardPasswd:(NSString *) pwd andDelegate:(id<ServiceDelegate>) delegate{
     
     
+    NSString *url =@"http://223.202.36.179:9580/web/phone/pay/fPhoneRechargeWish.jsp";
+    
+    NSString *memberId = Default_UserMemberId_Value;
+    NSString *token = Default_Token_Value;
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@%@%@",memberId,pwd,cardNo,SOURCE_VALUE,token];
+    NSString *sign = GET_SIGN(urlString);
+    
+    __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
+    
+    __block NSString *message = nil;
+    
+    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    
+    [formRequst setPostValue:memberId forKey:KEY_Account_MemberId];
+    [formRequst setPostValue:cardNo forKey:@"cardNo"];
+    [formRequst setPostValue:sign forKey:KEY_SIGN];
+    [formRequst setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
+    [formRequst setRequestMethod:@"POST"];
+    
+    
+    
+    
+    
+    [formRequst setCompletionBlock:^{
+        
+        NSString *data = [formRequst responseString];
+        
+        //        CCLog(@"网络返回的数据为：%@",data);
+        
+        NSError *error = nil;
+        
+        
+        NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        
+        if (!error) {
+            
+            CCLog(@"json解析格式正确");
+            
+            message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+            NSLog(@"服务器返回的信息为：%@",message);
+            
+            if ([message length]==0) {
+                
+                //  NSLog(@"成功登陆后返回的数据：%@",data);
+                
+                
+                
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
+                    
+                    [delegate requestDidFinishedWithRightMessage:messageDic];
+                    
+                }
+                
+            } else{
+                
+                
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]){
+                    //message 长度不为0 有错误信息
+                    [messageDic setObject:message forKey:KEY_message];
+                    
+                    
+                    [delegate requestDidFinishedWithFalseMessage:messageDic];
+                    
+                }
+                
+                
+            }
+            
+        } else{
+            NSLog(@"解析有错误");
+            
+            if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                
+                [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+                
+            }
+            
+            
+            return ;
+            
+        }
+        
+        
+        
+    }];
+    
+    [formRequst setFailedBlock:^{
+        
+        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+        
+        if (delegate&&[delegate respondsToSelector:@selector(requestDidFailed:)]) {
+            [delegate requestDidFailed:messageDic];
+        }
+        
+    }];
+    
+    [formRequst startAsynchronous];
+    
+    
     
     
     
@@ -1917,21 +2024,13 @@
             
         }
         
-        
-        
     }];
     
     [formRequst setFailedBlock:^{
         
-        
-        
-        
         [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
         
         [delegate requestDidFailed:messageDic];
-        
-        
-        
     }];
     
     [formRequst startAsynchronous];
@@ -1939,5 +2038,225 @@
     
     return true;
     
+}
+
+
+
+#pragma mark -
+#pragma mark 获取订单列表
+
+//获取订单列表
+
++ (BOOL) getOrderListWithCurrentPage:(NSString *) currentPage rowsOfPage:(NSString *) page andDelegate:(id<ServiceDelegate>) delegate{
+    
+    
+    //    NSString *publicParm = PUBLIC_Parameter;
+    NSString *memberId = Default_UserMemberId_Value;
+    NSString *token = Default_Token_Value;
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@",memberId,SOURCE_VALUE,token];
+    
+    NSString *sign = GET_SIGN(urlString);
+    
+    __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
+    
+    __block NSString *message = nil;
+    
+    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:GetOrderList_URL]];
+    
+    [formRequst setPostValue:memberId forKey:KEY_Account_MemberId];
+    //    [formRequst setPostValue:currentPage forKey:@"currentPage"];
+    //    [formRequst setPostValue:page forKey:@"rowsOfPage"];
+    //    [formRequst setPostValue:sign forKey:KEY_SIGN];
+    //    [formRequst setPostValue:SOURCE_VALUE forKey:KEY_source];
+    //    [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
+    //    [formRequst setPostValue:HWID_VALUE forKey:KEY_hwId];
+    [formRequst setRequestMethod:@"POST"];
+    
+    
+    
+    [formRequst setCompletionBlock:^{
+        
+        NSString *data = [formRequst responseString];
+        
+//        CCLog(@"网络返回的数据为：%@",data);
+        
+        NSError *error = nil;
+        
+        
+        NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        
+        if (!error) {
+            
+            CCLog(@"json解析格式正确");
+            
+            message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+            NSLog(@"服务器返回的信息为：%@",message);
+            
+            NSMutableArray *noPayList =[[NSMutableArray alloc] init];
+            NSMutableArray *allPayList = [[NSMutableArray alloc] init];
+            NSMutableArray *alradyPayList = [[NSMutableArray alloc] init];
+            NSString *type =nil;
+            
+            if ([message length]==0) {
+                
+                //  NSLog(@"成功登陆后返回的数据：%@",data);
+                
+                NSArray *resultArray = [dic objectForKey:@"fOrderList"];
+                
+                
+                
+                for (NSDictionary *tmpDic in resultArray) {
+                    
+                    OrderListModelData *data = [[OrderListModelData alloc] init];
+                    NSString *startAirPort =nil;
+                    NSString *endAirPort = nil;
+                    NSString *createTime = nil;
+                    NSString *paySts = nil;
+                    NSString *sts = nil;
+                    NSString *payStaCH =nil; //状态中文
+                    
+                    type = [tmpDic objectForKey:@"type"];
+                    
+                    if ([type isEqualToString:@"1"]) {
+                        
+                        startAirPort = [tmpDic objectForKey:@"depAirportCode"];
+                        endAirPort =[tmpDic objectForKey:@"arrAirportCode"];
+                        
+                    } else{
+                        startAirPort = [tmpDic objectForKey:@"bdepAirportCode"];
+                        endAirPort =[tmpDic objectForKey:@"barrAirportCode"];
+                        
+                    }
+                    
+                    payStaCH = [tmpDic objectForKey:@"payStsCh"];
+                    paySts =[tmpDic objectForKey:@"paySts"];
+                    sts =[tmpDic objectForKey:@"sts"];
+                    
+                    data.createTime =[tmpDic objectForKey:@"createTime"];
+                    data.depAirportName = startAirPort;
+                    data.arrAirportName = endAirPort;
+                    data.totalMoney = [tmpDic objectForKey:@"totalMoney"];
+                    data.payStsCH =payStaCH;
+                    data.type =type;
+                    
+                    
+                    
+//                    CCLog(@"type = *******%@",type);
+//                    CCLog(@"出发机场 ：&*****%@",data.depAirportName);
+//                    CCLog(@"到达机场 ：%@",data.arrAirportName);
+//                    
+                    
+                    
+                    [allPayList addObject:data];
+                    
+                    if ([paySts isEqualToString:@"0"]) {
+                        CCLog(@"这是未支付订单");
+                        OrderListModelData *data1 = [[OrderListModelData alloc] init];
+                        
+                        data1.createTime =[tmpDic objectForKey:@"createTime"];
+                        data1.depAirportName = startAirPort;
+                        data1.arrAirportName = endAirPort;
+                        data1.totalMoney = [tmpDic objectForKey:@"totalMoney"];
+                        data1.payStsCH =payStaCH;
+                        data1.type =type;
+                        
+                        
+                        
+                        
+                        
+                        [noPayList addObject:data1];
+                        [data1 release];
+                        
+                    } else  if ([paySts isEqualToString:@"1"]&&[sts isEqualToString:@"01"]) {
+                        
+                        OrderListModelData *data2 = [[OrderListModelData alloc] init];
+                        
+                        data2.createTime =[tmpDic objectForKey:@"createTime"];
+                        data2.depAirportName = startAirPort;
+                        data2.arrAirportName = endAirPort;
+                        data2.totalMoney = [tmpDic objectForKey:@"totalMoney"];
+                        data2.payStsCH =payStaCH;
+                        data2.type =type;
+                        
+                        
+                        [alradyPayList addObject:data2];
+                        [data2 release];
+                        
+                    }
+                    
+                }
+                
+                
+                [messageDic setObject:allPayList forKey:@"allOrderList"];
+                [messageDic setObject:noPayList forKey:@"noPayList"];
+                [messageDic setObject:alradyPayList forKey:@"alreadyPayList"];
+                
+                
+//                CCLog(@"展示结果：*****************************");
+//                
+//                CCLog(@"所有订单：%d",[allPayList count]);
+//                CCLog(@"已支付订单%d",[alradyPayList count]);
+//                CCLog(@"未支付订单 %d",[noPayList count]);
+//                
+                
+                
+                
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
+                    
+                    [delegate requestDidFinishedWithRightMessage:messageDic];
+                    
+                }
+                
+            } else{
+                
+                
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]){
+                    //message 长度不为0 有错误信息
+                    [messageDic setObject:message forKey:KEY_message];
+                    
+                    
+                    [delegate requestDidFinishedWithFalseMessage:messageDic];
+                    
+                }
+                
+                
+            }
+            
+        } else{
+            NSLog(@"解析有错误");
+            
+            if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                
+                [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+                
+            }
+            
+            
+            return ;
+            
+        }
+        
+        
+        
+    }];
+    
+    [formRequst setFailedBlock:^{
+        
+        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+        
+        if (delegate&&[delegate respondsToSelector:@selector(requestDidFailed:)]) {
+            [delegate requestDidFailed:messageDic];
+        }
+        
+    }];
+    
+    [formRequst startAsynchronous];
+    
+    
+    
+    return true;
 }
 @end

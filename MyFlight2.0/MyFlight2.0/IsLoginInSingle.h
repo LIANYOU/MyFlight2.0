@@ -22,5 +22,7 @@
 
 - (void) initUserDefault;
 
+
+//更新登录状态
 - (void) updateUserDefault;
 @end

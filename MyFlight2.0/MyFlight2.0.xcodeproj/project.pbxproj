@@ -117,6 +117,11 @@
 		14633E561695A7FE00701518 /* QueryLeijiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14633E541695A7FE00701518 /* QueryLeijiViewController.m */; };
 		14633E571695A7FE00701518 /* QueryLeijiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14633E551695A7FE00701518 /* QueryLeijiViewController.xib */; };
 		14633E631695AC1900701518 /* MyCheapCouponHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14633E621695AC1900701518 /* MyCheapCouponHelper.m */; };
+		1468CC331698A48300B05F43 /* PhoneReChargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468CC311698A48300B05F43 /* PhoneReChargeViewController.m */; };
+		1468CC341698A48300B05F43 /* PhoneReChargeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1468CC321698A48300B05F43 /* PhoneReChargeViewController.xib */; };
+		1468CC3B1698A6E100B05F43 /* PhoneReChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468CC3A1698A6E100B05F43 /* PhoneReChargeCell.m */; };
+		1468CC3D1698A70100B05F43 /* PhoneReChargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1468CC3C1698A70100B05F43 /* PhoneReChargeCell.xib */; };
+		1468CC4116993FBF00B05F43 /* OrderListModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468CC4016993FBF00B05F43 /* OrderListModelData.m */; };
 		146986BC167DCB5700E9B30D /* gray_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B1167DCB5700E9B30D /* gray_btn.png */; };
 		146986BD167DCB5700E9B30D /* green_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B2167DCB5700E9B30D /* green_btn.png */; };
 		146986BE167DCB5700E9B30D /* icon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B3167DCB5700E9B30D /* icon_qq.png */; };
@@ -892,6 +897,14 @@
 		14633E551695A7FE00701518 /* QueryLeijiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QueryLeijiViewController.xib; sourceTree = "<group>"; };
 		14633E611695AC1900701518 /* MyCheapCouponHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCheapCouponHelper.h; sourceTree = "<group>"; };
 		14633E621695AC1900701518 /* MyCheapCouponHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCheapCouponHelper.m; sourceTree = "<group>"; };
+		1468CC301698A48300B05F43 /* PhoneReChargeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneReChargeViewController.h; sourceTree = "<group>"; };
+		1468CC311698A48300B05F43 /* PhoneReChargeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneReChargeViewController.m; sourceTree = "<group>"; };
+		1468CC321698A48300B05F43 /* PhoneReChargeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneReChargeViewController.xib; sourceTree = "<group>"; };
+		1468CC391698A6E100B05F43 /* PhoneReChargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneReChargeCell.h; sourceTree = "<group>"; };
+		1468CC3A1698A6E100B05F43 /* PhoneReChargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneReChargeCell.m; sourceTree = "<group>"; };
+		1468CC3C1698A70100B05F43 /* PhoneReChargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneReChargeCell.xib; sourceTree = "<group>"; };
+		1468CC3F16993FBF00B05F43 /* OrderListModelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListModelData.h; sourceTree = "<group>"; };
+		1468CC4016993FBF00B05F43 /* OrderListModelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListModelData.m; sourceTree = "<group>"; };
 		146986B1167DCB5700E9B30D /* gray_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_btn.png; sourceTree = "<group>"; };
 		146986B2167DCB5700E9B30D /* green_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_btn.png; sourceTree = "<group>"; };
 		146986B3167DCB5700E9B30D /* icon_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_qq.png; sourceTree = "<group>"; };
@@ -1797,6 +1810,7 @@
 		1415239B16834B4F00E2FF0E /* newMyCenter */ = {
 			isa = PBXGroup;
 			children = (
+				1468CC2E1698A3D000B05F43 /* CardCharge */,
 				145A2D71168585D5000DAAA1 /* MyCheapFlight */,
 				145A2D5816845DB3000DAAA1 /* MyOrderList */,
 				145A2D4D16845515000DAAA1 /* MyCheapquan */,
@@ -2345,6 +2359,28 @@
 			name = "飞行累积查询";
 			sourceTree = "<group>";
 		};
+		1468CC2E1698A3D000B05F43 /* CardCharge */ = {
+			isa = PBXGroup;
+			children = (
+				1468CC301698A48300B05F43 /* PhoneReChargeViewController.h */,
+				1468CC311698A48300B05F43 /* PhoneReChargeViewController.m */,
+				1468CC321698A48300B05F43 /* PhoneReChargeViewController.xib */,
+				1468CC391698A6E100B05F43 /* PhoneReChargeCell.h */,
+				1468CC3A1698A6E100B05F43 /* PhoneReChargeCell.m */,
+				1468CC3C1698A70100B05F43 /* PhoneReChargeCell.xib */,
+			);
+			name = CardCharge;
+			sourceTree = "<group>";
+		};
+		1468CC3E16993F7A00B05F43 /* orderListModel */ = {
+			isa = PBXGroup;
+			children = (
+				1468CC3F16993FBF00B05F43 /* OrderListModelData.h */,
+				1468CC4016993FBF00B05F43 /* OrderListModelData.m */,
+			);
+			name = orderListModel;
+			sourceTree = "<group>";
+		};
 		146986B0167DCB5700E9B30D /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2758,7 +2794,12 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+
 				18CB6C62169909C2000DD63B /* PayOnline */,
+
+				1468CC3E16993F7A00B05F43 /* orderListModel */,
+				18D053E2169813020041240A /* payOnline */,
+
 				14AF422D1697D06C00C7C2CA /* 常旅客 */,
 				18EBFAAE1696E5500079F3EC /* checkPassword */,
 				18EBFA9616967BB00079F3EC /* LowOrderWJ */,
@@ -4291,6 +4332,7 @@
 				18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */,
 				18D364391696713B005CF80C /* dong1.png in Resources */,
 				18D3643A1696713B005CF80C /* dong2.png in Resources */,
+
 				18D05409169889CE0041240A /* MyLowOrderListViewController.xib in Resources */,
 				18D05413169893230041240A /* ListCell.xib in Resources */,
 				18D05418169894E80041240A /* AddLowOrderViewController.xib in Resources */,
@@ -4306,6 +4348,11 @@
 				18D36D8A16996EF2005CF80C /* SearchFlightConditionController.xib in Resources */,
 				18D36D8F16996F17005CF80C /* SMSViewController.xib in Resources */,
 				18D36D9416996F39005CF80C /* ShowFligthConditionController.xib in Resources */,
+
+				18D364B91697BB4D005CF80C /* WeatherViewController.xib in Resources */,
+				1468CC341698A48300B05F43 /* PhoneReChargeViewController.xib in Resources */,
+				1468CC3D1698A70100B05F43 /* PhoneReChargeCell.xib in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4542,12 +4589,17 @@
 				141669BD1696D396007BB0D0 /* DetailInfoWithImageViewController.m in Sources */,
 				141669C51696D55B007BB0D0 /* WarmTipViewController.m in Sources */,
 				141669C9169706B0007BB0D0 /* UIImage+Scale.m in Sources */,
+
+
+				18D053E6169813260041240A /* PayOnline.m in Sources */,
+
 				14AF42311697D1A000C7C2CA /* FrequentPassengerData.m in Sources */,
 				14AF42341697D67300C7C2CA /* isFrequentPassengerLogin.m in Sources */,
 				14AF42371697DA3C00C7C2CA /* MemberPointDataOfFrequent.m in Sources */,
 				14AF423B1697EE8E00C7C2CA /* LiChengDetailData.m in Sources */,
 				14AF42441698038A00C7C2CA /* AirCompanyDataBase.m in Sources */,
 				14AF4249169816B400C7C2CA /* ResultForLeijiViewCell.m in Sources */,
+
 				18D05408169889CE0041240A /* MyLowOrderListViewController.m in Sources */,
 				18D05411169893110041240A /* ListCell.m in Sources */,
 				18D05417169894E80041240A /* AddLowOrderViewController.m in Sources */,
@@ -4564,6 +4616,12 @@
 				18D36D8916996EF2005CF80C /* SearchFlightConditionController.m in Sources */,
 				18D36D8E16996F17005CF80C /* SMSViewController.m in Sources */,
 				18D36D9316996F39005CF80C /* ShowFligthConditionController.m in Sources */,
+
+				18D364B81697BB4D005CF80C /* WeatherViewController.m in Sources */,
+				1468CC331698A48300B05F43 /* PhoneReChargeViewController.m in Sources */,
+				1468CC3B1698A6E100B05F43 /* PhoneReChargeCell.m in Sources */,
+				1468CC4116993FBF00B05F43 /* OrderListModelData.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
