@@ -1,5 +1,5 @@
 //
-//  AddLowOrderViewController.h
+//  LowOrderCell1.h
 //  MyFlight2.0
 //
 //  Created by WangJian on 13-1-6.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddLowOrderViewController : UIViewController
+@interface LowOrderCell1 : UITableViewCell
 
 @end

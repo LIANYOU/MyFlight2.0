@@ -16,6 +16,8 @@
 #import "MyOrderListViewController.h"
 #import "CommonContactViewController.h"
 #import "MyCheapViewController.h"
+#import "MyLowOrderListViewController.h"
+
 @interface MyCenterTable_1 ()
 {
     
@@ -40,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"icon_atv.png"],[UIImage imageNamed:@"icon_Coupon.png"],[UIImage imageNamed:@"icon_Recharge.png"] ,nil];
     nameArray =[[NSArray alloc] initWithObjects:@"常用联系人信息",@"我订阅的低价航线",@"用心愿旅行卡充值", nil];
@@ -282,7 +285,8 @@
                 controller = [[CommonContactViewController alloc] init];
                 break;
             case 2:
-                controller= [[MyCheapViewController alloc] init];
+                
+                controller= [[MyLowOrderListViewController alloc] init];
                 break;
             default:
                 break;

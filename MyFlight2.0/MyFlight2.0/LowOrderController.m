@@ -14,13 +14,15 @@
 #import "PublicConstUrls.h"
 #import "LowOrderWJ.h"
 #import "AppConfigure.h"
+#import "AirPortData.h"
 @interface LowOrderController ()
 {
+    int oneFlag;
     int delegataFlag;  // 判断点击的是哪一行
-    int flag;
     
-    UILabel * changeString;
-    NSString * tempCode;
+    NSString * oneCode;
+    
+    ChooseAirPortViewController * chooseAirPort;
 }
 @end
 
@@ -37,6 +39,20 @@
 
 - (void)viewDidLoad
 {
+    
+    oneFlag = 1;
+    
+    if ([self.flagStr isEqualToString:@"oneController"]) {
+        self.tempView = self.smallFuckView;
+    }
+    else{
+        self.tempView = self.bigFuckView;
+    }
+  
+    self.showTabelView.tableHeaderView = self.tempView;
+    
+    
+    self.showTabelView.tableFooterView = self.footView;
     
     self.navigationItem.title = @"预约该航线";
     
@@ -58,9 +74,6 @@
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
 
-    
-    
-    
     //获得系统时间
     NSDate *  senddate=[NSDate date];
   //  NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
@@ -118,91 +131,75 @@
     [_lowOrderCell release];
     [_tableView release];
     [_footView release];
-    [_viewPicker release];
-    [_btnCancel release];
-    [_btnDone release];
-    [_pickerSort release];
     [_phoneCEll release];
     [_showTabelView release];
     [_startAirport release];
     [_endAirport release];
-    [_bigBiew release];
-    [_smallView release];
+
+//    [_bigView release];
+//    [_smallView release];
+    [_smallFuckView release];
+    [_bigFuckView release];
+    [_changAirPort release];
     [_beginView release];
     [_endView release];
-    [_twoBeginImageView release];
-    [_twoEndImageView release];
-    [_twoBeginTitle release];
-    [_twoEndTitle release];
-    [_startAirport release];
+    [oneStartAirPort release];
+    [oneEndAirPort release];
+    [beginImage release];
+    [endImage release];
+    [beginTitle release];
+    [endTitle release];
+    [_getEndAirPort release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setLowOrderCell:nil];
     [self setTableView:nil];
     [self setFootView:nil];
-    [self setViewPicker:nil];
-    [self setBtnCancel:nil];
-    [self setBtnDone:nil];
-    [self setPickerSort:nil];
     [self setPhoneCEll:nil];
     [self setShowTabelView:nil];
     [self setStartAirport:nil];
     [self setEndAirport:nil];
-    [self setBigBiew:nil];
-    [self setSmallView:nil];
+
+//    [self setBigView:nil];
+//    [self setSmallView:nil];
+    [self setSmallFuckView:nil];
+    [self setBigFuckView:nil];
+    [self setChangAirPort:nil];
     [self setBeginView:nil];
     [self setEndView:nil];
-    [self setTwoBeginImageView:nil];
-    [self setTwoEndImageView:nil];
-    [self setTwoBeginTitle:nil];
-    [self setTwoEndTitle:nil];
-    [self setStartAirport:nil];
+    [oneStartAirPort release];
+    oneStartAirPort = nil;
+    [oneEndAirPort release];
+    oneEndAirPort = nil;
+    [beginImage release];
+    beginImage = nil;
+    [endImage release];
+    endImage = nil;
+    [beginTitle release];
+    beginTitle = nil;
+    [endTitle release];
+    endTitle = nil;
+    [self setGetEndAirPort:nil];
     [super viewDidUnload];
 }
 
 
-#pragma mark - Table view delegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (self.show != nil) {
-        return 40;
-    }
-    else{
-        return 93;
-    }
-   
-}
-
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    
-    if (self.show != nil) {
-        return self.smallView;
-    }
-    else{
-        return self.bigBiew;
-    }
-    
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    
-    return 90  ;
-    
-}
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView * myView =[[[UIView alloc] init] autorelease];
-    
-    self.footView.frame = CGRectMake(10, 30, 300, 44);
-    [myView addSubview:self.footView];
-    
-    return myView;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    
+//    return 90  ;
+//    
+//}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    UIView * myView =[[[UIView alloc] init] autorelease];
+//    
+//    self.footView.frame = CGRectMake(10, 30, 300, 44);
+//    [myView addSubview:self.footView];
+//    
+//    return myView;
+//}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -372,6 +369,8 @@
 
 - (IBAction)orderNow:(id)sender {
     
+    NSLog(@"%@,%@",self.startCode,self.endCode);
+    
     NSString * string = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
     
     LowTextFiledCell *cell = (LowTextFiledCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0]];
@@ -395,57 +394,6 @@
     
     
     
-}
-
-- (IBAction)changAirPort:(id)sender {
-    [UIView animateWithDuration:0.5 animations:^(void)  //不用回调
-     {
-         if (flag == 1) {
-             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(170, 0);
-             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-170, 0);
-             _beginView.layer.affineTransform = moveTo;
-             _endView.layer.affineTransform = moveFrom;
-             flag = 2;
-         }
-         else{
-             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(0, 0);
-             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(0, 0);
-             _endView.layer.affineTransform = moveTo;
-             _beginView.layer.affineTransform = moveFrom;
-             flag = 1;
-         }
-         
-     }  completion:^(BOOL finished)
-     {
-         
-         
-         if (flag == 2) {
-             _twoBeginImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
-             _twoEndImageView.image = [UIImage imageNamed:@"icon_depart.png"];
-             _twoBeginTitle.text = @"到达机场";
-             _twoEndTitle.text = @"出发机场";
-             
-         }
-         else{
-             _twoBeginImageView.image = [UIImage imageNamed:@"icon_depart.png"];
-             _twoEndImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
-             _twoBeginTitle.text = @"出发机场";
-             _twoEndTitle.text = @"到达机场";
-             
-         }
-         
-         
-         changeString = _startAirport;
-         _startAirport = _endAirport;
-         _endAirport = changeString;
-         changeString = nil;
-         
-         tempCode = self.startCode;
-         self.startCode = self.endCode;
-          self.endCode = tempCode;
-         tempCode = nil;
-     }  ];
-
 }
 
 -(void)back
@@ -491,7 +439,13 @@
     CGPoint ce=self.view.center;
     ce.y=self.view.frame.size.height/2;
     if (textField.center.y>20) {
-        ce.y=ce.y- textField.center.y-20;
+        if ([self.flagStr isEqualToString:@"oneController"]) {
+            ce.y=ce.y- textField.center.y-20;
+        }
+        else{
+            ce.y=ce.y- textField.center.y-75;
+        }
+        
     }
     NSLog(@"%f",textField.center.y);
     [UIView beginAnimations:@"dsdf" context:nil];//动画开始
@@ -545,4 +499,90 @@
 }
 
 
+- (IBAction)chang:(id)sender {
+    
+    [UIView animateWithDuration:0.5 animations:^(void)  //不用回调
+     {
+         if (oneFlag == 1) {
+             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(170, 0);
+             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-170, 0);
+             _beginView.layer.affineTransform = moveTo;
+             _endView.layer.affineTransform = moveFrom;
+             oneFlag = 2;
+         }
+         else{
+             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(0, 0);
+             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(0, 0);
+             _endView.layer.affineTransform = moveTo;
+             _beginView.layer.affineTransform = moveFrom;
+             oneFlag = 1;
+         }
+         
+     }  completion:^(BOOL finished)
+     {
+         changeString = oneStartAirPort;
+         oneStartAirPort = oneEndAirPort;
+         oneEndAirPort = changeString;
+         changeString = nil;
+         
+         if (oneFlag == 2) {
+             beginImage.image = [UIImage imageNamed:@"icon_arrive.png"];
+             endImage.image = [UIImage imageNamed:@"icon_depart.png"];
+             beginTitle.text = @"到达机场";
+             endTitle.text = @"出发机场";
+             
+         }
+         else{
+             beginImage.image = [UIImage imageNamed:@"icon_depart.png"];
+             endImage.image = [UIImage imageNamed:@"icon_arrive.png"];
+             beginTitle.text = @"出发机场";
+             endTitle.text = @"到达机场";
+             
+         }
+         
+         oneCode = self.startCode;
+         self.startCode = self.endCode;
+         self.endCode = oneCode;
+         oneCode = nil;
+         
+     }  ];
+
+}
+- (IBAction)getStartAirport:(id)sender {
+    
+    chooseAirPort =[[ChooseAirPortViewController alloc] init];
+    chooseAirPort.startAirportName = oneStartAirPort.text;
+    chooseAirPort.endAirPortName = oneEndAirPort.text;
+    chooseAirPort.choiceTypeOfAirPort=START_AIRPORT_TYPE;
+    
+    
+    chooseAirPort.delegate =self;
+    [self.navigationController pushViewController:chooseAirPort animated:YES];
+}
+- (IBAction)getEndAirPort:(id)sender {
+    chooseAirPort =[[ChooseAirPortViewController alloc] init];
+    chooseAirPort.startAirportName = oneStartAirPort.text;
+    chooseAirPort.endAirPortName = oneEndAirPort.text;
+    chooseAirPort.choiceTypeOfAirPort = END_AIRPORT_TYPE;
+    chooseAirPort.delegate =self;
+    [self.navigationController pushViewController:chooseAirPort animated:YES];
+    
+}
+
+- (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger )choiceType didSelectAirPortInfo:(AirPortData *)airPort{
+    
+    if (choiceType==START_AIRPORT_TYPE) {
+        
+      
+        oneStartAirPort.text = airPort.apName;
+        self.startCode = airPort.apCode;
+        
+    } else if(choiceType==END_AIRPORT_TYPE){
+        
+
+        oneEndAirPort.text = airPort.apName;
+        self.endCode = airPort.apCode;
+    }
+    
+}
 @end

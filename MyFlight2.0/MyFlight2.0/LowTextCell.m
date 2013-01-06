@@ -1,14 +1,14 @@
 //
-//  NewChooseSpaceCell.m
+//  LowTextCell.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 12-12-20.
-//  Copyright (c) 2012年 LIAN YOU. All rights reserved.
+//  Created by WangJian on 13-1-6.
+//  Copyright (c) 2013年 LIAN YOU. All rights reserved.
 //
 
-#import "NewChooseSpaceCell.h"
+#import "LowTextCell.h"
 
-@implementation NewChooseSpaceCell
+@implementation LowTextCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,12 +26,4 @@
     // Configure the view for the selected state
 }
 
-- (void)dealloc {
-    [_view release];
-    [_wImage release];
-    [_dImage release];
-    [_textView release];
-    [_selectBtn release];
-    [super dealloc];
-}
 @end

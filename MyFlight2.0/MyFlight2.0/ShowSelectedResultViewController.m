@@ -347,6 +347,11 @@
     airPortNameFlag = 0;
     sortFlag =0;
     sortTimeFlag = 0;
+    sortBackFlag = 0;
+    sortBackTimeFlag = 0;
+    
+    [self.sortArr removeAllObjects];
+    [self.sortBackArr removeAllObjects];
     
     self.dateArr = [[not userInfo] objectForKey:@"arr"];
     
@@ -487,26 +492,28 @@
     }
     else{
         
-        if (self.write != nil  || CalendarFlag == 1 ) {
-
-            return self.dateArr.count;
-        }
+        
        
         
         if (timeSortFlag == 3 || airPortNameFlag == 4 ) {   // 判断如果是经过排序
-         
+            
             if (self.sortBackArr.count != 0) {
             
                 return self.sortBackArr.count;
             }
             else{
- 
+
                 return self.sortArr.count;
             }
             
         }
+        if (self.write != nil  || self.netFlag == 1 ) {
+  
+            return self.dateArr.count;
+        }
        
         else{
+
             return self.dateArr.count;
         }
         
@@ -539,9 +546,7 @@
         
         if (self.write != nil  ||  self.netFlag == 1) {
             
-//            if (CalendarFlag == 1) {
-//                data = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
-//            }
+
             
             if (sortBackFlag == 2 || sortBackTimeFlag == 2) {
             
@@ -555,12 +560,7 @@
 
         else
         {
-            
-//            if (CalendarFlag == 1) {
-//                data = [self.searchFlightDateArr objectAtIndex:indexPath.row];
-//            
-//            }
-            
+
             if (sortFlag == 1 || sortTimeFlag == 1) {
             
                 data = [self.sortArr objectAtIndex:indexPath.row];
@@ -695,6 +695,7 @@
             if (sortFlag == 1 || sortTimeFlag == 1) {
                 [self.indexArr addObject:[self.sortArr objectAtIndex:indexPath.row]]; // indexArr是为了保存用户所有来回选取的记录， 最终去的最后一条
                 order.searchFlight = [self.sortArr objectAtIndex:indexPath.row];
+                NSLog(@"************************   %@",order.searchFlight.beginDate);
                 data_ = [self.sortArr objectAtIndex:indexPath.row];
             }
             else{
@@ -779,6 +780,7 @@
                 sortTimeFlag = 1;
                                 
                 if (self.sortArr.count == 0) {
+                   
                     self.sortArr = self.searchFlightDateArr;
                 }
                 
@@ -1107,7 +1109,7 @@
         strDay = [NSString stringWithFormat:@"%d",day];
     }
     
-    if (self.write != nil) {
+    if (self.write != nil || self.netFlag == 1) {
         
         self.goBackDate = [NSString stringWithFormat:@"%d-%@-%@",year,strMonth,strDay];
         self.airPort.date = self.goBackDate;
@@ -1117,11 +1119,16 @@
         self.airPort.date = self.startDate;
     }
     
+    [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",strMonth, strDay] forState:0];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
     [self.airPort searchAirPort];
     
-    NSLog(@"showCalendar  %d,%d,%d",year,month,day);
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    [HUD show:YES];
+    
 }
 
 
@@ -1246,22 +1253,25 @@
     
     [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",m,d]forState:0];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
-    self.airPort.date = tempDate;
- 
-    NSLog(@"返程时间  %@",tempDate);
- 
-    [self.airPort searchAirPort];
+   
     
     if (self.write != nil || self.netFlag == 1) {
-        
+        NSLog(@"------------------------ ===============  %@",self.startDate);
         self.goBackDate = tempDate;
         
     }
     else{
         self.startDate = tempDate;
+        NSLog(@"------------------------   %@",self.startDate);
         
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+    self.airPort.date = tempDate;
+    
+    NSLog(@"返程时间  %@",tempDate);
+    
+    [self.airPort searchAirPort];
 
 }
 
@@ -1292,7 +1302,7 @@
 {
     lowOrderFlag = 10;
     LowOrderController * low = [[LowOrderController alloc] init];
-    low.show = self;
+    low.flagStr = @"oneController";
     if (self.write != nil || self.netFlag == 1) {
         low.start = self.endPort;
         low.end = self.startPort;

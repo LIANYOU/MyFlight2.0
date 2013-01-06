@@ -107,7 +107,7 @@
     self.lookReceive = [NSArray array];
     self.lookReceive = [[not userInfo] objectForKey:@"arr"];
     for (NSDictionary * dic_ in self.lookReceive) {
-         NSLog(@"已经关注的航班号 %@",[dic_ objectForKey:@"flightNum"]);
+      //   NSLog(@"已经关注的航班号 %@",[dic_ objectForKey:@"flightNum"]);
         if ([data.temporaryLabel isEqualToString:[dic_ objectForKey:@"flightNum"]]) {
             [self.lookFlightBtn setTitle:@"取消关注" forState:0];
             [self.lookFlightBtn setBackgroundImage:[UIImage imageNamed:@"btn_cancel.png"] forState:0];
@@ -303,6 +303,7 @@
         cell.textCell.lineBreakMode = UILineBreakModeCharacterWrap;
         cell.textView.frame = CGRectMake(0, 60, 320, size.height);
         cell.textCell.frame = CGRectMake(10,0, 300, size.height);
+        cell.selectBtn.frame = CGRectMake(10,0, 300, size.height);
         
         cell.textView.backgroundColor = [UIColor colorWithRed:237/255.0 green:232/255.0 blue:226/255.0 alpha:1];
         cell.textCell.font = [UIFont systemFontOfSize:12.0f];
@@ -311,6 +312,11 @@
         cell.textCell.textColor = myColor;
         cell.wImage.frame = CGRectMake(0, size.height+60.0f, 320, 1);
         cell.dImage.frame = CGRectMake(0, size.height+61.0f, 320, 1);
+        
+        
+        [cell.selectBtn addTarget:self action:@selector(select:) forControlEvents:UIControlEventTouchUpInside];
+        
+//        cell.selectionStyle = 0;
     
         
         [cell.changeSpace addTarget:self action:@selector(changeFlightInfo:) forControlEvents:UIControlEventTouchUpInside];
@@ -322,6 +328,10 @@
 
 
 #pragma mark - Table view delegatesearchFlight
+-(void)select:(UIButton *)btn
+{
+    NSLog(@"999");
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -360,6 +370,7 @@
         
         else
         {
+            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
             
             if (self.flag == 1) {
                 
