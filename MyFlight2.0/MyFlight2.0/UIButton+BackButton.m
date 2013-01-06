@@ -38,7 +38,11 @@
             normalImage = @"btn_2words.png";
             clickIamge = @"btn_2words_click.png";
             break;
-            
+        case 6:
+            backBtn.frame = CGRectMake(0, 0, 30, 30);
+            normalImage = @"icon_add.png";
+            clickIamge = @"icon_add_click.png";
+            break;
         default:
             break;
     }

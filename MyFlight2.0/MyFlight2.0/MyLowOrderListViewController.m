@@ -7,8 +7,17 @@
 //
 
 #import "MyLowOrderListViewController.h"
-#import "LowOrderCell.h"
 #import "ListCell.h"
+#import "UIButton+BackButton.h"
+#import "UIQuickHelp.h"
+#import "PublicConstUrls.h"
+#import "NoticeLow.h"
+#import "AppConfigure.h"
+#import "ProBookListData.h"
+#import "ProBooKResultData.h"
+#import "SamllCell.h"
+#import "LowOrderController.h"
+#import "DeleteOrderList.h"
 @interface MyLowOrderListViewController ()
 
 @end
@@ -28,10 +37,45 @@
 {
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
+    
+    self.showTableView.tableFooterView = self.footView;
+    self.showTableView.tableHeaderView = self.headView;
+    
+    self.navigationItem.title = @"我预约的低价航线";
+    
+    
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem=backBtn1;
+    [backBtn1 release];
+    
+    
+    UIButton * histroyBut = [UIButton backButtonType:6 andTitle:@""];
+    [histroyBut addTarget:self action:@selector(add) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+    self.navigationItem.rightBarButtonItem=backBtn2;
+    [backBtn2 release];
+    
+  //  NSString * string = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
+    NoticeLow * notice = [[NoticeLow alloc] initWithSource:SOURCE_VALUE andMemberId:nil andSign:nil andHwId:HWID_VALUE andDelegate:self];
+    [notice getInfo];
+
+
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
-
+-(void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)add{
+    LowOrderController * low = [[LowOrderController alloc] init];
+    [self.navigationController pushViewController:low animated:YES];
+    [low release];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -45,6 +89,7 @@
     [_list release];
     [_headView release];
     [_footView release];
+    [_smallCell release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -54,62 +99,127 @@
     [self setList:nil];
     [self setHeadView:nil];
     [self setFootView:nil];
+    [self setSmallCell:nil];
     [super viewDidUnload];
 }
 
 
-#pragma mark - Table view delegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 30;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 60;
-}
-
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    
-        return self.headView;
-    
-    
-}
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return self.footView;
-}
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 95;
+    
+
+    ProBooKResultData *data =[self.dataArr objectAtIndex:indexPath.row];
+    BOOL flag = data.flag;
+    
+    if (flag) {
+        return 110;
+    } else{
+        
+        return 54;
+    }
+
+
+
+
+
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-   
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 5;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    ListCell *cell = (ListCell *)[self.showTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell)
-    {
-        [[NSBundle mainBundle] loadNibNamed:@"ListCell" owner:self options:nil];
-        cell = self.list;
-    }
+    
+    ProBooKResultData *data =[self.dataArr objectAtIndex:indexPath.row];
+    
+    BOOL flag = data.flag;
+    
+    
+    UITableViewCell *cell =nil;
 
     
-    return cell;
+    if (!flag) {
+        
+        static NSString *CellIdentifier = @"Cell1";
+      
+        cell = [self.showTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell)
+        {
+            NSArray *array =[[NSBundle mainBundle] loadNibNamed:@"SamllCell" owner:self options:nil];
+            
+            
+            cell = [array objectAtIndex:0];
+        }
+        SamllCell *thisCell =(SamllCell *) cell;
+        
+        thisCell.startName.text = data.allData.dptCN;
+        thisCell.endName.text = data.allData.arrCN;
+        thisCell.startDate.text = data.allData.startDate;
+        thisCell.endDate.text = data.allData.endDate;
+        thisCell.discount.text = data.allData.discount;
+        
+        thisCell.selectionStyle = 0;
+        
+        
+        
+        thisCell.closeBtn.tag = indexPath.row;
+        [thisCell.closeBtn addTarget:self action:@selector(del:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+
+    else{
+        
+        
+        static NSString *CellIdentifier = @"Cell2";
+        cell = [self.showTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell)
+        {
+           NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"ListCell" owner:self options:nil];
+           cell = [array objectAtIndex:0];
+        }
+        ListCell *thisCell =(ListCell *) cell;
+        thisCell.startName.text = data.allData.dptCN;
+        thisCell.endName.text = data.allData.arrCN;
+        thisCell.startDate.text = data.allData.startDate;
+        thisCell.endDate.text = data.allData.endDate;
+        thisCell.discount.text = data.allData.discount;
+        
+        flightListTemp * temp = [data.listArray objectAtIndex:0];
+        thisCell.searchDate.text = temp.startDate;
+        thisCell.searchDiscount.text = temp.diccount;
+        thisCell.searchPay.text = temp.price;
+    
+    
+        thisCell.selectionStyle = 0;
+        
+        thisCell.closeBtn.tag = indexPath.row;
+        [thisCell.closeBtn addTarget:self action:@selector(del:) forControlEvents:UIControlEventTouchUpInside];
+     }
+
+    
+return cell;
+
+}
+
+
+
+-(void)del:(UIButton *)btn
+{
+     ProBooKResultData *data =[self.dataArr objectAtIndex:btn.tag];
+    NSLog(@"%@",data.allData.code);
+    DeleteOrderList * dele = [[DeleteOrderList alloc] initWithCode:data.allData.code
+                                                           andHwId:HWID_VALUE
+                                                       andDelegate:self];
+    [dele deleteOrderList];
+    
 }
 
 #pragma mark - Table view delegate
@@ -118,4 +228,50 @@
 {
   
 }
+
+#pragma mark -
+
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+}
+
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+
+    self.dataArr = [info objectForKey:@"dic"];
+    
+//    CCLog(@"网络返回的数据信息 count = %d",[self.dataArr count]);
+    
+//    for (int i=0; i<self.dataArr.count; i++) {
+//        
+//        ProBooKResultData *data =[self.dataArr objectAtIndex:i];
+//        
+//        BOOL flag = data.flag;
+//        NSString *name =data.allData.dptCN;
+//        
+//        CCLog(@"此行有数据 *********%d",flag);
+//        CCLog(@"  &&&&  %@",name);
+//        
+//        
+//    }
+    
+    
+    [self.showTableView reloadData];
+
+}
+
 @end

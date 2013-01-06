@@ -17,6 +17,7 @@
 #import "CommonContactViewController.h"
 #import "MyCheapViewController.h"
 
+
 #import "IsLoginInSingle.h"
 #import "MyCenterUnLoginViewController.h"
 
@@ -25,6 +26,10 @@
 #import "LoginBusiness.h"
 
 #import "UserAccount.h"
+
+#import "MyLowOrderListViewController.h"
+
+
 @interface MyCenterTable_1 ()
 {
     
@@ -142,6 +147,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     [self setNav];
     
@@ -402,7 +408,8 @@
                 controller = [[CommonContactViewController alloc] init];
                 break;
             case 2:
-                controller= [[MyCheapViewController alloc] init];
+                
+                controller= [[MyLowOrderListViewController alloc] init];
                 break;
             case 3:
                 controller = [[PhoneReChargeViewController alloc] init];

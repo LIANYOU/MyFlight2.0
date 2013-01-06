@@ -67,7 +67,7 @@
         NSNotification * not = [NSNotification notificationWithName:@"获得已经关注航班信息" object:self userInfo:dic];
         [[NSNotificationCenter defaultCenter] postNotification:not];
 
-        NSLog(@"secDic : %@",temp);
+      //  NSLog(@"secDic : %@",temp);
         
 //        for(NSDictionary * cid in secDic)
 //        {

@@ -26,4 +26,16 @@
     // Configure the view for the selected state
 }
 
+- (void)dealloc {
+    [_startName release];
+    [_endName release];
+    [_startDate release];
+    [_endDate release];
+    [_searchDate release];
+    [_searchDiscount release];
+    [_searchPay release];
+    [_closeBtn release];
+    [_discount release];
+    [super dealloc];
+}
 @end

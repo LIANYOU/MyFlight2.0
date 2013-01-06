@@ -13,14 +13,24 @@
 #import "LowOrderCell.h"
 #import "LowTextFiledCell.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ShowSelectedResultViewController.h"
+#import "ChooseAirPortViewController.h"
 
-
-@interface LowOrderController : UIViewController<UITableViewDataSource,UITableViewDelegate, ViewControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,ServiceDelegate,UITextFieldDelegate,UIAlertViewDelegate>
+@interface LowOrderController : UIViewController<UITableViewDataSource,UITableViewDelegate, ViewControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,ServiceDelegate,UITextFieldDelegate,UIAlertViewDelegate,ChooseAirPortViewControllerDelegate>
 {
     UIActionSheet * actionSheet;
     Date* leaveDate;
+    
+    
+    IBOutlet UILabel *oneStartAirPort;
+    UILabel * changeString;
+    IBOutlet UILabel *oneEndAirPort;
+    
+    IBOutlet UILabel *endTitle;
+    IBOutlet UILabel *beginTitle;
+    IBOutlet UIImageView *endImage;
+    IBOutlet UIImageView *beginImage;
 }
+
 
 @property (nonatomic, retain) NSMutableArray * seconderLabelArr;
 @property (retain, nonatomic) IBOutlet UILabel *startAirport;
@@ -39,26 +49,26 @@
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) IBOutlet UIView *footView;
 
-@property (retain, nonatomic) IBOutlet UIView *viewPicker;
+
 @property (retain, nonatomic) IBOutlet LowTextFiledCell *phoneCEll;
-@property (retain, nonatomic) IBOutlet UIView *bigBiew;
-@property (retain, nonatomic) IBOutlet UIView *smallView;
+
+
+- (IBAction)orderNow:(id)sender;
+
+@property (nonatomic, retain) NSString * flagStr;
+
+@property (retain, nonatomic) IBOutlet UIView *bigFuckView;
+
+@property (retain, nonatomic) IBOutlet UIView *smallFuckView;
+
+
+@property (retain, nonatomic) UIView * tempView;
+@property (retain, nonatomic) IBOutlet UIButton *changAirPort;
+@property (retain, nonatomic) IBOutlet UIView *endView;
+- (IBAction)getStartAirport:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *getEndAirPort;
+- (IBAction)getEndAirPort:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UIView *beginView;
-@property (retain, nonatomic) IBOutlet UIView *endView;
-@property (retain, nonatomic) IBOutlet UIImageView *twoBeginImageView;
-@property (retain, nonatomic) IBOutlet UIImageView *twoEndImageView;
-@property (retain, nonatomic) IBOutlet UILabel *twoBeginTitle;
-@property (retain, nonatomic) IBOutlet UILabel *twoEndTitle;
-
-
-
-@property (retain, nonatomic) ShowSelectedResultViewController * show;
-
-@property (retain, nonatomic) IBOutlet UIBarButtonItem *btnCancel;
-@property (retain, nonatomic) IBOutlet UIBarButtonItem *btnDone;
-@property (retain, nonatomic) IBOutlet UIPickerView *pickerSort;
-- (IBAction)orderNow:(id)sender;
-- (IBAction)changAirPort:(id)sender;
-
+- (IBAction)chang:(id)sender;
 @end
