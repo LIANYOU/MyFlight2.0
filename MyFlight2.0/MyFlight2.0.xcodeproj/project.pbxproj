@@ -407,6 +407,7 @@
 		18CB488A16918A6C00780BB7 /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = 18CB488116918A6C00780BB7 /* Thumbs.db */; };
 		18CB488B16918A6C00780BB7 /* triangle_icon_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB488216918A6C00780BB7 /* triangle_icon_down.png */; };
 		18CB488C16918A6C00780BB7 /* triangle_icon_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB488316918A6C00780BB7 /* triangle_icon_up.png */; };
+		18CB6C65169909CF000DD63B /* PayOnline.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB6C64169909CF000DD63B /* PayOnline.m */; };
 		18CB6D0F16843C580025F42F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB6D0D16843C580025F42F /* PostViewController.m */; };
 		18CB6D1016843C580025F42F /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D0E16843C580025F42F /* PostViewController.xib */; };
 		18CB6D13168452F80025F42F /* bg_green__.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D12168452F80025F42F /* bg_green__.png */; };
@@ -437,11 +438,16 @@
 		18D019C4168229820096852E /* SearchAirPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D019C3168229820096852E /* SearchAirPort.m */; };
 		18D01F1516783569002C13DB /* Un sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D01F1316783569002C13DB /* Un sel.png */; };
 		18D01F1616783569002C13DB /* sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D01F1416783569002C13DB /* sel.png */; };
-		18D053E6169813260041240A /* PayOnline.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D053E5169813260041240A /* PayOnline.m */; };
 		18D053ED169841940041240A /* icon_Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D053EB169841930041240A /* icon_Default.png */; };
 		18D053EE169841950041240A /* icon_Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D053EC169841930041240A /* icon_Selected.png */; };
 		18D053F1169842E50041240A /* ico_def.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D053EF169842E40041240A /* ico_def.png */; };
 		18D053F2169842E50041240A /* icon_choice.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D053F0169842E40041240A /* icon_choice.png */; };
+		18D05408169889CE0041240A /* MyLowOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D05406169889CE0041240A /* MyLowOrderListViewController.m */; };
+		18D05409169889CE0041240A /* MyLowOrderListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D05407169889CE0041240A /* MyLowOrderListViewController.xib */; };
+		18D05411169893110041240A /* ListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D05410169893100041240A /* ListCell.m */; };
+		18D05413169893230041240A /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D05412169893220041240A /* ListCell.xib */; };
+		18D05417169894E80041240A /* AddLowOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D05415169894E70041240A /* AddLowOrderViewController.m */; };
+		18D05418169894E80041240A /* AddLowOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D05416169894E80041240A /* AddLowOrderViewController.xib */; };
 		18D105191682A8DE00F112D2 /* bg_blue_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D105171682A8DE00F112D2 /* bg_blue_.png */; };
 		18D1051A1682A8DE00F112D2 /* bg_green_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D105181682A8DE00F112D2 /* bg_green_.png */; };
 		18D1051E1682ABEB00F112D2 /* NewChooseSpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1051D1682ABEB00F112D2 /* NewChooseSpaceCell.m */; };
@@ -1269,6 +1275,8 @@
 		18CB488116918A6C00780BB7 /* Thumbs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thumbs.db; sourceTree = "<group>"; };
 		18CB488216918A6C00780BB7 /* triangle_icon_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_icon_down.png; sourceTree = "<group>"; };
 		18CB488316918A6C00780BB7 /* triangle_icon_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_icon_up.png; sourceTree = "<group>"; };
+		18CB6C63169909CF000DD63B /* PayOnline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayOnline.h; sourceTree = "<group>"; };
+		18CB6C64169909CF000DD63B /* PayOnline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayOnline.m; sourceTree = "<group>"; };
 		18CB6D0C16843C580025F42F /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		18CB6D0D16843C580025F42F /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		18CB6D0E16843C580025F42F /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
@@ -1313,12 +1321,19 @@
 		18D019C3168229820096852E /* SearchAirPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAirPort.m; sourceTree = "<group>"; };
 		18D01F1316783569002C13DB /* Un sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Un sel.png"; sourceTree = "<group>"; };
 		18D01F1416783569002C13DB /* sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sel.png; sourceTree = "<group>"; };
-		18D053E4169813260041240A /* PayOnline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayOnline.h; sourceTree = "<group>"; };
-		18D053E5169813260041240A /* PayOnline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayOnline.m; sourceTree = "<group>"; };
 		18D053EB169841930041240A /* icon_Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Default.png; sourceTree = "<group>"; };
 		18D053EC169841930041240A /* icon_Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Selected.png; sourceTree = "<group>"; };
 		18D053EF169842E40041240A /* ico_def.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_def.png; sourceTree = "<group>"; };
 		18D053F0169842E40041240A /* icon_choice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_choice.png; sourceTree = "<group>"; };
+		18D05405169889CE0041240A /* MyLowOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLowOrderListViewController.h; sourceTree = "<group>"; };
+		18D05406169889CE0041240A /* MyLowOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLowOrderListViewController.m; sourceTree = "<group>"; };
+		18D05407169889CE0041240A /* MyLowOrderListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLowOrderListViewController.xib; sourceTree = "<group>"; };
+		18D0540F1698930F0041240A /* ListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCell.h; sourceTree = "<group>"; };
+		18D05410169893100041240A /* ListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCell.m; sourceTree = "<group>"; };
+		18D05412169893220041240A /* ListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCell.xib; sourceTree = "<group>"; };
+		18D05414169894E60041240A /* AddLowOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLowOrderViewController.h; sourceTree = "<group>"; };
+		18D05415169894E70041240A /* AddLowOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLowOrderViewController.m; sourceTree = "<group>"; };
+		18D05416169894E80041240A /* AddLowOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLowOrderViewController.xib; sourceTree = "<group>"; };
 		18D105171682A8DE00F112D2 /* bg_blue_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_blue_.png; sourceTree = "<group>"; };
 		18D105181682A8DE00F112D2 /* bg_green_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_green_.png; sourceTree = "<group>"; };
 		18D1051C1682ABEB00F112D2 /* NewChooseSpaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewChooseSpaceCell.h; sourceTree = "<group>"; };
@@ -2003,12 +2018,7 @@
 				18D01F1316783569002C13DB /* Un sel.png */,
 				18C30D3316859223009B0A54 /* 03.png */,
 				180D9650167C450000A36243 /* btn_2words_.png */,
-
 				141669BF1696D48D007BB0D0 /* liChengbudeng.png */,
-				18D10546168334FC00F112D2 /* ico_def_.png */,
-				18D10547168334FC00F112D2 /* icon_choice_.png */,
-
-
 				18D105171682A8DE00F112D2 /* bg_blue_.png */,
 				18CB6D14168453780025F42F /* bg_blue__.png */,
 				18CB6D12168452F80025F42F /* bg_green__.png */,
@@ -2634,6 +2644,7 @@
 		1807541A167C26B6007B42A4 /* lowOrder */ = {
 			isa = PBXGroup;
 			children = (
+				18D054031698899B0041240A /* MyLowOrderList */,
 				1807541B167C2734007B42A4 /* LowOrderController.h */,
 				1807541C167C2734007B42A4 /* LowOrderController.m */,
 				1807541D167C2734007B42A4 /* LowOrderController.xib */,
@@ -2741,15 +2752,8 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-
-
-
-
-				18D053E2169813020041240A /* payOnline */,
-
-
+				18CB6C62169909C2000DD63B /* PayOnline */,
 				14AF422D1697D06C00C7C2CA /* 常旅客 */,
-
 				18EBFAAE1696E5500079F3EC /* checkPassword */,
 				18EBFA9616967BB00079F3EC /* LowOrderWJ */,
 				1416692E16967EB0007BB0D0 /* airPortCompanyData */,
@@ -3081,6 +3085,15 @@
 			path = "我的订单";
 			sourceTree = "<group>";
 		};
+		18CB6C62169909C2000DD63B /* PayOnline */ = {
+			isa = PBXGroup;
+			children = (
+				18CB6C63169909CF000DD63B /* PayOnline.h */,
+				18CB6C64169909CF000DD63B /* PayOnline.m */,
+			);
+			name = PayOnline;
+			sourceTree = "<group>";
+		};
 		18D01F0616782C2A002C13DB /* addPerson */ = {
 			isa = PBXGroup;
 			children = (
@@ -3112,13 +3125,20 @@
 			name = choose;
 			sourceTree = "<group>";
 		};
-		18D053E2169813020041240A /* payOnline */ = {
+		18D054031698899B0041240A /* MyLowOrderList */ = {
 			isa = PBXGroup;
 			children = (
-				18D053E4169813260041240A /* PayOnline.h */,
-				18D053E5169813260041240A /* PayOnline.m */,
+				18D05405169889CE0041240A /* MyLowOrderListViewController.h */,
+				18D05406169889CE0041240A /* MyLowOrderListViewController.m */,
+				18D05407169889CE0041240A /* MyLowOrderListViewController.xib */,
+				18D0540F1698930F0041240A /* ListCell.h */,
+				18D05410169893100041240A /* ListCell.m */,
+				18D05412169893220041240A /* ListCell.xib */,
+				18D05414169894E60041240A /* AddLowOrderViewController.h */,
+				18D05415169894E70041240A /* AddLowOrderViewController.m */,
+				18D05416169894E80041240A /* AddLowOrderViewController.xib */,
 			);
-			name = payOnline;
+			name = MyLowOrderList;
 			sourceTree = "<group>";
 		};
 		18D196C6168161CC00FEE73A /* TravelAssistant */ = {
@@ -4249,29 +4269,12 @@
 				14ECC07F1695650E008191E1 /* pitch_on.png in Resources */,
 				14ECC0801695650E008191E1 /* seat1.png in Resources */,
 				14ECC08C1695B120008191E1 /* Thumbs.db in Resources */,
-
-
-
-
-
-
-
-
-
-
-
 				18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */,
 				18D364391696713B005CF80C /* dong1.png in Resources */,
 				18D3643A1696713B005CF80C /* dong2.png in Resources */,
 				18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */,
 				18EBFA5816966BD90079F3EC /* LowTextFiledCell.xib in Resources */,
 				18EBFAA31696A5B40079F3EC /* umpLibraryBundle.bundle in Resources */,
-
-
-
-
-
-
 				1416692D16967C6D007BB0D0 /* ChooseAirPortCompanyViewController.xib in Resources */,
 				1416693B1696924A007BB0D0 /* ResultForLeiJiViewController.xib in Resources */,
 				141669411696985E007BB0D0 /* ResultForChargeViewController.xib in Resources */,
@@ -4286,24 +4289,19 @@
 				141669BE1696D396007BB0D0 /* DetailInfoWithImageViewController.xib in Resources */,
 				141669C01696D48D007BB0D0 /* liChengbudeng.png in Resources */,
 				141669C61696D55B007BB0D0 /* WarmTipViewController.xib in Resources */,
-
-
-
 				18D053ED169841940041240A /* icon_Default.png in Resources */,
 				18D053EE169841950041240A /* icon_Selected.png in Resources */,
 				18D053F1169842E50041240A /* ico_def.png in Resources */,
 				18D053F2169842E50041240A /* icon_choice.png in Resources */,
-
-
 				14AF4246169806AD00C7C2CA /* AirCompanyDataBase.sqlite in Resources */,
 				14AF424B169816CC00C7C2CA /* ResultForLeijiViewCell.xib in Resources */,
-
-
 				18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */,
 				18D364391696713B005CF80C /* dong1.png in Resources */,
 				18D3643A1696713B005CF80C /* dong2.png in Resources */,
 				18D364B91697BB4D005CF80C /* WeatherViewController.xib in Resources */,
-
+				18D05409169889CE0041240A /* MyLowOrderListViewController.xib in Resources */,
+				18D05413169893230041240A /* ListCell.xib in Resources */,
+				18D05418169894E80041240A /* AddLowOrderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4534,15 +4532,9 @@
 				18D3642A1695290F005CF80C /* TaxiTableViewController.m in Sources */,
 				14ECC083169599B2008191E1 /* SeatMapView.m in Sources */,
 				18DDB3FD16957A89004CEC75 /* WJOrderBasicCell.m in Sources */,
-
 				18EBFA5516966BCA0079F3EC /* LowTextFiledCell.m in Sources */,
 				18EBFA9916967BE80079F3EC /* LowOrderWJ.m in Sources */,
 				18EBFAB11696E5AE0079F3EC /* CheckPassword.m in Sources */,
-
-
-
-
-
 				1416692C16967C6D007BB0D0 /* ChooseAirPortCompanyViewController.m in Sources */,
 				1416693116967EDA007BB0D0 /* AirPortCompanyData.m in Sources */,
 				1416693A1696924A007BB0D0 /* ResultForLeiJiViewController.m in Sources */,
@@ -4558,23 +4550,17 @@
 				141669BD1696D396007BB0D0 /* DetailInfoWithImageViewController.m in Sources */,
 				141669C51696D55B007BB0D0 /* WarmTipViewController.m in Sources */,
 				141669C9169706B0007BB0D0 /* UIImage+Scale.m in Sources */,
-
-
-
-				18D053E6169813260041240A /* PayOnline.m in Sources */,
-
-
 				14AF42311697D1A000C7C2CA /* FrequentPassengerData.m in Sources */,
 				14AF42341697D67300C7C2CA /* isFrequentPassengerLogin.m in Sources */,
 				14AF42371697DA3C00C7C2CA /* MemberPointDataOfFrequent.m in Sources */,
 				14AF423B1697EE8E00C7C2CA /* LiChengDetailData.m in Sources */,
 				14AF42441698038A00C7C2CA /* AirCompanyDataBase.m in Sources */,
 				14AF4249169816B400C7C2CA /* ResultForLeijiViewCell.m in Sources */,
-
-
 				18D364B81697BB4D005CF80C /* WeatherViewController.m in Sources */,
-
-
+				18D05408169889CE0041240A /* MyLowOrderListViewController.m in Sources */,
+				18D05411169893110041240A /* ListCell.m in Sources */,
+				18D05417169894E80041240A /* AddLowOrderViewController.m in Sources */,
+				18CB6C65169909CF000DD63B /* PayOnline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

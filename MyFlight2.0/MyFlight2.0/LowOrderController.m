@@ -17,6 +17,10 @@
 @interface LowOrderController ()
 {
     int delegataFlag;  // 判断点击的是哪一行
+    int flag;
+    
+    UILabel * changeString;
+    NSString * tempCode;
 }
 @end
 
@@ -122,6 +126,15 @@
     [_showTabelView release];
     [_startAirport release];
     [_endAirport release];
+    [_bigBiew release];
+    [_smallView release];
+    [_beginView release];
+    [_endView release];
+    [_twoBeginImageView release];
+    [_twoEndImageView release];
+    [_twoBeginTitle release];
+    [_twoEndTitle release];
+    [_startAirport release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -136,9 +149,44 @@
     [self setShowTabelView:nil];
     [self setStartAirport:nil];
     [self setEndAirport:nil];
+    [self setBigBiew:nil];
+    [self setSmallView:nil];
+    [self setBeginView:nil];
+    [self setEndView:nil];
+    [self setTwoBeginImageView:nil];
+    [self setTwoEndImageView:nil];
+    [self setTwoBeginTitle:nil];
+    [self setTwoEndTitle:nil];
+    [self setStartAirport:nil];
     [super viewDidUnload];
 }
 
+
+#pragma mark - Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (self.show != nil) {
+        return 40;
+    }
+    else{
+        return 93;
+    }
+   
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    if (self.show != nil) {
+        return self.smallView;
+    }
+    else{
+        return self.bigBiew;
+    }
+    
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -347,6 +395,57 @@
     
     
     
+}
+
+- (IBAction)changAirPort:(id)sender {
+    [UIView animateWithDuration:0.5 animations:^(void)  //不用回调
+     {
+         if (flag == 1) {
+             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(170, 0);
+             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-170, 0);
+             _beginView.layer.affineTransform = moveTo;
+             _endView.layer.affineTransform = moveFrom;
+             flag = 2;
+         }
+         else{
+             CGAffineTransform moveTo = CGAffineTransformMakeTranslation(0, 0);
+             CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(0, 0);
+             _endView.layer.affineTransform = moveTo;
+             _beginView.layer.affineTransform = moveFrom;
+             flag = 1;
+         }
+         
+     }  completion:^(BOOL finished)
+     {
+         
+         
+         if (flag == 2) {
+             _twoBeginImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
+             _twoEndImageView.image = [UIImage imageNamed:@"icon_depart.png"];
+             _twoBeginTitle.text = @"到达机场";
+             _twoEndTitle.text = @"出发机场";
+             
+         }
+         else{
+             _twoBeginImageView.image = [UIImage imageNamed:@"icon_depart.png"];
+             _twoEndImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
+             _twoBeginTitle.text = @"出发机场";
+             _twoEndTitle.text = @"到达机场";
+             
+         }
+         
+         
+         changeString = _startAirport;
+         _startAirport = _endAirport;
+         _endAirport = changeString;
+         changeString = nil;
+         
+         tempCode = self.startCode;
+         self.startCode = self.endCode;
+          self.endCode = tempCode;
+         tempCode = nil;
+     }  ];
+
 }
 
 -(void)back

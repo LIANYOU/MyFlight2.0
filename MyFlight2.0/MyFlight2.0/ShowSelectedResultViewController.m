@@ -153,7 +153,7 @@
              [UIView animateWithDuration:0.5 animations:^{
                  self.showResultTableView.frame = CGRectMake(0, 44, 320, 480);
              } completion:^(BOOL finished) {
-                 self.airPort.date = @"2012-12-30";
+                 self.airPort.date = @"2012-01-10";
                  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
                  [self.airPort searchAirPort];
                            
@@ -197,7 +197,7 @@
     self.navigationItem.titleView = label;
     
 
-    if (lowOrderFlag != 10) {
+    if (lowOrderFlag != 10 && CalendarFlag != 1) {
         if (self.one != nil || self.write != nil) {
             
             if (self.write != nil) {
@@ -342,6 +342,11 @@
 
 -(void)receive:(NSNotification *)not
 {
+    
+    timeSortFlag = 0 ;
+    airPortNameFlag = 0;
+    sortFlag =0;
+    sortTimeFlag = 0;
     
     self.dateArr = [[not userInfo] objectForKey:@"arr"];
     
@@ -534,9 +539,9 @@
         
         if (self.write != nil  ||  self.netFlag == 1) {
             
-            if (CalendarFlag == 1) {
-                data = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
-            }
+//            if (CalendarFlag == 1) {
+//                data = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
+//            }
             
             if (sortBackFlag == 2 || sortBackTimeFlag == 2) {
             
@@ -551,10 +556,10 @@
         else
         {
             
-            if (CalendarFlag == 1) {
-                data = [self.searchFlightDateArr objectAtIndex:indexPath.row];
-            
-            }
+//            if (CalendarFlag == 1) {
+//                data = [self.searchFlightDateArr objectAtIndex:indexPath.row];
+//            
+//            }
             
             if (sortFlag == 1 || sortTimeFlag == 1) {
             
@@ -650,6 +655,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    [self.showResultTableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     CalendarFlag = 0;
     lowOrderFlag = 0;
     if (tableView == self.showResultTableView)
@@ -1100,11 +1108,19 @@
     }
     
     if (self.write != nil) {
+        
         self.goBackDate = [NSString stringWithFormat:@"%d-%@-%@",year,strMonth,strDay];
+        self.airPort.date = self.goBackDate;
     }
     else{
         self.startDate = [NSString stringWithFormat:@"%d-%@-%@",year,strMonth,strDay];
+        self.airPort.date = self.startDate;
     }
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+    [self.airPort searchAirPort];
+    
     NSLog(@"showCalendar  %d,%d,%d",year,month,day);
 }
 
@@ -1276,7 +1292,7 @@
 {
     lowOrderFlag = 10;
     LowOrderController * low = [[LowOrderController alloc] init];
-    
+    low.show = self;
     if (self.write != nil || self.netFlag == 1) {
         low.start = self.endPort;
         low.end = self.startPort;
