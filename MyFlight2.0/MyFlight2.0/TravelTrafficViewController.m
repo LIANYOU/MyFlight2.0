@@ -10,7 +10,7 @@
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
-
+#import "UIButton+BackButton.h"
 
 @interface TravelTrafficViewController ()
 
@@ -34,6 +34,12 @@
     //tableView x=0 y=64
     [super viewDidLoad];
     self.view.backgroundColor = BACKGROUND_COLOR;
+
+    UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
+    [cusBtn addTarget:self action:@selector(cusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    [leftItem release];
 
     
     
@@ -922,6 +928,10 @@
     
 }
 
+
+-(void)cusBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 -(void)dealloc{

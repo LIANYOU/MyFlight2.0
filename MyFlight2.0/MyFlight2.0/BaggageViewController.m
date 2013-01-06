@@ -10,6 +10,7 @@
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
+#import "UIButton+BackButton.h"
 @interface BaggageViewController ()
 
 @end
@@ -30,7 +31,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.title = @"行李规定";
+    UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
+    [cusBtn addTarget:self action:@selector(cusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    [leftItem release];
+
     
     
     array_section_open = [[NSMutableArray alloc]initWithCapacity:0];
@@ -251,7 +258,9 @@
 }
 
 
-
+-(void)cusBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)dealloc{
     self.subAirPortData = nil;

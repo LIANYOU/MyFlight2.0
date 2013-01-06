@@ -15,6 +15,7 @@
 #import "ChackInNavgationViewController.h"
 #import "BaggageViewController.h"
 #import "WeatherViewController.h"
+#import "UIButton+BackButton.h"
 @interface TravelAssistantViewController ()
 
 @end
@@ -35,15 +36,22 @@
 {
     [super viewDidLoad];
     
-    
+    UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
+    [cusBtn addTarget:self action:@selector(cusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    [leftItem release];
+
     
     airPortCode = [[NSString alloc]initWithString:@"PEK"];
-    self.view.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
+    self.view.backgroundColor = FOREGROUND_COLOR;
+//    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height - 64) style:UITableViewStylePlain];
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 320) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.scrollEnabled = NO;
-    myTableView.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
+    myTableView.separatorColor = [UIColor whiteColor];
+    myTableView.backgroundColor = FOREGROUND_COLOR;
     [self.view addSubview:myTableView];
     
     // Do any additional setup after loading the view from its nib.
@@ -94,28 +102,39 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+    UIView * myBackgroundView = [[UIView alloc]initWithFrame:cell.bounds];
+    myBackgroundView.backgroundColor = BACKGROUND_COLOR;
+    cell.selectedBackgroundView = myBackgroundView;
+    [myBackgroundView release];
     
     UIImageView * imageView = [[UIImageView alloc]initWithImage:[imageArray objectAtIndex:indexPath.row]];
-    imageView.frame = CGRectMake(9, 8, 27, 27);
+    imageView.frame = CGRectMake(10, 11, 22, 22);
     [cell addSubview:imageView];
     [imageView release];
     
-    UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(54, 8, 139, 27)];
+    UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(40, 8, 139, 27)];
     title.text = [titleArray objectAtIndex:indexPath.row];
     title.backgroundColor = [UIColor clearColor];
+    title.textColor = FONT_COLOR_BIG_GRAY;
     [cell addSubview:title];
     [title release];
     
     UIImageView * accessView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrowhead.png"]];
-    accessView.frame = CGRectMake(292, 15, 12, 15);
+    accessView.frame = CGRectMake(292, 17, 9, 12);
     [cell addSubview:accessView];
     [accessView release];
     
     cell.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
-    
+    UIImageView * bottomLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
+    bottomLineImageView.backgroundColor = Line_COLOR_REAY;
+    [cell addSubview:bottomLineImageView];
+    [bottomLineImageView release];
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -220,6 +239,10 @@
         
         [self.navigationController pushViewController:controller animated:YES];
     }
+}
+
+-(void)cusBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)dealloc{

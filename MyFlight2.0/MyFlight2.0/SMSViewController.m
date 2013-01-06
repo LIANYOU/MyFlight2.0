@@ -7,7 +7,8 @@
 //
 
 #import "SMSViewController.h"
-
+#import "UIButton+BackButton.h"
+#define ADD_Y 56
 @interface SMSViewController ()
 
 @end
@@ -26,8 +27,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     nameAndPhone = [[NSMutableArray alloc]initWithCapacity:0];
+    
+    UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
+    [cusBtn addTarget:self action:@selector(cusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    [leftItem release];
+    
+    //输入框
+    cusInputTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, 10, 280, 24)];
+    cusInputTextField.font = [UIFont systemFontOfSize:17];
+    cusInputTextField.text = @"手动输入一个手机号码";
+    cusInputTextField.textAlignment = NSTextAlignmentLeft;
+    [self.view addSubview:cusInputTextField];
+    cusInputTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    [cusInputTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    cusInputTextField.textColor = [UIColor lightGrayColor];
+    cusInputTextField.returnKeyType = UIReturnKeyDone;
+    //编辑时会出现个修改X
+    cusInputTextField.clearButtonMode = UITextFieldViewModeWhileEditing; 
+    cusInputTextField.delegate = self;
+    
+    
+    
+   
     self.view.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:222.0/255.0 blue:215.0/255.0 alpha:1];
         //导航栏rightItem
     UIButton * myBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -46,9 +70,10 @@
     [myBtn release];
     self.navigationItem.rightBarButtonItem = rightItem;
     
+    //CGRectMake(20, 10, 280, 44);
     //发送短信按钮
     sendMessageBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    sendMessageBtn.frame = CGRectMake(20, 10, 280, 44);
+    sendMessageBtn.frame = CGRectMake(20, 10 + ADD_Y, 280, 44);
     [sendMessageBtn setImage:[UIImage imageNamed:@"orange_btn.png"] forState:UIControlStateNormal];
     UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(100, 11, 80, 22)];
     label.backgroundColor = [UIColor clearColor];
@@ -95,11 +120,20 @@
 //改变“发送短信”按钮位置 并刷新数据
 -(void)resetSendMessageBtnFrame{
     NSLog(@"//改变“发送短信”按钮位置 并刷新数据");
+    for (id obj in self.view.subviews) {
+        if ([obj isKindOfClass:[UIView class]]) {
+            UIView * oneMan = obj;
+            if (oneMan.tag == 999999) {
+                [oneMan removeFromSuperview];
+            }
+            
+        }
+    }
     NSLog(@"%d",[nameAndPhone count]);
     for (int i = 0; i < [nameAndPhone count]; i++) {
         [self createPersonInfoLabelWithIndex:i name:[[nameAndPhone objectAtIndex:i]valueForKey:@"name"] phone:[[nameAndPhone objectAtIndex:i]valueForKey:@"phone"]];
     }
-    sendMessageBtn.frame = CGRectMake(20, 10 + [nameAndPhone count] * 36, 280, 44);
+    sendMessageBtn.frame = CGRectMake(20, 10 + ADD_Y + [nameAndPhone count] * 36, 280, 44);
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
@@ -181,9 +215,17 @@
     UIColor * bgColor = [UIColor colorWithRed:247.0/255.0 green:243.0/255.0 blue:239.0/255.0 alpha:1];
 
     
-    UIView * oneMan = [[UIView alloc]initWithFrame:CGRectMake(0, 0 + 36 * index, 320, 36)];
+    UIView * oneMan = [[UIView alloc]initWithFrame:CGRectMake(0, 0 + 36 * index + ADD_Y, 320, 36)];
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.tag = index;
+    btn.alpha = 0.1;
+    btn.backgroundColor = [UIColor whiteColor];
+    btn.frame = CGRectMake(0, 0, 320, 36);
+    [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+
+    
     oneMan.backgroundColor = bgColor;
-    UIImageView * bottom1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 34, 320, 1)];
+    UIImageView * bottom1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 34 , 320, 1)];
     bottom1.backgroundColor = bottom1Color;
     [oneMan addSubview:bottom1];
     [bottom1 release];
@@ -215,8 +257,11 @@
     UITapGestureRecognizer * myTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(sendMessageTap:)];
     myTap.numberOfTapsRequired = 1;
     myTap.numberOfTouchesRequired = 1;
-    [oneMan addGestureRecognizer:myTap];
+//    [oneMan addGestureRecognizer:myTap];
     [myTap release];
+    
+    [oneMan addSubview:btn];
+    oneMan.tag = 999999;
     
     
     [oneMan release];
@@ -224,8 +269,140 @@
 
 -(void)sendMessageTap:(UITapGestureRecognizer *)tap{
     [[tap.view superview] viewWithTag:100];
+    
 //    UIAlertView * tapAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除", nil];
 }
+
+#pragma mark - 导航定制左键响应
+-(void)cusBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - 短信联系人btn
+-(void)btnClick:(UIButton *)btn{
+    NSString * tempStr = [NSString stringWithFormat:@"%@ %@",[[nameAndPhone objectAtIndex:btn.tag]objectForKey:@"name"],[[nameAndPhone objectAtIndex:btn.tag]objectForKey:@"phone"]];
+    delegateIndex = btn.tag;
+    UIAlertView * tapAlert = [[UIAlertView alloc]initWithTitle:@"删除" message:tempStr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除", nil];
+    [tapAlert show];
+}
+
+#pragma mark textField代理
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    cusInputTextField.text = @"";
+    return YES;
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    cusInputTextField.textColor = [UIColor blackColor];
+}
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    return YES;
+}
+
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    return YES;
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    NSString * myStr = cusInputTextField.text;
+    if (cusInputTextField.text.length == 0) {
+        [cusInputTextField resignFirstResponder];
+    }
+    if ([self checkTel:myStr] == YES) {
+        if ([nameAndPhone count] == 0) {
+            NSDictionary * phone = [NSDictionary dictionaryWithObjectsAndKeys:@"",@"name",myStr,@"phone", nil];
+            [nameAndPhone addObject:phone];
+            [self resetSendMessageBtnFrame];
+            [cusInputTextField resignFirstResponder];
+            
+        }else{
+            
+            for (int i = 0;i < [nameAndPhone count];i++) {
+                NSDictionary * dic = [nameAndPhone objectAtIndex:i];
+                NSLog(@"dic : %@",[dic objectForKey:@"phone"]);
+                if ([[dic objectForKey:@"phone"] isEqualToString:myStr] == YES) {
+                    isHave = YES;
+                    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已存在" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    [self resetSendMessageBtnFrame];
+                    [cusInputTextField resignFirstResponder];
+                    [alert show];
+                    [alert release];
+                    
+                }
+            }
+            if (isHave == NO) {
+                NSDictionary * phone = [NSDictionary dictionaryWithObjectsAndKeys:@"",@"name",myStr,@"phone", nil];
+                
+                [nameAndPhone addObject:phone];
+                [self resetSendMessageBtnFrame];
+                [cusInputTextField resignFirstResponder];
+                
+            }
+            isHave = NO;
+            
+        }
+
+    }
+    
+    
+    return YES;
+  
+}
+
+#pragma mark - 判断手机号码
+- (BOOL)checkTel:(NSString *)str
+
+{
+    
+    if ([str length] == 0) {
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"data_null_prompt", nil) message:NSLocalizedString(@"tel_no_null", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+        
+        [alert release];
+        
+        return NO;
+        
+    }
+    
+    //1[0-9]{10}
+    
+    //^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$
+    
+    //    NSString *regex = @"[0-9]{11}";
+    
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0-9]))\\d{8}$";
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    BOOL isMatch = [pred evaluateWithObject:str];
+    
+    if (!isMatch) {
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+        
+        [alert release];
+        
+        return NO;
+    }
+    return YES;
+    
+}
+
+
+
+
+#pragma mark - alert代理
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [nameAndPhone removeObjectAtIndex:delegateIndex];
+        [self resetSendMessageBtnFrame];
+    }
+}
+#pragma mark - 
 
 -(void)dealloc{
     [nameAndPhone release];

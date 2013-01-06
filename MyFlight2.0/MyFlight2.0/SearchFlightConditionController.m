@@ -17,7 +17,7 @@
 #import "JSONKit.h"
 #import "GetAttentionFlight.h"
 #import "LookFlightConditionCell.h"
-
+#import "UIButton+BackButton.h"
 @interface SearchFlightConditionController ()
 
 {
@@ -43,6 +43,14 @@ int whichDay(int year,int month,int day);
 {
     [super viewDidLoad];
 
+    
+    UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
+    [cusBtn addTarget:self action:@selector(cusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    [leftItem release];
+    
+    
     self.view.backgroundColor = BACKGROUND_COLOR;
     self.navigationItem.title = @"已关注航班列表";
     selectView = [[UIView alloc]initWithFrame:CGRectMake(0,-[[UIScreen mainScreen]bounds].size.height, 320, [[UIScreen mainScreen]bounds].size.height)];
@@ -680,5 +688,7 @@ int whichDay(int year,int month,int day)
     
 }
 
-
+-(void)cusBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

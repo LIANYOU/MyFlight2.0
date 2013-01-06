@@ -9,6 +9,7 @@
 #import "WeatherViewController.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
+#import "UIButton+BackButton.h"
 @interface WeatherViewController ()
 
 @end
@@ -27,6 +28,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
+    [cusBtn addTarget:self action:@selector(cusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    [leftItem release];
+
+    
+    
     self.view.backgroundColor = BACKGROUND_COLOR;
     
     NSDate *  senddate=[NSDate date];
@@ -258,6 +268,10 @@
     return cell;
     
 }
+-(void)cusBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -11,6 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "AppConfigure.h"
 #import "JSONKit.h"
+#import "UIButton+BackButton.h"
 
 @interface FlightCompanyDistrubuteViewController ()
 
@@ -31,8 +32,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title  = @"机场简介";
     // Do any additional setup after loading the view from its nib.
-    self.view.backgroundColor = [UIColor colorWithRed:223/255.0 green:215/255.0 blue:206/255.0 alpha:1];
+    
+    UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
+    [cusBtn addTarget:self action:@selector(cusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    [leftItem release];
+
+    
+    self.view.backgroundColor = FOREGROUND_COLOR;
 
     CGRect myRect = [[UIScreen mainScreen] bounds];
     CGSize mySize = myRect.size;
@@ -40,23 +50,35 @@
 //    myView.layer.cornerRadius = 4;
     
     myView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, mySize.height - 20 - 160)];
-    myView.backgroundColor = [UIColor whiteColor];
-    
-    myTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 50)];
+    myView.backgroundColor = [UIColor clearColor];
+    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, myView.bounds.size.height - 25)];
+    scrollView.backgroundColor = [UIColor clearColor];
+    CGSize myContentSize;
+    myContentSize.width = 320;
+    myContentSize.height = 3000;
+    scrollView.contentSize = myContentSize;
+    myTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 15, 300, 50)];
     myTitleLabel.backgroundColor = [UIColor clearColor];
     myTitleLabel.textAlignment = NSTextAlignmentCenter;
-    myTitleLabel.font = [UIFont systemFontOfSize:17];
-    [myView addSubview:myTitleLabel];
+    myTitleLabel.font = [UIFont systemFontOfSize:20];
+    myTitleLabel.textColor = FONT_COLOR_BIG_GRAY;
+//    [myView addSubview:myTitleLabel];
+    [scrollView addSubview:myTitleLabel];
    
    
-    myTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 51, myView.bounds.size.width, myView.bounds.size.height - 55-15)];
+    myTextView = [[UILabel alloc]initWithFrame:CGRectMake(20, 51, 280, myView.bounds.size.height - 55-30)];
     myTextView.backgroundColor = [UIColor clearColor];
-    myTextView.editable = NO;
+    [myTextView setNumberOfLines:0];
+    myTextView.lineBreakMode = UILineBreakModeWordWrap;
+    myTextView.font = [UIFont systemFontOfSize:12];
+//    myTextView.editable = NO;
+    myTextView.textColor = FONT_COLOR_GRAY;
 
-    [myView addSubview:myTextView];
+    [scrollView addSubview:myTextView];
+    [myView addSubview:scrollView];
     
-    UIButton * goToWebViewBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, myView.bounds.size.height - 15, 320, 15)];
-    UILabel * btnLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 15)];
+    UIButton * goToWebViewBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, myView.bounds.size.height - 30, 320, 15)];
+    UILabel * btnLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 18)];
     btnLabel.font = [UIFont systemFontOfSize:13];
     btnLabel.text = @"查看更多 >";
     btnLabel.textAlignment = NSTextAlignmentCenter;
@@ -144,6 +166,8 @@
         NSString * tempMystr2 = [tempMystr1 stringByReplacingOccurrencesOfString:@"    " withString:@"\r"];
         NSString * tempMystr3 = [NSString stringWithFormat:@"        %@",tempMystr2];
         NSString * mystr = [tempMystr3 stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r        "];
+        
+        
         NSArray * nameArray = [dic1 valueForKey:@"airportName"];
         NSString * name = [nameArray lastObject];
         
@@ -151,11 +175,23 @@
 //        NSDictionary * subDic = [rootArray objectAtIndex:0];
 //  
         myTextView.text = mystr;
+        
+        //设置一个行高上限
+        CGSize size = CGSizeMake(280,2000);
+        CGSize newSize;
+        UIFont * myFont = [UIFont systemFontOfSize:13];
+        //计算实际frame大小，并将label的frame变成实际大小
+        CGSize labelsize = [mystr sizeWithFont:myFont constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+        [myTextView setFrame:CGRectMake(20,63,labelsize.width,labelsize.height)];
+        newSize.width = 320;
+        newSize.height = labelsize.height + 60;
+        scrollView.contentSize = newSize;
+        
         myTitleLabel.text = name;
         
 
-//        NSLog(@"%@",[[[dic1 valueForKey:@"airportCoordinate"]objectAtIndex:0]componentsSeparatedByString:@","]);
-        airportCoordinateArray = [[NSMutableArray alloc]initWithArray:[[[dic1 valueForKey:@"airportCoordinate"]objectAtIndex:0]componentsSeparatedByString:@","]];
+        //机场坐标
+//        airportCoordinateArray = [[NSMutableArray alloc]initWithArray:[[[dic1 valueForKey:@"airportCoordinate"]objectAtIndex:0]componentsSeparatedByString:@","]];
          [self addMap];
 //        airportCoordinateArray = [[NSMutableArray alloc]initWithArray:tempArray];
     }];
@@ -230,13 +266,57 @@
 -(void)moreBtnClick:(id)sender{
     //更多
     NSLog(@"更多");
+   myWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 320,[[UIScreen mainScreen]bounds].size.height - 64)];
+    [UIView transitionFromView:self.view toView:myWebView duration:.75 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL isFinish){
+        isWebView = YES;
+    }];
     
+    
+    NSString * tempStr = [NSString stringWithFormat:@"%@",myTitleLabel.text];
+    
+     
+    NSString * str = [NSString stringWithFormat:@"http://baike.baidu.com/search?word=\"%@\"",tempStr];
+    NSLog(@"str :  %@",str);
+    NSString * myRealStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"realStr : %@",myRealStr);
+    NSURL * url = [NSURL URLWithString:myRealStr];
+    NSURLRequest * myRequest = [NSURLRequest requestWithURL:url];
+  
+    myWebView.delegate = self;
+    myWebView.scalesPageToFit = YES;
+    [myWebView loadRequest:myRequest];
+                             
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)cusBtnClick{
+    if (isWebView == YES) {
+   
+        [UIView transitionFromView:myWebView toView:self.view duration:0.75 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL isFinish){
+            isWebView = NO;
+        }];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    
+    return YES;
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    NSLog(@"webViewDidStartLoad");
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    NSLog(@"webViewDidFinishLoad");
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    NSLog(@"didFailLoadWithError");
 }
 
 -(void)dealloc{

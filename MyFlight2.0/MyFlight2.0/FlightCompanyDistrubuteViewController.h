@@ -11,12 +11,12 @@
 #import <MapKit/MapKit.h>
 #import "MapManager.h"
 #import "Ann.h"
-@interface FlightCompanyDistrubuteViewController : UIViewController<MKMapViewDelegate>
+@interface FlightCompanyDistrubuteViewController : UIViewController<MKMapViewDelegate,UIWebViewDelegate>
 {
 //    NSString * _airPortCode;
     AirPortData * _subAirPortData;
     NSMutableData * myData;
-    UITextView * myTextView;
+    UILabel * myTextView;
     UILabel * myTitleLabel;
     UIView * myView;
     
@@ -24,6 +24,9 @@
     MapManager * myMapManager;
     MKAnnotationView * myPlaneImageView;
     NSMutableArray * airportCoordinateArray;//经纬度
+    UIScrollView * scrollView;
+    UIWebView * myWebView;
+    BOOL isWebView;
 }
 //@property(nonatomic,retain) NSString * airPortCode;
 @property(nonatomic,retain)AirPortData * subAirPortData;

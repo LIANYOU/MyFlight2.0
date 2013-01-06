@@ -16,6 +16,7 @@
 #import "AttentionFlight.h"
 
 #import "SearchFlightConditionController.h"
+#import "UIButton+BackButton.h"
 
 @interface DetailFlightConditionViewController ()
 @property(nonatomic,retain) NSString *shareMsg;
@@ -43,22 +44,66 @@
     //地图
     [self aboutMap];
    
+    UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
+    [cusBtn addTarget:self action:@selector(backToDetail) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    [leftItem release];
     
+
     //注册微信号
     [WXApi registerApp:tencentWeChatAppID];
     // Do any additional setup after loading the view from its nib.
     
+    //底部4个按钮
     [self.btnMessage addTarget:self action:@selector(btnMessageClick:) forControlEvents:UIControlEventTouchUpInside];
+//    UIImageView * imageView1  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_message_click.png"]];
+//    imageView1.frame = CGRectMake(26, 4, 29, 28);
+//    [self.btnMessage addSubview:imageView1];
+//    [imageView1 release];
+//    UILabel * label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 35, 80, 21)];
+//    label1.text = @"短信提醒";
+//    label1.textColor = [UIColor whiteColor];
+//    [self.btnMessage addSubview:label1];
+//    [label1 release];
+    
+    
+    
     [self.btnPhone addTarget:self action:@selector(btnPhoneClick:) forControlEvents:UIControlEventTouchUpInside];
+//    UIImageView * imageView2  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_tep_click.png"]];
+//    imageView2.frame = CGRectMake(26, 4, 29, 28);
+//    [self.btnPhone addSubview:imageView2];
+//    [imageView2 release];
+//    UILabel * label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 35, 80, 21)];
+//    label2.text = @"电话咨询";
+//    label2.textColor = [UIColor whiteColor];
+//    [self.btnPhone addSubview:label2];
+//    [label2 release];
+    
+    
+    
     [self.btnShare addTarget:self action:@selector(btnShareClick:) forControlEvents:UIControlEventTouchUpInside];
+//    UIImageView * imageView3  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_share_click.png"]];
+//    imageView3.frame = CGRectMake(26, 4, 29, 28);
+//    [self.btnShare addSubview:imageView3];
+//    [imageView3 release];
+//    UILabel * label3 = [[UILabel alloc]initWithFrame:CGRectMake(0, 35, 80, 21)];
+//    label3.text = @"电话咨询";
+//    label3.textColor = [UIColor whiteColor];
+//    [self.btnShare addSubview:label3];
+//    [label3 release];
+    
     [self.btnMoreShare addTarget:self action:@selector(btnMoreShareClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     UIView * myView = [self.view viewWithTag:999];
     myView.layer.cornerRadius = 6;
     myView.layer.masksToBounds = YES;
     
     
     myFlightConditionDetailData = [[FlightConditionDetailData alloc]initWithDictionary:self.dic];
-    
+    //标题
+    self.title = [NSString stringWithFormat:@"%@-%@",myFlightConditionDetailData.deptAirport,myFlightConditionDetailData.arrAirport];
     [flightLine setImage:[UIImage imageNamed:@"circle_green_change.png"]];
     flightLine.frame = CGRectMake(71, 111, 138, 33);
     flightLine.clipsToBounds = YES;
@@ -626,7 +671,7 @@
 #pragma mark - 所有地图相关初始化
 -(void)aboutMap{
     
-    myMapView = [[MKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, [[UIScreen mainScreen]bounds].size.height - 20 - 50)];
+    myMapView = [[MKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height - 20 - 44)];
     myMapView.delegate = self;
   
 
@@ -634,26 +679,36 @@
 
 
 
-
+#pragma mark - 小飞机点击事件翻到地图
 //飞行地图
 - (IBAction)littleFlightClick:(id)sender {
     [self getFlightMapData];
     myFlightView = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height)]autorelease];
     myFlightView.backgroundColor = [UIColor redColor];
     [myFlightView addSubview:myMapView];
-    UIButton * myBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    myBtn.frame = CGRectMake(0, 0, 50, 40);
-    [myBtn addTarget:self action:@selector(backToDetail) forControlEvents:UIControlEventTouchUpInside];
-    [myFlightView addSubview:myBtn];
+//    UIButton * myBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    myBtn.frame = CGRectMake(0, 0, 50, 40);
+//    [myBtn addTarget:self action:@selector(backToDetail) forControlEvents:UIControlEventTouchUpInside];
+//    [myFlightView addSubview:myBtn];
     [UIView transitionFromView:self.view toView:myFlightView duration:0.75 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL isFinish){
-        
+        if (isFinish) {
+            isMap = YES;
+            
+        }
     }];
 }
 
 -(void)backToDetail{
-    [UIView transitionFromView:myFlightView toView:self.view duration:0.75 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL isFinish){
-        
-    }];
+    if (isMap == NO) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [UIView transitionFromView:myFlightView toView:self.view duration:0.75 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL isFinish){
+            if (isFinish) {
+                isMap = NO;
+                self.title = @"航班详情";
+            }
+        }];
+    }
 }
 
 

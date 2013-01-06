@@ -10,12 +10,15 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import "AddLinkManViewController.h"
-@interface SMSViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ABPeoplePickerNavigationControllerDelegate>
+@interface SMSViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 {
 //    IBOutlet UIButton * sendMessageButton;  //发送短信
     NSMutableArray * nameAndPhone;      //联系人名字和电话号码
     UIButton * sendMessageBtn;
     BOOL haveThisMan;
+    UITextField * cusInputTextField;
+    NSInteger delegateIndex;
+    BOOL isHave;
 }
 
 

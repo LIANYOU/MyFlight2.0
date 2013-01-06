@@ -265,10 +265,6 @@
 		1827BE7C1683541E00349FE1 /* l_UO.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE581683541E00349FE1 /* l_UO.png */; };
 		1827BE7D1683541E00349FE1 /* l_VD.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE591683541E00349FE1 /* l_VD.png */; };
 		1827BE7E1683541E00349FE1 /* l_ZH.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE5A1683541E00349FE1 /* l_ZH.png */; };
-		1827BE831683582000349FE1 /* ChackInNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827BE811683581E00349FE1 /* ChackInNavgationViewController.m */; };
-		1827BE841683582000349FE1 /* ChackInNavgationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE821683581F00349FE1 /* ChackInNavgationViewController.xib */; };
-		1827BE881683629C00349FE1 /* BaggageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827BE861683629A00349FE1 /* BaggageViewController.m */; };
-		1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE871683629B00349FE1 /* BaggageViewController.xib */; };
 		18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18478C64167332AD00D3AFCD /* SearchFlightCondition.m */; };
 		1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852CC7D16837F5600431A9B /* TravePhoneCell.xib */; };
 		18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18630442168EAA1C0022CB2F /* WriteOrderViewController.m */; };
@@ -277,7 +273,6 @@
 		188B728F16916C7A004F09B8 /* Ann.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B728E16916C7A004F09B8 /* Ann.m */; };
 		18953997168EFA20008901F5 /* AirportMainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18953995168EFA20008901F5 /* AirportMainScreenViewController.m */; };
 		18953998168EFA20008901F5 /* AirportMainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18953996168EFA20008901F5 /* AirportMainScreenViewController.xib */; };
-		1896E5EF168C6554006F883B /* TravelTrafficViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */; };
 		189F5D48168A014700A3494F /* AttentionFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F5D47168A014700A3494F /* AttentionFlight.m */; };
 		18AD3304168C6EF40065BF08 /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD32F6168C6EF40065BF08 /* CheckInViewController.m */; };
 		18AD3305168C6EF40065BF08 /* CheckInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD32F7168C6EF40065BF08 /* CheckInViewController.xib */; };
@@ -452,12 +447,6 @@
 		18D1051A1682A8DE00F112D2 /* bg_green_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D105181682A8DE00F112D2 /* bg_green_.png */; };
 		18D1051E1682ABEB00F112D2 /* NewChooseSpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1051D1682ABEB00F112D2 /* NewChooseSpaceCell.m */; };
 		18D105201682AC0100F112D2 /* NewChooseSpaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1051F1682AC0100F112D2 /* NewChooseSpaceCell.xib */; };
-		18D105361682B33B00F112D2 /* FlightCompanyDistrubuteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1052B1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.m */; };
-		18D105371682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1052C1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib */; };
-		18D105381682B33B00F112D2 /* TravelAssistantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1052E1682B33B00F112D2 /* TravelAssistantViewController.m */; };
-		18D105391682B33B00F112D2 /* TravelAssistantViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1052F1682B33B00F112D2 /* TravelAssistantViewController.xib */; };
-		18D1053B1682B33B00F112D2 /* TravelPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D105331682B33B00F112D2 /* TravelPhoneViewController.m */; };
-		18D1053C1682B33B00F112D2 /* TravelPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */; };
 		18D1970E16816C6C00FEE73A /* icon_checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970316816C6C00FEE73A /* icon_checkin.png */; };
 		18D1970F16816C6C00FEE73A /* icon_Distributed.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970416816C6C00FEE73A /* icon_Distributed.png */; };
 		18D1971016816C6C00FEE73A /* icon_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970516816C6C00FEE73A /* icon_location.png */; };
@@ -470,9 +459,6 @@
 		18D1971816816C6C00FEE73A /* triangle_icon_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970D16816C6C00FEE73A /* triangle_icon_up.png */; };
 		18D1971B1681735800FEE73A /* icon_travel_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D197191681735800FEE73A /* icon_travel_more.png */; };
 		18D1971C1681735800FEE73A /* icon_travelFile.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1971A1681735800FEE73A /* icon_travelFile.png */; };
-		18D197991682C92400FEE73A /* FlightCompanyDistrubuteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D197971682C92100FEE73A /* FlightCompanyDistrubuteController.m */; };
-		18D1979A1682C92400FEE73A /* FlightCompanyDistrubuteController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D197981682C92200FEE73A /* FlightCompanyDistrubuteController.xib */; };
-		18D1979E1682D05B00FEE73A /* TravelTrafficViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1979C1682D05900FEE73A /* TravelTrafficViewController.m */; };
 		18D19A0A168FDFCC004861C3 /* AirportMainScreenSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D19A09168FDFCC004861C3 /* AirportMainScreenSearchView.m */; };
 		18D19A15168FEC05004861C3 /* btn_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D19A0D168FEC05004861C3 /* btn_search.png */; };
 		18D19A16168FEC05004861C3 /* Drop_down_long.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D19A0E168FEC05004861C3 /* Drop_down_long.png */; };
@@ -487,8 +473,30 @@
 		18D3642A1695290F005CF80C /* TaxiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D364291695290F005CF80C /* TaxiTableViewController.m */; };
 		18D364391696713B005CF80C /* dong1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D3643716967139005CF80C /* dong1.png */; };
 		18D3643A1696713B005CF80C /* dong2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D364381696713A005CF80C /* dong2.png */; };
-		18D364B81697BB4D005CF80C /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D364B61697BB4D005CF80C /* WeatherViewController.m */; };
-		18D364B91697BB4D005CF80C /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D364B71697BB4D005CF80C /* WeatherViewController.xib */; };
+		18D36D5C16996D0B005CF80C /* BaggageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D5A16996D0A005CF80C /* BaggageViewController.m */; };
+		18D36D5D16996D0B005CF80C /* BaggageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D5B16996D0A005CF80C /* BaggageViewController.xib */; };
+		18D36D6116996D39005CF80C /* ChackInNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D5F16996D38005CF80C /* ChackInNavgationViewController.m */; };
+		18D36D6216996D39005CF80C /* ChackInNavgationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D6016996D38005CF80C /* ChackInNavgationViewController.xib */; };
+		18D36D6616996DE2005CF80C /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D6416996DE1005CF80C /* WeatherViewController.m */; };
+		18D36D6716996DE2005CF80C /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D6516996DE2005CF80C /* WeatherViewController.xib */; };
+		18D36D7116996E04005CF80C /* TravelAssistantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D6916996DFF005CF80C /* TravelAssistantViewController.m */; };
+		18D36D7216996E04005CF80C /* TravelAssistantViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D6A16996DFF005CF80C /* TravelAssistantViewController.xib */; };
+		18D36D7316996E04005CF80C /* TravelPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D6C16996E00005CF80C /* TravelPhoneViewController.m */; };
+		18D36D7416996E04005CF80C /* TravelPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D6D16996E02005CF80C /* TravelPhoneViewController.xib */; };
+		18D36D7516996E04005CF80C /* TravelTrafficViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D6F16996E02005CF80C /* TravelTrafficViewController.m */; };
+		18D36D7616996E04005CF80C /* TravelTrafficViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D7016996E03005CF80C /* TravelTrafficViewController.xib */; };
+		18D36D7A16996E68005CF80C /* DetailFlightConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D7816996E68005CF80C /* DetailFlightConditionViewController.m */; };
+		18D36D7B16996E68005CF80C /* DetailFlightConditionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D7916996E68005CF80C /* DetailFlightConditionViewController.xib */; };
+		18D36D8216996EAF005CF80C /* FlightCompanyDistrubuteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D7D16996EAF005CF80C /* FlightCompanyDistrubuteController.m */; };
+		18D36D8316996EAF005CF80C /* FlightCompanyDistrubuteController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D7E16996EAF005CF80C /* FlightCompanyDistrubuteController.xib */; };
+		18D36D8416996EAF005CF80C /* FlightCompanyDistrubuteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D8016996EAF005CF80C /* FlightCompanyDistrubuteViewController.m */; };
+		18D36D8516996EAF005CF80C /* FlightCompanyDistrubuteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D8116996EAF005CF80C /* FlightCompanyDistrubuteViewController.xib */; };
+		18D36D8916996EF2005CF80C /* SearchFlightConditionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D8716996EF2005CF80C /* SearchFlightConditionController.m */; };
+		18D36D8A16996EF2005CF80C /* SearchFlightConditionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D8816996EF2005CF80C /* SearchFlightConditionController.xib */; };
+		18D36D8E16996F17005CF80C /* SMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D8C16996F17005CF80C /* SMSViewController.m */; };
+		18D36D8F16996F17005CF80C /* SMSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D8D16996F17005CF80C /* SMSViewController.xib */; };
+		18D36D9316996F39005CF80C /* ShowFligthConditionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D36D9116996F39005CF80C /* ShowFligthConditionController.m */; };
+		18D36D9416996F39005CF80C /* ShowFligthConditionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D36D9216996F39005CF80C /* ShowFligthConditionController.xib */; };
 		18D41A0C169136BB0014B371 /* UIImage+scaleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */; };
 		18D70A9F16941B0700B11636 /* ChooseDiscountCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70A9D16941B0700B11636 /* ChooseDiscountCouponController.m */; };
 		18D70AA016941B0700B11636 /* ChooseDiscountCouponController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70A9E16941B0700B11636 /* ChooseDiscountCouponController.xib */; };
@@ -554,14 +562,8 @@
 		18E37CE7167D80550086B3F8 /* HomeMoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E37CE5167D80550086B3F8 /* HomeMoreController.xib */; };
 		18E37CEA167D80890086B3F8 /* MoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E37CE9167D80880086B3F8 /* MoreCell.m */; };
 		18E37CEC167D80990086B3F8 /* MoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E37CEB167D80990086B3F8 /* MoreCell.xib */; };
-		18E37CFA167DAC5D0086B3F8 /* SearchFlightConditionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E37CF8167DAC5D0086B3F8 /* SearchFlightConditionController.m */; };
-		18E37CFB167DAC5D0086B3F8 /* SearchFlightConditionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E37CF9167DAC5D0086B3F8 /* SearchFlightConditionController.xib */; };
-		18E37CFF167DAC730086B3F8 /* ShowFligthConditionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E37CFD167DAC730086B3F8 /* ShowFligthConditionController.m */; };
-		18E37D00167DAC730086B3F8 /* ShowFligthConditionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E37CFE167DAC730086B3F8 /* ShowFligthConditionController.xib */; };
 		18E37D04167DAC880086B3F8 /* SearchFlightConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E37D02167DAC880086B3F8 /* SearchFlightConditionCell.m */; };
 		18E37D05167DAC880086B3F8 /* SearchFlightConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E37D03167DAC880086B3F8 /* SearchFlightConditionCell.xib */; };
-		18E37D09167DAC9A0086B3F8 /* DetailFlightConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E37D07167DAC9A0086B3F8 /* DetailFlightConditionViewController.m */; };
-		18E37D0A167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E37D08167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib */; };
 		18E37D0F167DACB40086B3F8 /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E37D0C167DACB40086B3F8 /* SVSegmentedControl.m */; };
 		18E37D10167DACB40086B3F8 /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E37D0E167DACB40086B3F8 /* SVSegmentedThumb.m */; };
 		18E37D13167DAD050086B3F8 /* FlightConditionDetailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E37D12167DAD050086B3F8 /* FlightConditionDetailData.m */; };
@@ -598,8 +600,6 @@
 		18E508C316747B840003BD0C /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508BA16747B840003BD0C /* whiteArrow.png */; };
 		18E508C416747B840003BD0C /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E508BB16747B840003BD0C /* whiteArrow@2x.png */; };
 		18E677F316787910008E187C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E677F216787910008E187C /* AddressBook.framework */; };
-		18E88F1E167DB926002FCC62 /* SMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88F1C167DB926002FCC62 /* SMSViewController.m */; };
-		18E88F1F167DB926002FCC62 /* SMSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E88F1D167DB926002FCC62 /* SMSViewController.xib */; };
 		18E88FAA167EE843002FCC62 /* GetLinkManInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88FA9167EE843002FCC62 /* GetLinkManInfo.m */; };
 		18E88FAE167EF9F4002FCC62 /* AddLinkManViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88FAD167EF9F3002FCC62 /* AddLinkManViewController.m */; };
 		18E88FEC167F0237002FCC62 /* DrawFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E88FEA167F022C002FCC62 /* DrawFlightViewController.m */; };
@@ -1104,12 +1104,6 @@
 		1827BE581683541E00349FE1 /* l_UO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_UO.png; sourceTree = "<group>"; };
 		1827BE591683541E00349FE1 /* l_VD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_VD.png; sourceTree = "<group>"; };
 		1827BE5A1683541E00349FE1 /* l_ZH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = l_ZH.png; sourceTree = "<group>"; };
-		1827BE801683581D00349FE1 /* ChackInNavgationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChackInNavgationViewController.h; sourceTree = "<group>"; };
-		1827BE811683581E00349FE1 /* ChackInNavgationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChackInNavgationViewController.m; sourceTree = "<group>"; };
-		1827BE821683581F00349FE1 /* ChackInNavgationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChackInNavgationViewController.xib; sourceTree = "<group>"; };
-		1827BE851683629A00349FE1 /* BaggageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaggageViewController.h; sourceTree = "<group>"; };
-		1827BE861683629A00349FE1 /* BaggageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaggageViewController.m; sourceTree = "<group>"; };
-		1827BE871683629B00349FE1 /* BaggageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaggageViewController.xib; sourceTree = "<group>"; };
 		18478C63167332AD00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
 		18478C64167332AD00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
 		1852CC7D16837F5600431A9B /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
@@ -1123,7 +1117,6 @@
 		18953994168EFA20008901F5 /* AirportMainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirportMainScreenViewController.h; sourceTree = "<group>"; };
 		18953995168EFA20008901F5 /* AirportMainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirportMainScreenViewController.m; sourceTree = "<group>"; };
 		18953996168EFA20008901F5 /* AirportMainScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AirportMainScreenViewController.xib; sourceTree = "<group>"; };
-		1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelTrafficViewController.xib; sourceTree = "<group>"; };
 		189F5D46168A014700A3494F /* AttentionFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionFlight.h; sourceTree = "<group>"; };
 		189F5D47168A014700A3494F /* AttentionFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionFlight.m; sourceTree = "<group>"; };
 		18AD32F5168C6EF40065BF08 /* CheckInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInViewController.h; sourceTree = "<group>"; };
@@ -1339,15 +1332,6 @@
 		18D1051C1682ABEB00F112D2 /* NewChooseSpaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewChooseSpaceCell.h; sourceTree = "<group>"; };
 		18D1051D1682ABEB00F112D2 /* NewChooseSpaceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewChooseSpaceCell.m; sourceTree = "<group>"; };
 		18D1051F1682AC0100F112D2 /* NewChooseSpaceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewChooseSpaceCell.xib; sourceTree = "<group>"; };
-		18D1052A1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightCompanyDistrubuteViewController.h; sourceTree = "<group>"; };
-		18D1052B1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightCompanyDistrubuteViewController.m; sourceTree = "<group>"; };
-		18D1052C1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightCompanyDistrubuteViewController.xib; sourceTree = "<group>"; };
-		18D1052D1682B33B00F112D2 /* TravelAssistantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelAssistantViewController.h; sourceTree = "<group>"; };
-		18D1052E1682B33B00F112D2 /* TravelAssistantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelAssistantViewController.m; sourceTree = "<group>"; };
-		18D1052F1682B33B00F112D2 /* TravelAssistantViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelAssistantViewController.xib; sourceTree = "<group>"; };
-		18D105321682B33B00F112D2 /* TravelPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelPhoneViewController.h; sourceTree = "<group>"; };
-		18D105331682B33B00F112D2 /* TravelPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelPhoneViewController.m; sourceTree = "<group>"; };
-		18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelPhoneViewController.xib; sourceTree = "<group>"; };
 		18D1970316816C6C00FEE73A /* icon_checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checkin.png; sourceTree = "<group>"; };
 		18D1970416816C6C00FEE73A /* icon_Distributed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Distributed.png; sourceTree = "<group>"; };
 		18D1970516816C6C00FEE73A /* icon_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_location.png; sourceTree = "<group>"; };
@@ -1360,11 +1344,6 @@
 		18D1970D16816C6C00FEE73A /* triangle_icon_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_icon_up.png; sourceTree = "<group>"; };
 		18D197191681735800FEE73A /* icon_travel_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_travel_more.png; sourceTree = "<group>"; };
 		18D1971A1681735800FEE73A /* icon_travelFile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_travelFile.png; sourceTree = "<group>"; };
-		18D197961682C92000FEE73A /* FlightCompanyDistrubuteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightCompanyDistrubuteController.h; sourceTree = "<group>"; };
-		18D197971682C92100FEE73A /* FlightCompanyDistrubuteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightCompanyDistrubuteController.m; sourceTree = "<group>"; };
-		18D197981682C92200FEE73A /* FlightCompanyDistrubuteController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightCompanyDistrubuteController.xib; sourceTree = "<group>"; };
-		18D1979B1682D05700FEE73A /* TravelTrafficViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelTrafficViewController.h; sourceTree = "<group>"; };
-		18D1979C1682D05900FEE73A /* TravelTrafficViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelTrafficViewController.m; sourceTree = "<group>"; };
 		18D19A08168FDFCC004861C3 /* AirportMainScreenSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirportMainScreenSearchView.h; sourceTree = "<group>"; };
 		18D19A09168FDFCC004861C3 /* AirportMainScreenSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirportMainScreenSearchView.m; sourceTree = "<group>"; };
 		18D19A0D168FEC05004861C3 /* btn_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_search.png; sourceTree = "<group>"; };
@@ -1383,9 +1362,42 @@
 		18D364291695290F005CF80C /* TaxiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxiTableViewController.m; sourceTree = "<group>"; };
 		18D3643716967139005CF80C /* dong1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dong1.png; sourceTree = "<group>"; };
 		18D364381696713A005CF80C /* dong2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dong2.png; sourceTree = "<group>"; };
-		18D364B51697BB4D005CF80C /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
-		18D364B61697BB4D005CF80C /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
-		18D364B71697BB4D005CF80C /* WeatherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
+		18D36D5916996D0A005CF80C /* BaggageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaggageViewController.h; sourceTree = "<group>"; };
+		18D36D5A16996D0A005CF80C /* BaggageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaggageViewController.m; sourceTree = "<group>"; };
+		18D36D5B16996D0A005CF80C /* BaggageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaggageViewController.xib; sourceTree = "<group>"; };
+		18D36D5E16996D38005CF80C /* ChackInNavgationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChackInNavgationViewController.h; sourceTree = "<group>"; };
+		18D36D5F16996D38005CF80C /* ChackInNavgationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChackInNavgationViewController.m; sourceTree = "<group>"; };
+		18D36D6016996D38005CF80C /* ChackInNavgationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChackInNavgationViewController.xib; sourceTree = "<group>"; };
+		18D36D6316996DE1005CF80C /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
+		18D36D6416996DE1005CF80C /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
+		18D36D6516996DE2005CF80C /* WeatherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
+		18D36D6816996DFE005CF80C /* TravelAssistantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelAssistantViewController.h; sourceTree = "<group>"; };
+		18D36D6916996DFF005CF80C /* TravelAssistantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelAssistantViewController.m; sourceTree = "<group>"; };
+		18D36D6A16996DFF005CF80C /* TravelAssistantViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelAssistantViewController.xib; sourceTree = "<group>"; };
+		18D36D6B16996E00005CF80C /* TravelPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelPhoneViewController.h; sourceTree = "<group>"; };
+		18D36D6C16996E00005CF80C /* TravelPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelPhoneViewController.m; sourceTree = "<group>"; };
+		18D36D6D16996E02005CF80C /* TravelPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelPhoneViewController.xib; sourceTree = "<group>"; };
+		18D36D6E16996E02005CF80C /* TravelTrafficViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelTrafficViewController.h; sourceTree = "<group>"; };
+		18D36D6F16996E02005CF80C /* TravelTrafficViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelTrafficViewController.m; sourceTree = "<group>"; };
+		18D36D7016996E03005CF80C /* TravelTrafficViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravelTrafficViewController.xib; sourceTree = "<group>"; };
+		18D36D7716996E68005CF80C /* DetailFlightConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailFlightConditionViewController.h; sourceTree = "<group>"; };
+		18D36D7816996E68005CF80C /* DetailFlightConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailFlightConditionViewController.m; sourceTree = "<group>"; };
+		18D36D7916996E68005CF80C /* DetailFlightConditionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailFlightConditionViewController.xib; sourceTree = "<group>"; };
+		18D36D7C16996EAF005CF80C /* FlightCompanyDistrubuteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightCompanyDistrubuteController.h; sourceTree = "<group>"; };
+		18D36D7D16996EAF005CF80C /* FlightCompanyDistrubuteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightCompanyDistrubuteController.m; sourceTree = "<group>"; };
+		18D36D7E16996EAF005CF80C /* FlightCompanyDistrubuteController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightCompanyDistrubuteController.xib; sourceTree = "<group>"; };
+		18D36D7F16996EAF005CF80C /* FlightCompanyDistrubuteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightCompanyDistrubuteViewController.h; sourceTree = "<group>"; };
+		18D36D8016996EAF005CF80C /* FlightCompanyDistrubuteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightCompanyDistrubuteViewController.m; sourceTree = "<group>"; };
+		18D36D8116996EAF005CF80C /* FlightCompanyDistrubuteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightCompanyDistrubuteViewController.xib; sourceTree = "<group>"; };
+		18D36D8616996EF2005CF80C /* SearchFlightConditionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightConditionController.h; sourceTree = "<group>"; };
+		18D36D8716996EF2005CF80C /* SearchFlightConditionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightConditionController.m; sourceTree = "<group>"; };
+		18D36D8816996EF2005CF80C /* SearchFlightConditionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFlightConditionController.xib; sourceTree = "<group>"; };
+		18D36D8B16996F17005CF80C /* SMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSViewController.h; sourceTree = "<group>"; };
+		18D36D8C16996F17005CF80C /* SMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSViewController.m; sourceTree = "<group>"; };
+		18D36D8D16996F17005CF80C /* SMSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSViewController.xib; sourceTree = "<group>"; };
+		18D36D9016996F39005CF80C /* ShowFligthConditionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFligthConditionController.h; sourceTree = "<group>"; };
+		18D36D9116996F39005CF80C /* ShowFligthConditionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFligthConditionController.m; sourceTree = "<group>"; };
+		18D36D9216996F39005CF80C /* ShowFligthConditionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowFligthConditionController.xib; sourceTree = "<group>"; };
 		18D41A09169136850014B371 /* UIImage_scaleImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImage_scaleImage.h; sourceTree = "<group>"; };
 		18D41A0A169136BB0014B371 /* UIImage+scaleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+scaleImage.h"; sourceTree = "<group>"; };
 		18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+scaleImage.m"; sourceTree = "<group>"; };
@@ -1486,18 +1498,9 @@
 		18E37CE8167D80880086B3F8 /* MoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreCell.h; sourceTree = "<group>"; };
 		18E37CE9167D80880086B3F8 /* MoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreCell.m; sourceTree = "<group>"; };
 		18E37CEB167D80990086B3F8 /* MoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreCell.xib; sourceTree = "<group>"; };
-		18E37CF7167DAC5D0086B3F8 /* SearchFlightConditionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightConditionController.h; sourceTree = "<group>"; };
-		18E37CF8167DAC5D0086B3F8 /* SearchFlightConditionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightConditionController.m; sourceTree = "<group>"; };
-		18E37CF9167DAC5D0086B3F8 /* SearchFlightConditionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFlightConditionController.xib; sourceTree = "<group>"; };
-		18E37CFC167DAC730086B3F8 /* ShowFligthConditionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFligthConditionController.h; sourceTree = "<group>"; };
-		18E37CFD167DAC730086B3F8 /* ShowFligthConditionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFligthConditionController.m; sourceTree = "<group>"; };
-		18E37CFE167DAC730086B3F8 /* ShowFligthConditionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowFligthConditionController.xib; sourceTree = "<group>"; };
 		18E37D01167DAC880086B3F8 /* SearchFlightConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightConditionCell.h; sourceTree = "<group>"; };
 		18E37D02167DAC880086B3F8 /* SearchFlightConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightConditionCell.m; sourceTree = "<group>"; };
 		18E37D03167DAC880086B3F8 /* SearchFlightConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFlightConditionCell.xib; sourceTree = "<group>"; };
-		18E37D06167DAC9A0086B3F8 /* DetailFlightConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailFlightConditionViewController.h; sourceTree = "<group>"; };
-		18E37D07167DAC9A0086B3F8 /* DetailFlightConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailFlightConditionViewController.m; sourceTree = "<group>"; };
-		18E37D08167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailFlightConditionViewController.xib; sourceTree = "<group>"; };
 		18E37D0B167DACB40086B3F8 /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
 		18E37D0C167DACB40086B3F8 /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
 		18E37D0D167DACB40086B3F8 /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
@@ -1538,9 +1541,6 @@
 		18E508BA16747B840003BD0C /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		18E508BB16747B840003BD0C /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		18E677F216787910008E187C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		18E88F1B167DB926002FCC62 /* SMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSViewController.h; sourceTree = "<group>"; };
-		18E88F1C167DB926002FCC62 /* SMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSViewController.m; sourceTree = "<group>"; };
-		18E88F1D167DB926002FCC62 /* SMSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSViewController.xib; sourceTree = "<group>"; };
 		18E88FA8167EE843002FCC62 /* GetLinkManInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetLinkManInfo.h; sourceTree = "<group>"; };
 		18E88FA9167EE843002FCC62 /* GetLinkManInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetLinkManInfo.m; sourceTree = "<group>"; };
 		18E88FAC167EF9F1002FCC62 /* AddLinkManViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLinkManViewController.h; sourceTree = "<group>"; };
@@ -3144,31 +3144,31 @@
 		18D196C6168161CC00FEE73A /* TravelAssistant */ = {
 			isa = PBXGroup;
 			children = (
-				18D1052D1682B33B00F112D2 /* TravelAssistantViewController.h */,
-				18D1052E1682B33B00F112D2 /* TravelAssistantViewController.m */,
-				18D1052F1682B33B00F112D2 /* TravelAssistantViewController.xib */,
-				18D1052A1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.h */,
-				18D1052B1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.m */,
-				18D1052C1682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib */,
-				18D105321682B33B00F112D2 /* TravelPhoneViewController.h */,
-				18D105331682B33B00F112D2 /* TravelPhoneViewController.m */,
-				18D105341682B33B00F112D2 /* TravelPhoneViewController.xib */,
-				18D197961682C92000FEE73A /* FlightCompanyDistrubuteController.h */,
-				18D197971682C92100FEE73A /* FlightCompanyDistrubuteController.m */,
-				18D197981682C92200FEE73A /* FlightCompanyDistrubuteController.xib */,
-				18D1979B1682D05700FEE73A /* TravelTrafficViewController.h */,
-				18D1979C1682D05900FEE73A /* TravelTrafficViewController.m */,
-				1896E5EE168C6554006F883B /* TravelTrafficViewController.xib */,
-				1827BE851683629A00349FE1 /* BaggageViewController.h */,
-				1827BE861683629A00349FE1 /* BaggageViewController.m */,
-				1827BE871683629B00349FE1 /* BaggageViewController.xib */,
-				1827BE801683581D00349FE1 /* ChackInNavgationViewController.h */,
-				1827BE811683581E00349FE1 /* ChackInNavgationViewController.m */,
-				1827BE821683581F00349FE1 /* ChackInNavgationViewController.xib */,
-				18D364B51697BB4D005CF80C /* WeatherViewController.h */,
-				18D364B61697BB4D005CF80C /* WeatherViewController.m */,
-				18D364B71697BB4D005CF80C /* WeatherViewController.xib */,
+				18D36D6816996DFE005CF80C /* TravelAssistantViewController.h */,
+				18D36D6916996DFF005CF80C /* TravelAssistantViewController.m */,
+				18D36D6A16996DFF005CF80C /* TravelAssistantViewController.xib */,
+				18D36D7F16996EAF005CF80C /* FlightCompanyDistrubuteViewController.h */,
+				18D36D8016996EAF005CF80C /* FlightCompanyDistrubuteViewController.m */,
+				18D36D8116996EAF005CF80C /* FlightCompanyDistrubuteViewController.xib */,
+				18D36D6B16996E00005CF80C /* TravelPhoneViewController.h */,
+				18D36D6C16996E00005CF80C /* TravelPhoneViewController.m */,
+				18D36D6D16996E02005CF80C /* TravelPhoneViewController.xib */,
+				18D36D6E16996E02005CF80C /* TravelTrafficViewController.h */,
+				18D36D6F16996E02005CF80C /* TravelTrafficViewController.m */,
+				18D36D7016996E03005CF80C /* TravelTrafficViewController.xib */,
+				18D36D7C16996EAF005CF80C /* FlightCompanyDistrubuteController.h */,
+				18D36D7D16996EAF005CF80C /* FlightCompanyDistrubuteController.m */,
+				18D36D7E16996EAF005CF80C /* FlightCompanyDistrubuteController.xib */,
+				18D36D6316996DE1005CF80C /* WeatherViewController.h */,
+				18D36D6416996DE1005CF80C /* WeatherViewController.m */,
+				18D36D6516996DE2005CF80C /* WeatherViewController.xib */,
+				18D36D5E16996D38005CF80C /* ChackInNavgationViewController.h */,
+				18D36D5F16996D38005CF80C /* ChackInNavgationViewController.m */,
+				18D36D6016996D38005CF80C /* ChackInNavgationViewController.xib */,
 				18D36421169528E0005CF80C /* CoachTableViewController.h */,
+				18D36D5916996D0A005CF80C /* BaggageViewController.h */,
+				18D36D5A16996D0A005CF80C /* BaggageViewController.m */,
+				18D36D5B16996D0A005CF80C /* BaggageViewController.xib */,
 				18D36422169528E0005CF80C /* CoachTableViewController.m */,
 				18D36425169528F3005CF80C /* SubwayTableViewController.h */,
 				18D36426169528F3005CF80C /* SubwayTableViewController.m */,
@@ -3352,19 +3352,18 @@
 		18E37CF6167DAC2E0086B3F8 /* FlightCondition */ = {
 			isa = PBXGroup;
 			children = (
-				18DB9B42168ADB0F00CE975F /* cell */,
-				18E37CF7167DAC5D0086B3F8 /* SearchFlightConditionController.h */,
-				18E37CF8167DAC5D0086B3F8 /* SearchFlightConditionController.m */,
-				18E37CF9167DAC5D0086B3F8 /* SearchFlightConditionController.xib */,
-				18E37CFC167DAC730086B3F8 /* ShowFligthConditionController.h */,
-				18E37CFD167DAC730086B3F8 /* ShowFligthConditionController.m */,
-				18E37CFE167DAC730086B3F8 /* ShowFligthConditionController.xib */,
-				18E37D06167DAC9A0086B3F8 /* DetailFlightConditionViewController.h */,
-				18E37D07167DAC9A0086B3F8 /* DetailFlightConditionViewController.m */,
-				18E37D08167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib */,
-				18E88F1B167DB926002FCC62 /* SMSViewController.h */,
-				18E88F1C167DB926002FCC62 /* SMSViewController.m */,
-				18E88F1D167DB926002FCC62 /* SMSViewController.xib */,
+				18D36D8616996EF2005CF80C /* SearchFlightConditionController.h */,
+				18D36D8716996EF2005CF80C /* SearchFlightConditionController.m */,
+				18D36D8816996EF2005CF80C /* SearchFlightConditionController.xib */,
+				18D36D9016996F39005CF80C /* ShowFligthConditionController.h */,
+				18D36D9116996F39005CF80C /* ShowFligthConditionController.m */,
+				18D36D9216996F39005CF80C /* ShowFligthConditionController.xib */,
+				18D36D7716996E68005CF80C /* DetailFlightConditionViewController.h */,
+				18D36D7816996E68005CF80C /* DetailFlightConditionViewController.m */,
+				18D36D7916996E68005CF80C /* DetailFlightConditionViewController.xib */,
+				18D36D8B16996F17005CF80C /* SMSViewController.h */,
+				18D36D8C16996F17005CF80C /* SMSViewController.m */,
+				18D36D8D16996F17005CF80C /* SMSViewController.xib */,
 				18E88FA8167EE843002FCC62 /* GetLinkManInfo.h */,
 				18E88FA9167EE843002FCC62 /* GetLinkManInfo.m */,
 				18E88FAC167EF9F1002FCC62 /* AddLinkManViewController.h */,
@@ -3376,6 +3375,7 @@
 				18E37D0C167DACB40086B3F8 /* SVSegmentedControl.m */,
 				18E37D0D167DACB40086B3F8 /* SVSegmentedThumb.h */,
 				18E37D0E167DACB40086B3F8 /* SVSegmentedThumb.m */,
+				18DB9B42168ADB0F00CE975F /* cell */,
 			);
 			name = FlightCondition;
 			sourceTree = "<group>";
@@ -3927,10 +3927,7 @@
 				18E37CE1167D7CE80086B3F8 /* icon_add_.png in Resources */,
 				18E37CE7167D80550086B3F8 /* HomeMoreController.xib in Resources */,
 				18E37CEC167D80990086B3F8 /* MoreCell.xib in Resources */,
-				18E37CFB167DAC5D0086B3F8 /* SearchFlightConditionController.xib in Resources */,
-				18E37D00167DAC730086B3F8 /* ShowFligthConditionController.xib in Resources */,
 				18E37D05167DAC880086B3F8 /* SearchFlightConditionCell.xib in Resources */,
-				18E37D0A167DAC9A0086B3F8 /* DetailFlightConditionViewController.xib in Resources */,
 				146986BC167DCB5700E9B30D /* gray_btn.png in Resources */,
 				146986BD167DCB5700E9B30D /* green_btn.png in Resources */,
 				146986BE167DCB5700E9B30D /* icon_qq.png in Resources */,
@@ -3945,7 +3942,6 @@
 				146986CD167DD24200E9B30D /* ResetPassWordViewController.xib in Resources */,
 				146986D3167DD8FF00E9B30D /* LookForPasswordViewController.xib in Resources */,
 				146986D8167DDF6600E9B30D /* LookForPasswordFirstStepViewController.xib in Resources */,
-				18E88F1F167DB926002FCC62 /* SMSViewController.xib in Resources */,
 				1808017A167DBAC600CD5F9A /* TraveController.xib in Resources */,
 				1808017C167DC0E200CD5F9A /* icon_arrowhead_.png in Resources */,
 				1808017E167DCBCB00CD5F9A /* icon_Selected_.png in Resources */,
@@ -3976,10 +3972,6 @@
 				18D105191682A8DE00F112D2 /* bg_blue_.png in Resources */,
 				18D1051A1682A8DE00F112D2 /* bg_green_.png in Resources */,
 				18D105201682AC0100F112D2 /* NewChooseSpaceCell.xib in Resources */,
-				18D105371682B33B00F112D2 /* FlightCompanyDistrubuteViewController.xib in Resources */,
-				18D105391682B33B00F112D2 /* TravelAssistantViewController.xib in Resources */,
-				18D1053C1682B33B00F112D2 /* TravelPhoneViewController.xib in Resources */,
-				18D1979A1682C92400FEE73A /* FlightCompanyDistrubuteController.xib in Resources */,
 				1827BE5B1683541E00349FE1 /* l_3U.png in Resources */,
 				1827BE5C1683541E00349FE1 /* l_8L.png in Resources */,
 				1827BE5D1683541E00349FE1 /* l_9C.png in Resources */,
@@ -4016,8 +4008,6 @@
 				1827BE7C1683541E00349FE1 /* l_UO.png in Resources */,
 				1827BE7D1683541E00349FE1 /* l_VD.png in Resources */,
 				1827BE7E1683541E00349FE1 /* l_ZH.png in Resources */,
-				1827BE841683582000349FE1 /* ChackInNavgationViewController.xib in Resources */,
-				1827BE891683629C00349FE1 /* BaggageViewController.xib in Resources */,
 				141523A116834BBF00E2FF0E /* MyNewCenterViewController.xib in Resources */,
 				141523A816835D7300E2FF0E /* PersonalInfoViewController.xib in Resources */,
 				141523AD1683683300E2FF0E /* PersonInfotoShowViewController.xib in Resources */,
@@ -4053,7 +4043,6 @@
 				18DF8950168824E600D2DDAE /* HistoryFlightQuery.sqlite in Resources */,
 				140D979E1689570800D8934E /* CommonContactDetailViewController.xib in Resources */,
 				18DB9B47168ADC0C00CE975F /* LookFlightConditionCell.xib in Resources */,
-				1896E5EF168C6554006F883B /* TravelTrafficViewController.xib in Resources */,
 				149B770A168BE3E1006281A3 /* MyCenterCell.xib in Resources */,
 				149B7710168BF3A1006281A3 /* MyCenterSecondCell.xib in Resources */,
 				149B7719168C0A8C006281A3 /* MyCenterTable_1.xib in Resources */,
@@ -4298,10 +4287,21 @@
 				18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */,
 				18D364391696713B005CF80C /* dong1.png in Resources */,
 				18D3643A1696713B005CF80C /* dong2.png in Resources */,
-				18D364B91697BB4D005CF80C /* WeatherViewController.xib in Resources */,
 				18D05409169889CE0041240A /* MyLowOrderListViewController.xib in Resources */,
 				18D05413169893230041240A /* ListCell.xib in Resources */,
 				18D05418169894E80041240A /* AddLowOrderViewController.xib in Resources */,
+				18D36D5D16996D0B005CF80C /* BaggageViewController.xib in Resources */,
+				18D36D6216996D39005CF80C /* ChackInNavgationViewController.xib in Resources */,
+				18D36D6716996DE2005CF80C /* WeatherViewController.xib in Resources */,
+				18D36D7216996E04005CF80C /* TravelAssistantViewController.xib in Resources */,
+				18D36D7416996E04005CF80C /* TravelPhoneViewController.xib in Resources */,
+				18D36D7616996E04005CF80C /* TravelTrafficViewController.xib in Resources */,
+				18D36D7B16996E68005CF80C /* DetailFlightConditionViewController.xib in Resources */,
+				18D36D8316996EAF005CF80C /* FlightCompanyDistrubuteController.xib in Resources */,
+				18D36D8516996EAF005CF80C /* FlightCompanyDistrubuteViewController.xib in Resources */,
+				18D36D8A16996EF2005CF80C /* SearchFlightConditionController.xib in Resources */,
+				18D36D8F16996F17005CF80C /* SMSViewController.xib in Resources */,
+				18D36D9416996F39005CF80C /* ShowFligthConditionController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4354,17 +4354,13 @@
 				18E37CDD167D7AC00086B3F8 /* UsedPersonCell.m in Sources */,
 				18E37CE6167D80550086B3F8 /* HomeMoreController.m in Sources */,
 				18E37CEA167D80890086B3F8 /* MoreCell.m in Sources */,
-				18E37CFA167DAC5D0086B3F8 /* SearchFlightConditionController.m in Sources */,
-				18E37CFF167DAC730086B3F8 /* ShowFligthConditionController.m in Sources */,
 				18E37D04167DAC880086B3F8 /* SearchFlightConditionCell.m in Sources */,
-				18E37D09167DAC9A0086B3F8 /* DetailFlightConditionViewController.m in Sources */,
 				18E37D0F167DACB40086B3F8 /* SVSegmentedControl.m in Sources */,
 				18E37D10167DACB40086B3F8 /* SVSegmentedThumb.m in Sources */,
 				18E37D13167DAD050086B3F8 /* FlightConditionDetailData.m in Sources */,
 				146986CC167DD24200E9B30D /* ResetPassWordViewController.m in Sources */,
 				146986D2167DD8FF00E9B30D /* LookForPasswordViewController.m in Sources */,
 				146986D7167DDF6600E9B30D /* LookForPasswordFirstStepViewController.m in Sources */,
-				18E88F1E167DB926002FCC62 /* SMSViewController.m in Sources */,
 				18080179167DBAC600CD5F9A /* TraveController.m in Sources */,
 				18E88FAA167EE843002FCC62 /* GetLinkManInfo.m in Sources */,
 				18E88FAE167EF9F4002FCC62 /* AddLinkManViewController.m in Sources */,
@@ -4387,16 +4383,9 @@
 				18D019BC16821C160096852E /* ChoosePersonCell.m in Sources */,
 				18D019C4168229820096852E /* SearchAirPort.m in Sources */,
 				18D1051E1682ABEB00F112D2 /* NewChooseSpaceCell.m in Sources */,
-				18D105361682B33B00F112D2 /* FlightCompanyDistrubuteViewController.m in Sources */,
-				18D105381682B33B00F112D2 /* TravelAssistantViewController.m in Sources */,
-				18D1053B1682B33B00F112D2 /* TravelPhoneViewController.m in Sources */,
 				141523871682C12000E2FF0E /* LoginBusiness.m in Sources */,
 				1415238D1682C3BE00E2FF0E /* LoginInNetworkHelper.m in Sources */,
 				141523921682CC3C00E2FF0E /* IsLoginInSingle.m in Sources */,
-				18D197991682C92400FEE73A /* FlightCompanyDistrubuteController.m in Sources */,
-				18D1979E1682D05B00FEE73A /* TravelTrafficViewController.m in Sources */,
-				1827BE831683582000349FE1 /* ChackInNavgationViewController.m in Sources */,
-				1827BE881683629C00349FE1 /* BaggageViewController.m in Sources */,
 				141523A016834BBF00E2FF0E /* MyNewCenterViewController.m in Sources */,
 				141523A716835D7300E2FF0E /* PersonalInfoViewController.m in Sources */,
 				141523AC1683683300E2FF0E /* PersonInfotoShowViewController.m in Sources */,
@@ -4556,11 +4545,22 @@
 				14AF423B1697EE8E00C7C2CA /* LiChengDetailData.m in Sources */,
 				14AF42441698038A00C7C2CA /* AirCompanyDataBase.m in Sources */,
 				14AF4249169816B400C7C2CA /* ResultForLeijiViewCell.m in Sources */,
-				18D364B81697BB4D005CF80C /* WeatherViewController.m in Sources */,
 				18D05408169889CE0041240A /* MyLowOrderListViewController.m in Sources */,
 				18D05411169893110041240A /* ListCell.m in Sources */,
 				18D05417169894E80041240A /* AddLowOrderViewController.m in Sources */,
 				18CB6C65169909CF000DD63B /* PayOnline.m in Sources */,
+				18D36D5C16996D0B005CF80C /* BaggageViewController.m in Sources */,
+				18D36D6116996D39005CF80C /* ChackInNavgationViewController.m in Sources */,
+				18D36D6616996DE2005CF80C /* WeatherViewController.m in Sources */,
+				18D36D7116996E04005CF80C /* TravelAssistantViewController.m in Sources */,
+				18D36D7316996E04005CF80C /* TravelPhoneViewController.m in Sources */,
+				18D36D7516996E04005CF80C /* TravelTrafficViewController.m in Sources */,
+				18D36D7A16996E68005CF80C /* DetailFlightConditionViewController.m in Sources */,
+				18D36D8216996EAF005CF80C /* FlightCompanyDistrubuteController.m in Sources */,
+				18D36D8416996EAF005CF80C /* FlightCompanyDistrubuteViewController.m in Sources */,
+				18D36D8916996EF2005CF80C /* SearchFlightConditionController.m in Sources */,
+				18D36D8E16996F17005CF80C /* SMSViewController.m in Sources */,
+				18D36D9316996F39005CF80C /* ShowFligthConditionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

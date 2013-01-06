@@ -20,6 +20,11 @@
     
     NSString * _deptAirPortCode;
     NSString * _arrAirPortCode;
+    NSMutableArray * tempDataArray; //排序用
+    
+    UIButton * sortBtnByTime;
+    UIButton * sortBtnByState;
+    
 }
 @property (retain, nonatomic) IBOutlet UIView *HeadView;
 @property (retain, nonatomic) IBOutlet UITableView *showTableView;

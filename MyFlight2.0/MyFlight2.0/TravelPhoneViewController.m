@@ -10,6 +10,7 @@
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
+#import "UIButton+BackButton.h"
 @interface TravelPhoneViewController ()
 
 @end
@@ -30,6 +31,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"常用电话";
+    self.view.backgroundColor = FOREGROUND_COLOR;
+    
+    
+    UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
+    [cusBtn addTarget:self action:@selector(cusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    [leftItem release];
+
+    
     didFinish = NO;
     [self getData];
     phoneInfoArray = [[NSMutableArray alloc]initWithCapacity:0];
@@ -38,7 +50,7 @@
     myTableView.delegate = self;
     myTableView.separatorColor = [UIColor clearColor];
     myTableView.backgroundColor = [UIColor clearColor];
-    self.view.backgroundColor = [UIColor colorWithRed:223/255.0 green:215/255.0 blue:206/255.0 alpha:1];
+    myTableView.separatorColor = [UIColor whiteColor];
 
     [self.view addSubview:myTableView];
     
@@ -65,6 +77,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 4, 160, 32)];
         titlelabel.font = [UIFont systemFontOfSize:14];
+        titlelabel.textColor = FONT_COLOR_BIG_GRAY;
         if ([phoneInfoArray count] == 0) {
             NSLog(@"phoneInfoArray count == 0");
         }else{
@@ -73,13 +86,23 @@
             NSLog(@"phoneStr : %@",phoneStr);
             titlelabel.text = [[phoneInfoArray objectAtIndex:indexPath.row]objectForKey:@"title"];
         }
+        UIView * myBackgroundView = [[UIView alloc]initWithFrame:cell.bounds];
+        myBackgroundView.backgroundColor = BACKGROUND_COLOR;
+        cell.selectedBackgroundView = myBackgroundView;
+        [myBackgroundView release];
         
+        UIImageView * bottomLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
+        bottomLineImageView.backgroundColor = Line_COLOR_REAY;
+        [cell addSubview:bottomLineImageView];
+        [bottomLineImageView release];
+
         
         titlelabel.backgroundColor = [UIColor clearColor];
         [cell addSubview:titlelabel];
         
         phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 4, 100, 32)];
         phoneLabel.font = [UIFont systemFontOfSize:14];
+        phoneLabel.textColor = FONT_COLOR_BIG_GRAY;
         if ([phoneInfoArray count] == 0) {
             NSLog(@"phoneInfoArray count == 0");
         }else{
@@ -91,10 +114,10 @@
         phoneLabel.backgroundColor = [UIColor clearColor];
         [cell addSubview:phoneLabel];
         
-        UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"line_gray.png"]];
-        imageView.frame = CGRectMake(0, 42, 320, 2);
-        [cell addSubview:imageView];
-        [imageView release];
+//        UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"line_gray.png"]];
+//        imageView.frame = CGRectMake(0, 42, 320, 2);
+//        [cell addSubview:imageView];
+//        [imageView release];
         
         UIImageView * phoneImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_tep_travel.png"]];
         phoneImage.frame = CGRectMake(290, 12, 20, 20);
@@ -161,6 +184,10 @@
     [request setDelegate:self];
     [request startAsynchronous];
 
+}
+
+-(void)cusBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)dealloc{

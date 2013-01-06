@@ -9,6 +9,7 @@
 #import "ShowFligthConditionController.h"
 #import "SearchFlightConditionCell.h"
 #import "DetailFlightConditionViewController.h"
+#import "UIButton+BackButton.h"
 @interface ShowFligthConditionController ()
 
 @end
@@ -26,6 +27,14 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
+    [cusBtn addTarget:self action:@selector(cusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    [leftItem release];
+    
     _myBlueColor = [[UIColor alloc]initWithRed:10/255.0 green:91/255.0 blue:173/255.0 alpha:1.0];
     _myGreenColor = [[UIColor alloc]initWithRed:81/255.0 green:147/255.0 blue:55/255.0 alpha:1.0];
     
@@ -45,9 +54,50 @@
     
     [self.searchCondition searchFlightCondition];
     
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    
+    UIView * bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, [[UIScreen mainScreen]bounds].size.height - 50 - 20 -40, 320, 50)];
+    UIImageView * bottomImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"tabbar.png"]];
+    bottomImageView.frame = CGRectMake(0, 0, 320, 50);
+    [bottomView addSubview:bottomImageView];
+    [self.view addSubview:bottomView];
+    
+    
+    //按时间排序
+    sortBtnByTime = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 160, 50)];
+    UILabel * sortByTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 140, 30)];
+    sortByTimeLabel.textColor = [UIColor whiteColor];
+    sortByTimeLabel.backgroundColor = [UIColor clearColor];
+    sortByTimeLabel.textAlignment = NSTextAlignmentCenter;
+    sortByTimeLabel.text = @"按时间排序";
+    [sortBtnByTime addSubview:sortByTimeLabel];
+    [sortByTimeLabel release];
+    [sortBtnByTime addTarget:self action:@selector(sortByTime) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:sortBtnByTime];
+    
+    //按状态排序
+    sortBtnByState = [[UIButton alloc]initWithFrame:CGRectMake(160, 0, 160, 50)];
+    UILabel * sortLabelByState = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 140, 30)];
+    sortLabelByState.textColor = [UIColor whiteColor];
+    sortLabelByState.backgroundColor = [UIColor clearColor];
+    sortLabelByState.textAlignment = NSTextAlignmentCenter;
+    sortLabelByState.text = @"按状态排序";
+    [sortBtnByState addSubview:sortLabelByState];
+    [sortLabelByState release];
+    [sortBtnByState addTarget:self action:@selector(sortByState) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:sortBtnByState];
+
+    
 }
+
+-(void)sortByTime{
+    NSLog(@"按时间排序");
+    
+}
+-(void)sortByState{
+    NSLog(@"按状态排序");
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -56,6 +106,8 @@
 }
 
 - (void)dealloc {
+    [sortBtnByState release];
+    [sortBtnByTime release];
     [_HeadView release];
     [_showTableView release];
     [_flightConditionCell release];
@@ -76,10 +128,12 @@
 
 -(void)receive:(NSNotification *)not //通过通知接收初始数据
 {
+    
     self.dateArr = [NSArray array];
     NSDictionary *dic=[not userInfo];
     self.dateArr = [dic objectForKey:@"arr"];
     
+//    tempDataArray = [[NSMutableArray alloc]initWithArray:(NSArray *)[not userInfo]];
     [self.showTableView reloadData];
     
     _reloading = NO;
@@ -216,4 +270,8 @@
 	
 }
 
+
+-(void)cusBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

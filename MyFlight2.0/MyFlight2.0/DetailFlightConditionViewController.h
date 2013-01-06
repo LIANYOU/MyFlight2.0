@@ -58,6 +58,8 @@
     UIView * myFlightView;
     NSString * _deptAirPortCode;
     NSString * _arrAirPortCode;
+    
+    BOOL isMap;
 
 
 }
