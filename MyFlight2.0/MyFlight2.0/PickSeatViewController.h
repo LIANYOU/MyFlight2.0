@@ -14,6 +14,8 @@
 
 @interface PickSeatViewController : UIViewController
 {
+    UIScrollView *scroll;
+    
     SeatMapView *map;
     
     UILabel *title;
@@ -31,6 +33,7 @@
 
 - (void) requestForData;
 - (void) updateTitle;
+- (void) back;
 - (void) checkIn;
 
 @end

@@ -27,6 +27,7 @@
 
 - (void) requestForData;
 
+- (void) back;
 - (void) cancelCheckIn;
 
 @end

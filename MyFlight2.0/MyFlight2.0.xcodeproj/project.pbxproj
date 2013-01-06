@@ -165,6 +165,7 @@
 		149B780B168D8132006281A3 /* bookingGoFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780A168D8132006281A3 /* bookingGoFlightVo.m */; };
 		149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780D168D8FD1006281A3 /* bookingFlightVo.m */; };
 		149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7810168D9775006281A3 /* bookingReturnFlightVo.m */; };
+
 		14A90B811693E67C002B862C /* TextInputHelperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A90B801693E67B002B862C /* TextInputHelperViewController.m */; };
 		14AF42311697D1A000C7C2CA /* FrequentPassengerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */; };
 		14AF42341697D67300C7C2CA /* isFrequentPassengerLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42331697D67300C7C2CA /* isFrequentPassengerLogin.m */; };
@@ -174,6 +175,8 @@
 		14AF4246169806AD00C7C2CA /* AirCompanyDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14AF4245169806AD00C7C2CA /* AirCompanyDataBase.sqlite */; };
 		14AF4249169816B400C7C2CA /* ResultForLeijiViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF4248169816B300C7C2CA /* ResultForLeijiViewCell.m */; };
 		14AF424B169816CC00C7C2CA /* ResultForLeijiViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AF424A169816CB00C7C2CA /* ResultForLeijiViewCell.xib */; };
+
+
 		14D18030168FF4860084CB48 /* AirPortDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */; };
 		14ECC0791695650E008191E1 /* btn_5words.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC0711695650E008191E1 /* btn_5words.png */; };
 		14ECC07A1695650E008191E1 /* btn_5words_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC0721695650E008191E1 /* btn_5words_click.png */; };
@@ -969,6 +972,7 @@
 		149B780F168D9774006281A3 /* bookingReturnFlightVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bookingReturnFlightVo.h; sourceTree = "<group>"; };
 		149B7810168D9775006281A3 /* bookingReturnFlightVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bookingReturnFlightVo.m; sourceTree = "<group>"; };
 		149B7813168D9ABE006281A3 /* flightBookingUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flightBookingUility.h; sourceTree = "<group>"; };
+
 		14A90B7F1693E67B002B862C /* TextInputHelperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputHelperViewController.h; sourceTree = "<group>"; };
 		14A90B801693E67B002B862C /* TextInputHelperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputHelperViewController.m; sourceTree = "<group>"; };
 		14AF422F1697D1A000C7C2CA /* FrequentPassengerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentPassengerData.h; sourceTree = "<group>"; };
@@ -985,6 +989,8 @@
 		14AF4247169816B300C7C2CA /* ResultForLeijiViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultForLeijiViewCell.h; sourceTree = "<group>"; };
 		14AF4248169816B300C7C2CA /* ResultForLeijiViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultForLeijiViewCell.m; sourceTree = "<group>"; };
 		14AF424A169816CB00C7C2CA /* ResultForLeijiViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultForLeijiViewCell.xib; sourceTree = "<group>"; };
+
+
 		14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirPortDataBase.sqlite; sourceTree = "<group>"; };
 		14ECC0711695650E008191E1 /* btn_5words.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_5words.png; sourceTree = "<group>"; };
 		14ECC0721695650E008191E1 /* btn_5words_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_5words_click.png; sourceTree = "<group>"; };
@@ -2916,8 +2922,6 @@
 				18AD3301168C6EF40065BF08 /* PickSeatViewController.h */,
 				18AD3302168C6EF40065BF08 /* PickSeatViewController.m */,
 				18AD3303168C6EF40065BF08 /* PickSeatViewController.xib */,
-				14A90B7F1693E67B002B862C /* TextInputHelperViewController.h */,
-				14A90B801693E67B002B862C /* TextInputHelperViewController.m */,
 				14ECC081169599B1008191E1 /* SeatMapView.h */,
 				14ECC082169599B1008191E1 /* SeatMapView.m */,
 			);
@@ -4491,7 +4495,6 @@
 				14ECFEC91691462100A99E6B /* AirportMainScreenTitleView.m in Sources */,
 				188B728C16915C69004F09B8 /* MapManager.m in Sources */,
 				188B728F16916C7A004F09B8 /* Ann.m in Sources */,
-				14A90B811693E67C002B862C /* TextInputHelperViewController.m in Sources */,
 				18D41A0C169136BB0014B371 /* UIImage+scaleImage.m in Sources */,
 				18CB4879169155D400780BB7 /* UIButton+BackButton.m in Sources */,
 				18D70A9F16941B0700B11636 /* ChooseDiscountCouponController.m in Sources */,

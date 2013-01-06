@@ -37,15 +37,44 @@
     
     passportType = 0;
     
+    UIButton *navigationLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    navigationLeftButton.frame = CGRectMake(10, 5, 30, 31);
+    
+    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_.png"] forState:UIControlStateNormal];
+    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_click.png"] forState:UIControlStateHighlighted];
+    
+    [navigationLeftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *navigationLeftBarItem = [[UIBarButtonItem alloc] initWithCustomView:navigationLeftButton];
+    self.navigationItem.leftBarButtonItem = navigationLeftBarItem;
+    [navigationLeftBarItem release];
+    
+    UILabel *label;
+    
+    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 50, 20)];
+    
+    label.text = @"乘机人信息";
+    label.textColor = FONT_COLOR_GRAY;
+    label.font = [UIFont systemFontOfSize:10.0f];
+    label.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:label];
+    [label release];
+    
     checkInInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 30, 300, 200) style:UITableViewStylePlain];
     
     checkInInfoTable.delegate = self;
     checkInInfoTable.dataSource = self;
     checkInInfoTable.scrollEnabled = NO;
+    
     checkInInfoTable.rowHeight = 50.0f;
-    checkInInfoTable.layer.borderColor = [[UIColor grayColor] CGColor];
+    checkInInfoTable.backgroundColor = FOREGROUND_COLOR;
+    checkInInfoTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    checkInInfoTable.layer.borderColor = [BORDER_COLOR CGColor];
     checkInInfoTable.layer.borderWidth = 1.0;
-    checkInInfoTable.layer.cornerRadius = 5.0f;
+    checkInInfoTable.layer.cornerRadius = 10.0f;
     
     [self.view addSubview:checkInInfoTable];
     [checkInInfoTable release];
@@ -54,16 +83,13 @@
     
     UIButton *checkIn = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    checkIn.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 320:400, 300, 40);
+    checkIn.frame = CGRectMake(10, 245, 300, 40);
     
-    checkIn.backgroundColor = [UIColor orangeColor];
-    checkIn.layer.borderColor = [[UIColor grayColor] CGColor];
-    checkIn.layer.borderWidth = 1.0;
-    checkIn.layer.cornerRadius = 5.0;
+    [checkIn setBackgroundImage:[UIImage imageNamed:@"orange_btn.png"] forState:UIControlStateNormal];
+    [checkIn setBackgroundImage:[UIImage imageNamed:@"orange_btn_click.png"] forState:UIControlStateHighlighted];
     
     [checkIn setTitle:@"办理值机" forState:UIControlStateNormal];
-    [checkIn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [checkIn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [checkIn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     checkIn.titleLabel.font = [UIFont systemFontOfSize:20];
     checkIn.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -74,16 +100,13 @@
     
     UIButton *progressQuery = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    progressQuery.frame = CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 370:450, 300, 40);
+    progressQuery.frame = CGRectMake(10, 300, 300, 40);
     
-    progressQuery.backgroundColor = [UIColor orangeColor];
-    progressQuery.layer.borderColor = [[UIColor grayColor] CGColor];
-    progressQuery.layer.borderWidth = 1.0;
-    progressQuery.layer.cornerRadius = 5.0;
+    [progressQuery setBackgroundImage:[UIImage imageNamed:@"white_btn.png"] forState:UIControlStateNormal];
+    [progressQuery setBackgroundImage:[UIImage imageNamed:@"white_btn_click.png"] forState:UIControlStateHighlighted];
     
     [progressQuery setTitle:@"查询进度" forState:UIControlStateNormal];
     [progressQuery setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [progressQuery setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     
     progressQuery.titleLabel.font = [UIFont systemFontOfSize:20];
     progressQuery.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -92,7 +115,17 @@
     
     [self.view addSubview:progressQuery];
     
-    self.view.backgroundColor = [UIColor colorWithRed:0.75f green:0.75f blue:0.75f alpha:1.0f];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 355, 300, 200)];
+    
+    textView.text = @"值机小贴士：网上值机需待机场开放航班后才可办理，一般从航班起飞前一天下午14:00开始。每个机场的具体开放时间请以网站“开通城市”页面公布的时刻为准。";
+    
+    textView.editable = NO;
+    textView.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:textView];
+    [textView release];
+    
+    self.view.backgroundColor = BACKGROUND_COLOR;
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -111,7 +144,8 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) {
+    if(cell == nil)
+    {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     else
@@ -120,6 +154,28 @@
         {
             [view removeFromSuperview];
         }
+    }
+    
+    UIView *line;
+    
+    if(indexPath.row != 0)
+    {
+        line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 1)];
+        
+        line.backgroundColor = [UIColor whiteColor];
+        
+        [cell addSubview:line];
+        [line release];
+    }
+    
+    if(indexPath.row != [tableView numberOfRowsInSection:indexPath.section] - 1)
+    {
+        line = [[UIView alloc] initWithFrame:CGRectMake(0, tableView.rowHeight - 1, tableView.frame.size.width, 1)];
+        
+        line.backgroundColor = LINE_COLOR;
+        
+        [cell addSubview:line];
+        [line release];
     }
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 17, 64, 16)];
@@ -135,7 +191,8 @@
     
     UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
     
-    switch (indexPath.row) {
+    switch(indexPath.row)
+    {
         case 0:
             value.text = passName;
             break;
@@ -143,6 +200,14 @@
             if(passportType == 0)
             {
                 value.text = @"身份证";
+            }
+            else if(passportType == 1)
+            {
+                value.text = @"军官证或护照";
+            }
+            else
+            {
+                value.text = @"其他";
             }
             break;
         case 2:
@@ -156,7 +221,7 @@
     }
     
     value.font = [UIFont systemFontOfSize:16.0f];
-    value.textColor = [UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f];
+    value.textColor = FONT_COLOR_DEEP_GRAY;
     value.textAlignment = NSTextAlignmentRight;
     value.backgroundColor = [UIColor clearColor];
     
@@ -171,7 +236,7 @@
         [arrow release];
     }
     
-    cell.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
+    cell.backgroundColor = FOREGROUND_COLOR;
     
     return cell;
 }
@@ -205,32 +270,37 @@
     [super viewDidUnload];
 }
 
+- (void) back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void) userDidInput
 {
-    switch(input.keyboardType)
+    switch(textInput.keyboardType)
     {
         case UIKeyboardTypeNumbersAndPunctuation:
             if(passportType == 0)
             {
-                if(input.text.length != 18)
+                if(textInput.text.length != 18)
                 {
                     // error : invalid idNo
                 }
                 else
                 {
                     [idNo release];
-                    idNo = [input.text retain];
+                    idNo = [textInput.text retain];
                 }
             }
             break;
         case UIKeyboardTypeNamePhonePad:
             [passName release];
-            passName = [[input text] retain];
+            passName = [[textInput text] retain];
         default:
             break;
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [textInput.superview removeFromSuperview];
     
     [checkInInfoTable reloadData];
 }
@@ -266,37 +336,103 @@
     [chooseFlight release];
 }
 
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch(buttonIndex)
+    {
+        case 0:
+            passportType = 0;
+            break;
+        case 1:
+            passportType = 1;
+            break;
+        case 2:
+            passportType = 2;
+            break;
+        default:
+            break;
+    }
+    
+    [checkInInfoTable reloadData];
+}
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChooseAirPortViewController *chooseAp;
+    UIActionSheet *actionSheet;
+    UIButton *exitButton;
     
     switch (indexPath.row)
     {
         case 0:
-            input = [[TextInputHelperViewController alloc] initWithKeyboardType:UIKeyboardTypeNamePhonePad];
+            exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
             
-            input.delegate = self;
+            exitButton.frame = [UIScreen mainScreen].bounds;
+            exitButton.layer.backgroundColor = [[UIColor clearColor] CGColor];
+            exitButton.layer.borderWidth = 0.0f;
             
-            [self presentViewController:input
-                               animated:YES
-                             completion:^(void){
-                                 [input release];
-                             }];
+            [exitButton addTarget:exitButton action:@selector(removeFromSuperview) forControlEvents:UIControlEventTouchDown];
+            
+            textInput = [[UITextField alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height < 500 ? 203:291, 320, 40)];
+            
+            textInput.keyboardType = UIKeyboardTypeNamePhonePad;
+            textInput.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+            textInput.textAlignment = UITextAlignmentCenter;
+            textInput.textColor = [UIColor blueColor];
+            textInput.font = [UIFont systemFontOfSize:40.0f];
+            
+            textInput.backgroundColor = [UIColor yellowColor];
+            
+            [textInput addTarget:self action:@selector(userDidInput) forControlEvents:UIControlEventEditingDidEndOnExit];
+            
+            [exitButton addSubview:textInput];
+            [textInput release];
+            
+            [self.view addSubview:exitButton];
+            
+            [textInput becomeFirstResponder];
             
             break;
         case 1:
-//            UIPickerView *picker = [UIPickerView alloc] initWithFrame
+            actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择您的证件类型"
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"取消"
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:@"身份证", @"军官证或护照", @"其他", nil];
+            
+            actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+            
+            [actionSheet showInView:self.view];
+            [actionSheet release];
+            
             break;
         case 2:
-            input = [[TextInputHelperViewController alloc] initWithKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+            exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
             
-            input.delegate = self;
+            exitButton.frame = [UIScreen mainScreen].bounds;
+            exitButton.layer.backgroundColor = [[UIColor clearColor] CGColor];
+            exitButton.layer.borderWidth = 0.0f;
             
-            [self presentViewController:input
-                               animated:YES
-                             completion:^(void){
-                                 [input release];
-                             }];
+            [exitButton addTarget:exitButton action:@selector(removeFromSuperview) forControlEvents:UIControlEventTouchDown];
+            
+            textInput = [[UITextField alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height < 500 ? 160:248, 320, 40)];
+            
+            textInput.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            textInput.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+            textInput.textAlignment = UITextAlignmentCenter;
+            textInput.textColor = [UIColor blueColor];
+            textInput.font = [UIFont systemFontOfSize:20.0f];
+            
+            textInput.backgroundColor = [UIColor yellowColor];
+            
+            [textInput addTarget:self action:@selector(userDidInput) forControlEvents:UIControlEventEditingDidEndOnExit];
+            
+            [exitButton addSubview:textInput];
+            [textInput release];
+            
+            [self.view addSubview:exitButton];
+            
+            [textInput becomeFirstResponder];
             
             break;
         case 3:
