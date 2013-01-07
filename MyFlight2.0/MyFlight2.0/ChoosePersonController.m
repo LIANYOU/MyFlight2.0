@@ -192,6 +192,7 @@
     
     AddPersonController * add = [[AddPersonController alloc] init];
     add.addBtnSelected = false;
+    add.navTitleString = @"编辑乘机人";
     add.choose = self;
     add.passenger = com;
     [self.navigationController pushViewController:add animated:YES];
@@ -232,6 +233,7 @@
 - (IBAction)addPerson:(UIButton *)sender {
     AddPersonController * add = [[AddPersonController alloc] init];
     
+    add.navTitleString = @"添加乘机人";
     add.addBtnSelected = true;
     
     [self.navigationController pushViewController:add animated:YES];

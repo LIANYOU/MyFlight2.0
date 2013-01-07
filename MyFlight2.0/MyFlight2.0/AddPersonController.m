@@ -12,10 +12,17 @@
 #import "IdentityViewController.h"
 #import "UIButton+BackButton.h"
 #import "AppConfigure.h"
+#import "LoginBusiness.h"
+#import "UIQuickHelp.h"
 @interface AddPersonController ()
 {
     NSString * passengerType;  // 乘客类型
     NSString * passengerCertType; // 身份证的类型
+    
+    
+    NSString * passengerName;
+    NSString * brithMember;
+    NSString * certMember; 
 }
 @end
 
@@ -32,12 +39,14 @@
 
 - (void)viewDidLoad
 {
-    if (self.choose != nil) {
-        self.navigationItem.title = @"编辑乘机人";
-    }
-    else{
-        self.navigationItem.title = @"添加乘机人";
-    }
+//    if (self.choose != nil) {
+//        self.navigationItem.title = @"编辑乘机人";
+//    }
+//    else{
+//        self.navigationItem.title = @"添加乘机人";
+//    }
+    
+    self.navigationItem.title = self.navTitleString;
     
     
     self.cellTitleArr = [NSArray arrayWithObjects:@"身  份 *",@"姓  名 *",@"证件类型 *",@"证件号码 *",@"生  日 *",@"保存为常用乘机人", nil];
@@ -65,25 +74,31 @@
         self.addPersonTableView.tableFooterView = self.delBtnView;
     }
     
+ 
+   
+    if (self.passenger != nil) {
+        if ([self.passenger.type isEqualToString:@"01"]) {
+            passengerType = @"成人";
+        }
+        else{
+            passengerType = @"儿童";
+        }
+        
+        if ([self.passenger.certType isEqualToString:@"1"]) {
+            passengerCertType = @"身份证";
+        }
+        if ([self.passenger.certType isEqualToString:@"2"]) {
+            passengerCertType = @"护照";
+        }
+        else{
+            passengerCertType = @"其他";
+        }
+
+    }
     
-    if ([self.passenger.type isEqualToString:@"01"]) {
-        passengerType = @"成人";
-    }
-    else{
-        passengerType = @"儿童";
-    }
     
     
-    if ([self.passenger.certType isEqualToString:@"1"]) {
-        passengerCertType = @"身份证";
-    }
-    if ([self.passenger.certType isEqualToString:@"2"]) {
-        passengerCertType = @"护照";
-    }
-    else{
-        passengerCertType = @"其他";
-    }
-    
+        
     
     if (self.addBtnSelected) {
         passengerType = nil;
@@ -138,7 +153,9 @@
 {
     
     
-    if ([self.passenger.type isEqual:@"01"]) {
+    if ([passengerType isEqualToString:@"成人"]) {
+        
+        self.delBtnView.frame = CGRectMake(0, 0, 320, 91);
         
         if (indexPath.row == 4) {
             
@@ -152,6 +169,9 @@
     }
     
     else  {
+        
+       
+        self.delBtnView.frame = CGRectMake(0, 0, 320, 160);
         
         return 44;
     }
@@ -189,6 +209,7 @@
         
         if (passengerType != nil) {
             
+            
             if ([passengerType isEqualToString:@"成人"]) {
                 if (indexPath.row == 4) {
                     cell.hidden = YES;
@@ -199,12 +220,12 @@
                 cell.secText.userInteractionEnabled = NO;
             }
             if (indexPath.row == 2) {
-                cell.secText.text = passengerType;
+                cell.secText.text = passengerCertType;
                 cell.secText.userInteractionEnabled = NO;
             }
             
             if (indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4) {
-                if (self.choose != nil) {
+                if (self.choose != nil  || self.controllerType != nil) {
                     if (indexPath.row == 1) {
                         cell.secText.text = self.passenger.name;
                     }
@@ -238,6 +259,7 @@
             }
             cell.fristLabel.text = [self.cellTitleArr objectAtIndex:indexPath.row];
             cell.secText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
+            cell.secText.delegate = self;
         }
         
         
@@ -257,7 +279,7 @@
         
         [identity getDate:^(NSString *idntity) {
 
-            if (self.choose != nil) {
+            if (self.choose != nil || self.controllerType != nil) {
                 if (indexPath.row == 0) {
                     passengerType = idntity;
                 }
@@ -305,6 +327,9 @@
     {
         NSLog(@"进入登陆界面");
     }
+    
+    
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -314,6 +339,16 @@
 }
 
 - (IBAction)delPassenger:(id)sender {
+    
+//    CommonContact *contact = [[CommonContact alloc] initWithName:@"李测试" type:@"01" certType:@"0" certNo:@"555555555555555" contactId:@"2de69decad604966abbc8b802677dc82"];
+//    
+//    NSString *passId = @"2de69decad604966abbc8b802677dc82";
+    
+    LoginBusiness *bis =[[LoginBusiness alloc] init];
+    
+    [bis deleteCommonPassengerWithPassengerId:self.passenger.contactId userDic:nil andDelegate:self];
+
+    
 }
 
 -(void)getDate:(void (^) (NSString * name, NSString * identity))string
@@ -331,5 +366,104 @@
 -(void)save
 {
     
+    AddPersonCoustomCell *cell = (AddPersonCoustomCell *)[self.addPersonTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    passengerName = cell.secText.text;
+    
+    AddPersonCoustomCell *cell1 = (AddPersonCoustomCell *)[self.addPersonTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    certMember = cell1.secText.text;
+    
+    AddPersonCoustomCell *cell2 = (AddPersonCoustomCell *)[self.addPersonTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+    brithMember = cell2.secText.text;
+    
+    NSString * certtype = [self.cellTextArr objectAtIndex:2];
+    
+    if ([certtype isEqualToString:@"身份证"]) {
+        certtype = @"1";
+    }
+    if ([certtype isEqualToString:@"护照"]) {
+        certtype = @"2";
+    }
+    else{
+        certtype = @"9";
+    }
+    
+    NSString * passenType = [self.cellTextArr objectAtIndex:0];
+    if ([passenType isEqualToString:@"成人"]) {
+        passenType = @"01";
+    }
+    else{
+        passenType = @"02";
+    }
+    
+    LoginBusiness *bis = [[LoginBusiness alloc] init];
+    
+    if ([self.navTitleString isEqualToString:@"添加乘机人"]) {
+        [bis addCommonPassengerWithPassengerName:passengerName
+                                            type:passenType
+                                        certType:certtype
+                                          certNo:certMember
+                                         userDic:nil
+                                     andDelegate:self];
+    }
+    if ([self.navTitleString isEqualToString:@"编辑乘机人"]) {
+        CommonContact *contact = [[CommonContact alloc] initWithName:passengerName
+                                                                type:passenType
+                                                            certType:certtype
+                                                              certNo:certMember
+                                                           contactId:self.passenger.contactId];
+        
+        [bis editCommonPassengerWithPassengerData:contact andDelegate:self];
+
+    }
+ 
+    
+    
+    
 }
+
+
+#pragma mark -
+#pragma mark 网络错误回调的方法
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    NSString *meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+    
+    
+}
+
+#pragma mark -
+#pragma mark 网络返回错误信息回调的方法
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    NSString *meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+#pragma mark -
+#pragma mark 网络正确回调的方法
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
+    
+    
+    
+    NSString *meg =@"成功";
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+    
+    
+}
+
+
 @end

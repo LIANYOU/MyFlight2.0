@@ -11,7 +11,8 @@
 @class ChoosePersonController;
 @class AddPersonCoustomCell;
 @class AddPersonSwitchCell;
-@interface AddPersonController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
+#import "ServiceDelegate.h"
+@interface AddPersonController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,ServiceDelegate>
 {
     UISwitch *mySwitch;
     void (^blocks) (NSString * name, NSString * identity);
@@ -21,6 +22,8 @@
 }
 
 @property (nonatomic, retain) NSString * controllerType;  // 判断是哪一个Controller推进到次界面的
+
+@property (nonatomic, retain) NSString * navTitleString; // 控制条文字
 
 
 @property (nonatomic, retain) CommonContact * passenger;

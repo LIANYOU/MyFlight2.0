@@ -96,6 +96,12 @@
     
     
     AddPersonController *controller =[[AddPersonController alloc] init];
+    controller.controllerType = nil;
+    
+    controller.navTitleString = @"添加乘机人";
+    
+    controller.passenger = nil;
+    
     
 // AddContactViewController *controller = [[AddContactViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
@@ -268,15 +274,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
+    CCLog(@"选择的是第 %d",indexPath.row);
     
-    CommonContactDetailViewController *controller = [[CommonContactDetailViewController alloc] init];
+    CommonContact *data = [self.resultArray objectAtIndex:indexPath.row];
+    CCLog(@"name = %@",data.name);
     
+    CCLog(@"类型 =%@",data.type);
+    AddPersonController *controller =[[AddPersonController alloc] init];
+    controller.controllerType = @"Mycenter";
+    
+    controller.navTitleString = @"编辑乘机人";
+    
+    controller.passenger = data;
+    
+    
+    // AddContactViewController *controller = [[AddContactViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
     
     [controller release];
-    
-    
     
     
     

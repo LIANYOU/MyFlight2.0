@@ -830,7 +830,9 @@
                      
                      [self.personArray addObject:passenger];
                      [passenger release];
-                     // **** 
+                     // ****
+                     
+                     
                      if ([str3 isEqualToString:@"01"]) {
                          str3  = @"成人";
                      }
@@ -840,7 +842,7 @@
                      
                      NSString * string = [NSString stringWithFormat:@"%@ (%@) \n%@",str1,str3,str2];
                      
-                     if ([str3 isEqualToString:@"02"]) {
+                     if ([str3 isEqualToString:@"儿童"]) {
                          childNumber = childNumber + 1;
                     }
 
