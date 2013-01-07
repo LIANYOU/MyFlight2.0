@@ -13,6 +13,9 @@
 #import "UIQuickHelp.h"
 #import "LoginBusiness.h"
 #import "OrderListModelData.h"
+#import "DetailsOrderViewController.h"
+#import "OrderDetaile.h"
+
 @interface MyOrderListViewController ()
 
 
@@ -97,7 +100,7 @@
         default:
             break;
     }
-
+    
     
     
 }
@@ -107,7 +110,7 @@
 {
     [super viewDidLoad];
     [self initThisView];
-     self.thisTableView.tableHeaderView = self.thisHeadView;
+    self.thisTableView.tableHeaderView = self.thisHeadView;
     LoginBusiness *bis = [[LoginBusiness alloc] init];
     [bis getOrderListWithCurrentPage:@"1" rowsOfPage:@"100" andDelegate:self];
     
@@ -169,7 +172,13 @@
     cell.orderState.text = data.payStsCH;
     
     cell.areaInfo.text = [NSString stringWithFormat:@"%@-%@",data.depAirportName,data.arrAirportName];
-    cell.orderTime.text = data.createTime;
+    
+    
+    NSString *time = [data.createTime substringWithRange:NSMakeRange(0, 10)];
+    
+    
+    
+    cell.orderTime.text = time;
     
     
     
@@ -177,57 +186,43 @@
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    
+    OrderListModelData *data = [tmpArray objectAtIndex:indexPath.row];
+    
+    NSString *orderId =data.orderId;
+    NSString *code = data.code;
+    NSString *createTime =data.createTime;
+    
+    NSString *memberId = Default_UserMemberId_Value;
+    NSString *token =Default_Token_Value;
+    
+    NSString *signTmp =[NSString stringWithFormat:@"%@%@%@",memberId,SOURCE_VALUE,token];
+    
+    NSString *sign =GET_SIGN(signTmp);
+    
+    CCLog(@"用户选择的订单号为%@",code);
+    CCLog(@"订单日期 ;%@",createTime);
+    CCLog(@"日期长度为：%d",[createTime length]);
+    
+    OrderDetaile *detail =[[OrderDetaile alloc] initWithOrderId:orderId andMemberId:memberId andCheckCode:code sndSign:sign sndSource:SOURCE_VALUE andHwId:HWID_VALUE andEdition:EDITION_VALUE andDelegate:nil];
+    
+    
+    
+    DetailsOrderViewController *con  =[[DetailsOrderViewController alloc] init];
+    
+    
+    con.detaile = detail;
+    
+    
+    [self.navigationController pushViewController:con animated:YES];
+    
+    
+    
 }
 
 
@@ -237,7 +232,7 @@
     [_thisTableView release];
     [_customView release];
     [_thisHeadView release];
-//    [_thisTableView release];
+    //    [_thisTableView release];
     [super dealloc];
 }
 - (void)viewDidUnload {

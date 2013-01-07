@@ -30,6 +30,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
+    CCLog(@"****************************");
+    CCLog(@"token  = %@",Default_Token_Value);
+    CCLog(@"memberId = %@",Default_UserMemberId_Value);
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];

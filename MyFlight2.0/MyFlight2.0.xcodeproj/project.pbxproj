@@ -122,6 +122,8 @@
 		1468CC3B1698A6E100B05F43 /* PhoneReChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468CC3A1698A6E100B05F43 /* PhoneReChargeCell.m */; };
 		1468CC3D1698A70100B05F43 /* PhoneReChargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1468CC3C1698A70100B05F43 /* PhoneReChargeCell.xib */; };
 		1468CC4116993FBF00B05F43 /* OrderListModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468CC4016993FBF00B05F43 /* OrderListModelData.m */; };
+		1468CC69169AD08B00B05F43 /* CommonContactDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1468CC68169AD08B00B05F43 /* CommonContactDataBase.sqlite */; };
+		1468CC6D169AD17300B05F43 /* CommonContact_LocalTmpDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468CC6C169AD17300B05F43 /* CommonContact_LocalTmpDBHelper.m */; };
 		146986BC167DCB5700E9B30D /* gray_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B1167DCB5700E9B30D /* gray_btn.png */; };
 		146986BD167DCB5700E9B30D /* green_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B2167DCB5700E9B30D /* green_btn.png */; };
 		146986BE167DCB5700E9B30D /* icon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 146986B3167DCB5700E9B30D /* icon_qq.png */; };
@@ -911,6 +913,9 @@
 		1468CC3C1698A70100B05F43 /* PhoneReChargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneReChargeCell.xib; sourceTree = "<group>"; };
 		1468CC3F16993FBF00B05F43 /* OrderListModelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListModelData.h; sourceTree = "<group>"; };
 		1468CC4016993FBF00B05F43 /* OrderListModelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListModelData.m; sourceTree = "<group>"; };
+		1468CC68169AD08B00B05F43 /* CommonContactDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CommonContactDataBase.sqlite; sourceTree = "<group>"; };
+		1468CC6B169AD17300B05F43 /* CommonContact_LocalTmpDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonContact_LocalTmpDBHelper.h; sourceTree = "<group>"; };
+		1468CC6C169AD17300B05F43 /* CommonContact_LocalTmpDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonContact_LocalTmpDBHelper.m; sourceTree = "<group>"; };
 		146986B1167DCB5700E9B30D /* gray_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_btn.png; sourceTree = "<group>"; };
 		146986B2167DCB5700E9B30D /* green_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_btn.png; sourceTree = "<group>"; };
 		146986B3167DCB5700E9B30D /* icon_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_qq.png; sourceTree = "<group>"; };
@@ -2401,6 +2406,24 @@
 			name = orderListModel;
 			sourceTree = "<group>";
 		};
+		1468CC66169AD05500B05F43 /* ContactLocalTmp */ = {
+			isa = PBXGroup;
+			children = (
+				1468CC6A169AD09D00B05F43 /* ContactHelper */,
+				1468CC68169AD08B00B05F43 /* CommonContactDataBase.sqlite */,
+			);
+			name = ContactLocalTmp;
+			sourceTree = "<group>";
+		};
+		1468CC6A169AD09D00B05F43 /* ContactHelper */ = {
+			isa = PBXGroup;
+			children = (
+				1468CC6B169AD17300B05F43 /* CommonContact_LocalTmpDBHelper.h */,
+				1468CC6C169AD17300B05F43 /* CommonContact_LocalTmpDBHelper.m */,
+			);
+			name = ContactHelper;
+			sourceTree = "<group>";
+		};
 		146986B0167DCB5700E9B30D /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2814,6 +2837,7 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1468CC66169AD05500B05F43 /* ContactLocalTmp */,
 				18CB6CB41699AB64000DD63B /* 删除特价预约 */,
 				18CB6C8E169944CD000DD63B /* 特价预约通知列表 */,
 				18CB6C62169909C2000DD63B /* PayOnline */,
@@ -4398,6 +4422,7 @@
 				18CB6CB21699A56D000DD63B /* 航班动态有数据.png in Resources */,
 				18CB6CB31699A56D000DD63B /* 航班动态无数据.png in Resources */,
 				18E083C7169A7A1000FDE3D7 /* ShowLableDetailCell.xib in Resources */,
+				1468CC69169AD08B00B05F43 /* CommonContactDataBase.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4665,6 +4690,7 @@
 				18CB6CA416998A72000DD63B /* SamllCell.m in Sources */,
 				18CB6CB71699ABAD000DD63B /* DeleteOrderList.m in Sources */,
 				18E083C4169A79FF00FDE3D7 /* ShowLableDetailCell.m in Sources */,
+				1468CC6D169AD17300B05F43 /* CommonContact_LocalTmpDBHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4769,6 +4795,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "BCBB163F-D062-491D-8910-9FECD3321AC5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BCBB163F-D062-491D-8910-9FECD3321AC5";
@@ -4789,6 +4816,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "BCBB163F-D062-491D-8910-9FECD3321AC5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BCBB163F-D062-491D-8910-9FECD3321AC5";

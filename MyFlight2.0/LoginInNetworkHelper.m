@@ -526,7 +526,7 @@
                 CCLog(@"查询到的用户名字为：%@",single.userAccount.name);
                 CCLog(@"xinlvGoldMoeny= %@", single.userAccount.xinlvGoldMoeny);
                 
-            
+                
                 
                 [delegate requestDidFinishedWithRightMessage:messageDic];
                 
@@ -580,7 +580,7 @@
 }
 
 #pragma mark -
-#pragma mark 编辑账号信息 
+#pragma mark 编辑账号信息
 //编辑账号
 + (BOOL) editAccountInfo:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate{
     
@@ -640,7 +640,7 @@
             
             if ([message length]==0) {
                 
-                           
+                
                 [delegate requestDidFinishedWithRightMessage:messageDic];
                 return ;
                 
@@ -2060,12 +2060,17 @@
     __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:GetOrderList_URL]];
     
     [formRequst setPostValue:memberId forKey:KEY_Account_MemberId];
-    //    [formRequst setPostValue:currentPage forKey:@"currentPage"];
-    //    [formRequst setPostValue:page forKey:@"rowsOfPage"];
-    //    [formRequst setPostValue:sign forKey:KEY_SIGN];
-    //    [formRequst setPostValue:SOURCE_VALUE forKey:KEY_source];
-    //    [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
-    //    [formRequst setPostValue:HWID_VALUE forKey:KEY_hwId];
+    
+    
+    [formRequst setPostValue:currentPage forKey:@"currentPage"];
+    [formRequst setPostValue:page forKey:@"rowsOfPage"];
+    [formRequst setPostValue:sign forKey:KEY_SIGN];
+    [formRequst setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
+    [formRequst setPostValue:HWID_VALUE forKey:KEY_hwId];
+    
+    
+    
     [formRequst setRequestMethod:@"POST"];
     
     
@@ -2074,7 +2079,7 @@
         
         NSString *data = [formRequst responseString];
         
-//        CCLog(@"网络返回的数据为：%@",data);
+        CCLog(@"网络返回的数据为：%@",data);
         
         NSError *error = nil;
         
@@ -2091,6 +2096,7 @@
             NSMutableArray *noPayList =[[NSMutableArray alloc] init];
             NSMutableArray *allPayList = [[NSMutableArray alloc] init];
             NSMutableArray *alradyPayList = [[NSMutableArray alloc] init];
+            
             NSString *type =nil;
             
             if ([message length]==0) {
@@ -2103,13 +2109,23 @@
                 
                 for (NSDictionary *tmpDic in resultArray) {
                     
-                    OrderListModelData *data = [[OrderListModelData alloc] init];
+                    
+                    
+                    NSString *orderId =nil; //订单号
+                    NSString *code = nil;
+                    
+                    
                     NSString *startAirPort =nil;
                     NSString *endAirPort = nil;
-                    NSString *createTime = nil;
+                    //                    NSString *createTime = nil; //下单日期
                     NSString *paySts = nil;
                     NSString *sts = nil;
                     NSString *payStaCH =nil; //状态中文
+                    
+                    orderId =[tmpDic objectForKey:@"orderId"];
+                    code = [tmpDic objectForKey:@"code"];
+                    
+                    
                     
                     type = [tmpDic objectForKey:@"type"];
                     
@@ -2124,31 +2140,33 @@
                         
                     }
                     
+                    OrderListModelData *data = [[OrderListModelData alloc] init];
                     payStaCH = [tmpDic objectForKey:@"payStsCh"];
                     paySts =[tmpDic objectForKey:@"paySts"];
                     sts =[tmpDic objectForKey:@"sts"];
                     
+                    data.code =code;
+                    data.orderId = orderId;
                     data.createTime =[tmpDic objectForKey:@"createTime"];
                     data.depAirportName = startAirPort;
                     data.arrAirportName = endAirPort;
                     data.totalMoney = [tmpDic objectForKey:@"totalMoney"];
                     data.payStsCH =payStaCH;
                     data.type =type;
-                    
-                    
-                    
-//                    CCLog(@"type = *******%@",type);
-//                    CCLog(@"出发机场 ：&*****%@",data.depAirportName);
-//                    CCLog(@"到达机场 ：%@",data.arrAirportName);
-//                    
-                    
-                    
                     [allPayList addObject:data];
+                    [data release];
+                    
+                    
+                    //                    CCLog(@"type = *******%@",type);
+                    //                    CCLog(@"出发机场 ：&*****%@",data.depAirportName);
+                    //                    CCLog(@"到达机场 ：%@",data.arrAirportName);
+                    
                     
                     if ([paySts isEqualToString:@"0"]) {
                         CCLog(@"这是未支付订单");
                         OrderListModelData *data1 = [[OrderListModelData alloc] init];
-                        
+                        data1.orderId =orderId;
+                        data1.code =code;
                         data1.createTime =[tmpDic objectForKey:@"createTime"];
                         data1.depAirportName = startAirPort;
                         data1.arrAirportName = endAirPort;
@@ -2157,15 +2175,15 @@
                         data1.type =type;
                         
                         
-                        
-                        
-                        
                         [noPayList addObject:data1];
                         [data1 release];
                         
                     } else  if ([paySts isEqualToString:@"1"]&&[sts isEqualToString:@"01"]) {
                         
                         OrderListModelData *data2 = [[OrderListModelData alloc] init];
+                        
+                        data2.code =code;
+                        data2.orderId =orderId;
                         
                         data2.createTime =[tmpDic objectForKey:@"createTime"];
                         data2.depAirportName = startAirPort;
@@ -2188,12 +2206,12 @@
                 [messageDic setObject:alradyPayList forKey:@"alreadyPayList"];
                 
                 
-//                CCLog(@"展示结果：*****************************");
-//                
-//                CCLog(@"所有订单：%d",[allPayList count]);
-//                CCLog(@"已支付订单%d",[alradyPayList count]);
-//                CCLog(@"未支付订单 %d",[noPayList count]);
-//                
+                //                CCLog(@"展示结果：*****************************");
+                //
+                //                CCLog(@"所有订单：%d",[allPayList count]);
+                //                CCLog(@"已支付订单%d",[alradyPayList count]);
+                //                CCLog(@"未支付订单 %d",[noPayList count]);
+                //
                 
                 
                 

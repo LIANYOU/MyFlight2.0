@@ -28,7 +28,7 @@
 #import "UserAccount.h"
 
 #import "MyLowOrderListViewController.h"
-
+#import "CommonContact_LocalTmpDBHelper.h"
 
 @interface MyCenterTable_1 ()
 {
@@ -148,6 +148,9 @@
 {
     [super viewDidLoad];
 
+    
+    [CommonContact_LocalTmpDBHelper findAllCommonContact_UnLogin];
+    
     
     [self setNav];
     
