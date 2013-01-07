@@ -526,7 +526,7 @@
                 CCLog(@"查询到的用户名字为：%@",single.userAccount.name);
                 CCLog(@"xinlvGoldMoeny= %@", single.userAccount.xinlvGoldMoeny);
                 
-                
+            
                 
                 [delegate requestDidFinishedWithRightMessage:messageDic];
                 
@@ -640,12 +640,7 @@
             
             if ([message length]==0) {
                 
-                //                NSLog(@"成功登陆后返回的数据：%@",data);
-                
-                
-                
-                
-                
+                           
                 [delegate requestDidFinishedWithRightMessage:messageDic];
                 return ;
                 

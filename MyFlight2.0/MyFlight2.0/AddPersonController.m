@@ -74,6 +74,7 @@
         self.addPersonTableView.tableFooterView = self.delBtnView;
     }
     
+
  
    
     if (self.passenger != nil) {
@@ -93,8 +94,17 @@
         else{
             passengerCertType = @"其他";
         }
-
     }
+
+//    NSLog(@"--------------   %@",self.passenger.type);
+//    
+//    if ([self.passenger.type isEqualToString:@"01"]) {
+//        passengerType = @"成人";
+//    }
+//    else{
+//        passengerType = @"儿童";
+//
+//    }
     
     
     
@@ -281,6 +291,7 @@
 
             if (self.choose != nil || self.controllerType != nil) {
                 if (indexPath.row == 0) {
+                    
                     passengerType = idntity;
                 }
                 else{

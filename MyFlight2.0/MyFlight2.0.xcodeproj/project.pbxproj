@@ -170,8 +170,6 @@
 		149B780B168D8132006281A3 /* bookingGoFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780A168D8132006281A3 /* bookingGoFlightVo.m */; };
 		149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780D168D8FD1006281A3 /* bookingFlightVo.m */; };
 		149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7810168D9775006281A3 /* bookingReturnFlightVo.m */; };
-
-		14A90B811693E67C002B862C /* TextInputHelperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A90B801693E67B002B862C /* TextInputHelperViewController.m */; };
 		14AF42311697D1A000C7C2CA /* FrequentPassengerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */; };
 		14AF42341697D67300C7C2CA /* isFrequentPassengerLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42331697D67300C7C2CA /* isFrequentPassengerLogin.m */; };
 		14AF42371697DA3C00C7C2CA /* MemberPointDataOfFrequent.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42361697DA3C00C7C2CA /* MemberPointDataOfFrequent.m */; };
@@ -180,8 +178,6 @@
 		14AF4246169806AD00C7C2CA /* AirCompanyDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14AF4245169806AD00C7C2CA /* AirCompanyDataBase.sqlite */; };
 		14AF4249169816B400C7C2CA /* ResultForLeijiViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF4248169816B300C7C2CA /* ResultForLeijiViewCell.m */; };
 		14AF424B169816CC00C7C2CA /* ResultForLeijiViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AF424A169816CB00C7C2CA /* ResultForLeijiViewCell.xib */; };
-
-
 		14D18030168FF4860084CB48 /* AirPortDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */; };
 		14ECC0791695650E008191E1 /* btn_5words.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC0711695650E008191E1 /* btn_5words.png */; };
 		14ECC07A1695650E008191E1 /* btn_5words_click.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC0721695650E008191E1 /* btn_5words_click.png */; };
@@ -559,6 +555,8 @@
 		18DF894E168824E600D2DDAE /* HistoryCheckDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF894A168824E600D2DDAE /* HistoryCheckDataBase.m */; };
 		18DF894F168824E600D2DDAE /* HistoryCheckInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF894C168824E600D2DDAE /* HistoryCheckInfoData.m */; };
 		18DF8950168824E600D2DDAE /* HistoryFlightQuery.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18DF894D168824E600D2DDAE /* HistoryFlightQuery.sqlite */; };
+		18E083C4169A79FF00FDE3D7 /* ShowLableDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E083C3169A79FF00FDE3D7 /* ShowLableDetailCell.m */; };
+		18E083C7169A7A1000FDE3D7 /* ShowLableDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E083C6169A7A1000FDE3D7 /* ShowLableDetailCell.xib */; };
 		18E37CAC167D53890086B3F8 /* icon_acc.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E37CA1167D53890086B3F8 /* icon_acc.png */; };
 		18E37CAD167D53890086B3F8 /* icon_atv.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E37CA2167D53890086B3F8 /* icon_atv.png */; };
 		18E37CAE167D53890086B3F8 /* icon_Coupon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18E37CA3167D53890086B3F8 /* icon_Coupon.png */; };
@@ -993,9 +991,6 @@
 		149B780F168D9774006281A3 /* bookingReturnFlightVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bookingReturnFlightVo.h; sourceTree = "<group>"; };
 		149B7810168D9775006281A3 /* bookingReturnFlightVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bookingReturnFlightVo.m; sourceTree = "<group>"; };
 		149B7813168D9ABE006281A3 /* flightBookingUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flightBookingUility.h; sourceTree = "<group>"; };
-
-		14A90B7F1693E67B002B862C /* TextInputHelperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputHelperViewController.h; sourceTree = "<group>"; };
-		14A90B801693E67B002B862C /* TextInputHelperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputHelperViewController.m; sourceTree = "<group>"; };
 		14AF422F1697D1A000C7C2CA /* FrequentPassengerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentPassengerData.h; sourceTree = "<group>"; };
 		14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentPassengerData.m; sourceTree = "<group>"; };
 		14AF42321697D67300C7C2CA /* isFrequentPassengerLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = isFrequentPassengerLogin.h; sourceTree = "<group>"; };
@@ -1010,8 +1005,6 @@
 		14AF4247169816B300C7C2CA /* ResultForLeijiViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultForLeijiViewCell.h; sourceTree = "<group>"; };
 		14AF4248169816B300C7C2CA /* ResultForLeijiViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultForLeijiViewCell.m; sourceTree = "<group>"; };
 		14AF424A169816CB00C7C2CA /* ResultForLeijiViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultForLeijiViewCell.xib; sourceTree = "<group>"; };
-
-
 		14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirPortDataBase.sqlite; sourceTree = "<group>"; };
 		14ECC0711695650E008191E1 /* btn_5words.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_5words.png; sourceTree = "<group>"; };
 		14ECC0721695650E008191E1 /* btn_5words_click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_5words_click.png; sourceTree = "<group>"; };
@@ -1516,6 +1509,9 @@
 		18DF894C168824E600D2DDAE /* HistoryCheckInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCheckInfoData.m; sourceTree = "<group>"; };
 		18DF894D168824E600D2DDAE /* HistoryFlightQuery.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = HistoryFlightQuery.sqlite; sourceTree = "<group>"; };
 		18DF895E16882F1B00D2DDAE /* ViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDelegate.h; sourceTree = "<group>"; };
+		18E083C2169A79FF00FDE3D7 /* ShowLableDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowLableDetailCell.h; sourceTree = "<group>"; };
+		18E083C3169A79FF00FDE3D7 /* ShowLableDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowLableDetailCell.m; sourceTree = "<group>"; };
+		18E083C6169A7A1000FDE3D7 /* ShowLableDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowLableDetailCell.xib; sourceTree = "<group>"; };
 		18E37CA1167D53890086B3F8 /* icon_acc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_acc.png; sourceTree = "<group>"; };
 		18E37CA2167D53890086B3F8 /* icon_atv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_atv.png; sourceTree = "<group>"; };
 		18E37CA3167D53890086B3F8 /* icon_Coupon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Coupon.png; sourceTree = "<group>"; };
@@ -1974,6 +1970,9 @@
 				141669A81696C073007BB0D0 /* SettingSecondCell.h */,
 				141669A91696C074007BB0D0 /* SettingSecondCell.m */,
 				141669AB1696C084007BB0D0 /* SettingSecondCell.xib */,
+				18E083C2169A79FF00FDE3D7 /* ShowLableDetailCell.h */,
+				18E083C3169A79FF00FDE3D7 /* ShowLableDetailCell.m */,
+				18E083C6169A7A1000FDE3D7 /* ShowLableDetailCell.xib */,
 			);
 			name = settingPage;
 			sourceTree = "<group>";
@@ -2815,17 +2814,10 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-
-
-
 				18CB6CB41699AB64000DD63B /* 删除特价预约 */,
 				18CB6C8E169944CD000DD63B /* 特价预约通知列表 */,
-
 				18CB6C62169909C2000DD63B /* PayOnline */,
-
 				1468CC3E16993F7A00B05F43 /* orderListModel */,
-				18D053E2169813020041240A /* payOnline */,
-
 				14AF422D1697D06C00C7C2CA /* 常旅客 */,
 				18EBFAAE1696E5500079F3EC /* checkPassword */,
 				18EBFA9616967BB00079F3EC /* LowOrderWJ */,
@@ -4382,11 +4374,8 @@
 				18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */,
 				18D364391696713B005CF80C /* dong1.png in Resources */,
 				18D3643A1696713B005CF80C /* dong2.png in Resources */,
-
 				18D05409169889CE0041240A /* MyLowOrderListViewController.xib in Resources */,
 				18D05413169893230041240A /* ListCell.xib in Resources */,
-
-				18D05418169894E80041240A /* AddLowOrderViewController.xib in Resources */,
 				18D36D5D16996D0B005CF80C /* BaggageViewController.xib in Resources */,
 				18D36D6216996D39005CF80C /* ChackInNavgationViewController.xib in Resources */,
 				18D36D6716996DE2005CF80C /* WeatherViewController.xib in Resources */,
@@ -4399,12 +4388,8 @@
 				18D36D8A16996EF2005CF80C /* SearchFlightConditionController.xib in Resources */,
 				18D36D8F16996F17005CF80C /* SMSViewController.xib in Resources */,
 				18D36D9416996F39005CF80C /* ShowFligthConditionController.xib in Resources */,
-
-				18D364B91697BB4D005CF80C /* WeatherViewController.xib in Resources */,
 				1468CC341698A48300B05F43 /* PhoneReChargeViewController.xib in Resources */,
 				1468CC3D1698A70100B05F43 /* PhoneReChargeCell.xib in Resources */,
-
-
 				18CB6C8916994287000DD63B /* LowOrderCell.xib in Resources */,
 				18CB6C8B16994287000DD63B /* LowOrderController.xib in Resources */,
 				18CB6C8D16994287000DD63B /* LowTextFiledCell.xib in Resources */,
@@ -4412,7 +4397,7 @@
 				18CB6CA616998A87000DD63B /* SamllCell.xib in Resources */,
 				18CB6CB21699A56D000DD63B /* 航班动态有数据.png in Resources */,
 				18CB6CB31699A56D000DD63B /* 航班动态无数据.png in Resources */,
-
+				18E083C7169A7A1000FDE3D7 /* ShowLableDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4646,21 +4631,15 @@
 				141669BD1696D396007BB0D0 /* DetailInfoWithImageViewController.m in Sources */,
 				141669C51696D55B007BB0D0 /* WarmTipViewController.m in Sources */,
 				141669C9169706B0007BB0D0 /* UIImage+Scale.m in Sources */,
-
-
-				18D053E6169813260041240A /* PayOnline.m in Sources */,
-
 				14AF42311697D1A000C7C2CA /* FrequentPassengerData.m in Sources */,
 				14AF42341697D67300C7C2CA /* isFrequentPassengerLogin.m in Sources */,
 				14AF42371697DA3C00C7C2CA /* MemberPointDataOfFrequent.m in Sources */,
 				14AF423B1697EE8E00C7C2CA /* LiChengDetailData.m in Sources */,
 				14AF42441698038A00C7C2CA /* AirCompanyDataBase.m in Sources */,
 				14AF4249169816B400C7C2CA /* ResultForLeijiViewCell.m in Sources */,
-
 				18D05408169889CE0041240A /* MyLowOrderListViewController.m in Sources */,
 				18D05411169893110041240A /* ListCell.m in Sources */,
 				18CB6C65169909CF000DD63B /* PayOnline.m in Sources */,
-
 				18D36D5C16996D0B005CF80C /* BaggageViewController.m in Sources */,
 				18D36D6116996D39005CF80C /* ChackInNavgationViewController.m in Sources */,
 				18D36D6616996DE2005CF80C /* WeatherViewController.m in Sources */,
@@ -4673,13 +4652,9 @@
 				18D36D8916996EF2005CF80C /* SearchFlightConditionController.m in Sources */,
 				18D36D8E16996F17005CF80C /* SMSViewController.m in Sources */,
 				18D36D9316996F39005CF80C /* ShowFligthConditionController.m in Sources */,
-
-				18D364B81697BB4D005CF80C /* WeatherViewController.m in Sources */,
 				1468CC331698A48300B05F43 /* PhoneReChargeViewController.m in Sources */,
 				1468CC3B1698A6E100B05F43 /* PhoneReChargeCell.m in Sources */,
 				1468CC4116993FBF00B05F43 /* OrderListModelData.m in Sources */,
-
-
 				18CB6C8816994287000DD63B /* LowOrderCell.m in Sources */,
 				18CB6C8A16994287000DD63B /* LowOrderController.m in Sources */,
 				18CB6C8C16994287000DD63B /* LowTextFiledCell.m in Sources */,
@@ -4689,7 +4664,7 @@
 				18CB6CA116997B1C000DD63B /* ProBooKResultData.m in Sources */,
 				18CB6CA416998A72000DD63B /* SamllCell.m in Sources */,
 				18CB6CB71699ABAD000DD63B /* DeleteOrderList.m in Sources */,
-
+				18E083C4169A79FF00FDE3D7 /* ShowLableDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

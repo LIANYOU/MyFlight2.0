@@ -9,6 +9,7 @@
 #import "SettingForAppViewController.h"
 #import "SettingCell.h"
 #import "SettingSecondCell.h"
+#import "ShowLableDetailCell.h"
 @interface SettingForAppViewController ()
 {
     
@@ -54,11 +55,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section==0) {
-        return 2;
+    if (section==4) {
+        return 1;
     } else{
         
-        return 1;
+        return 2;
     }
 
     // Return the number of rows in the section.
@@ -90,9 +91,6 @@
         
         static NSString *CellIdentifier = @"Cell1";
         
-    
-        
-        
         SettingCell *cell =[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell==nil) {
             
@@ -102,7 +100,7 @@
             
         }
         
-        cell.nameLabel.text =[nameArray objectAtIndex:indexPath.row];
+        cell.nameLabel.text =@"清楚缓冲数据及隐私";
         return cell;
 
     } else{
@@ -118,8 +116,26 @@
         
         
         
+        static NSString *CellIdentifier1 = @"cell11";
+        ShowLableDetailCell *cell11 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+        if (cell==nil){
+            NSArray *array =[[NSBundle mainBundle] loadNibNamed:@"ShowLableDetailCell" owner:nil options:nil];
+            cell11 =[array objectAtIndex:0];
+            
+        }
+
+        
+        
         if(indexPath.section==1){
-            cell.nameLabel.text = @"接收推送通知";
+            if (indexPath.row==0) {
+                cell.nameLabel.text = @"接收推送通知";
+                
+            } else{
+            
+                cell11.noticeLabel.text = @"用于接收预订通知和航班变动通知等重要信息，建议开启。如手机设置未开启，请在手机设置-通知里开启.";
+                
+            }
+            
             
         } else if(indexPath.section==2){
             
