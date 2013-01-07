@@ -65,6 +65,7 @@
         self.addPersonTableView.tableFooterView = self.delBtnView;
     }
     
+    NSLog(@"--------------   %@",self.passenger.type);
     
     if ([self.passenger.type isEqualToString:@"01"]) {
         passengerType = @"成人";
@@ -259,6 +260,7 @@
 
             if (self.choose != nil) {
                 if (indexPath.row == 0) {
+                    
                     passengerType = idntity;
                 }
                 else{
