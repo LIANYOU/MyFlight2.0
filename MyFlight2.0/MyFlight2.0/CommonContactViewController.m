@@ -16,6 +16,8 @@
 #import "AppConfigure.h"
 #import "CommontContactSingle.h"
 #import "CommonContact.h"
+#import "AddPersonController.h"
+
 @interface CommonContactViewController ()
 {
     
@@ -91,15 +93,15 @@
 }
 //添加联系人
 -(void) addCommonPassenger{
-    AddContactViewController *controller = [[AddContactViewController alloc] init];
     
+    
+    AddPersonController *controller =[[AddPersonController alloc] init];
+    
+// AddContactViewController *controller = [[AddContactViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
     
     [controller release];
-    
-    
-    
-    
+
 }
 
 - (void) back{

@@ -580,7 +580,7 @@
 }
 
 #pragma mark -
-#pragma mark 编辑账号信息
+#pragma mark 编辑账号信息 
 //编辑账号
 + (BOOL) editAccountInfo:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate{
     
