@@ -11,8 +11,12 @@
 #import "AddPersonSwitchCell.h"
 #import "IdentityViewController.h"
 #import "UIButton+BackButton.h"
+#import "AppConfigure.h"
 @interface AddPersonController ()
-
+{
+    NSString * passengerType;  // 乘客类型
+    NSString * passengerCertType; // 身份证的类型
+}
 @end
 
 @implementation AddPersonController
@@ -37,7 +41,7 @@
     
     
     self.cellTitleArr = [NSArray arrayWithObjects:@"身  份 *",@"姓  名 *",@"证件类型 *",@"证件号码 *",@"生  日 *",@"保存为常用乘机人", nil];
- 
+    
     self.cellTextArr = [NSMutableArray arrayWithObjects:@"成人",@"请输入乘机人姓名",@"省份证",@"请输入证件号码",@"1990-09-09", nil];
     
     self.addPersonTableView.delegate = self;
@@ -56,7 +60,36 @@
     UIBarButtonItem *histroyBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
     self.navigationItem.rightBarButtonItem=histroyBtn;
     [histroyBtn release];
-
+    
+    if (self.controllerType != nil) {
+        self.addPersonTableView.tableFooterView = self.delBtnView;
+    }
+    
+    
+    if ([self.passenger.type isEqualToString:@"01"]) {
+        passengerType = @"成人";
+    }
+    else{
+        passengerType = @"儿童";
+    }
+    
+    
+    if ([self.passenger.certType isEqualToString:@"1"]) {
+        passengerCertType = @"身份证";
+    }
+    if ([self.passenger.certType isEqualToString:@"2"]) {
+        passengerCertType = @"护照";
+    }
+    else{
+        passengerCertType = @"其他";
+    }
+    
+    
+    if (self.addBtnSelected) {
+        passengerType = nil;
+        passengerCertType = nil;
+    }
+    
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -72,12 +105,14 @@
     [_addPersonTableView release];
     [_addPersonSwithCell release];
     [_addPersonCoustomCell release];
+    [_delBtnView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setAddPersonTableView:nil];
     [self setAddPersonSwithCell:nil];
     [self setAddPersonCoustomCell:nil];
+    [self setDelBtnView:nil];
     [super viewDidUnload];
 }
 
@@ -90,36 +125,46 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   
-        
-        return 6;
 
+    if (Default_IsUserLogin_Value) {
+        return 5;
+    }
+    else{
+        return 6;
+    }
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self.cellTextArr objectAtIndex:0] isEqual:@"成人"]) {
+    
+    
+    if ([self.passenger.type isEqual:@"01"]) {
+        
         if (indexPath.row == 4) {
+            
             return 0;
         }
-        else
-        {
+        
+        else{
             return 44;
         }
-    }
-    else{
-        return 44;
+        
     }
     
+    else  {
+        
+        return 44;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-
+    
+    
+    
     if (indexPath.row == 5) {
-      
-         static NSString *CellIdentifier1 = @"Cell";
+     
+        static NSString *CellIdentifier1 = @"Cell";
         AddPersonSwitchCell *cell = (AddPersonSwitchCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
         if (!cell)
         {
@@ -132,7 +177,6 @@
         return cell;
         
     }
-    
     else{
         static NSString *CellIdentifier = @"Cell";
         AddPersonCoustomCell *cell = (AddPersonCoustomCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -143,36 +187,64 @@
         }
         
         
-        if ([[self.cellTextArr objectAtIndex:0] isEqual:@"成人"]) {
-            if (indexPath.row == 4) {
-                cell.hidden = YES;
+        if (passengerType != nil) {
+            
+            if ([passengerType isEqualToString:@"成人"]) {
+                if (indexPath.row == 4) {
+                    cell.hidden = YES;
+                }
             }
-            if (indexPath.row == 0 || indexPath.row == 2) {
-                cell.secText.enabled = NO;
+            if (indexPath.row == 0) {
+                cell.secText.text = passengerType;
+                cell.secText.userInteractionEnabled = NO;
             }
+            if (indexPath.row == 2) {
+                cell.secText.text = passengerType;
+                cell.secText.userInteractionEnabled = NO;
+            }
+            
             if (indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4) {
+                if (self.choose != nil) {
+                    if (indexPath.row == 1) {
+                        cell.secText.text = self.passenger.name;
+                    }
+                    if (indexPath.row == 3) {
+                        cell.secText.text = self.passenger.certNo;
+                    }
+                    if (indexPath.row == 4) {
+                        cell.secText.text = self.passenger.certNo;
+                    }
+                }
+                
                 cell.secText.delegate = self;
             }
             
             cell.fristLabel.text = [self.cellTitleArr objectAtIndex:indexPath.row];
-            cell.secText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
-
+            if (self.choose == nil) {
+                cell.secText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
+            }
         }
-        
+     
         else
         {
+           
+            if ([[self.cellTextArr objectAtIndex:0] isEqualToString:@"成人"]) {
+                if (indexPath.row == 4) {
+                    cell.hidden = YES;
+                }
+            }
             if (indexPath.row == 0 || indexPath.row == 2) {
                 cell.secText.enabled = NO;
             }
             cell.fristLabel.text = [self.cellTitleArr objectAtIndex:indexPath.row];
             cell.secText.placeholder = [self.cellTextArr objectAtIndex:indexPath.row];
         }
-
+        
         
         return cell;
-    
+        
     }
-
+    
 }
 
 #pragma mark - Table view delegate
@@ -184,11 +256,24 @@
         identity.flag = indexPath.row;
         
         [identity getDate:^(NSString *idntity) {
-            NSLog(@"---%@",idntity);
+
+            if (self.choose != nil) {
+                if (indexPath.row == 0) {
+                    passengerType = idntity;
+                }
+                else{
+                    passengerCertType = idntity;
+                }
+
+            }
+            
+
             [self.cellTextArr replaceObjectAtIndex:indexPath.row withObject:idntity];
+           
+           
             [self.addPersonTableView reloadData];
         }];
-
+        
         [self.navigationController pushViewController:identity animated:YES];
         [identity release];
     }
@@ -228,6 +313,9 @@
     return YES;
 }
 
+- (IBAction)delPassenger:(id)sender {
+}
+
 -(void)getDate:(void (^) (NSString * name, NSString * identity))string
 {
     [blocks release];
@@ -235,7 +323,8 @@
 }
 -(void)back
 {
-  //  blocks(name,identityType);
+    //  blocks(name,identityType);
+    self.passenger = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

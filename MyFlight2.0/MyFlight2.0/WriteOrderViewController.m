@@ -133,14 +133,17 @@
     self.orderTableView.delegate = self;
     self.orderTableView.dataSource = self;
     
-    
+    if (! Default_IsUserLogin_Value) {
+        UIButton * histroyBut = [UIButton backButtonType:4 andTitle:@"登录"];
+        [histroyBut addTarget:self action:@selector(log) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+        self.navigationItem.rightBarButtonItem=backBtn2;
+        [backBtn2 release];
+    }
        
-    UIButton * histroyBut = [UIButton backButtonType:4 andTitle:@"登陆"];
-    [histroyBut addTarget:self action:@selector(log) forControlEvents:UIControlEventTouchUpInside];
+   
     
-    UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
-    self.navigationItem.rightBarButtonItem=backBtn2;
-    [backBtn2 release];
 
     UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
@@ -828,9 +831,14 @@
                      [self.personArray addObject:passenger];
                      [passenger release];
                      // **** 
+                     if ([str3 isEqualToString:@"01"]) {
+                         str3  = @"成人";
+                     }
+                     else{
+                         str3 = @"儿童";
+                     }
                      
-                     
-                     NSString * string = [NSString stringWithFormat:@"%@%@\n%@",str1,str3,str2];
+                     NSString * string = [NSString stringWithFormat:@"%@ (%@) \n%@",str1,str3,str2];
                      
                      if ([str3 isEqualToString:@"02"]) {
                          childNumber = childNumber + 1;

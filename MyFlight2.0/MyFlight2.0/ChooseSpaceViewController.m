@@ -316,7 +316,7 @@
         
         [cell.selectBtn addTarget:self action:@selector(select:) forControlEvents:UIControlEventTouchUpInside];
         
-//        cell.selectionStyle = 0;
+        cell.selectionStyle = 2;
     
         
         [cell.changeSpace addTarget:self action:@selector(changeFlightInfo:) forControlEvents:UIControlEventTouchUpInside];

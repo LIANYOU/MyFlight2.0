@@ -165,9 +165,15 @@
     
     
     CommonContact * com = [self.dataArr objectAtIndex:indexPath.row];
-    
+    NSString * str = nil;
+    if ([com.type isEqualToString:@"01"]) {
+        str = @"成人";
+    }
+    else{
+        str = @"儿童";
+    }
     cell.name.text = com.name;
-    cell.type.text = com.type;
+    cell.type.text = str;
     cell.identityNumber.text = com.certNo;
     
     [cell.btn addTarget:self action:@selector(selectMore:) forControlEvents:UIControlEventTouchUpInside];
@@ -182,8 +188,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+     CommonContact * com = [self.dataArr objectAtIndex:indexPath.row];
+    
     AddPersonController * add = [[AddPersonController alloc] init];
+    add.addBtnSelected = false;
     add.choose = self;
+    add.passenger = com;
     [self.navigationController pushViewController:add animated:YES];
     [add release];
 }
@@ -221,6 +231,9 @@
 
 - (IBAction)addPerson:(UIButton *)sender {
     AddPersonController * add = [[AddPersonController alloc] init];
+    
+    add.addBtnSelected = true;
+    
     [self.navigationController pushViewController:add animated:YES];
 }
 

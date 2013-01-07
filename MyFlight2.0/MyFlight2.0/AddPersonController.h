@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonContact.h"
 @class ChoosePersonController;
 @class AddPersonCoustomCell;
 @class AddPersonSwitchCell;
@@ -19,6 +20,15 @@
     NSString * identityType;  // 成人或儿童
 }
 
+@property (nonatomic, retain) NSString * controllerType;  // 判断是哪一个Controller推进到次界面的
+
+
+@property (nonatomic, retain) CommonContact * passenger;
+
+@property (retain, nonatomic) IBOutlet UIView *delBtnView;
+
+@property (nonatomic, assign) BOOL addBtnSelected;
+
 @property (retain, nonatomic) IBOutlet UITableView *addPersonTableView;
 
 @property (retain, nonatomic) IBOutlet AddPersonCoustomCell *addPersonCoustomCell;
@@ -29,6 +39,7 @@
 
 @property(nonatomic,retain) NSArray * cellTitleArr;
 @property(nonatomic,retain) NSMutableArray * cellTextArr;
+- (IBAction)delPassenger:(id)sender;
 
 -(void)getDate:(void (^) (NSString * name, NSString * identity))string;
 @end

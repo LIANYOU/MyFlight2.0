@@ -213,7 +213,7 @@ return cell;
 
 -(void)del:(UIButton *)btn
 {
-     ProBooKResultData *data =[self.dataArr objectAtIndex:btn.tag];
+    ProBooKResultData *data =[self.dataArr objectAtIndex:btn.tag];
     NSLog(@"%@",data.allData.code);
     DeleteOrderList * dele = [[DeleteOrderList alloc] initWithCode:data.allData.code
                                                            andHwId:HWID_VALUE
