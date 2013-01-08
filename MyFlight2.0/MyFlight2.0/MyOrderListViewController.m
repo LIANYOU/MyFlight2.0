@@ -120,6 +120,11 @@
     
 }
 
+- (void) back{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
