@@ -91,7 +91,6 @@
     [request startAsynchronous];
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -112,9 +111,9 @@
     self.navigationItem.leftBarButtonItem = navigationLeftBarItem;
     [navigationLeftBarItem release];
     
-    detailedTitleArray = [[NSArray alloc] initWithObjects:@"电子票号", @"值机状态", @"乘机人", @"座位号", @"登机号", @"登机时间", nil];
+    detailedTitleArray = [[NSArray alloc] initWithObjects:@"电子票号", @"值机状态", @"航班号", @"座位号", @"乘机人", nil];
     
-    detailedInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, 300, 264)];
+    detailedInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, 300, 220)];
     
     detailedInfoTable.rowHeight = 44.0f;
     detailedInfoTable.backgroundColor = FOREGROUND_COLOR;
@@ -178,7 +177,7 @@
 {
     if(tableView == detailedInfoTable)
     {
-        return 6;
+        return 5;
     }
     else
     {
@@ -237,7 +236,7 @@
     
     if(tableView == detailedInfoTable)
     {
-        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 60, 17)];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 60, 14)];
         
         title.text = [detailedTitleArray objectAtIndex:indexPath.row];
         title.font = [UIFont systemFontOfSize:14.0f];
@@ -248,7 +247,7 @@
         [cell addSubview:title];
         [title release];
         
-        UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 210, 17)];
+        UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(80, 15, 210, 14)];
         
         switch (indexPath.row) {
             case 0:
@@ -258,20 +257,20 @@
                 if([[cussInfo objectForKey:@"result"] isEqualToString:@"1"])
                 {
                     value.text = @"已值机";
-                    value.textColor = [UIColor greenColor];
+                    [value setTextColor:[UIColor greenColor]];
                 }
                 break;
             case 2:
-                value.text = [cussInfo objectForKey:@"name_ch"];
+                if(cussInfo != nil)
+                {
+                    value.text = [NSString stringWithFormat:@"%@%@", [cussInfo objectForKey:@"airlinecode"], [cussInfo objectForKey:@"airlineNo"]];
+                }
                 break;
             case 3:
                 value.text = [cussInfo objectForKey:@"seatNo"];
                 break;
             case 4:
-                value.text = [cussInfo objectForKey:@"bordingNo"];
-                break;
-            case 5:
-                value.text = [NSString stringWithFormat:@"%@:%@", [[cussInfo objectForKey:@"bdt"] stringByReplacingCharactersInRange:NSMakeRange(2, 2) withString:@""], [[cussInfo objectForKey:@"bdt"] stringByReplacingCharactersInRange:NSMakeRange(0, 2) withString:@""]];
+                value.text = [cussInfo objectForKey:@"name_ch"];
                 break;
             default:
                 break;
