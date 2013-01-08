@@ -161,6 +161,9 @@
     
     
     self.resultArray = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
+    
+    
+    
     [self setNav];
     
 //    LoginBusiness  *bis = [[LoginBusiness alloc] init];

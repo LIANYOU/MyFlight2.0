@@ -133,6 +133,7 @@
     
     
     FMDatabase *db = [self openDatabase];
+    
     static BOOL isDataBaseNew =false;
     
     

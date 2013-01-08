@@ -153,32 +153,32 @@
 {
     [super viewDidLoad];
     
-    CommonContact *data = [[CommonContact alloc] init];
-    data.contactId = @"1234567";
-    data.name= @"fuck/you";
-    data.type =@"01";
-    data.certType=@"1";
-    data.certNo =@"768769823176492384671";
-    data.birtyhday = @"1991-12-14";
-    
-    data.contactId = @"133";
-    
-    [CommonContact_LocalTmpDBHelper addCommonContact_UnLogin:data];
-    
-    
-    
-    [CommonContact_LocalTmpDBHelper deleteCommonContact_UnLogin:data];
-    
-    //    [CommonContact_LocalTmpDBHelper findAllCommonContact_UnLogin];
-    
-    data.name = @"fuck/youbitch";
-    
-    //    [CommonContact_LocalTmpDBHelper updateCommonContact_UnLogin:data];
-    
-    
-    
-    [CommonContact_LocalTmpDBHelper findAllCommonContact_UnLogin];
-    
+//    CommonContact *data = [[CommonContact alloc] init];
+//    data.contactId = @"1234567";
+//    data.name= @"fuck/you";
+//    data.type =@"01";
+//    data.certType=@"1";
+//    data.certNo =@"768769823176492384671";
+//    data.birtyhday = @"1991-12-14";
+//    
+//    data.contactId = @"133";
+//    
+//    [CommonContact_LocalTmpDBHelper addCommonContact_UnLogin:data];
+//    
+//    
+//    
+//    [CommonContact_LocalTmpDBHelper deleteCommonContact_UnLogin:data];
+//    
+//    //    [CommonContact_LocalTmpDBHelper findAllCommonContact_UnLogin];
+//    
+//    data.name = @"fuck/youbitch";
+//    
+//    //    [CommonContact_LocalTmpDBHelper updateCommonContact_UnLogin:data];
+//    
+//    
+//    
+//    [CommonContact_LocalTmpDBHelper findAllCommonContact_UnLogin];
+//    
     
     
     [self setNav];
