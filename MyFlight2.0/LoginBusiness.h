@@ -12,7 +12,7 @@
 
 @interface LoginBusiness : NSObject
 
-@property(nonatomic,assign)id<ServiceDelegate> delegate;
+@property(nonatomic,assign)id<ServiceDelegate> delegate; 
 
 //登录
 - (void) loginWithName:(NSString *) name password:(NSString *) passwd andDelegate:(id<ServiceDelegate>) delegate;
@@ -35,21 +35,25 @@
 - (void) getSecretCode:(NSString *) receivedMobile requestType:(NSString *) type andDelegate:(id<ServiceDelegate>) delegate;
 
 
-
 //查询常用联系人
 - (void) getCommonPassengerWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate;
 
 //编辑常用联系人 
-- (void) editCommonPassengerWithMemberId:(NSString *) memberId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
+- (void) editCommonPassengerWithMemberId:(NSString *) memberId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate  NS_DEPRECATED_IOS(3_0, 4_0);
 
 //编辑常用联系人 新方法
-- (void) editCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate;
+- (void) editCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate ;
 
 
 //增加常用联系人
 - (void) addCommonPassengerWithPassengerName:(NSString *) name type:(NSString *) type certType:(NSString *) certType certNo:(NSString *)certNo userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
+
+
+
+
+
 //增加联系人新方法
-- (void) addCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate;
+- (void) addCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate NS_DEPRECATED_IOS(2_0, 3_0); 
 
 
 //删除常用联系人

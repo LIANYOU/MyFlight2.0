@@ -11,6 +11,7 @@
 #import "LoginBusiness.h"
 #import "UIQuickHelp.h"
 #import "AppConfigure.h"
+#import "UIButton+BackButton.h"
 @interface RegisterViewController ()
 {
     
@@ -24,6 +25,29 @@
 @implementation RegisterViewController
 
 
+
+
+
+- (void) setNav{
+    
+    UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
+       
+    
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem=backBtn1;
+    [backBtn1 release];
+
+}
+
+
+- (void) back{
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,19 +60,24 @@
 - (void)viewDidLoad
 {
     
+    
+  [self setNav];
+    
+    
+    
+    
     [UIQuickHelp setRoundCornerForView:self.thisView withRadius:8];
     
-    [[self.thisView layer] setShadowOffset:CGSizeMake(1, 1)];
-    [self.thisView.layer setShadowRadius:3];
-    [self.thisView.layer setShadowOpacity:0.5];
-    [self.thisView.layer setShadowColor:[UIColor whiteColor].CGColor];
     
     
-//    [self.thisView.layer setCornerRadius:3];
-   [self.thisView.layer setBorderWidth:0.3];
-    [self.thisView.layer setBorderColor:[UIColor whiteColor].CGColor];
-//    
-//    [self.thisView.layer set]
+    
+    [UIQuickHelp setRoundCornerForView:self.thisView withRadius:8];
+    [UIQuickHelp setBorderForView:self.thisView withWidth:1 withColor:[UIColor colorWithRed:206/255.0 green:197/255.0 blue:184/255.0 alpha:1]];
+    
+    [self.thisView.layer setShadowColor:[UIColor colorWithRed:206/255.0 green:197/255.0 blue:184/255.0 alpha:1].CGColor];
+    [self.thisView.layer setShadowRadius:2];
+    [self.thisView.layer setShadowOffset:CGSizeMake(1, 3)];
+    
     
     
     self.accountFiled.delegate = self;

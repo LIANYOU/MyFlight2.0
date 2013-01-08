@@ -13,7 +13,7 @@
 #import "AppConfigure.h"
 #import "LoginBusiness.h"
 #import "UIQuickHelp.h"
-
+#import "UIButton+BackButton.h"
 @interface LookForPasswordFirstStepViewController ()
 
 @end
@@ -29,9 +29,31 @@
     return self;
 }
 
+- (void) setNav{
+    
+    UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
+    
+    
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem=backBtn1;
+    [backBtn1 release];
+    
+}
+
+
+- (void) back{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setNav];
     self.title  =@"找回密码";
     // Do any additional setup after loading the view from its nib.
 }

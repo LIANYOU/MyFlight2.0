@@ -18,6 +18,7 @@
 #import "CommonContact.h"
 #import "CommontContactSingle.h"
 #import "OrderListModelData.h"
+#import "CommonContact_LocalTmpDBHelper.h"
 @implementation LoginInNetworkHelper
 
 #pragma mark -
@@ -810,9 +811,22 @@
                     
                     
                     CCLog(@"联系人Name = %@",name);
+                    
                     CommonContact *passenger = [[CommonContact alloc] initWithName:name type:type certType:certType certNo:certNo contactId:passengerId];
                     
                     
+                    
+                   BOOL  flag = [CommonContact_LocalTmpDBHelper addCommonContact_Login:passenger];
+                    
+                    
+                    if (flag) {
+                        
+                        CCLog(@"插入成功");
+                    } else{
+                        
+                        CCLog(@"失败");
+                    }
+                                       
                     [passSingle.passengerArray addObject:passenger];
                     [passenger release];
                     
@@ -821,27 +835,34 @@
                     
                 }
                 
-                
-                
-                
-                
-                
-                
                 CCLog(@"查询到的联系人数量为%d",[passSingle.passengerArray count]);
                 
                 
                 
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
+                    
+                    [delegate requestDidFinishedWithRightMessage:messageDic];
+                    
+                } else{
+                    CCLog(@"查询乘机人 代理为空");
+                }
                 
                 
-                [delegate requestDidFinishedWithRightMessage:messageDic];
+                
                 
             } else{
                 
                 //message 长度不为0 有错误信息
-                [messageDic setObject:message forKey:KEY_message];
+                
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                    
+                    [messageDic setObject:message forKey:KEY_message];
+                    
+                    [delegate requestDidFinishedWithFalseMessage:messageDic];
+                    
+                }
                 
                 
-                [delegate requestDidFinishedWithFalseMessage:messageDic];
                 
             }
             
@@ -850,9 +871,14 @@
         } else{
             NSLog(@"解析有错误");
             
+            if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                
+                [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+                
+            }
             
-            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
-            [delegate requestDidFinishedWithFalseMessage:messageDic];
             
             return ;
             
@@ -864,18 +890,16 @@
     
     [formRequst setFailedBlock:^{
         
-        
-        
-        
-        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
-        
-        [delegate requestDidFailed:messageDic];
-        
+        if (delegate&&[delegate respondsToSelector:@selector(requestDidFailed:)]) {
+            
+            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+            [delegate requestDidFailed:messageDic];
+            
+            
+        }
         
         
     }];
-    
-    
     
     
     [formRequst startAsynchronous];
@@ -887,6 +911,13 @@
 }
 
 
+//增加联系人新方法
++ (BOOL) addCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate{
+    
+    
+    
+    return true;
+}
 
 
 
@@ -904,6 +935,8 @@
     NSString *certType = [bodyDic objectForKey:KEY_Passenger_CertType];
     NSString *certNo = [bodyDic objectForKey:KEY_Passenger_CertNo];
     
+    
+        
     
     
     
@@ -974,19 +1007,29 @@
                 
                 // NSLog(@"成功登陆后返回的数据：%@",data);
                 
+           
+                NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
+                
+                [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
+                [self getCommonPassenger:dic delegate:delegate];
+                [dic release];
+
+                        
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
+                    
+                    [delegate requestDidFinishedWithRightMessage:messageDic];
+                    
+                }
                 
                 
-                
-                
-                [delegate requestDidFinishedWithRightMessage:messageDic];
                 
             } else{
                 
                 //message 长度不为0 有错误信息
                 [messageDic setObject:message forKey:KEY_message];
                 
-                
-                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                                
+               
                 
             }
             
@@ -997,7 +1040,12 @@
             
             
             [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
-            [delegate requestDidFinishedWithFalseMessage:messageDic];
+            
+            if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+            }
+
             
             return ;
             
@@ -1014,7 +1062,13 @@
         
         [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
         
-        [delegate requestDidFailed:messageDic];
+        if (delegate&&[delegate respondsToSelector:@selector(requestDidFailed:)]) {
+            
+            [delegate requestDidFailed:messageDic];
+            
+        }
+        
+        
         
         
         
@@ -1036,7 +1090,7 @@
 
 //编辑常用联系人 新方法
 
-+ (BOOL) editCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate{
++ (BOOL) editCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate {
     
     NSString *name = passengerData.name;
     NSString *type = passengerData.type;
@@ -1273,18 +1327,28 @@
                 
                 
                 
+                NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
                 
-                
-                [delegate requestDidFinishedWithRightMessage:messageDic];
-                
+                [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
+                [self getCommonPassenger:dic delegate:delegate];
+                [dic release];
+
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
+                    
+                     [delegate requestDidFinishedWithRightMessage:messageDic];
+                    
+                }
+                    
             } else{
                 
                 //message 长度不为0 有错误信息
                 [messageDic setObject:message forKey:KEY_message];
                 
-                
-                [delegate requestDidFinishedWithFalseMessage:messageDic];
-                
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                    
+                    [delegate requestDidFinishedWithFalseMessage:messageDic];
+                    
+                }
             }
             
             
@@ -1294,8 +1358,14 @@
             
             
             [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
-            [delegate requestDidFinishedWithFalseMessage:messageDic];
             
+            if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+            }
+
+                     
             return ;
             
         }
@@ -1306,12 +1376,15 @@
     
     [formRequst setFailedBlock:^{
         
-        
-        
-        
         [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
         
-        [delegate requestDidFailed:messageDic];
+        if (delegate&&[delegate respondsToSelector:@selector(requestDidFailed:)]) {
+            
+            [delegate requestDidFailed:messageDic];
+            
+        }
+        
+        
         
         
         

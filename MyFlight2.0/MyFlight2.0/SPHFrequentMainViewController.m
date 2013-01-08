@@ -40,7 +40,7 @@
 
 - (void) initThisView{
     
-    self.footView.frame  =CGRectMake(0, MainHeight_withoutNavBar-54, 320, 54);
+    self.footView.frame  =CGRectMake(0, MainHeight_withNavBar-54, 320, 54);
     [self.view addSubview:self.footView];
     
     self.thisTableView.backgroundView.backgroundColor = [UIColor clearColor];

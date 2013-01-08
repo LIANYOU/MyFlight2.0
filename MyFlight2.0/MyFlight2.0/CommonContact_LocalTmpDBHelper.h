@@ -13,6 +13,7 @@
 
 
 
+//未登录使用 
 
 //查找所有的联系人 
 + (NSMutableArray *) findAllCommonContact_UnLogin;
@@ -25,6 +26,13 @@
 
 //更新联系人 
 + (BOOL) updateCommonContact_UnLogin:(CommonContact *)contactData;
+
+
+
+
+
+//登录用户 使用 
+
 
 
 

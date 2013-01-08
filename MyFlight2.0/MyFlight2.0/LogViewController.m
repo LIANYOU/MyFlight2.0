@@ -47,6 +47,13 @@
 {
     [super viewDidLoad];
     
+    [UIQuickHelp setRoundCornerForView:self.thisViewLogin withRadius:8];
+    [UIQuickHelp setBorderForView:self.thisViewLogin withWidth:1 withColor:[UIColor colorWithRed:206/255.0 green:197/255.0 blue:184/255.0 alpha:1]];
+    
+    [self.thisViewLogin.layer setShadowColor:[UIColor colorWithRed:206/255.0 green:197/255.0 blue:184/255.0 alpha:1].CGColor];
+    [self.thisViewLogin.layer setShadowRadius:2];
+    [self.thisViewLogin.layer setShadowOffset:CGSizeMake(1, 3)];
+    
     //新浪微博登陆初始化定义
     //    sinaweibo = [[SinaWeibo alloc] initWithAppKey:sinaWeiboAppKey appSecret:sinaWeiboAppSecret appRedirectURI:sinaWeiboAppRedirectURI andDelegate:self];
     
@@ -76,11 +83,7 @@
     
     loginBusiness = [[LoginBusiness alloc] init];
     
-    
-    
-    
-    
-    loginSingle =[IsLoginInSingle shareLoginSingle];
+     loginSingle =[IsLoginInSingle shareLoginSingle];
     
     //默认记住密码
     //    isRemember = true;
@@ -108,10 +111,21 @@
     logNumber.text = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_Default_AccountName];
     
     
+//    if (iPhone5) {
+//        
+//        CCLog(@"是iPhone5");
+//        
+//        ScrollerView.contentSize = CGSizeMake(320, MainHeight_withNavBar+10);
+//            
+//    } else{
+//        
+//        ScrollerView.contentSize =CGSizeMake(320, <#CGFloat height#>)
+//    }
     
-    ScrollerView.contentSize = CGSizeMake(320, 600);
-    self.title = @"账户登录";
     
+    
+    
+    self.title = @"用户登录";
     
     
     
@@ -130,6 +144,7 @@
     [loginBusiness release];
     [ScrollerView release];
     [_remembePasswordBn release];
+    [_thisViewLogin release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -141,6 +156,7 @@
     [ScrollerView release];
     ScrollerView = nil;
     [self setRemembePasswordBn:nil];
+    [self setThisViewLogin:nil];
     [super viewDidUnload];
 }
 
@@ -169,6 +185,17 @@
     
 }
 
+
+- (void)initLocalDatabase{
+    
+    
+    LoginBusiness *bis =[[LoginBusiness alloc] init];
+
+    [bis getCommonPassengerWithMemberId:Default_UserMemberId_Value andDelegate:nil];
+    
+    [bis release];
+    
+}
 
 
 #pragma mark -
@@ -208,9 +235,14 @@
     NSLog(@"登录成功后用户id为：%@",memberID);
     NSLog(@"用户id =%@",idUser);
     NSLog(@"token = %@",token);
+    
     sleep(1);
     
     
+    [self performSelectorInBackground:@selector(initLocalDatabase) withObject:nil];
+    
+    
+        
     
     if ([self.loginSuccessReturnType isEqualToString:Login_Success_ReturnMyCenterDefault_Type]) {
         

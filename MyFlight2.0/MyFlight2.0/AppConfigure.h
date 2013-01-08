@@ -46,7 +46,7 @@
 
 #define MainWidth ScreenWidth //主宽度
 
-#define  MainHeight_withoutNavBar MainHeight-NavgationBarHeight
+#define  MainHeight_withNavBar MainHeight-NavgationBarHeight
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 

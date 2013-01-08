@@ -121,8 +121,7 @@
     
     
     
-    
-    
+        
     
 }
 
@@ -131,9 +130,9 @@
 //编辑常用联系人 新方法
 - (void) editCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate{
     
+   
     
-    
-    
+
     [LoginInNetworkHelper editCommonPassengerWithPassengerData:passengerData andDelegate:delegate];
     
     
@@ -175,10 +174,26 @@
 }
 
 
+
+//增加联系人新方法
+- (void) addCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate{
+    
+    
+    
+    
+    
+}
+
+
+
+
+
+
 //找回密码操作
 
 - (void) findPasswd_getSecrectCode:(NSString *) mobile andDelegate:(id<ServiceDelegate>) delegate{
     
+   
     
     [LoginInNetworkHelper findPasswd_getSecrectCode:mobile andDelegate:delegate];
     

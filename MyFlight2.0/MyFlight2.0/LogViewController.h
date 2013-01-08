@@ -33,10 +33,25 @@
     //腾讯微博登陆定义
     TCWBEngine                  *weiboEngine;
 }
+
+
+
+
+@property (retain, nonatomic) IBOutlet UIView *thisViewLogin;
+
+
+
 @property (nonatomic, retain) TCWBEngine   *weiboEngine;
 //@property (readonly, nonatomic) SinaWeibo *sinaweibo;
 //属性 传值 记录 登录的类型
 @property(nonatomic,retain)NSString  *loginSuccessReturnType;
+
+
+
+
+
+
+
 
 
 - (IBAction)beginLoging:(id)sender;      // 登陆

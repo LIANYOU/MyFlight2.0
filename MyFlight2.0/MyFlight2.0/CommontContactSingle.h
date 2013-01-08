@@ -13,6 +13,7 @@
 @interface CommontContactSingle : NSObject
 
 @property(nonatomic,retain)CommonContact *commonPassengerData;
+
 @property(nonatomic,retain)NSMutableArray *passengerArray;
 
 + (id) shareCommonContact;

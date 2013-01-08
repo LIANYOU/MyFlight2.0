@@ -17,7 +17,8 @@
 #import "CommontContactSingle.h"
 #import "CommonContact.h"
 #import "AddPersonController.h"
-
+#import "CommonContact_LocalTmpDBHelper.h"
+#import "UIButton+BackButton.h"
 @interface CommonContactViewController ()
 {
     
@@ -116,18 +117,26 @@
 }
 #pragma mark -
 #pragma mark 设置导航栏
+
 - (void) setNav{
     
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
+    
+    
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
     
+ 
+    
+    UIButton *rightBn = [UIButton backButtonType:2 andTitle:@""];
+    
+    
+    [rightBn setBackgroundImage:[UIImage imageNamed:@"icon_add.png"] forState:0];
+    
+    [rightBn setBackgroundImage:[UIImage imageNamed:@"icon_add_click.png"] forState:UIControlStateHighlighted];
     
     
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addCommonPassenger)];
@@ -137,8 +146,8 @@
     self.navigationItem.rightBarButtonItem = right;
     
     [right release];
-    
-    
+
+     
 }
 
 
@@ -151,15 +160,18 @@
     _resultArray = [[NSMutableArray alloc] init];
     
     
+    self.resultArray = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
     [self setNav];
     
-    LoginBusiness  *bis = [[LoginBusiness alloc] init];
+//    LoginBusiness  *bis = [[LoginBusiness alloc] init];
     
     NSString *memberId =Default_UserMemberId_Value;
     
     CCLog(@"在常用联系人查询界面 memberId= %@",memberId);
     
-    [bis getCommonPassengerWithMemberId:memberId andDelegate:self];
+    
+    
+//    [bis getCommonPassengerWithMemberId:memberId andDelegate:self];
     
     self.title = @"常用乘机人";
     

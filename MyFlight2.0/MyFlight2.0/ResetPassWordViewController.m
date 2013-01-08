@@ -12,6 +12,8 @@
 #import "UIQuickHelp.h"
 #import "LogViewController.h"
 #import "ViewController.h"
+#import "UIButton+BackButton.h"
+#import "MBProgressHUD.h"
 @interface ResetPassWordViewController ()
 {
     
@@ -32,9 +34,33 @@
     return self;
 }
 
+
+
+- (void) setNav{
+    
+    UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
+    
+    
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem=backBtn1;
+    [backBtn1 release];
+    
+}
+
+
+- (void) back{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setNav];
     self.title = @"重置密码";
     
     isResetPwdSuccess = NO;
@@ -118,6 +144,9 @@
     NSString *returnMessage = @"恭喜您，重置密码成功";
     
     isResetPwdSuccess = YES;
+    
+    
+    
     [UIQuickHelp showAlertViewWithTitle:nil message:returnMessage   delegate:self cancelButtonTitle:@"回首页" otherButtonTitles:@"登录"];
         
 

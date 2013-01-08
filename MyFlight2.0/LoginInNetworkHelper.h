@@ -38,6 +38,15 @@
 //增加常用联系人
 + (BOOL) addCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
 
+
+//增加联系人新方法
++ (BOOL) addCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate;
+
+
+
+
+
+
 //编辑常用联系人
 + (BOOL) editCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
 

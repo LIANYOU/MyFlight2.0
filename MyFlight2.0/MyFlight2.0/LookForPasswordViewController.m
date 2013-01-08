@@ -11,7 +11,7 @@
 #import "AppConfigure.h"
 #import "LoginBusiness.h"
 #import "UIQuickHelp.h"
-
+#import "UIButton+BackButton.h"
 @interface LookForPasswordViewController ()
 {
     
@@ -33,9 +33,32 @@
     return self;
 }
 
+- (void) setNav{
+    
+    UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
+    
+    
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem=backBtn1;
+    [backBtn1 release];
+    
+}
+
+
+- (void) back{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setNav];
     self.title = @"找回密码";
     CCLog(@"找回密码时 用户上一个界面 用户输入的手机号为：%@",self.userMobile);
     isSecretBnEnabled = YES;

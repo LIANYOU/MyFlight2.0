@@ -409,14 +409,20 @@
     LoginBusiness *bis = [[LoginBusiness alloc] init];
     
     if ([self.navTitleString isEqualToString:@"添加乘机人"]) {
+        
+        
+        
+        
         [bis addCommonPassengerWithPassengerName:passengerName
                                             type:passenType
                                         certType:certtype
                                           certNo:certMember
                                          userDic:nil
                                      andDelegate:self];
+        
     }
     if ([self.navTitleString isEqualToString:@"编辑乘机人"]) {
+        
         CommonContact *contact = [[CommonContact alloc] initWithName:passengerName
                                                                 type:passenType
                                                             certType:certtype
