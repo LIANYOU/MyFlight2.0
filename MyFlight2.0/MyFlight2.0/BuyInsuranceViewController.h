@@ -33,6 +33,7 @@
 - (IBAction)swithOFFOrON:(UISwitch*)sender;
 
 -(void)getDate:(void (^) (NSString * idntity,NSString * type))string;
+@property (retain, nonatomic) IBOutlet UIView *textView;
 
 //代理
 @property(nonatomic,assign)id<BuyInsuranceViewControllerDelegate> delegate;

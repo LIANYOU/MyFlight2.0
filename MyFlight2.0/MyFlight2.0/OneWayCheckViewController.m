@@ -17,7 +17,7 @@
 #import "SelectCalendarController.h"
 #import "HistoryCheckDataBase.h"
 #import "UIImage+scaleImage.h"
-
+#import "TransitionString.h"
 #import "UIButton+BackButton.h"
 @interface OneWayCheckViewController ()
 {
@@ -34,8 +34,8 @@
     UILabel * changeString;
     
     NSString * oneGoData;
-    NSString * twoGoData;
-    NSString * twoGoBack;
+
+//    NSString * twoGoBack;
     
     
     int todayCount;
@@ -100,6 +100,7 @@ int whatday(int year,int month,int day);
     
     flag = 1;
     oneFlag = 1;
+    searchFlag = 1;
     
     searchDate.startPortName = startAirport.text;
     searchDate.endPortName = endAirport.text;
@@ -144,16 +145,18 @@ int whatday(int year,int month,int day);
 
     
     oneGoData = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay ];
+    
+    NSString * nextDAY = [TransitionString getNextDay:oneGoData];
+
    
     NSString * string = [NSString stringWithFormat:@"%@-%@",strMonth,strDay];
-    NSString * string1 = [NSString stringWithFormat:@"%@-%02d",strMonth,[strDay intValue]+1];
-    
+    NSString * string1 = [nextDAY substringWithRange:NSMakeRange(5, 5)];
     [startDate setText:string];
     [returnDate setText:string1];
     [nextDayTitle setText:@"明天"];
     oneSatrtDate.text = string;
     
-    twoGoBack = [[NSString alloc] initWithFormat:@"%4d-%@",year,string1];
+    self.twoGoBack = nextDAY;
   
     [dateformatter release];
     
@@ -173,7 +176,6 @@ int whatday(int year,int month,int day);
     NSArray * array = [[NSArray alloc]initWithObjects:@"单程",@"往返", nil];
     mySegmentController  = [[SVSegmentedControl alloc]initWithSectionTitles:array];
     mySegmentController.textColor = myFirstColor;
-//    mySegmentController.font = [UIFont fontWithName:@"Bold" size:20];
     mySegmentController.backgroundImage = [UIImage imageNamed:@"tab_bg.png"];
     mySegmentController.height = 40;
     mySegmentController.LKWidth = 150;
@@ -436,7 +438,7 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
         
         [returnDate setText:[NSString stringWithFormat:@"%@-%@", strMonth, strDay]];
         
-        twoGoBack = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay];
+        self.twoGoBack = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay];
         
         switch (selectDayCount- todayCount) {
             case 0:
@@ -526,8 +528,24 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
         
           }
     else{
+        
+        NSArray * GoARR = [oneGoData componentsSeparatedByString:@"-"];
+        int goCount = whatday([[GoARR objectAtIndex:0]intValue], [[GoARR objectAtIndex:1]intValue], [[GoARR objectAtIndex:2]intValue]);
+        
+        NSArray * backARR = [self.twoGoBack componentsSeparatedByString:@"-"];
+         int backCount = whatday([[backARR objectAtIndex:0]intValue], [[backARR objectAtIndex:1]intValue], [[backARR objectAtIndex:2]intValue]);
+        
+        if (goCount>=backCount) {
+            
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"选择日期有误，请重新选择。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            
+            return;
+          
+        }
        
-        NSLog(@"首页往返机票查询条件 ： %@%@%@，%@",startCode,endCode,oneGoData,twoGoBack);
+        NSLog(@"首页往返机票查询条件 ： %@%@%@，%@",startCode,endCode,oneGoData,self.twoGoBack);
         searchAirPort = [[SearchAirPort alloc] initWithdpt:startCode arr:endCode date:oneGoData ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
         show.startPort = startAirport.text;
@@ -537,7 +555,7 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
         
         show.goDate = oneGoData;
         
-        show.goBackDate = twoGoBack;
+        show.goBackDate = self.twoGoBack;
         
         // 加入到历史数据库中
         [HistoryCheckDataBase addHistoryFlightWithStartName:startAirport.text endName:endAirport.text startApCode:startCode  endApCode:endCode searchFlag: [NSString stringWithFormat:@"%d",2 ]];

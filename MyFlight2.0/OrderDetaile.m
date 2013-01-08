@@ -148,6 +148,7 @@
 
     OrderBasicInfoWJ * order = [[OrderBasicInfoWJ alloc] init];
     
+    order.orderId = [dic objectForKey:@"orderId"];
     order.code = [dic objectForKey:@"code"];
     order.createDate = [dic objectForKey:@"createDate"];
     order.stsCh = [dic objectForKey:@"stsCh"];

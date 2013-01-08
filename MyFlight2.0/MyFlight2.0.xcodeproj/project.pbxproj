@@ -267,6 +267,7 @@
 		1827BE7E1683541E00349FE1 /* l_ZH.png in Resources */ = {isa = PBXBuildFile; fileRef = 1827BE5A1683541E00349FE1 /* l_ZH.png */; };
 		18478C65167332AD00D3AFCD /* SearchFlightCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18478C64167332AD00D3AFCD /* SearchFlightCondition.m */; };
 		1852CC7E16837F5600431A9B /* TravePhoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852CC7D16837F5600431A9B /* TravePhoneCell.xib */; };
+		1855579B169AAFE800AB5FAB /* CancelOrdre.m in Sources */ = {isa = PBXBuildFile; fileRef = 1855579A169AAFE800AB5FAB /* CancelOrdre.m */; };
 		18630444168EAA1D0022CB2F /* WriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18630442168EAA1C0022CB2F /* WriteOrderViewController.m */; };
 		18630445168EAA1D0022CB2F /* WriteOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */; };
 		188B728C16915C69004F09B8 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B728B16915C69004F09B8 /* MapManager.m */; };
@@ -461,6 +462,11 @@
 		18D1051A1682A8DE00F112D2 /* bg_green_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D105181682A8DE00F112D2 /* bg_green_.png */; };
 		18D1051E1682ABEB00F112D2 /* NewChooseSpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1051D1682ABEB00F112D2 /* NewChooseSpaceCell.m */; };
 		18D105201682AC0100F112D2 /* NewChooseSpaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1051F1682AC0100F112D2 /* NewChooseSpaceCell.xib */; };
+		18D15A6B169BBEE000A9AD08 /* OneWayCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D15A6A169BBEE000A9AD08 /* OneWayCheckViewController.m */; };
+		18D15A6E169BF51400A9AD08 /* PostCity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18D15A6D169BF51400A9AD08 /* PostCity.sqlite */; };
+		18D15A70169BF53F00A9AD08 /* postCityList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D15A6F169BF53F00A9AD08 /* postCityList.plist */; };
+		18D15A73169BF57E00A9AD08 /* PostCityData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D15A72169BF57E00A9AD08 /* PostCityData.m */; };
+		18D15A76169BF69B00A9AD08 /* PostCityDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D15A75169BF69B00A9AD08 /* PostCityDatabase.m */; };
 		18D1970E16816C6C00FEE73A /* icon_checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970316816C6C00FEE73A /* icon_checkin.png */; };
 		18D1970F16816C6C00FEE73A /* icon_Distributed.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970416816C6C00FEE73A /* icon_Distributed.png */; };
 		18D1971016816C6C00FEE73A /* icon_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D1970516816C6C00FEE73A /* icon_location.png */; };
@@ -544,7 +550,6 @@
 		18DDB3C416956965004CEC75 /* OrderBasicInfoWJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3C316956964004CEC75 /* OrderBasicInfoWJ.m */; };
 		18DDB3FD16957A89004CEC75 /* WJOrderBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDB3FC16957A87004CEC75 /* WJOrderBasicCell.m */; };
 		18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DDB3FE16957A9A004CEC75 /* WJOrderBasicCell.xib */; };
-		18DF892F16881F8B00D2DDAE /* OneWayCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF892D16881F8B00D2DDAE /* OneWayCheckViewController.m */; };
 		18DF893016881F8B00D2DDAE /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF892E16881F8B00D2DDAE /* OneWayCheckViewController.xib */; };
 		18DF893416881FAD00D2DDAE /* HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF893216881FAD00D2DDAE /* HistoryCell.m */; };
 		18DF893516881FAD00D2DDAE /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF893316881FAD00D2DDAE /* HistoryCell.xib */; };
@@ -1121,6 +1126,8 @@
 		18478C63167332AD00D3AFCD /* SearchFlightCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFlightCondition.h; sourceTree = "<group>"; };
 		18478C64167332AD00D3AFCD /* SearchFlightCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFlightCondition.m; sourceTree = "<group>"; };
 		1852CC7D16837F5600431A9B /* TravePhoneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TravePhoneCell.xib; sourceTree = "<group>"; };
+		18555799169AAFE800AB5FAB /* CancelOrdre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelOrdre.h; sourceTree = "<group>"; };
+		1855579A169AAFE800AB5FAB /* CancelOrdre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelOrdre.m; sourceTree = "<group>"; };
 		18630441168EAA1B0022CB2F /* WriteOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteOrderViewController.h; sourceTree = "<group>"; };
 		18630442168EAA1C0022CB2F /* WriteOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteOrderViewController.m; sourceTree = "<group>"; };
 		18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteOrderViewController.xib; sourceTree = "<group>"; };
@@ -1368,6 +1375,14 @@
 		18D1051C1682ABEB00F112D2 /* NewChooseSpaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewChooseSpaceCell.h; sourceTree = "<group>"; };
 		18D1051D1682ABEB00F112D2 /* NewChooseSpaceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewChooseSpaceCell.m; sourceTree = "<group>"; };
 		18D1051F1682AC0100F112D2 /* NewChooseSpaceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewChooseSpaceCell.xib; sourceTree = "<group>"; };
+		18D15A69169BBEE000A9AD08 /* OneWayCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWayCheckViewController.h; sourceTree = "<group>"; };
+		18D15A6A169BBEE000A9AD08 /* OneWayCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneWayCheckViewController.m; sourceTree = "<group>"; };
+		18D15A6D169BF51400A9AD08 /* PostCity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = PostCity.sqlite; sourceTree = "<group>"; };
+		18D15A6F169BF53F00A9AD08 /* postCityList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = postCityList.plist; sourceTree = "<group>"; };
+		18D15A71169BF57E00A9AD08 /* PostCityData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCityData.h; sourceTree = "<group>"; };
+		18D15A72169BF57E00A9AD08 /* PostCityData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCityData.m; sourceTree = "<group>"; };
+		18D15A74169BF69B00A9AD08 /* PostCityDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCityDatabase.h; sourceTree = "<group>"; };
+		18D15A75169BF69B00A9AD08 /* PostCityDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCityDatabase.m; sourceTree = "<group>"; };
 		18D1970316816C6C00FEE73A /* icon_checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_checkin.png; sourceTree = "<group>"; };
 		18D1970416816C6C00FEE73A /* icon_Distributed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Distributed.png; sourceTree = "<group>"; };
 		18D1970516816C6C00FEE73A /* icon_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_location.png; sourceTree = "<group>"; };
@@ -1491,8 +1506,6 @@
 		18DDB3FB16957A86004CEC75 /* WJOrderBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJOrderBasicCell.h; sourceTree = "<group>"; };
 		18DDB3FC16957A87004CEC75 /* WJOrderBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJOrderBasicCell.m; sourceTree = "<group>"; };
 		18DDB3FE16957A9A004CEC75 /* WJOrderBasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WJOrderBasicCell.xib; sourceTree = "<group>"; };
-		18DF892C16881F8B00D2DDAE /* OneWayCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWayCheckViewController.h; sourceTree = "<group>"; };
-		18DF892D16881F8B00D2DDAE /* OneWayCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneWayCheckViewController.m; sourceTree = "<group>"; };
 		18DF892E16881F8B00D2DDAE /* OneWayCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneWayCheckViewController.xib; sourceTree = "<group>"; };
 		18DF893116881FAD00D2DDAE /* HistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCell.h; sourceTree = "<group>"; };
 		18DF893216881FAD00D2DDAE /* HistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCell.m; sourceTree = "<group>"; };
@@ -2190,9 +2203,9 @@
 				18E0B6CD167183D300968F01 /* choosePerson */,
 				142793771670699100E2E1E3 /* chooseSpace */,
 				18EAE79416703AA000CA6265 /* cell */,
-				18DF892C16881F8B00D2DDAE /* OneWayCheckViewController.h */,
-				18DF892D16881F8B00D2DDAE /* OneWayCheckViewController.m */,
 				18DF892E16881F8B00D2DDAE /* OneWayCheckViewController.xib */,
+				18D15A69169BBEE000A9AD08 /* OneWayCheckViewController.h */,
+				18D15A6A169BBEE000A9AD08 /* OneWayCheckViewController.m */,
 				18DF893616881FC800D2DDAE /* HistroyCheckViewController.h */,
 				18DF893716881FC800D2DDAE /* HistroyCheckViewController.m */,
 				18DF893816881FC800D2DDAE /* HistroyCheckViewController.xib */,
@@ -2505,8 +2518,6 @@
 				14805B8516782A8E00836353 /* AirPortDataBase.m */,
 				14805B8F16783A1200836353 /* AirPortDataBaseSingleton.h */,
 				14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */,
-				18D41A0A169136BB0014B371 /* UIImage+scaleImage.h */,
-				18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */,
 			);
 			name = CityAndAirPorts;
 			sourceTree = "<group>";
@@ -2814,6 +2825,8 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18D15A6C169BF3BE00A9AD08 /* PostCity */,
+				18555798169AAFB100AB5FAB /* 取消订单 */,
 				18CB6CB41699AB64000DD63B /* 删除特价预约 */,
 				18CB6C8E169944CD000DD63B /* 特价预约通知列表 */,
 				18CB6C62169909C2000DD63B /* PayOnline */,
@@ -2863,6 +2876,8 @@
 				18EAE7BB167069E000CA6265 /* CustomTableViewCell.xib */,
 				18CB4877169155D400780BB7 /* UIButton+BackButton.h */,
 				18CB4878169155D400780BB7 /* UIButton+BackButton.m */,
+				18D41A0A169136BB0014B371 /* UIImage+scaleImage.h */,
+				18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */,
 				1823C9C1166F24240079CA3F /* Model */,
 			);
 			name = View;
@@ -2925,6 +2940,15 @@
 				1827BE5A1683541E00349FE1 /* l_ZH.png */,
 			);
 			path = "航空公司图标";
+			sourceTree = "<group>";
+		};
+		18555798169AAFB100AB5FAB /* 取消订单 */ = {
+			isa = PBXGroup;
+			children = (
+				18555799169AAFE800AB5FAB /* CancelOrdre.h */,
+				1855579A169AAFE800AB5FAB /* CancelOrdre.m */,
+			);
+			name = "取消订单";
 			sourceTree = "<group>";
 		};
 		188B728816915C30004F09B8 /* Map */ = {
@@ -3227,6 +3251,19 @@
 				18CB6CA516998A82000DD63B /* SamllCell.xib */,
 			);
 			name = MyLowOrderList;
+			sourceTree = "<group>";
+		};
+		18D15A6C169BF3BE00A9AD08 /* PostCity */ = {
+			isa = PBXGroup;
+			children = (
+				18D15A6D169BF51400A9AD08 /* PostCity.sqlite */,
+				18D15A6F169BF53F00A9AD08 /* postCityList.plist */,
+				18D15A71169BF57E00A9AD08 /* PostCityData.h */,
+				18D15A72169BF57E00A9AD08 /* PostCityData.m */,
+				18D15A74169BF69B00A9AD08 /* PostCityDatabase.h */,
+				18D15A75169BF69B00A9AD08 /* PostCityDatabase.m */,
+			);
+			name = PostCity;
 			sourceTree = "<group>";
 		};
 		18D196C6168161CC00FEE73A /* TravelAssistant */ = {
@@ -4398,6 +4435,8 @@
 				18CB6CB21699A56D000DD63B /* 航班动态有数据.png in Resources */,
 				18CB6CB31699A56D000DD63B /* 航班动态无数据.png in Resources */,
 				18E083C7169A7A1000FDE3D7 /* ShowLableDetailCell.xib in Resources */,
+				18D15A6E169BF51400A9AD08 /* PostCity.sqlite in Resources */,
+				18D15A70169BF53F00A9AD08 /* postCityList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4502,7 +4541,6 @@
 				145A2D6016845E1C000DAAA1 /* MyOrderListCell.m in Sources */,
 				145A2D6E16855F42000DAAA1 /* ModifyPassWordViewController.m in Sources */,
 				145A2D7516858609000DAAA1 /* MyCheapFlightViewController.m in Sources */,
-				18DF892F16881F8B00D2DDAE /* OneWayCheckViewController.m in Sources */,
 				18DF893416881FAD00D2DDAE /* HistoryCell.m in Sources */,
 				18DF893916881FC800D2DDAE /* HistroyCheckViewController.m in Sources */,
 				18DF893E1688202400D2DDAE /* ShowSelectedResultViewController.m in Sources */,
@@ -4665,6 +4703,10 @@
 				18CB6CA416998A72000DD63B /* SamllCell.m in Sources */,
 				18CB6CB71699ABAD000DD63B /* DeleteOrderList.m in Sources */,
 				18E083C4169A79FF00FDE3D7 /* ShowLableDetailCell.m in Sources */,
+				1855579B169AAFE800AB5FAB /* CancelOrdre.m in Sources */,
+				18D15A6B169BBEE000A9AD08 /* OneWayCheckViewController.m in Sources */,
+				18D15A73169BF57E00A9AD08 /* PostCityData.m in Sources */,
+				18D15A76169BF69B00A9AD08 /* PostCityDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

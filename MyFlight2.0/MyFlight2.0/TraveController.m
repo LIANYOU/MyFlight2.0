@@ -56,27 +56,27 @@
     helpYourselfBtn.tag = 2;
     post.tag = 3;
     
-    [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-    [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-    [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+    [self.image1 setImage:[UIImage imageNamed:@"icon_Default.png"]];
+    [self.image2 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
+    [self.image3 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
 
     
     if (self.flag == 1) {
-        [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
-        [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-        [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+        [self.image1 setImage:[UIImage imageNamed:@"icon_Selected.png"]];
+        [self.image2 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
+        [self.image3 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
 
     }
     if (self.flag == 2) {
-        [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-        [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
-        [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+        [self.image1 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
+        [self.image2 setImage:[UIImage imageNamed:@"icon_Selected.png"] ];
+        [self.image3 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
         
     }
     if (self.flag == 3) {
-        [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-        [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-        [post setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+        [self.image1 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
+        [self.image2 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
+        [self.image3 setImage:[UIImage imageNamed:@"icon_Selected.png"] ];
         
         self.postView.hidden = NO;
     }
@@ -99,9 +99,9 @@
     
     btnTag = sender.tag;
     
-    [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
-    [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-    [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+    [self.image1 setImage:[UIImage imageNamed:@"icon_Selected.png"]];
+    [self.image2 setImage:[UIImage imageNamed:@"icon_Default.png"]];
+    [self.image3 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
     
     self.postView.hidden = YES;
 }
@@ -111,9 +111,9 @@
     
     btnTag = sender.tag;
    
-    [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-    [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
-    [post setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+    [self.image1 setImage:[UIImage imageNamed:@"icon_Default.png"]];
+    [self.image2 setImage:[UIImage imageNamed:@"icon_Selected.png"] ];
+    [self.image3 setImage:[UIImage imageNamed:@"icon_Default.png"]];
 
     self.postView.hidden = YES;
 }
@@ -123,9 +123,9 @@
     
     btnTag = sender.tag;
     
-    [noNeedBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-    [helpYourselfBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
-    [post setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+    [self.image1 setImage:[UIImage imageNamed:@"icon_Default.png"]];
+    [self.image2 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
+    [self.image3 setImage:[UIImage imageNamed:@"icon_Selected.png"]];
 
     self.postView.hidden = NO;
 }
@@ -140,6 +140,9 @@
     [phone release];
     [type release];
     [_backView release];
+    [_image1 release];
+    [_image2 release];
+    [_image3 release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -161,6 +164,9 @@
     [type release];
     type = nil;
     [self setBackView:nil];
+    [self setImage1:nil];
+    [self setImage2:nil];
+    [self setImage3:nil];
     [super viewDidUnload];
 }
 

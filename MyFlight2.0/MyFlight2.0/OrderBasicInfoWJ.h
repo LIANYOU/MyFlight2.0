@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSString * stsCh;   // 订单状态
 @property (nonatomic, retain) NSString * payStsCh;// 支付状态
 @property (nonatomic, retain) NSString * totalMoney;// 总额
+@property (nonatomic, retain) NSString * orderId;// 订单ID
 
 @property (nonatomic, retain) NSString * actualMoney;// 总额
 

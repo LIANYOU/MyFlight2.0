@@ -24,6 +24,7 @@
 @interface ChooseSpaceViewController ()
 {
     int flag ;
+    NSString * nextDayStr;
 }
 
 @end
@@ -53,6 +54,7 @@
     [backBtn1 release];
 
 
+    self.showTableView.tableFooterView = self.footView;
     
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
@@ -65,6 +67,37 @@
         data = self.searchFlight;
     }
     self.flightCode.text =data.temporaryLabel;
+    
+  
+    if (self.flag == 1) {
+        self.goORBackLabel.text = @"单程";
+    }
+    if (self.flag == 2) {
+        self.goORBackLabel.text = @"去程";
+    }
+    else if(self.flag == 3){
+        self.goORBackLabel.text = @"返程";
+    }
+   
+    
+    NSString * date = nil;
+    if ([data.goOrBackFlag isEqualToString:@"1"]) {
+        date = data.beginDate;
+    }
+    else{
+        date = data.backDate;
+    } 
+    
+    nextDayStr =  [TransitionString getNextDay:date];
+    
+    
+    self.nextArr = [nextDayStr componentsSeparatedByString:@"-"];
+    self.dateSparetArr = [data.endTime componentsSeparatedByString:@":"];
+
+    
+    if ([[self.dateSparetArr objectAtIndex:0] intValue]<3) {  // 判断是不是第二天
+        nextDayStr = [NSString stringWithFormat:@"%@日",[self.nextArr objectAtIndex:2]];
+    }
     
     self.changeInfoArr = [NSMutableArray array];
     self.indexPath = [NSMutableArray array];
@@ -117,9 +150,12 @@
 }
 -(void)receive:(NSNotification *)not
 {
-    self.dateArr  = [[NSMutableArray alloc] init];
-    self.dateArr = [[not userInfo] objectForKey:@"arr"];
- 
+    self.dateArr  = [[NSMutableArray alloc] initWithArray:[[not userInfo] objectForKey:@"arr"]];
+
+   
+//    [self.dateArr addObject:@""];
+
+
     self.tempArr = [[NSMutableArray alloc] init];
     for (int i = 0; i<self.dateArr.count; i++) {
         [self.tempArr addObject:@""];
@@ -141,8 +177,6 @@
         [self.changeInfoArr addObject:string];
      
     }
- 
- //    NSLog(@"*****************%d,%d,%d",self.dateArr.count,self.payArr.count,self.childPayArr.count);
     
     [self.showTableView reloadData];
 
@@ -176,6 +210,8 @@
     [_newCell release];
     [_lookFlightBtn release];
     [_lookButton release];
+    [_goORBackLabel release];
+    [_footView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -194,6 +230,8 @@
     [self setNewCell:nil];
     [self setLookFlightBtn:nil];
     [self setLookButton:nil];
+    [self setGoORBackLabel:nil];
+    [self setFootView:nil];
     [super viewDidUnload];
 }
 
@@ -249,7 +287,6 @@
             cell = self.bigCell;
         }
         
-       // NSLog(@"选择舱位bigCell的信息 %@%@%@%@%@%@%@",data.airPort,data.palntType,data.beginTime,data.endTime,data.beginDate,data.startPortThreeCode,data.endPortThreeCode);
         if ([data.goOrBackFlag isEqualToString:@"1"]) {
             cell.scheduleDate.text = data.beginDate;
         }
@@ -262,7 +299,22 @@
         cell.endTime.text = data.endTime;
         cell.beginAirPortName.text = data.startPortName;
         cell.endAirPortName.text = data.endPortName;
-        cell.nextDayLabel.text = @"";  // 判断是不是第二天
+        
+        if ([[self.dateSparetArr objectAtIndex:0] intValue]<3) {  // 判断是不是第二天
+            
+            cell.nextDayLabel.text = [NSString stringWithFormat:@"(明天)"];
+        }
+        else{
+        
+            cell.endAirPortName.frame = CGRectMake(239, 62, 70, 21);
+            cell.endTime.frame = CGRectMake(243, 39, 66, 27);
+            cell.planeImage.frame = CGRectMake(106+15, 48, 75, 20);
+            cell.nextDayLabel.text = @"";  // 判断是不是第二天
+        }
+        
+        
+        
+        cell.userInteractionEnabled = NO;
 
         return cell;
 
@@ -277,51 +329,64 @@
             cell = self.newCell;
         }
 
-        dic = [self.dateArr objectAtIndex:indexPath.row-1];
-       
-        cell.SpaceName.text = [dic objectForKey:@"cabinCN"];
-        cell.payMoney.text = [dic objectForKey:@"price"];
-        cell.ticketCount.text = [TransitionString transitionSeatNum: [dic objectForKey:@"seatNum"] ];
-        cell.discount.text = [dic objectForKey:@"discount"];
-        cell.discount.text = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"cabinCode"]];
         
-        cell.changeSpace.tag = indexPath.row;
-        
-        
-        _firstCellText = [self.tempArr objectAtIndex:indexPath.row-1];
-        
-        
-        CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
-        
-        CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
-        
-        if ( _firstCellText != @"" &&  size.height < 20) {
-            size.height = 25;
-        }
-        
-        cell.view.frame = CGRectMake(0, 0, 320, size.height+60.0f);
-        cell.textCell.lineBreakMode = UILineBreakModeCharacterWrap;
-        cell.textView.frame = CGRectMake(0, 60, 320, size.height);
-        cell.textCell.frame = CGRectMake(10,0, 300, size.height);
-        cell.selectBtn.frame = CGRectMake(10,0, 300, size.height);
-        
-        cell.textView.backgroundColor = [UIColor colorWithRed:237/255.0 green:232/255.0 blue:226/255.0 alpha:1];
-        cell.textCell.font = [UIFont systemFontOfSize:12.0f];
-        cell.textCell.text = _firstCellText;
-        UIColor * myColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
-        cell.textCell.textColor = myColor;
-        cell.wImage.frame = CGRectMake(0, size.height+60.0f, 320, 1);
-        cell.dImage.frame = CGRectMake(0, size.height+61.0f, 320, 1);
-        
-        
-        [cell.selectBtn addTarget:self action:@selector(select:) forControlEvents:UIControlEventTouchUpInside];
-        
-        cell.selectionStyle = 2;
-    
-        
-        [cell.changeSpace addTarget:self action:@selector(changeFlightInfo:) forControlEvents:UIControlEventTouchUpInside];
-        
-        return cell;
+           
+            dic = [self.dateArr objectAtIndex:indexPath.row-1];
+//        if (dic == nil) {
+//            NSLog(@"-----------------------");
+//        }
+            cell.SpaceName.text = [dic objectForKey:@"cabinCN"];
+            cell.payMoney.text = [NSString stringWithFormat:@"￥%@",[dic objectForKey:@"price"]];
+            cell.ticketCount.text = [TransitionString transitionSeatNum: [dic objectForKey:@"seatNum"] ];
+            
+            if ([cell.ticketCount.text isEqualToString:@"已售空"]) {
+                cell.ticketCount.textColor = [UIColor redColor];
+                cell.sortImage.hidden = YES;
+            }
+            
+            
+            cell.discount.text = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"cabinCode"] andCabinName:[dic objectForKey:@"cabinCN"]];
+            
+            
+            
+            cell.changeSpace.tag = indexPath.row;
+            
+            
+            _firstCellText = [self.tempArr objectAtIndex:indexPath.row-1];
+            
+            
+            CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
+            
+            CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
+            
+            if ( _firstCellText != @"" &&  size.height < 20) {
+                size.height = 25;
+            }
+            
+            cell.view.frame = CGRectMake(0, 0, 320, size.height+60.0f);
+            cell.textCell.lineBreakMode = UILineBreakModeCharacterWrap;
+            cell.textView.frame = CGRectMake(0, 60, 320, size.height);
+            cell.textCell.frame = CGRectMake(10,0, 300, size.height);
+            cell.selectBtn.frame = CGRectMake(10,0, 300, size.height);
+            
+            cell.textView.backgroundColor = [UIColor colorWithRed:237/255.0 green:232/255.0 blue:226/255.0 alpha:1];
+            cell.textCell.font = [UIFont systemFontOfSize:12.0f];
+            cell.textCell.text = _firstCellText;
+            UIColor * myColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
+            cell.textCell.textColor = myColor;
+            cell.wImage.frame = CGRectMake(0, size.height+60.0f, 320, 1);
+            cell.dImage.frame = CGRectMake(0, size.height+61.0f, 320, 1);
+            
+            
+            [cell.selectBtn addTarget:self action:@selector(select:) forControlEvents:UIControlEventTouchUpInside];
+            
+            cell.selectionStyle = 2;
+            
+            
+            [cell.changeSpace addTarget:self action:@selector(changeFlightInfo:) forControlEvents:UIControlEventTouchUpInside];
+            
+            return cell;
+            
 
     }
  }
@@ -335,46 +400,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+
     [self.showTableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    if (indexPath.row == 0) {
-        
-    }
-    else{
-        if (self.flag == 2) {
-            
-            SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:self.searchFlight.endPortThreeCode arr:self.searchFlight.startPortThreeCode date:self.goBackDate ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
-            
-            self.searchFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue]; // 保存成人去程金额
-            
-            self.searchFlight.ticketCount = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"seatNum"];
-            if ([self.searchFlight.ticketCount isEqualToString:@"A"]) {
-                self.searchFlight.ticketCount = @"10";
-            }
-            self.searchFlight.childPrice = [self.childPayArr objectAtIndex:indexPath.row-1];
-            self.searchFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
-            self.searchFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
-            self.searchFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
-     
-            
-            ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
+    NewChooseSpaceCell *cell = (NewChooseSpaceCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+    if (![cell.ticketCount.text isEqual:@"已售空"]) {
 
-            show.airPort = searchAirPort;
-            
-            show.netFlag = 1;  // 等与1  ，在返回到返程列表的时候 不需要联网
-            show.write = self;
-            [self.navigationController popToViewController:show animated:YES];
-            
-        }
-        
-        else
-        {
-            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
-            
-            if (self.flag == 1) {
+            if (self.flag == 2) {
                 
-                self.searchFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue];
+                SearchAirPort * searchAirPort = [[SearchAirPort alloc] initWithdpt:self.searchFlight.endPortThreeCode arr:self.searchFlight.startPortThreeCode date:self.goBackDate ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
+                
+                self.searchFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue]; // 保存成人去程金额
+                
                 self.searchFlight.ticketCount = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"seatNum"];
                 if ([self.searchFlight.ticketCount isEqualToString:@"A"]) {
                     self.searchFlight.ticketCount = @"10";
@@ -384,33 +422,94 @@
                 self.searchFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
                 self.searchFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
                 
+                
+//                ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
+//                
+//                show.airPort = searchAirPort;
+//                
+//                show.netFlag = 1;  // 等与1  ，在返回到返程列表的时候 不需要联网
+//                show.write = self;
+//                [self.navigationController popToViewController:show animated:YES];
+                
+                
+                
+                ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
+                show.airPort = searchAirPort;
+                
+                show.netFlag = 1;  // 等与1  ，在返回到返程列表的时候 不需要联网
+                show.write = self;
+                
+                CATransition *animation = [CATransition animation];
+                animation.duration = 0.3f;
+                animation.type = kCATransitionMoveIn;
+//                 animation.type = kCATransitionPush;
+                animation.subtype = kCATransitionFromRight;
+//                animation.subtype = kCATransitionFromRight;
+                [self.navigationController popToViewController:show animated:NO];
+                [self.navigationController.view.layer addAnimation:animation forKey:@"animation"];
+                [show.navigationController.view.layer addAnimation:animation forKey:@"animation"];
+                
+                
+//                CATransition *transition = [CATransition animation];
+//                transition.duration =1;
+//                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//                transition.type = kCATransitionReveal;
+//                transition.subtype = kCATransitionFromRight;
+//                transition.delegate = self;
+//                [self.navigationController.view.layer addAnimation:transition forKey:nil];
+//                
+//                self.navigationController.navigationBarHidden = NO;
+                
+                [self.navigationController popViewControllerAnimated:NO];
+                
             }
-            else{
-                self.searchBackFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue];                  
-                self.searchBackFlight.ticketCount = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"seatNum"];
-                if ([self.searchBackFlight.ticketCount isEqualToString:@"A"]) {
-                    self.searchBackFlight.ticketCount = @"10";
+            
+            else
+            {
+                
+                
+                if (self.flag == 1) {
+                    
+                    self.searchFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue];
+                    self.searchFlight.ticketCount = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"seatNum"];
+                    if ([self.searchFlight.ticketCount isEqualToString:@"A"]) {
+                        self.searchFlight.ticketCount = @"10";
+                    }
+                    self.searchFlight.childPrice = [self.childPayArr objectAtIndex:indexPath.row-1];
+                    self.searchFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
+                    self.searchFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
+                    self.searchFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
+                    
                 }
-                self.searchBackFlight.childPrice = [self.childPayArr objectAtIndex:indexPath.row-1];
-                self.searchBackFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
-                self.searchBackFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
-                self.searchBackFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
-
+                else{
+                    self.searchBackFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue];
+                    self.searchBackFlight.ticketCount = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"seatNum"];
+                    if ([self.searchBackFlight.ticketCount isEqualToString:@"A"]) {
+                        self.searchBackFlight.ticketCount = @"10";
+                    }
+                    self.searchBackFlight.childPrice = [self.childPayArr objectAtIndex:indexPath.row-1];
+                    self.searchBackFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
+                    self.searchBackFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
+                    self.searchBackFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
+                    
+                }
+                
+                WriteOrderViewController * insurance = [[WriteOrderViewController alloc] init];
+                insurance.flag = self.flag;
+                
+                insurance.searchDate = self.searchFlight;
+                
+                insurance.searchBackDate = self.searchBackFlight;
+                
+                [self.navigationController pushViewController:insurance animated:YES];
+                [insurance release];
             }
             
-            WriteOrderViewController * insurance = [[WriteOrderViewController alloc] init];
-            insurance.flag = self.flag;
-
-            insurance.searchDate = self.searchFlight;
-            
-            insurance.searchBackDate = self.searchBackFlight;
-            
-            [self.navigationController pushViewController:insurance animated:YES];
-            [insurance release];
         }
 
-    }
-        
+//    }
+    
+    
 }
 - (void)changeFlightInfo:(UIButton *)send {
 

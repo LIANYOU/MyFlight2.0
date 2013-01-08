@@ -121,9 +121,9 @@
     personNumber = 1;  // 默认一个成人
     childNumber = 0;
     
-    NSLog(@"%@\n--------------%@",self.searchDate.cabinInfo,self.searchBackDate.cabinInfo);
-    NSLog(@"%d,%@",self.searchDate.pay,self.searchBackDate.childPrice);
-    NSLog(@"%@,%@",self.searchDate.ticketCount,self.searchBackDate.ticketCount);
+//    NSLog(@"%@\n--------------%@",self.searchDate.cabinInfo,self.searchBackDate.cabinInfo);
+//    NSLog(@"%d,%@",self.searchDate.pay,self.searchBackDate.childPrice);
+//    NSLog(@"%@,%@",self.searchDate.ticketCount,self.searchBackDate.ticketCount);
     
     [self calculateAllPay];
 
@@ -133,14 +133,14 @@
     self.orderTableView.delegate = self;
     self.orderTableView.dataSource = self;
     
-    if (! Default_IsUserLogin_Value) {
+   // if (! Default_IsUserLogin_Value) {
         UIButton * histroyBut = [UIButton backButtonType:4 andTitle:@"登录"];
         [histroyBut addTarget:self action:@selector(log) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
         self.navigationItem.rightBarButtonItem=backBtn2;
         [backBtn2 release];
-    }
+  //  }
        
    
     
@@ -158,6 +158,11 @@
     
     self.tempView = self.headView;
     self.headViewHegiht = 40;
+    
+    
+    // 行程单
+    flightItinerary = [[flightItineraryVo alloc] init];
+    flightItinerary.deliveryType = @"0"; // 默认是不需要邮寄行程单
     
     
        
@@ -502,6 +507,9 @@
                     
                     case 3:
                         cell.firstLable.text = @"行程单";
+                        cell.secondLable.text = @"不需要行程单报销凭证";
+                        self.traveType = 1;
+                        
                         cell.imageLabel.hidden = YES;
                         break;
                     case 5:
@@ -515,6 +523,7 @@
                         break;
                     case 2:
                         cell.firstLable.text = @"购买保险";
+                        
                         cell.imageLabel.hidden = YES;
                         break;
                         
@@ -644,6 +653,9 @@
                             break;
                         case 3:
                             cell.firstLable.text = @"行程单";
+                            cell.secondLable.text = @"不需要行程单报销凭证";
+                            self.traveType = 1;   // 默认带进去就是不要行程单
+                            
                             cell.imageLabel.hidden = YES;
                             break;
                         case 5:
@@ -716,6 +728,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.orderTableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     BOOL logFlag = FALSE;  // 此处保留一个flag判断是否用户已经登陆
     
     if (self.flag == 3) {
@@ -873,6 +887,37 @@
                 self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
                 
                 [self.firstCelTextArr replaceObjectAtIndex:0 withObject:stringAfterJoin];
+                 
+                 
+                 //默认所有乘机人都选择保险
+                 if (self.flag == 1) {
+                     WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
+                     
+                     cell.secondLable.text = [NSString stringWithFormat:@"20元/份*%d人" ,personNumber+childNumber];
+                 }
+                 else{
+                     WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:3]];
+                     
+                     cell.secondLable.text = [NSString stringWithFormat:@"20元/份*%d人" ,personNumber+childNumber];
+                 }
+                 
+                 
+                 //把保险的钱数加上
+                 
+                 self.swithType = @"ON";  // 默认保险的开关打开
+                 
+                 self.Personinsure.text = @"￥20";
+                 self.childInsure.text = @"￥20";
+                 
+                 for (flightPassengerVo * passenger in self.personArray) {   // 默认乘机人都买上保险
+                     passenger.goInsuranceNum = @"1";
+                 }
+                 
+                 self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
+                 self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
+                 self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
+                 
+                 
                 [self.orderTableView reloadData];
                 
             }];
@@ -891,16 +936,19 @@
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             
             self.swithType = type;   // 记录开关状态
+            
+            
+            NSLog(@"~~~~~~~~~~~~~~~~~~~~~%@",idntity);
                          
             if (idntity != nil) {
-                
+                NSLog(@"%s,%d",__FUNCTION__,__LINE__);
                 for (flightPassengerVo * passenger in self.personArray) {
                     passenger.goInsuranceNum = @"1";
                 }
                 insuranceFlag = 1;
                 cell.secondLable.text = [NSString stringWithFormat:@"20元/份*%d人",personNumber+childNumber];
-                self.Personinsure.text = @"20";
-                self.childInsure.text = @"20";
+                self.Personinsure.text = @"￥20";
+                self.childInsure.text = @"￥20";
                 
                 if ([self.postType isEqualToString:@"快递"]) {
                     self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
@@ -914,12 +962,12 @@
                     self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
                 }
                
-                
-          //      newPersonAllPay =
+       
                 
             }
             else{
-                cell.secondLable.text = @"";
+
+                cell.secondLable.text = @"不需要购买保险";
                 self.Personinsure.text = @"0";
                 self.childInsure.text = @"0";
                 insuranceFlag = 0;
@@ -965,8 +1013,10 @@
             NSLog(@"%@,,,%@,,,%d",schedule,postPay,chooseBtnIndex);
             
             /// **************  填写行程单配送信息
-            flightItinerary = [[flightItineraryVo alloc] init];
-            flightItinerary.deliveryType = [NSString stringWithFormat:@"%d",chooseBtnIndex-1];
+            if (chooseBtnIndex != 0) {
+                flightItinerary.deliveryType = [NSString stringWithFormat:@"%d",chooseBtnIndex-1];
+            }
+            
             if (chooseBtnIndex == 3) {
                 flightItinerary.address = [InfoArr objectAtIndex:2];
                 flightItinerary.city = [InfoArr objectAtIndex:1];
@@ -990,9 +1040,14 @@
             
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             
-            self.traveType = chooseBtnIndex;
+            if (chooseBtnIndex != 0) {
+                
+                self.traveType = chooseBtnIndex;
+                
+                cell.secondLable.text = schedule;
+            }
             
-            cell.secondLable.text = schedule;
+            
             
             if ([postPay isEqualToString:@"快递"]) {
                 
@@ -1093,6 +1148,7 @@
 }
 - (IBAction)payMoney:(id)sender {
     
+    // 去成和往返信息
     bookingGoFlightVo * go = [[bookingGoFlightVo alloc] init];
     
     go.aircraftType = self.searchDate.palntType;
@@ -1140,6 +1196,7 @@
     bookReturn.flightOrgin = @"B2B";
     
 
+    // 优惠券使用
     payVo * pay  = [[payVo alloc] init];
     if (goldAndCount != nil || silverString != nil ) {
         
@@ -1182,7 +1239,7 @@
         
     }
   
-    
+    // 配置去成和往返的杂项信息
     if (self.flag == 1) {
         self.searchType = @"0";
          go.flightType = @"1";
@@ -1204,17 +1261,21 @@
     NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:self.searchType,KEY_FlightBook_prodType,@"hello",KEY_FlightBook_rmk, nil];
     
     
+    // 联系人
     flightContactVo * contactVo = [[flightContactVo alloc] init];
     contactVo.name = [addPersonArr objectAtIndex:0];
     contactVo.mobile = [addPersonArr objectAtIndex:1];
     
-    [FlightBookingBusinessHelper flightBookingWithGoflight:dic
-                                         bookingGoFlightVo:go
-                                     bookingReturnFlightVo:bookReturn
-                                           flightContactVo:contactVo
-                                         flightItineraryVo:flightItinerary
-                                         flightPassengerVo:self.personArray
-                                                     payVo:pay
+    
+    NSLog(@"====================================================  %@",flightItinerary.deliveryType);
+    
+    [FlightBookingBusinessHelper flightBookingWithGoflight:dic        // 杂项
+                                         bookingGoFlightVo:go           //去成
+                                     bookingReturnFlightVo:bookReturn  // 返程
+                                           flightContactVo:contactVo     // 联系人
+                                         flightItineraryVo:flightItinerary      // 行程单
+                                         flightPassengerVo:self.personArray      // 乘客信息
+                                                     payVo:pay   // 优惠券信息
                                                   delegate:self];
     
     
@@ -1376,20 +1437,33 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
 
-    NSString * meg =@"预定成功";
-    
-    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-
     
     NSArray * arr = [info objectForKey:@"dic"];
+    
+    
     // 支付
-    PayOnline * payOnline = [[PayOnline alloc] initWithProdType:@"01" payType:@"02" orderCode:[arr objectAtIndex:1] memberId:[arr objectAtIndex:2] actualPay:[arr objectAtIndex:3] source:@"iphone" hwId:HWID_VALUE serviceCode:@"01" captcha:captchaID andDelegate:self];
+    PayOnline * payOnline = [[PayOnline alloc] initWithProdType:@"01"
+                                                        payType:@"umpay"
+                                                      orderCode:[arr objectAtIndex:1]
+                                                       memberId:[arr objectAtIndex:2]
+                                                      actualPay:[arr objectAtIndex:3]
+                                                         source:@"51you"
+                                                           hwId:HWID_VALUE
+                                                    serviceCode:@"01"
+                                                    andDelegate:self];
 
     
   // 获取订单详情
     NSString * sign = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
     
-    OrderDetaile * order = [[OrderDetaile alloc] initWithOrderId:[arr objectAtIndex:0] andMemberId:[arr objectAtIndex:2] andCheckCode:[arr objectAtIndex:1] sndSign:GET_SIGN(sign) sndSource:SOURCE_VALUE andHwId:HWID_VALUE andEdition:EDITION_VALUE andDelegate:self];
+    OrderDetaile * order = [[OrderDetaile alloc] initWithOrderId:[arr objectAtIndex:0]
+                                                     andMemberId:[arr objectAtIndex:2]
+                                                    andCheckCode:[arr objectAtIndex:1]
+                                                         sndSign:GET_SIGN(sign)
+                                                       sndSource:SOURCE_VALUE
+                                                         andHwId:HWID_VALUE
+                                                      andEdition:EDITION_VALUE
+                                                     andDelegate:self];
     
     
     PayViewController * pay = [[PayViewController alloc] init];
@@ -1427,6 +1501,29 @@
     [alert show];
     [alert release];
     
+}
+
+
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+    if (self.flag == 3)
+    {
+        WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
+        
+        [cell.nameField resignFirstResponder];
+        [cell.phoneField resignFirstResponder];
+
+    }
+    else{
+        WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
+        
+        [cell.nameField resignFirstResponder];
+        [cell.phoneField resignFirstResponder];
+
+    }
+        
 }
 
 @end

@@ -20,4 +20,5 @@
 @property (retain, nonatomic) IBOutlet UIImageView *wImage;
 @property (retain, nonatomic) IBOutlet UIImageView *dImage;
 @property (retain, nonatomic) IBOutlet UIButton *selectBtn;
+@property (retain, nonatomic) IBOutlet UIImageView *sortImage;
 @end

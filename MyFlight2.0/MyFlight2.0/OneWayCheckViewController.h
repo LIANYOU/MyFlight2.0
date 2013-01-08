@@ -98,6 +98,9 @@
 @property (retain, nonatomic) NSMutableArray * startThreeArr;
 @property (retain, nonatomic) NSMutableArray * endThreeArr;
 
+
+@property (retain, nonatomic) NSString * twoGoBack;
+
 - (IBAction)getStartPort:(id)sender;
 
 - (IBAction)getStartDate:(id)sender;

@@ -1,75 +1,68 @@
 //
-//  PayOnline.m
+//  CancelOrdre.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 13-1-5.
+//  Created by WangJian on 13-1-7.
 //  Copyright (c) 2013年 LIAN YOU. All rights reserved.
 //
 
-#import "PayOnline.h"
+#import "CancelOrdre.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "MyCenterUility.h"
 #import "PublicConstUrls.h"
+@implementation CancelOrdre
 
-@implementation PayOnline
-
--(id) initWithProdType:(NSString *)prodType
-               payType:(NSString *)payType
-             orderCode:(NSString *)orderCode
-              memberId:(NSString *)memberId
-             actualPay:(NSString *)actualPay
-                source:(NSString *)source
-                  hwId:(NSString *)hwId
-           serviceCode:(NSString *)serviceCode
-           andDelegate:(id<ServiceDelegate>)delegate
+-(id) initWithOrderId:(NSString *)orderId
+         andOrderCode:(NSString *)orderCode
+          andMemberId:(NSString *)memberId
+         andCheckCode:(NSString *)checkCode
+              andSign:(NSString *)sign
+            andSource:(NSString *)source
+              andHwId:(NSString *)hwId
+           andEdition:(NSString *)edition
+          andDelegate:(id<ServiceDelegate>)delegate
 {
     if ([super init]) {
-        self.prodType = prodType;
-        self.payType = payType;
         self.orderCode = orderCode;
+        self.orderId = orderId;
         self.memberId = memberId;
-        self.actualPay = actualPay;
+        self.checkCode = checkCode;
+        self.sign = sign;
         self.source = source;
         self.hwId = hwId;
-        self.serviceCode = serviceCode;
+        self.edition = edition;
         self.delegate = delegate;
     }
-    return self;
     
+    return self;
 }
 
--(void) getBackInfo
+
+-(void)delOrder
 {
     __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
     
-    [messageDic setObject:@"fsfs" forKey:KEY_Request_Type];
+    //取消订单信息
+    
+    [messageDic setObject:@"cancel" forKey:KEY_Request_Type];
+    
+    
     
     __block NSString *message = nil;
     
-    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",@"http://223.202.36.179:9580/web/phone/pay/fPhonePay.jsp"]]];
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",@"http://223.202.36.179:9580/web/phone/order/flight/fOrderCancel.jsp?"]]];
     
-    [request setPostValue:self.prodType forKey:@"prodType"];
-    [request setPostValue:self.payType forKey:@"payType"];
+    [request setPostValue:self.orderId forKey:@"orderId"];
     [request setPostValue:self.orderCode forKey:@"orderCode"];
     [request setPostValue:self.memberId forKey:@"memberId"];
-    [request setPostValue:self.actualPay forKey:@"actualPay"];
+    [request setPostValue:self.checkCode forKey:@"checkCode"];
+    [request setPostValue:self.sign forKey:@"sign"];
     [request setPostValue:self.source forKey:@"source"];
     [request setPostValue:self.hwId forKey:@"hwId"];
-    [request setPostValue:self.serviceCode forKey:@"serviceCode"];
- 
+    [request setPostValue:self.edition forKey:@"edition"];
     
     
-    CCLog(@"*************************  验证支付信息 ******************");
-    CCLog(@"prodType  =  %@",self.prodType);
-    CCLog(@"payType  =  %@",self.payType);
-    CCLog(@"orderCode  =  %@",self.orderCode);
-    CCLog(@"memberId  =  %@",self.memberId);
-    CCLog(@"actualPay  =  %@",self.actualPay);
-    CCLog(@"source  =  %@",self.source);
-    CCLog(@"hwId  =  %@",self.hwId);
-    CCLog(@"serviceCode  =  %@",self.serviceCode);
-   
     
     
     [request setRequestMethod:@"POST"];
@@ -78,30 +71,40 @@
         
         NSString *data = [request responseString];
         
-        NSLog(@"====================================   %@",data);
+        NSString *codeRequ =[NSString stringWithFormat:@"%d",[request responseStatusCode]];
         
-       
-        
-    
+        CCLog(@"网络返回的请求码是 %@",codeRequ);
         
         CCLog(@"网络返回的数据为：%@",data);
         
         NSError *error = nil;
         
-        NSDictionary * dic = [NSDictionary dictionaryWithObject:data forKey:@"pay"];
-       
+        NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        
+        
+        
+        message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
         
         
         NSLog(@"服务器返回的信息为：%@",message);
         
         if (!error) {
             
+            CCLog(@"json解析格式正确");
+            
+            message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+            
+            
+            CCLog(@"message length = %d",[message length]);
+            if ([message length]==0) {
+                
+                [messageDic setObject:message forKey:KEY_message];
                 
                 if (self.delegate && [self.delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     
-                    [self.delegate requestDidFinishedWithRightMessage:dic];
+                    [self.delegate requestDidFinishedWithRightMessage:messageDic];
                     
-                
+                }
                 
             } else{
                 
@@ -145,7 +148,6 @@
     
     
     [request startAsynchronous];
-    
-
 }
+
 @end

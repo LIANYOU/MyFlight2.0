@@ -93,6 +93,9 @@
     self.backView.hidden = YES;
     self.sortTableView.hidden = YES;
     
+
+    
+    
     NSString * dataPath = [[NSBundle mainBundle] pathForResource:@"AirPortCode" ofType:@"plist"];
     
     dicCode = [[NSDictionary alloc] initWithContentsOfFile:dataPath];
@@ -146,7 +149,6 @@
         [UIView animateWithDuration:0.001 animations:^(void)  //不用回调
          {
              self.showResultTableView.frame = CGRectMake(320, 44, 320, 480);
-           //  self.navigationController.view.frame = CGRectMake(160, 0, 320, 480);
 
          }  completion:^(BOOL finished)
          {
@@ -159,7 +161,7 @@
                            
              }];
          }];
-      //  NSLog(@"左边");
+ 
     }
     if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
          NSLog(@"右边");
@@ -206,7 +208,7 @@
                 
                 NSArray * array = [self.airPort.date componentsSeparatedByString:@"-"];
                 
-                [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",[array objectAtIndex:1],[array objectAtIndex:2]] forState:0];
+                [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@-%@",[array objectAtIndex:0],[array objectAtIndex:1],[array objectAtIndex:2]] forState:0];
                 
                 self.flag  = 3; // 随便标记一位， 在推进到填写订单的时候使用
             }
@@ -216,7 +218,7 @@
                 
                 NSArray * array = [self.airPort.date componentsSeparatedByString:@"-"];
                 
-                [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",[array objectAtIndex:1],[array objectAtIndex:2]] forState:0];
+                [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@-%@",[array objectAtIndex:0],[array objectAtIndex:1],[array objectAtIndex:2]] forState:0];
                 
             }
             
@@ -375,7 +377,7 @@
         s.beginTime = [dic objectForKey:@"dptTime"];
         s.endTime = [dic objectForKey:@"arrTime"];
         s.pay = [[dic objectForKey:@"lowestPrice"] intValue]; // 价格
-        s.discount = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"lowestCabinCode"]]; // 仓位折扣
+        s.discount = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"lowestCabinCode"] andCabinName:nil]; // 仓位折扣
         s.ticketCount = [TransitionString transitionSeatNum:[dic objectForKey:@"lowestSeatNum"]]; // 剩余票数
         s.cabinsArr = [dic objectForKey:@"Cabins"];
         s.adultBaf = [dic objectForKey:@"adulBaf"];
@@ -481,12 +483,12 @@
     if (tableView == self.sortTableView) {
         
         if ( timeSortFlag == 3) {
-            self.sortTableView.frame = CGRectMake(0, 282, 320, 86);
+                       
             return 2;
         }
 
         else{
-            self.sortTableView.frame = CGRectMake(0, 187, 320, 181);
+          //  self.sortTableView.frame = CGRectMake(0, 187, 320, 181);
             return self.tempTwoCodeArr.count + 1;  // 第一行是不限航空公司
         }
     }
@@ -592,7 +594,7 @@
         cell.palntType.text = [NSString stringWithFormat:@"%@机型",data.palntType];
         cell.beginTime.text = data.beginTime;
         cell.endTime.text = data.endTime;
-        cell.pay.text =[NSString stringWithFormat:@"%d",data.pay] ; // Y仓价格
+        cell.pay.text =[NSString stringWithFormat:@"￥%d",data.pay] ; // Y仓价格
         cell.discount.text = data.discount; // 仓位折扣
         cell.ticketCount.text = data.ticketCount; // 剩余票数
         
@@ -1048,7 +1050,7 @@
         
         tempDate = [NSString stringWithFormat:@"%d-%@-%@",year_,m,d];  // 修改出发日期的数值
        
-        [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",m, d] forState:0];
+        [nowDateBtn setTitle:[NSString stringWithFormat:@"%d-%@-%@",year_,m, d] forState:0];
 
     }
     
@@ -1119,7 +1121,7 @@
         self.airPort.date = self.startDate;
     }
     
-    [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",strMonth, strDay] forState:0];
+    [nowDateBtn setTitle:[NSString stringWithFormat:@"%d-%@-%@",year,strMonth, strDay] forState:0];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
     [self.airPort searchAirPort];
@@ -1251,7 +1253,7 @@
     }
     
     
-    [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@",m,d]forState:0];
+    [nowDateBtn setTitle:[NSString stringWithFormat:@"%d-%@-%@",year_,m,d]forState:0];
     
    
     
@@ -1280,6 +1282,14 @@
     airPortNameFlag = 4;
     timeSortFlag = 0;
 
+    if (iPhone5) {
+        self.sortTableView.frame = CGRectMake(0, 568-20-44-44*5, 320, 44*4);
+    }
+    else{
+       
+        self.sortTableView.frame = CGRectMake(0, 568-20-44-44*7, 320, 44*4);
+    }
+    
     
     self.backView.hidden = NO;
     self.sortTableView.hidden = NO;
@@ -1291,6 +1301,14 @@
 
     airPortNameFlag = 0;
     timeSortFlag = 3;
+    
+    if (iPhone5) {
+         self.sortTableView.frame = CGRectMake(0, 568-20-44-44*3, 320, 44*2);
+    }
+    else{
+      
+         self.sortTableView.frame = CGRectMake(0, 568-20-44-44*5, 320, 44*2);
+    }
 
     self.backView.hidden = NO;
     self.sortTableView.hidden = NO;
