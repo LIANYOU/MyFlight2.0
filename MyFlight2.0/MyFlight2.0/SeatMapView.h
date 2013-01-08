@@ -19,7 +19,7 @@
 @property (assign, nonatomic) NSInteger sectionX;
 @property (assign, nonatomic) NSInteger sectionY;
 
-- (void) drawSeatMap:(NSDictionary *) responseDictionary;
+- (void) drawSeatMap:(NSDictionary *) seatMap;
 - (NSString *) currentSeatChoosed:(NSDictionary *) responseDictionary;
 
 @end

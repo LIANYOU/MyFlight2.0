@@ -90,14 +90,15 @@
                 
                 NSArray *rowArray = [[seatMap objectForKey:@"row"] objectForKey:@"_int"];
                 
-                map.sectionX = [stringArray count];
-                map.sectionY = [rowArray count];
+                map.sectionX = [stringArray count] + 1;
+                map.sectionY = [rowArray count] + 1;
                 
                 map.frame = CGRectMake(0, 0, map.sectionX * 40, map.sectionY * 40);
+                
                 scroll.contentSize = CGSizeMake(map.sectionX * 40, map.sectionY * 40);
                 scroll.contentOffset = CGPointMake((scroll.contentSize.width - scroll.frame.size.width) / 2, (scroll.contentSize.height - scroll.frame.size.height) / 2);
                 
-                [map drawSeatMap:responseDictionary];
+                [map drawSeatMap:seatMap];
             }
             else
             {
@@ -309,27 +310,30 @@
     [request setPostValue:[dictionary objectForKey:@"airline"] forKey:@"cussRequest.airline"];
     [request setPostValue:[dictionary objectForKey:@"orgId"] forKey:@"cussRequest.orgId"];
     [request setPostValue:[dictionary objectForKey:@"symbols"] forKey:@"cussRequest.symbols"];
+    [request setPostValue:[dictionary objectForKey:@"userId"] forKey:@"cussRequest.userId"];
     
     dictionary = [[[responseDictionary objectForKey:@"pass"] objectForKey:@"wsPrPassenger"] objectAtIndex:0];
     
-    [request setPostValue:[dictionary objectForKey:@"nameCh"] forKey:@"nameCh"];
-    [request setPostValue:[dictionary objectForKey:@"name"] forKey:@"name"];
-    [request setPostValue:[dictionary objectForKey:@"ffpNumber"] forKey:@"ffpNumber"];
-    [request setPostValue:[dictionary objectForKey:@"seatNo"] forKey:@"seatNo"];
-    [request setPostValue:[dictionary objectForKey:@"um"] forKey:@"um"];
+    [request setPostValue:[dictionary objectForKey:@"nameCh"] forKey:@"pass.nameCh"];
+    [request setPostValue:[dictionary objectForKey:@"name"] forKey:@"pass.name"];
+    [request setPostValue:[dictionary objectForKey:@"ffpNumber"] forKey:@"pass.ffpNumber"];
+    [request setPostValue:[dictionary objectForKey:@"seatNo"] forKey:@"pass.seatNo"];
+    [request setPostValue:[dictionary objectForKey:@"um"] forKey:@"pass.um"];
     
     dictionary = [responseDictionary objectForKey:@"segment"];
     
-    [request setPostValue:[responseDictionary objectForKey:@"depAirportCode"] forKey:@"depAirportCode"];
-    [request setPostValue:[responseDictionary objectForKey:@"arrAirportCode"] forKey:@"arrAirportCode"];
-    [request setPostValue:[responseDictionary objectForKey:@"depTime"] forKey:@"depTime"];
-    [request setPostValue:[responseDictionary objectForKey:@"flightNo"] forKey:@"flightNo"];
-    [request setPostValue:[responseDictionary objectForKey:@"cabin"] forKey:@"cabin"];
+    [request setPostValue:[dictionary objectForKey:@"depAirportCode"] forKey:@"segment.depAirportCode"];
+    [request setPostValue:[dictionary objectForKey:@"arrAirportCode"] forKey:@"segment.arrAirportCode"];
+    [request setPostValue:[dictionary objectForKey:@"depTime"] forKey:@"segment.depTime"];
+    [request setPostValue:[dictionary objectForKey:@"flightNo"] forKey:@"segment.flightNo"];
+    [request setPostValue:[dictionary objectForKey:@"cabin"] forKey:@"segment.cabin"];
     
-    [request setPostValue:[map currentSeatChoosed:responseDictionary] forKey:@"seatNos"];
+//    [request setPostValue:[map currentSeatChoosed:responseDictionary] forKey:@"seatNos"];
+    
+    [request setPostValue:@"40E" forKey:@"seatNos"];
     
     [request setPostValue:@"HU" forKey:@"ffpAirline"];
-    [request setPostValue:[[[[responseDictionary objectForKey:@"pass"] objectForKey:@"wsPrPassenger"] objectAtIndex:0] objectForKey:@"ffpNumber"] forKey:@"ffpNumber"];
+    
     [request setPostValue:[[responseDictionary objectForKey:@"seatMap"] objectForKey:@"baseCabin"] forKey:@"baseCabin"];
     [request setPostValue:[[[[[responseDictionary objectForKey:@"idInfo"] objectForKey:@"arrayOfXsdString"] objectAtIndex:0] objectForKey:@"string"] objectAtIndex:0] forKey:@"idInfoType"];
     [request setPostValue:[[[[[responseDictionary objectForKey:@"idInfo"] objectForKey:@"arrayOfXsdString"] objectAtIndex:0] objectForKey:@"string"] objectAtIndex:1] forKey:@"idInfo"];

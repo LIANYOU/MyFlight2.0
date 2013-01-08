@@ -234,6 +234,11 @@
         [line release];
     }
     
+    if(responseDictionary == nil)
+    {
+        return cell;
+    }
+    
     if(tableView == detailedInfoTable)
     {
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 60, 14)];
@@ -261,10 +266,7 @@
                 }
                 break;
             case 2:
-                if(cussInfo != nil)
-                {
-                    value.text = [NSString stringWithFormat:@"%@%@", [cussInfo objectForKey:@"airlinecode"], [cussInfo objectForKey:@"airlineNo"]];
-                }
+                value.text = [NSString stringWithFormat:@"%@%@", [cussInfo objectForKey:@"airlinecode"], [cussInfo objectForKey:@"airlineNo"]];
                 break;
             case 3:
                 value.text = [cussInfo objectForKey:@"seatNo"];
@@ -290,10 +292,10 @@
         {
             UILabel *label;
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 120, 14)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 14, 120, 16)];
             
             label.text = [NSString stringWithFormat:@"%@ - %@", [cussInfo objectForKey:@"departure_cn"], [cussInfo objectForKey:@"arrival_cn"]];
-            label.font = [UIFont systemFontOfSize:14.0f];
+            label.font = [UIFont systemFontOfSize:16.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor blackColor];
             label.backgroundColor = [UIColor clearColor];
@@ -301,10 +303,10 @@
             [cell addSubview:label];
             [label release];
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(140, 15, 120, 14)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(140, 14, 120, 16)];
             
             label.text = [NSString stringWithFormat:@"%@%@", [cussInfo objectForKey:@"airlinecode"], [cussInfo objectForKey:@"airlineNo"]];
-            label.font = [UIFont systemFontOfSize:14.0f];
+            label.font = [UIFont systemFontOfSize:16.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = [UIColor blackColor];
             label.backgroundColor = [UIColor clearColor];
@@ -316,78 +318,39 @@
         {
             UILabel *label;
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 14, 80, 16)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 7, 80, 13)];
+            
+            label.text = @"起飞时间";
+            label.font = [UIFont systemFontOfSize:13.0f];
+            label.textAlignment = UITextAlignmentLeft;
+            label.textColor = FONT_COLOR_LITTLE_GRAY;
+            label.backgroundColor = [UIColor clearColor];
+            
+            [cell addSubview:label];
+            [label release];
+            
+            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 27, 80, 13)];
+            
+            label.text = [[cussInfo objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:NSMakeRange(10, 14) withString:@""];
+            label.font = [UIFont systemFontOfSize:13.0f];
+            label.textAlignment = UITextAlignmentLeft;
+            label.textColor = FONT_COLOR_BIG_GRAY;
+            label.backgroundColor = [UIColor clearColor];
+            
+            [cell addSubview:label];
+            [label release];
+            
+            label = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, 80, 24)];
             
             label.text = [NSString stringWithFormat:@"%@:%@", [[cussInfo objectForKey:@"deptime"] stringByReplacingCharactersInRange:NSMakeRange(2, 2) withString:@""], [[cussInfo objectForKey:@"deptime"] stringByReplacingCharactersInRange:NSMakeRange(0, 2) withString:@""]];
-            label.font = [UIFont systemFontOfSize:16.0f];
+            
+            label.font = [UIFont systemFontOfSize:24.0f];
             label.textAlignment = UITextAlignmentLeft;
-            label.textColor = [UIColor blackColor];
+            label.textColor = FONT_COLOR_BIG_GRAY;
             label.backgroundColor = [UIColor clearColor];
             
             [cell addSubview:label];
             [label release];
-            
-            label = [[UILabel alloc] initWithFrame:CGRectMake(45, 11, 80, 10)];
-            
-//            label.text = departDate;
-            label.font = [UIFont systemFontOfSize:10.0f];
-            label.textAlignment = UITextAlignmentRight;
-            label.textColor = [UIColor grayColor];
-            label.backgroundColor = [UIColor clearColor];
-            
-            [cell addSubview:label];
-            [label release];
-            
-            label = [[UILabel alloc] initWithFrame:CGRectMake(45, 25, 80, 10)];
-            
-//            label.text = departAirport;
-            label.font = [UIFont systemFontOfSize:10.0f];
-            label.textAlignment = UITextAlignmentRight;
-            label.textColor = [UIColor blackColor];
-            label.backgroundColor = [UIColor clearColor];
-            
-            [cell addSubview:label];
-            [label release];
-            
-            label = [[UILabel alloc] initWithFrame:CGRectMake(175, 14, 80, 16)];
-            
-//            label.text = departTime;
-            label.font = [UIFont systemFontOfSize:16.0f];
-            label.textAlignment = UITextAlignmentLeft;
-            label.textColor = [UIColor blackColor];
-            label.backgroundColor = [UIColor clearColor];
-            
-            [cell addSubview:label];
-            [label release];
-            
-            label = [[UILabel alloc] initWithFrame:CGRectMake(210, 11, 80, 10)];
-            
-//            label.text = departDate;
-            label.font = [UIFont systemFontOfSize:10.0f];
-            label.textAlignment = UITextAlignmentRight;
-            label.textColor = [UIColor grayColor];
-            label.backgroundColor = [UIColor clearColor];
-            
-            [cell addSubview:label];
-            [label release];
-            
-            label = [[UILabel alloc] initWithFrame:CGRectMake(210, 25, 80, 10)];
-            
-//            label.text = departAirport;
-            label.font = [UIFont systemFontOfSize:10.0f];
-            label.textAlignment = UITextAlignmentRight;
-            label.textColor = [UIColor blackColor];
-            label.backgroundColor = [UIColor clearColor];
-            
-            [cell addSubview:label];
-            [label release];
-            
-            UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_airplane.png"]];
-            
-            image.frame = CGRectMake(129, 15, 42, 13);
-            
-            [cell addSubview:image];
-            [image release];
         }
     }
     
