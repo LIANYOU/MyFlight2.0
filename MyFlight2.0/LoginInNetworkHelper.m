@@ -801,6 +801,9 @@
                 
                 [passSingle.passengerArray removeAllObjects];
                 
+                NSMutableArray *itemAll =[[NSMutableArray alloc] init];
+                
+                
                 for (NSDictionary *resultDic in passengerArray) {
                     
                     NSString *name = [resultDic objectForKey:KEY_Passenger_Name];
@@ -815,25 +818,26 @@
                     CommonContact *passenger = [[CommonContact alloc] initWithName:name type:type certType:certType certNo:certNo contactId:passengerId];
                     
                     
+                    [itemAll addObject:passenger];
                     
-                   BOOL  flag = [CommonContact_LocalTmpDBHelper addCommonContact_Login:passenger];
-                    
-                    
-                    if (flag) {
-                        
-                        CCLog(@"插入成功");
-                    } else{
-                        
-                        CCLog(@"失败");
-                    }
-                                       
                     [passSingle.passengerArray addObject:passenger];
+                    
                     [passenger release];
-                    
-                    
-                    
-                    
+            
                 }
+                
+                
+                BOOL  flag = [CommonContact_LocalTmpDBHelper addCommonContact_Login:itemAll];
+                
+                
+                if (flag) {
+                    
+                    CCLog(@"插入成功");
+                } else{
+                    
+                    CCLog(@"失败");
+                }
+
                 
                 CCLog(@"查询到的联系人数量为%d",[passSingle.passengerArray count]);
                 
@@ -1003,14 +1007,19 @@
             message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
             NSLog(@"服务器返回的信息为：%@",message);
             
-            if ([message length]==0) {
+            if ([message length]==0||[message isEqualToString:@"success"]) {
                 
                 // NSLog(@"成功登陆后返回的数据：%@",data);
                 
            
+                
+                
+                
+                
                 NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
                 
                 [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
+                
                 [self getCommonPassenger:dic delegate:delegate];
                 [dic release];
 
@@ -1167,11 +1176,16 @@
             message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
             NSLog(@"服务器返回的信息为：%@",message);
             
-            if ([message length]==0) {
+            if ([message length]==0 || [message isEqualToString:@"success"]) {
                 
                 // NSLog(@"成功登陆后返回的数据：%@",data);
                 
+                NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
                 
+                [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
+                
+                [self getCommonPassenger:dic delegate:delegate];
+                [dic release];
                 
                 
                 
@@ -1333,6 +1347,8 @@
                 [self getCommonPassenger:dic delegate:delegate];
                 [dic release];
 
+                
+                
                 if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     
                      [delegate requestDidFinishedWithRightMessage:messageDic];

@@ -34,6 +34,7 @@
 @property (retain, nonatomic) NSMutableDictionary * flightPassengerIdDic; //常用乘机人ID
 @property (retain, nonatomic) NSMutableDictionary * certTypeDic; // 证件类型
 
+@property (retain, nonatomic) IBOutlet UIView *footView;
 
 - (IBAction)addPerson:(UIButton *)sender;
 

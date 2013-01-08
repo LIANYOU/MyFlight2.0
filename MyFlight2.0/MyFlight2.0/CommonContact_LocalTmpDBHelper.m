@@ -207,7 +207,7 @@
         [data release];
     }
     
-    CCLog(@"查询到的联系人为：%d",[resultArray count]);
+    CCLog(@"在数据库中   ********* 查询到的联系人为：%d",[resultArray count]);
     
     return  [resultArray autorelease];
     
@@ -236,9 +236,9 @@
 
 
 //增加联系人
-+ (BOOL) addCommonContact_Login:(CommonContact *) contactData{
++ (BOOL) addCommonContact_Login:(NSMutableArray *) contactDataArray;{
     
-    CCLog(@"登录添加乘机人");
+    CCLog(@"登录  在数据库中 更新数据库操作  添加乘机人");
     
     FMDatabase *db =[self openDatabase];
     
@@ -252,10 +252,19 @@
         CCLog(@"表不存在");
     }
     
+        
+    BOOL flag = false;
+   
+    for (CommonContact *contactData in contactDataArray) {
+        
+        
+        flag =[db executeUpdate:@"insert into LoginContactTableCeshi(contactId,name,type,certType,certNo,birtyhday) values(?,?,?,?,?,?)",contactData.contactId,contactData.name,contactData.type,contactData.certType,contactData.certNo,contactData.birtyhday];
+        
+        
+        
+    }
     
-    
-    BOOL flag =[db executeUpdate:@"insert into LoginContactTableCeshi(contactId,name,type,certType,certNo,birtyhday) values(?,?,?,?,?,?)",contactData.contactId,contactData.name,contactData.type,contactData.certType,contactData.certNo,contactData.birtyhday];
-    
+        
     if (flag) {
         
         CCLog(@"增加联系人成功");

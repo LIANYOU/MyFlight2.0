@@ -17,6 +17,8 @@
 #import "LoginBusiness.h"
 #import "UIImage+scaleImage.h"
 #import "UIButton+BackButton.h"
+#import "CommonContact_LocalTmpDBHelper.h"
+
 @interface ChoosePersonController ()
 {
     int childNumber;  // 儿童个数
@@ -67,12 +69,7 @@
 
 
     self.dataArr = [[NSMutableArray alloc] init];
-    
-    LoginBusiness *bis =[[LoginBusiness alloc] init];
-        
-    [bis getCommonPassengerWithMemberId:Default_UserMemberId_Value andDelegate:self];
-    
-    [bis release];
+    self.showTableView.tableFooterView = self.footView;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -84,23 +81,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+-(void)viewWillAppear:(BOOL)animated
 {
-    return 150;
-}
-
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    
-    UIView * myView =[[[UIView alloc] init] autorelease];
-    
-    self.addBtn.frame = CGRectMake(10, 30, 300, 36);
-    [myView addSubview:self.addBtn];
-    
-    return myView;
-    
+    self.dataArr = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
 }
 
 #pragma mark - Table view data source
@@ -268,12 +251,14 @@
     [_showTableView release];
     [_choosePersonCell release];
     [_addBtn release];
+    [_footView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setShowTableView:nil];
     [self setChoosePersonCell:nil];
     [self setAddBtn:nil];
+    [self setFootView:nil];
     [super viewDidUnload];
 }
 
@@ -300,15 +285,15 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
 
-    CommontContactSingle *sin = [CommontContactSingle shareCommonContact];
-    
-    NSArray * arr = [NSArray arrayWithArray:sin.passengerArray];
-    
-    for (CommonContact * common in arr) {
-        [self.dataArr addObject:common];
-    }
-    
-    [self.showTableView reloadData];
+//    CommontContactSingle *sin = [CommontContactSingle shareCommonContact];
+//    
+//    NSArray * arr = [NSArray arrayWithArray:sin.passengerArray];
+//    
+//    for (CommonContact * common in arr) {
+//        [self.dataArr addObject:common];
+//    }
+//    
+//    [self.showTableView reloadData];
 }
 
 

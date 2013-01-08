@@ -39,11 +39,18 @@
 //查找所有的联系人
 + (NSMutableArray *) findAllCommonContact_Login;
 
+
+//增加联系人
++ (BOOL) addCommonContact_Login:(NSMutableArray *) contactDataArray;
+
+
+
+
+
 //删除 联系人
 + (BOOL) deleteCommonContact_Login:(CommonContact *) contactData;
 
-//增加联系人
-+ (BOOL) addCommonContact_Login:(CommonContact *) contactData;
+ 
 
 //更新联系人
 + (BOOL) updateCommonContact_Login:(CommonContact *)contactData;
