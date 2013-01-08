@@ -297,68 +297,60 @@
         
         NSDictionary *flight = [[responseDictionary objectForKey:@"segs"] objectAtIndex:indexPath.row];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 50, 10)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 12, 50, 12)];
         
         label.text = [flight objectForKey:@"flightNo"];
-        label.font = [UIFont systemFontOfSize:10.0f];
+        label.font = [UIFont systemFontOfSize:12.0f];
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
         
         [flightInfo addSubview:label];
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(10, 35, 50, 10)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(10, 36, 50, 12)];
         
         label.text = [NSString stringWithFormat:@"%@舱", [flight objectForKey:@"cabin"]];
-        label.font = [UIFont systemFontOfSize:10.0f];
+        label.font = [UIFont systemFontOfSize:12.0f];
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
         
         [flightInfo addSubview:label];
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(65, 15, 120, 10)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(65, 12, 120, 12)];
         
         label.text = [NSString stringWithFormat:@"%@ - %@", [flight objectForKey:@"deCity"], [flight objectForKey:@"arCity"]];
-        label.font = [UIFont systemFontOfSize:10.0f];
+        label.font = [UIFont systemFontOfSize:12.0f];
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
         
         [flightInfo addSubview:label];
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(65, 35, 120, 10)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(65, 36, 120, 12)];
         
         label.text = [NSString stringWithFormat:@"票号:%@", [flight objectForKey:@"tktNo"]];
-        label.font = [UIFont systemFontOfSize:10.0f];
+        label.font = [UIFont systemFontOfSize:12.0f];
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
         
         [flightInfo addSubview:label];
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(190, 15, 75, 10)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(195, 12, 75, 12)];
         
-        NSRange range;
-        
-        range.length = 14;
-        range.location = 10;
-        
-        label.text = [[flight objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:range withString:@""];
-        label.font = [UIFont systemFontOfSize:10.0f];
+        label.text = [[[flight objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:NSMakeRange(0, 11) withString:@""] stringByReplacingCharactersInRange:NSMakeRange(8, 5) withString:@""];
+        label.font = [UIFont systemFontOfSize:12.0f];
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
         
         [flightInfo addSubview:label];
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(190, 35, 75, 10)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(195, 36, 75, 12)];
         
-        range.length = 10;
-        range.location = 0;
-        
-        label.text = [[flight objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:range withString:@""];
-        label.font = [UIFont systemFontOfSize:10.0f];
+        label.text = [[flight objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:NSMakeRange(10, 14) withString:@""];
+        label.font = [UIFont systemFontOfSize:12.0f];
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
         
@@ -376,7 +368,7 @@
             selectIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_Default"]];
         }
         
-        selectIcon.frame = CGRectMake(270, 20, 20, 20);
+        selectIcon.frame = CGRectMake(260, 8, 44, 44);
         
         [flightInfo addSubview:selectIcon];
         [selectIcon release];

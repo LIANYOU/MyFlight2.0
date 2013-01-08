@@ -189,14 +189,31 @@
     [cell addSubview:title];
     [title release];
     
-    UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
+    UILabel *value;
+    
+    UITextField *editableValue;
+    
+    UIButton *invisibleButton;
     
     switch(indexPath.row)
     {
         case 0:
-            value.text = passName;
+            editableValue = [[UITextField alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
+            
+            editableValue.text = passName;
+            
+            editableValue.font = [UIFont systemFontOfSize:16.0f];
+            editableValue.textColor = FONT_COLOR_DEEP_GRAY;
+            editableValue.textAlignment = NSTextAlignmentRight;
+            editableValue.backgroundColor = [UIColor clearColor];
+            
+            [cell addSubview:editableValue];
+            [editableValue release];
+            
             break;
         case 1:
+            value = [[UILabel alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
+                     
             if(passportType == 0)
             {
                 value.text = @"身份证";
@@ -209,24 +226,47 @@
             {
                 value.text = @"其他";
             }
+            
+            value.font = [UIFont systemFontOfSize:16.0f];
+            value.textColor = FONT_COLOR_DEEP_GRAY;
+            value.textAlignment = NSTextAlignmentRight;
+            value.backgroundColor = [UIColor clearColor];
+            
+            [cell addSubview:value];
+            [value release];
+            
             break;
         case 2:
-            value.text = idNo;
+            editableValue = [[UITextField alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
+            
+            editableValue.text = idNo;
+            
+            editableValue.font = [UIFont systemFontOfSize:16.0f];
+            editableValue.textColor = FONT_COLOR_DEEP_GRAY;
+            editableValue.textAlignment = NSTextAlignmentRight;
+            editableValue.backgroundColor = [UIColor clearColor];
+            
+            [cell addSubview:editableValue];
+            [editableValue release];
+            
             break;
         case 3:
+            value = [[UILabel alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
+            
             value.text = depCity;
+            
+            value.font = [UIFont systemFontOfSize:16.0f];
+            value.textColor = FONT_COLOR_DEEP_GRAY;
+            value.textAlignment = NSTextAlignmentRight;
+            value.backgroundColor = [UIColor clearColor];
+            
+            [cell addSubview:value];
+            [value release];
+            
             break;
         default:
             break;
     }
-    
-    value.font = [UIFont systemFontOfSize:16.0f];
-    value.textColor = FONT_COLOR_DEEP_GRAY;
-    value.textAlignment = NSTextAlignmentRight;
-    value.backgroundColor = [UIColor clearColor];
-    
-    [cell addSubview:value];
-    [value release];
     
     if(indexPath.row == 1 || indexPath.row == 3)
     {
@@ -356,7 +396,7 @@
     [checkInInfoTable reloadData];
 }
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChooseAirPortViewController *chooseAp;
     UIActionSheet *actionSheet;
@@ -447,7 +487,7 @@
         default:
             break;
     }
-}
+}*/
 
 - (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger)choiceType didSelectAirPortInfo:(AirPortData *)airPort
 {

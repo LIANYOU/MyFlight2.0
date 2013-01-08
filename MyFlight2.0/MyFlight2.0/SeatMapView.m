@@ -25,13 +25,8 @@
     return self;
 }
 
-- (void) drawSeatMap:(NSDictionary *)responseDictionary
+- (void) drawSeatMap:(NSDictionary *) seatMap
 {
-    if(map == NULL)
-    {
-        map = (char *) malloc(sectionX * sectionY * sizeof(char));
-    }
-    
     for(UIView *view in [self subviews])
     {
         [view removeFromSuperview];
@@ -40,18 +35,16 @@
     NSInteger i = 0;
     NSInteger j = 0;
     
-    for(i = 0; i < sectionX; i++)
+    NSString *cabinType = [NSString stringWithFormat:@"column%@", [seatMap objectForKey:@"baseCabin"]];
+    
+    NSArray *stringArray = [[seatMap objectForKey:cabinType] objectForKey:@"string"];
+    
+    NSArray *rowArray = [[seatMap objectForKey:@"row"] objectForKey:@"_int"];
+    
+    NSArray *seatsArray = [[seatMap objectForKey:@"seats"] objectForKey:@"arrayOfXsdString"];
+    
+    for(i = 0; i < sectionY; i++)
     {
-        for(j = 0; j < sectionY; j++)
-        {
-            switch(map[i * sectionY + j])
-            {
-                case '=':
-                    break;
-                default:
-                    break;
-            }
-        }
     }
 }
 
