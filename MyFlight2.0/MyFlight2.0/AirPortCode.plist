@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HU</key>
+	<string>海航</string>
+	<key>MU</key>
+	<string>东方</string>
+	<key>CA</key>
+	<string>国航</string>
+</dict>
+</plist>
