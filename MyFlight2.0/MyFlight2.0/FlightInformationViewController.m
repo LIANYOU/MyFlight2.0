@@ -126,6 +126,7 @@
     detailedInfoTable.delegate = self;
     detailedInfoTable.dataSource = self;
     detailedInfoTable.scrollEnabled = NO;
+    detailedInfoTable.allowsSelection = NO;
     
     flightInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 284, 300, 88)];
     
@@ -140,6 +141,7 @@
     flightInfoTable.delegate = self;
     flightInfoTable.dataSource = self;
     flightInfoTable.scrollEnabled = NO;
+    flightInfoTable.allowsSelection = NO;
     
     [self.view addSubview:detailedInfoTable];
     [detailedInfoTable release];
@@ -209,8 +211,6 @@
     }
     
     NSDictionary *cussInfo = [[responseDictionary objectForKey:@"cussInfo"] objectAtIndex:0];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIView *line;
     

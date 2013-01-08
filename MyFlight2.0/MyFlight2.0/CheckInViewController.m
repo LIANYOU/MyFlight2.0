@@ -30,12 +30,9 @@
     
     titleArray = [[NSArray alloc] initWithObjects:@"姓      名", @"证件类型", @"证件号码", @"出发城市", nil];
     
-    passName = @"降枫";
-    idNo = @"123456789012345678";
+    passportType = 0;
     depCity = @"北京";
     depCityCode = @"010";
-    
-    passportType = 0;
     
     UIButton *navigationLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -67,6 +64,7 @@
     checkInInfoTable.delegate = self;
     checkInInfoTable.dataSource = self;
     checkInInfoTable.scrollEnabled = NO;
+    checkInInfoTable.allowsSelection = NO;
     
     checkInInfoTable.rowHeight = 50.0f;
     checkInInfoTable.backgroundColor = FOREGROUND_COLOR;
@@ -189,84 +187,113 @@
     [cell addSubview:title];
     [title release];
     
-    UILabel *value;
-    
-    UITextField *editableValue;
-    
-    UIButton *invisibleButton;
-    
     switch(indexPath.row)
     {
         case 0:
-            editableValue = [[UITextField alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
+            passName = [[UITextField alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
             
-            editableValue.text = passName;
+            passName.text = @"降枫";
             
-            editableValue.font = [UIFont systemFontOfSize:16.0f];
-            editableValue.textColor = FONT_COLOR_DEEP_GRAY;
-            editableValue.textAlignment = NSTextAlignmentRight;
-            editableValue.backgroundColor = [UIColor clearColor];
+            passName.font = [UIFont systemFontOfSize:16.0f];
+            passName.textColor = FONT_COLOR_DEEP_GRAY;
+            passName.textAlignment = NSTextAlignmentRight;
+            passName.backgroundColor = [UIColor clearColor];
+            passName.keyboardType = UIKeyboardTypeNamePhonePad;
             
-            [cell addSubview:editableValue];
-            [editableValue release];
+            [passName addTarget:self action:@selector(userEndEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+            [passName addTarget:self action:@selector(userBeginEdit:) forControlEvents:UIControlEventEditingDidBegin];
+            
+            [cell addSubview:passName];
+            [passName release];
             
             break;
         case 1:
-            value = [[UILabel alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
-                     
+            changeType = [UIButton buttonWithType:UIButtonTypeCustom];
+            
+            changeType.frame = CGRectMake(74, 17, 194, 16);
+            changeType.backgroundColor = [UIColor clearColor];
+            
+            [changeType setContentEdgeInsets:UIEdgeInsetsZero];
+            
+            [changeType addTarget:self action:@selector(choosePassportType) forControlEvents:UIControlEventTouchUpInside];
+            
+            typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 194, 16)];
+            
             if(passportType == 0)
             {
-                value.text = @"身份证";
+                typeLabel.text = @"身份证";
             }
             else if(passportType == 1)
             {
-                value.text = @"军官证或护照";
+                typeLabel.text = @"军官证或护照";
             }
             else
             {
-                value.text = @"其他";
+                typeLabel.text = @"其他";
             }
             
-            value.font = [UIFont systemFontOfSize:16.0f];
-            value.textColor = FONT_COLOR_DEEP_GRAY;
-            value.textAlignment = NSTextAlignmentRight;
-            value.backgroundColor = [UIColor clearColor];
+            typeLabel.font = [UIFont systemFontOfSize:16.0f];
+            typeLabel.textColor = FONT_COLOR_DEEP_GRAY;
+            typeLabel.textAlignment = NSTextAlignmentRight;
+            typeLabel.backgroundColor = [UIColor clearColor];
             
-            [cell addSubview:value];
-            [value release];
+            [changeType addSubview:typeLabel];
+            [typeLabel release];
+            
+            [cell addSubview:changeType];
             
             break;
         case 2:
-            editableValue = [[UITextField alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
+            idNo = [[UITextField alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
             
-            editableValue.text = idNo;
+            idNo.text = @"123456789012345678";
             
-            editableValue.font = [UIFont systemFontOfSize:16.0f];
-            editableValue.textColor = FONT_COLOR_DEEP_GRAY;
-            editableValue.textAlignment = NSTextAlignmentRight;
-            editableValue.backgroundColor = [UIColor clearColor];
+            idNo.font = [UIFont systemFontOfSize:16.0f];
+            idNo.textColor = FONT_COLOR_DEEP_GRAY;
+            idNo.textAlignment = NSTextAlignmentRight;
+            idNo.backgroundColor = [UIColor clearColor];
+            idNo.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             
-            [cell addSubview:editableValue];
-            [editableValue release];
+            [idNo addTarget:self action:@selector(userEndEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+            [idNo addTarget:self action:@selector(userBeginEdit:) forControlEvents:UIControlEventEditingDidBegin];
+            
+            [cell addSubview:idNo];
+            [idNo release];
             
             break;
         case 3:
-            value = [[UILabel alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
+            changeCity = [UIButton buttonWithType:UIButtonTypeCustom];
             
-            value.text = depCity;
+            changeCity.frame = CGRectMake(74, 17, 194, 16);
+            changeCity.backgroundColor = [UIColor clearColor];
             
-            value.font = [UIFont systemFontOfSize:16.0f];
-            value.textColor = FONT_COLOR_DEEP_GRAY;
-            value.textAlignment = NSTextAlignmentRight;
-            value.backgroundColor = [UIColor clearColor];
+            [changeCity setContentEdgeInsets:UIEdgeInsetsZero];
             
-            [cell addSubview:value];
-            [value release];
+            [changeCity addTarget:self action:@selector(chooseAirport) forControlEvents:UIControlEventTouchUpInside];
+            
+            cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 194, 16)];
+            
+            cityLabel.text = depCity;
+            
+            cityLabel.font = [UIFont systemFontOfSize:16.0f];
+            cityLabel.textColor = FONT_COLOR_DEEP_GRAY;
+            cityLabel.textAlignment = NSTextAlignmentRight;
+            cityLabel.backgroundColor = [UIColor clearColor];
+            
+            [changeCity addSubview:cityLabel];
+            [cityLabel release];
+            
+            [cell addSubview:changeCity];
             
             break;
         default:
             break;
     }
+    
+    passName.text = @"降枫";
+    idNo.text = @"123456789012345678";
+    depCity = @"北京";
+    depCityCode = @"010";
     
     if(indexPath.row == 1 || indexPath.row == 3)
     {
@@ -289,12 +316,7 @@
 
 - (void)dealloc
 {
-    [registerforCheckIn release];
-    [checkforProgress release];
-    
     [titleArray release];
-    [passName release];
-    [idNo release];
     [depCity release];
     [depCityCode release];
     
@@ -303,10 +325,8 @@
 
 - (void)viewDidUnload
 {
-    [registerforCheckIn release];
-    registerforCheckIn = nil;
-    [checkforProgress release];
-    checkforProgress = nil;
+    [responseDictionary release];
+    
     [super viewDidUnload];
 }
 
@@ -315,48 +335,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) userDidInput
-{
-    switch(textInput.keyboardType)
-    {
-        case UIKeyboardTypeNumbersAndPunctuation:
-            if(passportType == 0)
-            {
-                if(textInput.text.length != 18)
-                {
-                    // error : invalid idNo
-                }
-                else
-                {
-                    [idNo release];
-                    idNo = [textInput.text retain];
-                }
-            }
-            break;
-        case UIKeyboardTypeNamePhonePad:
-            [passName release];
-            passName = [[textInput text] retain];
-        default:
-            break;
-    }
-    
-    [textInput.superview removeFromSuperview];
-    
-    [checkInInfoTable reloadData];
-}
-
-- (void) userCancelInput
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void) checkIn
 {
     ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
     
     chooseFlight.isQuery = NO;
-    chooseFlight.passName = passName;
-    chooseFlight.idNo = idNo;
+    chooseFlight.passName = passName.text;
+    chooseFlight.idNo = idNo.text;
     chooseFlight.depCity = depCityCode;
     
     [self.navigationController pushViewController:chooseFlight animated:YES];
@@ -368,8 +353,8 @@
     ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
     
     chooseFlight.isQuery = YES;
-    chooseFlight.passName = passName;
-    chooseFlight.idNo = idNo;
+    chooseFlight.passName = passName.text;
+    chooseFlight.idNo = idNo.text;
     chooseFlight.depCity = depCityCode;
     
     [self.navigationController pushViewController:chooseFlight animated:YES];
@@ -382,119 +367,61 @@
     {
         case 0:
             passportType = 0;
+            typeLabel.text = @"身份证";
             break;
         case 1:
             passportType = 1;
+            typeLabel.text = @"军官证或护照";
             break;
         case 2:
             passportType = 2;
+            typeLabel.text = @"其他";
             break;
         default:
             break;
     }
-    
-    [checkInInfoTable reloadData];
 }
 
-/*- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void) choosePassportType
 {
-    ChooseAirPortViewController *chooseAp;
-    UIActionSheet *actionSheet;
-    UIButton *exitButton;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择您的证件类型"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"身份证", @"军官证或护照", @"其他", nil];
     
-    switch (indexPath.row)
-    {
-        case 0:
-            exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            
-            exitButton.frame = [UIScreen mainScreen].bounds;
-            exitButton.layer.backgroundColor = [[UIColor clearColor] CGColor];
-            exitButton.layer.borderWidth = 0.0f;
-            
-            [exitButton addTarget:exitButton action:@selector(removeFromSuperview) forControlEvents:UIControlEventTouchDown];
-            
-            textInput = [[UITextField alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height < 500 ? 203:291, 320, 40)];
-            
-            textInput.keyboardType = UIKeyboardTypeNamePhonePad;
-            textInput.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
-            textInput.textAlignment = UITextAlignmentCenter;
-            textInput.textColor = [UIColor blueColor];
-            textInput.font = [UIFont systemFontOfSize:40.0f];
-            
-            textInput.backgroundColor = [UIColor yellowColor];
-            
-            [textInput addTarget:self action:@selector(userDidInput) forControlEvents:UIControlEventEditingDidEndOnExit];
-            
-            [exitButton addSubview:textInput];
-            [textInput release];
-            
-            [self.view addSubview:exitButton];
-            
-            [textInput becomeFirstResponder];
-            
-            break;
-        case 1:
-            actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择您的证件类型"
-                                                                     delegate:self
-                                                            cancelButtonTitle:@"取消"
-                                                       destructiveButtonTitle:nil
-                                                            otherButtonTitles:@"身份证", @"军官证或护照", @"其他", nil];
-            
-            actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-            
-            [actionSheet showInView:self.view];
-            [actionSheet release];
-            
-            break;
-        case 2:
-            exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            
-            exitButton.frame = [UIScreen mainScreen].bounds;
-            exitButton.layer.backgroundColor = [[UIColor clearColor] CGColor];
-            exitButton.layer.borderWidth = 0.0f;
-            
-            [exitButton addTarget:exitButton action:@selector(removeFromSuperview) forControlEvents:UIControlEventTouchDown];
-            
-            textInput = [[UITextField alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height < 500 ? 160:248, 320, 40)];
-            
-            textInput.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-            textInput.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
-            textInput.textAlignment = UITextAlignmentCenter;
-            textInput.textColor = [UIColor blueColor];
-            textInput.font = [UIFont systemFontOfSize:20.0f];
-            
-            textInput.backgroundColor = [UIColor yellowColor];
-            
-            [textInput addTarget:self action:@selector(userDidInput) forControlEvents:UIControlEventEditingDidEndOnExit];
-            
-            [exitButton addSubview:textInput];
-            [textInput release];
-            
-            [self.view addSubview:exitButton];
-            
-            [textInput becomeFirstResponder];
-            
-            break;
-        case 3:
-            chooseAp = [[ChooseAirPortViewController alloc] init];
-            
-            chooseAp.delegate = self;
-            
-            [self.navigationController pushViewController:chooseAp animated:YES];
-            [chooseAp release];
-            
-            break;
-        default:
-            break;
-    }
-}*/
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+}
+
+- (void) chooseAirport
+{
+    ChooseAirPortViewController *chooseAp = [[ChooseAirPortViewController alloc] init];
+    
+    chooseAp.delegate = self;
+    
+    [self.navigationController pushViewController:chooseAp animated:YES];
+    [chooseAp release];
+}
 
 - (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger)choiceType didSelectAirPortInfo:(AirPortData *)airPort
 {
     depCity = airPort.cityName;
     depCityCode = airPort.cityName;
     
-    [checkInInfoTable reloadData];
+    cityLabel.text = depCity;
+}
+
+- (void) userBeginEdit:(UITextField *)sender
+{
+    sender.text = @"";
+}
+
+- (void) userEndEdit:(UITextField *)sender
+{
+    [sender resignFirstResponder];
 }
 
 @end

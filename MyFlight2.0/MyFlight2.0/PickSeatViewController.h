@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "FlightInformationViewController.h"
 #import "SeatMapView.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"

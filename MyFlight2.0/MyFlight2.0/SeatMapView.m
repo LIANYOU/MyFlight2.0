@@ -21,6 +21,13 @@
         
         selectionX = -1;
         selectionY = -1;
+        
+        emergencyExit = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"e1" ofType:@"png"]];
+        available = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"seat1" ofType:@"png"]];
+        occupied = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"no_seat" ofType:@"png"]];
+        selected = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pitch_on" ofType:@"png"]];
+        
+        lastSelection = nil;
     }
     return self;
 }
@@ -39,60 +46,254 @@
     
     NSArray *stringArray = [[seatMap objectForKey:cabinType] objectForKey:@"string"];
     
-    NSArray *rowArray = [[seatMap objectForKey:@"row"] objectForKey:@"_int"];
+    [map release];
+    map = [seatMap retain];
     
-    NSArray *seatsArray = [[seatMap objectForKey:@"seats"] objectForKey:@"arrayOfXsdString"];
+    NSArray *rowArray = [[map objectForKey:@"row"] objectForKey:@"_int"];
+    
+    NSArray *seatsArray = [[map objectForKey:@"seats"] objectForKey:@"arrayOfXsdString"];
     
     for(i = 0; i < sectionY; i++)
     {
+        NSNumber *value = [rowArray objectAtIndex:i];
+        
+        if(value.intValue != 0)
+        {
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, i * 30, 30, 30)];
+            
+            label.text = [NSString stringWithFormat:@"%d", value.intValue];
+            
+            label.textColor = FONT_COLOR_BIG_GRAY;
+            label.textAlignment = UITextAlignmentCenter;
+            label.font = [UIFont systemFontOfSize:20.0f];
+            label.backgroundColor = [UIColor clearColor];
+            
+            [self addSubview:label];
+            [label release];
+        }
     }
-}
-
-- (NSString *) currentSeatChoosed:(NSDictionary *)responseDictionary
-{
-    if(selectionX == -1 && selectionY == -1)
+    
+    availableCount = 0;
+    
+    for(i = 0; i < sectionY; i++)
     {
-        NSString *returnValue = [[NSString alloc] initWithString:@""];
-        return [returnValue autorelease];
+        NSArray *string = [[seatsArray objectAtIndex:i] objectForKey:@"string"];
+        
+        NSNumber *type = [rowArray objectAtIndex:i];
+        
+        for(j = 0; j < sectionX; j++)
+        {
+            NSString *value = [string objectAtIndex:j];
+            
+            if(type.intValue == 0)
+            {
+            }
+            else
+            {
+                switch([value characterAtIndex:0])
+                {
+                    case '.':
+                        break;
+                    case '*':
+                        availableCount++;
+                        break;
+                    case ':':
+                        break;
+                    case '=':
+                        break;
+                    case '/':
+                        break;
+                    case '+':
+                        break;
+                    case 'E':
+                        break;
+                    case 'I':
+                        break;
+                    case 'Q':
+                        break;
+                    case 'X':
+                        break;
+                    case 'T':
+                        break;
+                    case 'V':
+                        break;
+                    case 'D':
+                        break;
+                    case 'C':
+                        break;
+                    case 'P':
+                        break;
+                    case 'R':
+                        break;
+                    case 'O':
+                        break;
+                    case 'A':
+                        break;
+                    case 'B':
+                        break;
+                    case 'N':
+                        break;
+                    case 'U':
+                        break;
+                    case 'G':
+                        break;
+                    case 'H':
+                        break;
+                    case '>':
+                        break;
+                    case 'L':
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
-    else
+    
+    for(i = 0; i < sectionY; i++)
     {
-        return nil;
+        NSArray *string = [[seatsArray objectAtIndex:i] objectForKey:@"string"];
+        
+        NSNumber *type = [rowArray objectAtIndex:i];
+        
+        for(j = 0; j < sectionX; j++)
+        {
+            NSString *value = [string objectAtIndex:j];
+            
+            if(type.intValue == 0)
+            {
+                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake((j + 1) * 30, i * 30, 30, 30)];
+                
+                label.text = value;
+                
+                label.textColor = [UIColor blueColor];
+                label.textAlignment = UITextAlignmentCenter;
+                label.font = [UIFont systemFontOfSize:20.0f];
+                label.backgroundColor = [UIColor clearColor];
+                
+                [self addSubview:label];
+                [label release];
+            }
+            else
+            {
+                UIButton *button;
+                UIImageView *image;
+                UIView *aisle;
+                
+                switch([value characterAtIndex:0])
+                {
+                    case '.':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
+                        break;
+                    case '*':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:available forState:UIControlStateNormal];
+                            [button setTitle:[NSString stringWithFormat:@"%d%@", type.intValue, [stringArray objectAtIndex:j]] forState:UIControlStateNormal];
+                        [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+                        [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+                        [self addSubview:button];
+                        break;
+                    case ':':
+                        break;
+                    case '=':
+                        aisle = [[UIView alloc] initWithFrame:CGRectMake((j + 1) * 30 + 11.5, i * 30 + 1.5, 3, 12)];
+                        aisle.backgroundColor = [UIColor lightGrayColor];
+                        [self addSubview:aisle];
+                        [aisle release];
+                        aisle = [[UIView alloc] initWithFrame:CGRectMake((j + 1) * 30 + 16.5, i * 30 + 1.5, 3, 12)];
+                        aisle.backgroundColor = [UIColor lightGrayColor];
+                        [self addSubview:aisle];
+                        [aisle release];
+                        aisle = [[UIView alloc] initWithFrame:CGRectMake((j + 1) * 30 + 11.5, i * 30 + 16.5, 3, 12)];
+                        aisle.backgroundColor = [UIColor lightGrayColor];
+                        [self addSubview:aisle];
+                        [aisle release];
+                        aisle = [[UIView alloc] initWithFrame:CGRectMake((j + 1) * 30 + 16.5, i * 30 + 16.5, 3, 12)];
+                        aisle.backgroundColor = [UIColor lightGrayColor];
+                        [self addSubview:aisle];
+                        [aisle release];
+                        break;
+                    case '/':
+                        break;
+                    case '+':
+                        break;
+                    case 'E':
+                        image = [[UIImageView alloc] initWithImage:emergencyExit];
+                        image.frame = CGRectMake((j + 1) * 30 + 11.75f, i * 30 + 9.25f, 6.5f, 11.5f);
+                        [self addSubview:image];
+                        [image release];
+                        break;
+                    case 'I':
+                        break;
+                    case 'Q':
+                        break;
+                    case 'X':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
+                        break;
+                    case 'T':
+                        break;
+                    case 'V':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
+                        break;
+                    case 'D':
+                        break;
+                    case 'C':
+                        if(availableCount == 0)
+                        {
+                            button = [UIButton buttonWithType:UIButtonTypeCustom];
+                            button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                            [button setBackgroundImage:available forState:UIControlStateNormal];
+                            [button setTitle:[NSString stringWithFormat:@"%d%@", type.intValue, [stringArray objectAtIndex:j]] forState:UIControlStateNormal];
+                            [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+                            [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+                            [self addSubview:button];
+                        }
+                        else
+                        {
+                            button = [UIButton buttonWithType:UIButtonTypeCustom];
+                            button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                            [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                            [self addSubview:button];
+                        }
+                        break;
+                    case 'P':
+                        break;
+                    case 'R':
+                        break;
+                    case 'O':
+                        break;
+                    case 'A':
+                        break;
+                    case 'B':
+                        break;
+                    case 'N':
+                        break;
+                    case 'U':
+                        break;
+                    case 'G':
+                        break;
+                    case 'H':
+                        break;
+                    case '>':
+                        break;
+                    case 'L':
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
-}
-
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    CGPoint position = [[touches anyObject] locationInView:self];
-    
-    NSInteger select_X = position.x / self.frame.size.width * sectionX;
-    NSInteger select_Y = position.y / self.frame.size.height * sectionY;
-    
-    if(selectionX == select_X && selectionY == select_Y)
-    {
-        selectionX = -1;
-        selectionY = -1;
-    }
-    else
-    {
-        selectionX = select_X;
-        selectionY = select_Y;
-    }
-}
-
-- (void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-}
-
-- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-}
-
-- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
 }
 
 /*
@@ -104,9 +305,49 @@
 }
 */
 
+- (void) click:(UIButton *)sender
+{
+    if(lastSelection != nil)
+    {
+        if(lastSelection != sender)
+        {
+            [lastSelection setBackgroundImage:available forState:UIControlStateNormal];
+            [sender setBackgroundImage:selected forState:UIControlStateNormal];
+            lastSelection = sender;
+        }
+        else
+        {
+            [lastSelection setBackgroundImage:available forState:UIControlStateNormal];
+            lastSelection = nil;
+        }
+    }
+    else
+    {
+        [sender setBackgroundImage:selected forState:UIControlStateNormal];
+        lastSelection = sender;
+    }
+}
+
+- (NSString *) currentSelected
+{
+    if(lastSelection == nil)
+    {
+        return nil;
+    }
+    else
+    {
+        return lastSelection.currentTitle;
+    }
+}
+
 - (void) dealloc
 {
-    free(map);
+    [emergencyExit release];
+    [selected release];
+    [available release];
+    [occupied release];
+    
+    [map release];
     
     [super dealloc];
 }

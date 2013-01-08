@@ -129,6 +129,7 @@
     
     passengerInfoTable.delegate = self;
     passengerInfoTable.dataSource = self;
+    passengerInfoTable.allowsSelection = NO;
     passengerInfoTable.scrollEnabled = NO;
     
     passengerInfoTable.rowHeight = 50.0f;
@@ -215,8 +216,6 @@
             [view removeFromSuperview];
         }
     }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if(tableView == passengerInfoTable)
     {
@@ -377,6 +376,8 @@
         [flightInfo release];
         
         cell.backgroundColor = [UIColor clearColor];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     return cell;

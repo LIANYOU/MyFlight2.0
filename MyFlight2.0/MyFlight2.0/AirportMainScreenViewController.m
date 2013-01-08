@@ -190,6 +190,7 @@
     
     screenTitle.dataSource = self;
     screenTitle.delegate = self;
+    screenTitle.allowsSelection = NO;
     
     [self.view addSubview:screenTitle];
     [screenTitle release];
@@ -279,6 +280,7 @@
     
     screenValue.dataSource = self;
     screenValue.delegate = self;
+    screenValue.allowsSelection = NO;
     
     [scroll addSubview:screenValue];
     [screenValue release];
@@ -496,8 +498,6 @@
         [cell addSubview:block];
         [block release];
     }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

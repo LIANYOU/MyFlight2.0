@@ -151,6 +151,7 @@
 		14805B9116783A1400836353 /* AirPortDataBaseSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */; };
 		14805BA4167875E900836353 /* bg_pek.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA3167875E900836353 /* bg_pek.png */; };
 		14805BA61678760B00836353 /* icon_return.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA51678760B00836353 /* icon_return.png */; };
+		14935582169CA32E00F66E87 /* aisle.png in Resources */ = {isa = PBXBuildFile; fileRef = 14935581169CA32E00F66E87 /* aisle.png */; };
 		149B7708168BE3C3006281A3 /* MyCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7707168BE3C3006281A3 /* MyCenterCell.m */; };
 		149B770A168BE3E1006281A3 /* MyCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B7709168BE3E1006281A3 /* MyCenterCell.xib */; };
 		149B770E168BF386006281A3 /* MyCenterSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B770D168BF383006281A3 /* MyCenterSecondCell.m */; };
@@ -1006,6 +1007,7 @@
 		14805B9016783A1300836353 /* AirPortDataBaseSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPortDataBaseSingleton.m; sourceTree = "<group>"; };
 		14805BA3167875E900836353 /* bg_pek.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pek.png; sourceTree = "<group>"; };
 		14805BA51678760B00836353 /* icon_return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_return.png; sourceTree = "<group>"; };
+		14935581169CA32E00F66E87 /* aisle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aisle.png; sourceTree = "<group>"; };
 		149B7706168BE3C2006281A3 /* MyCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterCell.h; sourceTree = "<group>"; };
 		149B7707168BE3C3006281A3 /* MyCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterCell.m; sourceTree = "<group>"; };
 		149B7709168BE3E1006281A3 /* MyCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterCell.xib; sourceTree = "<group>"; };
@@ -2797,6 +2799,7 @@
 				14ECC0751695650E008191E1 /* line.png */,
 				14ECC0761695650E008191E1 /* no_seat.png */,
 				14ECC0771695650E008191E1 /* pitch_on.png */,
+				14935581169CA32E00F66E87 /* aisle.png */,
 				14ECC0781695650E008191E1 /* seat1.png */,
 			);
 			path = "值机";
@@ -4592,7 +4595,6 @@
 				14DF3581169BD8B200CD93AB /* CommonContactDataBase.sqlite in Resources */,
 				18D15A6E169BF51400A9AD08 /* PostCity.sqlite in Resources */,
 				18D15A70169BF53F00A9AD08 /* postCityList.plist in Resources */,
-
 				1842B4DD169C6433007FA603 /* BaggageViewController.xib in Resources */,
 				1842B4DF169C6433007FA603 /* ChackInNavgationViewController.xib in Resources */,
 				1842B4E1169C6433007FA603 /* FlightCompanyDistrubuteController.xib in Resources */,
@@ -4655,8 +4657,7 @@
 				1842B56F169C6786007FA603 /* 雷阵雨.png in Resources */,
 				1842B570169C6786007FA603 /* 雷阵雨伴有冰雹.png in Resources */,
 				1842B571169C6786007FA603 /* 雾.png in Resources */,
-
-
+				14935582169CA32E00F66E87 /* aisle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4914,7 +4915,6 @@
 				18D15A6B169BBEE000A9AD08 /* OneWayCheckViewController.m in Sources */,
 				18D15A73169BF57E00A9AD08 /* PostCityData.m in Sources */,
 				18D15A76169BF69B00A9AD08 /* PostCityDatabase.m in Sources */,
-
 				1842B4DC169C6433007FA603 /* BaggageViewController.m in Sources */,
 				1842B4DE169C6433007FA603 /* ChackInNavgationViewController.m in Sources */,
 				1842B4E0169C6433007FA603 /* FlightCompanyDistrubuteController.m in Sources */,
@@ -4929,8 +4929,6 @@
 				1842B4FE169C6540007FA603 /* SMSViewController.m in Sources */,
 				1842B506169C65E7007FA603 /* LookFlightConditionCell.m in Sources */,
 				1842B508169C65E7007FA603 /* SearchFlightConditionCell.m in Sources */,
-
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

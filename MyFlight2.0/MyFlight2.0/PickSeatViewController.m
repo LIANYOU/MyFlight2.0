@@ -90,12 +90,12 @@
                 
                 NSArray *rowArray = [[seatMap objectForKey:@"row"] objectForKey:@"_int"];
                 
-                map.sectionX = [stringArray count] + 1;
-                map.sectionY = [rowArray count] + 1;
+                map.sectionX = [stringArray count];
+                map.sectionY = [rowArray count];
                 
-                map.frame = CGRectMake(0, 0, map.sectionX * 40, map.sectionY * 40);
+                map.frame = CGRectMake(0, 0, map.sectionX * 30 + 30, map.sectionY * 30);
                 
-                scroll.contentSize = CGSizeMake(map.sectionX * 40, map.sectionY * 40);
+                scroll.contentSize = CGSizeMake(map.sectionX * 30 + 30, map.sectionY * 30);
                 scroll.contentOffset = CGPointMake((scroll.contentSize.width - scroll.frame.size.width) / 2, (scroll.contentSize.height - scroll.frame.size.height) / 2);
                 
                 [map drawSeatMap:seatMap];
@@ -292,6 +292,12 @@
 
 - (void) checkIn
 {
+    if([map currentSelected] == nil)
+    {
+        // error: no seat choosen
+        return;
+    }
+    
     NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/getPaHandler.jsp"];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -328,9 +334,7 @@
     [request setPostValue:[dictionary objectForKey:@"flightNo"] forKey:@"segment.flightNo"];
     [request setPostValue:[dictionary objectForKey:@"cabin"] forKey:@"segment.cabin"];
     
-//    [request setPostValue:[map currentSeatChoosed:responseDictionary] forKey:@"seatNos"];
-    
-    [request setPostValue:@"40E" forKey:@"seatNos"];
+    [request setPostValue:[map currentSelected] forKey:@"seatNos"];
     
     [request setPostValue:@"HU" forKey:@"ffpAirline"];
     
@@ -367,7 +371,14 @@
                     NSLog(@"%@\n",string);
                 }
                 
-                [self.navigationController popViewControllerAnimated:YES];
+                FlightInformationViewController *flightInfo = [[FlightInformationViewController alloc] init];
+                
+                flightInfo.org = self.org;
+                flightInfo.passName = self.passName;
+                flightInfo.idNo = @"";
+                
+                [self.navigationController pushViewController:flightInfo animated:YES];
+                [flightInfo release];
             }
             else
             {

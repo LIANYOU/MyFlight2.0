@@ -16,28 +16,33 @@
 {
     UITableView *checkInInfoTable;
     
-    IBOutlet UIButton *registerforCheckIn;
-    IBOutlet UIButton *checkforProgress;
+    UIButton *registerforCheckIn;
+    UIButton *checkforProgress;
     
     NSArray *titleArray;
     
-    NSString *passName;
-    NSString *idNo;
+    UITextField *passName;
+    UIButton *changeType;
+    UILabel *typeLabel;
+    UITextField *idNo;
+    UIButton *changeCity;
+    UILabel *cityLabel;
+    
     NSString *depCity;
     NSString *depCityCode;
     
     unsigned char passportType;
     
-    UITextField *textInput;
-    
     __block NSDictionary *responseDictionary;
 }
 
 - (void) back;
-- (void) userDidInput;
-- (void) userCancelInput;
+- (void) userBeginEdit:(UITextField *) sender;
+- (void) userEndEdit:(UITextField *) sender;
 
 - (void) checkIn;
 - (void) progressQuery;
+- (void) chooseAirport;
+- (void) choosePassportType;
 
 @end

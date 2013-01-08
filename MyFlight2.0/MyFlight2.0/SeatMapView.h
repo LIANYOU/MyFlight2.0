@@ -7,19 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface SeatMapView : UIView
 {
     NSInteger selectionX;
     NSInteger selectionY;
     
-    char *map;
+    NSInteger availableCount;
+    
+    UIImage *emergencyExit;
+    UIImage *selected;
+    UIImage *available;
+    UIImage *occupied;
+    
+    UIButton *lastSelection;
+    
+    NSDictionary *map;
 }
 
 @property (assign, nonatomic) NSInteger sectionX;
 @property (assign, nonatomic) NSInteger sectionY;
 
 - (void) drawSeatMap:(NSDictionary *) seatMap;
-- (NSString *) currentSeatChoosed:(NSDictionary *) responseDictionary;
+- (void) click:(UIButton *) sender;
+- (NSString *) currentSelected;
 
 @end
