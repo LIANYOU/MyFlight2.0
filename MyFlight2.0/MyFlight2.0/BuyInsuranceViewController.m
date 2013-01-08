@@ -35,9 +35,11 @@
     
     if ([self.type isEqualToString:@"ON"]) {
         self.swith.on = YES;
+        self.textView.hidden = NO;
     }
     else
     {
+        self.textView.hidden = YES;
         self.swith.on = NO;
     }
     
@@ -82,11 +84,13 @@
     BOOL setting = sender.isOn;//获得开关状态
     if(setting)
     {
+        self.textView.hidden = NO;
         swithType = @"ON";
         BuyString = @"20元/份*1人";
     }
     else{
 
+        self.textView.hidden = YES;
         swithType = @"OFF";
         BuyString = nil;
     }
@@ -101,10 +105,12 @@
 
 - (void)dealloc {
     [_swith release];
+    [_textView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setSwith:nil];
+    [self setTextView:nil];
     [super viewDidUnload];
 }
 @end

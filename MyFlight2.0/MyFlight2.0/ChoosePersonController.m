@@ -146,7 +146,6 @@
                 selectedSign=YES;
                 
                 UIImage * image=[UIImage imageNamed:@"icon_choice.png"];
-              //  UIImage * toimage=[UIImage scaleImage:image toScale:0.5];
                 
                 [cell.btn setBackgroundImage:image forState:0];
                 

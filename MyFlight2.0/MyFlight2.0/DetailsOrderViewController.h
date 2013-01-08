@@ -87,4 +87,7 @@
 @property (retain, nonatomic) IBOutlet LinkmanCell *linkCell;
 @property (retain, nonatomic) IBOutlet JourneyCell *journeyCell;
 @property (retain, nonatomic) IBOutlet FlightConditionCell *flightCell;
+
+- (IBAction)goPay:(id)sender;
+- (IBAction)cancelOrder:(id)sender;
 @end

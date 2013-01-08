@@ -29,7 +29,6 @@
                 source:(NSString *)source
                   hwId:(NSString *)hwId
            serviceCode:(NSString *)serviceCode
-               captcha:(NSString *)captcha
            andDelegate:(id<ServiceDelegate>)delegate;
 
 -(void) getBackInfo;

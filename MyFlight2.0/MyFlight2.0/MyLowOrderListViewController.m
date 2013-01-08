@@ -59,8 +59,17 @@
     self.navigationItem.rightBarButtonItem=backBtn2;
     [backBtn2 release];
     
-  //  NSString * string = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
-    NoticeLow * notice = [[NoticeLow alloc] initWithSource:SOURCE_VALUE andMemberId:nil andSign:nil andHwId:HWID_VALUE andDelegate:self];
+    NSString * string = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
+    
+    NoticeLow * notice ;
+    
+    if (Default_IsUserLogin_Value) {
+        notice = [[NoticeLow alloc] initWithSource:SOURCE_VALUE andMemberId:Default_UserMemberId_Value andSign:GET_SIGN(string) andHwId:HWID_VALUE andDelegate:self];
+    }
+    else{
+        notice = [[NoticeLow alloc] initWithSource:SOURCE_VALUE andMemberId:nil andSign:nil andHwId:HWID_VALUE andDelegate:self];
+    }
+
     [notice getInfo];
 
 
@@ -254,21 +263,9 @@ return cell;
 
     self.dataArr = [info objectForKey:@"dic"];
     
-//    CCLog(@"网络返回的数据信息 count = %d",[self.dataArr count]);
+   CCLog(@"网络返回的数据信息 count = %@",self.dataArr);
     
-//    for (int i=0; i<self.dataArr.count; i++) {
-//        
-//        ProBooKResultData *data =[self.dataArr objectAtIndex:i];
-//        
-//        BOOL flag = data.flag;
-//        NSString *name =data.allData.dptCN;
-//        
-//        CCLog(@"此行有数据 *********%d",flag);
-//        CCLog(@"  &&&&  %@",name);
-//        
-//        
-//    }
-    
+        
     
     [self.showTableView reloadData];
 

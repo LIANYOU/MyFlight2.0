@@ -63,6 +63,7 @@
 @property(nonatomic,retain) NSString * goBackDate;
 
 @property (retain, nonatomic) IBOutlet UIView *headView;
+@property (retain, nonatomic) IBOutlet UILabel *goORBackLabel;
 
 @property (retain, nonatomic) IBOutlet UILabel *flightCode;
 @property (retain, nonatomic) IBOutlet UILabel *airPort;
@@ -72,6 +73,12 @@
 @property (retain, nonatomic) IBOutlet UILabel *scheduleDate;
 @property (retain, nonatomic) IBOutlet UILabel *beginAirPortName;
 @property (retain, nonatomic) IBOutlet UILabel *endAirPortName;
+
+
+@property (retain, nonatomic) IBOutlet UIView *footView;
+
+@property (retain, nonatomic) NSArray * dateSparetArr; // 存放日期分割
+@property (retain, nonatomic) NSArray * nextArr;
 
 - (void)changeFlightInfo:(UIButton *)sender;
 

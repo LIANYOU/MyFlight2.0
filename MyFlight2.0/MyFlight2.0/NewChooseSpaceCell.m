@@ -32,6 +32,7 @@
     [_dImage release];
     [_textView release];
     [_selectBtn release];
+    [_sortImage release];
     [super dealloc];
 }
 @end

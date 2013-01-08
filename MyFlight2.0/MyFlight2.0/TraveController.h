@@ -38,6 +38,12 @@
 @property (assign, nonatomic) int flag;  // 标记上次选择了哪一个btn
 @property (retain, nonatomic) IBOutlet UIView *postView;
 
+
+@property (retain, nonatomic) IBOutlet UIImageView *image1;
+@property (retain, nonatomic) IBOutlet UIImageView *image2;
+@property (retain, nonatomic) IBOutlet UIImageView *image3;
+
+
 -(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex , NSArray * InfoArr))string;
 - (IBAction)postType:(id)sender;
 

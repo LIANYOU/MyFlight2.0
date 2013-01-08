@@ -377,6 +377,18 @@
                                                   
     NSString * discount = [[self.seconderLabelArr objectAtIndex:2] substringWithRange:NSMakeRange(0, 1)];
     
+    NSString * ID ;
+    NSString * sign;
+    if (Default_IsUserLogin_Value) {
+         ID = Default_UserMemberId_Value;
+        sign = GET_SIGN(string);
+    }
+    else{
+        ID = nil;
+        sign = nil;
+
+    }
+    
     LowOrderWJ * low = [[LowOrderWJ alloc] initWithSource:SOURCE_VALUE
                                                    andDpt:self.startCode
                                                    andArr:self.endCode
@@ -385,8 +397,8 @@
                                               andDiscount:discount
                                                 andMobile:cell.textFiledLabel.text
                                                   andHwId:HWID_VALUE
-                                              andMemberId:Default_UserMemberId_Value
-                                                  andSign:GET_SIGN(string)
+                                              andMemberId:ID
+                                                  andSign:sign
                                               andDelegate:self];
     low.delegate = self;
     [low getLowOrderInfo];

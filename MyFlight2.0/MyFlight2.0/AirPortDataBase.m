@@ -345,9 +345,7 @@
     
     
     while ([resultSet next]) {
-        
-        
-        
+
         NSString *apCode = [resultSet stringForColumn:Column_apCode];
         NSString *apName = [resultSet stringForColumn:Column_apName];
         NSString *hotCity = [resultSet stringForColumn:Column_hotcity];

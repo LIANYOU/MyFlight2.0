@@ -19,5 +19,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *beginAirPortName;
 @property (retain, nonatomic) IBOutlet UILabel *endAirPortName;
 @property (retain, nonatomic) IBOutlet UILabel *nextDayLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *planeImage;
 
 @end

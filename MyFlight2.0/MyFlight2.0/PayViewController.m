@@ -75,6 +75,8 @@
     
     NSString * meg =[info objectForKey:KEY_message];
     
+     [Umpay pay:@"1301071441026691" payType:@"9" window:self.view.window delegate:self];
+    
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
 }
 
@@ -82,6 +84,8 @@
 - (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
     
     NSString * meg =[info objectForKey:KEY_message];
+    
+    [Umpay pay:@"1301071441026691" payType:@"9" window:self.view.window delegate:self];
     
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
     
@@ -91,21 +95,26 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
-    NSArray * arr = [info objectForKey:@"dic"];
-    NSLog(@"========================= %@",arr);
+    NSString * str = [info objectForKey:@"pay"];
+    NSLog(@"========================= %@",str);
+    
+    [Umpay pay:str payType:@"9" window:self.view.window delegate:self];
  
 }
 
 #pragma mark ---------  支付
 
-+ (BOOL)pay:(NSString *)tradeNo payType:(NSString*)payType  window:(UIWindow *)window delegate:(id <UmpayDelegate>)delegate
-{
-    
-}
 - (void)onPayResult:(NSString*)orderId  resultCode:(NSString*)resultCode
       resultMessage:(NSString*)resultMessage
 {
+     NSLog(@"orderId:%@,resultCode:%@,resultMessage:%@",orderId,resultCode,resultMessage);
     
+    DetailsOrderViewController * detail = [[DetailsOrderViewController alloc] init];
+    detail.detaile = self.orderDetaile;
+    detail.searchType = self.searchType;
+    [self.navigationController pushViewController:detail animated:YES];
+    [detail release];
+
 }
 
 

@@ -29,6 +29,7 @@
 - (void)dealloc {
     [_view release];
     [_nextDayLabel release];
+    [_planeImage release];
     [super dealloc];
 }
 @end

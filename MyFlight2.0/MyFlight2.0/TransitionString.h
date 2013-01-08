@@ -15,5 +15,9 @@
 +(NSString *)transitionPay:(NSString *)str;        // 转换价格
 +(NSString *)transitionSeatNum:(NSString *)str;
 +(NSString *)transitionDiscount:(NSString *)str;
-+(NSString *)transitionDiscount:(NSString *)str andCanbinCode:(NSString *)code;
++(NSString *)transitionDiscount:(NSString *)str andCanbinCode:(NSString *)code andCabinName:(NSString *)name;
+
+
+
++(NSString *)getNextDay:(NSString *)todayStr;
 @end
