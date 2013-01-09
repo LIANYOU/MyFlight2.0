@@ -11,7 +11,7 @@
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
-
+#import "AppConfigure.h"
 #define ADD_Y 56
 @interface SMSViewController ()
 
@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     nameAndPhone = [[NSMutableArray alloc]initWithCapacity:0];
-    
+    flag = NO;
     UIButton * cusBtn = [UIButton backButtonType:0 andTitle:@""];
     [cusBtn addTarget:self action:@selector(cusBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
@@ -120,6 +120,29 @@
 -(void)sendMessage:(UIButton *)sender{
     NSLog(@"发短信");
     //nameAndPhone(NSArray *)
+    NSMutableString * peopleList = [[[NSMutableString alloc]initWithCapacity:0]autorelease];
+    for (int i = 0; i < [nameAndPhone count]; i++) {
+        //J-张三-13100000000
+        if (flag == NO) {
+            flag = YES;
+        }else{
+            [peopleList appendString:@";"];
+        }
+        
+        NSString * tempString1 = [NSString stringWithFormat:@"%@",[[nameAndPhone objectAtIndex:i]objectForKey:@"name"]];
+        if (tempString1.length == 0) {
+            NSString * tempString = [NSString stringWithFormat:@"J-%@;",[[nameAndPhone objectAtIndex:i]objectForKey:@"phone"]];
+            [peopleList appendString:tempString];
+        }else{
+            NSString * tempString = [NSString stringWithFormat:@"J-%@-%@;",[[nameAndPhone objectAtIndex:i]objectForKey:@"name"],[[nameAndPhone objectAtIndex:i]objectForKey:@"phone"]];
+            [peopleList appendString:tempString];
+        }
+        
+    }
+    flag = NO;
+    NSLog(@"%@",peopleList);
+    
+    [self getDataWithList:peopleList];
 }
 
 //改变“发送短信”按钮位置 并刷新数据
@@ -409,32 +432,46 @@
 }
 #pragma mark - 
 
--(void)getData{
+-(void)getDataWithList:(NSString *)peopleList{
     myData = [[NSMutableData alloc]init];
     
     // Do any additional setup after loading the view from its nib.
     
     // NSString * myUrl = [NSString stringWithFormat:@"%@3gWeb/api/provision.jsp",BASE_Domain_Name];
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/provision.jsp"];
+    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Flight/BookFlightMovement.json"];
     
-    // NSURL * url = [NSURL URLWithString:myUrl];
+    NSString * memberID = Default_UserMemberId_Value;
+    NSString * hwID = HWID_VALUE;
     
     
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:@"iphone" forKey:@"source"];
-    [request setPostValue:CURRENT_DEVICEID_VALUE forKey:@"hwId"];
+    
+    [request setPostValue:memberID forKey:@"memberId"];
+    [request setPostValue:@"51YOU" forKey:@"orgSource"];
+    [request setPostValue:subMyFlightConditionDetailData.flightNum  forKey:@"fno"];
+    [request setPostValue:subMyFlightConditionDetailData.deptDate  forKey:@"fdate"];
+    [request setPostValue:subMyFlightConditionDetailData.flightDepcode forKey:@"dpt"];
+    [request setPostValue:subMyFlightConditionDetailData.flightArrcode forKey:@"arr"];
+    [request setPostValue:subMyFlightConditionDetailData.deptTime forKey:@"dptTime"];
+    [request setPostValue:subMyFlightConditionDetailData.arrTime forKey:@"arrTime"];
+    [request setPostValue:nil forKey:@"dptName"];
+    [request setPostValue:nil forKey:@"arrName"];
+    [request setPostValue:@"M" forKey:@"type"];
+    [request setPostValue:peopleList forKey:@"sendTo"];
+    [request setPostValue:nil forKey:@"message"];
+    [request setPostValue:hwID forKey:@"token"];
+    [request setPostValue:@"1" forKey:@"source"];
+    [request setPostValue:hwID forKey:@"hwId"];
     [request setPostValue:@"01" forKey:@"serviceCode"];
-    [request setPostValue:@"1" forKey:@"edition"];
-    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
     NSLog(@"request :%@",request);
     
     [request setCompletionBlock:^{
         
-        NSData * jsonData = [request responseData] ;
+//        NSData * jsonData = [request responseData];
+        NSString * string = [request responseString];
         
-        NSString * temp = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSString * temp1= [temp stringByReplacingOccurrencesOfString:@"\r\n" withString:@" "];
-        NSLog(@"temp : %@",temp);
+   
+        NSLog(@"temp : %@",string);
        
         
     }];

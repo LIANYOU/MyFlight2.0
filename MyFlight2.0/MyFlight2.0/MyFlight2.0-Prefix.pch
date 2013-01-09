@@ -46,7 +46,7 @@
 
 
 //线 （灰色）
-#define Line_COLOR_REAY [UIColor colorWithRed:233/255.0 green:227/255.0 blue:221/255.0 alpha:1]
+#define Line_COLOR_GRAY [UIColor colorWithRed:233/255.0 green:227/255.0 blue:221/255.0 alpha:1]
 //线 （深蓝）
 #define LINE_COLOR_BLUE [UIColor colorWithRed:151/255.0 green:168/255.0 blue:196/255.0 alpha:1]
 

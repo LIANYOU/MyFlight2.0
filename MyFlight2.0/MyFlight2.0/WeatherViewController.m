@@ -34,10 +34,12 @@
     UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
     self.navigationItem.leftBarButtonItem = leftItem;
     [leftItem release];
+    
+    self.title = [NSString stringWithFormat:@"%@天气",self.subAirPortData.cityName];
 
     tempPicNameArray = [[NSArray alloc]initWithObjects:@"暴雪",@"暴雨",@"大雪",@"大雨",@"冻雨",@"多云",@"浮尘",@"雷阵雨",@"强沙尘暴",@"晴",@"沙尘暴",@"雾",@"小雪",@"小雨",@"阴",@"雨夹雪",@"阵雪",@"阵雨",@"中雪",@"中雨",@"雷阵雨伴有冰雹",nil];
     
-    self.view.backgroundColor = BACKGROUND_COLOR;
+    self.view.backgroundColor = FOREGROUND_COLOR;
     
     NSDate *  senddate=[NSDate date];
 //    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
@@ -136,12 +138,20 @@
             //左上角图片
             //            UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_green_bg.png"]];
             //            imageView.frame = CGRectMake(10, 0, 140, 40);
+      
+            
+            
             UIView * bottomViewLine = [[UIImageView alloc]initWithFrame:CGRectMake(0, 169, 320, 1)];
-            bottomViewLine.backgroundColor = [UIColor colorWithRed:237/255.0 green:231/255.0 blue:226/255.0 alpha:1];;
+            bottomViewLine.backgroundColor = [UIColor colorWithRed:237/255.0 green:231/255.0 blue:226/255.0 alpha:1];
             [cell addSubview:bottomViewLine];
             [bottomViewLine release];
             
-            UIView * imagebgView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 140, 40)];
+            UIView * secView = [[UIView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
+            secView.backgroundColor = Line_COLOR_GRAY;
+            [cell addSubview:secView];
+            [secView release];
+            
+            UIView * imagebgView = [[UIView alloc]initWithFrame:CGRectMake(10, 5, 140, 40)];
             imagebgView.backgroundColor = BACKGROUND_COLOR_GREEN;
             imagebgView.layer.cornerRadius = 6;
             imagebgView.layer.masksToBounds = YES;
