@@ -17,6 +17,7 @@
 #import "PostInfo.h"
 #import "LinkPersonInfo.h"
 #import "InFlightConditionWJ.h"
+#import "DiscountGoldInfo.h"
 @implementation OrderDetaile
 
 -(id) initWithOrderId:(NSString * )orderId
@@ -56,11 +57,14 @@
     [request setPostValue:self.hwId forKey:@"hwId"];
     [request setPostValue:self.edition forKey:@"edition"];
     
+    // **************************   订单详情查询参数  *************************
+    
+    
     [request setRequestMethod:@"POST"];
 
     [request setCompletionBlock:^{
         
-        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+        
         
         NSString *data = [request responseString];
         
@@ -144,6 +148,15 @@
 
 -(void) analysisData:(NSDictionary *)dic andSearchType:(NSString *)type
 {
+    
+    DiscountGoldInfo * discountInfo = [[DiscountGoldInfo alloc] init];
+    
+    discountInfo.xlbGold = [dic objectForKey:@"xlbGold"];
+    discountInfo.xlbSilver = [dic objectForKey:@"xlbSilver"];
+    discountInfo.netAmount = [dic objectForKey:@"netAmount"];
+    discountInfo.payOnLine = [dic objectForKey:@"payOnLine"];
+    
+    
     
 
     OrderBasicInfoWJ * order = [[OrderBasicInfoWJ alloc] init];
@@ -231,12 +244,15 @@
     post.mobile = [[dic objectForKey:@"itinerary"] objectForKey:@"mobile"];
     post.address = [[dic objectForKey:@"itinerary"] objectForKey:@"address"];
     
+    
+    
     LinkPersonInfo * link = [[LinkPersonInfo alloc] init];
     
     link.name = [[dic objectForKey:@"contact"] objectForKey:@"name"];
     link.iphone = [[dic objectForKey:@"contact"] objectForKey:@"phone"];
     
-    NSArray * newArr = [NSArray arrayWithObjects:order,flight,inFlight,passengerArr,post,link, nil];
+    
+    NSArray * newArr = [NSArray arrayWithObjects:order,flight,inFlight,passengerArr,post,link,discountInfo, nil];
     NSDictionary * newDic = [NSDictionary dictionaryWithObject:newArr forKey:@"newDic"];
     
     
@@ -251,7 +267,7 @@
     [inFlight release];
     [post release];
     [link release];
-    
+    [discountInfo release];
     
 }
 @end

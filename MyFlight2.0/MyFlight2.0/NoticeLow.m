@@ -35,7 +35,7 @@
     __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
     
         
-    [messageDic setObject:@"fsfs" forKey:KEY_Request_Type];
+    //[messageDic setObject:@"fsfs" forKey:KEY_Request_Type];
     
     __block NSString *message = nil;
     
@@ -48,8 +48,9 @@
 
     
     
-    CCLog(@"*************************  验证支付信息 ******************");
+    CCLog(@"*************************  验证低价预约信息 ******************");
     CCLog(@"memberId  =  %@",self.memberId);
+    CCLog(@"sign = %@",self.sign);
     CCLog(@"source  =  %@",self.source);
     CCLog(@"hwId  =  %@",self.hwId);
     
@@ -89,21 +90,14 @@
  
            
             
-            NSDictionary * dictionary = [NSDictionary dictionaryWithObject:arr forKey:@"dic"];
+//            NSDictionary * dictionary = [NSDictionary dictionaryWithObject:arr forKey:@"dic"];
             
             CCLog(@"message length = %d",[message length]);
             if ([message length]==0) {
                 
                 
                 NSMutableArray *resultArry =[[NSMutableArray alloc] init];
-                
-                
-                
-                
-                
-               
-                
-                
+  
                 for (NSDictionary *tmpDic in arr) {
                     
                     ProBooKResultData *resultData =[[ProBooKResultData alloc] init];
@@ -155,7 +149,7 @@
                             
                 
                 
-                [messageDic setObject:resultArry forKey:@"dic"];
+                [messageDic setObject:resultArry forKey:@"findOrderlist"];
                 
                 if (self.delegate && [self.delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     

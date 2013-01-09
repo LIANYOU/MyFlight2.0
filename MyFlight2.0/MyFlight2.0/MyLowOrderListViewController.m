@@ -74,10 +74,12 @@
         notice = [[NoticeLow alloc] initWithSource:SOURCE_VALUE andMemberId:Default_UserMemberId_Value andSign:GET_SIGN(string) andHwId:HWID_VALUE andDelegate:self];
     }
     else{
-        notice = [[NoticeLow alloc] initWithSource:SOURCE_VALUE andMemberId:nil andSign:nil andHwId:HWID_VALUE andDelegate:self];
+        notice = [[NoticeLow alloc] initWithSource:@"iPhone" andMemberId:nil andSign:nil andHwId:HWID_VALUE andDelegate:self];
     }
     
     [notice getInfo];
+    
+    [notice release];
 }
 -(void)back
 {
@@ -272,14 +274,41 @@ return cell;
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
 
-    self.dataArr = [info objectForKey:@"dic"];
-    
-   CCLog(@"网络返回的数据信息 count = %@",self.dataArr);
-    
-        
-    
-    [self.showTableView reloadData];
 
+    if ([[[info allKeys] objectAtIndex:0] isEqualToString:@"findOrderlist"]) {
+
+        self.dataArr =[info objectForKey:@"findOrderlist"];
+
+        [self.showTableView reloadData];
+
+    }
+    
+    
+    if ([[[info allKeys] objectAtIndex:0] isEqualToString:@"del"]) {
+        
+        // 重新请求数据
+        NSString * string = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
+        
+        NoticeLow * notice ;
+        
+        if (Default_IsUserLogin_Value) {
+            notice = [[NoticeLow alloc] initWithSource:SOURCE_VALUE andMemberId:Default_UserMemberId_Value andSign:GET_SIGN(string) andHwId:HWID_VALUE andDelegate:self];
+        }
+        else{
+            notice = [[NoticeLow alloc] initWithSource:@"iPhone" andMemberId:nil andSign:nil andHwId:HWID_VALUE andDelegate:self];
+        }
+        
+        [notice getInfo];
+        
+        [notice release];
+        
+        
+    }
+    
+    
+    
+    
+   
 }
 
 @end

@@ -52,7 +52,7 @@
     
     self.cellTitleArr = [NSArray arrayWithObjects:@"身  份 *",@"姓  名 *",@"证件类型 *",@"证件号码 *",@"生  日 *",@"保存为常用乘机人", nil];
     
-    self.cellTextArr = [NSMutableArray arrayWithObjects:@"成人",@"请输入乘机人姓名",@"省份证",@"请输入证件号码",@"1990-09-09", nil];
+    self.cellTextArr = [NSMutableArray arrayWithObjects:@"成人",@"请输入乘机人姓名",@"身份证",@"请输入证件号码",@"1990-09-09", nil];
     
     self.addPersonTableView.delegate = self;
     self.addPersonTableView.dataSource = self;
@@ -76,6 +76,7 @@
     }
     
 
+
  
    
     if (self.passenger != nil) {
@@ -87,30 +88,22 @@
         }
         
         if ([self.passenger.certType isEqualToString:@"0"]) {
-            
+          
             certtype = @"0";
             passengerCertType = @"身份证";
         }
         if ([self.passenger.certType isEqualToString:@"1"]) {
+         
             certtype = @"1";
             passengerCertType = @"护照";
         }
-        else{
+        else if ([self.passenger.certType isEqualToString:@"9"]){
+           
             certtype = @"9";
             passengerCertType = @"其他";
         }
     }
 
-//    NSLog(@"--------------   %@",self.passenger.type);
-//    
-//    if ([self.passenger.type isEqualToString:@"01"]) {
-//        passengerType = @"成人";
-//    }
-//    else{
-//        passengerType = @"儿童";
-//
-//    }
-    
     
     
         
@@ -235,6 +228,7 @@
                 cell.secText.userInteractionEnabled = NO;
             }
             if (indexPath.row == 2) {
+               
                 cell.secText.text = passengerCertType;
                 cell.secText.userInteractionEnabled = NO;
             }
@@ -471,7 +465,7 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
     
-    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+   
     
     NSString *meg =@"成功";
     

@@ -15,6 +15,7 @@
 #import "InFlightConditionWJ.h"
 #import "PostInfo.h"
 #import "LinkPersonInfo.h"
+#import "DiscountGoldInfo.h"
 @class PassengerCell;
 @class LinkmanCell;
 @class JourneyCell;
@@ -28,6 +29,10 @@
     
 }
 
+@property (nonatomic, retain) NSMutableArray * fristArr;
+@property (nonatomic, retain) NSMutableArray * secArr;
+
+
 @property (retain, nonatomic) NSArray * discountArr;  // 接受传递过来的优惠信息
 
 @property (retain, nonatomic) OrderBasicInfoWJ * order;
@@ -35,6 +40,7 @@
 @property (retain, nonatomic) InFlightConditionWJ * inFlight;
 @property (retain, nonatomic) PostInfo * post;
 @property (retain, nonatomic) LinkPersonInfo * person;
+@property (retain, nonatomic) DiscountGoldInfo * discountInfo;
 
 @property (retain, nonatomic) NSArray * personArray;  // 保存乘机人的信息
 
@@ -45,6 +51,7 @@
 @property (retain, nonatomic) IBOutlet UIView *five;
 
 
+@property (retain, nonatomic) IBOutlet UIView *cellView;
 
 // ********  展示成人和儿童的价格
 
@@ -67,7 +74,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *childMunber;
 @property (retain, nonatomic) IBOutlet UILabel *childInsure;
 
-
+@property (retain, nonatomic) NSString * controllerFlag;  // 判断是哪一个controller推进的
 
 @property (retain, nonatomic) NSString * searchType;
 

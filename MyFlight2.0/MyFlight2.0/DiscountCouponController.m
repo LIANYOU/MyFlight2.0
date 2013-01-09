@@ -296,6 +296,7 @@
 
     if (indexPath.row == 1) {
      
+        NSLog(@"*********************   %@",self.captchaListArr);
         if (self.captchaListArr.count != 0) {
             ChooseDiscountCouponController * choose =  [[ChooseDiscountCouponController alloc] init];
             choose.captchaList = self.captchaListArr;
@@ -320,6 +321,7 @@
    
     
     if (self.selectArr.count!=0) {
+        
         for (NSString *thisRow in self.selectArr) {
             
             int a=[thisRow intValue];
