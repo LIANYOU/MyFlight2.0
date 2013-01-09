@@ -16,6 +16,9 @@
 @property (nonatomic, retain) OrderDetaile * orderDetaile;
 @property (nonatomic, retain) PayOnline * payOnline;
 
+
+@property (nonatomic, retain) NSString * orderDetailsFlag;  // 判断是不是从订单详情进入
+
 @property (nonatomic, retain) NSString * searchType;
 
 @end

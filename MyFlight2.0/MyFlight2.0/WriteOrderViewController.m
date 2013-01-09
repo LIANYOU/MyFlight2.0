@@ -1193,7 +1193,7 @@
     NSString * flightNo = [self.searchDate.temporaryLabel substringWithRange:NSMakeRange(2, lenght-2)];    
     go.departureTimeStr = self.searchDate.beginTime;    
     go.flightNo = flightNo;    
-    go.flightType = @"2";
+    go.flightType = @"1";
     go.orderType = @"0";
     go.prodType = @"0";
     go.rmk = nil;
@@ -1272,7 +1272,7 @@
     // 配置去成和往返的杂项信息
     if (self.flag == 1) {
         self.searchType = @"0";
-         go.flightType = @"1";
+        
         
         bookReturn.flightType = nil;
         bookReturn.orderType = nil;
@@ -1285,7 +1285,7 @@
     else{
         
         self.searchType = @"1";
-         go.flightType = @"2";
+       
     }
     
     NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:self.searchType,KEY_FlightBook_prodType,@"hello",KEY_FlightBook_rmk, nil];

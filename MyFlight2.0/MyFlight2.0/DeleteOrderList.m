@@ -32,7 +32,7 @@
 {
     __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
     
-    [messageDic setObject:@"fsfs" forKey:KEY_Request_Type];
+    //[messageDic setObject:@"del" forKey:@"del"];
     
     __block NSString *message = nil;
     
@@ -78,7 +78,7 @@
             CCLog(@"message length = %d",[message length]);
             if ([message length]==0) {
                 
-                [messageDic setObject:message forKey:KEY_message];
+                [messageDic setObject:message forKey:@"del"];
                 
                 if (self.delegate && [self.delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     

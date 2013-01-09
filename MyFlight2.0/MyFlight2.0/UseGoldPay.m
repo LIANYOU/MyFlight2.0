@@ -97,6 +97,9 @@
         self.dictionary = [self.allData objectFromJSONData];
                 
         dictionary = [[self.dictionary objectForKey:@"result"] objectForKey:@"message"];
+        NSLog(@"优惠券message  %@",self.dictionary);
+        
+        NSLog(@"优惠券message  %@",dictionary);
         
         NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.dictionary,@"arr", nil];
         NSNotification * not = [NSNotification notificationWithName:@"返回金币数目" object:self userInfo:dic];

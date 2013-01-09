@@ -36,6 +36,10 @@
     int childCount;  // 儿童个数
     
     float hight;
+    
+    int flag1,flag2,flag3,flag4;
+    
+    int allCount;  // 需要添加的view的个数
 }
 @end
 
@@ -94,6 +98,7 @@
 
 
     [_WjCell release];
+    [_cellView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -111,6 +116,7 @@
     [self setFive:nil];
 
     [self setWjCell:nil];
+    [self setCellView:nil];
     [super viewDidUnload];
 }
 
@@ -384,8 +390,10 @@
 
 -(void)change:(UIButton *)btn
 {
+    
     if (hight == 0.000000) {
         if (childCount != 0) {
+        
             self.tempView = self.bigView;
         }
         else{
@@ -432,6 +440,7 @@
 
     }
     else{
+        
         NSArray * arr = [info objectForKey:@"newDic"];
         
         self.order = [arr objectAtIndex:0];
@@ -440,6 +449,36 @@
         self.personArray = [NSArray arrayWithArray:[arr objectAtIndex:3]];
         self.post = [arr objectAtIndex:4];
         self.person = [arr objectAtIndex:5];
+        self.discountInfo = [arr objectAtIndex:6];
+        
+        
+        NSLog(@"********************************************  %@,,,,%@,,,,%@,,,,%@",self.discountInfo.xlbGold,self.discountInfo.xlbSilver,self.discountInfo.netAmount,self.discountInfo.payOnLine);
+        
+        
+        if (self.discountInfo.xlbGold == nil || [self.discountInfo.xlbGold isEqualToString:@"0"] ) {
+            flag1 = 1;
+        }
+        if (self.discountInfo.xlbSilver == nil || [self.discountInfo.xlbSilver isEqualToString:@"0"] ) {
+            flag2 = 1;
+        }
+
+        if (self.discountInfo.netAmount == nil || [self.discountInfo.netAmount isEqualToString:@"0"] ) {
+            flag3 = 1;
+        }
+
+        if (self.discountInfo.payOnLine == nil || [self.discountInfo.payOnLine isEqualToString:@"0"] ) {
+            flag4 = 1;
+        }
+
+        allCount = flag1+flag2+flag3+flag4;
+        
+//        for (int i = 0; i<allCount; i++) {
+//            <#statements#>
+//        }
+        
+        
+        
+      
         
         Passenger * person = [[Passenger alloc] init];
         Passenger * goPerson = [[Passenger alloc] init];
@@ -495,17 +534,28 @@
         self.Personinsure.text = [NSString stringWithFormat:@"￥%d",[person.insurance intValue] + [goPerson.insurance intValue]];
         self.personMuber.text = [NSString stringWithFormat:@"%d",personCount];
         
+        
+        
         self.smallPerStanderPrice.text = [NSString stringWithFormat:@"￥%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]];
         self.smallPersonConstructionFee.text = [NSString stringWithFormat:@"￥%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
         self.smallpersonAdultBaf.text = [NSString stringWithFormat:@"￥%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
         self.smallPersoninsure.text = [NSString stringWithFormat:@"￥%d",[person.insurance intValue] + [goPerson.insurance intValue]];
         self.smallpersonMuber.text = [NSString stringWithFormat:@"%d",personCount];
         
-        self.childStanderPrice.text =[NSString stringWithFormat:@"￥%d",[child.ticketPrice intValue] + [child.ticketPrice intValue]];
-        self.childConstructionFee.text =[NSString stringWithFormat:@"￥%d",[child.constructionPrice intValue] + [child.constructionPrice intValue]] ;
-        self.childBaf.text = [NSString stringWithFormat:@"￥%d",[child.bafPrice intValue] + [child.bafPrice intValue]];
-        self.childInsure.text = [NSString stringWithFormat:@"￥%d",[child.insurance intValue] + [child.insurance intValue]];
+        
+        
+        self.childStanderPrice.text =[NSString stringWithFormat:@"￥%d",[child.ticketPrice intValue] + [goChild.ticketPrice intValue]];
+        self.childConstructionFee.text =[NSString stringWithFormat:@"￥%d",[child.constructionPrice intValue] + [goChild.constructionPrice intValue]] ;
+        self.childBaf.text = [NSString stringWithFormat:@"￥%d",[child.bafPrice intValue] + [goChild.bafPrice intValue]];
+        self.childInsure.text = [NSString stringWithFormat:@"￥%d",[child.insurance intValue] + [goChild.insurance intValue]];
         self.childMunber.text = [NSString stringWithFormat:@"%d",childCount];
+        
+        
+        
+        
+        
+        
+        
         
         [self.showTableView reloadData];
 
@@ -515,7 +565,13 @@
 
 -(void)back
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if ([self.controllerFlag isEqualToString:@"orderListViewController"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    
 }
 
 
@@ -549,6 +605,7 @@
                                                     andDelegate:self];
     
     PayViewController * pay = [[PayViewController alloc] init];
+    pay.orderDetailsFlag = @"orderViewController";
     pay.payOnline = payOnline;
     pay.searchType = self.searchType;
     [self.navigationController pushViewController:pay animated:YES];

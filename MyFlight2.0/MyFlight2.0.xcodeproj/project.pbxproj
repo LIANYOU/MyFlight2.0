@@ -537,6 +537,7 @@
 		18D0D68A169C985C0028995B /* OneWayCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D0D688169C985C0028995B /* OneWayCheckViewController.xib */; };
 		18D0D690169CD0C40028995B /* OrderDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0D68F169CD0C40028995B /* OrderDatabase.m */; };
 		18D0D692169CDB500028995B /* orderListForNoLogin.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18D0D691169CDB500028995B /* orderListForNoLogin.sqlite */; };
+		18D0D6A3169D452F0028995B /* DiscountGoldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D0D6A2169D452F0028995B /* DiscountGoldInfo.m */; };
 		18D105191682A8DE00F112D2 /* bg_blue_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D105171682A8DE00F112D2 /* bg_blue_.png */; };
 		18D1051A1682A8DE00F112D2 /* bg_green_.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D105181682A8DE00F112D2 /* bg_green_.png */; };
 		18D1051E1682ABEB00F112D2 /* NewChooseSpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1051D1682ABEB00F112D2 /* NewChooseSpaceCell.m */; };
@@ -1517,6 +1518,8 @@
 		18D0D68E169CD0C40028995B /* OrderDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDatabase.h; sourceTree = "<group>"; };
 		18D0D68F169CD0C40028995B /* OrderDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDatabase.m; sourceTree = "<group>"; };
 		18D0D691169CDB500028995B /* orderListForNoLogin.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = orderListForNoLogin.sqlite; sourceTree = "<group>"; };
+		18D0D6A1169D452F0028995B /* DiscountGoldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountGoldInfo.h; sourceTree = "<group>"; };
+		18D0D6A2169D452F0028995B /* DiscountGoldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountGoldInfo.m; sourceTree = "<group>"; };
 		18D105171682A8DE00F112D2 /* bg_blue_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_blue_.png; sourceTree = "<group>"; };
 		18D105181682A8DE00F112D2 /* bg_green_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_green_.png; sourceTree = "<group>"; };
 		18D1051C1682ABEB00F112D2 /* NewChooseSpaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewChooseSpaceCell.h; sourceTree = "<group>"; };
@@ -2712,6 +2715,7 @@
 		149B77F2168D42FE006281A3 /* flightBooking */ = {
 			isa = PBXGroup;
 			children = (
+				18D0D69F169D43800028995B /* discountGold */,
 				18DDB3AB16952688004CEC75 /* OrderReturnInfo */,
 				149B7808168D810F006281A3 /* bookingFlightVo */,
 				149B7804168D6AB3006281A3 /* payVo */,
@@ -3454,6 +3458,15 @@
 				18D0D68F169CD0C40028995B /* OrderDatabase.m */,
 			);
 			name = "本地订单数据库";
+			sourceTree = "<group>";
+		};
+		18D0D69F169D43800028995B /* discountGold */ = {
+			isa = PBXGroup;
+			children = (
+				18D0D6A1169D452F0028995B /* DiscountGoldInfo.h */,
+				18D0D6A2169D452F0028995B /* DiscountGoldInfo.m */,
+			);
+			name = discountGold;
 			sourceTree = "<group>";
 		};
 		18D15A6C169BF3BE00A9AD08 /* PostCity */ = {
@@ -4690,15 +4703,9 @@
 				1842B56F169C6786007FA603 /* 雷阵雨.png in Resources */,
 				1842B570169C6786007FA603 /* 雷阵雨伴有冰雹.png in Resources */,
 				1842B571169C6786007FA603 /* 雾.png in Resources */,
-
-
 				14935582169CA32E00F66E87 /* aisle.png in Resources */,
-
-
-
 				18D0D68A169C985C0028995B /* OneWayCheckViewController.xib in Resources */,
 				18D0D692169CDB500028995B /* orderListForNoLogin.sqlite in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4969,13 +4976,15 @@
 				1842B4FE169C6540007FA603 /* SMSViewController.m in Sources */,
 				1842B506169C65E7007FA603 /* LookFlightConditionCell.m in Sources */,
 				1842B508169C65E7007FA603 /* SearchFlightConditionCell.m in Sources */,
-
-
 				18D0D689169C985C0028995B /* OneWayCheckViewController.m in Sources */,
 				18D0D690169CD0C40028995B /* OrderDatabase.m in Sources */,
 
+
 				1493558E169CCEAF00F66E87 /* AboutViewController.m in Sources */,
 				14935593169CE39300F66E87 /* FeedbackViewController.m in Sources */,
+
+
+				18D0D6A3169D452F0028995B /* DiscountGoldInfo.m in Sources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;

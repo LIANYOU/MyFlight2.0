@@ -96,7 +96,7 @@
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
     NSString * str = [info objectForKey:@"pay"];
-    NSLog(@"========================= %@",str);
+    NSLog(@"============请求联动优势的序列号============= %@",str);
     
     [Umpay pay:str payType:@"9" window:self.view.window delegate:self];
  
@@ -107,13 +107,18 @@
 - (void)onPayResult:(NSString*)orderId  resultCode:(NSString*)resultCode
       resultMessage:(NSString*)resultMessage
 {
-     NSLog(@"orderId:%@,resultCode:%@,resultMessage:%@",orderId,resultCode,resultMessage);
     
-    DetailsOrderViewController * detail = [[DetailsOrderViewController alloc] init];
-    detail.detaile = self.orderDetaile;
-    detail.searchType = self.searchType;
-    [self.navigationController pushViewController:detail animated:YES];
-    [detail release];
+    if ([self.orderDetailsFlag isEqualToString:@"orderViewController"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        DetailsOrderViewController * detail = [[DetailsOrderViewController alloc] init];
+        detail.detaile = self.orderDetaile;
+        detail.searchType = self.searchType;
+        [self.navigationController pushViewController:detail animated:YES];
+        [detail release];
+    }
+   
 
 }
 

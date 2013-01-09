@@ -245,6 +245,7 @@
     
     DetailsOrderViewController *con  =[[DetailsOrderViewController alloc] init];
     
+    con.controllerFlag = @"orderListViewController";
     
     con.detaile = detail;
     

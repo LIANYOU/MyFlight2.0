@@ -2287,7 +2287,7 @@
                     
                     
                     if ([paySts isEqualToString:@"0"]) {
-                        CCLog(@"这是未支付订单");
+//                        CCLog(@"这是未支付订单");
                         OrderListModelData *data1 = [[OrderListModelData alloc] init];
                         data1.orderId =orderId;
                         data1.code =code;
