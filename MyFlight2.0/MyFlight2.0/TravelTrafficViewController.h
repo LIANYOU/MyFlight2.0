@@ -131,11 +131,21 @@
     UILabel *stopsLabelTwo;
     
     
-    UILabel * lineNameLabelThree;
-    UILabel * firstBusThree;
-    UILabel * lastBusLabelThree;
-    UILabel * lineIntervalTimeLabelThree;
+    UILabel * addressName;
+    UILabel * journey;
+    UILabel * price;
+    UILabel * myT;
     UILabel *stopsLabelThree;
+    UILabel * place;
+    
+    
+    NSMutableArray * coachCellHeightArray;
+    NSMutableArray * subwayCellHeightArray;
+    NSMutableArray * taxiCellHeightArray;
+    
+    NSMutableArray * coachCellHeightArray1;
+    NSMutableArray * subwayCellHeightArray1;
+    NSMutableArray * taxiCellHeightArray1;
 }
 @property(nonatomic,retain) NSString * airPortCode;
 @property(nonatomic,retain)AirPortData * subAirPortData;
