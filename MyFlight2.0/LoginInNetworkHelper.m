@@ -27,9 +27,9 @@
 + (BOOL) registerWithUrl:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate{
     
     
-    NSString *name = [bodyDic objectForKey:KEY_Register_Account];
+    NSString *name = [bodyDic objectForKey:KEY_Register_Account]; //账号名字
     
-    NSString *pwd = [bodyDic objectForKey:KEY_Register_Pwd];
+    NSString *pwd = [bodyDic objectForKey:KEY_Register_Pwd]; //密码
     
     NSString *yzCode = [bodyDic objectForKey:KEY_Register_YZCode];
     
@@ -113,6 +113,11 @@
                 
                 
                 
+                
+                
+                
+                
+                
                 [defaultUser setBool:NO forKey:KEY_Default_IsUserLogin]; //用户尚未登录
                 
                 [defaultUser setObject:single.userAccount.memberId forKey:KEY_Default_MemberId];
@@ -140,9 +145,11 @@
                 //message 长度不为0 有错误信息
                 [messageDic setObject:message forKey:KEY_message];
                 
-                
-                [delegate requestDidFinishedWithFalseMessage:messageDic];
-                
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                    
+                    [delegate requestDidFinishedWithFalseMessage:messageDic];
+                    
+                }
             }
             
             
@@ -150,26 +157,31 @@
         } else{
             NSLog(@"解析有错误");
             
-            
-            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
-            [delegate requestDidFinishedWithFalseMessage:messageDic];
+            if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+                
+            }
             
             return ;
             
         }
         
-        //        [delegate requestDidFinishedWithFalseMessage:messageDic];
         
     }];
     
     
     [formRequst setFailedBlock:^{
         
-        [delegate requestDidFailed:nil];
+        if (delegate&&[delegate respondsToSelector:@selector(requestDidFailed:)]) {
+            
+            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+            [delegate requestDidFailed:nil];
+            
+        }
         
-        NSLog(@"失败");
-        NSError *error = [formRequst error];
-        NSLog(@"Error downloading image: %@", error.localizedDescription);
+        
     }];
     
     
@@ -197,6 +209,8 @@
     
     
     NSString *realUrl = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@",KEY_Login_Account,name,KEY_Login_Pwd,pwd,KEY_Login_Type,Login_Type_Value,PUBLIC_Parameter];
+    
+    
     
     CCLog(@"realUrl =%@",realUrl);
     
@@ -823,7 +837,7 @@
                     [passSingle.passengerArray addObject:passenger];
                     
                     [passenger release];
-            
+                    
                 }
                 
                 
@@ -837,7 +851,7 @@
                     
                     CCLog(@"失败");
                 }
-
+                
                 
                 CCLog(@"查询到的联系人数量为%d",[passSingle.passengerArray count]);
                 
@@ -940,7 +954,7 @@
     NSString *certNo = [bodyDic objectForKey:KEY_Passenger_CertNo];
     
     
-        
+    
     
     
     
@@ -1011,7 +1025,7 @@
                 
                 // NSLog(@"成功登陆后返回的数据：%@",data);
                 
-           
+                
                 
                 
                 
@@ -1022,8 +1036,8 @@
                 
                 [self getCommonPassenger:dic delegate:delegate];
                 [dic release];
-
-                        
+                
+                
                 if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     
                     [delegate requestDidFinishedWithRightMessage:messageDic];
@@ -1037,8 +1051,8 @@
                 //message 长度不为0 有错误信息
                 [messageDic setObject:message forKey:KEY_message];
                 
-                                
-               
+                
+                
                 
             }
             
@@ -1054,7 +1068,7 @@
                 [delegate requestDidFinishedWithFalseMessage:messageDic];
                 
             }
-
+            
             
             return ;
             
@@ -1184,12 +1198,16 @@
                 
                 [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
                 
-                [self getCommonPassenger:dic delegate:delegate];
+                [self getCommonPassenger:dic delegate:nil];
                 [dic release];
                 
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
+                    
+                    [delegate requestDidFinishedWithRightMessage:messageDic];
+                    
+                }
                 
                 
-                [delegate requestDidFinishedWithRightMessage:messageDic];
                 
             } else{
                 
@@ -1197,7 +1215,13 @@
                 [messageDic setObject:message forKey:KEY_message];
                 
                 
-                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                    
+                    [delegate requestDidFinishedWithFalseMessage:messageDic];
+                    
+                }
+                
+                
                 
             }
             
@@ -1208,7 +1232,15 @@
             
             
             [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
-            [delegate requestDidFinishedWithFalseMessage:messageDic];
+            
+            
+            if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+                
+                
+            }
             
             return ;
             
@@ -1221,12 +1253,15 @@
     [formRequst setFailedBlock:^{
         
         
-        
-        
-        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
-        
-        [delegate requestDidFailed:messageDic];
-        
+        if (delegate&&[delegate respondsToSelector:@selector(requestDidFailed:)]) {
+            
+            
+            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+            
+            [delegate requestDidFailed:messageDic];
+            
+            
+        }
         
         
     }];
@@ -1344,17 +1379,17 @@
                 NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
                 
                 [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
-                [self getCommonPassenger:dic delegate:delegate];
+                [self getCommonPassenger:dic delegate:nil];
                 [dic release];
-
+                
                 
                 
                 if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     
-                     [delegate requestDidFinishedWithRightMessage:messageDic];
+                    [delegate requestDidFinishedWithRightMessage:messageDic];
                     
                 }
-                    
+                
             } else{
                 
                 //message 长度不为0 有错误信息
@@ -1380,8 +1415,8 @@
                 [delegate requestDidFinishedWithFalseMessage:messageDic];
                 
             }
-
-                     
+            
+            
             return ;
             
         }

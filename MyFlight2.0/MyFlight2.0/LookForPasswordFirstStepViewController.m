@@ -75,9 +75,10 @@
 - (IBAction)goToNextStep:(id)sender {
     
     LoginBusiness *bis = [[LoginBusiness alloc] init];
-    if (![self.UserInputPhoneNumber.text isEqualToString:@""]) {
-       
-        
+    
+    NSString *phone = [self.UserInputPhoneNumber.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if (![phone length]==0) {
         
     [bis findPasswd_getSecrectCode:self.UserInputPhoneNumber.text andDelegate:self];
         

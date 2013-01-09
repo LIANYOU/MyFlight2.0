@@ -97,12 +97,21 @@
 //发送重置密码 请求 
 - (IBAction)commitResetPasswordRequest:(id)sender {
     
-    LoginBusiness *bis = [[LoginBusiness alloc] init];
+    NSString *pwd = [self.newPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
+    if ([pwd length]==0) {
+        
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"请输入密码" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        [self.newPassword becomeFirstResponder];
+    } else{
+        LoginBusiness *bis = [[LoginBusiness alloc] init];
+        
+        
+        [bis findPassWd_ResetPassWdWithNewPwd:self.newPassword.text mobile:self.mobile code:self.code andDelegate:self];
+        [bis release];
+     }
     
-    [bis findPassWd_ResetPassWdWithNewPwd:self.newPassword.text mobile:self.mobile code:self.code andDelegate:self];
-    
-       
+         
 }
 
 

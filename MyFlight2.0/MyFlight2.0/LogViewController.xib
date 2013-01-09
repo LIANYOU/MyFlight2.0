@@ -875,15 +875,15 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="icon_choice.png">{88, 88}</string>
-			<string key="icon_qq.png">{60, 60}</string>
-			<string key="icon_tencent.png">{60, 60}</string>
-			<string key="icon_wechat.png">{60, 60}</string>
-			<string key="icon_weibo.png">{60, 60}</string>
-			<string key="orange_btn.png">{600, 80}</string>
-			<string key="orange_btn_click.png">{600, 80}</string>
-			<string key="white_btn.png">{600, 80}</string>
-			<string key="white_btn_click.png">{600, 80}</string>
+			<string key="icon_choice.png">{16, 16}</string>
+			<string key="icon_qq.png">{16, 16}</string>
+			<string key="icon_tencent.png">{16, 16}</string>
+			<string key="icon_wechat.png">{16, 16}</string>
+			<string key="icon_weibo.png">{16, 16}</string>
+			<string key="orange_btn.png">{16, 16}</string>
+			<string key="orange_btn_click.png">{16, 16}</string>
+			<string key="white_btn.png">{16, 16}</string>
+			<string key="white_btn_click.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>

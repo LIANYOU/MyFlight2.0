@@ -169,6 +169,8 @@
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
     
+    
+    
     NSString *thisMessage = [info objectForKey:KEY_Request_Type];
     NSString *returnMessage = [info objectForKey:KEY_message];
     
@@ -188,6 +190,12 @@
         
         
     } else if([thisMessage isEqualToString:Regist_RequestType_Value]){
+        
+        //用户注册成功 需要跳转到登录界面 默认已经填写好 用户名和密码
+        
+        
+        
+        
         
         
         CCLog(@"这是注册请求返回正确信号");
@@ -394,6 +402,8 @@
      27         * 号码：七位或八位
      28         */
     // NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
+    
+    
     
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM];

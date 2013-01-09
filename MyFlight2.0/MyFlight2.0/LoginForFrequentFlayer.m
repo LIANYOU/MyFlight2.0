@@ -203,9 +203,10 @@
     
     CCLog(@"密码是 %@",pwd);
     
-    if ([account isEqualToString:@""]) {
+    if ([account length]==0) {
+        
         [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"您还没有输入账号，请输入" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-    } else if([pwd isEqualToString:@""]){
+    } else if([pwd length]==0){
         [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"您还没有输入密码，请输入" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
     } else{
         
