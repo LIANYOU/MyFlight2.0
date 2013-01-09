@@ -83,8 +83,9 @@
     }
     
 
+    CCLog(@"查询到的本地订单数量为:%d",[resultArr count]);
     
-    return resultArr;
+    return [resultArr autorelease];
 
 }
 
