@@ -58,6 +58,7 @@
     //底部4个按钮
     [self.btnMessage addTarget:self action:@selector(btnMessageClick:) forControlEvents:UIControlEventTouchUpInside];
     self.toolSendLabel.userInteractionEnabled = YES;
+    self.toolSendLabel.text = @"短信提醒";
     UITapGestureRecognizer * toolSendTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(btnMessageClick:)];
     toolSendTap.numberOfTapsRequired = 1;
     toolSendTap.numberOfTouchesRequired =1;

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SVSegmentedControl.h"
 #import "AirPortData.h"
-
+#import "TrafficCell.h"
 //#import "CoachTableViewController.h"
 //#import "SubwayTableViewController.h"
 //#import "TaxiTableViewController.h"
@@ -117,26 +117,7 @@
     
     
     
-    UILabel * lineNameLabelOne;
-    UILabel * firstBusOne;
-    UILabel * lastBusLabelOne;
-    UILabel * lineIntervalTimeLabelOne;
-    UILabel * stopsLabelOne;
     
-    
-    UILabel * firstBusTwo;
-    UILabel * lineNameLabelTwo;
-    UILabel * lastBusLabelTwo;
-    UILabel * lineIntervalTimeLabelTwo;
-    UILabel *stopsLabelTwo;
-    
-    
-    UILabel * addressName;
-    UILabel * journey;
-    UILabel * price;
-    UILabel * myT;
-    UILabel *stopsLabelThree;
-    UILabel * place;
     
     
     NSMutableArray * coachCellHeightArray;
@@ -146,8 +127,14 @@
     NSMutableArray * coachCellHeightArray1;
     NSMutableArray * subwayCellHeightArray1;
     NSMutableArray * taxiCellHeightArray1;
+    
+    
+    
+    UILabel * newlineLabel; //机场- 》方庄
+
 }
 @property(nonatomic,retain) NSString * airPortCode;
 @property(nonatomic,retain)AirPortData * subAirPortData;
 @property(nonatomic,retain) NSString * airPortName;
+@property(nonatomic,retain)TrafficCell * myTrafficCell;
 @end

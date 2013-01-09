@@ -152,8 +152,6 @@
 		14805BA4167875E900836353 /* bg_pek.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA3167875E900836353 /* bg_pek.png */; };
 		14805BA61678760B00836353 /* icon_return.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA51678760B00836353 /* icon_return.png */; };
 		14935582169CA32E00F66E87 /* aisle.png in Resources */ = {isa = PBXBuildFile; fileRef = 14935581169CA32E00F66E87 /* aisle.png */; };
-		1493558E169CCEAF00F66E87 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1493558D169CCEAF00F66E87 /* AboutViewController.m */; };
-		14935593169CE39300F66E87 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14935592169CE39300F66E87 /* FeedbackViewController.m */; };
 		149B7708168BE3C3006281A3 /* MyCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7707168BE3C3006281A3 /* MyCenterCell.m */; };
 		149B770A168BE3E1006281A3 /* MyCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B7709168BE3E1006281A3 /* MyCenterCell.xib */; };
 		149B770E168BF386006281A3 /* MyCenterSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B770D168BF383006281A3 /* MyCenterSecondCell.m */; };
@@ -501,6 +499,10 @@
 		18CB6D15168453780025F42F /* bg_blue__.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D14168453780025F42F /* bg_blue__.png */; };
 		18CB6D61168467F90025F42F /* ShowSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB6D60168467F90025F42F /* ShowSelectedCell.m */; };
 		18CB6D641684680D0025F42F /* ShowSelectedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D631684680D0025F42F /* ShowSelectedCell.xib */; };
+		18CED545169D56FD00CE2B92 /* TrafficCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CED544169D56FD00CE2B92 /* TrafficCell.m */; };
+		18CED548169D571B00CE2B92 /* TrafficCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CED547169D571B00CE2B92 /* TrafficCell.xib */; };
+		18CED550169D6CE000CE2B92 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CED54F169D6CE000CE2B92 /* FeedbackViewController.m */; };
+		18CED553169D6D2400CE2B92 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CED552169D6D2400CE2B92 /* AboutViewController.m */; };
 		18D01986168217C10096852E /* searchCabin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01985168217C10096852E /* searchCabin.m */; };
 		18D0198D168218AD0096852E /* ChooseSpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01988168218AD0096852E /* ChooseSpaceCell.m */; };
 		18D0198E168218AD0096852E /* ChooseSpaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D01989168218AD0096852E /* ChooseSpaceCell.xib */; };
@@ -1013,10 +1015,6 @@
 		14805BA3167875E900836353 /* bg_pek.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pek.png; sourceTree = "<group>"; };
 		14805BA51678760B00836353 /* icon_return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_return.png; sourceTree = "<group>"; };
 		14935581169CA32E00F66E87 /* aisle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aisle.png; sourceTree = "<group>"; };
-		1493558C169CCEAF00F66E87 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
-		1493558D169CCEAF00F66E87 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
-		14935591169CE39300F66E87 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
-		14935592169CE39300F66E87 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		149B7706168BE3C2006281A3 /* MyCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterCell.h; sourceTree = "<group>"; };
 		149B7707168BE3C3006281A3 /* MyCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterCell.m; sourceTree = "<group>"; };
 		149B7709168BE3E1006281A3 /* MyCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterCell.xib; sourceTree = "<group>"; };
@@ -1466,6 +1464,13 @@
 		18CB6D5F168467F90025F42F /* ShowSelectedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedCell.h; sourceTree = "<group>"; };
 		18CB6D60168467F90025F42F /* ShowSelectedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedCell.m; sourceTree = "<group>"; };
 		18CB6D631684680D0025F42F /* ShowSelectedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedCell.xib; sourceTree = "<group>"; };
+		18CED543169D56FD00CE2B92 /* TrafficCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficCell.h; sourceTree = "<group>"; };
+		18CED544169D56FD00CE2B92 /* TrafficCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficCell.m; sourceTree = "<group>"; };
+		18CED547169D571B00CE2B92 /* TrafficCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrafficCell.xib; sourceTree = "<group>"; };
+		18CED54E169D6CE000CE2B92 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		18CED54F169D6CE000CE2B92 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		18CED551169D6D2400CE2B92 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		18CED552169D6D2400CE2B92 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		18D01984168217C10096852E /* searchCabin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchCabin.h; sourceTree = "<group>"; };
 		18D01985168217C10096852E /* searchCabin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchCabin.m; sourceTree = "<group>"; };
 		18D01987168218AD0096852E /* ChooseSpaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSpaceCell.h; sourceTree = "<group>"; };
@@ -2690,10 +2695,10 @@
 		14935590169CE13000F66E87 /* About */ = {
 			isa = PBXGroup;
 			children = (
-				1493558C169CCEAF00F66E87 /* AboutViewController.h */,
-				1493558D169CCEAF00F66E87 /* AboutViewController.m */,
-				14935591169CE39300F66E87 /* FeedbackViewController.h */,
-				14935592169CE39300F66E87 /* FeedbackViewController.m */,
+				18CED551169D6D2400CE2B92 /* AboutViewController.h */,
+				18CED552169D6D2400CE2B92 /* AboutViewController.m */,
+				18CED54E169D6CE000CE2B92 /* FeedbackViewController.h */,
+				18CED54F169D6CE000CE2B92 /* FeedbackViewController.m */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -3515,6 +3520,9 @@
 				18D36426169528F3005CF80C /* SubwayTableViewController.m */,
 				18D364281695290F005CF80C /* TaxiTableViewController.h */,
 				18D364291695290F005CF80C /* TaxiTableViewController.m */,
+				18CED543169D56FD00CE2B92 /* TrafficCell.h */,
+				18CED544169D56FD00CE2B92 /* TrafficCell.m */,
+				18CED547169D571B00CE2B92 /* TrafficCell.xib */,
 			);
 			name = TravelAssistant;
 			sourceTree = "<group>";
@@ -4706,6 +4714,7 @@
 				14935582169CA32E00F66E87 /* aisle.png in Resources */,
 				18D0D68A169C985C0028995B /* OneWayCheckViewController.xib in Resources */,
 				18D0D692169CDB500028995B /* orderListForNoLogin.sqlite in Resources */,
+				18CED548169D571B00CE2B92 /* TrafficCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4978,14 +4987,10 @@
 				1842B508169C65E7007FA603 /* SearchFlightConditionCell.m in Sources */,
 				18D0D689169C985C0028995B /* OneWayCheckViewController.m in Sources */,
 				18D0D690169CD0C40028995B /* OrderDatabase.m in Sources */,
-
-
-				1493558E169CCEAF00F66E87 /* AboutViewController.m in Sources */,
-				14935593169CE39300F66E87 /* FeedbackViewController.m in Sources */,
-
-
 				18D0D6A3169D452F0028995B /* DiscountGoldInfo.m in Sources */,
-
+				18CED545169D56FD00CE2B92 /* TrafficCell.m in Sources */,
+				18CED550169D6CE000CE2B92 /* FeedbackViewController.m in Sources */,
+				18CED553169D6D2400CE2B92 /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5025,6 +5030,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -5056,6 +5062,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -5080,6 +5087,7 @@
 		1453950A166F220E00417F61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bao Li (69K35J58JN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bao Li (69K35J58JN)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5102,6 +5110,7 @@
 		1453950B166F220E00417F61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bao Li (69K35J58JN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bao Li (69K35J58JN)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
