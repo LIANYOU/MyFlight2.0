@@ -15,8 +15,8 @@
 
 //用户的一些默认设置 保存在NSUserDefault里面
 
-#define KEY_Default_AccountName @"userName"  //账号名字 
-#define KEY_Default_Password @"user_password" 
+#define KEY_Default_AccountName @"userName"  //账号名字  供显示用 用户输入什么 记录什么
+#define KEY_Default_Password @"user_password"  //账号密码 
 #define KEY_Default_MemberId @"user_memberId" 
 #define KEY_Default_IsUserLogin @"isUser_Login" 
 

@@ -286,36 +286,37 @@
 #pragma mark 登录操作
 - (IBAction)beginLoging:(id)sender {
     
+    NSString *account = [logNumber.text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    NSString *pwd = [logPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    CCLog(@"账号 ：%@",account);
+    
+    CCLog(@"登录密码：%@",pwd);
+
+  if ([account length]==0) {
+ 
+  
+         [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"请输入账号" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+         [logNumber becomeFirstResponder];
+
+    } else if ([pwd length]==0) {
+ 
+    
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"请输入密码" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+       [logPassword becomeFirstResponder];
+   
+    } else{
+        
+        [logNumber resignFirstResponder];
+        [logPassword resignFirstResponder];
+        
+        [loginBusiness loginWithName:account password:pwd andDelegate:self];
+        
+    }
     
     
-    //
-    //    if ([logNumber.text isEqualToString:@""]) {
-    //
-    //
-    //        [UIQuickHelp showAlertViewWithTitle:nil message:@"账号不能为空" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-    //        [logNumber becomeFirstResponder];
-    //
-    //    }
-    //
-    //if ([logPassword.text isEqualToString:@""]) {
-    //
-    //
-    //    [UIQuickHelp showAlertViewWithTitle:nil message:@"账号不能为空" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-    //    [logPassword becomeFirstResponder];
-    //
-    //
-    //}
-    
-    
-    
-    
-    
-    [loginBusiness loginWithName:logNumber.text password:logPassword.text andDelegate:self];
-    
-    
-    
-    
-    
+       
 }
 
 //注册账号

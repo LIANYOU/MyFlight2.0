@@ -4592,7 +4592,6 @@
 				14DF3581169BD8B200CD93AB /* CommonContactDataBase.sqlite in Resources */,
 				18D15A6E169BF51400A9AD08 /* PostCity.sqlite in Resources */,
 				18D15A70169BF53F00A9AD08 /* postCityList.plist in Resources */,
-
 				1842B4DD169C6433007FA603 /* BaggageViewController.xib in Resources */,
 				1842B4DF169C6433007FA603 /* ChackInNavgationViewController.xib in Resources */,
 				1842B4E1169C6433007FA603 /* FlightCompanyDistrubuteController.xib in Resources */,
@@ -4655,8 +4654,6 @@
 				1842B56F169C6786007FA603 /* 雷阵雨.png in Resources */,
 				1842B570169C6786007FA603 /* 雷阵雨伴有冰雹.png in Resources */,
 				1842B571169C6786007FA603 /* 雾.png in Resources */,
-
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4914,7 +4911,6 @@
 				18D15A6B169BBEE000A9AD08 /* OneWayCheckViewController.m in Sources */,
 				18D15A73169BF57E00A9AD08 /* PostCityData.m in Sources */,
 				18D15A76169BF69B00A9AD08 /* PostCityDatabase.m in Sources */,
-
 				1842B4DC169C6433007FA603 /* BaggageViewController.m in Sources */,
 				1842B4DE169C6433007FA603 /* ChackInNavgationViewController.m in Sources */,
 				1842B4E0169C6433007FA603 /* FlightCompanyDistrubuteController.m in Sources */,
@@ -4929,8 +4925,6 @@
 				1842B4FE169C6540007FA603 /* SMSViewController.m in Sources */,
 				1842B506169C65E7007FA603 /* LookFlightConditionCell.m in Sources */,
 				1842B508169C65E7007FA603 /* SearchFlightConditionCell.m in Sources */,
-
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5029,13 +5023,14 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bao Li (69K35J58JN)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyFlight2.0/MyFlight2.0-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "MyFlight2.0/MyFlight2.0-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "BCBB163F-D062-491D-8910-9FECD3321AC5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BCBB163F-D062-491D-8910-9FECD3321AC5";
@@ -5050,6 +5045,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bao Li (69K35J58JN)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyFlight2.0/MyFlight2.0-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "MyFlight2.0/MyFlight2.0-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (

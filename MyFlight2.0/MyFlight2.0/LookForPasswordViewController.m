@@ -135,21 +135,21 @@
     
     
     
+    NSString *pwd =[self.VerificationCode.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    if (![self.VerificationCode.text isEqualToString:@""]) {
+    
+    
+    if (![pwd length]==0) {
         
         
         LoginBusiness *bis = [[LoginBusiness alloc] init];
-        
-
-        
         [bis findPasswd_VerCodeIsRight:self.userMobile code:self.VerificationCode.text andDelegate:self];
         
-       
+        [bis release];
         
     } else{
         
-        [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"验证码错误" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        [UIQuickHelp showAlertViewWithTitle:@"温馨提示" message:@"请输入验证码" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
         
     }
  }
