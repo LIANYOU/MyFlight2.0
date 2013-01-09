@@ -38,6 +38,7 @@
     [_slive release];
     [_gold release];
     [_payOnline release];
+    [_allPayLabel release];
     [super dealloc];
 }
 @end

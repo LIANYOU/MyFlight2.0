@@ -7,7 +7,7 @@
 //
 
 #import "SelectCalendarController.h"
-
+#import "UIButton+BackButton.h"
 static SelectCalendarController *_instance;
 
 @interface SelectCalendarController ()
@@ -60,10 +60,62 @@ static SelectCalendarController *_instance;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem=backBtn1;
+    [backBtn1 release];
+    
+    UIButton * histroyBut = [UIButton backButtonType:4 andTitle:@"选择今天"];
+    [histroyBut addTarget:self action:@selector(chooseToday) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *histroyBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+    self.navigationItem.rightBarButtonItem=histroyBtn;
+    [histroyBtn release];
+
+    
+    
     self.navigationItem.title = @"选择日期";
     _instance = self;
 }
 
+-(void)back{
+    
+    if (self.one != nil) {
+        self.one = nil;
+        [self dismissModalViewControllerAnimated:YES];
+        
+    }
+    else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+-(void)chooseToday{
+    
+    NSDate *  senddate=[NSDate date];
+    
+    NSCalendar  * cal=[NSCalendar  currentCalendar];
+    NSUInteger  unitFlags=NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit;
+    NSDateComponents * conponent= [cal components:unitFlags fromDate:senddate];
+    NSInteger year=[conponent year];
+    NSInteger month=[conponent month];
+    NSInteger day=[conponent day];
+
+    
+    [_delegate setYear:year month:month day:day];
+    
+    if (self.one != nil) {
+        self.one = nil;
+        [self dismissModalViewControllerAnimated:YES];
+        
+    }
+    else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+
+    
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];

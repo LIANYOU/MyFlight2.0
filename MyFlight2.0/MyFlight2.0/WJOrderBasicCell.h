@@ -15,6 +15,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *orderStation;
 @property (retain, nonatomic) IBOutlet UILabel *payStation;
 @property (retain, nonatomic) IBOutlet UIButton *orderAllPay;
+@property (retain, nonatomic) IBOutlet UILabel *allPayLabel;
+
 @property (retain, nonatomic) IBOutlet UIView *infoView;
 @property (retain, nonatomic) IBOutlet UILabel *discount;
 @property (retain, nonatomic) IBOutlet UILabel *discountPay;

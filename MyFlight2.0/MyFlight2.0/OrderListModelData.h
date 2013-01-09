@@ -21,6 +21,8 @@
 @property(nonatomic,retain)NSString *payStsCH; //支付状态中文
 @property(nonatomic,retain)NSString *type; //航班类型
 
+@property(nonatomic,retain)NSString *checkCode; //非登陆用户手机号验证
+
 
 
 @end

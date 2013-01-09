@@ -19,6 +19,7 @@
     NSString * passengerType;  // 乘客类型
     NSString * passengerCertType; // 身份证的类型
     
+    NSString * certtype;
     
     NSString * passengerName;
     NSString * brithMember;
@@ -85,13 +86,17 @@
             passengerType = @"儿童";
         }
         
-        if ([self.passenger.certType isEqualToString:@"1"]) {
+        if ([self.passenger.certType isEqualToString:@"0"]) {
+            
+            certtype = @"0";
             passengerCertType = @"身份证";
         }
-        if ([self.passenger.certType isEqualToString:@"2"]) {
+        if ([self.passenger.certType isEqualToString:@"1"]) {
+            certtype = @"1";
             passengerCertType = @"护照";
         }
         else{
+            certtype = @"9";
             passengerCertType = @"其他";
         }
     }
@@ -386,15 +391,16 @@
     AddPersonCoustomCell *cell2 = (AddPersonCoustomCell *)[self.addPersonTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
     brithMember = cell2.secText.text;
     
-    NSString * certtype = [self.cellTextArr objectAtIndex:2];
     
-    if ([certtype isEqualToString:@"身份证"]) {
+
+    if ([[self.cellTextArr objectAtIndex:2] isEqualToString:@"身份证"]) {
+        
+        certtype = @"0";
+    }
+    if ([[self.cellTextArr objectAtIndex:2] isEqualToString:@"护照"]) {
         certtype = @"1";
     }
-    if ([certtype isEqualToString:@"护照"]) {
-        certtype = @"2";
-    }
-    else{
+    else if ([[self.cellTextArr objectAtIndex:2] isEqualToString:@"其他"]){
         certtype = @"9";
     }
     
@@ -409,10 +415,7 @@
     LoginBusiness *bis = [[LoginBusiness alloc] init];
     
     if ([self.navTitleString isEqualToString:@"添加乘机人"]) {
-        
-        
-        
-        
+
         [bis addCommonPassengerWithPassengerName:passengerName
                                             type:passenType
                                         certType:certtype
@@ -433,9 +436,7 @@
 
     }
  
-    
-    
-    
+
 }
 
 
@@ -443,8 +444,7 @@
 #pragma mark 网络错误回调的方法
 //网络错误回调的方法
 - (void )requestDidFailed:(NSDictionary *)info{
-    
-    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+
     NSString *meg =[info objectForKey:KEY_message];
     
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
@@ -458,8 +458,7 @@
 //网络返回错误信息回调的方法
 - (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
     
-    
-    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+
     NSString *meg =[info objectForKey:KEY_message];
     
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
@@ -472,7 +471,7 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
     
-    
+    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
     
     NSString *meg =@"成功";
     

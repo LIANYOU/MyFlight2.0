@@ -101,6 +101,9 @@
 
 @property (retain, nonatomic) NSString * twoGoBack;
 
+@property (retain, nonatomic) NSString * oneGoWeek;
+@property (retain, nonatomic) NSString * twoGoWeek;
+
 - (IBAction)getStartPort:(id)sender;
 
 - (IBAction)getStartDate:(id)sender;

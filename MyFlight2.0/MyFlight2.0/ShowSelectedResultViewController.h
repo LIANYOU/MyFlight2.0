@@ -16,7 +16,7 @@
 #import "Date.h"
 #import "ViewControllerDelegate.h"
 #import <QuartzCore/QuartzCore.h>
-@class OneWayCheckViewController;
+
 @class ShowSelectedCell;
 
 #import "SearchFlightData.h"
@@ -56,13 +56,16 @@
 @property (retain, nonatomic) NSString * goBackDate;
 @property (retain, nonatomic) NSString * goDate;
 
+@property (retain, nonatomic) NSString * oneGoWeek;   // 星期机
+@property (retain, nonatomic) NSString * backWeek;
+
 @property (retain, nonatomic) SearchAirPort * airPort;
 @property (retain, nonatomic) NSArray * dateArr;  // 接收返回的数据
 @property (retain, nonatomic) NSMutableArray * searchFlightDateArr;      // 存放单程结果
 @property (retain, nonatomic) NSMutableArray * searchBackFlightDateArr;  // 存放返程结果
  
 
-@property (retain, nonatomic) OneWayCheckViewController * one;  // 次controller的前身是哪一个controller
+@property (retain, nonatomic) NSString * one;  // 次controller的前身是哪一个controller
 @property (retain, nonatomic) ChooseSpaceViewController * write;
 @property (nonatomic,assign) int netFlag;  // 判断是否需要联网的标记位
 @property (nonatomic,assign) int indexFlag; // 

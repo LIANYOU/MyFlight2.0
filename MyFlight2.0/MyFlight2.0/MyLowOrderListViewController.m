@@ -58,7 +58,14 @@
     UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
     self.navigationItem.rightBarButtonItem=backBtn2;
     [backBtn2 release];
-    
+
+
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     NSString * string = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
     
     NoticeLow * notice ;
@@ -69,18 +76,22 @@
     else{
         notice = [[NoticeLow alloc] initWithSource:SOURCE_VALUE andMemberId:nil andSign:nil andHwId:HWID_VALUE andDelegate:self];
     }
-
+    
     [notice getInfo];
-
-
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 -(void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)add{
+    
+    
+//    if (self.dataArr.count>=5) {
+//        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您最多可预约5条航线" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [alert show];
+//        [alert release];
+//        return;
+//    }
     LowOrderController * low = [[LowOrderController alloc] init];
     [self.navigationController pushViewController:low animated:YES];
     [low release];

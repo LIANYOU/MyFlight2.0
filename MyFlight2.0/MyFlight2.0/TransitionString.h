@@ -20,4 +20,8 @@
 
 
 +(NSString *)getNextDay:(NSString *)todayStr;
+
+
+
++(NSString *)weekYear:(NSString *)year moth:(NSString *)moth day:(NSString *)day;
 @end
