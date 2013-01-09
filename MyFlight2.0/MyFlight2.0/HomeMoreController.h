@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AboutViewController.h"
+
 @class MoreCell;
 @interface HomeMoreController : UITableViewController
 @property (retain, nonatomic) IBOutlet MoreCell *moreCell;

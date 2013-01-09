@@ -31,7 +31,7 @@
 
 - (void) requestForData
 {
-    NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/getCussSegHandler.jsp"];
+    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getCussSegHandler.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
@@ -41,7 +41,7 @@
     [request setPostValue:self.passName forKey:@"passName"];
     [request setPostValue:self.idNo forKey:@"idNo"];
     [request setPostValue:self.depCity forKey:@"depCity"];
-    [request setPostValue:@"1" forKey:@"source"];
+    [request setPostValue:SOURCE_VALUE forKey:KEY_source];
     
     [request setCompletionBlock:^(void){
         
@@ -422,7 +422,7 @@
         }
         else
         {
-            NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/cussCheckHandler.jsp"];
+            NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/cussCheckHandler.jsp")];
             
             ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
             
@@ -435,7 +435,7 @@
             [request setPostValue:self.passName forKey:@"passName"];
             [request setPostValue:self.idNo forKey:@"id"];
             [request setPostValue:[segs objectForKey:@"segIndex"] forKey:@"segIndex"];
-            [request setPostValue:@"1" forKey:@"source"];
+            [request setPostValue:SOURCE_VALUE forKey:KEY_source];
             
             [request setCompletionBlock:^(void){
                 

@@ -53,7 +53,7 @@
 
 - (void) requestForData:(NSString *) flightNo
 {
-    NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/screen.jsp"];
+    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/screen.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 
@@ -71,7 +71,7 @@
     }
     
     [request setPostValue:[NSString stringWithFormat:@"%d", pageNum] forKey:@"pageNum"];
-    [request setPostValue:edition forKey:@"edition"];
+    [request setPostValue:EDITION_VALUE forKey:KEY_edition];
     
     if(flightNo != nil)
     {
@@ -136,7 +136,6 @@
     // Do any additional setup after loading the view from its nib.
     
     pageNum = 1;
-    edition = @"v1.0";
 
     titlebar = [[AirportMainScreenTitleView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
     
