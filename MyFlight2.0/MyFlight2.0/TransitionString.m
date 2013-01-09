@@ -133,4 +133,67 @@
     
     return todayStr;
 }
+
+
++(NSString *)weekYear:(NSString *)year moth:(NSString *)moth day:(NSString *)day
+{
+    int isleap(int);
+    int ans=0;
+    switch([moth intValue])
+    {
+        case 1:ans=0;break;
+        case 2:ans=31;break;
+        case 3:ans=59;break;
+        case 4:ans=90;break;
+        case 5:ans=120;break;
+        case 6:ans=151;break;
+        case 7:ans=181;break;
+        case 8:ans=212;break;
+        case 9:ans=243;break;
+        case 10:ans=273;break;
+        case 11:ans=304;break;
+        case 12:ans=334;break;
+    }
+    ans+=[day intValue];
+    if((([year intValue]%100!=0&&[year intValue]%4==0)||[year intValue]%400==0)&&[moth intValue]>2)
+        ans++;
+    
+    NSString * str = nil;
+    switch (ans%7+1) {
+        case 1:
+            str = @"星期一";
+            break;
+        case 2:
+            str = @"星期二";
+            break;
+
+        case 3:
+            str = @"星期三";
+            break;
+
+        case 4:
+            str = @"星期四";
+            break;
+
+        case 5:
+            str = @"星期五";
+            break;
+
+        case 6:
+            str = @"星期六";
+            break;
+
+        case 7:
+            str = @"星期七";
+            break;
+
+        default:
+            break;
+    }
+    
+    
+   
+    return str;
+
+}
 @end

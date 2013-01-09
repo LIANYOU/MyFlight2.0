@@ -48,5 +48,10 @@
 
 @property(nonatomic,retain)NSString *flightOrgin; //返程航班政策来源 B2B 、B2C、 HU、 PGS
 
+@property(nonatomic,retain)NSString *dptAirportName;  // 出发机场名称
+
+@property(nonatomic,retain)NSString *arrAirportName;  // 到达机场名称
+
+
 
 @end

@@ -237,7 +237,7 @@
             cell.orderData.text = self.order.createDate;
             cell.orderStation.text = self.order.stsCh;
             cell.payStation.text = self.order.payStsCh;
-            [cell.orderAllPay setTitle:self.order.totalMoney forState:0 ];
+            cell.allPayLabel.text = [NSString stringWithFormat:@"￥%@",self.order.totalMoney];
             cell.payOnline.text = self.order.actualMoney;
             
         }
@@ -435,18 +435,11 @@
         NSArray * arr = [info objectForKey:@"newDic"];
         
         self.order = [arr objectAtIndex:0];
-        self.flight = [arr objectAtIndex:1];
-        self.inFlight = [arr objectAtIndex:2];
+        self.flight = [arr objectAtIndex:1];   // 出港
+        self.inFlight = [arr objectAtIndex:2];  // 入港
         self.personArray = [NSArray arrayWithArray:[arr objectAtIndex:3]];
         self.post = [arr objectAtIndex:4];
         self.person = [arr objectAtIndex:5];
-        
-        //    NSLog(@"%@",self.order.code );
-        //    NSLog(@"%@",self.flight.depAirPortCN );
-        //    NSLog(@"%@",self.inFlight.depAirPortCN );
-        //    NSLog(@"%@",self.post.deliveryType );
-        //    NSLog(@"--------- %@",self.person.name );
-        //    NSLog(@"%d",self.personArray.count);
         
         Passenger * person = [[Passenger alloc] init];
         Passenger * goPerson = [[Passenger alloc] init];
@@ -496,31 +489,27 @@
         
         
         
-        self.PerStanderPrice.text =[NSString stringWithFormat:@"%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]];
-        self.PersonConstructionFee.text =[NSString stringWithFormat:@"%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
-        self.personAdultBaf.text =[NSString stringWithFormat:@"%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
-        self.Personinsure.text = [NSString stringWithFormat:@"%d",[person.insurance intValue] + [goPerson.insurance intValue]];
+        self.PerStanderPrice.text =[NSString stringWithFormat:@"￥%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]];
+        self.PersonConstructionFee.text =[NSString stringWithFormat:@"￥%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
+        self.personAdultBaf.text =[NSString stringWithFormat:@"￥%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
+        self.Personinsure.text = [NSString stringWithFormat:@"￥%d",[person.insurance intValue] + [goPerson.insurance intValue]];
         self.personMuber.text = [NSString stringWithFormat:@"%d",personCount];
         
-        self.smallPerStanderPrice.text = [NSString stringWithFormat:@"%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]];
-        self.smallPersonConstructionFee.text = [NSString stringWithFormat:@"%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
-        self.smallpersonAdultBaf.text = [NSString stringWithFormat:@"%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
-        self.smallPersoninsure.text = [NSString stringWithFormat:@"%d",[person.insurance intValue] + [goPerson.insurance intValue]];
+        self.smallPerStanderPrice.text = [NSString stringWithFormat:@"￥%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]];
+        self.smallPersonConstructionFee.text = [NSString stringWithFormat:@"￥%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
+        self.smallpersonAdultBaf.text = [NSString stringWithFormat:@"￥%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
+        self.smallPersoninsure.text = [NSString stringWithFormat:@"￥%d",[person.insurance intValue] + [goPerson.insurance intValue]];
         self.smallpersonMuber.text = [NSString stringWithFormat:@"%d",personCount];
         
-        self.childStanderPrice.text =[NSString stringWithFormat:@"%d",[child.ticketPrice intValue] + [child.ticketPrice intValue]];
-        self.childConstructionFee.text =[NSString stringWithFormat:@"%d",[child.constructionPrice intValue] + [child.constructionPrice intValue]] ;
-        self.childBaf.text = [NSString stringWithFormat:@"%d",[child.bafPrice intValue] + [child.bafPrice intValue]];
-        self.childInsure.text = [NSString stringWithFormat:@"%d",[child.insurance intValue] + [child.insurance intValue]];
+        self.childStanderPrice.text =[NSString stringWithFormat:@"￥%d",[child.ticketPrice intValue] + [child.ticketPrice intValue]];
+        self.childConstructionFee.text =[NSString stringWithFormat:@"￥%d",[child.constructionPrice intValue] + [child.constructionPrice intValue]] ;
+        self.childBaf.text = [NSString stringWithFormat:@"￥%d",[child.bafPrice intValue] + [child.bafPrice intValue]];
+        self.childInsure.text = [NSString stringWithFormat:@"￥%d",[child.insurance intValue] + [child.insurance intValue]];
         self.childMunber.text = [NSString stringWithFormat:@"%d",childCount];
         
         [self.showTableView reloadData];
 
     }
-    
-    
-    // [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:@"取消订单成功" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-    
    
 }
 

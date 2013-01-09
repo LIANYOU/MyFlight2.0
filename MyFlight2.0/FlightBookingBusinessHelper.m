@@ -12,7 +12,8 @@
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "flightPassengerVo.h"
-
+#import "OrderListModelData.h"
+#import "OrderDatabase.h"
 
 
 @implementation FlightBookingBusinessHelper
@@ -413,9 +414,6 @@
         
         NSString *data = [formRequst responseString];
         
-        
-       
-        
         NSString *codeRequ =[NSString stringWithFormat:@"%d",[formRequst responseStatusCode]];
         
         CCLog(@"网络返回的请求码是 %@",codeRequ);
@@ -440,6 +438,20 @@
         NSString * actualMoney = [dic objectForKey:@"actualMoney"];
         
         
+        // **************  获取系统时间
+        
+        NSDate *  senddate=[NSDate date];
+        
+        NSCalendar  * cal=[NSCalendar  currentCalendar];
+        NSUInteger  unitFlags=NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit;
+        NSDateComponents * conponent= [cal components:unitFlags fromDate:senddate];
+        NSInteger year=[conponent year];
+        NSInteger month=[conponent month];
+        NSInteger day=[conponent day];
+        
+        
+                
+        
         NSArray * arr = [NSArray arrayWithObjects:orderId,code,memberId,actualMoney, nil];
         
         NSDictionary * dictionary = [NSDictionary dictionaryWithObject:arr forKey:@"dic"];
@@ -457,7 +469,21 @@
                 
                 //NSLog(@"成功登陆后返回的数据：%@",data);
                 
+                if (!Default_IsUserLogin_Value) {   // 判断用户是不是登陆
+                    
+                    OrderListModelData * list = [[OrderListModelData alloc] init];
+                    list.createTime = [NSString stringWithFormat:@"%d-%02d-%02d",year,month,day];
+                    list.depAirportName = bookingGoFlightVo.dptAirportName;
+                    list.arrAirportName = bookingGoFlightVo.arrAirportName;
+                    list.totalMoney = [dic objectForKey:@"totalMoney"];
+                    list.payStsCH = @"未支付";  // 暂时这样
+                    list.orderId = [dic objectForKey:@"orderId"];
+                    list.checkCode = flightContactVo.mobile;
+                    
+                    [OrderDatabase addOrderInfo_UnLogin:list];
+                }
                 
+
                 
                 if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     

@@ -288,10 +288,10 @@
         }
         
         if ([data.goOrBackFlag isEqualToString:@"1"]) {
-            cell.scheduleDate.text = data.beginDate;
+            cell.scheduleDate.text = [NSString stringWithFormat:@"%@ %@",data.beginDate,data.beginStartWeek];
         }
         else{
-            cell.scheduleDate.text = data.backDate;
+            cell.scheduleDate.text = [NSString stringWithFormat:@"%@ %@",data.beginDate,data.backStartWeek];
         }
         cell.airPort.text = data.airPort;
         cell.palntType.text = [NSString stringWithFormat:@"%@机型",data.palntType];
@@ -423,16 +423,6 @@
                 self.searchFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
                 
                 
-//                ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
-//                
-//                show.airPort = searchAirPort;
-//                
-//                show.netFlag = 1;  // 等与1  ，在返回到返程列表的时候 不需要联网
-//                show.write = self;
-//                [self.navigationController popToViewController:show animated:YES];
-                
-                
-                
                 ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
                 show.airPort = searchAirPort;
                 
@@ -442,23 +432,10 @@
                 CATransition *animation = [CATransition animation];
                 animation.duration = 0.3f;
                 animation.type = kCATransitionMoveIn;
-//                 animation.type = kCATransitionPush;
                 animation.subtype = kCATransitionFromRight;
-//                animation.subtype = kCATransitionFromRight;
                 [self.navigationController popToViewController:show animated:NO];
                 [self.navigationController.view.layer addAnimation:animation forKey:@"animation"];
                 [show.navigationController.view.layer addAnimation:animation forKey:@"animation"];
-                
-                
-//                CATransition *transition = [CATransition animation];
-//                transition.duration =1;
-//                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//                transition.type = kCATransitionReveal;
-//                transition.subtype = kCATransitionFromRight;
-//                transition.delegate = self;
-//                [self.navigationController.view.layer addAnimation:transition forKey:nil];
-//                
-//                self.navigationController.navigationBarHidden = NO;
                 
                 [self.navigationController popViewControllerAnimated:NO];
                 

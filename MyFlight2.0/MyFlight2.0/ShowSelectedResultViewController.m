@@ -16,7 +16,6 @@
 #import "LowOrderController.h"
 #import "searchCabin.h"
 #import "ShowSelectedCell.h"
-
 #import "AppConfigure.h"
 #import "MonthDayCell.h"
 #import "SelectCalendarController.h"
@@ -146,27 +145,52 @@
     if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
         
         
-        [UIView animateWithDuration:0.001 animations:^(void)  //不用回调
-         {
-             self.showResultTableView.frame = CGRectMake(320, 44, 320, 480);
-
-         }  completion:^(BOOL finished)
-         {
-             [UIView animateWithDuration:0.5 animations:^{
-                 self.showResultTableView.frame = CGRectMake(0, 44, 320, 480);
-             } completion:^(BOOL finished) {
-                 self.airPort.date = @"2012-01-10";
-                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
-                 [self.airPort searchAirPort];
-                           
-             }];
-         }];
+//        [UIView animateWithDuration:0.001 animations:^(void)  //不用回调
+//         {
+//             self.showResultTableView.frame = CGRectMake(320, 44, 320, 480);
+//
+//         }  completion:^(BOOL finished)
+//         {
+//             [UIView animateWithDuration:0.5 animations:^{
+//                 self.showResultTableView.frame = CGRectMake(0, 44, 320, 480);
+//             } completion:^(BOOL finished) {
+//                 self.airPort.date = @"2012-01-10";
+//                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+//                 [self.airPort searchAirPort];
+//                           
+//             }];
+//         }];
  
     }
     if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
          NSLog(@"右边");
     }
 }
+
+//int whatday(int year,int month,int day) /*计算给定年月日的某一天是当年的第几天*/
+//{
+//    int isleap(int);
+//    int ans=0;
+//    switch(month)
+//    {
+//        case 1:ans=0;break;
+//        case 2:ans=31;break;
+//        case 3:ans=59;break;
+//        case 4:ans=90;break;
+//        case 5:ans=120;break;
+//        case 6:ans=151;break;
+//        case 7:ans=181;break;
+//        case 8:ans=212;break;
+//        case 9:ans=243;break;
+//        case 10:ans=273;break;
+//        case 11:ans=304;break;
+//        case 12:ans=334;break;
+//    }
+//    ans+=day;
+//    if(((year%100!=0&&year%4==0)||year%400==0)&&month>2)ans++;
+//    return ans;
+//}
+
 -(void)viewWillAppear:(BOOL)animated
 {
         
@@ -207,6 +231,8 @@
                 self.airPort.date = self.goBackDate;
                 
                 NSArray * array = [self.airPort.date componentsSeparatedByString:@"-"];
+                
+
                 
                 [nowDateBtn setTitle:[NSString stringWithFormat:@"%@-%@-%@",[array objectAtIndex:0],[array objectAtIndex:1],[array objectAtIndex:2]] forState:0];
                 
@@ -396,6 +422,7 @@
         s.endPortThreeCode = self.endThreeCode;
         
         s.beginDate = self.startDate;
+        s.beginStartWeek = self.oneGoWeek;
         
         if (self.write != nil || self.netFlag == 1) {
             
@@ -403,9 +430,11 @@
             s.backDate = self.goBackDate;
             s.startPortName = self.endPort;
             s.endPortName = self.startPort;
-            s.beginDate = self.goBackDate;
+            s.beginDate = self.startDate;
             s.startPortThreeCode = self.endThreeCode;
             s.endPortThreeCode = self.startThreeCode;
+            
+            s.backStartWeek = self.backWeek;
             
             
             [self.searchBackFlightDateArr addObject:s];
@@ -657,6 +686,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSLog(@"---------------  %@,%@",self.oneGoWeek,self.backWeek);
     
     [self.showResultTableView deselectRowAtIndexPath:indexPath animated:NO];
     
@@ -1071,11 +1102,12 @@
     
     if (self.write != nil || self.netFlag == 1) {
         self.goBackDate = tempDate;
+         self.backWeek = [TransitionString weekYear:[arr objectAtIndex:0] moth:[arr objectAtIndex:1] day:[arr objectAtIndex:2]];
         
     }
     else{
         self.startDate = tempDate;
-        
+        self.oneGoWeek = [TransitionString weekYear:[arr objectAtIndex:0] moth:[arr objectAtIndex:1] day:[arr objectAtIndex:2]];
     }
 
     
@@ -1086,7 +1118,7 @@
 
     NSLog(@"查询时候用的时间 :  %@",self.startDate);
 
-
+NSLog(@"---------------  %@,%@",self.oneGoWeek,self.backWeek);
 
     [self.airPort searchAirPort];
 }
@@ -1114,12 +1146,16 @@
     if (self.write != nil || self.netFlag == 1) {
         
         self.goBackDate = [NSString stringWithFormat:@"%d-%@-%@",year,strMonth,strDay];
+        self.backWeek = [TransitionString weekYear:[NSString stringWithFormat:@"%d",year] moth:strMonth day:strDay];
         self.airPort.date = self.goBackDate;
     }
     else{
         self.startDate = [NSString stringWithFormat:@"%d-%@-%@",year,strMonth,strDay];
+        self.oneGoWeek = [TransitionString weekYear:[NSString stringWithFormat:@"%d",year] moth:strMonth day:strDay];
         self.airPort.date = self.startDate;
     }
+    
+    NSLog(@"---------------  %@,%@",self.oneGoWeek,self.backWeek);
     
     [nowDateBtn setTitle:[NSString stringWithFormat:@"%d-%@-%@",year,strMonth, strDay] forState:0];
     
@@ -1260,16 +1296,20 @@
     if (self.write != nil || self.netFlag == 1) {
         NSLog(@"------------------------ ===============  %@",self.startDate);
         self.goBackDate = tempDate;
+        self.backWeek = [TransitionString weekYear:[dataArr objectAtIndex:0] moth:[dataArr objectAtIndex:1] day:[dataArr objectAtIndex:2]];
         
     }
     else{
         self.startDate = tempDate;
+        self.oneGoWeek = [TransitionString weekYear:[dataArr objectAtIndex:0] moth:[dataArr objectAtIndex:1] day:[dataArr objectAtIndex:2]];
         NSLog(@"------------------------   %@",self.startDate);
         
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
     self.airPort.date = tempDate;
+    
+    NSLog(@"---------------  %@,%@",self.oneGoWeek,self.backWeek);
     
     NSLog(@"返程时间  %@",tempDate);
     

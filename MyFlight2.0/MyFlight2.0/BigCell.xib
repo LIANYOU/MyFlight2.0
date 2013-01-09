@@ -111,7 +111,7 @@
 									<object class="IBUILabel" id="437371882">
 										<reference key="NSNextResponder" ref="725778453"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{173, 5}, {117, 21}}</string>
+										<string key="NSFrame">{{173, 5}, {140, 21}}</string>
 										<reference key="NSSuperview" ref="725778453"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="390324563"/>
@@ -696,6 +696,8 @@
 						<string key="endAirPortName">UILabel</string>
 						<string key="endTime">UILabel</string>
 						<string key="flightCode">UILabel</string>
+						<string key="footView">UIView</string>
+						<string key="goORBackLabel">UILabel</string>
 						<string key="headView">UIView</string>
 						<string key="lookButton">UIButton</string>
 						<string key="lookFlightBtn">UIButton</string>
@@ -732,6 +734,14 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="flightCode">
 							<string key="name">flightCode</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="footView">
+							<string key="name">footView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="goORBackLabel">
+							<string key="name">goORBackLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="headView">

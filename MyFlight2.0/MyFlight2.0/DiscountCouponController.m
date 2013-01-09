@@ -296,17 +296,24 @@
 
     if (indexPath.row == 1) {
      
-        ChooseDiscountCouponController * choose =  [[ChooseDiscountCouponController alloc] init];
-        choose.captchaList = self.captchaListArr;
-        [choose getDate:^(NSString *name, NSString *count, NSMutableArray *arr) {
-           
-            cell.name.text = name;
-            cell.secLebel.text = [NSString stringWithFormat:@"%@",count];
-            self.nextSelectArr = [NSMutableArray arrayWithArray:arr];
-        }];
-        choose.indexArr = self.nextSelectArr;
-        [self.navigationController pushViewController:choose animated:YES];
-        [choose release];
+        if (self.captchaListArr.count != 0) {
+            ChooseDiscountCouponController * choose =  [[ChooseDiscountCouponController alloc] init];
+            choose.captchaList = self.captchaListArr;
+            [choose getDate:^(NSString *name, NSString *count, NSMutableArray *arr) {
+                
+                cell.name.text = name;
+                cell.secLebel.text = [NSString stringWithFormat:@"%@",count];
+                self.nextSelectArr = [NSMutableArray arrayWithArray:arr];
+            }];
+            choose.indexArr = self.nextSelectArr;
+            [self.navigationController pushViewController:choose animated:YES];
+            [choose release];
+
+        }
+        else{
+            
+        }
+        
     }
 
   

@@ -1148,9 +1148,37 @@
 }
 - (IBAction)payMoney:(id)sender {
     
+    // 判断手机号格式是否正确
+    if (self.flag == 3)
+    {
+ 
+        WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
+        
+        if (![self checkTel:cell.phoneField.text]) {
+         
+            return;
+        }
+        
+                
+        
+    }
+    else{
+       
+        WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
+       
+        
+        if (![self checkTel:cell.phoneField.text]) {
+         
+            return;
+        }
+    }
+
+    
     // 去成和往返信息
     bookingGoFlightVo * go = [[bookingGoFlightVo alloc] init];
     
+    go.dptAirportName = self.searchDate.startPortName;
+    go.arrAirportName = self.searchDate.endPortName;
     go.aircraftType = self.searchDate.palntType;
     go.airlineCompanyCode = self.searchDate.airPort;
     go.arrivalAirportCode = self.searchDate.endPortThreeCode;
@@ -1172,7 +1200,9 @@
     go.ticketType = @"0";
     go.flightOrgin = @"B2B";    
     
+    
     bookingReturnFlightVo * bookReturn = [[bookingReturnFlightVo alloc] init];
+    
     
     bookReturn.aircraftType = self.searchBackDate.palntType;
     bookReturn.airlineCompanyCode = self.searchBackDate.airPort;
@@ -1506,24 +1536,72 @@
 
 #pragma mark UIScrollViewDelegate Methods
 
+- (BOOL)checkTel:(NSString *)str
+
+{
+    
+    if ([str length] == 0) {
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"data_null_prompt", nil) message:NSLocalizedString(@"tel_no_null", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+        
+        [alert release];
+        
+        return NO;
+        
+    }
+    
+    //1[0-9]{10}
+    
+    //^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$
+    
+    //    NSString *regex = @"[0-9]{11}";
+    
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0-9]))\\d{8}$";
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    BOOL isMatch = [pred evaluateWithObject:str];
+    
+    if (!isMatch) {
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+        
+        [alert release];
+        
+        return NO;
+    }
+    return YES;
+    
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	
     if (self.flag == 3)
     {
         WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
+
         
         [cell.nameField resignFirstResponder];
         [cell.phoneField resignFirstResponder];
-
+        
     }
     else{
+        
         WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
+
         
         [cell.nameField resignFirstResponder];
         [cell.phoneField resignFirstResponder];
-
     }
-        
+
+    
+  
+    
+
 }
 
 @end

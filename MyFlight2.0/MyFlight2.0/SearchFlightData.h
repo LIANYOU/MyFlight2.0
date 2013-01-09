@@ -17,6 +17,10 @@
 @property (retain, nonatomic)  NSString *beginDate;          // 出发日期 2012-12-12
 @property (retain, nonatomic)  NSString *backDate;           // 返程日期 2012-12-13
 
+
+@property (retain, nonatomic)  NSString * beginStartWeek;    // 去成星期
+@property (retain, nonatomic)  NSString * backStartWeek;     // 返程星期
+
 @property (retain, nonatomic)  NSString * startPortThreeCode; // 出发机场三字码
 @property (retain, nonatomic)  NSString * endPortThreeCode;   // 到达机场三字码
 @property (retain, nonatomic)  NSString * backStartPortThreeCode; // 返程出发机场三字码

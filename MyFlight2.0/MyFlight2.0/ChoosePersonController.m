@@ -68,7 +68,7 @@
     [backBtn2 release];
 
 
-    self.dataArr = [[NSMutableArray alloc] init];
+    
     self.showTableView.tableFooterView = self.footView;
     
     [super viewDidLoad];
@@ -83,7 +83,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
+    self.dataArr = [[NSMutableArray alloc] init];
     self.dataArr = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
+    [self.showTableView reloadData];
 }
 
 #pragma mark - Table view data source

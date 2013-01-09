@@ -16,6 +16,8 @@
 #import "DetailsOrderViewController.h"
 #import "OrderDetaile.h"
 #import "UIButton+BackButton.h"
+
+#import "OrderDatabase.h"
 @interface MyOrderListViewController ()
 
 
@@ -82,7 +84,13 @@
     NSInteger index = sender.selectedIndex;
     switch (index) {
         case 0:
-            tmpArray = self.noPaylistArray;
+           
+            if (!Default_IsUserLogin_Value) {  // 非登陆用户读取本地数据库
+                self.noPaylistArray = [OrderDatabase findAllOrderInfo];
+            }
+
+             tmpArray = self.noPaylistArray;
+            
             
             [self.thisTableView reloadData];
             break;
@@ -134,6 +142,7 @@
     self.thisTableView.tableHeaderView = self.thisHeadView;
     LoginBusiness *bis = [[LoginBusiness alloc] init];
     [bis getOrderListWithCurrentPage:@"1" rowsOfPage:@"100" andDelegate:self];
+    
     
     
     // Do any additional setup after loading the view from its nib.
@@ -309,6 +318,7 @@
     
     
     tmpArray =self.noPaylistArray;
+    
     [self.thisTableView reloadData];
     
     

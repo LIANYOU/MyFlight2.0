@@ -144,10 +144,12 @@ int whatday(int year,int month,int day);
     }
 
     
+    self.oneGoWeek = [TransitionString weekYear:[NSString stringWithFormat:@"%d",year] moth:strMonth day:strDay]; // 去成星期
     oneGoData = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay ];
     
     NSString * nextDAY = [TransitionString getNextDay:oneGoData];
 
+    NSArray * arr = [nextDAY componentsSeparatedByString:@"-"];
    
     NSString * string = [NSString stringWithFormat:@"%@-%@",strMonth,strDay];
     NSString * string1 = [nextDAY substringWithRange:NSMakeRange(5, 5)];
@@ -157,6 +159,9 @@ int whatday(int year,int month,int day);
     oneSatrtDate.text = string;
     
     self.twoGoBack = nextDAY;
+    self.twoGoWeek = [TransitionString weekYear:[arr objectAtIndex:0] moth:[arr objectAtIndex:1] day:[arr objectAtIndex:2]]; // 去成星期
+    
+    
   
     [dateformatter release];
     
@@ -389,6 +394,8 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
         
         oneGoData = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay];
         
+        self.oneGoWeek = [TransitionString weekYear:[NSString stringWithFormat:@"%d",year] moth:strMonth day:strDay];
+        
         switch (selectDayCount- todayCount) {
             case 0:
                 oneDayTitle.text = @"今天";
@@ -439,7 +446,7 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
         [returnDate setText:[NSString stringWithFormat:@"%@-%@", strMonth, strDay]];
         
         self.twoGoBack = [[NSString alloc] initWithFormat:@"%4d-%@-%@",year,strMonth,strDay];
-        
+        self.twoGoWeek = [TransitionString weekYear:[NSString stringWithFormat:@"%d",year] moth:strMonth day:strDay];
         switch (selectDayCount- todayCount) {
             case 0:
                 nextDayTitle.text = @"今天";
@@ -506,6 +513,8 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
 
 - (IBAction)select:(id)sender {
 
+    
+    NSLog(@"%@,%@",self.oneGoWeek,self.twoGoWeek);
    
     SearchAirPort * searchAirPort;
     
@@ -521,6 +530,8 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
         show.endPort = oneEndAirPort.text;
         show.startThreeCode = oneStartCode;
         show.endThreeCode = oneEndCode;
+        
+        show.oneGoWeek = self.oneGoWeek;
         
         show.goDate = oneGoData;
         
@@ -555,7 +566,10 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
         
         show.goDate = oneGoData;
         
+        show.oneGoWeek = self.oneGoWeek;
+        
         show.goBackDate = self.twoGoBack;
+        show.backWeek = self.twoGoWeek;
         
         // 加入到历史数据库中
         [HistoryCheckDataBase addHistoryFlightWithStartName:startAirport.text endName:endAirport.text startApCode:startCode  endApCode:endCode searchFlag: [NSString stringWithFormat:@"%d",2 ]];
@@ -564,7 +578,7 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
     }
     
     show.airPort = searchAirPort;
-    show.one = self;
+    show.one = @"123";
     
 
     show.oneGoDate = startDate.text;

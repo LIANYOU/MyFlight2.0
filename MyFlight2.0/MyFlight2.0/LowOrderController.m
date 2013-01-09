@@ -46,6 +46,8 @@
         self.tempView = self.smallFuckView;
     }
     else{
+        self.startCode = @"PKE";
+        self.endCode = @"SHA";
         self.tempView = self.bigFuckView;
     }
   
@@ -369,7 +371,13 @@
 
 - (IBAction)orderNow:(id)sender {
     
-    NSLog(@"%@,%@",self.startCode,self.endCode);
+
+    
+    LowTextFiledCell *cell1 = (LowTextFiledCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    if (![self checkTel:cell1.textFiledLabel.text]) {
+        return;
+    }
+    
     
     NSString * string = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
     
@@ -503,10 +511,53 @@
     
 }
 
+- (BOOL)checkTel:(NSString *)str
+
+{
+    
+    if ([str length] == 0) {
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+        
+        [alert release];
+        
+        return NO;
+        
+    }
+    
+    //1[0-9]{10}
+    
+    //^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$
+    
+    //    NSString *regex = @"[0-9]{11}";
+    
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0-9]))\\d{8}$";
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    BOOL isMatch = [pred evaluateWithObject:str];
+    
+    if (!isMatch) {
+        
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+        
+        [alert release];
+        
+        return NO;
+    }
+    return YES;
+    
+}
+
+
 #pragma mark -- alertView delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self.navigationController popViewControllerAnimated:YES];
+   // [self.navigationController popViewControllerAnimated:YES];
  
 }
 

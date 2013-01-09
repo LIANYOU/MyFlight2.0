@@ -35,8 +35,8 @@
             break;
         case 5:
             backBtn.frame = CGRectMake(0, 0, 30, 30);
-            normalImage = @"btn_2words.png";
-            clickIamge = @"btn_2words_click.png";
+            normalImage = @"btn_5words.png";
+            clickIamge = @"btn_5words_click.png";
             break;
         case 6:
             backBtn.frame = CGRectMake(0, 0, 30, 30);
