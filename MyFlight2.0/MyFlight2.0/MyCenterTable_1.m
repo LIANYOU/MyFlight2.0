@@ -98,6 +98,9 @@
 
 
 - (void) loginOut{
+    
+    
+    
     //    NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     //
     //    [user setBool:false forKey:KEY_Default_IsUserLogin];
@@ -426,18 +429,20 @@
         
         switch (indexPath.row) {
             case 0:
-                
+                //我的订单列表
                 controller = [[MyOrderListViewController alloc] init];
                 
                 break;
             case 1:
+                //常用联系人
                 controller = [[CommonContactViewController alloc] init];
                 break;
             case 2:
-                
+                //低价预约
                 controller= [[MyLowOrderListViewController alloc] init];
                 break;
             case 3:
+                //充值
                 controller = [[PhoneReChargeViewController alloc] init];
                 break;
                 

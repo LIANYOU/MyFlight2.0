@@ -145,6 +145,8 @@
 		14698727167EFE2F00E9B30D /* CouponsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14698726167EFE2F00E9B30D /* CouponsInfo.m */; };
 		1469872A167F016800E9B30D /* SpecialAppointmentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14698729167F016600E9B30D /* SpecialAppointmentData.m */; };
 		14698737167F152400E9B30D /* NSData+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 14698736167F152400E9B30D /* NSData+base64.m */; };
+		1474CE03169D12F400FF6761 /* MyLocalOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474CE01169D12F400FF6761 /* MyLocalOrderListViewController.m */; };
+		1474CE04169D12F400FF6761 /* MyLocalOrderListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1474CE02169D12F400FF6761 /* MyLocalOrderListViewController.xib */; };
 		14805B8616782A8E00836353 /* AirPortDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B8516782A8E00836353 /* AirPortDataBase.m */; };
 		14805B8A16782B2B00836353 /* AirPortData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B8916782B2A00836353 /* AirPortData.m */; };
 		14805B8E1678349200836353 /* DataBaseVersionConfigure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14805B8D1678349100836353 /* DataBaseVersionConfigure.plist */; };
@@ -1002,6 +1004,9 @@
 		14698736167F152400E9B30D /* NSData+base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+base64.m"; sourceTree = "<group>"; };
 		1469874F1680303100E9B30D /* ServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDelegate.h; sourceTree = "<group>"; };
 		146987801680966F00E9B30D /* MyCenterUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterUility.h; sourceTree = "<group>"; };
+		1474CE00169D12F400FF6761 /* MyLocalOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocalOrderListViewController.h; sourceTree = "<group>"; };
+		1474CE01169D12F400FF6761 /* MyLocalOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocalOrderListViewController.m; sourceTree = "<group>"; };
+		1474CE02169D12F400FF6761 /* MyLocalOrderListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLocalOrderListViewController.xib; sourceTree = "<group>"; };
 		14805A0E1676F04B00836353 /* AppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigure.h; sourceTree = "<group>"; };
 		14805A0F1676F0DF00836353 /* AirPortsUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortsUility.h; sourceTree = "<group>"; };
 		14805A101676F13000836353 /* PublicConstUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicConstUrls.h; sourceTree = "<group>"; };
@@ -2367,6 +2372,7 @@
 		145A2D5816845DB3000DAAA1 /* MyOrderList */ = {
 			isa = PBXGroup;
 			children = (
+				1474CDFE169D12A700FF6761 /* 本地订单 */,
 				145A2D5916845DE4000DAAA1 /* MyOrderListViewController.h */,
 				145A2D5A16845DE4000DAAA1 /* MyOrderListViewController.m */,
 				145A2D5B16845DE4000DAAA1 /* MyOrderListViewController.xib */,
@@ -2633,6 +2639,16 @@
 				1469874F1680303100E9B30D /* ServiceDelegate.h */,
 			);
 			name = service;
+			sourceTree = "<group>";
+		};
+		1474CDFE169D12A700FF6761 /* 本地订单 */ = {
+			isa = PBXGroup;
+			children = (
+				1474CE00169D12F400FF6761 /* MyLocalOrderListViewController.h */,
+				1474CE01169D12F400FF6761 /* MyLocalOrderListViewController.m */,
+				1474CE02169D12F400FF6761 /* MyLocalOrderListViewController.xib */,
+			);
+			name = "本地订单";
 			sourceTree = "<group>";
 		};
 		148059CE1676E65D00836353 /* CityAndAirPorts */ = {
@@ -4714,7 +4730,11 @@
 				14935582169CA32E00F66E87 /* aisle.png in Resources */,
 				18D0D68A169C985C0028995B /* OneWayCheckViewController.xib in Resources */,
 				18D0D692169CDB500028995B /* orderListForNoLogin.sqlite in Resources */,
+
 				18CED548169D571B00CE2B92 /* TrafficCell.xib in Resources */,
+
+				1474CE04169D12F400FF6761 /* MyLocalOrderListViewController.xib in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4987,10 +5007,14 @@
 				1842B508169C65E7007FA603 /* SearchFlightConditionCell.m in Sources */,
 				18D0D689169C985C0028995B /* OneWayCheckViewController.m in Sources */,
 				18D0D690169CD0C40028995B /* OrderDatabase.m in Sources */,
+
 				18D0D6A3169D452F0028995B /* DiscountGoldInfo.m in Sources */,
 				18CED545169D56FD00CE2B92 /* TrafficCell.m in Sources */,
 				18CED550169D6CE000CE2B92 /* FeedbackViewController.m in Sources */,
 				18CED553169D6D2400CE2B92 /* AboutViewController.m in Sources */,
+
+				1474CE03169D12F400FF6761 /* MyLocalOrderListViewController.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

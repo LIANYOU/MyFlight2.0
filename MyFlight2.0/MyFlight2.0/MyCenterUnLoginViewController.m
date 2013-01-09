@@ -14,9 +14,9 @@
 #import "LogViewController.h"
 #import "AppConfigure.h"
 #import "MyOrderListViewController.h"
+#import "MyLowOrderListViewController.h"
 
-
-
+#import "MyLocalOrderListViewController.h"
 
 @interface MyCenterUnLoginViewController ()
 {
@@ -167,9 +167,13 @@
             break;
         }
         case 1:
-            controller = [[MyOrderListViewController alloc] init];
+            controller = [[MyLocalOrderListViewController alloc] init];
             break;
         case 2:
+            
+            //低价预约
+            controller= [[MyLowOrderListViewController alloc] init];
+
             break;
         default:
             break;

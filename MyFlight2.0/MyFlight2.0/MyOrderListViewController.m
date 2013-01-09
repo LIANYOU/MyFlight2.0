@@ -42,6 +42,7 @@
 
 
 - (void) viewWillDisappear:(BOOL)animated{
+    
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     [super viewWillDisappear:animated];
 }
@@ -72,6 +73,7 @@
     
     [segmented addTarget:self action:@selector(mySegmentValueChange:) forControlEvents:UIControlEventValueChanged];
     [self.customView addSubview:segmented];
+    
     //    [self.view addSubview:segmented];
     
     
@@ -85,10 +87,7 @@
     switch (index) {
         case 0:
            
-            if (!Default_IsUserLogin_Value) {  // 非登陆用户读取本地数据库
-                self.noPaylistArray = [OrderDatabase findAllOrderInfo];
-            }
-
+           
              tmpArray = self.noPaylistArray;
             
             
@@ -135,11 +134,15 @@
 }
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
     
     [self setNav];
+    
     [self initThisView];
+    
     self.thisTableView.tableHeaderView = self.thisHeadView;
+    
     LoginBusiness *bis = [[LoginBusiness alloc] init];
     [bis getOrderListWithCurrentPage:@"1" rowsOfPage:@"100" andDelegate:self];
     
@@ -179,8 +182,6 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    
-    
     return 60;
 }
 
@@ -190,7 +191,7 @@
     
     MyOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell==nil) {
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyOrderListCell" owner:self options:nil];
+        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyOrderListCell" owner:nil options:nil];
         
         cell = [array objectAtIndex:0];
         
