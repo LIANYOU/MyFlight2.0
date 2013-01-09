@@ -152,6 +152,8 @@
 		14805BA4167875E900836353 /* bg_pek.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA3167875E900836353 /* bg_pek.png */; };
 		14805BA61678760B00836353 /* icon_return.png in Resources */ = {isa = PBXBuildFile; fileRef = 14805BA51678760B00836353 /* icon_return.png */; };
 		14935582169CA32E00F66E87 /* aisle.png in Resources */ = {isa = PBXBuildFile; fileRef = 14935581169CA32E00F66E87 /* aisle.png */; };
+		1493558E169CCEAF00F66E87 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1493558D169CCEAF00F66E87 /* AboutViewController.m */; };
+		14935593169CE39300F66E87 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14935592169CE39300F66E87 /* FeedbackViewController.m */; };
 		149B7708168BE3C3006281A3 /* MyCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7707168BE3C3006281A3 /* MyCenterCell.m */; };
 		149B770A168BE3E1006281A3 /* MyCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149B7709168BE3E1006281A3 /* MyCenterCell.xib */; };
 		149B770E168BF386006281A3 /* MyCenterSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B770D168BF383006281A3 /* MyCenterSecondCell.m */; };
@@ -1010,6 +1012,10 @@
 		14805BA3167875E900836353 /* bg_pek.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pek.png; sourceTree = "<group>"; };
 		14805BA51678760B00836353 /* icon_return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_return.png; sourceTree = "<group>"; };
 		14935581169CA32E00F66E87 /* aisle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aisle.png; sourceTree = "<group>"; };
+		1493558C169CCEAF00F66E87 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		1493558D169CCEAF00F66E87 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		14935591169CE39300F66E87 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		14935592169CE39300F66E87 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		149B7706168BE3C2006281A3 /* MyCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCenterCell.h; sourceTree = "<group>"; };
 		149B7707168BE3C3006281A3 /* MyCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCenterCell.m; sourceTree = "<group>"; };
 		149B7709168BE3E1006281A3 /* MyCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCenterCell.xib; sourceTree = "<group>"; };
@@ -2678,6 +2684,17 @@
 			name = TicketCheck;
 			sourceTree = "<group>";
 		};
+		14935590169CE13000F66E87 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				1493558C169CCEAF00F66E87 /* AboutViewController.h */,
+				1493558D169CCEAF00F66E87 /* AboutViewController.m */,
+				14935591169CE39300F66E87 /* FeedbackViewController.h */,
+				14935592169CE39300F66E87 /* FeedbackViewController.m */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
 		149B771A168C0EDB006281A3 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -3650,6 +3667,7 @@
 		18E37CE2167D7FDF0086B3F8 /* More */ = {
 			isa = PBXGroup;
 			children = (
+				14935590169CE13000F66E87 /* About */,
 				1416698F1696AEDD007BB0D0 /* settingPage */,
 				14633DA816951EE300701518 /* FrequentFlyer */,
 				18E37CE3167D80550086B3F8 /* HomeMoreController.h */,
@@ -4955,6 +4973,9 @@
 
 				18D0D689169C985C0028995B /* OneWayCheckViewController.m in Sources */,
 				18D0D690169CD0C40028995B /* OrderDatabase.m in Sources */,
+
+				1493558E169CCEAF00F66E87 /* AboutViewController.m in Sources */,
+				14935593169CE39300F66E87 /* FeedbackViewController.m in Sources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;

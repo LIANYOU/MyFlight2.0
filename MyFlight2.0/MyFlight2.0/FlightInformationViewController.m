@@ -29,7 +29,7 @@
 
 - (void) requestForData
 {
-    NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/getCussQueryHandler.jsp"];
+    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getCussQueryHandler.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
@@ -366,7 +366,7 @@
 
 - (void) cancelCheckIn
 {
-    NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/getPwHandler.jsp"];
+    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getPwHandler.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     

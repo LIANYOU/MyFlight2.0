@@ -25,6 +25,7 @@
 //登陆url
 #define LOGIN_URL_Index  @"/web/phone/login.jsp"
 
+
 //拼接完成可用
 #define LOGIN_URL GET_RIGHT_URL_WITH_Index(LOGIN_URL_Index)
 

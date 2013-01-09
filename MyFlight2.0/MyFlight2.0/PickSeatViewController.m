@@ -33,7 +33,7 @@
 
 - (void) requestForData
 {
-    NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/getSeatMapHandler.jsp"];
+    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getSeatMapHandler.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
@@ -47,7 +47,7 @@
     [request setPostValue:self.orgId forKey:@"orgId"];
     [request setPostValue:self.org forKey:@"org"];
     [request setPostValue:self.symbols forKey:@"symbols"];
-    [request setPostValue:@"1" forKey:@"source"];
+    [request setPostValue:SOURCE_VALUE forKey:KEY_source];
     
     [request setCompletionBlock:^(void){
         
@@ -96,7 +96,16 @@
                 map.frame = CGRectMake(0, 0, map.sectionX * 30 + 30, map.sectionY * 30);
                 
                 scroll.contentSize = CGSizeMake(map.sectionX * 30 + 30, map.sectionY * 30);
-                scroll.contentOffset = CGPointMake((scroll.contentSize.width - scroll.frame.size.width) / 2, (scroll.contentSize.height - scroll.frame.size.height) / 2);
+                
+                if(scroll.contentSize.width > scroll.frame.size.width)
+                {
+                    scroll.contentOffset = CGPointMake((scroll.contentSize.width - scroll.frame.size.width) / 2, scroll.contentOffset.y);
+                }
+                
+                if(scroll.contentSize.height > scroll.frame.size.height)
+                {
+                    scroll.contentOffset = CGPointMake(scroll.contentOffset.x, (scroll.contentSize.height - scroll.frame.size.height) / 2);
+                }
                 
                 [map drawSeatMap:seatMap];
             }
@@ -298,7 +307,7 @@
         return;
     }
     
-    NSURL *url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/huet/getPaHandler.jsp"];
+    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getPaHandler.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
@@ -316,7 +325,7 @@
     [request setPostValue:[dictionary objectForKey:@"airline"] forKey:@"cussRequest.airline"];
     [request setPostValue:[dictionary objectForKey:@"orgId"] forKey:@"cussRequest.orgId"];
     [request setPostValue:[dictionary objectForKey:@"symbols"] forKey:@"cussRequest.symbols"];
-    [request setPostValue:[dictionary objectForKey:@"userId"] forKey:@"cussRequest.userId"];
+    [request setPostValue:[dictionary objectForKey:@"021ec7fffe664a52936185941a3fdcef"] forKey:@"cussRequest.userId"];
     
     dictionary = [[[responseDictionary objectForKey:@"pass"] objectForKey:@"wsPrPassenger"] objectAtIndex:0];
     
@@ -326,13 +335,20 @@
     [request setPostValue:[dictionary objectForKey:@"seatNo"] forKey:@"pass.seatNo"];
     [request setPostValue:[dictionary objectForKey:@"um"] forKey:@"pass.um"];
     
+    [request setPostValue:[dictionary objectForKey:@"ffpNumber"] forKey:@"ffpNum"];
+    
     dictionary = [responseDictionary objectForKey:@"segment"];
     
     [request setPostValue:[dictionary objectForKey:@"depAirportCode"] forKey:@"segment.depAirportCode"];
     [request setPostValue:[dictionary objectForKey:@"arrAirportCode"] forKey:@"segment.arrAirportCode"];
-    [request setPostValue:[dictionary objectForKey:@"depTime"] forKey:@"segment.depTime"];
     [request setPostValue:[dictionary objectForKey:@"flightNo"] forKey:@"segment.flightNo"];
     [request setPostValue:[dictionary objectForKey:@"cabin"] forKey:@"segment.cabin"];
+    
+    dictionary = [dictionary objectForKey:@"depTime"];
+    
+    NSString *string = [NSString stringWithFormat:@"%@-%@-%@T%@:%@:%@.%@%@Z", [dictionary objectForKey:@"year"], [dictionary objectForKey:@"month"], [dictionary objectForKey:@"day"], [dictionary objectForKey:@"hour"], [dictionary objectForKey:@"minute"], [dictionary objectForKey:@"second"], [dictionary objectForKey:@"fractionalSecond"], [dictionary objectForKey:@"timezone"]];
+    
+    [request setPostValue:string forKey:@"segment.depTime"];
     
     [request setPostValue:[map currentSelected] forKey:@"seatNos"];
     
@@ -342,13 +358,20 @@
     [request setPostValue:[[[[[responseDictionary objectForKey:@"idInfo"] objectForKey:@"arrayOfXsdString"] objectAtIndex:0] objectForKey:@"string"] objectAtIndex:0] forKey:@"idInfoType"];
     [request setPostValue:[[[[[responseDictionary objectForKey:@"idInfo"] objectForKey:@"arrayOfXsdString"] objectAtIndex:0] objectForKey:@"string"] objectAtIndex:1] forKey:@"idInfo"];
     
+    [request setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [request setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
+    [request setPostValue:EDITION_VALUE forKey:KEY_edition];
+    
     [request setCompletionBlock:^(void){
         
         NSData *response = [request responseData];
         
+        NSString *re = [request responseString];
+        NSLog(@"%@\n", re);
+        
         NSError *error = nil;
         
-        NSDictionary *responseDict = [response objectFromJSONDataWithParseOptions:JKSerializeOptionNone error:&error];
+        NSDictionary *responseDict = [response objectFromJSONDataWithParseOptions:JKParseOptionNone error:&error];
         
         if(error != nil)
         {

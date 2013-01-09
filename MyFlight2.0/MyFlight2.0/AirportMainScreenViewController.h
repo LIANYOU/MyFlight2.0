@@ -13,6 +13,7 @@
 #import "AirPortData.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
+#import "AppConfigure.h"
 
 @interface AirportMainScreenViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ChooseAirPortViewControllerDelegate>
 {
@@ -23,7 +24,6 @@
     AirportMainScreenSearchView *search;
     
     NSInteger pageNum;
-    NSString *edition;
     
     __block NSDictionary *responseDictionary;
 }

@@ -12,6 +12,7 @@
 #import "FlightInformationViewController.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
+#import "AppConfigure.h"
 
 @interface ChooseFlightViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {

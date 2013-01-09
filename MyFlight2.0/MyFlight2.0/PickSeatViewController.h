@@ -12,6 +12,7 @@
 #import "SeatMapView.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
+#import "AppConfigure.h"
 
 @interface PickSeatViewController : UIViewController
 {

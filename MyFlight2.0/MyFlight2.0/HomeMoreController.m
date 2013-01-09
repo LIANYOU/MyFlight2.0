@@ -93,9 +93,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    AboutViewController *about;
     
     NSInteger selectIndex = indexPath.row;
+    
     
     id controller = nil;
     
@@ -139,6 +140,9 @@
                 break;
             case  3:
                 CCLog(@"关于我们");
+                about = [[AboutViewController alloc] init];
+                [self.navigationController pushViewController:about animated:YES];
+                [about release];
                 break;
             default:
                 break;
