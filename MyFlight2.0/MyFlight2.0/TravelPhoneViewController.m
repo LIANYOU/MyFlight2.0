@@ -127,7 +127,7 @@
         [myBackgroundView release];
         
         UIImageView * bottomLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
-        bottomLineImageView.backgroundColor = Line_COLOR_REAY;
+        bottomLineImageView.backgroundColor = Line_COLOR_GRAY;
         [cell addSubview:bottomLineImageView];
         [bottomLineImageView release];
         

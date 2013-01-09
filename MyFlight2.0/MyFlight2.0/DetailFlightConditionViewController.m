@@ -57,44 +57,39 @@
     
     //底部4个按钮
     [self.btnMessage addTarget:self action:@selector(btnMessageClick:) forControlEvents:UIControlEventTouchUpInside];
-//    UIImageView * imageView1  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_message_click.png"]];
-//    imageView1.frame = CGRectMake(26, 4, 29, 28);
-//    [self.btnMessage addSubview:imageView1];
-//    [imageView1 release];
-//    UILabel * label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 35, 80, 21)];
-//    label1.text = @"短信提醒";
-//    label1.textColor = [UIColor whiteColor];
-//    [self.btnMessage addSubview:label1];
-//    [label1 release];
-    
-    
+    self.toolSendLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer * toolSendTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(btnMessageClick:)];
+    toolSendTap.numberOfTapsRequired = 1;
+    toolSendTap.numberOfTouchesRequired =1;
+    [self.toolSendLabel addGestureRecognizer:toolSendTap];
+    [toolSendTap release];
+
     
     [self.btnPhone addTarget:self action:@selector(btnPhoneClick:) forControlEvents:UIControlEventTouchUpInside];
-//    UIImageView * imageView2  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_tep_click.png"]];
-//    imageView2.frame = CGRectMake(26, 4, 29, 28);
-//    [self.btnPhone addSubview:imageView2];
-//    [imageView2 release];
-//    UILabel * label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, 35, 80, 21)];
-//    label2.text = @"电话咨询";
-//    label2.textColor = [UIColor whiteColor];
-//    [self.btnPhone addSubview:label2];
-//    [label2 release];
-    
+    UITapGestureRecognizer * toolPhoneTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(btnPhoneClick:)];
+    toolPhoneTap.numberOfTapsRequired = 1;
+    toolPhoneTap.numberOfTouchesRequired = 1;
+    [self.toolPhoneLabel addGestureRecognizer:toolPhoneTap];
+    self.toolPhoneLabel.userInteractionEnabled = YES;
+    [toolPhoneTap release];
     
     
     [self.btnShare addTarget:self action:@selector(btnShareClick:) forControlEvents:UIControlEventTouchUpInside];
-//    UIImageView * imageView3  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_share_click.png"]];
-//    imageView3.frame = CGRectMake(26, 4, 29, 28);
-//    [self.btnShare addSubview:imageView3];
-//    [imageView3 release];
-//    UILabel * label3 = [[UILabel alloc]initWithFrame:CGRectMake(0, 35, 80, 21)];
-//    label3.text = @"电话咨询";
-//    label3.textColor = [UIColor whiteColor];
-//    [self.btnShare addSubview:label3];
-//    [label3 release];
+    self.toolWeixinLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer * toolShareTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(btnShareClick:)];
+    toolShareTap.numberOfTouchesRequired = 1;
+    toolShareTap.numberOfTapsRequired = 1;
+    [self.toolWeixinLabel addGestureRecognizer:toolShareTap];
+    [toolSendTap release];
+
     
     [self.btnMoreShare addTarget:self action:@selector(btnMoreShareClick:) forControlEvents:UIControlEventTouchUpInside];
-    
+    self.toolShareLable.userInteractionEnabled = YES;
+    UITapGestureRecognizer * toolMoreShareTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(btnMoreShareClick:)];
+    toolMoreShareTap.numberOfTouchesRequired = 1;
+    toolMoreShareTap.numberOfTapsRequired = 1;
+    [self.toolShareLable addGestureRecognizer:toolMoreShareTap];
+    [toolMoreShareTap release];
     
     UIView * myView = [self.view viewWithTag:999];
     myView.layer.cornerRadius = 5;
@@ -105,7 +100,7 @@
     //标题
     self.title = [NSString stringWithFormat:@"%@-%@",myFlightConditionDetailData.deptAirport,myFlightConditionDetailData.arrAirport];
     
-    flightLine.frame = CGRectMake(66, 57, 148, 51);
+    flightLine.frame = CGRectMake(76, 111, 148, 51);
 //    flightLine.clipsToBounds = YES;
 //    flightLine.contentMode = UIViewContentModeLeft;
     
@@ -286,19 +281,19 @@
         
         if (timePoint > 0.8){
             [flightLine setImage:[UIImage imageNamed:@"circle_state_5.png"]];
-            flightLine.frame = CGRectMake(66, 57, 148, 51);
+            flightLine.frame = CGRectMake(76, 111, 148, 51);
         }else if (timePoint > 0.6){
             [flightLine setImage:[UIImage imageNamed:@"circle_state_4.png"]];
-            flightLine.frame = CGRectMake(66, 57, 148, 51);
+            flightLine.frame = CGRectMake(76, 111, 148, 51);
         }else if (timePoint > 0.4){
             [flightLine setImage:[UIImage imageNamed:@"circle_state_3.png"]];
-            flightLine.frame = CGRectMake(66, 57, 148, 51);
+            flightLine.frame = CGRectMake(76, 111, 148, 51);
         }else if (timePoint > 0.2){
             [flightLine setImage:[UIImage imageNamed:@"circle_state_2.png"]];
-            flightLine.frame = CGRectMake(66, 57, 148, 51);
+            flightLine.frame = CGRectMake(76, 111, 148, 51);
         }else{
             [flightLine setImage:[UIImage imageNamed:@"circle_state_1.png"]];
-            flightLine.frame = CGRectMake(66, 57, 148, 51);
+            flightLine.frame = CGRectMake(76, 111, 148, 51);
         }
         
 //        CGRect frame = flightLine.frame;
@@ -313,13 +308,15 @@
 -(void)btnMessageClick:(id)sender{
     
     SMSViewController * sendMessange = [[SMSViewController alloc]init];
+    sendMessange.subMyFlightConditionDetailData = myFlightConditionDetailData;
     [self.navigationController pushViewController:sendMessange animated:YES];
     [sendMessange release];
 }
 -(void)btnPhoneClick:(id)sender{
-    
+    NSLog(@"打电话");
 }
 -(void)btnShareClick:(id)sender{
+    NSLog(@"发微信");
     //发送内容给微信
     NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *cachedictionary = [paths objectAtIndex:0];

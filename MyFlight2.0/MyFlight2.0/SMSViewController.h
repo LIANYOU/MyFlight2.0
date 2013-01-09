@@ -10,6 +10,7 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import "AddLinkManViewController.h"
+#import "FlightConditionDetailData.h"
 @interface SMSViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 {
 //    IBOutlet UIButton * sendMessageButton;  //发送短信
@@ -23,8 +24,11 @@
     
     NSString * myString;
     NSMutableData * myData;
+    FlightConditionDetailData * subMyFlightConditionDetailData;
+    
+    BOOL flag;
 }
 
-
+@property(nonatomic,retain) FlightConditionDetailData * subMyFlightConditionDetailData;
 //- (IBAction)sendMessageBtnClick:(id)sender;
 @end

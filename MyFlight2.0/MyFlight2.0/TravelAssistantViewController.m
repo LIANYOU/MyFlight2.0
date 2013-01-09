@@ -127,7 +127,7 @@
     cell.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
     
     UIImageView * bottomLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
-    bottomLineImageView.backgroundColor = Line_COLOR_REAY;
+    bottomLineImageView.backgroundColor = Line_COLOR_GRAY;
     [cell addSubview:bottomLineImageView];
     [bottomLineImageView release];
     

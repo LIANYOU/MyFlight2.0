@@ -748,13 +748,17 @@
     }else if(segmented.selectedIndex == 2){
         if (orientationTaxi == 0) {
             if (flagOpenOrCloseTaxi[section]) {
-                return 2;
+                if (section == 0) {
+                    return 1;
+                }
             } else {
                 return 0;
             }
         }else{
             if (flagOpenOrCloseTaxiFromAirPort[section]) {
-                return 2;
+                if (section == 0) {
+                    return 1;
+                }
             } else {
                 return 0;
             }
@@ -789,21 +793,21 @@
     }else if (tableView == taxiTableView){
         if (orientationTaxi == 0) {
             if (indexPath.section == 0) {
-                
-                return 80;
+                double height = [[taxiCellHeightArray objectAtIndex:indexPath.row]doubleValue];
+                return  height;
             }else if (indexPath.section == 1){
-                return 30;
+                return 50;
             }else if (indexPath.section == 2){
-                return 30;
+                return 50;
             }
         }else{
             if (indexPath.section == 0) {
-               
-                return 80;
+               double height = [[taxiCellHeightArray1 objectAtIndex:indexPath.row]doubleValue];
+                return  height;
             }else if (indexPath.section == 1){
-                return 30;
+                return 50;
             }else if (indexPath.section == 2){
-                return 30;
+                return 50;
             }
         }
     }
@@ -984,28 +988,11 @@
         [titleView addSubview:lineNameLabel];
         [lineNameLabel release];
         
-//        //运营时间
-//        UILabel * lineOperationTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(125, 15, 100, 17)];
-//        lineOperationTimeLabel.font = [UIFont systemFontOfSize:13];
-//        lineOperationTimeLabel.backgroundColor = [UIColor clearColor];
-//        [titleView addSubview:lineOperationTimeLabel];
-//        [lineOperationTimeLabel release];
-//        
-//        
-//        //价格
-//        UILabel * priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(240, 13, 42, 21)];
-//        priceLabel.font = [UIFont systemFontOfSize:15];
-//        priceLabel.backgroundColor = [UIColor clearColor];
-//        priceLabel.textColor = FONT_COLOR_RED;
-//        [titleView addSubview:priceLabel];
-//        [priceLabel release];
         
         if (orientationTaxi == 0) {
             if (sectionCountTaxi) {
                 lineNameLabel.text = @"";
                 lineNameLabel.text = [[sectionCountTaxi objectAtIndex:section]objectForKey:@"lineName"];
-//                lineOperationTimeLabel.text = [[sectionCountTaxi objectAtIndex:section]objectForKey:@"lineOperationTime"];
-//                priceLabel.text = [[sectionCountTaxi objectAtIndex:section]objectForKey:@"lineFares"];
             }
         }else{
             
@@ -1013,9 +1000,6 @@
                 lineNameLabel.text = @"";
                 
                 lineNameLabel.text = [[sectionCountTaxiFromAirPort objectAtIndex:section]objectForKey:@"lineName"];
-//                NSLog(@"=======%@",[[sectionCountTaxiFromAirPort objectAtIndex:section]objectForKey:@"lineName"]);
-//                lineOperationTimeLabel.text = [[sectionCountTaxiFromAirPort objectAtIndex:section]objectForKey:@"lineOperationTime"];
-//                priceLabel.text = [[sectionCountTaxiFromAirPort objectAtIndex:section]objectForKey:@"lineFares"];
             }
         }
         
@@ -1054,7 +1038,7 @@
 {
     if (tableView == coachTableView) {
 #pragma mark - coachTableViewCell
-        static NSString *CellIdentifier = @"coachTableViewCell";
+        NSString *CellIdentifier = @"coachTableViewCell";
         UITableViewCell * cell1 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell1 == nil) {
             cell1 = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
@@ -1309,11 +1293,17 @@
     }else if (tableView == taxiTableView){
 #pragma mark - taxiTableViewCell
         static NSString *CellIdentifier3 = @"taxiTableViewCell";
+        if (indexPath.section == 0) {
+            CellIdentifier3 = @"taxiTableViewCell1";
+        }else if (indexPath.section == 1){
+            CellIdentifier3 = @"taxiTableViewCell2";
+        }
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier3];
         if (cell == nil) {
             cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier3]autorelease];
             
             if (indexPath.section == 0) {
+               
                 //初始化label
                 stopsLabelThree = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
                 //设置自动行数与字符换行
@@ -1324,48 +1314,104 @@
                 stopsLabelThree.textColor = FONT_COLOR_DEEP_GRAY;
                 stopsLabelThree.text = @"";
                 [cell addSubview:stopsLabelThree];
-                [stopsLabelThree release];
             }else if (indexPath.section == 1){
-                //地点
-                addressName = [[UILabel alloc]initWithFrame:CGRectMake(20, 3, 140, 17)];
-                addressName.font = [UIFont systemFontOfSize:12];
-                addressName.backgroundColor = [UIColor clearColor];
-                addressName.textColor = FONT_COLOR_DEEP_GRAY;
-                addressName.textAlignment = NSTextAlignmentLeft;
-                [cell addSubview:addressName];
-                [addressName release];
                 
-                //公里
-                journey = [[UILabel alloc]initWithFrame:CGRectMake(160, 3, 140, 17)];
-                journey.backgroundColor = [UIColor clearColor];
-                journey.font = [UIFont systemFontOfSize:12];
-                journey.textAlignment = NSTextAlignmentLeft;
-                journey.textColor = FONT_COLOR_DEEP_GRAY;
-                [cell addSubview:journey];
-                [journey release];
-                
-                
-                price = [[UILabel alloc]initWithFrame:CGRectMake(260, 3, 140, 17)];
-                price.backgroundColor = [UIColor clearColor];
-                price.font = [UIFont systemFontOfSize:12];
-                price.textAlignment = NSTextAlignmentRight;
-                price.textColor = FONT_COLOR_RED;
-                [cell addSubview:price];
-                [price release];
+                UIView * bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+                [cell addSubview:bottomView];
+                [bottomView release];
+                if (indexPath.row == 0) {
+                    
+                    UILabel * addressNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 3, 140, 17)];
+                    addressNameLabel.font = [UIFont systemFontOfSize:12];
+                    addressNameLabel.backgroundColor = [UIColor clearColor];
+                    addressNameLabel.textColor = FONT_COLOR_DEEP_GRAY;
+                    addressNameLabel.text = @"地点";
+                    addressNameLabel.textAlignment = NSTextAlignmentLeft;
+                    [bottomView addSubview:addressNameLabel];
+                    [addressNameLabel release];
+                    
+                    UILabel * myJourney  = [[UILabel alloc]initWithFrame:CGRectMake(160, 3, 140, 17)];
+                    myJourney.backgroundColor = [UIColor clearColor];
+                    myJourney.font = [UIFont systemFontOfSize:12];
+                    myJourney.textAlignment = NSTextAlignmentLeft;
+                    myJourney.text = @"公里";
+                    myJourney.textColor = FONT_COLOR_DEEP_GRAY;
+                    [bottomView addSubview:myJourney];
+                    [myJourney release];
+                    
+                    
+                    UILabel * myPriceLabel = [[UILabel alloc]initWithFrame:CGRectMake(260, 3, 140, 17)];
+                    myPriceLabel.backgroundColor = [UIColor clearColor];
+                    myPriceLabel.font = [UIFont systemFontOfSize:12];
+                    myPriceLabel.textAlignment = NSTextAlignmentRight;
+                    myPriceLabel.text = @"价格";
+                    myPriceLabel.textColor = FONT_COLOR_RED;
+                    [bottomView addSubview:myPriceLabel];
+                    [myPriceLabel release];
+                }else{
+                    //地点
+                    addressName = [[UILabel alloc]initWithFrame:CGRectMake(20, 23, 140, 17)];
+                    addressName.font = [UIFont systemFontOfSize:12];
+                    addressName.backgroundColor = [UIColor clearColor];
+                    addressName.textColor = FONT_COLOR_DEEP_GRAY;
+                    addressName.textAlignment = NSTextAlignmentLeft;
+                    [bottomView addSubview:addressName];
+                 
+                    
+                    //公里
+                    journey = [[UILabel alloc]initWithFrame:CGRectMake(160, 23, 140, 17)];
+                    journey.backgroundColor = [UIColor clearColor];
+                    journey.font = [UIFont systemFontOfSize:12];
+                    journey.textAlignment = NSTextAlignmentLeft;
+                    journey.textColor = FONT_COLOR_DEEP_GRAY;
+                    [bottomView addSubview:journey];
+            
+                    
+                    
+                    price = [[UILabel alloc]initWithFrame:CGRectMake(260, 23, 140, 17)];
+                    price.backgroundColor = [UIColor clearColor];
+                    price.font = [UIFont systemFontOfSize:12];
+                    price.textAlignment = NSTextAlignmentRight;
+                    price.textColor = FONT_COLOR_RED;
+                    [bottomView addSubview:price];
+                    
+                }
             }else if (indexPath.section == 2){
-                myT = [[UILabel alloc]initWithFrame:CGRectMake(20, 3, 140, 17)];
+                UIView * myBottom = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+                [cell addSubview:myBottom];
+                [myBottom release];
+                if (indexPath.row == 0) {
+                    
+                    UILabel * myTLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 3, 140, 17)];
+                    myTLabel.backgroundColor = [UIColor clearColor];
+                    myTLabel.textAlignment = NSTextAlignmentLeft;
+                    myTLabel.textColor = FONT_COLOR_DEEP_GRAY;
+                    myTLabel.text = @"航站楼";
+                    [myBottom addSubview:myTLabel];
+                    [myTLabel release];
+                    
+                   UILabel * myPlace = [[UILabel alloc]initWithFrame:CGRectMake(260, 3, 140, 17)];
+                    myPlace.backgroundColor = [UIColor clearColor];
+                    myPlace.font = [UIFont systemFontOfSize:12];
+                    myPlace.textAlignment = NSTextAlignmentRight;
+                    myPlace.text = @"位置";
+                    myPlace.textColor = FONT_COLOR_DEEP_GRAY;
+                    [myBottom addSubview:myPlace];
+                    [myPlace release];
+                }
+                myT = [[UILabel alloc]initWithFrame:CGRectMake(20, 23, 140, 17)];
                 myT.backgroundColor = [UIColor clearColor];
                 myT.textAlignment = NSTextAlignmentLeft;
                 myT.textColor = FONT_COLOR_DEEP_GRAY;
-                [cell addSubview:myT];
+                [myBottom addSubview:myT];
                 [myT release];
                 
-                place = [[UILabel alloc]initWithFrame:CGRectMake(260, 3, 140, 17)];
+                place = [[UILabel alloc]initWithFrame:CGRectMake(260, 23, 140, 17)];
                 place.backgroundColor = [UIColor clearColor];
                 place.font = [UIFont systemFontOfSize:12];
                 place.textAlignment = NSTextAlignmentRight;
                 place.textColor = FONT_COLOR_DEEP_GRAY;
-                [cell addSubview:place];
+                [myBottom addSubview:place];
                 [place release];
             }
             
@@ -1375,28 +1421,21 @@
                 if (sectionCountTaxi) {
                         //线路名称
                     if (indexPath.section == 2) {
-                        if (indexPath.row == 0) {
-                            addressName.text = @"地点";
-                            journey.text = @"公里";
-                            price.text = @"价格";
-                        }else{
-                            addressName.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineName"];
-                            journey.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                            price.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineFares"];
-                        }
+                        
+                        addressName.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineName"];
+                        journey.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
+                        price.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineFares"];
 
                     }else if (indexPath.section == 1){
-                        if (indexPath.row == 0) {
-                            myT.text = @"航站楼";
-                            place.text = @"位置";
-                        }else{
-                            myT.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                            place.text = @"";
-                           
-                        }
+                       
+                        myT.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
+                        place.text = @"";
+                        
+                        
                     }else if (indexPath.section == 0){
                         // 测试字串
                         NSString * s = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
+                        NSLog(@"%@",s);
                         NSString * tempString = [s stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
                         NSLog(@"tempString  : %@",tempString);
                         //设置一个行高上限
@@ -1405,7 +1444,7 @@
                         UIFont * myFont = [UIFont systemFontOfSize:11];
                         //计算实际frame大小，并将label的frame变成实际大小
                         CGSize labelsize = [s sizeWithFont:myFont constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-                        [stopsLabelThree setFrame:CGRectMake(0,3,labelsize.width,labelsize.height)];
+                        [stopsLabelThree setFrame:CGRectMake(20,5,labelsize.width,labelsize.height)];
                         stopsLabelThree.text = tempString;
                     }
     
@@ -1414,7 +1453,7 @@
                       if (sectionCountTaxiFromAirPort) {
                           if (indexPath.section == 0) {
                               // 测试字串
-                              NSString * s = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
+                              NSString * s = [[sectionCountTaxiFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
                               NSString * tempString = [s stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
                               NSLog(@"tempString  : %@",tempString);
                               //设置一个行高上限
@@ -1423,28 +1462,22 @@
                               UIFont * myFont = [UIFont systemFontOfSize:11];
                               //计算实际frame大小，并将label的frame变成实际大小
                               CGSize labelsize = [s sizeWithFont:myFont constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-                              [stopsLabelThree setFrame:CGRectMake(0,3,labelsize.width,labelsize.height)];
+                              [stopsLabelThree setFrame:CGRectMake(20,5,labelsize.width,labelsize.height)];
                               stopsLabelThree.text = tempString;
-                              
+                              [cell addSubview:stopsLabelThree];
                           }else if (indexPath.section == 1){
-                              if (indexPath.row == 0) {
-                                  myT.text = @"航站楼";
-                                  place.text = @"位置";
-                              }else{
-                                  myT.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
+                              if (indexPath.row != 0) {
+                                  myT.text = [[sectionCountTaxiFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
                                   place.text = @"";
                                   
                               }
 
                           }else if (indexPath.section == 2){
-                              if (indexPath.row == 0) {
-                                  addressName.text = @"地点";
-                                  journey.text = @"公里";
-                                  price.text = @"价格";
-                              }else{
-                                  addressName.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineName"];
-                                  journey.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                                  price.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineFares"];
+                              if (indexPath.row != 0) {
+                            
+                                  addressName.text = [[sectionCountTaxiFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineName"];
+                                  journey.text = [[sectionCountTaxiFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
+                                  price.text = [[sectionCountTaxiFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineFares"];
                               }
                           }
                         }
