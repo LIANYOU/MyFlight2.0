@@ -1701,7 +1701,7 @@
 				<string key="289.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="292.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="313.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="313.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="313.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="322.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="322.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="327.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1757,20 +1757,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">DetailFlightConditionViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="attentThisPlane:">id</string>
-						<string key="littleFlightClick:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="attentThisPlane:">
-							<string key="name">attentThisPlane:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="littleFlightClick:">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">littleFlightClick:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">littleFlightClick:</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">littleFlightClick:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</dictionary>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="arrive">UILabel</string>
 						<string key="arriveBackImage">UIImageView</string>

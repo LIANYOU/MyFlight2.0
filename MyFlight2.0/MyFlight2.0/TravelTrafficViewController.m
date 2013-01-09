@@ -167,10 +167,6 @@
             }];
         }
        
-//        [coachTableView setFrame:centerRect];
-//        
-//        [subwayTableView setFrame:rightRect];
-        //更改nav的标题
         if (orientationCoach == 1) {
             navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
         }else{
@@ -286,11 +282,6 @@
         coachDic = [str objectFromJSONString];
         sectionCountCoach = [[NSArray alloc]initWithArray:[coachDic objectForKey:@"TrafficTools"]];
         NSLog(@"sectionCountCoach=== %d",[sectionCountCoach count]);
-        //判断开关状态
-        int size = sizeof(BOOL *) * [sectionCountCoach count];
-        flagOpenOrCloseCoach = (BOOL *)malloc(size);
-        memset(flagOpenOrCloseCoach, NO, size);
-        
         
         
         
@@ -338,10 +329,7 @@
         coachDicFromAirPort = [str objectFromJSONString];
         sectionCountCoachFromAirPort = [[NSArray alloc]initWithArray:[coachDicFromAirPort objectForKey:@"TrafficTools"]];
         NSLog(@"sectionCountCoachFromAirPort=== %d",[sectionCountCoachFromAirPort count]);
-        //判断开关状态
-        int size = sizeof(BOOL *) * [sectionCountCoachFromAirPort count];
-        flagOpenOrCloseCoachFromAirPort = (BOOL *)malloc(size);
-        memset(flagOpenOrCloseCoachFromAirPort, NO, size);
+        
         
         [coachCellHeightArray1 removeAllObjects];
         for (int i = 0; i < [sectionCountCoachFromAirPort count]; i++) {
@@ -383,10 +371,7 @@
         NSLog(@"subwayDic :%@",str);
         subwayDic = [str objectFromJSONString];
         sectionCountSubway = [[NSArray alloc]initWithArray:[subwayDic objectForKey:@"TrafficTools"]];
-        //判断开关状态
-        int size = sizeof(BOOL *) * [sectionCountSubway count];
-        flagOpenOrCloseSubway = (BOOL *)malloc(size);
-        memset(flagOpenOrCloseSubway, NO, size);
+      
         
         [subwayCellHeightArray removeAllObjects];
         for (int i = 0; i < [sectionCountSubway count]; i++) {
@@ -429,9 +414,7 @@
         subwayDicFromAirPort = [str objectFromJSONString];
         sectionCountSubwayFromAirPort = [[NSArray alloc]initWithArray:[subwayDicFromAirPort objectForKey:@"TrafficTools"]];
         
-        int size = sizeof(BOOL *) * [sectionCountSubwayFromAirPort count];
-        flagOpenOrCloseSubwayFromAirPort = (BOOL *)malloc(size);
-        memset(flagOpenOrCloseSubwayFromAirPort,NO,size);
+     
         
         [subwayCellHeightArray1 removeAllObjects];
         for (int i = 0; i < [sectionCountSubwayFromAirPort count]; i++) {
@@ -479,10 +462,7 @@
          NSLog(@"taxiDic :%@",temp3);
         sectionCountTaxi = [[NSArray alloc]initWithArray:[taxiDic objectForKey:@"TrafficTools"]];
         NSLog(@"[sectionCountTaxi count]  : %d",[sectionCountTaxi count]);
-        //判断开关状态
-        int size = sizeof(BOOL *) * [sectionCountTaxi count];
-        flagOpenOrCloseTaxi = (BOOL *)malloc(size);
-        memset(flagOpenOrCloseTaxi, NO, size);
+     
         
         [taxiCellHeightArray removeAllObjects];
         for (int i = 0; i < [sectionCountTaxi count]; i++) {
@@ -495,7 +475,6 @@
         }
        
         
-        [taxiTableView reloadData];
     }];
     //请求失败
     [request setFailedBlock:^{
@@ -525,10 +504,7 @@
         NSLog(@"taxiDicFromAirPort :%@",str);
         taxiDicFromAirPort = [str objectFromJSONString];
         sectionCountTaxiFromAirPort = [[NSArray alloc]initWithArray:[taxiDicFromAirPort objectForKey:@"TrafficTools"]];
-        //判断开关状态
-        int size = sizeof(BOOL *) * [sectionCountTaxiFromAirPort count];
-        flagOpenOrCloseTaxiFromAirPort = (BOOL *)malloc(size);
-        memset(flagOpenOrCloseTaxiFromAirPort, NO, size);
+        
         
         
         [taxiCellHeightArray1 removeAllObjects];
@@ -658,845 +634,79 @@
 }
 
 #pragma mark - tableView代理
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    if (segmented.selectedIndex == 0) {
-        if (orientationCoach == 0) {
-            if ([sectionCountCoach count] == 0) {
-                return 0;
-            }else{
-                return [sectionCountCoach count];
-            }
-        }else{
-            if ([sectionCountCoachFromAirPort count] == 0) {
-                return 0;
-            }else{
-                return [sectionCountCoachFromAirPort count];
-            }
-        }
-        
-    }else if (segmented.selectedIndex == 1){
-        if (orientationSubway == 0) {
-            if ([sectionCountSubway count] == 0) {
-                return 0;
-            }else{
-                return [sectionCountSubway count];
-            }
-        }else{
-            if ([sectionCountSubwayFromAirPort count] == 0) {
-                return 0;
-            }else{
-                return [sectionCountSubwayFromAirPort count];
-            }
-        }
-        
-    }else if (segmented.selectedIndex == 2){
-        if (orientationTaxi == 0) {
-            if ([sectionCountTaxi count] == 0) {
-                return 0;
-            }else{
-                return [sectionCountTaxi count];
-            }
-        }else{
-            if ([sectionCountTaxiFromAirPort count] == 0) {
-                return 0;
-            }else{
-                return [sectionCountTaxiFromAirPort count];
-            }
-        }
-        
-    }
-    return 0;
 
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    if (segmented.selectedIndex == 0) {
+    if (tableView == coachTableView) {
         if (orientationCoach == 0) {
-            if (flagOpenOrCloseCoach[section]) {
-                return 1;
-            } else {
-                return 0;
-            }
+            return [sectionCountCoach count];
         }else{
-            if (flagOpenOrCloseCoachFromAirPort[section]) {
-                return 1;
-            } else {
-                return 0;
-            }
+            return [sectionCountCoachFromAirPort count];
         }
-        
-    }else if (segmented.selectedIndex == 1){
+    }else if (tableView == subwayTableView){
         if (orientationSubway == 0) {
-            if (flagOpenOrCloseSubway[section]) {
-                return 1;
-            } else {
-                return 0;
-            }
+            return [sectionCountSubway count];
         }else{
-            if (flagOpenOrCloseSubwayFromAirPort[section]) {
-                return 1;
-            }else{
-                return 0;
-            }
+            return [sectionCountSubwayFromAirPort count];
         }
-        
-        
-    }else if(segmented.selectedIndex == 2){
-        if (orientationTaxi == 0) {
-            if (flagOpenOrCloseTaxi[section]) {
-                if (section == 0) {
-                    return 1;
-                }
-            } else {
-                return 0;
-            }
-        }else{
-            if (flagOpenOrCloseTaxiFromAirPort[section]) {
-                if (section == 0) {
-                    return 1;
-                }
-            } else {
-                return 0;
-            }
-        }
-        
     }
-    return 0;
+        return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
   
-    return 44;
+    return 50;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView == coachTableView) {
-        if (orientationCoach == 0) {
-            double height = [[coachCellHeightArray objectAtIndex:indexPath.row]doubleValue];
-            return 90 + height;
-        }else{
-            double height = [[coachCellHeightArray1 objectAtIndex:indexPath.row]doubleValue];
-            return 90 + height;
-        }
-    }else if (tableView == subwayTableView){
-        if (orientationSubway == 0) {
-            double height = [[subwayCellHeightArray objectAtIndex:indexPath.row]doubleValue];
-            return 90 + height;
-        }else{
-            double height = [[subwayCellHeightArray1 objectAtIndex:indexPath.row]doubleValue];
-            return 90 + height;
-        }
-    }else if (tableView == taxiTableView){
-        if (orientationTaxi == 0) {
-            if (indexPath.section == 0) {
-                double height = [[taxiCellHeightArray objectAtIndex:indexPath.row]doubleValue];
-                return  height;
-            }else if (indexPath.section == 1){
-                return 50;
-            }else if (indexPath.section == 2){
-                return 50;
-            }
-        }else{
-            if (indexPath.section == 0) {
-               double height = [[taxiCellHeightArray1 objectAtIndex:indexPath.row]doubleValue];
-                return  height;
-            }else if (indexPath.section == 1){
-                return 50;
-            }else if (indexPath.section == 2){
-                return 50;
-            }
-        }
-    }
-    return 0;
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    UIView * titleView = [[UIView alloc]init];
-
-    if (tableView == taxiTableView) {
-        [titleView setFrame:CGRectMake(0, 0, 320, 44)];        
-        
-    }else if (tableView == subwayTableView){
-        [titleView setFrame:CGRectMake(0, 0, 320, 100)];
-        
-    }else if (tableView == coachTableView){
-        [titleView setFrame:CGRectMake(0, 0, 320, 44)];
-    }
-    
-    
-    titleView.backgroundColor = FOREGROUND_COLOR;
-    
-    //底边
-    UIImageView * bottomImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42,320, 2)];
-    bottomImageView.backgroundColor = [UIColor colorWithRed:232/255.0 green:226/255.0 blue:221/255.0 alpha:1];
-    [titleView addSubview:bottomImageView];
-    [bottomImageView release];
-
-    
-    
-    if (segmented.selectedIndex == 0) {
-#pragma mark - 机场大巴headview 
-        //1.起点：方庄
-        UILabel * lineNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 4, 114, 33)];
-        lineNameLabel.font = [UIFont boldSystemFontOfSize:15];
-        lineNameLabel.backgroundColor = [UIColor clearColor];
-        [titleView addSubview:lineNameLabel];
-        [lineNameLabel release];
-        
-        //运营时间
-        UILabel * lineOperationTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(125, 15, 100, 17)];
-        lineOperationTimeLabel.font = [UIFont systemFontOfSize:13];
-        lineOperationTimeLabel.backgroundColor = [UIColor clearColor];
-        [titleView addSubview:lineOperationTimeLabel];
-        [lineOperationTimeLabel release];
-        
-        
-        //价格
-        UILabel * priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(240, 13, 42, 21)];
-        priceLabel.font = [UIFont systemFontOfSize:15];
-        priceLabel.backgroundColor = [UIColor clearColor];
-        priceLabel.textColor = FONT_COLOR_RED;
-        [titleView addSubview:priceLabel];
-        [priceLabel release];
-        
-        if (orientationCoach == 0) {
-            if (sectionCountCoach) {
-                lineNameLabel.text = @"";
-                lineNameLabel.text = [[sectionCountCoach objectAtIndex:section]objectForKey:@"lineName"];
-                lineOperationTimeLabel.text = [[sectionCountCoach objectAtIndex:section]objectForKey:@"lineOperationTime"];
-                priceLabel.text = [[sectionCountCoach objectAtIndex:section]objectForKey:@"lineFares"];
-            }
-        }else{
-        
-            if (sectionCountCoachFromAirPort) {
-                lineNameLabel.text = @"";
-                
-                lineNameLabel.text = [[sectionCountCoachFromAirPort objectAtIndex:section]objectForKey:@"lineName"];
-                NSLog(@"=======%@",[[sectionCountCoachFromAirPort objectAtIndex:section]objectForKey:@"lineName"]);
-                lineOperationTimeLabel.text = [[sectionCountCoachFromAirPort objectAtIndex:section]objectForKey:@"lineOperationTime"];
-                priceLabel.text = [[sectionCountCoachFromAirPort objectAtIndex:section]objectForKey:@"lineFares"];
-            }
-        }
-        
-        
-        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.tag = section;
-        btn.frame = CGRectMake(0, 0, 320, 44);
-        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(298, 16, 10, 10)];
-        
-        if (orientationCoach == 0) {
-            if(flagOpenOrCloseCoach[section]){
-                image.image = [UIImage imageNamed:@"triangle_icon_up.png"];
-            }else{
-                image.image = [UIImage imageNamed:@"triangle_icon_down.png"];
-            }
-        }else{
-            if(flagOpenOrCloseCoachFromAirPort[section]){
-                image.image = [UIImage imageNamed:@"triangle_icon_up.png"];
-            }else{
-                image.image = [UIImage imageNamed:@"triangle_icon_down.png"];
-            }
-        }
-       
-        [btn addSubview:image];
-        [image release];
-        
-        [btn addTarget:self action:@selector(cellOftitleTap:) forControlEvents:UIControlEventTouchUpInside];
-        [titleView addSubview:btn];
-    }else if (segmented.selectedIndex == 1){
-#pragma mark - 机场快轨headview
-        //1.起点：方庄
-        UILabel * lineNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 4, 114, 33)];
-        lineNameLabel.font = [UIFont boldSystemFontOfSize:15];
-        lineNameLabel.backgroundColor = [UIColor clearColor];
-        [titleView addSubview:lineNameLabel];
-        [lineNameLabel release];
-        
-        //运营时间
-        UILabel * lineOperationTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(125, 15, 100, 17)];
-        lineOperationTimeLabel.font = [UIFont systemFontOfSize:13];
-        lineOperationTimeLabel.backgroundColor = [UIColor clearColor];
-        [titleView addSubview:lineOperationTimeLabel];
-        [lineOperationTimeLabel release];
-        
-        
-        //价格
-        UILabel * priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(240, 13, 42, 21)];
-        priceLabel.font = [UIFont systemFontOfSize:15];
-        priceLabel.backgroundColor = [UIColor clearColor];
-        priceLabel.textColor = FONT_COLOR_RED;
-        [titleView addSubview:priceLabel];
-        [priceLabel release];
-
-        
-        if (orientationSubway == 0) {
-            if (sectionCountSubway) {
-                lineNameLabel.text = @"";
-                lineNameLabel.text = [[sectionCountSubway objectAtIndex:section]objectForKey:@"lineName"];
-                lineOperationTimeLabel.text = [[sectionCountSubway objectAtIndex:section]objectForKey:@"lineOperationTime"];
-                priceLabel.text = [[sectionCountSubway objectAtIndex:section]objectForKey:@"lineFares"];
-            }
-        }else{
-            
-            if (sectionCountSubwayFromAirPort) {
-                lineNameLabel.text = @"";
-                lineNameLabel.text = [[sectionCountSubwayFromAirPort objectAtIndex:section]objectForKey:@"lineName"];
-                lineOperationTimeLabel.text = [[sectionCountSubwayFromAirPort objectAtIndex:section]objectForKey:@"lineOperationTime"];
-                priceLabel.text = [[sectionCountSubwayFromAirPort objectAtIndex:section]objectForKey:@"lineFares"];
-            }
-        }
-        
-        
-        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.tag = section;
-        btn.frame = CGRectMake(0, 0, 320, 44);
-        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(298, 16, 10, 10)];
-        
-        if (orientationSubway == 0) {
-            if(flagOpenOrCloseSubway[section]){
-                image.image = [UIImage imageNamed:@"triangle_icon_up.png"];
-            }else{
-                image.image = [UIImage imageNamed:@"triangle_icon_down.png"];
-            }
-        }else{
-            if(flagOpenOrCloseSubwayFromAirPort[section]){
-                image.image = [UIImage imageNamed:@"triangle_icon_up.png"];
-            }else{
-                image.image = [UIImage imageNamed:@"triangle_icon_down.png"];
-            }
-        }
-        
-        [btn addSubview:image];
-        [image release];
-        
-        [btn addTarget:self action:@selector(cellOftitleTap:) forControlEvents:UIControlEventTouchUpInside];
-        [titleView addSubview:btn];
-
-        
-        
-    }else if (segmented.selectedIndex == 2){
-#pragma mark - 出租车headview
-        //1.起点：方庄
-        UILabel * lineNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 4, 280, 33)];
-        lineNameLabel.font = [UIFont boldSystemFontOfSize:15];
-        lineNameLabel.backgroundColor = [UIColor clearColor];
-        lineNameLabel.textColor = FONT_COLOR_BIG_GRAY;
-        [titleView addSubview:lineNameLabel];
-        [lineNameLabel release];
-        
-        
-        if (orientationTaxi == 0) {
-            if (sectionCountTaxi) {
-                lineNameLabel.text = @"";
-                lineNameLabel.text = [[sectionCountTaxi objectAtIndex:section]objectForKey:@"lineName"];
-            }
-        }else{
-            
-            if (sectionCountTaxiFromAirPort) {
-                lineNameLabel.text = @"";
-                
-                lineNameLabel.text = [[sectionCountTaxiFromAirPort objectAtIndex:section]objectForKey:@"lineName"];
-            }
-        }
-        
-        
-        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.tag = section;
-        btn.frame = CGRectMake(0, 0, 320, 44);
-        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(298, 16, 10, 10)];
-        
-        if (orientationTaxi == 0) {
-            if(flagOpenOrCloseTaxi[section]){
-                image.image = [UIImage imageNamed:@"triangle_icon_up.png"];
-            }else{
-                image.image = [UIImage imageNamed:@"triangle_icon_down.png"];
-            }
-        }else{
-            if(flagOpenOrCloseTaxiFromAirPort[section]){
-                image.image = [UIImage imageNamed:@"triangle_icon_up.png"];
-            }else{
-                image.image = [UIImage imageNamed:@"triangle_icon_down.png"];
-            }
-        }
-        
-        [btn addSubview:image];
-        [image release];
-        
-        [btn addTarget:self action:@selector(cellOftitleTap:) forControlEvents:UIControlEventTouchUpInside];
-        [titleView addSubview:btn];
-        
-        
-    }
-    return titleView;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == coachTableView) {
-#pragma mark - coachTableViewCell
-        NSString *CellIdentifier = @"coachTableViewCell";
-        UITableViewCell * cell1 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell1 == nil) {
-            cell1 = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
-            lineNameLabelOne = [[UILabel alloc]initWithFrame:CGRectMake(20, 3, 280, 17)];
-            lineNameLabelOne.font = [UIFont systemFontOfSize:12];
-            lineNameLabelOne.backgroundColor = [UIColor clearColor];
-            [cell1 addSubview:lineNameLabelOne];
-            [lineNameLabelOne release];
-            
-            //首班车
-            firstBusOne = [[UILabel alloc]initWithFrame:CGRectMake(90, 23, 280, 17)];
-            firstBusOne.backgroundColor = [UIColor clearColor];
-            firstBusOne.font = [UIFont systemFontOfSize:12];
-            firstBusOne.textColor = FONT_COLOR_GRAY;
-            [cell1 addSubview:firstBusOne];
-            [firstBusOne release];
-            
-            UILabel * firstBus1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 23, 280, 17)];
-            firstBus1.backgroundColor = [UIColor clearColor];
-            firstBus1.font = [UIFont systemFontOfSize:12];
-            firstBus1.text = @"首 班 车：";
-            [cell1 addSubview:firstBus1];
-            [firstBus1 release];
-            
-            //末班车
-            UILabel * lastBusLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 280, 17)];
-            lastBusLabel1.backgroundColor = [UIColor clearColor];
-            lastBusLabel1.text = @"末 班 车：";
-            lastBusLabel1.font = [UIFont systemFontOfSize:12];
-            [cell1 addSubview:lastBusLabel1];
-            [lastBusLabel1 release];
-            
-            lastBusLabelOne = [[UILabel alloc]initWithFrame:CGRectMake(90, 43, 280, 17)];
-            lastBusLabelOne.backgroundColor = [UIColor clearColor];
-            lastBusLabelOne.font = [UIFont systemFontOfSize:12];
-            lastBusLabelOne.textColor = FONT_COLOR_GRAY;
-            [cell1 addSubview:lastBusLabelOne];
-            [lastBusLabelOne release];
-            
-            //间隔时间
-            lineIntervalTimeLabelOne = [[UILabel alloc]initWithFrame:CGRectMake(90, 63, 280, 17)];
-            lineIntervalTimeLabelOne.backgroundColor = [UIColor clearColor];
-            lineIntervalTimeLabelOne.font = [UIFont systemFontOfSize:11];
-            lineIntervalTimeLabelOne.textColor = FONT_COLOR_GRAY;
-            [cell1 addSubview:lineIntervalTimeLabelOne];
-            [lineIntervalTimeLabelOne release];
-            
-            UILabel * lineIntervalTimeLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 63, 280, 17)];
-            lineIntervalTimeLabel1.font = [UIFont systemFontOfSize:11];
-            lineIntervalTimeLabel1.backgroundColor = [UIColor clearColor];
-            lineIntervalTimeLabel1.text = @"时间间隔：";
-            [cell1 addSubview:lineIntervalTimeLabel1];
-            [lineIntervalTimeLabel1 release];
-            
-            
-            //经停站点
-            
-            //初始化label
-            stopsLabelOne = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-            //设置自动行数与字符换行
-            [stopsLabelOne setNumberOfLines:0];
-            stopsLabelOne.backgroundColor = [UIColor clearColor];
-            stopsLabelOne.font = [UIFont systemFontOfSize:11];
-            stopsLabelOne.lineBreakMode = UILineBreakModeWordWrap;
-            stopsLabelOne.textColor = FONT_COLOR_GRAY;
-            stopsLabelOne.text = @"";
-            [cell1 addSubview:stopsLabelOne];
-            [stopsLabelOne release];
-            
-            UILabel * stopLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 83, 280, 17)];
-            stopLabel1.font = [UIFont systemFontOfSize:11];
-            stopLabel1.backgroundColor = [UIColor clearColor];
-            stopLabel1.text = @"停靠车站：";
-            [cell1 addSubview:stopLabel1];
-            [stopLabel1 release];
-            
-               
-        }
-        
-        if (orientationCoach == 0) {
-            if (sectionCountCoach) {
-             
-                //线路名称
-                lineNameLabelOne.text = [[sectionCountCoach objectAtIndex:indexPath.section]objectForKey:@"lineName"];
-                firstBusOne.text = [[sectionCountCoach objectAtIndex:indexPath.section]objectForKey:@"firstBus"];
-                lastBusLabelOne.text = [[sectionCountCoach objectAtIndex:indexPath.section]objectForKey:@"lastBus"];
-                lineIntervalTimeLabelOne.text = [[sectionCountCoach objectAtIndex:indexPath.section]objectForKey:@"lineIntervalTime"];
-                
-                
-                // 测试字串
-                NSString * s = [[sectionCountCoach objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                
-                //设置一个行高上限
-                CGSize size = CGSizeMake(320 - 110,2000);
-                
-                UIFont * myFont = [UIFont systemFontOfSize:11];
-                //计算实际frame大小，并将label的frame变成实际大小
-                CGSize labelsize = [s sizeWithFont:myFont constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-                [stopsLabelOne setFrame:CGRectMake(90,83,labelsize.width,labelsize.height)];
-                stopsLabelOne.text = s;
-                
-            }
-        }else{
-                if (sectionCountCoachFromAirPort) {
-                   
-                    //线路名称
-                    lineNameLabelOne.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineName"];
-                    firstBusOne.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.section]objectForKey:@"firstBus"];
-                    lastBusLabelOne.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lastBus"];
-                    lineIntervalTimeLabelOne.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineIntervalTime"];
-                    
-                    
-                    // 测试字串
-                    NSString * s = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                    NSString * tempString = [s stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
-                    NSLog(@"tempString : %@",tempString);
-                    CGSize size = CGSizeMake(320 - 110,2000);
-                    UIFont * myFont = [UIFont systemFontOfSize:11];
-                    CGSize labelsize = [s sizeWithFont:myFont constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-                    
-                    
-                    [stopsLabelOne setFrame:CGRectMake(90,83,labelsize.width,labelsize.height)];
-                    stopsLabelOne.text = tempString;
-                }
-            }
-        
-    return cell1;
-    }else if (tableView == subwayTableView){
-#pragma mark - subwayTableViewCell
-        static NSString *CellIdentifier2 = @"subwayTableViewCell";
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier2]autorelease];
-            lineNameLabelTwo = [[UILabel alloc]initWithFrame:CGRectMake(20, 3, 280, 17)];
-            lineNameLabelTwo.font = [UIFont systemFontOfSize:12];
-            lineNameLabelTwo.backgroundColor = [UIColor clearColor];
-            [cell addSubview:lineNameLabelTwo];
-            [lineNameLabelTwo release];
-            
-            //首班车
-            firstBusTwo = [[UILabel alloc]initWithFrame:CGRectMake(90, 23, 280, 17)];
-            firstBusTwo.backgroundColor = [UIColor clearColor];
-            firstBusTwo.font = [UIFont systemFontOfSize:12];
-            firstBusTwo.textColor = FONT_COLOR_GRAY;
-            [cell addSubview:firstBusTwo];
-            [firstBusTwo release];
-            
-            UILabel * firstBus1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 23, 280, 17)];
-            firstBus1.backgroundColor = [UIColor clearColor];
-            firstBus1.font = [UIFont systemFontOfSize:12];
-            firstBus1.text = @"首 班 车：";
-            [cell addSubview:firstBus1];
-            [firstBus1 release];
-            
-            //末班车
-            UILabel * lastBusLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 280, 17)];
-            lastBusLabel1.backgroundColor = [UIColor clearColor];
-            lastBusLabel1.text = @"末 班 车：";
-            lastBusLabel1.font = [UIFont systemFontOfSize:12];
-            [cell addSubview:lastBusLabel1];
-            [lastBusLabel1 release];
-            
-            lastBusLabelTwo = [[UILabel alloc]initWithFrame:CGRectMake(90, 43, 280, 17)];
-            lastBusLabelTwo.backgroundColor = [UIColor clearColor];
-            lastBusLabelTwo.font = [UIFont systemFontOfSize:12];
-            lastBusLabelTwo.textColor = FONT_COLOR_GRAY;
-            [cell addSubview:lastBusLabelTwo];
-            [lastBusLabelTwo release];
-            
-            //间隔时间
-            lineIntervalTimeLabelTwo = [[UILabel alloc]initWithFrame:CGRectMake(90, 63, 280, 17)];
-            lineIntervalTimeLabelTwo.backgroundColor = [UIColor clearColor];
-            lineIntervalTimeLabelTwo.font = [UIFont systemFontOfSize:11];
-            lineIntervalTimeLabelTwo.textColor = FONT_COLOR_GRAY;
-            [cell addSubview:lineIntervalTimeLabelTwo];
-            [lineIntervalTimeLabelTwo release];
-            
-            UILabel * lineIntervalTimeLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 63, 280, 17)];
-            lineIntervalTimeLabel1.font = [UIFont systemFontOfSize:11];
-            lineIntervalTimeLabel1.backgroundColor = [UIColor clearColor];
-            lineIntervalTimeLabel1.text = @"时间间隔：";
-            [cell addSubview:lineIntervalTimeLabel1];
-            [lineIntervalTimeLabel1 release];
-            //经停站点
-            
-            //初始化label
-            stopsLabelTwo = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-            //设置自动行数与字符换行
-            [stopsLabelTwo setNumberOfLines:0];
-            stopsLabelTwo.backgroundColor = [UIColor clearColor];
-            stopsLabelTwo.font = [UIFont systemFontOfSize:11];
-            stopsLabelTwo.lineBreakMode = UILineBreakModeWordWrap;
-            stopsLabelTwo.textColor = FONT_COLOR_GRAY;
-            stopsLabelTwo.text = @"";
-            [cell addSubview:stopsLabelTwo];
-            [stopsLabelTwo release];
-            
-            UILabel * stopLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 83, 280, 17)];
-            stopLabel1.font = [UIFont systemFontOfSize:11];
-            stopLabel1.backgroundColor = [UIColor clearColor];
-            stopLabel1.text = @"停靠车站：";
-            [cell addSubview:stopLabel1];
-            [stopLabel1 release];
-
-        }
-        
-         NSLog(@"orientationSubway ========  %d",orientationSubway);
-        if (orientationSubway == 0) {
-            if (sectionCountSubway) {
-                NSLog(@"1 0");
-                //线路名称
-                lineNameLabelTwo.text = [[sectionCountSubway objectAtIndex:indexPath.section]objectForKey:@"lineName"];
-                NSLog(@"%@",[[sectionCountSubway objectAtIndex:indexPath.section]objectForKey:@"lineName"]);
-                firstBusTwo.text = [[sectionCountSubway objectAtIndex:indexPath.section]objectForKey:@"firstBus"];
-                lastBusLabelTwo.text = [[sectionCountSubway objectAtIndex:indexPath.section]objectForKey:@"lastBus"];
-                lineIntervalTimeLabelTwo.text = [[sectionCountSubway objectAtIndex:indexPath.section]objectForKey:@"lineIntervalTime"];
-                // 测试字串
-                NSString * s = [[sectionCountSubway objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-               
-                //设置一个行高上限
-                CGSize size = CGSizeMake(320 - 110,2000);
-                
-                UIFont * myFont = [UIFont systemFontOfSize:11];
-                //计算实际frame大小，并将label的frame变成实际大小
-                CGSize labelsize = [s sizeWithFont:myFont constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-                [stopsLabelTwo setFrame:CGRectMake(90,83,labelsize.width,labelsize.height)];
-                stopsLabelTwo.text = s;
-                
-            }
-        }else{
-                NSLog(@"before 1 1");
-                if (sectionCountSubwayFromAirPort) {
-                     NSLog(@"1 1");
-                    //线路名称
-                    lineNameLabelTwo.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineName"];
-                    NSLog(@"%@",[[sectionCountSubwayFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineName"]);
-                    firstBusTwo.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.section]objectForKey:@"firstBus"];
-                    lastBusLabelTwo.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lastBus"];
-                    lineIntervalTimeLabelTwo.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineIntervalTime"];
-                    // 测试字串
-                    NSString * s = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                    //设置一个行高上限
-                    CGSize size = CGSizeMake(320 - 110,2000);
-                    UIFont * myFont = [UIFont systemFontOfSize:11];
-                    //计算实际frame大小，并将label的frame变成实际大小
-                    CGSize labelsize = [s sizeWithFont:myFont constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-                    [stopsLabelTwo setFrame:CGRectMake(90,83,labelsize.width,labelsize.height)];
-                    stopsLabelTwo.text = s;
-                }
-        }
-    return cell;
-    }else if (tableView == taxiTableView){
-#pragma mark - taxiTableViewCell
-        static NSString *CellIdentifier3 = @"taxiTableViewCell";
-        if (indexPath.section == 0) {
-            CellIdentifier3 = @"taxiTableViewCell1";
-        }else if (indexPath.section == 1){
-            CellIdentifier3 = @"taxiTableViewCell2";
-        }
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier3];
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier3]autorelease];
-            
-            if (indexPath.section == 0) {
-               
-                //初始化label
-                stopsLabelThree = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-                //设置自动行数与字符换行
-                [stopsLabelThree setNumberOfLines:0];
-                stopsLabelThree.backgroundColor = [UIColor clearColor];
-                stopsLabelThree.font = [UIFont systemFontOfSize:11];
-                stopsLabelThree.lineBreakMode = UILineBreakModeWordWrap;
-                stopsLabelThree.textColor = FONT_COLOR_DEEP_GRAY;
-                stopsLabelThree.text = @"";
-                [cell addSubview:stopsLabelThree];
-            }else if (indexPath.section == 1){
-                
-                UIView * bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
-                [cell addSubview:bottomView];
-                [bottomView release];
-                if (indexPath.row == 0) {
-                    
-                    UILabel * addressNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 3, 140, 17)];
-                    addressNameLabel.font = [UIFont systemFontOfSize:12];
-                    addressNameLabel.backgroundColor = [UIColor clearColor];
-                    addressNameLabel.textColor = FONT_COLOR_DEEP_GRAY;
-                    addressNameLabel.text = @"地点";
-                    addressNameLabel.textAlignment = NSTextAlignmentLeft;
-                    [bottomView addSubview:addressNameLabel];
-                    [addressNameLabel release];
-                    
-                    UILabel * myJourney  = [[UILabel alloc]initWithFrame:CGRectMake(160, 3, 140, 17)];
-                    myJourney.backgroundColor = [UIColor clearColor];
-                    myJourney.font = [UIFont systemFontOfSize:12];
-                    myJourney.textAlignment = NSTextAlignmentLeft;
-                    myJourney.text = @"公里";
-                    myJourney.textColor = FONT_COLOR_DEEP_GRAY;
-                    [bottomView addSubview:myJourney];
-                    [myJourney release];
-                    
-                    
-                    UILabel * myPriceLabel = [[UILabel alloc]initWithFrame:CGRectMake(260, 3, 140, 17)];
-                    myPriceLabel.backgroundColor = [UIColor clearColor];
-                    myPriceLabel.font = [UIFont systemFontOfSize:12];
-                    myPriceLabel.textAlignment = NSTextAlignmentRight;
-                    myPriceLabel.text = @"价格";
-                    myPriceLabel.textColor = FONT_COLOR_RED;
-                    [bottomView addSubview:myPriceLabel];
-                    [myPriceLabel release];
-                }else{
-                    //地点
-                    addressName = [[UILabel alloc]initWithFrame:CGRectMake(20, 23, 140, 17)];
-                    addressName.font = [UIFont systemFontOfSize:12];
-                    addressName.backgroundColor = [UIColor clearColor];
-                    addressName.textColor = FONT_COLOR_DEEP_GRAY;
-                    addressName.textAlignment = NSTextAlignmentLeft;
-                    [bottomView addSubview:addressName];
-                 
-                    
-                    //公里
-                    journey = [[UILabel alloc]initWithFrame:CGRectMake(160, 23, 140, 17)];
-                    journey.backgroundColor = [UIColor clearColor];
-                    journey.font = [UIFont systemFontOfSize:12];
-                    journey.textAlignment = NSTextAlignmentLeft;
-                    journey.textColor = FONT_COLOR_DEEP_GRAY;
-                    [bottomView addSubview:journey];
-            
-                    
-                    
-                    price = [[UILabel alloc]initWithFrame:CGRectMake(260, 23, 140, 17)];
-                    price.backgroundColor = [UIColor clearColor];
-                    price.font = [UIFont systemFontOfSize:12];
-                    price.textAlignment = NSTextAlignmentRight;
-                    price.textColor = FONT_COLOR_RED;
-                    [bottomView addSubview:price];
-                    
-                }
-            }else if (indexPath.section == 2){
-                UIView * myBottom = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
-                [cell addSubview:myBottom];
-                [myBottom release];
-                if (indexPath.row == 0) {
-                    
-                    UILabel * myTLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 3, 140, 17)];
-                    myTLabel.backgroundColor = [UIColor clearColor];
-                    myTLabel.textAlignment = NSTextAlignmentLeft;
-                    myTLabel.textColor = FONT_COLOR_DEEP_GRAY;
-                    myTLabel.text = @"航站楼";
-                    [myBottom addSubview:myTLabel];
-                    [myTLabel release];
-                    
-                   UILabel * myPlace = [[UILabel alloc]initWithFrame:CGRectMake(260, 3, 140, 17)];
-                    myPlace.backgroundColor = [UIColor clearColor];
-                    myPlace.font = [UIFont systemFontOfSize:12];
-                    myPlace.textAlignment = NSTextAlignmentRight;
-                    myPlace.text = @"位置";
-                    myPlace.textColor = FONT_COLOR_DEEP_GRAY;
-                    [myBottom addSubview:myPlace];
-                    [myPlace release];
-                }
-                myT = [[UILabel alloc]initWithFrame:CGRectMake(20, 23, 140, 17)];
-                myT.backgroundColor = [UIColor clearColor];
-                myT.textAlignment = NSTextAlignmentLeft;
-                myT.textColor = FONT_COLOR_DEEP_GRAY;
-                [myBottom addSubview:myT];
-                [myT release];
-                
-                place = [[UILabel alloc]initWithFrame:CGRectMake(260, 23, 140, 17)];
-                place.backgroundColor = [UIColor clearColor];
-                place.font = [UIFont systemFontOfSize:12];
-                place.textAlignment = NSTextAlignmentRight;
-                place.textColor = FONT_COLOR_DEEP_GRAY;
-                [myBottom addSubview:place];
-                [place release];
-            }
-            
-        }
-            if (orientationTaxi == 0) {
-                    NSLog(@"2 0");
-                if (sectionCountTaxi) {
-                        //线路名称
-                    if (indexPath.section == 2) {
-                        
-                        addressName.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineName"];
-                        journey.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                        price.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineFares"];
-
-                    }else if (indexPath.section == 1){
-                       
-                        myT.text = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                        place.text = @"";
-                        
-                        
-                    }else if (indexPath.section == 0){
-                        // 测试字串
-                        NSString * s = [[sectionCountTaxi objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                        NSLog(@"%@",s);
-                        NSString * tempString = [s stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
-                        NSLog(@"tempString  : %@",tempString);
-                        //设置一个行高上限
-                        CGSize size = CGSizeMake(300,2000);
-                        
-                        UIFont * myFont = [UIFont systemFontOfSize:11];
-                        //计算实际frame大小，并将label的frame变成实际大小
-                        CGSize labelsize = [s sizeWithFont:myFont constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-                        [stopsLabelThree setFrame:CGRectMake(20,5,labelsize.width,labelsize.height)];
-                        stopsLabelThree.text = tempString;
-                    }
     
-                    }else{
-                        NSLog(@"2 1");
-                      if (sectionCountTaxiFromAirPort) {
-                          if (indexPath.section == 0) {
-                              // 测试字串
-                              NSString * s = [[sectionCountTaxiFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                              NSString * tempString = [s stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
-                              NSLog(@"tempString  : %@",tempString);
-                              //设置一个行高上限
-                              CGSize size = CGSizeMake(300,2000);
-                              
-                              UIFont * myFont = [UIFont systemFontOfSize:11];
-                              //计算实际frame大小，并将label的frame变成实际大小
-                              CGSize labelsize = [s sizeWithFont:myFont constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-                              [stopsLabelThree setFrame:CGRectMake(20,5,labelsize.width,labelsize.height)];
-                              stopsLabelThree.text = tempString;
-                              [cell addSubview:stopsLabelThree];
-                          }else if (indexPath.section == 1){
-                              if (indexPath.row != 0) {
-                                  myT.text = [[sectionCountTaxiFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                                  place.text = @"";
-                                  
-                              }
-
-                          }else if (indexPath.section == 2){
-                              if (indexPath.row != 0) {
-                            
-                                  addressName.text = [[sectionCountTaxiFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineName"];
-                                  journey.text = [[sectionCountTaxiFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineStops"];
-                                  price.text = [[sectionCountTaxiFromAirPort objectAtIndex:indexPath.section]objectForKey:@"lineFares"];
-                              }
-                          }
-                        }
-                    }
-                
-            }
+    static NSString *CellIdentifier = @"Cell";
+    TrafficCell *cell = [coachTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell)
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"TrafficCell" owner:self options:nil];
+        cell = self.myTrafficCell;
         
-        return cell;
-    
     }
-#pragma mark -  over
-#pragma mark -
-        static NSString * CellIdentifier = @"Cell";
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+    if (tableView == coachTableView) {
+        if (tableView == coachTableView) {
+            if (orientationCoach == 0) {
+                cell.lineName = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lineName"];
+                cell.firstBusTime = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
+                cell.lastBusTime = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
+                cell.lineIndex = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
+                cell.lineFares = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
+            }else{
+                cell.lineName = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineName"];
+                cell.firstBusTime = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
+                cell.lastBusTime = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
+                cell.lineIndex = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
+                cell.lineFares = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
+            }
+        }else if (tableView == subwayTableView){
+            if (orientationSubway == 0) {
+                cell.lineName = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lineName"];
+                cell.firstBusTime = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
+                cell.lastBusTime = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
+                cell.lineIndex = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
+                cell.lineFares = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
+            }else{
+                cell.lineName = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineName"];
+                cell.firstBusTime = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
+                cell.lastBusTime = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
+                cell.lineIndex = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
+                cell.lineFares = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
+            }
         }
-        return cell;
+       
+    }
+     return cell;
 }
+  
+
 #pragma mark - tableViewCell over
 #pragma mark - 
 
@@ -1507,72 +717,7 @@
     
 }
 
-//点击展开
--(void)cellOftitleTap:(UIButton *)btn{
-    
-    if (segmented.selectedIndex == 0) {
-        int sectionIndex = btn.tag;
-        if (orientationCoach == 0) {
 
-            flagOpenOrCloseCoach[sectionIndex] = !flagOpenOrCloseCoach[sectionIndex];
-            [coachTableView beginUpdates];
-            [coachTableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationBottom];
-            
-            [coachTableView endUpdates];
-            [coachTableView reloadData];
-        }else{
-
-            flagOpenOrCloseCoachFromAirPort[sectionIndex] = !flagOpenOrCloseCoachFromAirPort[sectionIndex];
-            [coachTableView beginUpdates];
-            [coachTableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationBottom];
-            [coachTableView endUpdates];
-            [coachTableView reloadData];
-        }
-        
-    }else if (segmented.selectedIndex == 1){
-        int sectionIndex = btn.tag;
-        if (orientationSubway == 0) {
-
-            flagOpenOrCloseSubway[sectionIndex] = !flagOpenOrCloseSubway[sectionIndex];
-            [subwayTableView beginUpdates];
-            [subwayTableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationBottom];
-            
-            [subwayTableView endUpdates];
-            [subwayTableView reloadData];
-        }else{
-
-            NSLog(@"%d",flagOpenOrCloseSubwayFromAirPort[sectionIndex]);
-            flagOpenOrCloseSubwayFromAirPort[sectionIndex] = !flagOpenOrCloseSubwayFromAirPort[sectionIndex];
-            NSLog(@"%d",flagOpenOrCloseSubwayFromAirPort[sectionIndex]);
-            [subwayTableView beginUpdates];
-            [subwayTableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationBottom];
-            
-            [subwayTableView endUpdates];
-            [subwayTableView reloadData];
-        }
-       
-    }else if (segmented.selectedIndex == 2){
-        int sectionIndex = btn.tag;
-        if (orientationTaxi == 0) {
-            flagOpenOrCloseTaxi[sectionIndex] = !flagOpenOrCloseTaxi[sectionIndex];
-            [taxiTableView beginUpdates];
-            [taxiTableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationBottom];
-
-            [taxiTableView endUpdates];
-            [taxiTableView reloadData];
-            
-        }else{
-            flagOpenOrCloseTaxiFromAirPort[sectionIndex] = !flagOpenOrCloseTaxiFromAirPort[sectionIndex];
-            [taxiTableView beginUpdates];
-            [taxiTableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationBottom];
-            [taxiTableView reloadData];
-            [taxiTableView endUpdates];
-            
-        }
-        
-    }
-    
-}
 
 
 -(void)cusBtnClick{

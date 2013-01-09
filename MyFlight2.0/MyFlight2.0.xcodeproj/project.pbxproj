@@ -501,6 +501,8 @@
 		18CB6D15168453780025F42F /* bg_blue__.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D14168453780025F42F /* bg_blue__.png */; };
 		18CB6D61168467F90025F42F /* ShowSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CB6D60168467F90025F42F /* ShowSelectedCell.m */; };
 		18CB6D641684680D0025F42F /* ShowSelectedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CB6D631684680D0025F42F /* ShowSelectedCell.xib */; };
+		18CED545169D56FD00CE2B92 /* TrafficCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CED544169D56FD00CE2B92 /* TrafficCell.m */; };
+		18CED548169D571B00CE2B92 /* TrafficCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CED547169D571B00CE2B92 /* TrafficCell.xib */; };
 		18D01986168217C10096852E /* searchCabin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01985168217C10096852E /* searchCabin.m */; };
 		18D0198D168218AD0096852E /* ChooseSpaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D01988168218AD0096852E /* ChooseSpaceCell.m */; };
 		18D0198E168218AD0096852E /* ChooseSpaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D01989168218AD0096852E /* ChooseSpaceCell.xib */; };
@@ -1465,6 +1467,9 @@
 		18CB6D5F168467F90025F42F /* ShowSelectedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedCell.h; sourceTree = "<group>"; };
 		18CB6D60168467F90025F42F /* ShowSelectedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedCell.m; sourceTree = "<group>"; };
 		18CB6D631684680D0025F42F /* ShowSelectedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedCell.xib; sourceTree = "<group>"; };
+		18CED543169D56FD00CE2B92 /* TrafficCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficCell.h; sourceTree = "<group>"; };
+		18CED544169D56FD00CE2B92 /* TrafficCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficCell.m; sourceTree = "<group>"; };
+		18CED547169D571B00CE2B92 /* TrafficCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrafficCell.xib; sourceTree = "<group>"; };
 		18D01984168217C10096852E /* searchCabin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchCabin.h; sourceTree = "<group>"; };
 		18D01985168217C10096852E /* searchCabin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchCabin.m; sourceTree = "<group>"; };
 		18D01987168218AD0096852E /* ChooseSpaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSpaceCell.h; sourceTree = "<group>"; };
@@ -3502,6 +3507,9 @@
 				18D36426169528F3005CF80C /* SubwayTableViewController.m */,
 				18D364281695290F005CF80C /* TaxiTableViewController.h */,
 				18D364291695290F005CF80C /* TaxiTableViewController.m */,
+				18CED543169D56FD00CE2B92 /* TrafficCell.h */,
+				18CED544169D56FD00CE2B92 /* TrafficCell.m */,
+				18CED547169D571B00CE2B92 /* TrafficCell.xib */,
 			);
 			name = TravelAssistant;
 			sourceTree = "<group>";
@@ -4690,15 +4698,10 @@
 				1842B56F169C6786007FA603 /* 雷阵雨.png in Resources */,
 				1842B570169C6786007FA603 /* 雷阵雨伴有冰雹.png in Resources */,
 				1842B571169C6786007FA603 /* 雾.png in Resources */,
-
-
 				14935582169CA32E00F66E87 /* aisle.png in Resources */,
-
-
-
 				18D0D68A169C985C0028995B /* OneWayCheckViewController.xib in Resources */,
 				18D0D692169CDB500028995B /* orderListForNoLogin.sqlite in Resources */,
-
+				18CED548169D571B00CE2B92 /* TrafficCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4969,14 +4972,11 @@
 				1842B4FE169C6540007FA603 /* SMSViewController.m in Sources */,
 				1842B506169C65E7007FA603 /* LookFlightConditionCell.m in Sources */,
 				1842B508169C65E7007FA603 /* SearchFlightConditionCell.m in Sources */,
-
-
 				18D0D689169C985C0028995B /* OneWayCheckViewController.m in Sources */,
 				18D0D690169CD0C40028995B /* OrderDatabase.m in Sources */,
-
 				1493558E169CCEAF00F66E87 /* AboutViewController.m in Sources */,
 				14935593169CE39300F66E87 /* FeedbackViewController.m in Sources */,
-
+				18CED545169D56FD00CE2B92 /* TrafficCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
