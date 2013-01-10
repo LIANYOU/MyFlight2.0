@@ -471,7 +471,7 @@
     MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     thisCell.detailLabel.text = [NSString stringWithFormat:@"%@",_accountString];
-    [thisCell.detailLabel setTextColor:[UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>]]
+//    [thisCell.detailLabel setTextColor:[UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>]]
     
     CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
     CCLog(@"银币 %@",self.silverMoneyString);

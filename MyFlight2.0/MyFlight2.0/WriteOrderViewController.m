@@ -305,7 +305,7 @@
             case 1:
                 return 1;
             case 2:
-                return 7;
+                return 6;
             default:
                 break;
         }
@@ -322,7 +322,7 @@
             case 2:
                 return 1;
             case 3:
-                return 7;
+                return 6;
             default:
                 break;
         }
@@ -340,34 +340,41 @@
         if (indexPath.section == 1) {
             return 100;
         }
-        if (indexPath.section == 2 && indexPath.row == 0) {
+        if (indexPath.section == 2) {
             
-           firstCellText = [self.firstCelTextArr objectAtIndex:0];
-            
-            CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f);//可接受的最大大小的字符串
-            
-            CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
-            
-            CGFloat height = MAX(size.height, 50.0f);
-           
-            return height;
-            
-        }
-        if (indexPath.row == 4 && indexPath.section == 1) {
-            if (Default_IsUserLogin_Value) {
-                return 50;
+            if (indexPath.row == 0) {
+                firstCellText = [self.firstCelTextArr objectAtIndex:0];
+                
+                CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f);//可接受的最大大小的字符串
+                
+                CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
+                
+                CGFloat height = MAX(size.height, 50.0f);
+                
+                return height;
+
+            }
+            if (indexPath.row == 4) {
+                
+                if (Default_IsUserLogin_Value) {
+                  
+                    return 50;
+                }
+                else{
+                    return 0;
+                }
+
+            }
+            if (indexPath.row == 1) {
+                return 100;
             }
             else{
-                return 0;
+                return 50;
             }
+                       
         }
-        if (indexPath.section == 2 && indexPath.row == 1) {
-            return 100;
-        }
-        else{
-            return 50;
-        }
-
+       
+       
     }
     else{
         if (indexPath.section == 0) {
@@ -379,26 +386,46 @@
         if (indexPath.section == 2 ) {
             return 100;
         }
-        if (indexPath.section == 3 && indexPath.row == 0) {
-            firstCellText = [self.firstCelTextArr objectAtIndex:0];
-            
-            CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f);//可接受的最大大小的字符串
-            
-            CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
-            
-            CGFloat height = MAX(size.height, 50.0f);
-            
-            return height;
+        if (indexPath.section == 3 ) {
+            if (indexPath.row == 0) {
+                firstCellText = [self.firstCelTextArr objectAtIndex:0];
+                
+                CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f);//可接受的最大大小的字符串
+                
+                CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
+                
+                CGFloat height = MAX(size.height, 50.0f);
+                
+                return height;
 
+            }
+            
+            if (indexPath.row == 1) {
+                return 100;
+            }
+            if (indexPath.row == 4) {
+                
+                if (Default_IsUserLogin_Value) {
+                    
+                    return 50;
+                }
+                else{
+                    return 0;
+                }
+                
+            }
+
+            else{
+                return 50;
+            }
+           
         }
-        if (indexPath.section == 3 && indexPath.row == 1) {
-            return 100;
-        }
-        else{
-            return 50;
-        }
+     
+       
 
     }
+    
+     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -436,6 +463,9 @@
                 
                 cell.date.text = self.searchDate.beginDate;
                 
+                cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+                
                 return cell;
                 break;
             }
@@ -463,31 +493,34 @@
                 cell.changeTicket.tag = 2;
                 [cell.changeTicket addTarget:self action:@selector(changeTwoInfo:) forControlEvents:UIControlEventTouchUpInside]; // 记录退改签
                 
+                cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+                
                 return cell;
                 break;
                 
             }
             case 3:
             {
-                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 6) {
+                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 ) {
                     static NSString *CellIdentifier = @"Cell3";
                     WriterOrderCommonCell *cell = (WriterOrderCommonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                    if (!cell)
+                   if (!cell)
                     {
                         [[NSBundle mainBundle] loadNibNamed:@"WriterOrderCommonCell" owner:self options:nil];
-                    cell = self.writerOrderCommonCell;
-                }
-                switch (indexPath.row) {
-                    case 0:
-                    {
-                        firstCellText = [self.firstCelTextArr objectAtIndex:0];;
-                        
-                        CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
-                        
-                        CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
-                        
-                        cell.secondLable.lineBreakMode = UILineBreakModeCharacterWrap;
-                        
+                        cell = self.writerOrderCommonCell;
+                    }
+                    switch (indexPath.row) {
+                        case 0:
+                        {
+                            firstCellText = [self.firstCelTextArr objectAtIndex:0];;
+                            
+                            CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
+                            
+                            CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
+                            
+                            cell.secondLable.lineBreakMode = UILineBreakModeCharacterWrap;
+                            
                         cell.secondLable.frame = CGRectMake(110, 0, 196, MAX(size.height, 50.0f));
                         
                         cell.firstLable.frame = CGRectMake(21, 0, 196, MAX(size.height, 50.0f));
@@ -516,11 +549,6 @@
                         cell.firstLable.text = @"活动促销减免";
                         cell.imageLabel.hidden = YES;
                         break;
-                    case 6:
-                        cell.firstLable.text = @"";
-                        cell.accessoryType = UITableViewCellAccessoryNone;
-                        cell.imageLabel.hidden = YES;
-                        break;
                     case 2:
                         cell.firstLable.text = @"购买保险";
                         
@@ -531,6 +559,10 @@
                     default:
                         break;
                 }
+                    
+                    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                    cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+                    
                 return cell;
             }
             if (indexPath.row == 1) {
@@ -549,6 +581,9 @@
                 cell.nameField.text = [addPersonArr objectAtIndex:0];
                 cell.phoneField.text = [addPersonArr objectAtIndex:1];
                 
+                
+                cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
                 return cell;
             }
             if (indexPath.row == 4) {
@@ -562,14 +597,21 @@
                 }
                 if (Default_IsUserLogin_Value) {
                 
+                    
+                    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                    cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+                    
                     return cell;
 
                 }
                 else
                 {
+
                     cell.hidden = YES;
                     return cell;
                 }
+                
+                
                 
             }
             break;
@@ -596,7 +638,7 @@
                 
                 cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
                 [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:0];
-              //  cell.userInteractionEnabled = NO;
+
                 
                 cell.HUButton.text = self.searchDate.temporaryLabel;
                 cell.airPortName.text = self.searchDate.airPort;
@@ -610,15 +652,20 @@
                 cell.changeTicket.tag = 1;
                 
                 [cell.changeTicket addTarget:self action:@selector(changeInfo:) forControlEvents:UIControlEventTouchUpInside]; // 记录退改签
+                
+                
+                cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
 
                 return cell;
                 break;
             }
             case 2:
             {
-                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 || indexPath.row == 6) {
+                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 ) {
                     static NSString *CellIdentifier = @"Cell3";
                     WriterOrderCommonCell *cell = (WriterOrderCommonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    
                     if (!cell)
                     {
                         [[NSBundle mainBundle] loadNibNamed:@"WriterOrderCommonCell" owner:self options:nil];
@@ -662,15 +709,16 @@
                             cell.firstLable.text = @"促销活动减免";
                             cell.imageLabel.hidden = YES;
                             break;
-                        case 6:
-                            cell.firstLable.text = @"";
-                            cell.accessoryType = UITableViewCellAccessoryNone;
-                            cell.imageLabel.hidden = YES;
-                            break;
+                        
                             
                         default:
                             break;
                     }
+                    
+                    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                    cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+
+                    
                     return cell;
                 }
                 if (indexPath.row == 1) {
@@ -681,8 +729,6 @@
                         [[NSBundle mainBundle] loadNibNamed:@"WriteOrderDetailsCell" owner:self options:nil];
                         cell = self.writeOrderDetailsCell;
                     }
-//                    cell.personName = [self.cellTitleArr objectAtIndex:1];
-//                    cell.phoneNumber = [self.cellTitleArr objectAtIndex:2];
                     
                     cell.nameField.delegate = self;
                     cell.phoneField.delegate = self;
@@ -691,13 +737,19 @@
                     cell.nameField.text = [addPersonArr objectAtIndex:0];
                     cell.phoneField.text = [addPersonArr objectAtIndex:1];
                     
-                    // cell.userInteractionEnabled = NO;
+                    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                    cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+                    
+                    
                     return cell;
                 }
                 if (indexPath.row == 4) {
                    
                     static NSString *CellIdentifier = @"Cell5";
                     WirterOrderTwoLineCell *cell = (WirterOrderTwoLineCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    
+                    
+                                       
                     if (!cell)
                     {
                         [[NSBundle mainBundle] loadNibNamed:@"WirterOrderTwoLineCell" owner:self options:nil];
@@ -706,12 +758,18 @@
                     }
                     if (Default_IsUserLogin_Value) {
                         
+          
+                        
+                        cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                        cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+
                         
                         return cell;
                         
                     }
                     else
                     {
+                 
                         cell.hidden = YES;
                         return cell;
                     }

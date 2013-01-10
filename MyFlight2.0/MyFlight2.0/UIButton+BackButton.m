@@ -24,17 +24,17 @@
             clickIamge = @"icon_return_click.png";
             break;
         case 2:
-            backBtn.frame = CGRectMake(0, 0, 40, 30);
+            backBtn.frame = CGRectMake(0, 0, 60, 30);
             normalImage = @"btn_2words.png";
             clickIamge = @"btn_2words_click.png";
             break;
         case 4:
-            backBtn.frame = CGRectMake(0, 0, 60, 30);
+            backBtn.frame = CGRectMake(0, 0, 80, 30);
             normalImage = @"btn_4words.png";
             clickIamge = @"btn_4words_click.png";
             break;
         case 5:
-            backBtn.frame = CGRectMake(0, 0, 30, 30);
+            backBtn.frame = CGRectMake(0, 0, 90, 30);
             normalImage = @"btn_5words.png";
             clickIamge = @"btn_5words_click.png";
            

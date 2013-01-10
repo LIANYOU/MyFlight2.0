@@ -13,5 +13,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *name;
 @property (retain, nonatomic) IBOutlet UILabel *iphone;
 @property (retain, nonatomic) IBOutlet UILabel *address;
+@property (retain, nonatomic) IBOutlet UILabel *nameOne;
+@property (retain, nonatomic) IBOutlet UILabel *phoneOne;
+@property (retain, nonatomic) IBOutlet UILabel *postOne;
 
 @end

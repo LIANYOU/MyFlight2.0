@@ -37,7 +37,7 @@
     
     float hight;
     
-    int flag1,flag2,flag3,flag4;
+    float postHight;  // 
     
     int allCount;  // 需要添加的view的个数
 }
@@ -99,6 +99,13 @@
 
     [_WjCell release];
     [_cellView release];
+    [_discountLabel release];
+    [_silverView release];
+    [_silverLabel release];
+    [_payOnlineview release];
+    [_payOnlineLabel release];
+    [_goldView release];
+    [_goldLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -117,6 +124,13 @@
 
     [self setWjCell:nil];
     [self setCellView:nil];
+    [self setDiscountLabel:nil];
+    [self setSilverView:nil];
+    [self setSilverLabel:nil];
+    [self setPayOnlineview:nil];
+    [self setPayOnlineLabel:nil];
+    [self setGoldView:nil];
+    [self setGoldLabel:nil];
     [super viewDidUnload];
 }
 
@@ -190,16 +204,16 @@
 {
     switch (indexPath.section) {
         case 0:
-            return 357 + self.tempView.frame.size.height;
+            return 203+self.dictionary.allKeys.count*32 + self.tempView.frame.size.height;
             break;
         case 1:
             return 94;
             break;
         case 2:
-            return 150;
+            return 153;
             break;
         case 3:
-            return 150;
+            return postHight;
             break;
         case 4:
             return 80;
@@ -236,6 +250,61 @@
         self.showTableView.separatorColor = [UIColor grayColor];
         
         [cell.orderAllPay addTarget:self action:@selector(change:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
+        cell.cellAddView.frame = CGRectMake(0, 196+self.tempView.frame.size.height, 320, self.dictionary.allKeys.count*32);
+        
+        cell.frame = CGRectMake(0, 0, 320, 203+self.dictionary.allKeys.count*32);
+        
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        int d = 0;
+        
+        if (self.dictionary.allKeys.count != 0) {
+            for (NSString * str in self.dictionary.allKeys) {
+                
+                if ([str isEqualToString:@"discount"]) {
+                    a = 1;
+                }
+                if ([str isEqualToString:@"xlbSilver"]) {
+                    b = 1;
+                }
+                if ([str isEqualToString:@"gold"]) {
+                    c = 1;
+                }
+                if ([str isEqualToString:@"payOnLine"]) {
+                    d = 1;
+                }
+            }
+            
+            
+            
+            if (a == 1) {
+                self.discountLabel.text = [NSString stringWithFormat:@"-￥%@",self.discountInfo.discount];
+                [cell.cellAddView addSubview:self.cellView];
+            }
+            if (b == 1) {
+                self.silverLabel.text = [NSString stringWithFormat:@"-￥%@",self.discountInfo.xlbSilver];
+                self.silverView.frame = CGRectMake(0, 32*a, 320, 32);
+                [cell.cellAddView addSubview:self.silverView];
+            }
+            if (c == 1) {
+                self.goldLabel.text = [NSString stringWithFormat:@"-￥%@",self.discountInfo.xlbGold];
+                self.goldView.frame = CGRectMake(0, 32*(a+b), 320, 32);
+                [cell.cellAddView addSubview:self.goldView];
+            }
+            if (d == 1) {
+                self.payOnlineLabel.text = [NSString stringWithFormat:@"￥%@",self.discountInfo.payOnLine];
+                self.payOnlineview.frame = CGRectMake(0, 32*(a+b+c), 320, 32);
+                [cell.cellAddView addSubview:self.payOnlineview];
+            }
+
+        }
+        
+        
+       
         
         if (self.order != nil) {
            
@@ -290,7 +359,7 @@
             
         }
         
-      //  if (self.inFlight != nil && indexPath.row == 1)
+
         if (indexPath.row == 1){
             
             [cell.imageBtn setBackgroundImage:[UIImage imageNamed:@"bg_green.png"] forState:0];
@@ -335,8 +404,21 @@
             if (indexPath.row == i) {                
                 cell.name.text = p.name;
                 cell.number.text = p.certNo;
-                cell.orderNo.text = p.etNo;
-                cell.orderInfo.text = p.insuranceCode;
+                
+                NSLog(@"---------------%@,,,,%@",p.etNo,p.insuranceCode);
+                 NSLog(@"---------------%d,,,,%d",p.etNo.length,p.insuranceCode.length);
+                if ([p.etNo isEqualToString:@"null"]) {
+                  
+                    cell.orderNo.text = @"暂无";
+                }
+                if ([p.insuranceCode isEqualToString:@"null"]) {
+                    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+                    cell.orderInfo.text = @"暂无";
+                }
+                else{
+                    cell.orderNo.text = p.etNo;
+                    cell.orderInfo.text = p.insuranceCode;
+                }
                 
             }
         }
@@ -354,6 +436,14 @@
             [[NSBundle mainBundle] loadNibNamed:@"JourneyCell" owner:self options:nil];
             cell = self.journeyCell;
             
+        }
+        
+        
+        if (postHight == 45) {
+            
+            cell.nameOne.hidden = YES;
+            cell.phoneOne.hidden = YES;
+            cell.postOne.hidden = YES;
         }
         
         cell.sendType.text = self.post.deliveryType;
@@ -449,37 +539,52 @@
         self.personArray = [NSArray arrayWithArray:[arr objectAtIndex:3]];
         self.post = [arr objectAtIndex:4];
         self.person = [arr objectAtIndex:5];
-        self.discountInfo = [arr objectAtIndex:6];
+     //   self.discountInfo = [arr objectAtIndex:6];
         
         
-        NSLog(@"********************************************  %@,,,,%@,,,,%@,,,,%@",self.discountInfo.xlbGold,self.discountInfo.xlbSilver,self.discountInfo.netAmount,self.discountInfo.payOnLine);
+        //*************************** 动态变化邮寄行程单cell***********
         
-        
-        if (self.discountInfo.xlbGold == nil || [self.discountInfo.xlbGold isEqualToString:@"0"] ) {
-            flag1 = 1;
+        if ([self.post.deliveryType isEqualToString:@"0"]) {
+            
+            self.post.deliveryType = @"无需配送(低碳出行)";
+            
+            postHight = 45;
         }
-        if (self.discountInfo.xlbSilver == nil || [self.discountInfo.xlbSilver isEqualToString:@"0"] ) {
-            flag2 = 1;
+        if ([self.post.deliveryType isEqualToString:@"1"]) {
+            self.post.deliveryType = @"快递";
+            
+            postHight = 150;
+            
+        }
+        if ([self.post.deliveryType isEqualToString:@"2"]) {
+            self.post.deliveryType = @"挂号信";
+            
+            postHight = 150;
+            
+        }
+        
+
+        // **************  控制第一个cell中内容的动态变化***********
+        self.dictionary = [NSMutableDictionary dictionary];
+          
+        if (self.discountInfo.discount != nil && self.discountInfo.discount != @"0") {
+            [self.dictionary setObject:self.discountInfo.discount forKey:@"discount"];
+        }
+       
+        if (self.discountInfo.xlbSilver != nil  && self.discountInfo.xlbSilver != @"0") {
+            [self.dictionary setObject:self.discountInfo.xlbSilver forKey:@"xlbSilver"];
         }
 
-        if (self.discountInfo.netAmount == nil || [self.discountInfo.netAmount isEqualToString:@"0"] ) {
-            flag3 = 1;
+        if (self.discountInfo.xlbGold != nil && self.discountInfo.xlbGold != @"0") {
+            [self.dictionary setObject:[NSString stringWithFormat:@"%d",[self.discountInfo.xlbGold intValue]+[self.discountInfo.netAmount intValue]] forKey:@"gold"];
         }
 
-        if (self.discountInfo.payOnLine == nil || [self.discountInfo.payOnLine isEqualToString:@"0"] ) {
-            flag4 = 1;
+        if (self.discountInfo.payOnLine != nil && self.discountInfo.payOnLine != @"0") {
+            [self.dictionary setObject:self.discountInfo.payOnLine forKey:@"payOnLine"];
         }
 
-        allCount = flag1+flag2+flag3+flag4;
-        
-//        for (int i = 0; i<allCount; i++) {
-//            <#statements#>
-//        }
-        
-        
-        
-      
-        
+        // **************************  动态变化乘机人的票钱信息  **************************
+               
         Passenger * person = [[Passenger alloc] init];
         Passenger * goPerson = [[Passenger alloc] init];
         Passenger * child = [[Passenger alloc] init];
@@ -550,13 +655,7 @@
         self.childInsure.text = [NSString stringWithFormat:@"￥%d",[child.insurance intValue] + [goChild.insurance intValue]];
         self.childMunber.text = [NSString stringWithFormat:@"%d",childCount];
         
-        
-        
-        
-        
-        
-        
-        
+
         [self.showTableView reloadData];
 
     }

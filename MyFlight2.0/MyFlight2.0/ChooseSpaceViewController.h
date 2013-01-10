@@ -82,6 +82,7 @@
 
 - (void)changeFlightInfo:(UIButton *)sender;
 
+@property (retain, nonatomic) IBOutlet UIView *cellSelectedView;
 
 @property (retain, nonatomic) IBOutlet UIButton *lookFlightBtn;
 

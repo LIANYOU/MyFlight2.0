@@ -31,6 +31,7 @@
 
 @property (nonatomic, retain) NSMutableArray * fristArr;
 @property (nonatomic, retain) NSMutableArray * secArr;
+@property (nonatomic, retain) NSMutableDictionary * dictionary;
 
 
 @property (retain, nonatomic) NSArray * discountArr;  // 接受传递过来的优惠信息
@@ -52,6 +53,19 @@
 
 
 @property (retain, nonatomic) IBOutlet UIView *cellView;
+@property (retain, nonatomic) IBOutlet UILabel *discountLabel;
+
+@property (retain, nonatomic) IBOutlet UIView *silverView;
+@property (retain, nonatomic) IBOutlet UILabel *silverLabel;
+
+
+@property (retain, nonatomic) IBOutlet UIView *goldView;
+@property (retain, nonatomic) IBOutlet UILabel *goldLabel;
+
+
+
+@property (retain, nonatomic) IBOutlet UIView *payOnlineview;
+@property (retain, nonatomic) IBOutlet UILabel *payOnlineLabel;
 
 // ********  展示成人和儿童的价格
 

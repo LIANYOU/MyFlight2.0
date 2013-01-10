@@ -48,7 +48,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MC45Mjk0MTE3NjQ3IDAuOTA5ODAzOTIxNiAwLjg4NjI3NDUwOTgAA</bytes>
+							<bytes key="NSRGB">MC45NzI1NDkwMTk2IDAuOTYwNzg0MzEzNyAwLjk0NTA5ODAzOTIAA</bytes>
 						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -249,7 +249,10 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUINormalTitle">2012年</string>
-						<reference key="IBUIHighlightedTitleColor" ref="588420578"/>
+						<object class="NSColor" key="IBUIHighlightedTitleColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC4xMDE5NjA3OTMxIDAuMjc4NDMxMzg1OCAwLjU1Njg2Mjc3MTUAA</bytes>
+						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
@@ -263,7 +266,12 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">select_date.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="608554669"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<string key="name">Helvetica-Bold</string>
+							<string key="family">Helvetica</string>
+							<int key="traits">2</int>
+							<double key="pointSize">15</double>
+						</object>
 						<reference key="IBUIFont" ref="380102406"/>
 					</object>
 					<object class="IBUIButton" id="922793090">
