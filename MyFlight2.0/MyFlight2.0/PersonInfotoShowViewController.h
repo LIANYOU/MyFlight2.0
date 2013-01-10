@@ -14,7 +14,14 @@
 
 @property (retain, nonatomic) IBOutlet UIView *thisView;
 
-//账户名 
+
+
+
+
+@property (retain, nonatomic) IBOutlet UILabel *accountNameLabel;
+
+
+
 @property (retain, nonatomic) IBOutlet UIButton *userNameLabel;
 
 //用户姓名 

@@ -137,6 +137,9 @@
     
     [super viewDidLoad];
     
+    CCLog(@"订单列表项目：%d",[tmpArray count]);
+    
+    
     [self setNav];
     
     [self initThisView];

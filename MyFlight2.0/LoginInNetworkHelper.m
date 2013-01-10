@@ -607,7 +607,7 @@
     
     
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@",memberID,SOURCE_VALUE,Default_Token_Value];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@",memberID,@"iPhone",Default_Token_Value];
     NSString *sign = GET_SIGN(urlString);
     
     CCLog(@"编辑账号界面 memberId = %@ name = %@ sex = %@ address = %@",memberID,name,sex,address);
@@ -628,7 +628,7 @@
     [formRequst setPostValue:sign forKey:KEY_SIGN];
     [formRequst setPostValue:HWID_VALUE forKey:KEY_hwId];
     [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
-    [formRequst setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [formRequst setPostValue:@"iPhone" forKey:KEY_source];
     [formRequst setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
     
     
@@ -1379,6 +1379,7 @@
                 NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
                 
                 [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
+                
                 [self getCommonPassenger:dic delegate:nil];
                 [dic release];
                 

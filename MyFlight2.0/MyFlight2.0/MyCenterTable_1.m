@@ -65,37 +65,6 @@
 }
 
 
-- (void) updateThisViewWhenSuccess{
-    
-    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
-    
-    //用户已经登录的情况下 显示用户相关的信息
-    
-    IsLoginInSingle *userSingle = [IsLoginInSingle shareLoginSingle];
-    
-    self.accountString = Default_AccountName_Value;
-    
-    self.allAccountMoneyString= userSingle.userAccount.account;
-    
-    self.goldMoneyString= userSingle.userAccount.xinlvGoldMoeny;
-    self.silverMoneyString= userSingle.userAccount.xinlvSilverMoney;
-    
-    MyCenterSecondCell *cell =(MyCenterSecondCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    cell.accountMoneyLabel.text = self.allAccountMoneyString;
-    cell.goldMoneyLabel.text = self.goldMoneyString;
-    cell.silverMoneyLabel.text = self.silverMoneyString;
-    
-    MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    thisCell.detailLabel.text = self.accountString;
-    
-    CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
-    CCLog(@"银币 %@",self.silverMoneyString);
-    //    [self.thisTableView reloadData];
-    
-}
-
-
-
 
 - (void) loginOut{
     
@@ -123,21 +92,7 @@
 
 #pragma mark -
 #pragma mark 设置导航栏
-//- (void) setNav{
-//
-//
-//
-//
-//    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonSystemItemSave target:self action:@selector(loginOut)];
-//
-//    right.tintColor = [UIColor colorWithRed:35/255.0 green:103/255.0 blue:188/255.0 alpha:1];
-//
-//    self.navigationItem.rightBarButtonItem = right;
-//
-//    [right release];
-//
-//
-//}
+
 
 
 - (void) setNav{
@@ -155,36 +110,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    CommonContact *data = [[CommonContact alloc] init];
-//    data.contactId = @"1234567";
-//    data.name= @"fuck/you";
-//    data.type =@"01";
-//    data.certType=@"1";
-//    data.certNo =@"768769823176492384671";
-//    data.birtyhday = @"1991-12-14";
-//    
-//    data.contactId = @"133";
-//    
-//    [CommonContact_LocalTmpDBHelper addCommonContact_UnLogin:data];
-//    
-//    
-//    
-//    [CommonContact_LocalTmpDBHelper deleteCommonContact_UnLogin:data];
-//    
-//    //    [CommonContact_LocalTmpDBHelper findAllCommonContact_UnLogin];
-//    
-//    data.name = @"fuck/youbitch";
-//    
-//    //    [CommonContact_LocalTmpDBHelper updateCommonContact_UnLogin:data];
-//    
-//    
-//    
-//    [CommonContact_LocalTmpDBHelper findAllCommonContact_UnLogin];
-//    
-    
-    
+    cellsum = 1;
     [self setNav];
+    
+    nameResultArray =[[NSMutableArray alloc] init];
     
     LoginBusiness *busi = [[LoginBusiness alloc] init];
     
@@ -195,10 +124,11 @@
     [busi getAccountInfoWithMemberId:memberId andDelegate:self];
     
     
-    self.accountString = @"";
-    self.allAccountMoneyString = @"0";
-    self.goldMoneyString =@"0";
-    self.silverMoneyString =@"0";
+    
+    self.accountString = [NSString stringWithFormat:@"%d",0];
+    self.allAccountMoneyString = [NSString stringWithFormat:@"%d",0];
+    self.goldMoneyString =[NSString stringWithFormat:@"%d",0];
+    self.silverMoneyString =[NSString stringWithFormat:@"%d",0];
     
     imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"icon_atv.png"],[UIImage imageNamed:@"icon_Coupon.png"],[UIImage imageNamed:@"icon_Recharge.png"] ,nil];
     nameArray =[[NSArray alloc] initWithObjects:@"常用联系人信息",@"我订阅的低价航线",@"用心愿旅行卡充值", nil];
@@ -217,23 +147,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     
     return 3;
 }
 
 
-//
-//- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//
-//
-//    return 20;
-//
-//}
 
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     NSInteger height= 50;
     
     if (indexPath.section ==0) {
@@ -253,7 +176,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     NSInteger number =0;
     
     if (section == 0) {
@@ -272,12 +195,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    
     if (indexPath.section ==0) {
         
         NSLog(@"000000000000");
         static NSString *CellIdentifier = @"Cell";
         
         MyCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
         if (cell == nil) {
             
             NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:self options:nil];
@@ -286,7 +213,7 @@
         }
         
         cell.titleLabel.text = @"个人资料";
-        cell.detailLabel.text = self.accountString;
+//           cell.detailLabel.text = self.accountString;
         cell.thisImageView.image = [UIImage imageNamed:@"icon_acc.png"];
         
         return cell;
@@ -309,11 +236,14 @@
                 cell = [[[array objectAtIndex:0] retain] autorelease];
             }
             
-            CCLog(@"金币*****%@",self.allAccountMoneyString);
+//            CCLog(@"金币*****%@",self.allAccountMoneyString);
+            //
+            //            if (cellsum == 1) {
+            //                cell.accountMoneyLabel.text =@"888888";
+            //            }else{
+            //            cell.accountMoneyLabel.text =@"999999";
+            //            }
             
-            //            cell.accountMoneyLabel.text =self.allAccountMoneyString;
-            //            cell.goldMoneyLabel.text = self.goldMoneyString;
-            //            cell.silverMoneyLabel.text= self.silverMoneyString;
             return  cell;
         }
         
@@ -323,6 +253,7 @@
             static NSString *CellIdentifier = @"Cell_1";
             
             MyCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
             if (cell == nil) {
                 
                 NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:self options:nil];
@@ -490,35 +421,61 @@
 
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
-    
+    cellsum = 2;
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
-    
-    //    [self updateThisViewWhenSuccess];
-    
-    
     
     IsLoginInSingle *userSingle = [IsLoginInSingle shareLoginSingle];
     
-    
     self.accountString = Default_AccountName_Value;
     
-    //    self.allAccountMoneyString= userSingle.userAccount.account;
-    //
-    //    self.goldMoneyString= userSingle.userAccount.xinlvGoldMoeny;
-    //    self.silverMoneyString= userSingle.userAccount.xinlvSilverMoney;
-    //
-    //    MyCenterSecondCell *cell =(MyCenterSecondCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    //    cell.accountMoneyLabel.text = self.allAccountMoneyString;
-    //    cell.goldMoneyLabel.text = self.goldMoneyString;
-    //    cell.silverMoneyLabel.text = self.silverMoneyString;
-    //
-    //    MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    //    thisCell.detailLabel.text = self.accountString;
-    //
-    //    CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
-    //    CCLog(@"银币 %@",self.silverMoneyString);
+    CCLog(@"返回的到个人中心首页；***************");
+    CCLog(@"资金账户：%@",userSingle.userAccount.account);
+    CCLog(@"金币：%@",userSingle.userAccount.xinlvGoldMoeny);
+    CCLog(@"银币：%@",userSingle.userAccount.xinlvSilverMoney);
+    CCLog(@"用户名为：%@",self.accountString);
     
     
+    
+    self.allAccountMoneyString= userSingle.userAccount.account;
+    self.goldMoneyString= userSingle.userAccount.xinlvGoldMoeny;
+    self.silverMoneyString= userSingle.userAccount.xinlvSilverMoney;
+    //
+    
+    
+    CCLog(@"资金账户：%@",self.allAccountMoneyString);
+    CCLog(@"金币：%@",self.goldMoneyString);
+    CCLog(@"银币：%@",self.silverMoneyString);
+    CCLog(@"用户名为：%@",self.accountString);
+
+    
+    
+    MyCenterSecondCell *secondCell =(MyCenterSecondCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    
+    
+    CCLog(@"更新cell 之前 ：%@", secondCell.accountMoneyLabel.text);
+    
+    //    cell.goldMoneyLabel.text = @"1311241";
+    NSString *string = self.allAccountMoneyString;
+    
+    [secondCell.accountMoneyLabel setText:[NSString stringWithFormat:@"%@",_allAccountMoneyString]];
+    
+    
+    [secondCell.goldMoneyLabel setText:[NSString stringWithFormat:@"%@",_goldMoneyString]];
+    
+    secondCell.silverMoneyLabel.text = [NSString stringWithFormat:@"%@",_silverMoneyString];
+    
+//    secondCell.silverMoneyLabel.text = _silverMoneyString;
+    
+    
+    
+    MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    
+    thisCell.detailLabel.text = [NSString stringWithFormat:@"%@",_accountString];
+    
+    CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
+    CCLog(@"银币 %@",self.silverMoneyString);
+    
+//     [self.thisTableView reloadData];
     
     
 }

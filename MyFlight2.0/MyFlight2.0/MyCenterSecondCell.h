@@ -17,4 +17,6 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *silverMoneyLabel;
 
+
+
 @end

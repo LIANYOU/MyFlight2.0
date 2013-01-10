@@ -1007,6 +1007,7 @@
 		1474CE00169D12F400FF6761 /* MyLocalOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocalOrderListViewController.h; sourceTree = "<group>"; };
 		1474CE01169D12F400FF6761 /* MyLocalOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocalOrderListViewController.m; sourceTree = "<group>"; };
 		1474CE02169D12F400FF6761 /* MyLocalOrderListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLocalOrderListViewController.xib; sourceTree = "<group>"; };
+		1474CE13169E738900FF6761 /* TipConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipConfigure.h; sourceTree = "<group>"; };
 		14805A0E1676F04B00836353 /* AppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigure.h; sourceTree = "<group>"; };
 		14805A0F1676F0DF00836353 /* AirPortsUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortsUility.h; sourceTree = "<group>"; };
 		14805A101676F13000836353 /* PublicConstUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicConstUrls.h; sourceTree = "<group>"; };
@@ -2651,6 +2652,14 @@
 			name = "本地订单";
 			sourceTree = "<group>";
 		};
+		1474CE11169E736200FF6761 /* tip */ = {
+			isa = PBXGroup;
+			children = (
+				1474CE13169E738900FF6761 /* TipConfigure.h */,
+			);
+			name = tip;
+			sourceTree = "<group>";
+		};
 		148059CE1676E65D00836353 /* CityAndAirPorts */ = {
 			isa = PBXGroup;
 			children = (
@@ -2669,6 +2678,7 @@
 		148059D01676E6BE00836353 /* configure */ = {
 			isa = PBXGroup;
 			children = (
+				1474CE11169E736200FF6761 /* tip */,
 				14633E3516954CE700701518 /* frequentFly */,
 				149B7812168D97D7006281A3 /* constClassInfo */,
 				14805A0E1676F04B00836353 /* AppConfigure.h */,
@@ -4730,11 +4740,8 @@
 				14935582169CA32E00F66E87 /* aisle.png in Resources */,
 				18D0D68A169C985C0028995B /* OneWayCheckViewController.xib in Resources */,
 				18D0D692169CDB500028995B /* orderListForNoLogin.sqlite in Resources */,
-
 				18CED548169D571B00CE2B92 /* TrafficCell.xib in Resources */,
-
 				1474CE04169D12F400FF6761 /* MyLocalOrderListViewController.xib in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5007,14 +5014,11 @@
 				1842B508169C65E7007FA603 /* SearchFlightConditionCell.m in Sources */,
 				18D0D689169C985C0028995B /* OneWayCheckViewController.m in Sources */,
 				18D0D690169CD0C40028995B /* OrderDatabase.m in Sources */,
-
 				18D0D6A3169D452F0028995B /* DiscountGoldInfo.m in Sources */,
 				18CED545169D56FD00CE2B92 /* TrafficCell.m in Sources */,
 				18CED550169D6CE000CE2B92 /* FeedbackViewController.m in Sources */,
 				18CED553169D6D2400CE2B92 /* AboutViewController.m in Sources */,
-
 				1474CE03169D12F400FF6761 /* MyLocalOrderListViewController.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

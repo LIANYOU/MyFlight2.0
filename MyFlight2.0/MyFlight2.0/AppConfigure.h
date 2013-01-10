@@ -17,6 +17,7 @@
 
 #import "flightBookingUility.h"
 #import "FrequentFlyUility.h"
+#import "TipConfigure.h"
 
 
 #define  KEY_Default_StartAirPort @"startAirPort"

@@ -41,6 +41,12 @@
     
 }
 
+- (void)back{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 
 - (void)viewDidLoad
 {
@@ -85,6 +91,7 @@
     [textField resignFirstResponder];
     return true;
 }
+
 
 #pragma mark - Table view data source
 

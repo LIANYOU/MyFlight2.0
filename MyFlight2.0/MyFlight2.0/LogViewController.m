@@ -204,6 +204,9 @@
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
     //    用户输入什么就会记录 用户账户的默认值
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    
+    CCLog(@"保存的用户名：%@",logNumber.text);
     
     [[NSUserDefaults standardUserDefaults] setObject:logNumber.text forKey:KEY_Default_AccountName];
     
@@ -236,7 +239,7 @@
     NSLog(@"用户id =%@",idUser);
     NSLog(@"token = %@",token);
     
-    sleep(1);
+//    sleep(1);
     
     
     [self performSelectorInBackground:@selector(initLocalDatabase) withObject:nil];
@@ -245,12 +248,10 @@
         
     
     if ([self.loginSuccessReturnType isEqualToString:Login_Success_ReturnMyCenterDefault_Type]) {
+        CCLog(@"默认返回我的个人中心操作");
+    
         
-//        MyNewCenterViewController *center = [[MyNewCenterViewController alloc] init];
-//        
-//        UINavigationController *con  =[[UINavigationController alloc] initWithRootViewController:center];
-//        
-//        [center release];
+        
         
         MyCenterTable_1 *controller = [[MyCenterTable_1 alloc] init];
         
@@ -263,12 +264,7 @@
         //更新界面
         [self presentViewController:con animated:YES completion:^{
             
-            if ([controller respondsToSelector:@selector(updateThisViewWhenSuccess)]) {
-                
-//                 [controller updateThisViewWhenSuccess];
-                
-            }
-            
+                     
            
             
         }];

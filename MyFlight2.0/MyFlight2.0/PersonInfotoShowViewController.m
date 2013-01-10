@@ -12,6 +12,9 @@
 #import "PersonalInfoViewController.h"
 #import "UIQuickHelp.h"
 #import "AppConfigure.h"
+#import "IsLoginInSingle.h"
+#import "AppConfigure.h"
+#import "UserAccount.h"
 @interface PersonInfotoShowViewController ()
 
 @end
@@ -70,26 +73,51 @@
 }
 
 
+- (void) viewWillAppear:(BOOL)animated{
+    
+    
+    [super viewWillAppear:YES];
+    
+    
+    [self initPersonInfo];
+}
 
 
 
 - (void) editPersonalInfo{
+    
+    
+    
     
     PersonalInfoViewController *infoCcontroller = [[PersonalInfoViewController alloc] init];
     
     [self.navigationController pushViewController:infoCcontroller animated:YES];
     
     [infoCcontroller release];
+  
+}
+
+
+- (void) initPersonInfo{
     
-   
+    IsLoginInSingle *single = [IsLoginInSingle shareLoginSingle];
+    self.accountNameLabel.text =Default_AccountName_Value;
+    self.nameLabel.text =single.userAccount.name;
+    self.sexLabel.text =single.userAccount.sex;
+    self.detailAddressLabel.text = single.userAccount.addr;
+    
     
     
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self setNav];
+    
+    [self initPersonInfo];
+    
     
     [UIQuickHelp setRoundCornerForView:self.thisView withRadius:8];
     
@@ -119,6 +147,7 @@
     [_nameLabel release];
     [_sexLabel release];
     [_detailAddressLabel release];
+    [_accountNameLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -127,6 +156,7 @@
     [self setNameLabel:nil];
     [self setSexLabel:nil];
     [self setDetailAddressLabel:nil];
+    [self setAccountNameLabel:nil];
     [super viewDidUnload];
 }
 @end

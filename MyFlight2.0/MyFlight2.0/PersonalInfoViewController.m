@@ -10,6 +10,8 @@
 #import "UIQuickHelp.h"
 #import "AppConfigure.h"
 #import "LoginBusiness.h"
+#import "IsLoginInSingle.h"
+#import "UserAccount.h"
 @interface PersonalInfoViewController ()
 
 @end
@@ -34,11 +36,39 @@
 
 - (void) save {
     
-    LoginBusiness  *bis = [[LoginBusiness alloc] init];
+    NSString *name= [self.personalName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *sex =[self.sexName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *address =[self.detailAddress.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    [bis editAccountInfoWithMemberId:Default_UserMemberId_Value userName:@"代俊友爱" userSex:@"男" userAddress:@"保密" andDelegate:self];
-    [bis release];
     
+    
+    if ([name length]==0) {
+        
+        [UIQuickHelp showAlertViewWithTitle:AlertView_Title_Message message:@"请输入姓名" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        
+    } else if([address length]==0){
+        
+        [UIQuickHelp showAlertViewWithTitle:AlertView_Title_Message message:@"请输入地址" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        
+    } else{
+        
+        
+        NSString *sexNet = nil;
+        
+        if ([sex isEqualToString:@"男"]) {
+            sexNet =@"0";
+        } else{
+            sexNet = @"1";
+        }
+        
+        
+        LoginBusiness  *bis = [[LoginBusiness alloc] init];
+        
+        [bis editAccountInfoWithMemberId:Default_UserMemberId_Value userName:name userSex:sexNet userAddress:address andDelegate:self];
+        [bis release];
+        
+        
+    }
     
     
 }
@@ -69,9 +99,31 @@
     
 }
 
+
+//初始化视图
+- (void) initThisView{
+    
+    IsLoginInSingle *single =[IsLoginInSingle shareLoginSingle];
+    self.personalName.text =single.userAccount.name;
+    self.detailAddress.text = single.userAccount.addr;
+    
+    if ([single.userAccount.sex isEqualToString:@"男"]) {
+        
+        self.sexChoice.selectedSegmentIndex=0;
+        
+    } else{
+        
+        self.sexChoice.selectedSegmentIndex=1;
+
+    }
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initThisView];
     [self setNav];
     // Do any additional setup after loading the view from its nib.
 }
@@ -140,13 +192,29 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
     
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    IsLoginInSingle *single =[IsLoginInSingle shareLoginSingle];
     
+    single.userAccount.name = self.personalName.text;
+    single.userAccount.addr = self.detailAddress.text;
+    single.userAccount.sex = self.sexName.text;
     
-    
-    
-    
-    
+    [self.navigationController popViewControllerAnimated:YES];
+        
 }
 
 
+- (IBAction)segmentForSex:(UISegmentedControl *)sender {
+    
+    if (sender.selectedSegmentIndex==0) {
+        
+        
+        self.sexName.text = @"男";
+    } else{
+        
+        self.sexName.text = @"女";
+    }
+    
+    
+}
 @end
