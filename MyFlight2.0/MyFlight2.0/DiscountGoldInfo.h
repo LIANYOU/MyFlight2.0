@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSString * netAmount;
 @property (nonatomic, retain) NSString * payOnLine;
 
+@property (nonatomic, retain) NSString * discount;
 
 @end

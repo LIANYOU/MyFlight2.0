@@ -20,6 +20,7 @@
 #import "MonthDayCell.h"
 #import "SelectCalendarController.h"
 #import "UIButton+BackButton.h"
+#import "ColorUility.h"
 @interface ShowSelectedResultViewController ()
 {
     int beforeFlag;
@@ -626,6 +627,13 @@
         cell.pay.text =[NSString stringWithFormat:@"￥%d",data.pay] ; // Y仓价格
         cell.discount.text = data.discount; // 仓位折扣
         cell.ticketCount.text = data.ticketCount; // 剩余票数
+        
+        
+        
+        cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+        cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+      
+        
         
         return cell;
         

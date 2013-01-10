@@ -39,6 +39,7 @@
     [_gold release];
     [_payOnline release];
     [_allPayLabel release];
+    [_cellAddView release];
     [super dealloc];
 }
 @end

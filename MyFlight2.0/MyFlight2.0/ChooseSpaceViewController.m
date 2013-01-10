@@ -17,6 +17,7 @@
 #import "AppConfigure.h"
 #import "GetAttentionFlight.h"
 #import "UIButton+BackButton.h"
+#import "ColorUility.h"
 #define FONT_SIZE 8.0f
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 105.0f
@@ -55,6 +56,7 @@
 
 
     self.showTableView.tableFooterView = self.footView;
+    
     
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
@@ -212,6 +214,7 @@
     [_lookButton release];
     [_goORBackLabel release];
     [_footView release];
+    [_cellSelectedView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -232,6 +235,7 @@
     [self setLookButton:nil];
     [self setGoORBackLabel:nil];
     [self setFootView:nil];
+    [self setCellSelectedView:nil];
     [super viewDidUnload];
 }
 
@@ -330,66 +334,77 @@
         }
 
         
-           
-            dic = [self.dateArr objectAtIndex:indexPath.row-1];
-//        if (dic == nil) {
-//            NSLog(@"-----------------------");
-//        }
-            cell.SpaceName.text = [dic objectForKey:@"cabinCN"];
-            cell.payMoney.text = [NSString stringWithFormat:@"￥%@",[dic objectForKey:@"price"]];
-            cell.ticketCount.text = [TransitionString transitionSeatNum: [dic objectForKey:@"seatNum"] ];
-            
-            if ([cell.ticketCount.text isEqualToString:@"已售空"]) {
-                cell.ticketCount.textColor = [UIColor redColor];
-                cell.sortImage.hidden = YES;
-            }
-            
-            
-            cell.discount.text = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"cabinCode"] andCabinName:[dic objectForKey:@"cabinCN"]];
-            
-            
-            
-            cell.changeSpace.tag = indexPath.row;
-            
-            
-            _firstCellText = [self.tempArr objectAtIndex:indexPath.row-1];
-            
-            
-            CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
-            
-            CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
-            
-            if ( _firstCellText != @"" &&  size.height < 20) {
-                size.height = 25;
-            }
-            
-            cell.view.frame = CGRectMake(0, 0, 320, size.height+60.0f);
-            cell.textCell.lineBreakMode = UILineBreakModeCharacterWrap;
-            cell.textView.frame = CGRectMake(0, 60, 320, size.height);
-            cell.textCell.frame = CGRectMake(10,0, 300, size.height);
-            cell.selectBtn.frame = CGRectMake(10,0, 300, size.height);
-            
-            cell.textView.backgroundColor = [UIColor colorWithRed:237/255.0 green:232/255.0 blue:226/255.0 alpha:1];
-            cell.textCell.font = [UIFont systemFontOfSize:12.0f];
-            cell.textCell.text = _firstCellText;
-            UIColor * myColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
-            cell.textCell.textColor = myColor;
-            cell.wImage.frame = CGRectMake(0, size.height+60.0f, 320, 1);
-            cell.dImage.frame = CGRectMake(0, size.height+61.0f, 320, 1);
-            
-            
-            [cell.selectBtn addTarget:self action:@selector(select:) forControlEvents:UIControlEventTouchUpInside];
-            
-            cell.selectionStyle = 2;
-            
-            
-            [cell.changeSpace addTarget:self action:@selector(changeFlightInfo:) forControlEvents:UIControlEventTouchUpInside];
-            
-            return cell;
-            
-
+        
+        
+        
+        dic = [self.dateArr objectAtIndex:indexPath.row-1];
+        
+        cell.SpaceName.text = [dic objectForKey:@"cabinCN"];
+        cell.payMoney.text = [NSString stringWithFormat:@"￥%@",[dic objectForKey:@"price"]];
+        cell.ticketCount.text = [TransitionString transitionSeatNum: [dic objectForKey:@"seatNum"] ];
+        
+        if ([cell.ticketCount.text isEqualToString:@"已售空"]) {
+            cell.ticketCount.textColor = [UIColor redColor];
+            cell.sortImage.hidden = YES;
+        }
+        
+        
+        cell.discount.text = [TransitionString transitionDiscount:[dic objectForKey:@"discount"] andCanbinCode:[dic objectForKey:@"cabinCode"] andCabinName:[dic objectForKey:@"cabinCN"]];
+        
+        
+        
+        cell.changeSpace.tag = indexPath.row;
+        
+        
+        _firstCellText = [self.tempArr objectAtIndex:indexPath.row-1];
+        
+        
+        CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 10000.0f); // 动态控制cell的frame
+        
+        CGSize size = [_firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
+        
+        if ( _firstCellText != @"" &&  size.height < 20) {
+            size.height = 25;
+        }
+        
+        cell.view.frame = CGRectMake(0, 0, 320, size.height+60.0f);
+        cell.textCell.lineBreakMode = UILineBreakModeCharacterWrap;
+        cell.textView.frame = CGRectMake(0, 60, 320, size.height);
+        cell.textCell.frame = CGRectMake(10,0, 300, size.height);
+        cell.selectBtn.frame = CGRectMake(10,0, 300, size.height);
+        
+        cell.textView.backgroundColor = [UIColor colorWithRed:237/255.0 green:232/255.0 blue:226/255.0 alpha:1];
+        cell.textCell.font = [UIFont systemFontOfSize:12.0f];
+        cell.textCell.text = _firstCellText;
+        UIColor * myColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
+        cell.textCell.textColor = myColor;
+        cell.wImage.frame = CGRectMake(0, size.height+60.0f, 320, 1);
+        cell.dImage.frame = CGRectMake(0, size.height+61.0f, 320, 1);
+        
+        
+        [cell.selectBtn addTarget:self action:@selector(select:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.selectionStyle = 2;
+        
+        
+        [cell.changeSpace addTarget:self action:@selector(changeFlightInfo:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
+        cell.selectedBackgroundView = self.cellSelectedView;
+        cell.SpaceName.highlightedTextColor = View_BackGrayTitleOne_Color;
+        cell.payMoney.highlightedTextColor = FONT_Orange_Color;
+        cell.ticketCount.highlightedTextColor = View_BackGrayTitleTwo_Color;
+        cell.discount.highlightedTextColor = FONT_Orange_Color;
+        cell.textCell.highlightedTextColor = View_BackGrayTitleTwo_Color;
+        cell.selectBtn.highlighted = NO;
+        
+        
+        return cell;
+        
+        
     }
- }
+}
 
 
 #pragma mark - Table view delegatesearchFlight
@@ -490,13 +505,19 @@
 }
 - (void)changeFlightInfo:(UIButton *)send {
 
+    NewChooseSpaceCell *cell = (NewChooseSpaceCell *)[self.showTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:send.tag inSection:0]];
+    
     if (self.indexArr.count == 0) {
+         cell.sortimage.image = [UIImage imageNamed:@"blue_icon_up.png"];
         [self.indexArr addObject:[NSString stringWithFormat:@"%d",send.tag]];
     }
     else{
         for (NSString * str in self.indexArr) {
          
             if ([str intValue] == send.tag) {
+                
+                cell.sortimage.image = [UIImage imageNamed:@"blue_icon_down.png"];
+                
                 [self.tempArr replaceObjectAtIndex:send.tag-1 withObject:@""];
                 
                 [self.showTableView reloadData];
@@ -504,14 +525,26 @@
                 return;
             }
             else{
+                cell.sortimage.image = [UIImage imageNamed:@"blue_icon_up.png"];
+                
+                for (NSString * string in self.indexArr) {
+                    NewChooseSpaceCell *cell1 = (NewChooseSpaceCell *)[self.showTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[string intValue] inSection:0]];
+                    cell1.sortimage.image = [UIImage imageNamed:@"blue_icon_down.png"];
+                    
+                }
+                
+                
                 [self.indexArr removeAllObjects];
                 [self.indexArr addObject:[NSString stringWithFormat:@"%d",send.tag]];
             }
         }
     }
     
+    
+    
     self.tempArr = [[NSMutableArray alloc] init];
     for (int i = 0; i<self.dateArr.count; i++) {
+        
         [self.tempArr addObject:@""];
     }
     [self.tempArr replaceObjectAtIndex:send.tag-1 withObject:[self.changeInfoArr objectAtIndex:send.tag-1]];

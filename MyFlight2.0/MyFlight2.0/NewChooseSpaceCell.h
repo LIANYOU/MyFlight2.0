@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NewChooseSpaceCell : UITableViewCell
+@property (retain, nonatomic) IBOutlet UIImageView *sortimage;
 @property (retain, nonatomic) IBOutlet UILabel *SpaceName;
 @property (retain, nonatomic) IBOutlet UIButton *changeSpace;
 @property (retain, nonatomic) IBOutlet UILabel *payMoney;

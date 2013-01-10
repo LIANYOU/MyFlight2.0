@@ -31,6 +31,9 @@
     [_name release];
     [_iphone release];
     [_address release];
+    [_nameOne release];
+    [_phoneOne release];
+    [_postOne release];
     [super dealloc];
 }
 @end

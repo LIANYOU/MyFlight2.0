@@ -151,6 +151,15 @@
     
     DiscountGoldInfo * discountInfo = [[DiscountGoldInfo alloc] init];
     
+    NSArray * array = [dic objectForKey:@"prodCaptcha"];
+    
+    if (array.count != 0) {  // 暂时先取第一个，，以后一张机票可以用多张优惠券的时候在改
+        discountInfo.discount = [[array objectAtIndex:0] objectForKey:@"price"];
+    }
+    else{
+        discountInfo.discount = @"0";
+    }
+    
     discountInfo.xlbGold = [dic objectForKey:@"xlbGold"];
     discountInfo.xlbSilver = [dic objectForKey:@"xlbSilver"];
     discountInfo.netAmount = [dic objectForKey:@"netAmount"];

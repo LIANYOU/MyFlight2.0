@@ -23,4 +23,5 @@
 @property (retain, nonatomic) IBOutlet UILabel *slive;
 @property (retain, nonatomic) IBOutlet UILabel *gold;
 @property (retain, nonatomic) IBOutlet UILabel *payOnline;
+@property (retain, nonatomic) IBOutlet UIView *cellAddView;
 @end

@@ -59,10 +59,9 @@
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<string key="IBUIText">海南航空</string>
-										<object class="NSColor" key="IBUITextColor" id="106492305">
+										<object class="NSColor" key="IBUITextColor">
 											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwIDAAA</bytes>
-											<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+											<bytes key="NSRGB">MC4yIDAuMiAwLjIAA</bytes>
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
@@ -92,8 +91,8 @@
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<string key="IBUIText">737机型</string>
 										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">3</int>
-											<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+											<int key="NSColorSpace">1</int>
+											<bytes key="NSRGB">MC40IDAuNCAwLjQAA</bytes>
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
@@ -111,7 +110,7 @@
 									<object class="IBUILabel" id="437371882">
 										<reference key="NSNextResponder" ref="725778453"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{173, 5}, {140, 21}}</string>
+										<string key="NSFrame">{{170, 5}, {140, 21}}</string>
 										<reference key="NSSuperview" ref="725778453"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="390324563"/>
@@ -124,10 +123,11 @@
 										<string key="IBUIText">2012.12.18 星期二</string>
 										<object class="NSColor" key="IBUITextColor">
 											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwIDAAA</bytes>
+											<bytes key="NSRGB">MC4yIDAuMiAwLjIAA</bytes>
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
+										<int key="IBUITextAlignment">2</int>
 										<reference key="IBUIFontDescription" ref="936117805"/>
 										<reference key="IBUIFont" ref="530598325"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -163,7 +163,10 @@
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<string key="IBUIText">17:16</string>
-										<reference key="IBUITextColor" ref="106492305"/>
+										<object class="NSColor" key="IBUITextColor">
+											<int key="NSColorSpace">1</int>
+											<bytes key="NSRGB">MC4yIDAuMiAwLjIAA</bytes>
+										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription" id="690829185">
@@ -197,13 +200,13 @@
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="803034050">
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="1042108725">
 											<int key="type">1</int>
-											<double key="pointSize">17</double>
+											<double key="pointSize">16</double>
 										</object>
-										<object class="NSFont" key="IBUIFont" id="997112584">
+										<object class="NSFont" key="IBUIFont" id="94856565">
 											<string key="NSName">Helvetica</string>
-											<double key="NSSize">17</double>
+											<double key="NSSize">16</double>
 											<int key="NSfFlags">16</int>
 										</object>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -222,7 +225,10 @@
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<string key="IBUIText">08:48</string>
-										<reference key="IBUITextColor" ref="106492305"/>
+										<object class="NSColor" key="IBUITextColor">
+											<int key="NSColorSpace">1</int>
+											<bytes key="NSRGB">MC4yIDAuMiAwLjIAA</bytes>
+										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
 										<reference key="IBUIFontDescription" ref="690829185"/>
@@ -274,8 +280,8 @@
 										<reference key="IBUITextColor" ref="924861704"/>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<reference key="IBUIFontDescription" ref="803034050"/>
-										<reference key="IBUIFont" ref="997112584"/>
+										<reference key="IBUIFontDescription" ref="1042108725"/>
+										<reference key="IBUIFont" ref="94856565"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 									<object class="IBUIImageView" id="386468861">
@@ -477,11 +483,11 @@
 							<reference ref="9534322"/>
 							<reference ref="806710637"/>
 							<reference ref="840787704"/>
-							<reference ref="977612987"/>
 							<reference ref="386468861"/>
 							<reference ref="437371882"/>
 							<reference ref="390867350"/>
 							<reference ref="277703400"/>
+							<reference ref="977612987"/>
 						</array>
 						<reference key="parent" ref="75832543"/>
 					</object>
@@ -693,6 +699,7 @@
 						<string key="beginAirPortName">UILabel</string>
 						<string key="beginTime">UILabel</string>
 						<string key="bigCell">BigCell</string>
+						<string key="cellSelectedView">UIView</string>
 						<string key="endAirPortName">UILabel</string>
 						<string key="endTime">UILabel</string>
 						<string key="flightCode">UILabel</string>
@@ -723,6 +730,10 @@
 						<object class="IBToOneOutletInfo" key="bigCell">
 							<string key="name">bigCell</string>
 							<string key="candidateClassName">BigCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="cellSelectedView">
+							<string key="name">cellSelectedView</string>
+							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="endAirPortName">
 							<string key="name">endAirPortName</string>
@@ -793,6 +804,7 @@
 						<string key="payMoney">UILabel</string>
 						<string key="selectBtn">UIButton</string>
 						<string key="sortImage">UIImageView</string>
+						<string key="sortimage">UIImageView</string>
 						<string key="textCell">UILabel</string>
 						<string key="textView">UIView</string>
 						<string key="ticketCount">UILabel</string>
@@ -826,6 +838,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="sortImage">
 							<string key="name">sortImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="sortimage">
+							<string key="name">sortimage</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="textCell">
