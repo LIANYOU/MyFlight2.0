@@ -35,6 +35,20 @@
 
 - (void) setNav{
     
+    
+    
+    [UIQuickHelp setRoundCornerForView:self.textView withRadius:View_CoureRadious];
+    
+    [UIQuickHelp setRoundCornerForView:self.textView withRadius:View_CoureRadious];
+    
+    [UIQuickHelp setBorderForView:self.textView withWidth:1 withColor:View_BorderColor];
+    
+    [self.textView.layer setShadowColor:View_ShadowColor;
+     
+     [self.textView.layer setShadowRadius:2];
+     [self.textView.layer setShadowOffset:CGSizeMake(1, 3)];
+
+    
     UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
     
     
@@ -76,12 +90,14 @@
     [_VerificationCode release];
     [_disPlayName release];
     [_getSecretCodeBn release];
+    [_textView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setVerificationCode:nil];
     [self setDisPlayName:nil];
     [self setGetSecretCodeBn:nil];
+    [self setTextView:nil];
     [super viewDidUnload];
 }
 

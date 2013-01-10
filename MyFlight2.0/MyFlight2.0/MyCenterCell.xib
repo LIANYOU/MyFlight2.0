@@ -54,7 +54,7 @@
 							<object class="IBUILabel" id="720259846">
 								<reference key="NSNextResponder" ref="482446239"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{45, 11}, {180, 21}}</string>
+								<string key="NSFrame">{{42, 12}, {180, 20}}</string>
 								<reference key="NSSuperview" ref="482446239"/>
 								<reference key="NSNextKeyView" ref="910523485"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -63,11 +63,10 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText"/>
-								<object class="NSColor" key="IBUITextColor" id="495361089">
+								<string key="IBUIText">个人资料</string>
+								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
-									<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+									<bytes key="NSRGB">MC4yIDAuMiAwLjIAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor" id="561261258">
 									<int key="NSColorSpace">3</int>
@@ -88,9 +87,8 @@
 							<object class="IBUILabel" id="910523485">
 								<reference key="NSNextResponder" ref="482446239"/>
 								<int key="NSvFlags">289</int>
-								<string key="NSFrame">{{154, 11}, {141, 21}}</string>
+								<string key="NSFrame">{{154, 12}, {141, 20}}</string>
 								<reference key="NSSuperview" ref="482446239"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -98,7 +96,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText"/>
-								<reference key="IBUITextColor" ref="495361089"/>
+								<nil key="IBUITextColor"/>
 								<reference key="IBUIHighlightedColor" ref="561261258"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">2</int>
@@ -186,9 +184,9 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="275217293"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="910523485"/>
 							<reference ref="378220125"/>
 							<reference ref="720259846"/>
+							<reference ref="910523485"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

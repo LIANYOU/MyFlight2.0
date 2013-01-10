@@ -157,10 +157,10 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
-    NSInteger height= 50;
+    NSInteger height= 44;
     
     if (indexPath.section ==0) {
-        height = 50;
+        height = 44;
     }
     
     if (indexPath.section==1) {
@@ -471,9 +471,13 @@
     MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     thisCell.detailLabel.text = [NSString stringWithFormat:@"%@",_accountString];
+    [thisCell.detailLabel setTextColor:[UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>]]
     
     CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
     CCLog(@"银币 %@",self.silverMoneyString);
+    
+    
+    
     
 //     [self.thisTableView reloadData];
     

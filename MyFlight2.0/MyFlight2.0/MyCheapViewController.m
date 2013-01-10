@@ -14,6 +14,7 @@
 #import "UIQuickHelp.h"
 #import "MyCheapCouponHelper.h"
 #import "CouponsInfo.h"
+#import "UIButton+BackButton.h"
 @interface MyCheapViewController (){
     
     NSArray *tmpArray;
@@ -41,9 +42,32 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+//添加q优惠券
+- (void) addCoup{
+    
+    CCLog(@"增加优惠券");
+    
+}
+
 #pragma mark -
 #pragma mark 设置导航栏
 - (void) setNav{
+    
+    
+    
+    UIButton * rightBn = [UIButton  backButtonType:2 andTitle:@"退出"];
+    [rightBn addTarget:self action:@selector(addCoup) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:rightBn];
+    self.navigationItem.rightBarButtonItem=backBtn2;
+    [backBtn2 release];
+    
+    
+    
+    
+    
+    
     
     UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(10, 5, 30, 31);
@@ -52,6 +76,7 @@
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
     

@@ -624,7 +624,7 @@
     [formRequst setPostValue:memberID forKey:@"memberId"];
     [formRequst setPostValue:name forKey:@"name"];
     [formRequst setPostValue:sex forKey:@"sex"];
-    [formRequst setPostValue:address forKey:@"address"];
+    [formRequst setPostValue:address forKey:@"addr"];
     [formRequst setPostValue:sign forKey:KEY_SIGN];
     [formRequst setPostValue:HWID_VALUE forKey:KEY_hwId];
     [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];

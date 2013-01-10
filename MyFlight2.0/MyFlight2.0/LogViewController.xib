@@ -269,6 +269,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{221, 360}, {39, 39}}</string>
 								<reference key="NSSuperview" ref="579835017"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUIContentMode">1</int>
@@ -417,7 +418,7 @@
 									<object class="IBUITextField" id="683009256">
 										<reference key="NSNextResponder" ref="609814658"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{75, 13}, {212, 30}}</string>
+										<string key="NSFrame">{{75, 13}, {220, 30}}</string>
 										<reference key="NSSuperview" ref="609814658"/>
 										<reference key="NSNextKeyView" ref="75275265"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -443,7 +444,7 @@
 									<object class="IBUITextField" id="283728652">
 										<reference key="NSNextResponder" ref="609814658"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{75, 58}, {212, 30}}</string>
+										<string key="NSFrame">{{75, 58}, {220, 30}}</string>
 										<reference key="NSSuperview" ref="609814658"/>
 										<reference key="NSNextKeyView" ref="728165555"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>

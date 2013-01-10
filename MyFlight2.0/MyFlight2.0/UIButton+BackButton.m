@@ -37,8 +37,16 @@
             backBtn.frame = CGRectMake(0, 0, 30, 30);
             normalImage = @"btn_5words.png";
             clickIamge = @"btn_5words_click.png";
+           
             break;
+              //增加按钮
         case 6:
+            backBtn.frame = CGRectMake(0, 0, 30, 30);
+            normalImage = @"icon_add.png";
+            clickIamge = @"icon_add_click.png";
+            break;
+          
+            case 7:
             backBtn.frame = CGRectMake(0, 0, 30, 30);
             normalImage = @"icon_add.png";
             clickIamge = @"icon_add_click.png";
@@ -47,6 +55,7 @@
             break;
     }
     
+        
     
     [backBtn setBackgroundImage:[UIImage imageNamed:normalImage] forState:0];
     [backBtn setBackgroundImage:[UIImage imageNamed:clickIamge] forState:UIControlStateHighlighted];

@@ -40,6 +40,9 @@
 
 
 
+@property (retain, nonatomic) IBOutlet UIView *textView;
+
+
 
 //注册用户
 - (IBAction)registerAccount:(id)sender;

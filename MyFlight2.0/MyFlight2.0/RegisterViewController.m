@@ -66,17 +66,31 @@
     
     
     
-    [UIQuickHelp setRoundCornerForView:self.thisView withRadius:8];
+    [UIQuickHelp setRoundCornerForView:self.thisView withRadius:View_CoureRadious];
     
+    [UIQuickHelp setRoundCornerForView:self.thisView withRadius:View_CoureRadious];
     
+    [UIQuickHelp setBorderForView:self.thisView withWidth:1 withColor:View_BorderColor];
     
-    
-    [UIQuickHelp setRoundCornerForView:self.thisView withRadius:8];
-    [UIQuickHelp setBorderForView:self.thisView withWidth:1 withColor:[UIColor colorWithRed:206/255.0 green:197/255.0 blue:184/255.0 alpha:1]];
-    
-    [self.thisView.layer setShadowColor:[UIColor colorWithRed:206/255.0 green:197/255.0 blue:184/255.0 alpha:1].CGColor];
+    [self.thisView.layer setShadowColor:View_ShadowColor;
+     
     [self.thisView.layer setShadowRadius:2];
     [self.thisView.layer setShadowOffset:CGSizeMake(1, 3)];
+    
+    
+     [UIQuickHelp setRoundCornerForView:self.textView withRadius:View_CoureRadious];
+     
+     [UIQuickHelp setRoundCornerForView:self.textView withRadius:View_CoureRadious];
+     
+     [UIQuickHelp setBorderForView:self.textView withWidth:1 withColor:View_BorderColor];
+     
+     [self.textView.layer setShadowColor:View_ShadowColor;
+      
+      [self.textView.layer setShadowRadius:2];
+      [self.textView.layer setShadowOffset:CGSizeMake(1, 3)];
+    
+    
+    
     
     
     
@@ -112,6 +126,7 @@
     [_showPassWordBn release];
     [_secretCodeBn release];
     [_thisView release];
+    [_textView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -121,6 +136,7 @@
     [self setShowPassWordBn:nil];
     [self setSecretCodeBn:nil];
     [self setThisView:nil];
+    [self setTextView:nil];
     [super viewDidUnload];
 }
 

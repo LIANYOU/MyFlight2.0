@@ -10,6 +10,34 @@
 #define MyFlight2_0_ColorUility_h
 
 
+#define View_CoureRadious 6.0
+#define View_ShadowRadius 2.0
+
+#define View_BorderColor [UIColor colorWithRed:206/255.0 green:197/255.0 blue:184/255.0 alpha:1]
+
+#define View_ShadowColor [UIColor colorWithRed:206/255.0 green:197/255.0 blue:184/255.0 alpha:1].CGColor]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #define Right_BarItem_Green [UIColor colorWithRed:120/250.0 green:180/250.0 blue:35/255.0 alpha:1];
 #define Right_BarItem_Blue [UIColor colorWithRed:35/255.0 green:103/255.0 blue:188/255.0 alpha:1];
 

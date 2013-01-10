@@ -20,6 +20,7 @@
 //发送重置密码 请求 
 - (IBAction)commitResetPasswordRequest:(id)sender;
 
+@property (retain, nonatomic) IBOutlet UIView *textView;
 
 
 @property(nonatomic,retain)NSString *mobile; //用户输入的手机

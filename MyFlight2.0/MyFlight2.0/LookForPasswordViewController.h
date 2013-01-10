@@ -23,6 +23,19 @@
 
 //重置密码 
 - (IBAction)ResetPassword:(id)sender;
+
+
 @property(nonatomic,retain)NSString *userMobile;
+
+
+@property (retain, nonatomic) IBOutlet UIView *textView;
+
+
+
+@property (retain, nonatomic) IBOutlet UILabel *userNumber;
+
+
+
+
 
 @end

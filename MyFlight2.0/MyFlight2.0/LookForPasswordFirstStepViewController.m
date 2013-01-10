@@ -31,6 +31,22 @@
 
 - (void) setNav{
     
+    
+    
+    [UIQuickHelp setRoundCornerForView:self.textView withRadius:View_CoureRadious];
+    
+    [UIQuickHelp setRoundCornerForView:self.textView withRadius:View_CoureRadious];
+    
+    [UIQuickHelp setBorderForView:self.textView withWidth:1 withColor:View_BorderColor];
+    
+    [self.textView.layer setShadowColor:View_ShadowColor;
+     
+     [self.textView.layer setShadowRadius:2];
+     [self.textView.layer setShadowOffset:CGSizeMake(1, 3)];
+
+    
+    
+    
     UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
     
     
@@ -66,10 +82,12 @@
 
 - (void)dealloc {
     [_UserInputPhoneNumber release];
+    [_textView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setUserInputPhoneNumber:nil];
+    [self setTextView:nil];
     [super viewDidUnload];
 }
 - (IBAction)goToNextStep:(id)sender {
@@ -113,7 +131,7 @@
 - (void)requestDidFinishedWithFalseMessage:(NSDictionary *)info{
     
     
-    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
+//    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
     
     NSString *returnMessage = [info objectForKey:KEY_message];
     
@@ -133,7 +151,7 @@
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
     
-    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
+//    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
     NSString *returnMessage = [info objectForKey:KEY_message];
     
     
@@ -163,7 +181,7 @@
 #pragma mark 网络返回失败时的处理
 - (void) requestDidFailed:(NSDictionary *)info{
     
-    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
+//    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
     NSString *returnMessage = [info objectForKey:KEY_message];
     
 //    if ([thisMessage isEqualToString:GET_SecretCode_RequestType_Value]) {

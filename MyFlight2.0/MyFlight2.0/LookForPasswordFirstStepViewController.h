@@ -17,4 +17,9 @@
 - (IBAction)goToNextStep:(id)sender;
 
 
+@property (retain, nonatomic) IBOutlet UIView *textView;
+
+
+
+
 @end
