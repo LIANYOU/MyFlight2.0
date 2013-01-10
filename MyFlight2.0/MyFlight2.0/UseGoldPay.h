@@ -28,7 +28,7 @@
 @property (nonatomic,retain) NSString * insuranceTotalPrice;//保险总金额
 @property (nonatomic,retain) NSString * hwId;
 
--(id)initWithIsOpenAccount:(NSString * )isOpenAccount
+-(id)initWithIsOpenAccount:(NSString *)isOpenAccount
                andMemberId:(NSString *)memberId
                    andSign:(NSString *)sign
              andOrderPrice:(NSString *)orderPrice

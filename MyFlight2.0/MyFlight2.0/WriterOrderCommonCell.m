@@ -34,6 +34,9 @@
     [_secondLable release];
     [_backView release];
     [_imageLabel release];
+    [_fristImageView release];
+    [_secImageView release];
+    [_sortImageView release];
     [super dealloc];
 }
 @end

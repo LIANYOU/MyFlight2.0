@@ -44,8 +44,9 @@
 							<object class="IBUILabel" id="299948607">
 								<reference key="NSNextResponder" ref="299114943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{32, 14}, {68, 21}}</string>
+								<string key="NSFrame">{{27, 14}, {68, 21}}</string>
 								<reference key="NSSuperview" ref="299114943"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="844227162"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -56,19 +57,19 @@
 								<string key="IBUIText">手机号码</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">2</int>
-									<bytes key="NSRGB">MC4xNjA3ODQzMTkgMC41MDk4MDM5NTA4IDAuOTg4MjM1MzU0NAA</bytes>
+									<bytes key="NSRGB">MC4xMzcyNTQ5MDIgMC4zNDUwOTgwMzkyIDAuNjk0MTE3NjQ3MQA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">2</int>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="272527906">
+									<int key="type">1</int>
 									<double key="pointSize">17</double>
 								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
+								<object class="NSFont" key="IBUIFont" id="58898795">
+									<string key="NSName">Helvetica</string>
 									<double key="NSSize">17</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -77,8 +78,9 @@
 							<object class="IBUITextField" id="844227162">
 								<reference key="NSNextResponder" ref="299114943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{172, 10}, {190, 30}}</string>
+								<string key="NSFrame">{{110, 9}, {190, 30}}</string>
 								<reference key="NSSuperview" ref="299114943"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="670779280"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -99,21 +101,15 @@
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
-									<double key="pointSize">17</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">17</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="272527906"/>
+								<reference key="IBUIFont" ref="58898795"/>
 							</object>
 							<object class="IBUIImageView" id="670779280">
 								<reference key="NSNextResponder" ref="299114943"/>
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{0, 49}, {320, 2}}</string>
 								<reference key="NSSuperview" ref="299114943"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
@@ -127,6 +123,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 49}</string>
 						<reference key="NSSuperview" ref="563324813"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="299948607"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -142,6 +139,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 50}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="299114943"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -266,62 +264,119 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">LowOrderController</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">orderNow:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">orderNow:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="chang:">id</string>
+						<string key="getEndAirPort:">id</string>
+						<string key="getStartAirport:">id</string>
+						<string key="orderNow:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="chang:">
+							<string key="name">chang:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="getEndAirPort:">
+							<string key="name">getEndAirPort:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="getStartAirport:">
+							<string key="name">getStartAirport:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="orderNow:">
 							<string key="name">orderNow:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="btnCancel">UIBarButtonItem</string>
-						<string key="btnDone">UIBarButtonItem</string>
+						<string key="beginImage">UIImageView</string>
+						<string key="beginTitle">UILabel</string>
+						<string key="beginView">UIView</string>
+						<string key="bigFuckView">UIView</string>
+						<string key="changAirPort">UIButton</string>
 						<string key="endAirport">UILabel</string>
+						<string key="endImage">UIImageView</string>
+						<string key="endTitle">UILabel</string>
+						<string key="endView">UIView</string>
 						<string key="footView">UIView</string>
+						<string key="getEndAirPort">UIButton</string>
 						<string key="lowOrderCell">LowOrderCell</string>
+						<string key="oneEndAirPort">UILabel</string>
+						<string key="oneStartAirPort">UILabel</string>
 						<string key="phoneCEll">LowTextFiledCell</string>
-						<string key="pickerSort">UIPickerView</string>
 						<string key="showTabelView">UITableView</string>
+						<string key="smallFuckView">UIView</string>
 						<string key="startAirport">UILabel</string>
 						<string key="tableView">UITableView</string>
-						<string key="viewPicker">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="btnCancel">
-							<string key="name">btnCancel</string>
-							<string key="candidateClassName">UIBarButtonItem</string>
+						<object class="IBToOneOutletInfo" key="beginImage">
+							<string key="name">beginImage</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="btnDone">
-							<string key="name">btnDone</string>
-							<string key="candidateClassName">UIBarButtonItem</string>
+						<object class="IBToOneOutletInfo" key="beginTitle">
+							<string key="name">beginTitle</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="beginView">
+							<string key="name">beginView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bigFuckView">
+							<string key="name">bigFuckView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="changAirPort">
+							<string key="name">changAirPort</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="endAirport">
 							<string key="name">endAirport</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="endImage">
+							<string key="name">endImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="endTitle">
+							<string key="name">endTitle</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="endView">
+							<string key="name">endView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="footView">
 							<string key="name">footView</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="getEndAirPort">
+							<string key="name">getEndAirPort</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lowOrderCell">
 							<string key="name">lowOrderCell</string>
 							<string key="candidateClassName">LowOrderCell</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="oneEndAirPort">
+							<string key="name">oneEndAirPort</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="oneStartAirPort">
+							<string key="name">oneStartAirPort</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="phoneCEll">
 							<string key="name">phoneCEll</string>
 							<string key="candidateClassName">LowTextFiledCell</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="pickerSort">
-							<string key="name">pickerSort</string>
-							<string key="candidateClassName">UIPickerView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="showTabelView">
 							<string key="name">showTabelView</string>
 							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="smallFuckView">
+							<string key="name">smallFuckView</string>
+							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="startAirport">
 							<string key="name">startAirport</string>
@@ -330,10 +385,6 @@
 						<object class="IBToOneOutletInfo" key="tableView">
 							<string key="name">tableView</string>
 							<string key="candidateClassName">UITableView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewPicker">
-							<string key="name">viewPicker</string>
-							<string key="candidateClassName">UIView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

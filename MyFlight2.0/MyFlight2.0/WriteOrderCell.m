@@ -39,6 +39,7 @@
     [_plantType release];
     [_airPortName release];
     [_changeTicket release];
+    [_btn release];
     [super dealloc];
 }
 @end

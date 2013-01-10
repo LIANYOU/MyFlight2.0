@@ -52,6 +52,14 @@
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
     
+    UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"确定"];
+    [histroyBut addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+    self.navigationItem.rightBarButtonItem=backBtn2;
+    [backBtn2 release];
+
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"返回金币数目" object:nil];
     [self.gold searchGold];
     
@@ -146,6 +154,10 @@
     // Return the number of sections.
     return 2;
 }
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -190,13 +202,16 @@
                 int a=[thisRow intValue];
                 if (indexPath.row==a) {
                     selectedSign=YES;
-                    cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
+                    [cell.selectBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+                  
                     break;
                 }
             }
         }
         if (selectedSign==NO) {
-            cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+            
+            [cell.selectBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+           
         }
 
         
@@ -267,12 +282,16 @@
        
                 [self.selectArr removeObject:thisRow];
                 
-                btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+                [btn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+
+               
                 return;
             }
             else{
                 UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:a inSection:0]];
-                cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+                
+                [cell.selectBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+                
                 
                 [self.selectArr removeAllObjects];
                                                             
@@ -283,7 +302,8 @@
 
     [self.selectArr addObject: [NSString stringWithFormat:@"%d",btn.tag]];
     
-    btn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
+    [btn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+    
  
 
 }
@@ -327,7 +347,8 @@
             int a=[thisRow intValue];
 
                 UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:a inSection:0]];
-                cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Default_.png"]];
+            [cell.selectBtn setBackgroundImage:[UIImage imageNamed:@"icon_Default.png"] forState:0];
+                
                 
                 [self.selectArr removeAllObjects];
 
@@ -338,10 +359,8 @@
     
     [self.selectArr addObject: [NSString stringWithFormat:@"%d",indexPath.row]];
     
-    cell.selectBtn.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
-    
-    
-       
+    [cell.selectBtn setBackgroundImage:[UIImage imageNamed:@"icon_Selected.png"] forState:0];
+           
 }
 
 - (void)dealloc {

@@ -18,6 +18,7 @@
 #import "GetAttentionFlight.h"
 #import "UIButton+BackButton.h"
 #import "ColorUility.h"
+#import "UseGoldPay.h"
 #define FONT_SIZE 8.0f
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 105.0f
@@ -474,6 +475,7 @@
                     
                 }
                 else{
+                    
                     self.searchBackFlight.pay = [[self.payArr objectAtIndex:indexPath.row-1] intValue];
                     self.searchBackFlight.ticketCount = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"seatNum"];
                     if ([self.searchBackFlight.ticketCount isEqualToString:@"A"]) {
@@ -486,8 +488,39 @@
                     
                 }
                 
+                
+                UseGoldPay * gold = nil;
+                
+                if (Default_IsUserLogin_Value) {
+                    NSString * sign = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,@"xx",Default_Token_Value];
+                    NSString *signReal =GET_SIGN(sign);
+                    
+                    
+                    gold = [[UseGoldPay alloc] initWithIsOpenAccount:@"true"
+                                                                      andMemberId:Default_UserMemberId_Value
+                                                                          andSign:signReal
+                                                                    andOrderPrice:[NSString stringWithFormat:@"%d",self.searchFlight.pay + self.searchBackFlight.pay]
+                                                                    andTotalPrice:[NSString stringWithFormat:@"%d",self.searchFlight.pay + self.searchBackFlight.pay]
+                                                                      andProdType:@"01"
+                                                                        andSource:SOURCE_VALUE
+                                                                    andAirCompany:nil
+                                                                           andDpt:nil
+                                                                           andArr:nil
+                                                                       andDisount:nil
+                                                                  andInsuranceNum:nil
+                                                           andInsuranceTotalPrice:nil
+                                                                          andHwld:HWID_VALUE];
+                }
+               
+
+                
+                
+                
+                
                 WriteOrderViewController * insurance = [[WriteOrderViewController alloc] init];
                 insurance.flag = self.flag;
+                
+                insurance.useGoldPay = gold;
                 
                 insurance.searchDate = self.searchFlight;
                 

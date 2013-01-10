@@ -44,6 +44,8 @@
     self.navigationItem.rightBarButtonItem=backBtn;
     [backBtn release];
     
+    self.showTableView.tableFooterView = self.footView;
+    
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
     
@@ -147,11 +149,13 @@
 - (void)dealloc {
     [_discountCell release];
     [_showTableView release];
+    [_footView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setDiscountCell:nil];
     [self setShowTableView:nil];
+    [self setFootView:nil];
     [super viewDidUnload];
 }
 

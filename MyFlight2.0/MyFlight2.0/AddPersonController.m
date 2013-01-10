@@ -50,7 +50,7 @@
     self.navigationItem.title = self.navTitleString;
     
     
-    self.cellTitleArr = [NSArray arrayWithObjects:@"身  份 *",@"姓  名 *",@"证件类型 *",@"证件号码 *",@"生  日 *",@"保存为常用乘机人", nil];
+    self.cellTitleArr = [NSArray arrayWithObjects:@"身  份 ",@"姓  名 ",@"证件类型 ",@"证件号码 ",@"生  日 ",@"保存为常用乘机人", nil];
     
     self.cellTextArr = [NSMutableArray arrayWithObjects:@"成人",@"请输入乘机人姓名",@"身份证",@"请输入证件号码",@"1990-09-09", nil];
     
@@ -64,7 +64,7 @@
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
     
-    UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"保存"];
+    UIButton * histroyBut = [UIButton backButtonType:8 andTitle:@"保存"];
     [histroyBut addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *histroyBtn=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
@@ -171,7 +171,7 @@
         }
         
         else{
-            return 44;
+            return 50;
         }
         
     }
@@ -181,7 +181,7 @@
        
         self.delBtnView.frame = CGRectMake(0, 0, 320, 160);
         
-        return 44;
+        return 50;
     }
 }
 
@@ -236,10 +236,14 @@
             if (indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4) {
                 if (self.choose != nil  || self.controllerType != nil) {
                     if (indexPath.row == 1) {
+                        cell.btn.frame = CGRectMake(320-10-22, 14, 22, 22);
+                        [cell.btn setBackgroundImage:[UIImage imageNamed:@"icon_info.png"] forState:0];
+                        [cell.btn addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
                         cell.secText.text = self.passenger.name;
                     }
                     if (indexPath.row == 3) {
                         cell.secText.text = self.passenger.certNo;
+                        cell.btn.hidden = YES;
                     }
                     if (indexPath.row == 4) {
                         cell.secText.text = self.passenger.certNo;
@@ -276,6 +280,12 @@
         
     }
     
+}
+
+-(void)showInfo{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"乘机人姓名请输入中文姓名  2  如为英文姓名，则需用/分割，姓在前，名在后，如hill/jiang。 3  如遇到生僻字，请用拼音代替，如 降feng" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
 }
 
 #pragma mark - Table view delegate
@@ -473,6 +483,17 @@
     
     
     
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+
+    AddPersonCoustomCell *cell = (AddPersonCoustomCell *)[self.addPersonTableView  cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    AddPersonCoustomCell *cell1 = (AddPersonCoustomCell *)[self.addPersonTableView  cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    
+    [cell1.secText resignFirstResponder];
+
+    [cell.secText resignFirstResponder];
+               
 }
 
 

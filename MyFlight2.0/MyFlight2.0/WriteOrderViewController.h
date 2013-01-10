@@ -15,7 +15,9 @@
 #import "SearchFlightData.h"
 #import "flightItineraryVo.h"
 #import "ServiceDelegate.h"
-
+#import "SalesCell.h"
+#import "WriteOrderGreenCell.h"
+#import "UseGoldPay.h"
 #import <AddressBookUI/AddressBookUI.h>
 
 
@@ -39,7 +41,14 @@
 @property (retain, nonatomic) IBOutlet WriteOrderCell *writeOrderCell;
 @property (retain, nonatomic) IBOutlet WriteOrderDetailsCell *writeOrderDetailsCell;
 @property (retain, nonatomic) IBOutlet WriterOrderCommonCell *writerOrderCommonCell;
+@property (retain, nonatomic) IBOutlet WriteOrderGreenCell *greenCell;
 @property (retain, nonatomic) IBOutlet WirterOrderTwoLineCell *wirterOrderTwoLineCell;
+@property (retain, nonatomic) IBOutlet SalesCell *salesCell;
+
+
+@property (retain, nonatomic) UseGoldPay * useGoldPay ;
+
+
 @property (retain, nonatomic) IBOutlet UIScrollView *orderScrollView;
 @property (retain, nonatomic) IBOutlet UILabel *allPay;   // 底部的显示还有多少钱的按钮
 
@@ -52,6 +61,11 @@
 @property (retain, nonatomic) NSMutableArray * firstCelTextArr;
 
 @property (retain, nonatomic) NSMutableArray * indexArr;
+
+
+@property (retain, nonatomic) NSString * discountName;  //   促销活动的名字
+@property (retain, nonatomic) NSArray * discountListArr;// 促销活动arr
+
 
 ///  cell属性的定义
 @property (retain, nonatomic) IBOutlet UILabel *upPayMoney;

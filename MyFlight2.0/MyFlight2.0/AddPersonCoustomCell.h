@@ -12,4 +12,5 @@
 @property (retain, nonatomic) IBOutlet UILabel *fristLabel;
 @property (retain, nonatomic) IBOutlet UITextField *secText;
 
+@property (retain, nonatomic) IBOutlet UIButton *btn;
 @end

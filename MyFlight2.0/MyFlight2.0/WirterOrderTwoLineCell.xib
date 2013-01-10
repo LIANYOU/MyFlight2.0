@@ -46,7 +46,8 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{320, 50}</string>
 								<reference key="NSSuperview" ref="683104841"/>
-								<reference key="NSNextKeyView" ref="732548853"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="634399849"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">2</int>
@@ -54,12 +55,43 @@
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
+							<object class="IBUIImageView" id="79135593">
+								<reference key="NSNextResponder" ref="683104841"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{0, 50}, {320, 1}}</string>
+								<reference key="NSSuperview" ref="683104841"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="452779979"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MSAxIDEAA</bytes>
+								</object>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
+							<object class="IBUIImageView" id="452779979">
+								<reference key="NSNextResponder" ref="683104841"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{0, 49}, {320, 1}}</string>
+								<reference key="NSSuperview" ref="683104841"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">2</int>
+									<bytes key="NSRGB">MC44ODIzNTMwMDc4IDAuODQ3MDU4ODkyMyAwLjgwMzkyMTYzOTkAA</bytes>
+								</object>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
 							<object class="IBUIImageView" id="732548853">
 								<reference key="NSNextResponder" ref="683104841"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{301, 18}, {9, 14}}</string>
 								<reference key="NSSuperview" ref="683104841"/>
-								<reference key="NSNextKeyView" ref="634399849"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="79135593"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -73,6 +105,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 8}, {219, 21}}</string>
 								<reference key="NSSuperview" ref="683104841"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="151001268"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="527549179">
@@ -110,6 +143,8 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 25}, {290, 21}}</string>
 								<reference key="NSSuperview" ref="683104841"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="732548853"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -119,7 +154,7 @@
 								<string key="IBUIText">优惠券一张,金币/资金账户20元,银币20</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC41NTU1NDI4ODMyIDAuNTUxODkzMjQ4MiAwLjU1NjE3MDE2NDIAA</bytes>
+									<bytes key="NSRGB">MC40IDAuNCAwLjQAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor">
 									<int key="NSColorSpace">3</int>
@@ -140,6 +175,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 49}</string>
 						<reference key="NSSuperview" ref="383733938"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="210205627"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="527549179"/>
@@ -152,6 +188,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 50}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="683104841"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -213,6 +250,8 @@
 							<reference ref="151001268"/>
 							<reference ref="210205627"/>
 							<reference ref="732548853"/>
+							<reference ref="79135593"/>
+							<reference ref="452779979"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -238,6 +277,16 @@
 						<reference key="object" ref="732548853"/>
 						<reference key="parent" ref="383733938"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">36</int>
+						<reference key="object" ref="79135593"/>
+						<reference key="parent" ref="383733938"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">37</int>
+						<reference key="object" ref="452779979"/>
+						<reference key="parent" ref="383733938"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -250,15 +299,460 @@
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="34.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="37.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">34</int>
+			<int key="maxID">37</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">SalesCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">name</string>
+						<string key="NS.object.0">UILabel</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">name</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">name</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SalesCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">WirterOrderTwoLineCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="firLable">UILabel</string>
+						<string key="secLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="firLable">
+							<string key="name">firLable</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="secLabel">
+							<string key="name">secLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/WirterOrderTwoLineCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">WriteOrderCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="HUButton">UILabel</string>
+						<string key="airPortName">UILabel</string>
+						<string key="backView">UIView</string>
+						<string key="btn">UIButton</string>
+						<string key="changeTicket">UIButton</string>
+						<string key="date">UILabel</string>
+						<string key="endAirPortName">UILabel</string>
+						<string key="endTime">UILabel</string>
+						<string key="imageView">UIImageView</string>
+						<string key="plantType">UILabel</string>
+						<string key="startAirPortName">UILabel</string>
+						<string key="startTime">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="HUButton">
+							<string key="name">HUButton</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="airPortName">
+							<string key="name">airPortName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="backView">
+							<string key="name">backView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btn">
+							<string key="name">btn</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="changeTicket">
+							<string key="name">changeTicket</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="date">
+							<string key="name">date</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="endAirPortName">
+							<string key="name">endAirPortName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="endTime">
+							<string key="name">endTime</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imageView">
+							<string key="name">imageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="plantType">
+							<string key="name">plantType</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="startAirPortName">
+							<string key="name">startAirPortName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="startTime">
+							<string key="name">startTime</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/WriteOrderCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">WriteOrderDetailsCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="addPerson">UIButton</string>
+						<string key="nameField">UITextField</string>
+						<string key="person">UILabel</string>
+						<string key="personName">UILabel</string>
+						<string key="phone">UILabel</string>
+						<string key="phoneField">UITextField</string>
+						<string key="phoneNumber">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="addPerson">
+							<string key="name">addPerson</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="nameField">
+							<string key="name">nameField</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="person">
+							<string key="name">person</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="personName">
+							<string key="name">personName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="phone">
+							<string key="name">phone</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="phoneField">
+							<string key="name">phoneField</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="phoneNumber">
+							<string key="name">phoneNumber</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/WriteOrderDetailsCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">WriteOrderGreenCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="HUButton">UILabel</string>
+						<string key="airPortName">UILabel</string>
+						<string key="backView">UIView</string>
+						<string key="btn">UIButton</string>
+						<string key="changeTicket">UIButton</string>
+						<string key="date">UILabel</string>
+						<string key="endAirPortName">UILabel</string>
+						<string key="endTime">UILabel</string>
+						<string key="imageView">UIImageView</string>
+						<string key="plantType">UILabel</string>
+						<string key="startAirPortName">UILabel</string>
+						<string key="startTime">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="HUButton">
+							<string key="name">HUButton</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="airPortName">
+							<string key="name">airPortName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="backView">
+							<string key="name">backView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btn">
+							<string key="name">btn</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="changeTicket">
+							<string key="name">changeTicket</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="date">
+							<string key="name">date</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="endAirPortName">
+							<string key="name">endAirPortName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="endTime">
+							<string key="name">endTime</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imageView">
+							<string key="name">imageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="plantType">
+							<string key="name">plantType</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="startAirPortName">
+							<string key="name">startAirPortName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="startTime">
+							<string key="name">startTime</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/WriteOrderGreenCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">WriteOrderViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="changeToBigHeadView:">id</string>
+						<string key="changeToSmallHeadView:">id</string>
+						<string key="payMoney:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="changeToBigHeadView:">
+							<string key="name">changeToBigHeadView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="changeToSmallHeadView:">
+							<string key="name">changeToSmallHeadView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="payMoney:">
+							<string key="name">payMoney:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="PerStanderPrice">UILabel</string>
+						<string key="PersonConstructionFee">UILabel</string>
+						<string key="Personinsure">UILabel</string>
+						<string key="allPay">UILabel</string>
+						<string key="backLabel">UILabel</string>
+						<string key="bigHeadView">UIView</string>
+						<string key="bigUpPayMoney">UILabel</string>
+						<string key="childBaf">UILabel</string>
+						<string key="childConstructionFee">UILabel</string>
+						<string key="childInsure">UILabel</string>
+						<string key="childMunber">UILabel</string>
+						<string key="childStanderPrice">UILabel</string>
+						<string key="greenCell">WriteOrderGreenCell</string>
+						<string key="headView">UIView</string>
+						<string key="orderMoney">UILabel</string>
+						<string key="orderScrollView">UIScrollView</string>
+						<string key="orderTableView">UITableView</string>
+						<string key="personAdultBaf">UILabel</string>
+						<string key="personMuber">UILabel</string>
+						<string key="salesCell">SalesCell</string>
+						<string key="upPayMoney">UILabel</string>
+						<string key="wirterOrderTwoLineCell">WirterOrderTwoLineCell</string>
+						<string key="writeOrderCell">WriteOrderCell</string>
+						<string key="writeOrderDetailsCell">WriteOrderDetailsCell</string>
+						<string key="writerOrderCommonCell">WriterOrderCommonCell</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="PerStanderPrice">
+							<string key="name">PerStanderPrice</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="PersonConstructionFee">
+							<string key="name">PersonConstructionFee</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="Personinsure">
+							<string key="name">Personinsure</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="allPay">
+							<string key="name">allPay</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="backLabel">
+							<string key="name">backLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bigHeadView">
+							<string key="name">bigHeadView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bigUpPayMoney">
+							<string key="name">bigUpPayMoney</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="childBaf">
+							<string key="name">childBaf</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="childConstructionFee">
+							<string key="name">childConstructionFee</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="childInsure">
+							<string key="name">childInsure</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="childMunber">
+							<string key="name">childMunber</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="childStanderPrice">
+							<string key="name">childStanderPrice</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="greenCell">
+							<string key="name">greenCell</string>
+							<string key="candidateClassName">WriteOrderGreenCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="headView">
+							<string key="name">headView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="orderMoney">
+							<string key="name">orderMoney</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="orderScrollView">
+							<string key="name">orderScrollView</string>
+							<string key="candidateClassName">UIScrollView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="orderTableView">
+							<string key="name">orderTableView</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="personAdultBaf">
+							<string key="name">personAdultBaf</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="personMuber">
+							<string key="name">personMuber</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="salesCell">
+							<string key="name">salesCell</string>
+							<string key="candidateClassName">SalesCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="upPayMoney">
+							<string key="name">upPayMoney</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="wirterOrderTwoLineCell">
+							<string key="name">wirterOrderTwoLineCell</string>
+							<string key="candidateClassName">WirterOrderTwoLineCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="writeOrderCell">
+							<string key="name">writeOrderCell</string>
+							<string key="candidateClassName">WriteOrderCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="writeOrderDetailsCell">
+							<string key="name">writeOrderDetailsCell</string>
+							<string key="candidateClassName">WriteOrderDetailsCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="writerOrderCommonCell">
+							<string key="name">writerOrderCommonCell</string>
+							<string key="candidateClassName">WriterOrderCommonCell</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/WriteOrderViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">WriterOrderCommonCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="backView">UIView</string>
+						<string key="firstLable">UILabel</string>
+						<string key="fristImageView">UIImageView</string>
+						<string key="imageLabel">UILabel</string>
+						<string key="secImageView">UIImageView</string>
+						<string key="secondLabel">UILabel</string>
+						<string key="secondLable">UILabel</string>
+						<string key="sortImageView">UIImageView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="backView">
+							<string key="name">backView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="firstLable">
+							<string key="name">firstLable</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="fristImageView">
+							<string key="name">fristImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imageLabel">
+							<string key="name">imageLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="secImageView">
+							<string key="name">secImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="secondLabel">
+							<string key="name">secondLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="secondLable">
+							<string key="name">secondLable</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="sortImageView">
+							<string key="name">sortImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/WriterOrderCommonCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

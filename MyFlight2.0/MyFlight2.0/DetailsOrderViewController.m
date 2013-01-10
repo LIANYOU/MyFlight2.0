@@ -404,15 +404,13 @@
             if (indexPath.row == i) {                
                 cell.name.text = p.name;
                 cell.number.text = p.certNo;
-                
-                NSLog(@"---------------%@,,,,%@",p.etNo,p.insuranceCode);
-                 NSLog(@"---------------%d,,,,%d",p.etNo.length,p.insuranceCode.length);
+
                 if ([p.etNo isEqualToString:@"null"]) {
                   
                     cell.orderNo.text = @"暂无";
                 }
                 if ([p.insuranceCode isEqualToString:@"null"]) {
-                    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+   
                     cell.orderInfo.text = @"暂无";
                 }
                 else{
@@ -539,7 +537,7 @@
         self.personArray = [NSArray arrayWithArray:[arr objectAtIndex:3]];
         self.post = [arr objectAtIndex:4];
         self.person = [arr objectAtIndex:5];
-     //   self.discountInfo = [arr objectAtIndex:6];
+        self.discountInfo = [arr objectAtIndex:6];
         
         
         //*************************** 动态变化邮寄行程单cell***********

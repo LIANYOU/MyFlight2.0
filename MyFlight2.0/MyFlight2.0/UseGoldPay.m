@@ -52,7 +52,7 @@
     self.allData = [NSData data];
     self.dictionary = [NSDictionary dictionary];
     
-    /*
+    
     NSLog(@"%@",self.isOpenAccount);
     NSLog(@"%@",self.memberId);
     NSLog(@"%@",self.sign);
@@ -67,7 +67,7 @@
     NSLog(@"%@",self.insuranceNum);
     NSLog(@"%@",self.insuranceTotalPrice);
     NSLog(@"%@",self.hwId);
-     */
+     
     
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/order/flight/account.jsp"]];
     
@@ -99,9 +99,13 @@
         dictionary = [[self.dictionary objectForKey:@"result"] objectForKey:@"message"];
         NSLog(@"优惠券message  %@",self.dictionary);
         
+        NSArray * listArr = [self.dictionary objectForKey:@"prodActiveList"];
+        
+        
+        
         NSLog(@"优惠券message  %@",dictionary);
         
-        NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.dictionary,@"arr", nil];
+        NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.dictionary,@"arr",listArr,@"list", nil];
         NSNotification * not = [NSNotification notificationWithName:@"返回金币数目" object:self userInfo:dic];
         [[NSNotificationCenter defaultCenter] postNotification:not];
         

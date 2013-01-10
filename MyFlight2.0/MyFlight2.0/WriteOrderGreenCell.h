@@ -1,14 +1,14 @@
 //
-//  WriteOrderCell.h
+//  WriteOrderGreenCell.h
 //  MyFlight2.0
 //
-//  Created by sss on 12-12-6.
-//  Copyright (c) 2012年 LIAN YOU. All rights reserved.
+//  Created by WangJian on 13-1-10.
+//  Copyright (c) 2013年 LIAN YOU. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface WriteOrderCell : UITableViewCell
+@interface WriteOrderGreenCell : UITableViewCell
 
 @property (retain, nonatomic) IBOutlet UIButton *btn;
 @property (retain, nonatomic) IBOutlet UIImageView *imageView;
@@ -22,4 +22,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *plantType;
 @property (retain, nonatomic) IBOutlet UILabel *airPortName;
 @property (retain, nonatomic) IBOutlet UIButton *changeTicket;
+
+
 @end

@@ -1,14 +1,14 @@
 //
-//  AddPersonCoustomCell.m
+//  SalesCell.m
 //  MyFlight2.0
 //
-//  Created by WangJian on 12-12-28.
-//  Copyright (c) 2012年 LIAN YOU. All rights reserved.
+//  Created by WangJian on 13-1-10.
+//  Copyright (c) 2013年 LIAN YOU. All rights reserved.
 //
 
-#import "AddPersonCoustomCell.h"
+#import "SalesCell.h"
 
-@implementation AddPersonCoustomCell
+@implementation SalesCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,9 +27,7 @@
 }
 
 - (void)dealloc {
-    [_fristLabel release];
-    [_secText release];
-    [_btn release];
+    [_name release];
     [super dealloc];
 }
 @end

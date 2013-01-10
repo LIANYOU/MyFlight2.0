@@ -15,7 +15,6 @@
 #import "TraveController.h"
 #import "LogViewController.h"
 #import "DiscountCouponController.h"
-#import "UseGoldPay.h"
 #import "flightContactVo.h"
 #import "flightPassengerVo.h"
 #import "flightItineraryVo.h"
@@ -165,9 +164,41 @@
     flightItinerary.deliveryType = @"0"; // 默认是不需要邮寄行程单
     
     
+    // 调去获取金币（优惠活动）API
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"返回金币数目" object:nil];
+    [self.useGoldPay searchGold];
+    
        
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+
+
+-(void)receive:(NSNotification *) not
+{
+
+    self.discountListArr = [[not userInfo] objectForKey:@"list"];
+    
+//    NSLog(@" *******  促销活动名称 数目 ****   %d",self.discountListArr.count);
+    
+    if (self.discountListArr.count != 0) {
+        self.discountName = [[self.discountListArr objectAtIndex:0] objectForKey:@"name"];
+        [self.orderTableView reloadData];
+    }
+
+    
+//    self.discountListArr = [NSArray arrayWithObject:@"my机票活动"];
+//    
+//     NSLog(@" *******  促销活动名称 数目 ****   %d",self.discountListArr.count);
+//    
+//    self.discountName = @"my机票活动";
+    
+    [self.orderTableView reloadData];
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -205,6 +236,8 @@
     [_Personinsure release];
     [_childInsure release];
     [_backLabel release];
+    [_salesCell release];
+    [_greenCell release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -232,6 +265,8 @@
     [self setPersoninsure:nil];
     [self setChildInsure:nil];
     [self setBackLabel:nil];
+    [self setSalesCell:nil];
+    [self setGreenCell:nil];
     [super viewDidUnload];
 }
 
@@ -368,6 +403,18 @@
             if (indexPath.row == 1) {
                 return 100;
             }
+            if (indexPath.row == 5) {
+                
+               
+                if (Default_IsUserLogin_Value && self.discountListArr.count != 0) {
+       
+                    return 30;
+                }
+                else{
+                    return 0;
+                }
+
+            }
             else{
                 return 50;
             }
@@ -384,7 +431,7 @@
             return 100;
         }
         if (indexPath.section == 2 ) {
-            return 100;
+            return 80;
         }
         if (indexPath.section == 3 ) {
             if (indexPath.row == 0) {
@@ -413,6 +460,17 @@
                     return 0;
                 }
                 
+            }
+            if (indexPath.row == 5) {
+                
+                if (Default_IsUserLogin_Value && self.discountListArr.count != 0) {
+                    
+                    return 30;
+                }
+                else{
+                    return 0;
+                }
+
             }
 
             else{
@@ -446,9 +504,12 @@
                     cell = self.writeOrderCell;
                 }
                 
-                
-                cell.backView.frame = CGRectMake(50, 0, 325, 80);
-                cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
+              //  cell.frame = CGRectMake(10, 10, 320, 90);
+        
+//                cell.backView.frame = CGRectMake(50, 0, 325, 80);
+                cell.imageView.frame = CGRectMake(0, 0,0 , 0);
+           //     cell.imageView.image = [UIImage imageNamed:@"bg_green.png"];
+                [cell.btn setBackgroundImage:[UIImage imageNamed:@"bg_blue.png"] forState:UIControlStateHighlighted];
                 [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:0];
                 cell.HUButton.text = self.searchDate.temporaryLabel;
                 cell.airPortName.text = self.searchDate.airPort;
@@ -465,22 +526,25 @@
                 
                 cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
                 cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
-                
+               
                 return cell;
                 break;
             }
             case 2:
             {
-                static NSString *CellIdentifier = @"Cell1";
-                WriteOrderCell *cell = (WriteOrderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                static NSString *CellIdentifier = @"Cell2";
+                WriteOrderGreenCell *cell = (WriteOrderGreenCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                 if (!cell)
                 {
-                    [[NSBundle mainBundle] loadNibNamed:@"WriteOrderCell" owner:self options:nil];
-                    cell = self.writeOrderCell;
+                    [[NSBundle mainBundle] loadNibNamed:@"WriteOrderGreenCell" owner:self options:nil];
+                    cell = self.greenCell;
                 }
-                cell.imageView.image = [UIImage imageNamed:@"bg_green__.png"];
-                [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_green_rule.png"] forState:0];
+        //        cell.imageView.image = [UIImage imageNamed:@"bg_green.png"];
+               [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_green_rule.png"] forState:0];
                 
+                [cell.btn setBackgroundImage:[UIImage imageNamed:@"bg_green.png"] forState:UIControlStateHighlighted];
+                
+          //      cell.backView.frame = CGRectMake(50, 0, 325, 80);
                 cell.HUButton.text = self.searchBackDate.temporaryLabel;
                 cell.airPortName.text = self.searchBackDate.airPort;
                 cell.startTime.text = self.searchBackDate.beginTime;
@@ -502,10 +566,10 @@
             }
             case 3:
             {
-                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 ) {
+                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3) {
                     static NSString *CellIdentifier = @"Cell3";
                     WriterOrderCommonCell *cell = (WriterOrderCommonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                   if (!cell)
+                    if (!cell)
                     {
                         [[NSBundle mainBundle] loadNibNamed:@"WriterOrderCommonCell" owner:self options:nil];
                         cell = self.writerOrderCommonCell;
@@ -521,100 +585,121 @@
                             
                             cell.secondLable.lineBreakMode = UILineBreakModeCharacterWrap;
                             
-                        cell.secondLable.frame = CGRectMake(110, 0, 196, MAX(size.height, 50.0f));
-                        
-                        cell.firstLable.frame = CGRectMake(21, 0, 196, MAX(size.height, 50.0f));
-                        
-                        cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 50.0f));
-                        
-                        cell.imageLabel.frame = CGRectMake(10, MAX(size.height, 50.0f)/2-6, 7, 21);
-                        
-                        cell.secondLable.text = firstCellText;
-                        
-                        cell.firstLable.text = @"乘机人";
-                     
-                        break;
-
+                            cell.secondLable.frame = CGRectMake(110, 0, 196, MAX(size.height, 50.0f));
+                            
+                            cell.firstLable.frame = CGRectMake(21, 0, 196, MAX(size.height, 50.0f));
+                            
+                            cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 50.0f));
+                            
+                            cell.imageLabel.frame = CGRectMake(10, MAX(size.height, 50.0f)/2-6, 7, 21);
+                            
+                            cell.secondLable.text = firstCellText;
+                            
+                            cell.firstLable.text = @"乘  机  人";
+                            
+                            break;
+                            
+                        }
+                            
+                            
+                        case 3:
+                            cell.firstLable.text = @"行  程  单";
+                            cell.secondLable.text = @"不需要行程单报销凭证";
+                            self.traveType = 1;
+                            
+                            cell.imageLabel.hidden = YES;
+                            break;
+                        case 2:
+                            cell.firstLable.text = @"购买保险";
+                            
+                            cell.imageLabel.hidden = YES;
+                            break;
+                            
+                            
+                        default:
+                            break;
                     }
-                        
-                    
-                    case 3:
-                        cell.firstLable.text = @"行程单";
-                        cell.secondLable.text = @"不需要行程单报销凭证";
-                        self.traveType = 1;
-                        
-                        cell.imageLabel.hidden = YES;
-                        break;
-                    case 5:
-                        cell.firstLable.text = @"活动促销减免";
-                        cell.imageLabel.hidden = YES;
-                        break;
-                    case 2:
-                        cell.firstLable.text = @"购买保险";
-                        
-                        cell.imageLabel.hidden = YES;
-                        break;
-                        
-                        
-                    default:
-                        break;
-                }
-                    
-                    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
-                    cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
-                    
-                return cell;
-            }
-            if (indexPath.row == 1) {
-                static NSString *CellIdentifier = @"Cell4";
-                WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                if (!cell)
-                {
-                    [[NSBundle mainBundle] loadNibNamed:@"WriteOrderDetailsCell" owner:self options:nil];
-                    cell = self.writeOrderDetailsCell;
-                }
-                [cell.addPerson addTarget:self action:@selector(addPersonFormAddressBook) forControlEvents:UIControlEventTouchUpInside];
-
-                cell.nameField.delegate = self;
-                cell.phoneField.delegate = self;
-                
-                cell.nameField.text = [addPersonArr objectAtIndex:0];
-                cell.phoneField.text = [addPersonArr objectAtIndex:1];
-                
-                
-                cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
-                cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
-                return cell;
-            }
-            if (indexPath.row == 4) {
-
-                static NSString *CellIdentifier = @"Cell5";
-                WirterOrderTwoLineCell *cell = (WirterOrderTwoLineCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                if (!cell)
-                {
-                    [[NSBundle mainBundle] loadNibNamed:@"WirterOrderTwoLineCell" owner:self options:nil];
-                    cell = self.wirterOrderTwoLineCell;
-                }
-                if (Default_IsUserLogin_Value) {
-                
                     
                     cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
                     cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
                     
                     return cell;
-
                 }
-                else
-                {
-
-                    cell.hidden = YES;
+                if (indexPath.row == 1) {
+                    static NSString *CellIdentifier = @"Cell4";
+                    WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    if (!cell)
+                    {
+                        [[NSBundle mainBundle] loadNibNamed:@"WriteOrderDetailsCell" owner:self options:nil];
+                        cell = self.writeOrderDetailsCell;
+                    }
+                    [cell.addPerson addTarget:self action:@selector(addPersonFormAddressBook) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    cell.nameField.delegate = self;
+                    cell.phoneField.delegate = self;
+                    
+                    cell.nameField.text = [addPersonArr objectAtIndex:0];
+                    cell.phoneField.text = [addPersonArr objectAtIndex:1];
+                    
+                    
+                    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                    cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+                    
+                    
+                    
                     return cell;
                 }
-                
-                
-                
-            }
-            break;
+                if (indexPath.row == 4) {
+                    
+                    static NSString *CellIdentifier = @"Cell5";
+                    WirterOrderTwoLineCell *cell = (WirterOrderTwoLineCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    if (!cell)
+                    {
+                        [[NSBundle mainBundle] loadNibNamed:@"WirterOrderTwoLineCell" owner:self options:nil];
+                        cell = self.wirterOrderTwoLineCell;
+                    }
+                    if (Default_IsUserLogin_Value) {
+                        
+                        
+                        cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+                        cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+                        
+                        return cell;
+                        
+                    }
+                    else
+                    {
+                        
+                        cell.hidden = YES;
+                        return cell;
+                    }
+                    
+                    
+                    
+                }
+                if (indexPath.row == 5) {
+                    static NSString *CellIdentifier = @"Cell8";
+                    SalesCell *cell = (SalesCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    if (!cell)
+                    {
+                        [[NSBundle mainBundle] loadNibNamed:@"SalesCell" owner:self options:nil];
+                        cell = self.salesCell;
+                    }
+                    
+                    if (Default_IsUserLogin_Value && self.discountListArr.count != 0) {
+                        return cell;
+                        
+                    }
+                    else
+                    {
+                        
+                        cell.hidden = YES;
+                        return cell;
+                    }
+
+                    
+                }
+                break;
             
         }
     }
@@ -636,9 +721,10 @@
                     cell = self.writeOrderCell;
                 }
                 
-                cell.imageView.image = [UIImage imageNamed:@"bg_blue__.png"];
+       //         cell.imageView.image = [UIImage imageNamed:@"bg_blue.png"];
                 [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:0];
 
+                [cell.btn setBackgroundImage:[UIImage imageNamed:@"bg_blue.png"] forState:UIControlStateHighlighted];
                 
                 cell.HUButton.text = self.searchDate.temporaryLabel;
                 cell.airPortName.text = self.searchDate.airPort;
@@ -657,12 +743,13 @@
                 cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
                 cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
 
+                
                 return cell;
                 break;
             }
             case 2:
             {
-                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 5 ) {
+                if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 ) {
                     static NSString *CellIdentifier = @"Cell3";
                     WriterOrderCommonCell *cell = (WriterOrderCommonCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                     
@@ -673,7 +760,7 @@
                     }
                     switch (indexPath.row) {
                         case 0:
-                            cell.firstLable.text = @"乘机人";
+                            cell.firstLable.text = @"乘 机  人";
                             
                             firstCellText = [self.firstCelTextArr objectAtIndex:0];
                             
@@ -692,24 +779,23 @@
                             cell.secondLable.text = firstCellText;
                             
                             cell.imageLabel.frame = CGRectMake(10, MAX(size.height, 50.0f)/2-6, 7, 21);
+                            cell.sortImageView.frame = CGRectMake(301, MAX(size.height, 50.0f)/2-6, 9, 14);
                             
+                            cell.fristImageView.frame = CGRectMake(0, MAX(size.height-1, 49.0f), 320,1);
+                            cell.secImageView.frame = CGRectMake(0, MAX(size.height, 50.0f), 320,1);
                             break;
                         case 2:
                             cell.firstLable.text = @"购买保险";
-                            cell.imageLabel.hidden = YES;
+                            cell.imageLabel.text = @" ";
                             break;
                         case 3:
-                            cell.firstLable.text = @"行程单";
+                            cell.firstLable.text = @"行  程  单";
                             cell.secondLable.text = @"不需要行程单报销凭证";
                             self.traveType = 1;   // 默认带进去就是不要行程单
                             
-                            cell.imageLabel.hidden = YES;
+                            cell.imageLabel.text = @" ";
                             break;
-                        case 5:
-                            cell.firstLable.text = @"促销活动减免";
-                            cell.imageLabel.hidden = YES;
-                            break;
-                        
+                   
                             
                         default:
                             break;
@@ -775,6 +861,29 @@
                     }
 
                 }
+                if (indexPath.row == 5) {
+                    static NSString *CellIdentifier = @"Cell8";
+                    SalesCell *cell = (SalesCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    if (!cell)
+                    {
+                        [[NSBundle mainBundle] loadNibNamed:@"SalesCell" owner:self options:nil];
+                        cell = self.salesCell;
+                    }
+                    
+                    if (Default_IsUserLogin_Value && self.discountListArr.count != 0) {
+                        return cell;
+                        
+                    }
+                    else
+                    {
+                        
+                        cell.hidden = YES;
+                        return cell;
+                    }
+
+                    
+                }
+
                 break;
                 
             }

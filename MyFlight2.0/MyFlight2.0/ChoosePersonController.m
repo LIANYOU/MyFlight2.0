@@ -164,6 +164,9 @@
     [cell.btn addTarget:self action:@selector(selectMore:) forControlEvents:UIControlEventTouchUpInside];
 
     
+    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+        cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+    
     return cell;
     
 }

@@ -17,6 +17,7 @@
 @property (retain, nonatomic) NSMutableArray * selectArr;
 @property (retain, nonatomic) NSMutableArray * indexArr;
 
+@property (retain, nonatomic) IBOutlet UIView *footView;
 @property (retain, nonatomic) NSArray * captchaList;
 
 -(void)getDate:(void (^) (NSString * name, NSString * count ,NSMutableArray * arr))string;

@@ -18,4 +18,11 @@
 @property (retain, nonatomic) IBOutlet UIView *backView;
 @property (retain, nonatomic) IBOutlet UILabel *firstLable;
 @property (retain, nonatomic) IBOutlet UILabel *imageLabel;
+
+@property (retain, nonatomic) IBOutlet UIImageView *fristImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *secImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *sortImageView;
+
+
+
 @end

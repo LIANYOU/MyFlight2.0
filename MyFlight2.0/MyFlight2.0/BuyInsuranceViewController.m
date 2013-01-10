@@ -7,7 +7,7 @@
 //
 
 #import "BuyInsuranceViewController.h"
-
+#import "UIButton+BackButton.h"
 @interface BuyInsuranceViewController ()
 {
     
@@ -43,15 +43,22 @@
         self.swith.on = NO;
     }
     
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
+    
+        
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
+    
+    UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"确定"];
+    [histroyBut addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+    self.navigationItem.rightBarButtonItem=backBtn2;
+    [backBtn2 release];
+
     
     [super viewDidLoad];
     
