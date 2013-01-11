@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AboutViewController.h"
+#import "BindSNSViewController.h"
 
 @class MoreCell;
 @interface HomeMoreController : UITableViewController

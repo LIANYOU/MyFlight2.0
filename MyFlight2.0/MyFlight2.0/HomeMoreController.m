@@ -94,6 +94,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AboutViewController *about;
+    BindSNSViewController *bindSNS;
     
     NSInteger selectIndex = indexPath.row;
     
@@ -132,8 +133,9 @@
                 controller = [[SettingForAppViewController alloc] init];
                 break;
             case 1:
-                CCLog(@"进入社交账号绑定界面");
-                
+                bindSNS = [[BindSNSViewController alloc] init];
+                [self.navigationController pushViewController:bindSNS animated:YES];
+                [bindSNS release];
                 break;
             case 2:
                 CCLog(@"新功能引导页");
