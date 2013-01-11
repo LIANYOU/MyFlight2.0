@@ -1,20 +1,24 @@
 //
-//  SettingSecondCell.m
+//  MultiChoiceCell.m
 //  MyFlight2.0
 //
-//  Created by Davidsph on 1/4/13.
-//  Copyright (c) 2013 LIAN YOU. All rights reserved.
+//  Created by lianyou on 13-1-11.
+//  Copyright (c) 2013年 LIAN YOU. All rights reserved.
 //
 
-#import "SettingSecondCell.h"
+#import "MultiChoiceCell.h"
 
-@implementation SettingSecondCell
+@implementation MultiChoiceCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
+        self.frame = CGRectMake(0, 0, 300, 44);
+        
+        UIButton *selection = [UIButton buttonWithType:UIButtonTypeCustom];
     }
     return self;
 }
@@ -26,9 +30,4 @@
     // Configure the view for the selected state
 }
 
-- (void)dealloc {
-    [_nameLabel release];
-    [_switchButton release];
-    [super dealloc];
-}
 @end

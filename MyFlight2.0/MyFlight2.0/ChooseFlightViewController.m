@@ -31,7 +31,7 @@
 
 - (void) requestForData
 {
-    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getCussSegHandler.jsp")];
+    NSURL *url = [NSURL URLWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getCussSegHandler.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
@@ -422,7 +422,7 @@
         }
         else
         {
-            NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/cussCheckHandler.jsp")];
+            NSURL *url = [NSURL URLWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/cussCheckHandler.jsp")];
             
             ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
             

@@ -366,7 +366,7 @@
 
 - (void) cancelCheckIn
 {
-    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getPwHandler.jsp")];
+    NSURL *url = [NSURL URLWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getPwHandler.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
@@ -412,7 +412,7 @@
                     NSLog(@"%@\n",string);
                 }
                 
-                [self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:2] animated:YES];
             }
             else
             {

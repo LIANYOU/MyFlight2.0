@@ -12,7 +12,7 @@
 #import "ChooseFlightViewController.h"
 #import "AirPortData.h"
 
-@interface CheckInViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ChooseAirPortViewControllerDelegate, UIActionSheetDelegate>
+@interface CheckInViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ChooseAirPortViewControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate>
 {
     UITableView *checkInInfoTable;
     
@@ -28,6 +28,8 @@
     UIButton *changeCity;
     UILabel *cityLabel;
     
+    UIButton *invisibleButton;
+    
     NSString *depCity;
     NSString *depCityCode;
     
@@ -37,8 +39,6 @@
 }
 
 - (void) back;
-- (void) userBeginEdit:(UITextField *) sender;
-- (void) userEndEdit:(UITextField *) sender;
 
 - (void) checkIn;
 - (void) progressQuery;

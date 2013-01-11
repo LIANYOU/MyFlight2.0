@@ -53,7 +53,7 @@
 
 - (void) requestForData:(NSString *) flightNo
 {
-    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/screen.jsp")];
+    NSURL *url = [NSURL URLWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/screen.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 

@@ -10,8 +10,7 @@
 
 @interface SettingSecondCell : UITableViewCell
 
-
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;
-
+@property (retain, nonatomic) IBOutlet UISwitch *switchButton;
 
 @end
