@@ -131,12 +131,20 @@
     
     
     
-    UILabel *  lineName;
+    UILabel * lineName;
+    
+    
     UILabel * firstBusTime;
-    UILabel *  lastBusTime;
-    UILabel *  lineIndex;
+    
+    
+    UILabel * lastBusTime;
+    
+    
+    UILabel * lineIndex;
+ 
+    
     UILabel * lineFares;
-
+ 
 }
 @property(nonatomic,retain) NSString * airPortCode;
 @property(nonatomic,retain)AirPortData * subAirPortData;

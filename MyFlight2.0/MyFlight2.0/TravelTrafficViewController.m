@@ -79,8 +79,8 @@
     taxiTableView.hidden = NO;
     
     //将tableview添加进去
-    [contentView addSubview:taxiTableView];
-    [contentView addSubview:subwayTableView];
+//    [contentView addSubview:taxiTableView];
+//    [contentView addSubview:subwayTableView];
     [contentView addSubview:coachTableView];
 
     currTableView = coachTableView;
@@ -158,15 +158,12 @@
     
     if (segmented.selectedIndex == 0) {
         trfficType = 0;//机场大巴
-        coachTableView.hidden = NO;
-        if (currTableView != coachTableView) {
-            [UIView transitionFromView:currTableView toView:coachTableView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL isFinish){
-                currTableView = coachTableView;
-                [coachTableView reloadData];
-                NSLog(@"current coachTableView");
-            }];
+        if (currTableView == taxiTableView) {
+            [taxiTableView removeFromSuperview];
+            [contentView addSubview:coachTableView];
         }
-       
+        currTableView = coachTableView;
+        
         if (orientationCoach == 1) {
             navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
         }else{
@@ -175,13 +172,11 @@
 
     }else if (segmented.selectedIndex == 1){
         trfficType = 2;//机场快轨
-        if (currTableView != subwayTableView) {
-            [UIView transitionFromView:currTableView toView:subwayTableView duration:0.75 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL isFinish){
-                currTableView = subwayTableView;
-                [subwayTableView reloadData];
-                NSLog(@"current subwayTableView");
-            }];
+        if (currTableView == taxiTableView) {
+            [taxiTableView removeFromSuperview];
+            [contentView addSubview:coachTableView];
         }
+        currTableView = coachTableView;
         //更改nav的标题
         if (orientationSubway == 1) {
             navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
@@ -191,13 +186,9 @@
 
     }else if (segmented.selectedIndex == 2){
         trfficType = 1;//出租车
-        if (currTableView != taxiTableView) {
-            [UIView transitionFromView:currTableView toView:taxiTableView duration:0.75 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL isFinish){
-                currTableView = taxiTableView;
-                [taxiTableView reloadData];
-                 NSLog(@"current taxiTableView");
-            }];
-        }
+        [coachTableView removeFromSuperview];
+        [contentView addSubview:taxiTableView];
+        currTableView = taxiTableView;
         //更改nav的标题
         if (orientationTaxi == 1) {
             navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
@@ -230,13 +221,15 @@
             if (subwayDic == nil) {
                 [self getData3];
             }else{
-                [subwayTableView reloadData];
+//                [subwayTableView reloadData];
+                [coachTableView reloadData];
             }
         }else{
             if (subwayDicFromAirPort == nil) {
                 [self getData4];
             }else{
-                [subwayTableView reloadData];
+//                [subwayTableView reloadData];
+                [coachTableView reloadData];
             }
         }
         
@@ -262,7 +255,10 @@
     
 }
 -(void)getData1{
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/traffic.jsp"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/3gWeb/api/traffic.jsp",BASE_DOMAIN_URL];
+    NSURL * url = [NSURL URLWithString:urlStr];
+    
+//    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/traffic.jsp"];
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request setPostValue:@"1" forKey:@"edition"];
@@ -310,7 +306,8 @@
 }
 
 -(void)getData2{
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/traffic.jsp"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/3gWeb/api/traffic.jsp",BASE_DOMAIN_URL];
+    NSURL * url = [NSURL URLWithString:urlStr];
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request setPostValue:@"1" forKey:@"edition"];
@@ -353,7 +350,8 @@
 }
 
 -(void)getData3{
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/traffic.jsp"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/3gWeb/api/traffic.jsp",BASE_DOMAIN_URL];
+    NSURL * url = [NSURL URLWithString:urlStr];
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request setPostValue:@"1" forKey:@"edition"];
@@ -383,7 +381,8 @@
         }
         
         
-        [subwayTableView reloadData];
+//        [subwayTableView reloadData];
+        [coachTableView reloadData];
     }];
     //请求失败
     [request setFailedBlock:^{
@@ -395,7 +394,8 @@
 }
 
 -(void)getData4{
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/traffic.jsp"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/3gWeb/api/traffic.jsp",BASE_DOMAIN_URL];
+    NSURL * url = [NSURL URLWithString:urlStr];
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request setPostValue:@"1" forKey:@"edition"];
@@ -426,7 +426,8 @@
         }
        
         
-        [subwayTableView reloadData];
+//        [subwayTableView reloadData];
+        [coachTableView reloadData];
         
     }];
     //请求失败
@@ -439,7 +440,8 @@
 }
 
 -(void)getData5{
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/traffic.jsp"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/3gWeb/api/traffic.jsp",BASE_DOMAIN_URL];
+    NSURL * url = [NSURL URLWithString:urlStr];
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request setPostValue:@"1" forKey:@"edition"];
@@ -486,7 +488,8 @@
 }
 
 -(void)getData6{
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/traffic.jsp"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/3gWeb/api/traffic.jsp",BASE_DOMAIN_URL];
+    NSURL * url = [NSURL URLWithString:urlStr];
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     [request setPostValue:@"1" forKey:@"edition"];
@@ -541,6 +544,8 @@
 #pragma mark - 导航栏点击事件
 -(void)navTapClick:(UITapGestureRecognizer *)navTap{
     NSLog(@"navTapClick:");
+    
+    CCLog(@"当前选择的是 %d",segmented.selectedIndex);
     if(segmented.selectedIndex == 0){
         //换成去市区
         if (orientationCoach == 0) {
@@ -568,7 +573,8 @@
             if (sectionCountSubwayFromAirPort == nil) {
                 [self getData4];
             }else{
-                [subwayTableView reloadData];
+//                [subwayTableView reloadData];
+                [coachTableView reloadData];
             }
 
         }else{
@@ -577,7 +583,8 @@
             if (sectionCountSubway == nil) {
                 [self getData3];
             }else{
-                [subwayTableView reloadData];
+//                [subwayTableView reloadData];
+                [coachTableView reloadData];
             }
         }
     }else if (segmented.selectedIndex == 2){
@@ -601,37 +608,6 @@
     }
 }
 
-#pragma mark - 填写数据
--(void)fillData{
-    if (segmented.selectedIndex == 0) {
-        //大巴
-        NSArray * myArray = [coachDic objectForKey:@"TrafficTools"];
-        for (int i = 0; i < [myArray count]; i++) {
-            //价格
-            coachPriceLabel.text = [[myArray objectAtIndex:i]objectForKey:@"lineFares"];
-            //起点
-            coachDeptLabel.text = [[myArray objectAtIndex:i]objectForKey:@"lineFares"];
-            //时间
-            coachTime.text = [[myArray objectAtIndex:i]objectForKey:@"lineFares"];
-            //从哪到哪
-            
-            //首班车发车时间
-            
-            //末班车时间
-            
-            //班车间隔时间
-            
-            //经停站
-        }
-       
-    }else if(segmented.selectedIndex == 1){
-        //快轨
-
-    }else if(segmented.selectedIndex == 2){
-        //出租车
-        
-    }
-}
 
 #pragma mark - tableView代理
 
@@ -644,11 +620,11 @@
         }else{
             return [sectionCountCoachFromAirPort count];
         }
-    }else if (tableView == subwayTableView){
-        if (orientationSubway == 0) {
-            return [sectionCountSubway count];
+    }else if (tableView == taxiTableView){
+        if (taxiTableView == 0) {
+            return [sectionCountTaxi count];
         }else{
-            return [sectionCountSubwayFromAirPort count];
+            return [sectionCountTaxiFromAirPort count];
         }
     }
         return 0;
@@ -659,199 +635,160 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
-//    static NSString *CellIdentifier = @"Cell";
-//    TrafficCell *cell = [coachTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (!cell)
-//    {
-//       
-//        NSArray *array=   [[NSBundle mainBundle] loadNibNamed:@"TrafficCell" owner:self options:nil];
-//        cell =[array objectAtIndex:0];
-//        
-////        cell = self.myTrafficCell;
-//        
-//    }
-//    if (tableView == coachTableView) {
-//        if (tableView == coachTableView) {
-//            if (orientationCoach == 0) {
-//                cell.lineName = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lineName"];
-//                cell.firstBusTime = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
-//                cell.lastBusTime = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
-//                cell.lineIndex = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
-//                cell.lineFares = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
-//            }else{
-//                cell.lineName = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineName"];
-//                cell.firstBusTime = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
-//                cell.lastBusTime = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
-//                cell.lineIndex = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
-//                cell.lineFares = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
-//            }
-//        }else if (tableView == subwayTableView){
-//            if (orientationSubway == 0) {
-//                cell.lineName = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lineName"];
-//                cell.firstBusTime = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
-//                cell.lastBusTime = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
-//                cell.lineIndex = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
-//                cell.lineFares = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
-//            }else{
-//                cell.lineName = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineName"];
-//                cell.firstBusTime = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
-//                cell.lastBusTime = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
-//                cell.lineIndex = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
-//                cell.lineFares = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
-//            }
-//        }
-//       
-//    }
-//     return cell;
-    
-    static NSString *CellIdentifier = @"Cell";
+    NSString *CellIdentifier = @"";
+    if (tableView == coachTableView) {
+        CellIdentifier = @"Cell";
+    }else if(tableView == taxiTableView){
+        CellIdentifier = @"taxiCell";
+    }
+   
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        
-        //UIView * myBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
-        
-//        myBackgroundView.backgroundColor = BACKGROUND_COLOR;
-//        cell.selectedBackgroundView = myBackgroundView;
-//        [myBackgroundView release];
-        cell.showsReorderControl = YES;
-        cell.selectedTextColor = [UIColor redColor];
-        
-        UILabel * firstBusLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, 52, 21)];
-        firstBusLable.font = [UIFont systemFontOfSize:12];
-        firstBusLable.textAlignment = NSTextAlignmentLeft;
-        firstBusLable.text = @"首班车";
-        firstBusLable.backgroundColor = [UIColor clearColor];
-        firstBusLable.textColor = FONT_COLOR_GRAY;
-        [cell addSubview:firstBusLable];
-        [firstBusLable release];
-        
-        UILabel * lastBusLabel = [[UILabel alloc]initWithFrame:CGRectMake(95, 20, 50, 21)];
-        lastBusLabel.font = [UIFont systemFontOfSize:12];
-        lastBusLabel.textColor = FONT_COLOR_GRAY;
-        lastBusLabel.text = @"末班车";
-        lastBusLabel.backgroundColor = [UIColor clearColor];
-        [cell addSubview:lastBusLabel];
-        [lastBusLabel release];
-        
-        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(300, 20, 9, 12)];
-        [imageView setImage:[UIImage imageNamed:@"icon_arrowhead_.png"]];
-        [cell addSubview:imageView];
-        [imageView release];
-        
-        UIImageView * imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 43, 320, 1)];
-        imageView1.backgroundColor = [UIColor whiteColor];
-        [cell addSubview:imageView1];
-        [imageView1 release];
-        
-        UIImageView * imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
-        imageView.backgroundColor = Line_COLOR_GRAY;
-        [cell addSubview:imageView2];
-        [imageView2 release];
-        
-        
-        lineName = [[UILabel alloc]initWithFrame:CGRectMake(50, 4, 160, 21)];
-        lineName.textAlignment = NSTextAlignmentLeft;
-        lineName.backgroundColor = [UIColor clearColor];
-        lineName.font = [UIFont systemFontOfSize:14];
-        lineName.textColor = FONT_COLOR_GRAY;
-        [cell addSubview:lineName];
-        [lineName release];
-        
-        firstBusTime = [[UILabel alloc]initWithFrame:CGRectMake(59, 20, 58, 21)];
-        firstBusTime.font = [UIFont systemFontOfSize:12];
-        firstBusTime.textAlignment = NSTextAlignmentLeft;
-        firstBusTime.backgroundColor = [UIColor clearColor];
-        firstBusTime.textColor = FONT_COLOR_GRAY;
-        [cell addSubview:firstBusTime];
-        [firstBusTime release];
-        
-        
-        lastBusTime = [[UILabel alloc]initWithFrame:CGRectMake(146, 20, 68, 21)];
-        lastBusTime.font = [UIFont systemFontOfSize:12];
-        lastBusTime.textAlignment = NSTextAlignmentLeft;
-        lastBusTime.backgroundColor = [UIColor clearColor];
-        lastBusTime.textColor = FONT_COLOR_GRAY;
-        [cell addSubview:lastBusTime];
-        
-        lineIndex = [[UILabel alloc]initWithFrame:CGRectMake(10, 4, 30, 21)];
-        lineIndex.textColor = FONT_COLOR_GRAY;
-        lineIndex.textAlignment = NSTextAlignmentLeft;
-        lineIndex.backgroundColor = [UIColor clearColor];
-        lineIndex.font = [UIFont systemFontOfSize:14];
-        [cell addSubview:lineIndex];
-        
-        lineFares = [[UILabel alloc]initWithFrame:CGRectMake(253, 10, 42, 21)];
-        lineFares.font = [UIFont systemFontOfSize:17];
-        lineFares.textAlignment = NSTextAlignmentLeft;
-        lineFares.textColor = FONT_COLOR_RED;
-        lineFares.backgroundColor = [UIColor clearColor];
-        [cell addSubview:lineFares];
-        [lineFares release];
+        if (tableView == coachTableView) {
+            cell.showsReorderControl = YES;
+            
+            UILabel * firstBusLable = [[UILabel alloc]initWithFrame:CGRectMake(5, 20, 60, 21)];
+            firstBusLable.font = [UIFont systemFontOfSize:12];
+            firstBusLable.textAlignment = NSTextAlignmentRight;
+            firstBusLable.text = @"首班车:";
+            firstBusLable.backgroundColor = [UIColor clearColor];
+            firstBusLable.textColor = FONT_COLOR_GRAY;
+            [cell addSubview:firstBusLable];
+            [firstBusLable release];
+            
+            UILabel * lastBusLabel = [[UILabel alloc]initWithFrame:CGRectMake(115, 20, 50, 21)];
+            lastBusLabel.font = [UIFont systemFontOfSize:12];
+            lastBusLabel.textColor = FONT_COLOR_GRAY;
+            lastBusLabel.text = @"末班车:";
+            lastBusLabel.backgroundColor = [UIColor clearColor];
+            [cell addSubview:lastBusLabel];
+            [lastBusLabel release];
+            
+            UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(300, 20, 9, 12)];
+            [imageView setImage:[UIImage imageNamed:@"icon_arrowhead_.png"]];
+            [cell addSubview:imageView];
+            [imageView release];
+            
+            UIImageView * imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 43, 320, 1)];
+            imageView1.backgroundColor = [UIColor whiteColor];
+            [cell addSubview:imageView1];
+            [imageView1 release];
+            
+            UIImageView * imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
+            imageView.backgroundColor = Line_COLOR_GRAY;
+            [cell addSubview:imageView2];
+            [imageView2 release];
+            
+            
+            lineName = [[UILabel alloc]initWithFrame:CGRectMake(70, 4, 160, 21)];
+            lineName.textAlignment = NSTextAlignmentLeft;
+            lineName.backgroundColor = [UIColor clearColor];
+            lineName.font = [UIFont systemFontOfSize:14];
+            lineName.textColor = FONT_COLOR_GRAY;
+            [cell.contentView addSubview:lineName];
+            [lineName release];
+            
+            firstBusTime = [[UILabel alloc]initWithFrame:CGRectMake(70, 20, 58, 21)];
+            firstBusTime.font = [UIFont systemFontOfSize:12];
+            firstBusTime.textAlignment = NSTextAlignmentLeft;
+            firstBusTime.backgroundColor = [UIColor clearColor];
+            firstBusTime.textColor = FONT_COLOR_GRAY;
+            [cell addSubview:firstBusTime];
+            [firstBusTime release];
+            
+            
+            lastBusTime = [[UILabel alloc]initWithFrame:CGRectMake(156, 20, 68, 21)];
+            lastBusTime.font = [UIFont systemFontOfSize:12];
+            lastBusTime.textAlignment = NSTextAlignmentLeft;
+            lastBusTime.backgroundColor = [UIColor clearColor];
+            lastBusTime.textColor = FONT_COLOR_GRAY;
+            [cell addSubview:lastBusTime];
+            
+            lineIndex = [[UILabel alloc]initWithFrame:CGRectMake(5, 4, 60, 21)];
+            lineIndex.textColor = FONT_COLOR_GRAY;
+            lineIndex.textAlignment = NSTextAlignmentRight;
+            lineIndex.backgroundColor = [UIColor clearColor];
+            lineIndex.font = [UIFont systemFontOfSize:14];
+            [cell addSubview:lineIndex];
+            
+            lineFares = [[UILabel alloc]initWithFrame:CGRectMake(253, 10, 42, 21)];
+            lineFares.font = [UIFont systemFontOfSize:17];
+            lineFares.textAlignment = NSTextAlignmentLeft;
+            lineFares.textColor = FONT_COLOR_RED;
+            lineFares.backgroundColor = [UIColor clearColor];
+            [cell addSubview:lineFares];
+            [lineFares release];
+
+        }
+                
     }
     
-//    if (!cell)
-//            {
-//        
-//                NSArray *array=   [[NSBundle mainBundle] loadNibNamed:@"TrafficCell" owner:self options:nil];
-//                cell =[array objectAtIndex:0];
-//        
-//                cell = self.myTrafficCell;
-//        
-//            }
-            if (tableView == coachTableView) {
-                if (tableView == coachTableView) {
-                    if (orientationCoach == 0) {
-                        if (sectionCountCoach) {
-                            
-                            lineName.text = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lineName"];
-                            firstBusTime.text = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
-                            lastBusTime.text = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
-                            lineIndex.text = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
-                            lineFares.text = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
-                        }
-                    }else{
-                        if (sectionCountCoachFromAirPort) {
-                          
-                            lineName.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineName"];
-                            firstBusTime.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
-                            lastBusTime.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
-                            lineIndex.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
-                            lineFares.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
-                        }
-                   }
-                }else if (tableView == subwayTableView){
-                    if (sectionCountSubway) {
-                      
-                        if (orientationSubway == 0) {
-                            lineName.text = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lineName"];
-                            firstBusTime.text = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
-                            lastBusTime.text = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
-                           lineIndex.text = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
-                            lineFares.text = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
-                        }
-                    }else{
-                        if (sectionCountSubwayFromAirPort) {
-                
-                            lineName.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineName"];
-                            firstBusTime.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
-                            lastBusTime.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
-                            lineIndex.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
-                            lineFares.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
-                        }
-                    }
-                }
-               
+    if (segmented.selectedIndex == 0) {
+        if (orientationCoach == 0) {
+            if (sectionCountCoach) {
+                NSLog(@"00");
+                lineName.text = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lineName"];
+                NSLog(@"lineName.text:%@",lineName.text);
+                firstBusTime.text = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
+                lastBusTime.text = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
+                lineIndex.text = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
+                lineFares.text = [[sectionCountCoach objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
             }
+        }else{
+            if (sectionCountCoachFromAirPort) {
+                NSLog(@"01");
+                lineName.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineName"];
+                NSLog(@"lineName.text:%@",lineName.text);
+                firstBusTime.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
+                lastBusTime.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
+                lineIndex.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
+                lineFares.text = [[sectionCountCoachFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
+            }
+        }
+    }else if (segmented.selectedIndex == 1){
+        if (orientationSubway == 0) {
+            if (sectionCountSubway) {
+                NSLog(@"10");
+                lineName.text = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lineName"];
+                firstBusTime.text = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
+                lastBusTime.text = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
+                lineIndex.text = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
+                lineFares.text = [[sectionCountSubway objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
+            }
+        }else{
+            if (sectionCountSubwayFromAirPort) {
+                NSLog(@"11");
+                lineName.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineName"];
+                firstBusTime.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"firstBus"];
+                lastBusTime.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lastBus"];
+                lineIndex.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"trafficLine"];
+                lineFares.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
+            }
+        }
+    }else if (segmented.selectedIndex == 2){
+        if (orientationTaxi == 0) {
+              NSLog(@" ++++++  ------->  20");
+            if (sectionCountTaxi) {
+                NSLog(@"------->  20");
+                
+            }
+
+        }else{
+             NSLog(@"   +++   ------->  21");
+            if (sectionCountTaxiFromAirPort) {
+                 NSLog(@"------->  21");
+            }
+        
+        }
     
+    }
     return cell;
 }
-  
+
 
 #pragma mark - tableViewCell over
-#pragma mark - 
+#pragma mark -
 
 //-(void)refreshGetData{
 //    [self getData];
