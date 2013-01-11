@@ -130,7 +130,12 @@
     
     
     
-    UILabel * newlineLabel; //机场- 》方庄
+    
+    UILabel *  lineName;
+    UILabel * firstBusTime;
+    UILabel *  lastBusTime;
+    UILabel *  lineIndex;
+    UILabel * lineFares;
 
 }
 @property(nonatomic,retain) NSString * airPortCode;
