@@ -58,7 +58,7 @@
 										<int key="IBUIContentMode">7</int>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">海南航空</string>
+										<string key="IBUIText">航空</string>
 										<object class="NSColor" key="IBUITextColor">
 											<int key="NSColorSpace">1</int>
 											<bytes key="NSRGB">MC4yIDAuMiAwLjIAA</bytes>
@@ -79,7 +79,7 @@
 									<object class="IBUILabel" id="9534322">
 										<reference key="NSNextResponder" ref="725778453"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{76, 5}, {63, 21}}</string>
+										<string key="NSFrame">{{47, 5}, {63, 21}}</string>
 										<reference key="NSSuperview" ref="725778453"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="437371882"/>

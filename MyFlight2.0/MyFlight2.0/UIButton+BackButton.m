@@ -46,7 +46,7 @@
             clickIamge = @"icon_add_click.png";
             break;
           
-            case 7:
+        case 7:
             backBtn.frame = CGRectMake(0, 0, 30, 30);
             normalImage = @"icon_add.png";
             clickIamge = @"icon_add_click.png";

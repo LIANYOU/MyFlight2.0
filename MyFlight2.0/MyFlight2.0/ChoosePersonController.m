@@ -134,17 +134,18 @@
                 UIImage * image=[UIImage imageNamed:@"icon_choice.png"];
                 
                 [cell.btn setBackgroundImage:image forState:0];
-                
+                [cell.btn setBackgroundImage:image forState:UIControlStateHighlighted];
                
                 break;
             }
         }
     }
     if (selectedSign==NO) {
-        
+       
         UIImage * image=[UIImage imageNamed:@"ico_def.png"];
     
         [cell.btn setBackgroundImage:image forState:0];
+         [cell.btn setBackgroundImage:image forState:UIControlStateHighlighted];
         
     }
     
@@ -198,10 +199,9 @@
                 [self.selectArr removeObject:thisRow];
                 
                 UIImage * image=[UIImage imageNamed:@"ico_def.png"];
-   
 
                [btn setBackgroundImage:image forState:0];
-            
+             [btn setBackgroundImage:image forState:UIControlStateHighlighted];
                
                 return;
             }
@@ -214,7 +214,7 @@
 
     
     [btn setBackgroundImage:image forState:0];
-    
+     [btn setBackgroundImage:image forState:UIControlStateHighlighted];
 }
 
 

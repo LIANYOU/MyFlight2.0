@@ -44,7 +44,7 @@
 							<object class="IBUILabel" id="299948607">
 								<reference key="NSNextResponder" ref="299114943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{27, 14}, {68, 21}}</string>
+								<string key="NSFrame">{{27, 14}, {97, 21}}</string>
 								<reference key="NSSuperview" ref="299114943"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="844227162"/>
@@ -54,10 +54,10 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">手机号码</string>
+								<string key="IBUIText">手  机  号  码</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">2</int>
-									<bytes key="NSRGB">MC4xMzcyNTQ5MDIgMC4zNDUwOTgwMzkyIDAuNjk0MTE3NjQ3MQA</bytes>
+									<bytes key="NSRGB">MC4wNzg0MzEzNzI1NSAwLjM0OTAxOTYwNzggMC43MDE5NjA3ODQzAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor">
 									<int key="NSColorSpace">3</int>
@@ -78,7 +78,7 @@
 							<object class="IBUITextField" id="844227162">
 								<reference key="NSNextResponder" ref="299114943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{110, 9}, {190, 30}}</string>
+								<string key="NSFrame">{{142, 10}, {167, 30}}</string>
 								<reference key="NSSuperview" ref="299114943"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="670779280"/>
@@ -101,6 +101,7 @@
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
+								<int key="IBUIClearButtonMode">1</int>
 								<reference key="IBUIFontDescription" ref="272527906"/>
 								<reference key="IBUIFont" ref="58898795"/>
 							</object>
@@ -110,6 +111,7 @@
 								<string key="NSFrame">{{0, 49}, {320, 2}}</string>
 								<reference key="NSSuperview" ref="299114943"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>

@@ -48,6 +48,8 @@
 
 @property (retain, nonatomic) UseGoldPay * useGoldPay ;
 
+@property (retain, nonatomic) NSString * goAirPortName;  // 去成公司二字码
+@property (retain, nonatomic) NSString * backAirPortName;  // 返程公司二字码
 
 @property (retain, nonatomic) IBOutlet UIScrollView *orderScrollView;
 @property (retain, nonatomic) IBOutlet UILabel *allPay;   // 底部的显示还有多少钱的按钮

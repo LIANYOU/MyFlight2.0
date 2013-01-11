@@ -55,6 +55,8 @@
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
 
+    
+   
 
     self.showTableView.tableFooterView = self.footView;
     
@@ -70,6 +72,27 @@
         data = self.searchFlight;
     }
     self.flightCode.text =data.temporaryLabel;
+    
+    
+    NSString * dataPath = [[NSBundle mainBundle] pathForResource:@"AirPortCode" ofType:@"plist"];
+    
+    NSDictionary * dicCode = [[NSDictionary alloc] initWithContentsOfFile:dataPath];
+    
+    
+    for (int i = 0; i<dicCode.allKeys.count; i++) {
+        
+        if ([data.airPort isEqualToString:[dicCode.allKeys objectAtIndex:i]]) {
+            
+            self.airCodeName = [dicCode objectForKey:[dicCode.allKeys objectAtIndex:i]];
+            
+            break;
+        }
+        else
+        {
+            self.airCodeName = data.airPort;
+        }
+    }
+
     
   
     if (self.flag == 1) {
@@ -143,9 +166,9 @@
     self.lookReceive = [NSArray array];
     self.lookReceive = [[not userInfo] objectForKey:@"arr"];
     for (NSDictionary * dic_ in self.lookReceive) {
-      //   NSLog(@"已经关注的航班号 %@",[dic_ objectForKey:@"flightNum"]);
+         NSLog(@"已经关注的航班号 %@",[dic_ objectForKey:@"flightNum"]);
         if ([data.temporaryLabel isEqualToString:[dic_ objectForKey:@"flightNum"]]) {
-            [self.lookFlightBtn setTitle:@"取消关注" forState:0];
+            [self.lookFlightBtn setTitle:@"    取消关注" forState:0];
             [self.lookFlightBtn setBackgroundImage:[UIImage imageNamed:@"btn_cancel.png"] forState:0];
            
         }
@@ -298,7 +321,7 @@
         else{
             cell.scheduleDate.text = [NSString stringWithFormat:@"%@ %@",data.beginDate,data.backStartWeek];
         }
-        cell.airPort.text = data.airPort;
+        cell.airPort.text = self.airCodeName;
         cell.palntType.text = [NSString stringWithFormat:@"%@机型",data.palntType];
         cell.beginTime.text = data.beginTime;
         cell.endTime.text = data.endTime;
@@ -437,6 +460,7 @@
                 self.searchFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
                 self.searchFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
                 self.searchFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
+                self.searchFlight.goAirportName = self.airCodeName;
                 
                 
                 ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
@@ -472,7 +496,7 @@
                     self.searchFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
                     self.searchFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
                     self.searchFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
-                    
+                    self.searchFlight.goAirportName = self.airCodeName;
                 }
                 else{
                     
@@ -485,6 +509,7 @@
                     self.searchBackFlight.cabinNumber = [data.cabinNumberArr objectAtIndex:indexPath.row-1];
                     self.searchBackFlight.cabinCode = [[self.dateArr objectAtIndex:indexPath.row-1] objectForKey:@"cabinCode"];
                     self.searchBackFlight.cabinInfo = [self.changeInfoArr objectAtIndex:indexPath.row-1];
+                    self.searchBackFlight.backAirportName = self.airCodeName;
                     
                 }
                 
@@ -599,7 +624,7 @@
     
     NSString * type = nil;
     
-    if ([sender.titleLabel.text isEqualToString:@"关注航班"]) {
+    if ([sender.titleLabel.text isEqualToString:@"    关注航班"]) {
 
         type = @"P";
     }
@@ -649,17 +674,17 @@
     
     self.lookFlightArr = [[not userInfo] objectForKey:@"arr"];
     NSString * string = [self.lookFlightArr objectForKey:@"message"];
-    
+
     if (string == @"") {
-        if ([self.lookFlightBtn.titleLabel.text isEqualToString:@"关注航班"]) {
+        if ([self.lookFlightBtn.titleLabel.text isEqualToString:@"    关注航班"]) {
   
-            [self.lookFlightBtn setTitle:@"取消关注" forState:0];
+            [self.lookFlightBtn setTitle:@"    取消关注" forState:0];
        
             [self.lookFlightBtn setBackgroundImage:[UIImage imageNamed:@"btn_cancel.png"] forState:0];
         }
         else{
 
-            [self.lookFlightBtn setTitle:@"关注航班" forState:0];
+            [self.lookFlightBtn setTitle:@"    关注航班" forState:0];
       
             [self.lookFlightBtn setBackgroundImage:[UIImage imageNamed:@"btn_attention.png"] forState:0];
         }

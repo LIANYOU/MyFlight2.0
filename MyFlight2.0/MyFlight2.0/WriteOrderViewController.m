@@ -133,7 +133,7 @@
     self.orderTableView.dataSource = self;
     
    // if (! Default_IsUserLogin_Value) {
-        UIButton * histroyBut = [UIButton backButtonType:4 andTitle:@"登录"];
+        UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"登录"];
         [histroyBut addTarget:self action:@selector(log) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
@@ -169,7 +169,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"返回金币数目" object:nil];
     [self.useGoldPay searchGold];
     
-       
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -431,7 +432,7 @@
             return 100;
         }
         if (indexPath.section == 2 ) {
-            return 80;
+            return 90;
         }
         if (indexPath.section == 3 ) {
             if (indexPath.row == 0) {
@@ -442,6 +443,9 @@
                 CGSize size = [firstCellText sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap]; // 根据label中文字的字体号的大小和每一行的分割方式确定size的大小
                 
                 CGFloat height = MAX(size.height, 50.0f);
+                
+                
+                NSLog(@"---------------  %f",height);
                 
                 return height;
 
@@ -504,15 +508,12 @@
                     cell = self.writeOrderCell;
                 }
                 
-              //  cell.frame = CGRectMake(10, 10, 320, 90);
-        
-//                cell.backView.frame = CGRectMake(50, 0, 325, 80);
+
                 cell.imageView.frame = CGRectMake(0, 0,0 , 0);
-           //     cell.imageView.image = [UIImage imageNamed:@"bg_green.png"];
                 [cell.btn setBackgroundImage:[UIImage imageNamed:@"bg_blue.png"] forState:UIControlStateHighlighted];
                 [cell.changeTicket setBackgroundImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:0];
                 cell.HUButton.text = self.searchDate.temporaryLabel;
-                cell.airPortName.text = self.searchDate.airPort;
+                cell.airPortName.text = self.searchDate.goAirportName;
                 cell.startTime.text = self.searchDate.beginTime;
                 cell.endTime.text = self.searchDate.endTime;
                 cell.startAirPortName.text = self.searchDate.startPortName;
@@ -522,7 +523,7 @@
                 cell.changeTicket.tag = 1;
                 [cell.changeTicket addTarget:self action:@selector(changeInfo:) forControlEvents:UIControlEventTouchUpInside]; // 记录退改签
                 
-                cell.date.text = self.searchDate.beginDate;
+                cell.date.text = [self.searchDate.beginDate substringWithRange:NSMakeRange(5, 5)];
                 
                 cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
                 cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
@@ -546,14 +547,14 @@
                 
           //      cell.backView.frame = CGRectMake(50, 0, 325, 80);
                 cell.HUButton.text = self.searchBackDate.temporaryLabel;
-                cell.airPortName.text = self.searchBackDate.airPort;
+                cell.airPortName.text = self.searchBackDate.backAirportName;
                 cell.startTime.text = self.searchBackDate.beginTime;
                 cell.endTime.text = self.searchBackDate.endTime;
                 cell.startAirPortName.text = self.searchBackDate.startPortName;
                 cell.endAirPortName.text = self.searchBackDate.endPortName;
                 cell.plantType.text = self.searchBackDate.cabinNumber;
-                cell.date.text = self.searchBackDate.backDate;
-                
+            //    cell.date.text = self.searchBackDate.backDate;
+                cell.date.text = [self.searchBackDate.backDate substringWithRange:NSMakeRange(5, 5)];
                 cell.changeTicket.tag = 2;
                 [cell.changeTicket addTarget:self action:@selector(changeTwoInfo:) forControlEvents:UIControlEventTouchUpInside]; // 记录退改签
                 
@@ -727,13 +728,13 @@
                 [cell.btn setBackgroundImage:[UIImage imageNamed:@"bg_blue.png"] forState:UIControlStateHighlighted];
                 
                 cell.HUButton.text = self.searchDate.temporaryLabel;
-                cell.airPortName.text = self.searchDate.airPort;
+                cell.airPortName.text = self.searchDate.goAirportName;
                 cell.startTime.text = self.searchDate.beginTime;
                 cell.endTime.text = self.searchDate.endTime;
                 cell.startAirPortName.text = self.searchDate.startPortName;
                 cell.endAirPortName.text = self.searchDate.endPortName;
                 cell.plantType.text = self.searchDate.cabinNumber;
-                cell.date.text = self.searchDate.beginDate;
+                cell.date.text = [self.searchDate.beginDate substringWithRange:NSMakeRange(5, 5)];
                 
                 cell.changeTicket.tag = 1;
                 

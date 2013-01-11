@@ -9,6 +9,7 @@
 #import "ChooseDiscountCouponController.h"
 #import "discountCell.h"
 #import "UIButton+BackButton.h"
+#import "UIQuickHelp.h"
 @interface ChooseDiscountCouponController ()
 {
         BOOL selectedSign;
@@ -29,6 +30,8 @@
 - (void)viewDidLoad
 {
     self.navigationItem.title = @"选择优惠券";
+    
+    [UIQuickHelp setRoundCornerForView:self.backViee withRadius:8];
     
     UIButton * button = [UIButton backButtonType:0 andTitle:@""];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
@@ -150,12 +153,14 @@
     [_discountCell release];
     [_showTableView release];
     [_footView release];
+    [_backViee release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setDiscountCell:nil];
     [self setShowTableView:nil];
     [self setFootView:nil];
+    [self setBackViee:nil];
     [super viewDidUnload];
 }
 

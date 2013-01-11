@@ -85,7 +85,11 @@
         
         self.allData = [request responseData];
         
+    
+        
         self.dictionary = [self.allData objectFromJSONData];
+        
+      
         
         dictionary = [self.dictionary objectForKey:@"result"];
         
