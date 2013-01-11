@@ -120,34 +120,31 @@
 
 - (void) setNav{
     
-    UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
     
+    
+    UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
     
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
+
     [backBtn1 release];
-    
  
     
-    UIButton *rightBn = [UIButton backButtonType:2 andTitle:@""];
     
     
-    [rightBn setBackgroundImage:[UIImage imageNamed:@"icon_add.png"] forState:0];
     
-    [rightBn setBackgroundImage:[UIImage imageNamed:@"icon_add_click.png"] forState:UIControlStateHighlighted];
+    UIButton * rightBn = [UIButton  backButtonType:6 andTitle:@""];
+    [rightBn addTarget:self action:@selector(addCommonPassenger) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addCommonPassenger)];
-    
-    right.tintColor = Right_BarItem_Blue;
-    
-    self.navigationItem.rightBarButtonItem = right;
+    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:rightBn];
+    self.navigationItem.rightBarButtonItem=right;
     
     [right release];
 
-     
+    
+  
 }
 
 
@@ -159,12 +156,13 @@
     [super viewDidLoad];
     _resultArray = [[NSMutableArray alloc] init];
     
+     [self setNav];
     
     self.resultArray = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
     
     
     
-    [self setNav];
+   
     
 //    LoginBusiness  *bis = [[LoginBusiness alloc] init];
     
@@ -246,44 +244,7 @@
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
 
 #pragma mark - Table view delegate
 
@@ -307,9 +268,7 @@
     [self.navigationController pushViewController:controller animated:YES];
     
     [controller release];
-    
-    
-    
+
 }
 
 

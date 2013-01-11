@@ -56,7 +56,7 @@
     
     
     
-    UIButton * rightBn = [UIButton  backButtonType:2 andTitle:@"退出"];
+    UIButton * rightBn = [UIButton  backButtonType:6 andTitle:@""];
     [rightBn addTarget:self action:@selector(addCoup) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:rightBn];
@@ -227,6 +227,7 @@
     }
     
     
+    cell.highlighted = NO;
     
     CouponsInfo *data = [tmpArray objectAtIndex:indexPath.row];
     
@@ -259,6 +260,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     [UIQuickHelp showAlertViewWithTitle:@"优惠券使用规则" message:@"本优惠券，只限单人单次单张使用，过期不侯，谢谢！！" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
     

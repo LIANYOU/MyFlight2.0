@@ -2064,7 +2064,9 @@
 }
 
 
-
+#pragma mark -
+#pragma mark 个人中心优惠券查询 已废弃
+ 
 //个人中心优惠券查询
 + (Boolean) getCouponListWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate{
     

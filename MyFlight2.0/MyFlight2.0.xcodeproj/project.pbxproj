@@ -147,6 +147,8 @@
 		14698737167F152400E9B30D /* NSData+base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 14698736167F152400E9B30D /* NSData+base64.m */; };
 		1474CE03169D12F400FF6761 /* MyLocalOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474CE01169D12F400FF6761 /* MyLocalOrderListViewController.m */; };
 		1474CE04169D12F400FF6761 /* MyLocalOrderListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1474CE02169D12F400FF6761 /* MyLocalOrderListViewController.xib */; };
+		1474CE1D169EEC7100FF6761 /* btn_save_click_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 1474CE1C169EEC7100FF6761 /* btn_save_click_new.png */; };
+		1474CE20169EEC7E00FF6761 /* btn_save_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 1474CE1F169EEC7E00FF6761 /* btn_save_new.png */; };
 		14805B8616782A8E00836353 /* AirPortDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B8516782A8E00836353 /* AirPortDataBase.m */; };
 		14805B8A16782B2B00836353 /* AirPortData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B8916782B2A00836353 /* AirPortData.m */; };
 		14805B8E1678349200836353 /* DataBaseVersionConfigure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14805B8D1678349100836353 /* DataBaseVersionConfigure.plist */; };
@@ -1005,6 +1007,8 @@
 		1474CE01169D12F400FF6761 /* MyLocalOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocalOrderListViewController.m; sourceTree = "<group>"; };
 		1474CE02169D12F400FF6761 /* MyLocalOrderListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLocalOrderListViewController.xib; sourceTree = "<group>"; };
 		1474CE13169E738900FF6761 /* TipConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipConfigure.h; sourceTree = "<group>"; };
+		1474CE1C169EEC7100FF6761 /* btn_save_click_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_save_click_new.png; sourceTree = "<group>"; };
+		1474CE1F169EEC7E00FF6761 /* btn_save_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_save_new.png; sourceTree = "<group>"; };
 		14805A0E1676F04B00836353 /* AppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigure.h; sourceTree = "<group>"; };
 		14805A0F1676F0DF00836353 /* AirPortsUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortsUility.h; sourceTree = "<group>"; };
 		14805A101676F13000836353 /* PublicConstUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicConstUrls.h; sourceTree = "<group>"; };
@@ -3672,6 +3676,8 @@
 		18E37CA0167D53890086B3F8 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				1474CE1F169EEC7E00FF6761 /* btn_save_new.png */,
+				1474CE1C169EEC7100FF6761 /* btn_save_click_new.png */,
 				18E37CA1167D53890086B3F8 /* icon_acc.png */,
 				18E37CA2167D53890086B3F8 /* icon_atv.png */,
 				18E37CA3167D53890086B3F8 /* icon_Coupon.png */,
@@ -4730,8 +4736,13 @@
 				18D0D6C0169D67260028995B /* btn_sort.png in Resources */,
 				18D0D6C3169D67400028995B /* icon_screening_click.png in Resources */,
 				18D0D6C4169D67400028995B /* icon_screening.png in Resources */,
+
 				18D0D717169EC1C90028995B /* SalesCell.xib in Resources */,
 				18D0D71C169EF6D20028995B /* WriteOrderGreenCell.xib in Resources */,
+
+				1474CE1D169EEC7100FF6761 /* btn_save_click_new.png in Resources */,
+				1474CE20169EEC7E00FF6761 /* btn_save_new.png in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

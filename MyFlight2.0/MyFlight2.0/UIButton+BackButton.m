@@ -37,37 +37,39 @@
             backBtn.frame = CGRectMake(0, 0, 90, 30);
             normalImage = @"btn_5words.png";
             clickIamge = @"btn_5words_click.png";
-           
+            
             break;
-              //增加按钮
+            //增加按钮
         case 6:
             backBtn.frame = CGRectMake(0, 0, 30, 30);
             normalImage = @"icon_add.png";
             clickIamge = @"icon_add_click.png";
             break;
-          
-            case 7:
-            backBtn.frame = CGRectMake(0, 0, 30, 30);
-            normalImage = @"icon_add.png";
-            clickIamge = @"icon_add_click.png";
             
+            
+        case 7:
+            backBtn.frame = CGRectMake(0, 0, 60, 30);
+            normalImage = @"btn_save_new.png";
+            clickIamge = @"btn_save_click_new.png";
+            break;
         case 8:
             backBtn.frame = CGRectMake(0, 0, 60, 30);
             normalImage = @"btn_save.png";
             clickIamge = @"btn_save_click.png";
+            
             break;
+            
         default:
             break;
     }
     
-        
     
     [backBtn setBackgroundImage:[UIImage imageNamed:normalImage] forState:0];
     [backBtn setBackgroundImage:[UIImage imageNamed:clickIamge] forState:UIControlStateHighlighted];
     
     [backBtn setTitle:title forState:0];
     backBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-
+    
     return backBtn;
     
 }

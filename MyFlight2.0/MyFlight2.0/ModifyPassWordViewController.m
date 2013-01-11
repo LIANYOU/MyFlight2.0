@@ -10,6 +10,7 @@
 #import "AppConfigure.h"
 #import "UIQuickHelp.h"
 #import "LoginBusiness.h"
+#import "UIButton+BackButton.h"
 @interface ModifyPassWordViewController ()
 
 
@@ -47,11 +48,9 @@
 #pragma mark 设置导航栏
 - (void) setNav{
     
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
@@ -68,6 +67,7 @@
     [right release];
     
 }
+
 
 #pragma mark -
 #pragma mark textField 代理

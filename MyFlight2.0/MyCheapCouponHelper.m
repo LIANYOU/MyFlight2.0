@@ -40,8 +40,8 @@
     
     [formRequst setCompletionBlock:^{
         
-        //        NSString *data = [formRequst responseString];
-        NSString *data = @"{\"result\":{\"resultCode\":\"\",\"message\":\"\"},\"useList\":[{\"code\":\"123456\",\"name\":\"机票优惠券\",\"price\":\"50\",\"dateStart\":\"2012-12-01\",\"dateEnd\":\"2012-12-01\"},{\"code\":\"676868\",\"name\":\"机票优惠券\",\"price\":\"200\",\"dateStart\":\"2012-12-01\",\"dateEnd\":\"2012-12-01\"}],\"nouseList\":[{\"code\":\"123456\",\"name\":\"机票优惠券\",\"price\":\"100\",\"dateStart\":\"2012-12-01\",\"dateEnd\":\"2012-12-01\"}],\"exPiredList\":[{\"code\":\"123456\",\"name\":\"机票优惠券\",\"price\":\"60\",\"dateStart\":\"2012-12-01\",\"dateEnd\":\"2012-12-01\"},{\"code\":\"7891012\",\"name\":\"机票优惠券\",\"price\":\"150\",\"dateStart\":\"2013-02-12\",\"dateEnd\":\"2013-02-14\"}]}";
+          NSString *data = [formRequst responseString];
+//        NSString *data = @"{\"result\":{\"resultCode\":\"\",\"message\":\"\"},\"useList\":[{\"code\":\"123456\",\"name\":\"机票优惠券\",\"price\":\"50\",\"dateStart\":\"2012-12-01\",\"dateEnd\":\"2012-12-01\"},{\"code\":\"676868\",\"name\":\"机票优惠券\",\"price\":\"200\",\"dateStart\":\"2012-12-01\",\"dateEnd\":\"2012-12-01\"}],\"nouseList\":[{\"code\":\"123456\",\"name\":\"机票优惠券\",\"price\":\"100\",\"dateStart\":\"2012-12-01\",\"dateEnd\":\"2012-12-01\"}],\"exPiredList\":[{\"code\":\"123456\",\"name\":\"机票优惠券\",\"price\":\"60\",\"dateStart\":\"2012-12-01\",\"dateEnd\":\"2012-12-01\"},{\"code\":\"7891012\",\"name\":\"机票优惠券\",\"price\":\"150\",\"dateStart\":\"2013-02-12\",\"dateEnd\":\"2013-02-14\"}]}";
         
         CCLog(@"网络返回的数据为：%@",data);
         NSError *error = nil;
