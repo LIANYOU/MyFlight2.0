@@ -347,6 +347,7 @@
 
 
 - (IBAction)LoginWithWeiXin:(id)sender {
+    
 }
 
 - (IBAction)LoginWithSinaWeiBo:(id)sender {

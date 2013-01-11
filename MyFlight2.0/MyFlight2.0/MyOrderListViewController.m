@@ -117,8 +117,6 @@
 - (void) setNav{
     
     UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
-    
-    
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];

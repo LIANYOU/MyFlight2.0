@@ -12,6 +12,7 @@
 #import "LoginBusiness.h"
 #import "IsLoginInSingle.h"
 #import "UserAccount.h"
+#import "UIButton+BackButton.h"
 @interface PersonalInfoViewController ()
 
 @end
@@ -76,11 +77,9 @@
 #pragma mark 设置导航栏
 - (void) setNav{
     
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
@@ -88,14 +87,14 @@
     
     
     
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonSystemItemSave target:self action:@selector(save)];
     
-    right.tintColor = [UIColor colorWithRed:35/255.0 green:103/255.0 blue:188/255.0 alpha:1];
+    UIButton * rightBn = [UIButton  backButtonType:7 andTitle:@"保存"];
+    [rightBn addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     
-    self.navigationItem.rightBarButtonItem = right;
+    UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:rightBn];
     
-    [right release];
-    
+    self.navigationItem.rightBarButtonItem=backBtn2;
+    [backBtn2 release];
     
 }
 

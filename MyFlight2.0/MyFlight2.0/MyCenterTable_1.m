@@ -213,6 +213,7 @@
         }
         
         cell.titleLabel.text = @"个人资料";
+        [cell.detailLabel setTextColor:FONT_Blue_Color];
 //           cell.detailLabel.text = self.accountString;
         cell.thisImageView.image = [UIImage imageNamed:@"icon_acc.png"];
         
@@ -295,7 +296,13 @@
             
             
             cell.titleLabel.text = @"我的订单";
+            
+            [cell.detailLabel setTextColor:FONT_Orange_Color];
+            UIFont *font =[UIFont systemFontOfSize:14];
+            cell.detailLabel.font = font;
             cell.detailLabel.text = @"未支付订单(1)";
+            [font release];
+            
             cell.thisImageView.image = [UIImage imageNamed:@"icon_Orders.png"];
             
         } else{
@@ -471,7 +478,8 @@
     MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     thisCell.detailLabel.text = [NSString stringWithFormat:@"%@",_accountString];
-//    [thisCell.detailLabel setTextColor:[UIColor colorWithRed:<#(CGFloat)#> green:<#(CGFloat)#> blue:<#(CGFloat)#> alpha:<#(CGFloat)#>]]
+    
+//    [thisCell.detailLabel setTextColor:FONT_Blue_Color];
     
     CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
     CCLog(@"银币 %@",self.silverMoneyString);

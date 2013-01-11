@@ -45,18 +45,17 @@
             normalImage = @"icon_add.png";
             clickIamge = @"icon_add_click.png";
             break;
-          
-            case 7:
-            backBtn.frame = CGRectMake(0, 0, 30, 30);
-            normalImage = @"icon_add.png";
-            clickIamge = @"icon_add_click.png";
+          //保存按钮
+        case 7:
+            backBtn.frame = CGRectMake(0, 0, 60, 30);
+            normalImage = @"btn_save_new.png";
+            clickIamge = @"btn_save_click_new.png";
             break;
         default:
             break;
     }
     
-        
-    
+           
     [backBtn setBackgroundImage:[UIImage imageNamed:normalImage] forState:0];
     [backBtn setBackgroundImage:[UIImage imageNamed:clickIamge] forState:UIControlStateHighlighted];
     

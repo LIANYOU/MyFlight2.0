@@ -16,4 +16,7 @@
 //激活优惠券接口
 
 + (BOOL) makeCouponActiveWithMemberId:(NSString *) memberId captcha:(NSString *) captcha andDlegate:(id<ServiceDelegate>) delegate;
+
+
+
 @end
