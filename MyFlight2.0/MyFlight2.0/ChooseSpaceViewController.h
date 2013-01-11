@@ -87,6 +87,7 @@
 @property (retain, nonatomic) IBOutlet UIView *cellSelectedView;
 
 @property (retain, nonatomic) IBOutlet UIButton *lookFlightBtn;
+@property (retain, nonatomic) IBOutlet UIView *writeView;
 
 - (IBAction)lookFlight:(UIButton *)sender;
 

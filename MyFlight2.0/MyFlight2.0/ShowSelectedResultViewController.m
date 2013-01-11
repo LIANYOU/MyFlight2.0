@@ -93,8 +93,6 @@
     self.backView.hidden = YES;
     self.sortTableView.hidden = YES;
     
-
-    
     
     NSString * dataPath = [[NSBundle mainBundle] pathForResource:@"AirPortCode" ofType:@"plist"];
     
@@ -168,29 +166,6 @@
     }
 }
 
-//int whatday(int year,int month,int day) /*计算给定年月日的某一天是当年的第几天*/
-//{
-//    int isleap(int);
-//    int ans=0;
-//    switch(month)
-//    {
-//        case 1:ans=0;break;
-//        case 2:ans=31;break;
-//        case 3:ans=59;break;
-//        case 4:ans=90;break;
-//        case 5:ans=120;break;
-//        case 6:ans=151;break;
-//        case 7:ans=181;break;
-//        case 8:ans=212;break;
-//        case 9:ans=243;break;
-//        case 10:ans=273;break;
-//        case 11:ans=304;break;
-//        case 12:ans=334;break;
-//    }
-//    ans+=day;
-//    if(((year%100!=0&&year%4==0)||year%400==0)&&month>2)ans++;
-//    return ans;
-//}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -382,6 +357,10 @@
     [self.sortArr removeAllObjects];
     [self.sortBackArr removeAllObjects];
     
+    
+    self.airportNameArr = [NSMutableArray arrayWithCapacity:5];
+
+    
     self.dateArr = [[not userInfo] objectForKey:@"arr"];
     
     if (self.write != nil || self.netFlag == 1) {
@@ -495,6 +474,35 @@
     }
     self.tempTwoCodeArr = self.twoCodeArr;
     
+    
+    for(int i = 0;i<self.tempTwoCodeArr.count;i++)
+    {
+        NSString * ssss = [self.tempTwoCodeArr objectAtIndex:i];
+        
+        NSString * str = nil;
+        
+        for (int j = 0  ;j<dicCode.allKeys.count;j++  ) {
+            
+            str = [dicCode.allKeys objectAtIndex:j];
+            
+            if ([ssss isEqualToString:str]) {
+                [self.airportNameArr addObject:[dicCode objectForKey:str]];
+       
+                break;
+            }
+            else{
+                if (j == dicCode.allKeys.count-1) {
+                    [self.airportNameArr addObject:ssss];
+                }
+
+            }
+            
+        }
+    }
+    
+    
+    NSLog(@"----------------------  %@",self.airportNameArr);
+    
     [HUD removeFromSuperview];
 	[HUD release];
 	HUD = nil;
@@ -518,7 +526,8 @@
         }
 
         else{
-          //  self.sortTableView.frame = CGRectMake(0, 187, 320, 181);
+          
+        
             return self.tempTwoCodeArr.count + 1;  // 第一行是不限航空公司
         }
     }
@@ -605,6 +614,8 @@
         
         NSString * string ;
         
+        
+        
         for (int i = 0; i<dicCode.allKeys.count; i++) {
             
             if ([data.airPort isEqualToString:[dicCode.allKeys objectAtIndex:i]]) {
@@ -617,6 +628,8 @@
             {
                 string = data.airPort;
             }
+            
+          
         }
         
         cell.temporaryLabel.text =  data.temporaryLabel;
@@ -653,19 +666,27 @@
             if (indexPath.row == 0)
             {
                 cell.airportName.text = @"时间从早到晚";
+                
             }
             else
             {
                 cell.airportName.text = @"价格从低到高";
             }
+            
+            cell.airPortImage.image = [UIImage imageNamed:@"hduiewhdiohjeqjd"];
         }
         if (airPortNameFlag == 4) {
             
             if (indexPath.row == 0) {
                 cell.airportName.text = @"不限航空公司";
+                cell.airPortImage.image = [UIImage imageNamed:@"hduiewhdiohjeqjd"];
             }
             else{
-                cell.airportName.text = [self.tempTwoCodeArr objectAtIndex:indexPath.row-1];
+                
+                cell.airportName.text = [self.airportNameArr objectAtIndex:indexPath.row-1];
+                
+                cell.airPortImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"l_%@.png",[self.tempTwoCodeArr objectAtIndex:indexPath.row-1]]];
+               
             }
         }
 
@@ -865,6 +886,13 @@
             ShowSelectedCell *cell = (ShowSelectedCell *)[tableView cellForRowAtIndexPath:indexPath];
             cell.selectBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_Selected_.png"]];
             
+            NSString * strCode = nil;
+            
+            if (indexPath.row >0) {
+                strCode = [self.tempTwoCodeArr objectAtIndex:indexPath.row-1];
+            }
+            
+            
             sortViewFlag = indexPath.row;
             
             if (self.indexFlag == 1000) {  // 去程筛选
@@ -881,13 +909,13 @@
                 else
                 {
                    
-                    NSString * string = cell.airportName.text;                   
+                //    NSString * string = cell.airportName.text;
                     
                     [self.sortArr removeAllObjects];                  
                     
                     for (SearchFlightData * searchData in self.searchFlightDateArr) {
                         
-                        if ([searchData.airPort isEqualToString:string]) {
+                        if ([searchData.airPort isEqualToString:strCode]) {
                             [self.sortArr addObject:searchData];
                         }
                     }
@@ -918,12 +946,12 @@
                 }
                 else{
                     
-                    NSString * string = cell.airportName.text;
+                   // NSString * string = cell.airportName.text;
                     
                     [self.sortBackArr removeAllObjects];
                     
                     for (SearchFlightData * searchData in self.searchBackFlightDateArr) {
-                        if ([searchData.airPort isEqualToString:string]) {
+                        if ([searchData.airPort isEqualToString:strCode]) {
                             
                             [self.sortBackArr addObject:searchData];
                         }
@@ -1302,7 +1330,7 @@ NSLog(@"---------------  %@,%@",self.oneGoWeek,self.backWeek);
    
     
     if (self.write != nil || self.netFlag == 1) {
-        NSLog(@"------------------------ ===============  %@",self.startDate);
+      
         self.goBackDate = tempDate;
         self.backWeek = [TransitionString weekYear:[dataArr objectAtIndex:0] moth:[dataArr objectAtIndex:1] day:[dataArr objectAtIndex:2]];
         
@@ -1310,16 +1338,12 @@ NSLog(@"---------------  %@,%@",self.oneGoWeek,self.backWeek);
     else{
         self.startDate = tempDate;
         self.oneGoWeek = [TransitionString weekYear:[dataArr objectAtIndex:0] moth:[dataArr objectAtIndex:1] day:[dataArr objectAtIndex:2]];
-        NSLog(@"------------------------   %@",self.startDate);
-        
+                
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
     self.airPort.date = tempDate;
-    
-    NSLog(@"---------------  %@,%@",self.oneGoWeek,self.backWeek);
-    
-    NSLog(@"返程时间  %@",tempDate);
+
     
     [self.airPort searchAirPort];
 
@@ -1331,11 +1355,22 @@ NSLog(@"---------------  %@,%@",self.oneGoWeek,self.backWeek);
     timeSortFlag = 0;
 
     if (iPhone5) {
-        self.sortTableView.frame = CGRectMake(0, 568-20-44-44*5, 320, 44*4);
+        
+        if (self.tempTwoCodeArr.count<4) {
+            self.sortTableView.frame = CGRectMake(0, 568-20-45-44*5+(self.tempTwoCodeArr.count+1)*44, 320, 44*(self.tempTwoCodeArr.count+1));
+        }
+        else{
+            self.sortTableView.frame = CGRectMake(0, 568-20-45-44*5, 320, 44*4);
+        }
+        
     }
     else{
-       
-        self.sortTableView.frame = CGRectMake(0, 568-20-44-44*7, 320, 44*4);
+        if (self.tempTwoCodeArr.count<4) {
+             self.sortTableView.frame = CGRectMake(0, 568-20-45-44*7+(self.tempTwoCodeArr.count+1)*44, 320, 44*(self.tempTwoCodeArr.count+1));
+        }
+        else{
+            self.sortTableView.frame = CGRectMake(0, 568-20-45-44*7, 320, 44*4);
+        }
     }
     
     

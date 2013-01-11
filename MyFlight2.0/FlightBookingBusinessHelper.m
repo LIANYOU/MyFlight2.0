@@ -342,7 +342,7 @@
             CCLog(@"乘机人passName = %@",flightPassengerVo.name);
             CCLog(@"证件类型 certtype =%@",flightPassengerVo.certType);
             CCLog(@"证件号码 certNo =%@",flightPassengerVo.certNo);
-            CCLog(@"乘客类型 passType = %@",passType);
+            CCLog(@"乘客类型 passType = %@",flightPassengerVo.type);
             
             CCLog(@"去程保险数目 goInsuranceNum  =%@",flightPassengerVo.goInsuranceNum);
             CCLog(@"返程保险数目 returnInsuranceNum =%@",flightPassengerVo.returnInsuranceNum);

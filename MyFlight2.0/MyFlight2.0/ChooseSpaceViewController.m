@@ -239,6 +239,7 @@
     [_goORBackLabel release];
     [_footView release];
     [_cellSelectedView release];
+    [_writeView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -260,6 +261,7 @@
     [self setGoORBackLabel:nil];
     [self setFootView:nil];
     [self setCellSelectedView:nil];
+    [self setWriteView:nil];
     [super viewDidUnload];
 }
 
@@ -319,7 +321,7 @@
             cell.scheduleDate.text = [NSString stringWithFormat:@"%@ %@",data.beginDate,data.beginStartWeek];
         }
         else{
-            cell.scheduleDate.text = [NSString stringWithFormat:@"%@ %@",data.beginDate,data.backStartWeek];
+            cell.scheduleDate.text = [NSString stringWithFormat:@"%@ %@",data.backDate,data.backStartWeek];
         }
         cell.airPort.text = self.airCodeName;
         cell.palntType.text = [NSString stringWithFormat:@"%@机型",data.palntType];
@@ -464,10 +466,12 @@
                 
                 
                 ShowSelectedResultViewController * show = [self.navigationController.viewControllers objectAtIndex:2];
+                
                 show.airPort = searchAirPort;
                 
                 show.netFlag = 1;  // 等与1  ，在返回到返程列表的时候 不需要联网
                 show.write = self;
+                
                 
                 CATransition *animation = [CATransition animation];
                 animation.duration = 0.3f;
@@ -478,6 +482,7 @@
                 [show.navigationController.view.layer addAnimation:animation forKey:@"animation"];
                 
                 [self.navigationController popViewControllerAnimated:NO];
+               
                 
             }
             
