@@ -207,6 +207,7 @@
 		18069BDA169FAD2E000F849F /* btn_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18069BD8169FAD2E000F849F /* btn_cancel.png */; };
 		18069BDD169FB8C2000F849F /* icon_choice.png in Resources */ = {isa = PBXBuildFile; fileRef = 18069BDB169FB8C2000F849F /* icon_choice.png */; };
 		18069BDE169FB8C2000F849F /* ico_def.png in Resources */ = {isa = PBXBuildFile; fileRef = 18069BDC169FB8C2000F849F /* ico_def.png */; };
+		18069BF4169FED49000F849F /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 18069BF3169FED49000F849F /* GDataXMLNode.m */; };
 		18080179167DBAC600CD5F9A /* TraveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18080177167DBAC600CD5F9A /* TraveController.m */; };
 		1808017A167DBAC600CD5F9A /* TraveController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18080178167DBAC600CD5F9A /* TraveController.xib */; };
 		1808017C167DC0E200CD5F9A /* icon_arrowhead_.png in Resources */ = {isa = PBXBuildFile; fileRef = 1808017B167DC0E200CD5F9A /* icon_arrowhead_.png */; };
@@ -1102,6 +1103,8 @@
 		18069BD8169FAD2E000F849F /* btn_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_cancel.png; sourceTree = "<group>"; };
 		18069BDB169FB8C2000F849F /* icon_choice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_choice.png; sourceTree = "<group>"; };
 		18069BDC169FB8C2000F849F /* ico_def.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_def.png; sourceTree = "<group>"; };
+		18069BF2169FED49000F849F /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		18069BF3169FED49000F849F /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		18080176167DBAC600CD5F9A /* TraveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TraveController.h; sourceTree = "<group>"; };
 		18080177167DBAC600CD5F9A /* TraveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraveController.m; sourceTree = "<group>"; };
 		18080178167DBAC600CD5F9A /* TraveController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TraveController.xib; sourceTree = "<group>"; };
@@ -2874,6 +2877,15 @@
 			path = FMDB;
 			sourceTree = "<group>";
 		};
+		18069BF1169FED33000F849F /* GDataXMLN */ = {
+			isa = PBXGroup;
+			children = (
+				18069BF2169FED49000F849F /* GDataXMLNode.h */,
+				18069BF3169FED49000F849F /* GDataXMLNode.m */,
+			);
+			name = GDataXMLN;
+			sourceTree = "<group>";
+		};
 		1807541A167C26B6007B42A4 /* lowOrder */ = {
 			isa = PBXGroup;
 			children = (
@@ -2907,6 +2919,7 @@
 		180E223C16718FFF002A7228 /* RelatedResources */ = {
 			isa = PBXGroup;
 			children = (
+				18069BF1169FED33000F849F /* GDataXMLN */,
 				14698734167F14BD00E9B30D /* makeSecret */,
 				181F0F10167B026F00CEDBAB /* MBProgressHUD */,
 				18E508AE16747B840003BD0C /* EGOTableViewPullRefresh */,
@@ -3868,8 +3881,8 @@
 				18CB6D631684680D0025F42F /* ShowSelectedCell.xib */,
 				18DF893116881FAD00D2DDAE /* HistoryCell.h */,
 				18DF893216881FAD00D2DDAE /* HistoryCell.m */,
-				18D0D713169EC1B50028995B /* SalesCell.m */,
 				18DF893316881FAD00D2DDAE /* HistoryCell.xib */,
+				18D0D713169EC1B50028995B /* SalesCell.m */,
 				18D0D712169EC1B50028995B /* SalesCell.h */,
 				18D0D716169EC1C90028995B /* SalesCell.xib */,
 			);
@@ -5019,6 +5032,7 @@
 				18D0D70D169EBDCD0028995B /* DiscountGoldInfo.m in Sources */,
 				18D0D714169EC1B50028995B /* SalesCell.m in Sources */,
 				18D0D71A169EF6BD0028995B /* WriteOrderGreenCell.m in Sources */,
+				18069BF4169FED49000F849F /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5121,6 +5135,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyFlight2.0/MyFlight2.0-Prefix.pch";
 				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MyFlight2.0/MyFlight2.0-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
@@ -5128,6 +5143,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "BCBB163F-D062-491D-8910-9FECD3321AC5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BCBB163F-D062-491D-8910-9FECD3321AC5";
@@ -5144,6 +5160,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyFlight2.0/MyFlight2.0-Prefix.pch";
 				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MyFlight2.0/MyFlight2.0-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
@@ -5151,6 +5168,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "BCBB163F-D062-491D-8910-9FECD3321AC5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BCBB163F-D062-491D-8910-9FECD3321AC5";

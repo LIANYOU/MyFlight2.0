@@ -105,7 +105,7 @@
     
     
     newPersonAllPay = (personMoney+airPortName+oil)*personNumber;
-    newChildAllPay = (childPersonMoney+childAirPortName+childOil);
+    newChildAllPay = (childPersonMoney+childAirPortName+childOil)*childNumber;
     
     finalPay = newPersonAllPay + newChildAllPay;
     
@@ -115,34 +115,117 @@
     self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay+0];
     
 }
+
+-(void)initLastPassengerInfo
+{
+    // 读取最后一次乘机人信息
+    
+    self.stringArr = [NSMutableArray array];
+    self.personArray = [NSMutableArray array];
+    
+    NSMutableArray * arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"personArr"];
+    
+    self.passengerIDArr = [arr objectAtIndex:0];
+    self.cerNO = [arr objectAtIndex:1];
+    self.cerTYPE = [arr objectAtIndex:2];
+    self.passengeNAME = [arr objectAtIndex:3];
+    self.passengerTYPE = [arr objectAtIndex:4];
+    
+    NSLog(@"%d",self.passengerIDArr.count);
+    NSLog(@"%@",self.passengerIDArr);
+    NSLog(@"%@",self.cerNO);
+    NSLog(@"%@",self.cerTYPE);
+    NSLog(@"%@",self.passengeNAME);
+    NSLog(@"%@",self.passengerTYPE);
+    
+    for(int i = 0; i<self.passengerIDArr.count;i++ )
+    {
+        NSString * str1 = [self.passengerIDArr objectAtIndex:i];
+        NSString * str2 = [self.cerNO objectAtIndex:i];
+        NSString * str3 = [self.cerTYPE objectAtIndex:i];
+        NSString * str4 = [self.passengeNAME objectAtIndex:i];
+        NSString * str5 = [self.passengerTYPE objectAtIndex:i];
+        
+        // *******  加入到填写订单时候的 flightPassengerVo
+        flightPassengerVo * passenger = [[flightPassengerVo alloc] init];
+        
+        passenger.name = str4;
+        passenger.certNo = str2;
+        passenger.type = str5;
+        passenger.flightPassengerId = str1;
+        passenger.certType = str3;
+        
+        passenger.goInsuranceNum = @"0";
+        passenger.returnInsuranceNum = @"0";
+        
+        [self.personArray addObject:passenger];
+        [passenger release];
+        // ****
+        
+        
+        if ([str5 isEqualToString:@"01"]) {
+            str5  = @"成人";
+        }
+        else{
+            str5 = @"儿童";
+        }
+        
+        NSString * string = [NSString stringWithFormat:@"%@ (%@) \n%@",str4,str5,str2];
+        
+        if ([str5 isEqualToString:@"儿童"]) {
+            childNumber = childNumber + 1;
+        }
+        
+        [self.stringArr addObject:string];
+        
+        
+        // *****************  常用联系人自动匹配第一个乘机人
+        
+        if (self.personArray.count != 0) {
+            flightPassengerVo * passenger = [self.personArray objectAtIndex:0];
+            
+            [addPersonArr replaceObjectAtIndex:0 withObject:passenger.name];
+            [addPersonArr replaceObjectAtIndex:1 withObject:@""];
+            
+        }
+        
+    }
+    
+    stringAfterJoin = @"";
+    NSLog(@"self.stringArr.count  %d",self.stringArr.count);
+    
+    for (int i = 0; i<self.stringArr.count; i++) {
+        
+        if ([stringAfterJoin isEqualToString:@""]) {
+            stringAfterJoin = [NSString stringWithFormat:@"%@",[self.stringArr objectAtIndex:i]];
+        }
+        else{
+            stringAfterJoin = [NSString stringWithFormat:@"%@\n%@",stringAfterJoin,[self.stringArr objectAtIndex:i]];
+        }
+        
+    }
+    personNumber = self.passengerIDArr.count-childNumber;
+    
+    NSLog(@"------------%@",stringAfterJoin);
+    [self.firstCelTextArr replaceObjectAtIndex:0 withObject:stringAfterJoin];
+
+}
 - (void)viewDidLoad
 {
-    personNumber = 1;  // 默认一个成人
+    personNumber = 0;  // 默认一个成人
     childNumber = 0;
     
 //    NSLog(@"%@\n--------------%@",self.searchDate.cabinInfo,self.searchBackDate.cabinInfo);
 //    NSLog(@"%d,%@",self.searchDate.pay,self.searchBackDate.childPrice);
 //    NSLog(@"%@,%@",self.searchDate.ticketCount,self.searchBackDate.ticketCount);
     
-    [self calculateAllPay];
+    
 
     self.firstCelTextArr = [NSMutableArray arrayWithObject:@""];
     self.navigationItem.title = @"填写订单";
     
     self.orderTableView.delegate = self;
     self.orderTableView.dataSource = self;
-    
-   // if (! Default_IsUserLogin_Value) {
-        UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"登录"];
-        [histroyBut addTarget:self action:@selector(log) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
-        self.navigationItem.rightBarButtonItem=backBtn2;
-        [backBtn2 release];
-  //  }
-       
-   
-    
 
     UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
@@ -169,6 +252,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"返回金币数目" object:nil];
     [self.useGoldPay searchGold];
     
+
+    [self initLastPassengerInfo];
+    
+    
+    [self calculateAllPay];
     
     
     [super viewDidLoad];
@@ -204,6 +292,25 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+      if (! Default_IsUserLogin_Value) {
+    
+   
+    UIButton * histroyBut = [UIButton backButtonType:2 andTitle:@"登录"];
+    [histroyBut addTarget:self action:@selector(log) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:histroyBut];
+    self.navigationItem.rightBarButtonItem=backBtn2;
+    [backBtn2 release];
+       }
+    
+    if (Default_IsUserLogin_Value) {
+        UIBarButtonItem *backBtn2=[[UIBarButtonItem alloc]initWithCustomView:nil];
+        self.navigationItem.rightBarButtonItem=backBtn2;
+        [backBtn2 release];
+    }
+    
+    
+    [self.orderTableView reloadData];
     [super viewWillAppear:YES];
 }
 
@@ -898,7 +1005,7 @@
 {
     [self.orderTableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    BOOL logFlag = FALSE;  // 此处保留一个flag判断是否用户已经登陆
+  
     
     if (self.flag == 3) {
         if (indexPath.section == 1) {
@@ -938,7 +1045,7 @@
         personNumber = 1;
         childNumber = 0; // 再次进入的时候清空初始人数；
         
-        if (logFlag) {
+        if (!Default_IsUserLogin_Value) {
             
             AddPersonController * person = [[AddPersonController alloc] init];   // 添加乘机人列表
             
@@ -956,137 +1063,162 @@
             
             choose.indexArr = self.indexArr;
             
-            self.stringArr = [NSMutableArray array];
+           
+            [self.stringArr removeAllObjects];
             
             stringAfterJoin = @"";
             
             [choose getDate:^(NSMutableDictionary * name, NSMutableDictionary * identity ,NSMutableDictionary * type, NSMutableDictionary *flightPassengerIdDic,NSMutableDictionary * certTypeDic,NSMutableArray * arr)
              {
 
-           
-                 if (type.allKeys.count > [self.searchDate.ticketCount intValue]) {
-                     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请减少乘机人数目。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                     [alert show];
-                     [alert release];
-                     return ;
-                 }
-               
-                 if (self.searchBackDate.ticketCount != NULL) {
-                     
-                     if (type.allKeys.count > [self.searchBackDate.ticketCount intValue]) {
-
-                         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请减少乘机人数目。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                 if (arr.count != 0) {
+                     if (type.allKeys.count > [self.searchDate.ticketCount intValue]) {
+                         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已超过本舱位可预订的剩余座位数。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                          [alert show];
                          [alert release];
                          return ;
                      }
-                 }
-   
-                 
-                 self.indexArr = arr;   // 把后边添加的标记的联系人传过来
-                 
-                 
-                 self.personArray = [NSMutableArray array];
-                 
-                 
-                 for (int i = 0; i<name.allKeys.count; i++) {
                      
-                     NSString * str1 = [name objectForKey:[name.allKeys objectAtIndex:i]];
-                     NSString * str2 = [identity objectForKey:[identity.allKeys objectAtIndex:i]];
-                     NSString * str3 = [type objectForKey:[type.allKeys objectAtIndex:i]];
-                     NSString * str4 = [flightPassengerIdDic objectForKey:[flightPassengerIdDic.allKeys objectAtIndex:i]];
-                     NSString * str5 = [certTypeDic objectForKey:[certTypeDic.allKeys objectAtIndex:i]];
+                     if (self.searchBackDate.ticketCount != NULL) {
+                         
+                         if (type.allKeys.count > [self.searchBackDate.ticketCount intValue]) {
+                             
+                             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请减少乘机人数目。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                             [alert show];
+                             [alert release];
+                             return ;
+                         }
+                     }
                      
                      
-                     // *******  加入到填写订单时候的 flightPassengerVo
-                     flightPassengerVo * passenger = [[flightPassengerVo alloc] init];
-                     
-                     passenger.name = str1;
-                     passenger.certNo = str2;
-                     passenger.type = str3;
-                     passenger.flightPassengerId = str4;
-                     passenger.certType = str5;
-                     
-                     passenger.goInsuranceNum = @"0";
-                     passenger.returnInsuranceNum = @"0";
-                     
-                     [self.personArray addObject:passenger];
-                     [passenger release];
-                     // ****
+                     self.indexArr = arr;   // 把后边添加的标记的联系人传过来
                      
                      
-                     if ([str3 isEqualToString:@"01"]) {
-                         str3  = @"成人";
+                     
+                     [self.personArray removeAllObjects];
+                     
+                     for (int i = 0; i<name.allKeys.count; i++) {
+                         
+                         NSString * str1 = [name objectForKey:[name.allKeys objectAtIndex:i]];
+                         NSString * str2 = [identity objectForKey:[identity.allKeys objectAtIndex:i]];
+                         NSString * str3 = [type objectForKey:[type.allKeys objectAtIndex:i]];
+                         NSString * str4 = [flightPassengerIdDic objectForKey:[flightPassengerIdDic.allKeys objectAtIndex:i]];
+                         NSString * str5 = [certTypeDic objectForKey:[certTypeDic.allKeys objectAtIndex:i]];
+                         
+                         
+                         // *******  加入到填写订单时候的 flightPassengerVo
+                         flightPassengerVo * passenger = [[flightPassengerVo alloc] init];
+                         
+                         passenger.name = str1;
+                         passenger.certNo = str2;
+                         passenger.type = str3;
+                         passenger.flightPassengerId = str4;
+                         passenger.certType = str5;
+                         
+                         passenger.goInsuranceNum = @"0";
+                         passenger.returnInsuranceNum = @"0";
+                         
+                         [self.personArray addObject:passenger];
+                         [passenger release];
+                         // ****
+                         
+                         
+                         if ([str3 isEqualToString:@"01"]) {
+                             str3  = @"成人";
+                         }
+                         else{
+                             str3 = @"儿童";
+                         }
+                         
+                         NSString * string = [NSString stringWithFormat:@"%@ (%@) \n%@",str1,str3,str2];
+                         
+                         if ([str3 isEqualToString:@"儿童"]) {
+                             childNumber = childNumber + 1;
+                         }
+                         
+                         [self.stringArr addObject:string];
+                     }
+                     
+                     
+                     // *****************  常用联系人自动匹配第一个乘机人
+                     
+                     if (self.personArray.count != 0) {
+                         flightPassengerVo * passenger = [self.personArray objectAtIndex:0];
+                         
+                         [addPersonArr replaceObjectAtIndex:0 withObject:passenger.name];
+                         [addPersonArr replaceObjectAtIndex:1 withObject:@""];
+                         
+                     }
+                     
+                     
+                     
+                     //****************
+                     
+                     
+                     personNumber = type.allKeys.count-childNumber;  // 此处获得了选择的成人和儿童的人数
+                     
+                     
+                     for (int i = 0; i<self.stringArr.count; i++) {
+                         
+                         if ([stringAfterJoin isEqualToString:@""]) {
+                             stringAfterJoin = [NSString stringWithFormat:@"%@",[self.stringArr objectAtIndex:i]];
+                         }
+                         else{
+                             stringAfterJoin = [NSString stringWithFormat:@"%@\n%@",stringAfterJoin,[self.stringArr objectAtIndex:i]];
+                         }
+                         
+                     }
+                     
+                     // 动态修改定单的金额数
+                     self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];  //  改变成人和儿童的数目
+                     self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
+                     
+                     self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
+                     self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
+                     self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
+                     
+                     if (stringAfterJoin != @"") {
+                         [self.firstCelTextArr replaceObjectAtIndex:0 withObject:stringAfterJoin];
+                     }
+                     
+                     
+                     
+                     
+                     //默认所有乘机人都选择保险
+                     if (self.flag == 1) {
+                         WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
+                         
+                         cell.secondLable.text = [NSString stringWithFormat:@"20元/份*%d人" ,personNumber+childNumber];
                      }
                      else{
-                         str3 = @"儿童";
+                         WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:3]];
+                         
+                         cell.secondLable.text = [NSString stringWithFormat:@"20元/份*%d人" ,personNumber+childNumber];
                      }
                      
-                     NSString * string = [NSString stringWithFormat:@"%@ (%@) \n%@",str1,str3,str2];
                      
-                     if ([str3 isEqualToString:@"儿童"]) {
-                         childNumber = childNumber + 1;
-                    }
-
-                    [self.stringArr addObject:string];
-                }
-                 
+                     //把保险的钱数加上
+                     
+                     self.swithType = @"ON";  // 默认保险的开关打开
+                     
+                     self.Personinsure.text = @"￥20";
+                     self.childInsure.text = @"￥20";
+                     
+                     for (flightPassengerVo * passenger in self.personArray) {   // 默认乘机人都买上保险
+                         passenger.goInsuranceNum = @"1";
+                     }
+                     
+                     self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
+                     self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
+                     self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
+                     
+                     if (stringAfterJoin != @"") {  
+                         [self.orderTableView reloadData];
+                     }
+                 }
+           
+               
              
-                personNumber = type.allKeys.count-childNumber;  // 此处获得了选择的成人和儿童的人数
-                
-   
-                for (int i = 0; i<self.stringArr.count; i++) {
-                    
-                    if ([stringAfterJoin isEqualToString:@""]) {
-                        stringAfterJoin = [NSString stringWithFormat:@"%@",[self.stringArr objectAtIndex:i]];
-                    }
-                    else{
-                        stringAfterJoin = [NSString stringWithFormat:@"%@\n%@",stringAfterJoin,[self.stringArr objectAtIndex:i]];
-                    }
-                    
-                }
-
-                // 动态修改定单的金额数
-                self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];  //  改变成人和儿童的数目
-                self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
-
-                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
-                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
-                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
-                
-                [self.firstCelTextArr replaceObjectAtIndex:0 withObject:stringAfterJoin];
-                 
-                 
-                 //默认所有乘机人都选择保险
-                 if (self.flag == 1) {
-                     WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
-                     
-                     cell.secondLable.text = [NSString stringWithFormat:@"20元/份*%d人" ,personNumber+childNumber];
-                 }
-                 else{
-                     WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:3]];
-                     
-                     cell.secondLable.text = [NSString stringWithFormat:@"20元/份*%d人" ,personNumber+childNumber];
-                 }
-                 
-                 
-                 //把保险的钱数加上
-                 
-                 self.swithType = @"ON";  // 默认保险的开关打开
-                 
-                 self.Personinsure.text = @"￥20";
-                 self.childInsure.text = @"￥20";
-                 
-                 for (flightPassengerVo * passenger in self.personArray) {   // 默认乘机人都买上保险
-                     passenger.goInsuranceNum = @"1";
-                 }
-                 
-                 self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
-                 self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
-                 self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
-                 
-                 
-                [self.orderTableView reloadData];
                 
             }];
             
@@ -1460,6 +1592,10 @@
     
     
     // 联系人
+    
+    
+    
+    
     flightContactVo * contactVo = [[flightContactVo alloc] init];
     contactVo.name = [addPersonArr objectAtIndex:0];
     contactVo.mobile = [addPersonArr objectAtIndex:1];
@@ -1477,7 +1613,47 @@
                                                   delegate:self];
     
     
+    // 保存最后一次订单中乘机人信息
+    
+    [self.personArray writeToFile:[self filePath] atomically:YES];
+    
+    NSMutableArray * IDArr = [NSMutableArray arrayWithCapacity:5];
+    NSMutableArray * certNoArr = [NSMutableArray arrayWithCapacity:5];
+    NSMutableArray * certTypeArr = [NSMutableArray arrayWithCapacity:5];
+    NSMutableArray * nameArr = [NSMutableArray arrayWithCapacity:5];
+    NSMutableArray * typeArr = [NSMutableArray arrayWithCapacity:5];
+    
+    for (flightPassengerVo * vo in self.personArray) {
+        [IDArr addObject:vo.flightPassengerId];
+        [certNoArr addObject:vo.certNo];
+        [certTypeArr addObject:vo.certType];
+        [nameArr addObject:vo.name];
+        [typeArr addObject:vo.type];
+    }
+    
+
+    NSMutableArray * arr = [NSMutableArray arrayWithObjects:IDArr,certNoArr,certTypeArr,nameArr,typeArr, nil];
+    [[NSUserDefaults standardUserDefaults] setObject:arr forKey:@"personArr"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+    
 }
+
+//保存最后一次乘机人文件路径
+- (NSString *)filePath
+{
+    //document路径
+    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];//在沙盒DomainMask里边走索NSDocumentDirectory，返回一个路径
+    //具体文件路径
+    NSString *path = [docPath stringByAppendingPathComponent:@"person"];//找到里边的文件。。在docPath后边拼接一个，@"A/texts"这样不行，不能创建文件夹。
+    
+    return path;
+    
+    
+}
+
 
 
 -(void)addPersonFormAddressBook
@@ -1751,7 +1927,9 @@
     if (self.flag == 3)
     {
         WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
-
+        
+        [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
+        [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
         
         [cell.nameField resignFirstResponder];
         [cell.phoneField resignFirstResponder];
@@ -1761,6 +1939,8 @@
         
         WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
 
+        [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
+        [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
         
         [cell.nameField resignFirstResponder];
         [cell.phoneField resignFirstResponder];

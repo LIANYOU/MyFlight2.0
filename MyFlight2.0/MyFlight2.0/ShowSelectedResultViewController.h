@@ -45,6 +45,8 @@
     NSDictionary * dicCode;  // 用来接收存在plist文件中的机场二字码
     
     SearchFlightData * data;
+    
+    SearchFlightData * newData;
 }
 @property (retain, nonatomic) IBOutlet UITableView *showResultTableView;
 @property (retain, nonatomic) IBOutlet UITableView *sortTableView;
@@ -78,7 +80,7 @@
 
 @property (retain, nonatomic) IBOutlet ShowSelectedCell *selectedCell;
 
-
+@property (retain, nonatomic) NSMutableArray * airportNameArr;  // 存放二字码对应的航空公司
 
 
 @property (retain, nonatomic) NSString * startPort;  // 传值

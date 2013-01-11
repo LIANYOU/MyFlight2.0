@@ -46,6 +46,14 @@
 @property (retain, nonatomic) IBOutlet SalesCell *salesCell;
 
 
+
+@property (retain, nonatomic) NSMutableArray * passengerIDArr;
+@property (retain, nonatomic) NSMutableArray * cerNO;
+@property (retain, nonatomic) NSMutableArray * cerTYPE;
+@property (retain, nonatomic) NSMutableArray * passengeNAME;
+@property (retain, nonatomic) NSMutableArray * passengerTYPE;
+
+
 @property (retain, nonatomic) UseGoldPay * useGoldPay ;
 
 @property (retain, nonatomic) NSString * goAirPortName;  // 去成公司二字码
