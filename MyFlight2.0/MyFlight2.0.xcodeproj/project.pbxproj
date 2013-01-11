@@ -188,6 +188,8 @@
 		14DF3581169BD8B200CD93AB /* CommonContactDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14DF3580169BD8B200CD93AB /* CommonContactDataBase.sqlite */; };
 		14E4AC2716A0647A00DE365A /* BindSNSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4AC2616A0647A00DE365A /* BindSNSViewController.m */; };
 		14E4AC2A16A0665F00DE365A /* MultiChoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4AC2916A0665F00DE365A /* MultiChoiceCell.m */; };
+		14E4AC3416A07B3500DE365A /* icon_not_choosed.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E4AC3316A07B3500DE365A /* icon_not_choosed.png */; };
+		14E4AC3716A07B4000DE365A /* icon_choosed.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E4AC3616A07B4000DE365A /* icon_choosed.png */; };
 		14ECC07B1695650E008191E1 /* e.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC0731695650E008191E1 /* e.png */; };
 		14ECC07C1695650E008191E1 /* e1.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC0741695650E008191E1 /* e1.png */; };
 		14ECC07D1695650E008191E1 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC0751695650E008191E1 /* line.png */; };
@@ -1080,6 +1082,9 @@
 		14E4AC2616A0647A00DE365A /* BindSNSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindSNSViewController.m; sourceTree = "<group>"; };
 		14E4AC2816A0665F00DE365A /* MultiChoiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiChoiceCell.h; sourceTree = "<group>"; };
 		14E4AC2916A0665F00DE365A /* MultiChoiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiChoiceCell.m; sourceTree = "<group>"; };
+		14E4AC3316A07B3500DE365A /* icon_not_choosed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_not_choosed.png; sourceTree = "<group>"; };
+		14E4AC3616A07B4000DE365A /* icon_choosed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_choosed.png; sourceTree = "<group>"; };
+		14E4AC3816A0840300DE365A /* MultiChoiceTableViewSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiChoiceTableViewSupport.h; sourceTree = "<group>"; };
 		14ECC0731695650E008191E1 /* e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e.png; sourceTree = "<group>"; };
 		14ECC0741695650E008191E1 /* e1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e1.png; sourceTree = "<group>"; };
 		14ECC0751695650E008191E1 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
@@ -2442,6 +2447,8 @@
 		14633E2116952EE000701518 /* 更多 */ = {
 			isa = PBXGroup;
 			children = (
+				14E4AC3616A07B4000DE365A /* icon_choosed.png */,
+				14E4AC3316A07B3500DE365A /* icon_not_choosed.png */,
 				14633E2216952EF500701518 /* icon_aboutus.png */,
 				14633E2316952EF500701518 /* icon_Assistant.png */,
 				14633E2416952EF500701518 /* icon_Bind.png */,
@@ -2852,6 +2859,7 @@
 			children = (
 				14E4AC2516A0647A00DE365A /* BindSNSViewController.h */,
 				14E4AC2616A0647A00DE365A /* BindSNSViewController.m */,
+				14E4AC3816A0840300DE365A /* MultiChoiceTableViewSupport.h */,
 				14E4AC2816A0665F00DE365A /* MultiChoiceCell.h */,
 				14E4AC2916A0665F00DE365A /* MultiChoiceCell.m */,
 			);
@@ -4758,6 +4766,8 @@
 				18069BDA169FAD2E000F849F /* btn_cancel.png in Resources */,
 				18069BDD169FB8C2000F849F /* icon_choice.png in Resources */,
 				18069BDE169FB8C2000F849F /* ico_def.png in Resources */,
+				14E4AC3416A07B3500DE365A /* icon_not_choosed.png in Resources */,
+				14E4AC3716A07B4000DE365A /* icon_choosed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

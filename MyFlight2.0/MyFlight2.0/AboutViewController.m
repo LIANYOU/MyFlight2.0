@@ -143,7 +143,7 @@
     }];
     
     [request setDelegate:self];
-    [request startSynchronous];
+    [request startAsynchronous];
 }
 
 - (void)didReceiveMemoryWarning
