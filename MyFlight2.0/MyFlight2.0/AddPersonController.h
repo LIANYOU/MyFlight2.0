@@ -12,6 +12,23 @@
 @class AddPersonCoustomCell;
 @class AddPersonSwitchCell;
 #import "ServiceDelegate.h"
+@class AddPersonController;
+
+@protocol AddPersonControllerDelegate <NSObject>
+
+@optional
+
+
+- (void) AddPersonController:(AddPersonController *)controller ;
+
+
+
+@end
+
+
+
+
+
 @interface AddPersonController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,ServiceDelegate>
 {
     UISwitch *mySwitch;

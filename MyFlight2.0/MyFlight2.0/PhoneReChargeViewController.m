@@ -244,12 +244,13 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
     
-    
-    
-    
-    
-    
-    
+    if (_delegate&&[_delegate respondsToSelector:@selector(PhoneReChargeViewController:didAddChargeSuccess:)]) {
+        
+        
+        [_delegate PhoneReChargeViewController:self didAddChargeSuccess:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+      
 }
 
 

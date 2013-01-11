@@ -267,6 +267,7 @@
                 //执行保存用户信息
                 
                 IsLoginInSingle *single = [IsLoginInSingle shareLoginSingle];
+                
                 single.isLogin = YES;
                 single.token = [dic objectForKey:KEY_Account_token];
                 single.userAccount.memberId = [dic objectForKey:KEY_Account_MemberId];
@@ -279,6 +280,7 @@
                 
                 
                 NSUserDefaults *defaultUser = [NSUserDefaults standardUserDefaults];
+                
                 
                 //用户登录状态
                 [defaultUser setBool:YES forKey:KEY_Default_IsUserLogin];
@@ -742,13 +744,6 @@
     NSString *signTmp = [NSString stringWithFormat:@"%@%@%@",memberId,SOURCE_VALUE,token];
     
     
-    
-    
-    //    NSString *realUrl = [NSString stringWithFormat:@"%@?%@=%@&%@=%@&%@",Account_SearchInfo_URL,KEY_Account_MemberId,memberId,KEY_SIGN,GET_SIGN(signTmp),PUBLIC_Parameter];
-    
-    
-    
-    
     NSString *sign =GET_SIGN(signTmp);
     
     NSLog(@"查询详细信息：加密后的为：%@",sign);
@@ -801,14 +796,9 @@
             CCLog(@"信息长度为：%d",[message length]);
             
             if ([message length]==0) {
-                
-                // NSLog(@"成功登陆后返回的数据：%@",data);
-                
-                
                 NSArray *passengerArray = [dic objectForKey:@"passenger"];
                 
                 CCLog(@"查询到的常用联系人为%d",[passengerArray count]);
-                
                 
                 CommontContactSingle *passSingle =[ CommontContactSingle shareCommonContact];
                 
@@ -819,6 +809,8 @@
                 
                 
                 for (NSDictionary *resultDic in passengerArray) {
+                    
+                    
                     
                     NSString *name = [resultDic objectForKey:KEY_Passenger_Name];
                     NSString *type = [resultDic objectForKey:KEY_Passenger_Type];
@@ -841,7 +833,7 @@
                 }
                 
                 
-                BOOL  flag = [CommonContact_LocalTmpDBHelper addCommonContact_Login:itemAll];
+                BOOL flag = [CommonContact_LocalTmpDBHelper addCommonContact_Login:itemAll];
                 
                 
                 if (flag) {
@@ -871,6 +863,19 @@
             } else{
                 
                 //message 长度不为0 有错误信息
+                
+                BOOL flag = [CommonContact_LocalTmpDBHelper addCommonContact_Login:nil];
+                
+                if (flag) {
+                    
+                    CCLog(@"插入成功");
+                } else{
+                    
+                    CCLog(@"失败");
+                }
+                
+                
+                
                 
                 if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
                     
@@ -1027,14 +1032,27 @@
                 
                 
                 
+                //增加成功 更新本地数据库
+                
+                
+                
+                CommonContact *con = [[CommonContact alloc] init];
+                con.name=name;
+                con.type =type;
+                con.certType= certType;
+                con.certNo=certNo;
+                NSMutableArray *array =[ [NSMutableArray alloc] initWithObjects:con, nil];
+                
+                [con release];
+                //更新本地数据库
+                [CommonContact_LocalTmpDBHelper addCommonContact_Login:array];
                 
                 
                 
                 NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
-                
                 [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
                 
-                [self getCommonPassenger:dic delegate:delegate];
+                [self getCommonPassenger:dic delegate:nil];
                 [dic release];
                 
                 
@@ -1192,14 +1210,27 @@
             
             if ([message length]==0 || [message isEqualToString:@"success"]) {
                 
+                
+                
+                
+                //更新本地数据库
+                [CommonContact_LocalTmpDBHelper updateCommonContact_Login:passengerData];
+                
+                
+                
+                
+                
+                
                 // NSLog(@"成功登陆后返回的数据：%@",data);
                 
-                NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
+                //                NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
+                //
+                //                [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
+                //
+                //                [self getCommonPassenger:dic delegate:nil];
+                //                [dic release];
                 
-                [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
                 
-                [self getCommonPassenger:dic delegate:nil];
-                [dic release];
                 
                 if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     
@@ -1372,16 +1403,23 @@
             
             if ([message length]==0) {
                 
-                //                NSLog(@"成功登陆后返回的数据：%@",data);
+                // NSLog(@"成功登陆后返回的数据：%@",data);
+                
+                CommonContact *con = [[CommonContact alloc] init];
+                con.contactId = passengerId;
+                
+                //删除本地数据库
+                [CommonContact_LocalTmpDBHelper deleteCommonContact_Login:con];
                 
                 
                 
-                NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
                 
-                [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
-                
-                [self getCommonPassenger:dic delegate:nil];
-                [dic release];
+                //                NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
+                //
+                //                [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
+                //
+                //                [self getCommonPassenger:dic delegate:nil];
+                //                [dic release];
                 
                 
                 
@@ -2066,7 +2104,7 @@
 
 #pragma mark -
 #pragma mark 个人中心优惠券查询 已废弃
- 
+
 //个人中心优惠券查询
 + (Boolean) getCouponListWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate{
     
@@ -2290,7 +2328,7 @@
                     
                     
                     if ([paySts isEqualToString:@"0"]) {
-//                        CCLog(@"这是未支付订单");
+                        //                        CCLog(@"这是未支付订单");
                         OrderListModelData *data1 = [[OrderListModelData alloc] init];
                         data1.orderId =orderId;
                         data1.code =code;

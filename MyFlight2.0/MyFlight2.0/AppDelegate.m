@@ -36,6 +36,9 @@
     CCLog(@"token  = %@",Default_Token_Value);
     CCLog(@"memberId = %@",Default_UserMemberId_Value);
     
+    BOOL flag =Default_IsUserLogin_Value;
+    
+    CCLog(@"用户是否已经登录：%d",flag);
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];

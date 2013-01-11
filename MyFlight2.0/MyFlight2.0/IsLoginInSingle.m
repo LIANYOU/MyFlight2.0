@@ -33,13 +33,30 @@
 - (void) updateUserDefault{
     
     self.isLogin =false;
-    self.token = nil;
-//    self.userAccount = nil;
-    [[NSUserDefaults standardUserDefaults] setBool:false forKey:KEY_Default_IsUserLogin];
+    self.token = @"";
+//    self.userAccount.
+    
+//   self.userAccount = nil;
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:KEY_Default_IsUserLogin];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_Default_MemberId];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_Default_Token];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+  BOOL flag=  [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (flag) {
+        
+        CCLog(@"更新用户信息成功");
+        
+    } else{
+        
+        CCLog(@"失败");
+    }
+    
+    
 }
+
 
 +(id) shareLoginSingle{
     
@@ -53,6 +70,8 @@
     return single;
     
 }
+
+
 
 
 

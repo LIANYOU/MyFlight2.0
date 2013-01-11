@@ -16,25 +16,32 @@
 //用户的一些默认设置 保存在NSUserDefault里面
 
 #define KEY_Default_AccountName @"userName"  //账号名字  供显示用 用户输入什么 记录什么
-#define KEY_Default_Password @"user_password"  //账号密码 
+#define KEY_Default_Password @"user_password"  //账号密码 用户输入的密码
 #define KEY_Default_MemberId @"user_memberId" 
-#define KEY_Default_IsUserLogin @"isUser_Login" 
+#define KEY_Default_IsUserLogin @"isUser_Login"  //用户是否已经登录
 
-#define KEY_Default_IsRememberPwd @"isRememberPwd"
+#define KEY_Default_IsRememberPwd @"isRememberPwd" //是否记住密码 
 #define KEY_Default_UserMobile @"userMobile" //手机号
-#define KEY_Default_Code @"user_code"
-#define KEY_Default_Token  @"userToken"
+#define KEY_Default_Code @"user_code" //用户code 
+#define KEY_Default_Token  @"userToken" //token 
 //
+
+
+//用户memberId
 
 #define Default_UserMemberId_Value [[NSUserDefaults standardUserDefaults] stringForKey:KEY_Default_MemberId]
 
+//用户是否已经登录 
+#define Default_IsUserLogin_Value  [[NSUserDefaults standardUserDefaults] boolForKey:KEY_Default_IsUserLogin]
 
-#define Default_IsUserLogin_Value  [[NSUserDefaults standardUserDefaults] boolForKey:KEY_Default_IsRememberPwd]
-
+//用户token
 #define Default_Token_Value [[NSUserDefaults standardUserDefaults] stringForKey:KEY_Default_Token]
 
+
+//账号名称 
 #define Default_AccountName_Value [[NSUserDefaults standardUserDefaults] stringForKey:KEY_Default_AccountName]
 
+//memberCode
 #define Default_UserMemberCode_Value [[NSUserDefaults standardUserDefaults] stringForKey:KEY_Default_Code]
 
 //公共返回结果字段标志

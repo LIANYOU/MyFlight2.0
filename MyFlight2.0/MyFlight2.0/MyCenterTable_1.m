@@ -16,20 +16,13 @@
 #import "MyOrderListViewController.h"
 #import "CommonContactViewController.h"
 #import "MyCheapViewController.h"
-
-
 #import "IsLoginInSingle.h"
 #import "MyCenterUnLoginViewController.h"
-
 #import "UIQuickHelp.h"
-#import "PhoneReChargeViewController.h"
 #import "LoginBusiness.h"
-
 #import "UserAccount.h"
-
 #import "MyLowOrderListViewController.h"
 #import "CommonContact_LocalTmpDBHelper.h"
-
 #import "UIButton+BackButton.h"
 #import "CommonContact.h"
 
@@ -39,7 +32,11 @@
     UITableView * thistableView;
     NSArray *imageArray;
     NSArray *nameArray;
-    
+    //这是
+    UILabel *label_personInfo;
+    UILabel *label_allMoney;
+    UILabel *label_goldMoney;
+    UILabel *label_silverMoney;
     
     
     
@@ -118,12 +115,9 @@
     LoginBusiness *busi = [[LoginBusiness alloc] init];
     
     NSString *memberId =Default_UserMemberId_Value;
-    
     CCLog(@"在个人中心界面 memberId= %@",memberId);
-    
     [busi getAccountInfoWithMemberId:memberId andDelegate:self];
-    
-    
+    [busi release];
     
     self.accountString = [NSString stringWithFormat:@"%d",0];
     self.allAccountMoneyString = [NSString stringWithFormat:@"%d",0];
@@ -214,7 +208,7 @@
         
         cell.titleLabel.text = @"个人资料";
         [cell.detailLabel setTextColor:FONT_Blue_Color];
-//           cell.detailLabel.text = self.accountString;
+        //           cell.detailLabel.text = self.accountString;
         cell.thisImageView.image = [UIImage imageNamed:@"icon_acc.png"];
         
         return cell;
@@ -237,7 +231,7 @@
                 cell = [[[array objectAtIndex:0] retain] autorelease];
             }
             
-//            CCLog(@"金币*****%@",self.allAccountMoneyString);
+            //            CCLog(@"金币*****%@",self.allAccountMoneyString);
             //
             //            if (cellsum == 1) {
             //                cell.accountMoneyLabel.text =@"888888";
@@ -453,7 +447,7 @@
     CCLog(@"金币：%@",self.goldMoneyString);
     CCLog(@"银币：%@",self.silverMoneyString);
     CCLog(@"用户名为：%@",self.accountString);
-
+    
     
     
     MyCenterSecondCell *secondCell =(MyCenterSecondCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
@@ -462,7 +456,7 @@
     CCLog(@"更新cell 之前 ：%@", secondCell.accountMoneyLabel.text);
     
     //    cell.goldMoneyLabel.text = @"1311241";
-    NSString *string = self.allAccountMoneyString;
+    //    NSString *string = self.allAccountMoneyString;
     
     [secondCell.accountMoneyLabel setText:[NSString stringWithFormat:@"%@",_allAccountMoneyString]];
     
@@ -471,7 +465,7 @@
     
     secondCell.silverMoneyLabel.text = [NSString stringWithFormat:@"%@",_silverMoneyString];
     
-//    secondCell.silverMoneyLabel.text = _silverMoneyString;
+    //    secondCell.silverMoneyLabel.text = _silverMoneyString;
     
     
     
@@ -479,7 +473,7 @@
     
     thisCell.detailLabel.text = [NSString stringWithFormat:@"%@",_accountString];
     
-//    [thisCell.detailLabel setTextColor:FONT_Blue_Color];
+    //    [thisCell.detailLabel setTextColor:FONT_Blue_Color];
     
     CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
     CCLog(@"银币 %@",self.silverMoneyString);
@@ -487,7 +481,7 @@
     
     
     
-//     [self.thisTableView reloadData];
+    //     [self.thisTableView reloadData];
     
     
 }
@@ -495,14 +489,33 @@
 
 
 - (void)dealloc {
+    
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     self.accountString =nil;
     self.allAccountMoneyString =nil;
     [_thisTableView release];
     [super dealloc];
 }
+
 - (void)viewDidUnload {
     //    [self setThisTableView:nil];
     [super viewDidUnload];
 }
+
+
+
+//更新界面
+- (void) PhoneReChargeViewController:(PhoneReChargeViewController *)controller didAddChargeSuccess:(NSDictionary *)info{
+    
+    LoginBusiness *busi = [[LoginBusiness alloc] init];
+    
+    NSString *memberId =Default_UserMemberId_Value;
+    
+    CCLog(@"在个人中心界面 memberId= %@",memberId);
+    
+    [busi getAccountInfoWithMemberId:memberId andDelegate:self];
+    
+    
+}
+
 @end

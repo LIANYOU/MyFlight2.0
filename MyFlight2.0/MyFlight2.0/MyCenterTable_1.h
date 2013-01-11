@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "ServiceDelegate.h"
-@interface MyCenterTable_1 : UIViewController<UITableViewDelegate,UITableViewDataSource,ServiceDelegate>{
+#import "PhoneReChargeViewController.h"
+@interface MyCenterTable_1 : UIViewController<UITableViewDelegate,UITableViewDataSource,ServiceDelegate,PhoneReChargeViewControllerDelegate>{
     int cellsum;
     NSMutableArray *nameResultArray;
+    
 }
+
+
+
+
+
 
 
 @property (retain, nonatomic) IBOutlet UITableView *thisTableView;

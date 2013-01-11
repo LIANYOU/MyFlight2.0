@@ -102,9 +102,7 @@
     controller.navTitleString = @"添加乘机人";
     
     controller.passenger = nil;
-    
-    
-// AddContactViewController *controller = [[AddContactViewController alloc] init];
+
     [self.navigationController pushViewController:controller animated:YES];
     
     [controller release];
@@ -158,7 +156,7 @@
     
      [self setNav];
     
-    self.resultArray = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
+//    self.resultArray = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
     
     
     
@@ -187,6 +185,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void) viewWillAppear:(BOOL)animated{
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    [super viewWillAppear:animated];
+    
+    self.resultArray = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
+    [self.thisTableView reloadData];
+    
+    
+}
 
 #pragma mark - Table view data source
 
