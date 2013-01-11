@@ -186,6 +186,8 @@
 		14AF424B169816CC00C7C2CA /* ResultForLeijiViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AF424A169816CB00C7C2CA /* ResultForLeijiViewCell.xib */; };
 		14D18030168FF4860084CB48 /* AirPortDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */; };
 		14DF3581169BD8B200CD93AB /* CommonContactDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14DF3580169BD8B200CD93AB /* CommonContactDataBase.sqlite */; };
+		14E4AC2716A0647A00DE365A /* BindSNSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4AC2616A0647A00DE365A /* BindSNSViewController.m */; };
+		14E4AC2A16A0665F00DE365A /* MultiChoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4AC2916A0665F00DE365A /* MultiChoiceCell.m */; };
 		14ECC07B1695650E008191E1 /* e.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC0731695650E008191E1 /* e.png */; };
 		14ECC07C1695650E008191E1 /* e1.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC0741695650E008191E1 /* e1.png */; };
 		14ECC07D1695650E008191E1 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 14ECC0751695650E008191E1 /* line.png */; };
@@ -1075,6 +1077,10 @@
 		14AF424A169816CB00C7C2CA /* ResultForLeijiViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultForLeijiViewCell.xib; sourceTree = "<group>"; };
 		14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirPortDataBase.sqlite; sourceTree = "<group>"; };
 		14DF3580169BD8B200CD93AB /* CommonContactDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CommonContactDataBase.sqlite; sourceTree = "<group>"; };
+		14E4AC2516A0647A00DE365A /* BindSNSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindSNSViewController.h; sourceTree = "<group>"; };
+		14E4AC2616A0647A00DE365A /* BindSNSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindSNSViewController.m; sourceTree = "<group>"; };
+		14E4AC2816A0665F00DE365A /* MultiChoiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiChoiceCell.h; sourceTree = "<group>"; };
+		14E4AC2916A0665F00DE365A /* MultiChoiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiChoiceCell.m; sourceTree = "<group>"; };
 		14ECC0731695650E008191E1 /* e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e.png; sourceTree = "<group>"; };
 		14ECC0741695650E008191E1 /* e1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e1.png; sourceTree = "<group>"; };
 		14ECC0751695650E008191E1 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
@@ -2844,6 +2850,17 @@
 			name = LiChengDetailInfoData;
 			sourceTree = "<group>";
 		};
+		14E4AC2316A0642B00DE365A /* BindSNS */ = {
+			isa = PBXGroup;
+			children = (
+				14E4AC2516A0647A00DE365A /* BindSNSViewController.h */,
+				14E4AC2616A0647A00DE365A /* BindSNSViewController.m */,
+				14E4AC2816A0665F00DE365A /* MultiChoiceCell.h */,
+				14E4AC2916A0665F00DE365A /* MultiChoiceCell.m */,
+			);
+			name = BindSNS;
+			sourceTree = "<group>";
+		};
 		14ECC0701695650E008191E1 /* 值机 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3723,6 +3740,7 @@
 			isa = PBXGroup;
 			children = (
 				14935590169CE13000F66E87 /* About */,
+				14E4AC2316A0642B00DE365A /* BindSNS */,
 				1416698F1696AEDD007BB0D0 /* settingPage */,
 				14633DA816951EE300701518 /* FrequentFlyer */,
 				18E37CE3167D80550086B3F8 /* HomeMoreController.h */,
@@ -5032,7 +5050,12 @@
 				18D0D70D169EBDCD0028995B /* DiscountGoldInfo.m in Sources */,
 				18D0D714169EC1B50028995B /* SalesCell.m in Sources */,
 				18D0D71A169EF6BD0028995B /* WriteOrderGreenCell.m in Sources */,
+
 				18069BF4169FED49000F849F /* GDataXMLNode.m in Sources */,
+
+				14E4AC2716A0647A00DE365A /* BindSNSViewController.m in Sources */,
+				14E4AC2A16A0665F00DE365A /* MultiChoiceCell.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

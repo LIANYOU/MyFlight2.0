@@ -12,16 +12,14 @@
 #import "JSONKit.h"
 #import "AppConfigure.h"
 
-@interface FeedbackViewController : UIViewController <UITextViewDelegate>
+@interface FeedbackViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate>
 {
-    UITextView *textView;
-    UITextField *textField;
+    UITextView *message;
+    UITextField *address;
     
     UIButton *invisibleButton;
 }
 
-- (void) userEndEdit:(id) sender;
-- (void) userBeginEdit:(UITextField *) sender;
 - (void) send:(UIButton *) sender;
 
 @end

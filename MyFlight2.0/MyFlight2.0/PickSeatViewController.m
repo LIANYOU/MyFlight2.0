@@ -33,7 +33,7 @@
 
 - (void) requestForData
 {
-    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getSeatMapHandler.jsp")];
+    NSURL *url = [NSURL URLWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getSeatMapHandler.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
@@ -96,16 +96,6 @@
                 map.frame = CGRectMake(0, 0, map.sectionX * 30 + 30, map.sectionY * 30);
                 
                 scroll.contentSize = CGSizeMake(map.sectionX * 30 + 30, map.sectionY * 30);
-                
-                if(scroll.contentSize.width > scroll.frame.size.width)
-                {
-                    scroll.contentOffset = CGPointMake((scroll.contentSize.width - scroll.frame.size.width) / 2, scroll.contentOffset.y);
-                }
-                
-                if(scroll.contentSize.height > scroll.frame.size.height)
-                {
-                    scroll.contentOffset = CGPointMake(scroll.contentOffset.x, (scroll.contentSize.height - scroll.frame.size.height) / 2);
-                }
                 
                 [map drawSeatMap:seatMap];
             }
@@ -307,7 +297,7 @@
         return;
     }
     
-    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getPaHandler.jsp")];
+    NSURL *url = [NSURL URLWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/prod/flight/huet/getPaHandler.jsp")];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
@@ -325,7 +315,8 @@
     [request setPostValue:[dictionary objectForKey:@"airline"] forKey:@"cussRequest.airline"];
     [request setPostValue:[dictionary objectForKey:@"orgId"] forKey:@"cussRequest.orgId"];
     [request setPostValue:[dictionary objectForKey:@"symbols"] forKey:@"cussRequest.symbols"];
-    [request setPostValue:[dictionary objectForKey:@"021ec7fffe664a52936185941a3fdcef"] forKey:@"cussRequest.userId"];
+    
+    [request setPostValue:[[[[[responseDictionary objectForKey:@"idInfo"] objectForKey:@"arrayOfXsdString"] objectAtIndex:0] objectForKey:@"string"] objectAtIndex:1] forKey:@"cussRequest.userId"];
     
     dictionary = [[[responseDictionary objectForKey:@"pass"] objectForKey:@"wsPrPassenger"] objectAtIndex:0];
     
@@ -346,7 +337,16 @@
     
     dictionary = [dictionary objectForKey:@"depTime"];
     
-    NSString *string = [NSString stringWithFormat:@"%@-%@-%@T%@:%@:%@.%@%@Z", [dictionary objectForKey:@"year"], [dictionary objectForKey:@"month"], [dictionary objectForKey:@"day"], [dictionary objectForKey:@"hour"], [dictionary objectForKey:@"minute"], [dictionary objectForKey:@"second"], [dictionary objectForKey:@"fractionalSecond"], [dictionary objectForKey:@"timezone"]];
+    NSNumber *year = [dictionary objectForKey:@"year"];
+    NSNumber *month = [dictionary objectForKey:@"month"];
+    NSNumber *day = [dictionary objectForKey:@"day"];
+    NSNumber *hour = [dictionary objectForKey:@"hour"];
+    NSNumber *minute = [dictionary objectForKey:@"minute"];
+    NSNumber *second = [dictionary objectForKey:@"second"];
+    NSNumber *fractionalSecond = [dictionary objectForKey:@"fractionalSecond"];
+    NSNumber *timezone = [dictionary objectForKey:@"timezone"];
+    
+    NSString *string = [NSString stringWithFormat:@"%.2ld-%.2d-%.2ldT%.2ld:%.2ld:%.2d%.2f%dZ", [year longValue], [month intValue], [day longValue], [hour longValue], [minute longValue], [second intValue], [fractionalSecond floatValue], [timezone intValue]];
     
     [request setPostValue:string forKey:@"segment.depTime"];
     

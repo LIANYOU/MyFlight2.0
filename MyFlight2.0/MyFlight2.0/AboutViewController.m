@@ -14,11 +14,6 @@
 
 @implementation AboutViewController
 
-- (void) requestForData
-{
-    
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -88,6 +83,67 @@
     [label release];
     
     self.view.backgroundColor = BACKGROUND_COLOR;
+}
+
+- (void) chechkForUpdate
+{
+    NSURL *url = [NSURL URLWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/download/checkUpdate.jsp")];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    [request setRequestMethod:@"POST"];
+    [request setPostFormat:NSUTF8StringEncoding];
+    
+    [request setPostValue:EDITION_VALUE forKey:@"currentVersion"];
+    [request setPostValue:nil forKey:@"channel"];
+    [request setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [request setPostValue:@"01" forKey:@"serviceCode"];
+    
+    [request setCompletionBlock:^(void){
+        
+        NSData *response = [request responseData];
+        
+        NSString *string = [request responseString];
+        NSLog(@"%@",string);
+        
+        NSError *error = nil;
+        
+        NSDictionary *responseDictionary = [response objectFromJSONDataWithParseOptions:JKParseOptionNone error:&error];
+        
+        if(error != nil)
+        {
+            NSLog(@"JSON Parse Failed\n");
+        }
+        else
+        {
+            NSLog(@"JSON Parse Succeeded\n");
+            
+            NSDictionary *result = [responseDictionary objectForKey:@"result"];
+            
+            if([[result objectForKey:@"resultCode"] isEqualToString:@""])
+            {
+                for(NSString *string in [responseDictionary allKeys])
+                {
+                    NSLog(@"%@\n",string);
+                }
+                for(NSString *string in [responseDictionary allValues])
+                {
+                    NSLog(@"%@\n",string);
+                }
+            }
+            else
+            {
+                NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+            }
+        }
+    }];
+    
+    [request setFailedBlock:^(void){
+        NSLog(@"JSON Request Failed\n");
+    }];
+    
+    [request setDelegate:self];
+    [request startSynchronous];
 }
 
 - (void)didReceiveMemoryWarning
@@ -172,6 +228,9 @@
             feedback = [[FeedbackViewController alloc] init];
             [self.navigationController pushViewController:feedback animated:YES];
             [feedback release];
+            break;
+        case 1:
+            [self chechkForUpdate];
             break;
         default:
             break;

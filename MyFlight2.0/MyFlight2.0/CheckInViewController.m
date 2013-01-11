@@ -200,8 +200,7 @@
             passName.backgroundColor = [UIColor clearColor];
             passName.keyboardType = UIKeyboardTypeNamePhonePad;
             
-            [passName addTarget:self action:@selector(userEndEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
-            [passName addTarget:self action:@selector(userBeginEdit:) forControlEvents:UIControlEventEditingDidBegin];
+            passName.delegate = self;
             
             [cell addSubview:passName];
             [passName release];
@@ -254,8 +253,7 @@
             idNo.backgroundColor = [UIColor clearColor];
             idNo.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             
-            [idNo addTarget:self action:@selector(userEndEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
-            [idNo addTarget:self action:@selector(userBeginEdit:) forControlEvents:UIControlEventEditingDidBegin];
+            idNo.delegate = self;
             
             [cell addSubview:idNo];
             [idNo release];
@@ -414,14 +412,31 @@
     cityLabel.text = depCity;
 }
 
-- (void) userBeginEdit:(UITextField *)sender
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
 {
-    sender.text = @"";
+    invisibleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    invisibleButton.frame = self.view.frame;
+    
+    [invisibleButton addTarget:textField action:@selector(resignFirstResponder) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:invisibleButton];
+    
+    return YES;
 }
 
-- (void) userEndEdit:(UITextField *)sender
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    [sender resignFirstResponder];
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+- (BOOL) textFieldShouldEndEditing:(UITextField *)textField
+{
+    [invisibleButton removeFromSuperview];
+    
+    return YES;
 }
 
 @end

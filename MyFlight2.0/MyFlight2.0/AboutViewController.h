@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "FeedbackViewController.h"
+#import "ASIFormDataRequest.h"
+#import "JSONKit.h"
 
 @interface AboutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     NSArray *titleArray;
 }
+
+- (void) chechkForUpdate;
 
 @end

@@ -39,18 +39,18 @@
     [self.view addSubview:label];
     [label release];
     
-    textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 50, 300, 120)];
+    message = [[UITextView alloc] initWithFrame:CGRectMake(10, 50, 300, 120)];
     
-    textView.layer.borderColor = [BORDER_COLOR CGColor];
-    textView.layer.borderWidth = 1.0f;
-    textView.layer.cornerRadius = 10.0f;
+    message.layer.borderColor = [BORDER_COLOR CGColor];
+    message.layer.borderWidth = 1.0f;
+    message.layer.cornerRadius = 10.0f;
     
-    textView.backgroundColor = [UIColor clearColor];
+    message.backgroundColor = [UIColor clearColor];
     
-    textView.delegate = self;
+    message.delegate = self;
     
-    [self.view addSubview:textView];
-    [textView release];
+    [self.view addSubview:message];
+    [message release];
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(20, 185, 140, 20)];
     
@@ -62,17 +62,16 @@
     [self.view addSubview:label];
     [label release];
     
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 220, 300, 40)];
+    address = [[UITextField alloc] initWithFrame:CGRectMake(10, 220, 300, 40)];
     
-    textField.layer.borderColor = [BORDER_COLOR CGColor];
-    textField.layer.borderWidth = 1.0f;
-    textField.layer.cornerRadius = 10.0f;
+    address.layer.borderColor = [BORDER_COLOR CGColor];
+    address.layer.borderWidth = 1.0f;
+    address.layer.cornerRadius = 10.0f;
     
-    [textField addTarget:self action:@selector(userBeginEdit:) forControlEvents:UIControlEventEditingDidBegin];
-    [textField addTarget:self action:@selector(userEndEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    address.delegate = self;
     
-    [self.view addSubview:textField];
-    [textField release];
+    [self.view addSubview:address];
+    [address release];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -93,15 +92,15 @@
 
 - (void) send:(UIButton *)sender
 {
-    NSURL *url = [[NSURL alloc] initWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/feedback.jsp")];
+    NSURL *url = [NSURL URLWithString:GET_RIGHT_URL_WITH_Index(@"/web/phone/feedback.jsp")];
     
-    ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
     [request setRequestMethod:@"POST"];
     [request setDefaultResponseEncoding:NSUTF8StringEncoding];
     
-    [request setPostValue:textView.text forKey:@"feedMessage"];
-    [request setPostValue:textField.text forKey:@"contacts"];
+    [request setPostValue:message.text forKey:@"feedMessage"];
+    [request setPostValue:address.text forKey:@"contacts"];
     [request setPostValue:@"" forKey:@"name"];
     [request setPostValue:EDITION_VALUE forKey:@"version"];
     [request setPostValue:SOURCE_VALUE forKey:KEY_source];
@@ -109,6 +108,9 @@
     [request setCompletionBlock:^(void){
         
         NSData *response = [request responseData];
+        
+        NSString *string = [request responseString];
+        NSLog(@"%@",string);
         
         NSError *error = nil;
         
@@ -150,23 +152,51 @@
     [request startSynchronous];
 }
 
-- (void) userBeginEdit:(UITextField *)sender
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
     invisibleButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
     invisibleButton.frame = self.view.frame;
     
-    [invisibleButton addTarget:self action:@selector(userEndEdit:) forControlEvents:UIControlEventTouchUpInside];
+    [invisibleButton addTarget:textView action:@selector(resignFirstResponder) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:invisibleButton];
+    
+    return YES;
 }
 
-- (void) userEndEdit:(id)sender
+- (BOOL) textViewShouldEndEditing:(UITextView *)textView
+{
+    [invisibleButton removeFromSuperview];
+    
+    return YES;
+}
+
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+{
+    invisibleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    invisibleButton.frame = self.view.frame;
+    
+    [invisibleButton addTarget:textField action:@selector(resignFirstResponder) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:invisibleButton];
+    
+    return YES;
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [textView resignFirstResponder];
     
+    return YES;
+}
+
+- (BOOL) textFieldShouldEndEditing:(UITextField *)textField
+{
     [invisibleButton removeFromSuperview];
+    
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
