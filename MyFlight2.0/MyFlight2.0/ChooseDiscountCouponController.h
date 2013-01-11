@@ -16,6 +16,7 @@
 @property (retain, nonatomic) IBOutlet UITableView *showTableView;
 @property (retain, nonatomic) NSMutableArray * selectArr;
 @property (retain, nonatomic) NSMutableArray * indexArr;
+@property (retain, nonatomic) IBOutlet UIView *backViee;
 
 @property (retain, nonatomic) IBOutlet UIView *footView;
 @property (retain, nonatomic) NSArray * captchaList;

@@ -60,7 +60,7 @@
     }];
     [request setFailedBlock:^{
         NSError *error = [request error];
-        NSLog(@"Error downloading image: %@", error.localizedDescription);
+        NSLog(@"-----------Error downloading image: %@", error.localizedDescription);
     }];
     
     [request setDelegate:self];

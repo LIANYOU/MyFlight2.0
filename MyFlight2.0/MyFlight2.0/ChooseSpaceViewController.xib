@@ -89,7 +89,7 @@
 							<object class="IBUIButton" id="118062908">
 								<reference key="NSNextResponder" ref="484164295"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{232, 9}, {75, 30}}</string>
+								<string key="NSFrame">{{220, 9}, {90, 30}}</string>
 								<reference key="NSSuperview" ref="484164295"/>
 								<reference key="NSNextKeyView" ref="421253577"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -98,7 +98,7 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">关注航班</string>
+								<string key="IBUINormalTitle">    关注航班</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
@@ -131,7 +131,7 @@
 							<object class="IBUILabel" id="31733597">
 								<reference key="NSNextResponder" ref="484164295"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{115, 14}, {45, 21}}</string>
+								<string key="NSFrame">{{104, 16}, {45, 21}}</string>
 								<reference key="NSSuperview" ref="484164295"/>
 								<reference key="NSNextKeyView" ref="118062908"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -823,310 +823,13 @@
 			<nil key="sourceID"/>
 			<int key="maxID">49</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">BigCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="airPort">UILabel</string>
-						<string key="beginAirPortName">UILabel</string>
-						<string key="beginTime">UILabel</string>
-						<string key="endAirPortName">UILabel</string>
-						<string key="endTime">UILabel</string>
-						<string key="nextDayLabel">UILabel</string>
-						<string key="palntType">UILabel</string>
-						<string key="planeImage">UIImageView</string>
-						<string key="scheduleDate">UILabel</string>
-						<string key="view">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="airPort">
-							<string key="name">airPort</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="beginAirPortName">
-							<string key="name">beginAirPortName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="beginTime">
-							<string key="name">beginTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="endAirPortName">
-							<string key="name">endAirPortName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="endTime">
-							<string key="name">endTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="nextDayLabel">
-							<string key="name">nextDayLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="palntType">
-							<string key="name">palntType</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="planeImage">
-							<string key="name">planeImage</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="scheduleDate">
-							<string key="name">scheduleDate</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="view">
-							<string key="name">view</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/BigCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">ChooseSpaceCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="SpaceName">UILabel</string>
-						<string key="changeSpace">UIButton</string>
-						<string key="discount">UILabel</string>
-						<string key="payMoney">UILabel</string>
-						<string key="textCell">UILabel</string>
-						<string key="ticketCount">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="SpaceName">
-							<string key="name">SpaceName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="changeSpace">
-							<string key="name">changeSpace</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="discount">
-							<string key="name">discount</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="payMoney">
-							<string key="name">payMoney</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="textCell">
-							<string key="name">textCell</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ticketCount">
-							<string key="name">ticketCount</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ChooseSpaceCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">ChooseSpaceViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">lookFlight:</string>
-						<string key="NS.object.0">UIButton</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">lookFlight:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">lookFlight:</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-					</object>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="airPort">UILabel</string>
-						<string key="beginAirPortName">UILabel</string>
-						<string key="beginTime">UILabel</string>
-						<string key="bigCell">BigCell</string>
-						<string key="cellSelectedView">UIView</string>
-						<string key="endAirPortName">UILabel</string>
-						<string key="endTime">UILabel</string>
-						<string key="flightCode">UILabel</string>
-						<string key="footView">UIView</string>
-						<string key="goORBackLabel">UILabel</string>
-						<string key="headView">UIView</string>
-						<string key="lookButton">UIButton</string>
-						<string key="lookFlightBtn">UIButton</string>
-						<string key="newCell">NewChooseSpaceCell</string>
-						<string key="palntType">UILabel</string>
-						<string key="scheduleDate">UILabel</string>
-						<string key="showTableView">UITableView</string>
-						<string key="spaceCell">ChooseSpaceCell</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="airPort">
-							<string key="name">airPort</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="beginAirPortName">
-							<string key="name">beginAirPortName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="beginTime">
-							<string key="name">beginTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="bigCell">
-							<string key="name">bigCell</string>
-							<string key="candidateClassName">BigCell</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="cellSelectedView">
-							<string key="name">cellSelectedView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="endAirPortName">
-							<string key="name">endAirPortName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="endTime">
-							<string key="name">endTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="flightCode">
-							<string key="name">flightCode</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="footView">
-							<string key="name">footView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="goORBackLabel">
-							<string key="name">goORBackLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="headView">
-							<string key="name">headView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lookButton">
-							<string key="name">lookButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lookFlightBtn">
-							<string key="name">lookFlightBtn</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="newCell">
-							<string key="name">newCell</string>
-							<string key="candidateClassName">NewChooseSpaceCell</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="palntType">
-							<string key="name">palntType</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="scheduleDate">
-							<string key="name">scheduleDate</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="showTableView">
-							<string key="name">showTableView</string>
-							<string key="candidateClassName">UITableView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="spaceCell">
-							<string key="name">spaceCell</string>
-							<string key="candidateClassName">ChooseSpaceCell</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ChooseSpaceViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NewChooseSpaceCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="SpaceName">UILabel</string>
-						<string key="changeSpace">UIButton</string>
-						<string key="dImage">UIImageView</string>
-						<string key="discount">UILabel</string>
-						<string key="payMoney">UILabel</string>
-						<string key="selectBtn">UIButton</string>
-						<string key="sortImage">UIImageView</string>
-						<string key="sortimage">UIImageView</string>
-						<string key="textCell">UILabel</string>
-						<string key="textView">UIView</string>
-						<string key="ticketCount">UILabel</string>
-						<string key="view">UIView</string>
-						<string key="wImage">UIImageView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="SpaceName">
-							<string key="name">SpaceName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="changeSpace">
-							<string key="name">changeSpace</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="dImage">
-							<string key="name">dImage</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="discount">
-							<string key="name">discount</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="payMoney">
-							<string key="name">payMoney</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="selectBtn">
-							<string key="name">selectBtn</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="sortImage">
-							<string key="name">sortImage</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="sortimage">
-							<string key="name">sortimage</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="textCell">
-							<string key="name">textCell</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="textView">
-							<string key="name">textView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ticketCount">
-							<string key="name">ticketCount</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="view">
-							<string key="name">view</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="wImage">
-							<string key="name">wImage</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NewChooseSpaceCell.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="btn_attention.png">{150, 60}</string>
+			<string key="btn_attention.png">{180, 60}</string>
 			<string key="icon_airplane_big.png">{115, 36}</string>
 			<string key="line_Oval.png">{640, 4}</string>
 		</dictionary>

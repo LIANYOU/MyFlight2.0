@@ -29,6 +29,9 @@
 @property (retain, nonatomic)  NSString *temporaryLabel;  // code参数    如:5137
 @property (retain, nonatomic)  NSString *airPort;         // 机场二字码   如:HU  (海航)
 @property (retain, nonatomic)  NSString *palntType;       // 机型         如:747机型
+@property (retain, nonatomic)  NSString *goAirportName;       // 去成公司
+@property (retain, nonatomic)  NSString *backAirportName;       // 返程公司
+
 @property (retain, nonatomic)  NSString *beginTime;       // 飞机起飞的时间 08:00 
 @property (retain, nonatomic)  NSString *endTime;         // 飞机到达的时间 12:00
 @property (assign, nonatomic)  int pay;                   // 需支付的金额

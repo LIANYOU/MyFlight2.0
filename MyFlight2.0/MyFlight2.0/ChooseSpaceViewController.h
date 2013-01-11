@@ -74,6 +74,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *beginAirPortName;
 @property (retain, nonatomic) IBOutlet UILabel *endAirPortName;
 
+@property (retain, nonatomic) NSString * airCodeName;
+
 
 @property (retain, nonatomic) IBOutlet UIView *footView;
 
