@@ -10,6 +10,16 @@
 #import "ServiceDelegate.h"
 @interface ResetPassWordViewController : UIViewController<ServiceDelegate,UIAlertViewDelegate>
 
+
+
+- (IBAction)backKey:(id)sender;
+
+
+
+
+
+
+
 //用户输入的新密码
 @property (retain, nonatomic) IBOutlet UITextField *newPassword;
 

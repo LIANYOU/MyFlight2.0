@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "ServiceDelegate.h"
+@class PhoneReChargeViewController;
+
+@protocol PhoneReChargeViewControllerDelegate <NSObject>
+
+@optional
+
+- (void)PhoneReChargeViewController:(PhoneReChargeViewController *) controller didAddChargeSuccess:(NSDictionary *) info;
+
+
+@end
 @interface PhoneReChargeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ServiceDelegate,UITextFieldDelegate>
 
+
+@property(nonatomic,assign)id<PhoneReChargeViewControllerDelegate> delegate;
 
 @property (retain, nonatomic) IBOutlet UIView *thisFootView;
 

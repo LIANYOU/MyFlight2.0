@@ -477,9 +477,11 @@
     
    
     
-    NSString *meg =@"成功";
     
-    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+//    NSString *meg =@"成功";
+//    
+//    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
     
     
     

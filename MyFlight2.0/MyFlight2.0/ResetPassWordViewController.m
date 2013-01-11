@@ -14,6 +14,9 @@
 #import "ViewController.h"
 #import "UIButton+BackButton.h"
 #import "MBProgressHUD.h"
+#import "IsLoginInSingle.h"
+#import "LogViewController.h"
+
 @interface ResetPassWordViewController ()
 {
     
@@ -116,6 +119,9 @@
 //发送重置密码 请求 
 - (IBAction)commitResetPasswordRequest:(id)sender {
     
+    
+    [self.newPassword resignFirstResponder];
+    
     NSString *pwd = [self.newPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     if ([pwd length]==0) {
@@ -152,7 +158,7 @@
     
             CCLog(@"这是请求重置密码返回错误处理信号");
         
-        [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
         
         
 
@@ -169,12 +175,27 @@
 //    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
 //    NSString *returnMessage = [info objectForKey:KEY_message];
     
+    
+    IsLoginInSingle *single =[IsLoginInSingle shareLoginSingle];
+    
+    [single updateUserDefault];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_Default_Password];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+    
+    BOOL flag = single.isLogin;
+    BOOL flag1 =Default_IsUserLogin_Value;
+    
+    
+    CCLog(@"初始密码成功,用户是否登录%d %d",flag,flag1);
+    
     NSString *returnMessage = @"恭喜您，重置密码成功";
     
     isResetPwdSuccess = YES;
-    
-    
-    
+
     [UIQuickHelp showAlertViewWithTitle:nil message:returnMessage   delegate:self cancelButtonTitle:@"回首页" otherButtonTitles:@"登录"];
         
 
@@ -186,16 +207,35 @@
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
+    
+    
+    
     if (isResetPwdSuccess) {
         
         switch (buttonIndex) {
             case 0:
+            //回首页
                 
                 
                
                 
+            break;
+            case 1:{
+                //回到登录界面
+                
+                LogViewController *con =[[LogViewController alloc] init];
+                
+                con.loginSuccessReturnType =Login_Success_ReturnMyCenterDefault_Type;
+                
+                UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:con];
+                
+                [con release];
+                [self presentModalViewController:nav animated:YES];
                 break;
                 
+                
+            }
+                               
             default:
                 break;
         }
@@ -215,15 +255,16 @@
 #pragma mark 网络返回失败时的处理
 - (void) requestDidFailed:(NSDictionary *)info{
     
+    
   //    isSecretBnEnabled = YES;
 //    
 //    self.getSecretCodeBn.userInteractionEnabled = YES;
 //    
 //    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
-    NSString *returnMessage = [info objectForKey:KEY_message];
     
-            
-        [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        NSString *returnMessage = [info objectForKey:KEY_message];
+              
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:returnMessage   delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
         
         
     
@@ -234,4 +275,12 @@
 
 
 
+- (IBAction)backKey:(id)sender {
+    
+    CCLog(@"%@",sender);
+    
+    [self.newPassword resignFirstResponder];
+    
+    
+     }
 @end

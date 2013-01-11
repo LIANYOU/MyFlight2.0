@@ -254,16 +254,19 @@
     
         
     BOOL flag = false;
-   
-    for (CommonContact *contactData in contactDataArray) {
+    
+    if (contactDataArray!=nil) {
         
-        
-        flag =[db executeUpdate:@"insert into LoginContactTableCeshi(contactId,name,type,certType,certNo,birtyhday) values(?,?,?,?,?,?)",contactData.contactId,contactData.name,contactData.type,contactData.certType,contactData.certNo,contactData.birtyhday];
-        
-        
+        for (CommonContact *contactData in contactDataArray) {
+            
+            
+            flag =[db executeUpdate:@"insert into LoginContactTableCeshi(contactId,name,type,certType,certNo,birtyhday) values(?,?,?,?,?,?)",contactData.contactId,contactData.name,contactData.type,contactData.certType,contactData.certNo,contactData.birtyhday];
+            }
+
         
     }
-    
+   
+        
         
     if (flag) {
         

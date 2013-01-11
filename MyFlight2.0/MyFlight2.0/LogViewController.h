@@ -15,8 +15,10 @@
 #import "TencentOAuth.h"
 #import "TCWBEngine.h"
 
+
+
 //登陆界面  
-@interface LogViewController : UIViewController<ServiceDelegate,SinaWeiboDelegate,TencentSessionDelegate>
+@interface LogViewController : UIViewController<ServiceDelegate,SinaWeiboDelegate,TencentSessionDelegate,UITextFieldDelegate>
 {
     IBOutlet UITextField *logPassword;   // 登陆密码
     IBOutlet UITextField *logNumber;     // 登陆账号

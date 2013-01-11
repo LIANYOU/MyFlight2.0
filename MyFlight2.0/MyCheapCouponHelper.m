@@ -182,11 +182,11 @@
     
     __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
     
-    
+    [messageDic setObject:@"active" forKey:KEY_Request_Type];
     
     __block NSString *message = nil;
     
-    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:MakeCoupon_active_URL]];
     
     
     [formRequst setPostValue:memberId forKey:KEY_Account_MemberId];
@@ -221,7 +221,12 @@
                 NSLog(@"成功激活");
                 
                 
+                [self getCouponInfoListWithMemberId:Default_UserMemberId_Value andDelegate:delegate];
+                
                 [delegate requestDidFinishedWithRightMessage:messageDic];
+                
+                
+                
                 
             } else{
                 

@@ -306,5 +306,13 @@
     
        
 }
-
+     
+     
+     
+- (IBAction)backKey:(id)sender {
+    
+    [self.VerificationCode resignFirstResponder];
+    
+    
+}
 @end

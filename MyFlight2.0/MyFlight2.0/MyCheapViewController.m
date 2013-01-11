@@ -38,16 +38,29 @@
 
 
 - (void) back{
-    
+     [self.captchNumberInput resignFirstResponder];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+- (void) initKeyBoardView{
+    
+    self.captchNumberInput.text =@"";
+    self.tmpTextField.inputAccessoryView =self.textFieldAccView;
+    [self.tmpTextField becomeFirstResponder];
+    
+    [self.captchNumberInput becomeFirstResponder];
+    
+    [self.tmpTextField resignFirstResponder];
+
+    
+}
 
 //添加q优惠券
 - (void) addCoup{
     
     CCLog(@"增加优惠券");
-    
+    [self initKeyBoardView];
 }
 
 #pragma mark -
@@ -160,7 +173,7 @@
     [self initThisView];
     [self setNav];
     
-    self.thisTableView.tableFooterView = self.tableFoot;
+//    self.thisTableView.tableFooterView = self.tableFoot;
     
     //    uselistArray = [[NSArray alloc] init];
     //    noUseListArray = [[NSArray alloc] init];
@@ -306,18 +319,27 @@
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
     
-    self.uselistArray = [[info objectForKey:@"resultDic"] objectForKey:KEY_CouponListOfUse];
-    self.noUseListArray = [[info objectForKey:@"resultDic"] objectForKey:KEY_CouponListOfNoUse];
-    self.outOfDateListArray = [[info objectForKey:@"resultDic"] objectForKey:KEY_CouponListOfOutOfDate];
     
-    
-    tmpArray = self.uselistArray;
-    [self.thisTableView reloadData];
-    
-    CCLog(@"网络返回的数据count = %d",[tmpArray count]);
-    
-    
-    
+    NSString *message = [info objectForKey:KEY_Request_Type];
+    if ([message isEqualToString:@"active"]) {
+        CCLog(@"是激活信息返回的信息");
+        
+        
+    } else{
+        
+        CCLog(@"这是查询优惠券回调的方法");
+        
+        self.uselistArray = [[info objectForKey:@"resultDic"] objectForKey:KEY_CouponListOfUse];
+        self.noUseListArray = [[info objectForKey:@"resultDic"] objectForKey:KEY_CouponListOfNoUse];
+        self.outOfDateListArray = [[info objectForKey:@"resultDic"] objectForKey:KEY_CouponListOfOutOfDate];
+        
+        
+        tmpArray = self.uselistArray;
+        [self.thisTableView reloadData];
+        
+        CCLog(@"网络返回的数据count = %d",[tmpArray count]);
+        
+    }
     
 }
 
@@ -327,12 +349,48 @@
     [_thisTableView release];
     [_headerView release];
     [_tableFoot release];
+    [_textFieldAccView release];
+    [_captchaNumberTextField release];
+    [_tmpTextField release];
+    [_captchNumberInput release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setThisTableView:nil];
     [self setHeaderView:nil];
     [self setTableFoot:nil];
+    [self setTextFieldAccView:nil];
+    [self setCaptchaNumberTextField:nil];
+    [self setTmpTextField:nil];
+    [self setCaptchNumberInput:nil];
     [super viewDidUnload];
+}
+- (IBAction)SureAddcaptchaBn:(id)sender {
+    
+    NSString *number =[self.captchNumberInput.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if ([number length]==0) {
+        
+        
+        [UIQuickHelp showAlertViewWithTitle:AlertView_Title_Message message:@"请输入优惠券号" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        [self initKeyBoardView];
+        
+    } else{
+        
+        NSString *memberId =Default_UserMemberId_Value;
+        
+        [self.captchNumberInput resignFirstResponder];
+
+        
+        [MyCheapCouponHelper makeCouponActiveWithMemberId:memberId captcha:number andDlegate:self];
+        
+        
+        
+    }
+    
+
+    
+    
+        
+    
 }
 @end
