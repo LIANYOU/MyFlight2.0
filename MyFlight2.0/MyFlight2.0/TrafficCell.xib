@@ -45,7 +45,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{44, 8}, {89, 21}}</string>
 								<reference key="NSSuperview" ref="1004110643"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="952989006"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -79,7 +78,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{10, 24}, {52, 21}}</string>
 								<reference key="NSSuperview" ref="1004110643"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="462638333"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="435970118">
@@ -114,7 +112,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{59, 24}, {58, 21}}</string>
 								<reference key="NSSuperview" ref="1004110643"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1029155483"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="435970118"/>
@@ -136,7 +133,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{95, 24}, {50, 21}}</string>
 								<reference key="NSSuperview" ref="1004110643"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="833074655"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="435970118"/>
@@ -158,7 +154,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{146, 24}, {68, 21}}</string>
 								<reference key="NSSuperview" ref="1004110643"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="15497095"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="435970118"/>
@@ -180,7 +175,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{253, 15}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="1004110643"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="321826714"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -211,7 +205,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{10, 8}, {30, 21}}</string>
 								<reference key="NSSuperview" ref="1004110643"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="2902574"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="435970118"/>
@@ -236,7 +229,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{300, 20}, {9, 12}}</string>
 								<reference key="NSSuperview" ref="1004110643"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="955258412"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -251,7 +243,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 50}, {320, 1}}</string>
 								<reference key="NSSuperview" ref="1004110643"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="349654954"/>
@@ -263,7 +254,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 49}, {320, 1}}</string>
 								<reference key="NSSuperview" ref="1004110643"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="2438964"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -276,7 +266,6 @@
 						</array>
 						<string key="NSFrameSize">{320, 50}</string>
 						<reference key="NSSuperview" ref="969858806"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="650627724"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="435970118"/>
@@ -289,7 +278,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 51}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1004110643"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -460,234 +448,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">105</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">TrafficCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="firstBusTime">UILabel</string>
-						<string key="lastBusTime">UILabel</string>
-						<string key="lineFares">UILabel</string>
-						<string key="lineIndex">UILabel</string>
-						<string key="lineName">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="firstBusTime">
-							<string key="name">firstBusTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lastBusTime">
-							<string key="name">lastBusTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lineFares">
-							<string key="name">lineFares</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lineIndex">
-							<string key="name">lineIndex</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lineName">
-							<string key="name">lineName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/TrafficCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">TravelTrafficViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="coachDeptLabel">UILabel</string>
-						<string key="coachDeptToArr">UILabel</string>
-						<string key="coachDetailView">UIView</string>
-						<string key="coachFirstCoachTime">UILabel</string>
-						<string key="coachIntvalTime">UILabel</string>
-						<string key="coachLastCoachTime">UILabel</string>
-						<string key="coachOpenDetailBtn">UIButton</string>
-						<string key="coachPriceLabel">UILabel</string>
-						<string key="coachSingleList">UIView</string>
-						<string key="coachStopView">UITextView</string>
-						<string key="coachTel">UIView</string>
-						<string key="coachTelTotel">UIView</string>
-						<string key="coachTime">UILabel</string>
-						<string key="coachView">UIView</string>
-						<string key="subWayDeptLabel">UILabel</string>
-						<string key="subWayDeptToArr">UILabel</string>
-						<string key="subWayFirstCoachTime">UILabel</string>
-						<string key="subWayIntvalTime">UILabel</string>
-						<string key="subWayLastCoachTime">UILabel</string>
-						<string key="subWayPriceLabel">UILabel</string>
-						<string key="subWayStopView">UITextView</string>
-						<string key="subWayTime">UILabel</string>
-						<string key="subwayView">UIView</string>
-						<string key="taxiAirportTaxiStopPart">UIView</string>
-						<string key="taxiDetailView">UIView</string>
-						<string key="taxiOpenDetailBtn1">UIButton</string>
-						<string key="taxiOpenDetailBtn2">UIButton</string>
-						<string key="taxiOpenDetailBtn3">UIButton</string>
-						<string key="taxiPartT">UILabel</string>
-						<string key="taxiPrice">UIView</string>
-						<string key="taxiPriceLabel">UILabel</string>
-						<string key="taxiRange">UILabel</string>
-						<string key="taxiRefFromPart">UILabel</string>
-						<string key="taxiRefLine">UIView</string>
-						<string key="taxiView">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="coachDeptLabel">
-							<string key="name">coachDeptLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachDeptToArr">
-							<string key="name">coachDeptToArr</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachDetailView">
-							<string key="name">coachDetailView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachFirstCoachTime">
-							<string key="name">coachFirstCoachTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachIntvalTime">
-							<string key="name">coachIntvalTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachLastCoachTime">
-							<string key="name">coachLastCoachTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachOpenDetailBtn">
-							<string key="name">coachOpenDetailBtn</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachPriceLabel">
-							<string key="name">coachPriceLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachSingleList">
-							<string key="name">coachSingleList</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachStopView">
-							<string key="name">coachStopView</string>
-							<string key="candidateClassName">UITextView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachTel">
-							<string key="name">coachTel</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachTelTotel">
-							<string key="name">coachTelTotel</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachTime">
-							<string key="name">coachTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="coachView">
-							<string key="name">coachView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="subWayDeptLabel">
-							<string key="name">subWayDeptLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="subWayDeptToArr">
-							<string key="name">subWayDeptToArr</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="subWayFirstCoachTime">
-							<string key="name">subWayFirstCoachTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="subWayIntvalTime">
-							<string key="name">subWayIntvalTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="subWayLastCoachTime">
-							<string key="name">subWayLastCoachTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="subWayPriceLabel">
-							<string key="name">subWayPriceLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="subWayStopView">
-							<string key="name">subWayStopView</string>
-							<string key="candidateClassName">UITextView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="subWayTime">
-							<string key="name">subWayTime</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="subwayView">
-							<string key="name">subwayView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiAirportTaxiStopPart">
-							<string key="name">taxiAirportTaxiStopPart</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiDetailView">
-							<string key="name">taxiDetailView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiOpenDetailBtn1">
-							<string key="name">taxiOpenDetailBtn1</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiOpenDetailBtn2">
-							<string key="name">taxiOpenDetailBtn2</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiOpenDetailBtn3">
-							<string key="name">taxiOpenDetailBtn3</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiPartT">
-							<string key="name">taxiPartT</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiPrice">
-							<string key="name">taxiPrice</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiPriceLabel">
-							<string key="name">taxiPriceLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiRange">
-							<string key="name">taxiRange</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiRefFromPart">
-							<string key="name">taxiRefFromPart</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiRefLine">
-							<string key="name">taxiRefLine</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="taxiView">
-							<string key="name">taxiView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/TravelTrafficViewController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

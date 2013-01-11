@@ -14,6 +14,8 @@
 
 #define BASE_Domain_Name @"http://223.202.36.179:9580"
 
+#define BASE_DOMAIN_URL @"http://223.202.36.172:8380"
+
 #define GET_RIGHT_URL_WITH_Index(url) [NSString stringWithFormat:@"%@%@",BASE_Domain_Name,url]
 
 #define SERVIVE_Delegate ServiceDelegate
