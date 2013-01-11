@@ -202,10 +202,10 @@
     myData = [[NSMutableData alloc]init];
     // Do any additional setup after loading the view from its nib.
     
-   // NSString * myUrl = [NSString stringWithFormat:@"%@3gWeb/api/provision.jsp",BASE_Domain_Name];
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/provision.jsp"];
+    NSString * myUrl = [NSString stringWithFormat:@"%@3gWeb/api/provision.jsp",BASE_DOMAIN_URL];
+//    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/provision.jsp"];
     
-   // NSURL * url = [NSURL URLWithString:myUrl];
+    NSURL * url = [NSURL URLWithString:myUrl];
     
     
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];

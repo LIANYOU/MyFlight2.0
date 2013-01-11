@@ -180,8 +180,9 @@
     myData = [[NSMutableData alloc]init];
     // Do any additional setup after loading the view from its nib.
     
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/tel.jsp"];
-    
+//    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3gWeb/api/tel.jsp"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/3gWeb/api/tel.jsp",BASE_DOMAIN_URL];
+    NSURL * url = [NSURL URLWithString:urlStr];
     
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];

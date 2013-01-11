@@ -136,7 +136,9 @@
     myData = [[NSMutableData alloc]init];
     // Do any additional setup after loading the view from its nib.
     
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Web/AirportGuide.json"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/3GPlusPlatform/Web/AirportGuide.json",BASE_DOMAIN_URL];
+//    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Web/AirportGuide.json"];
+    NSURL * url = [NSURL URLWithString:urlStr];
     
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
@@ -201,6 +203,7 @@
 
         //机场坐标
 //        airportCoordinateArray = [[NSMutableArray alloc]initWithArray:[[[dic1 valueForKey:@"airportCoordinate"]objectAtIndex:0]componentsSeparatedByString:@","]];
+        NSLog(@"******* %@",[[dic1 valueForKey:@"airportCoordinate"]objectAtIndex:0]);
          [self addMap];
 //        airportCoordinateArray = [[NSMutableArray alloc]initWithArray:tempArray];
     }];
@@ -257,16 +260,26 @@
     [myMapView addGestureRecognizer:mapTap];
     
     [mapTap release];
+    
 //    center.latitude = [[airportCoordinateArray objectAtIndex:0]doubleValue];
 //    center.longitude = [[airportCoordinateArray objectAtIndex:1]doubleValue];
-    NSLog(@"center :%f,%f",[[airportCoordinateArray objectAtIndex:0]doubleValue],[[airportCoordinateArray objectAtIndex:1]doubleValue]);
-    center.latitude = 40;
-    center.longitude = 117;
+//    NSLog(@"center :%f,%f",[[airportCoordinateArray objectAtIndex:0]doubleValue],[[airportCoordinateArray objectAtIndex:1]doubleValue]);
+    if (self.subAirPortData.air_x) {
+        center.latitude = [self.subAirPortData.air_x doubleValue];
+    }else{
+        center.latitude = 50;
+    }
+    if (self.subAirPortData.air_y) {
+        center.longitude = [self.subAirPortData.air_y doubleValue];
+    }else{
+        center.longitude = 117;
+    }
     
-    
+    NSLog(@"------>>>%@%@",self.subAirPortData.air_x,self.subAirPortData.air_y);
+    NSLog(@"-----> %f%f",center.latitude,center.longitude);
     MKCoordinateSpan span;
-    span.latitudeDelta = .4;
-    span.longitudeDelta = .4;
+    span.latitudeDelta = 35;
+    span.longitudeDelta = 35;
     
     MKCoordinateRegion region = {
         center,span
@@ -279,13 +292,7 @@
 }
 
 -(void)mapTapClick:(UITapGestureRecognizer *)tap{
-//    if (mapIsFullScreen == NO) {
-//        [self mapChangeToFullScreen];
-//        mapIsFullScreen = YES;
-//    }else{
-//        [self mapChangeToBottom];
-//        mapIsFullScreen = NO;
-//    }
+
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     myMapView.frame = CGRectMake(0, 60, 320, [[UIScreen mainScreen] bounds].size.height - 64 - 60);

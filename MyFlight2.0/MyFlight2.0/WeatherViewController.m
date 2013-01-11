@@ -73,12 +73,15 @@
     // Do any additional setup after loading the view from its nib.
     
     // NSString * myUrl = [NSString stringWithFormat:@"%@3gWeb/api/provision.jsp",BASE_Domain_Name];
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/newWeather.jsp"];
+//    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/newWeather.jsp"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/web/phone/newWeather.jsp",BASE_Domain_Name];
+    NSURL * url = [NSURL URLWithString:urlStr];
     
     // NSURL * url = [NSURL URLWithString:myUrl];
 //    http://223.202.36.179:9580/web/phone/newWeather.jsp?city=101010100&type=PEK&edition=v1.0&date=2013-01-03
     
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    
     [request setPostValue:@"101010100" forKey:@"city"];
     [request setPostValue:nsDateString forKey:@"date"];
     [request setPostValue:self.subAirPortData.apCode forKey:@"type"];

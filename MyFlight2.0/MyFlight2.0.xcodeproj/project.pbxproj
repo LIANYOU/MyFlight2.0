@@ -3509,6 +3509,9 @@
 		18D196C6168161CC00FEE73A /* TravelAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				1842B4D0169C6433007FA603 /* TravelAssistantViewController.h */,
+				1842B4D1169C6433007FA603 /* TravelAssistantViewController.m */,
+				1842B4D2169C6433007FA603 /* TravelAssistantViewController.xib */,
 				1842B4C4169C6432007FA603 /* BaggageViewController.h */,
 				1842B4C5169C6432007FA603 /* BaggageViewController.m */,
 				1842B4C6169C6432007FA603 /* BaggageViewController.xib */,
@@ -3521,9 +3524,6 @@
 				1842B4CD169C6433007FA603 /* FlightCompanyDistrubuteViewController.h */,
 				1842B4CE169C6433007FA603 /* FlightCompanyDistrubuteViewController.m */,
 				1842B4CF169C6433007FA603 /* FlightCompanyDistrubuteViewController.xib */,
-				1842B4D0169C6433007FA603 /* TravelAssistantViewController.h */,
-				1842B4D1169C6433007FA603 /* TravelAssistantViewController.m */,
-				1842B4D2169C6433007FA603 /* TravelAssistantViewController.xib */,
 				1842B4D3169C6433007FA603 /* TravelPhoneViewController.h */,
 				1842B4D4169C6433007FA603 /* TravelPhoneViewController.m */,
 				1842B4D5169C6433007FA603 /* TravelPhoneViewController.xib */,
@@ -4732,20 +4732,14 @@
 				18D0D6C0169D67260028995B /* btn_sort.png in Resources */,
 				18D0D6C3169D67400028995B /* icon_screening_click.png in Resources */,
 				18D0D6C4169D67400028995B /* icon_screening.png in Resources */,
-
 				18D0D717169EC1C90028995B /* SalesCell.xib in Resources */,
 				18D0D71C169EF6D20028995B /* WriteOrderGreenCell.xib in Resources */,
-
-
 				1474CE1D169EEC7100FF6761 /* btn_save_click_new.png in Resources */,
 				1474CE20169EEC7E00FF6761 /* btn_save_new.png in Resources */,
-
-
 				18069BD9169FAD2E000F849F /* btn_attention.png in Resources */,
 				18069BDA169FAD2E000F849F /* btn_cancel.png in Resources */,
 				18069BDD169FB8C2000F849F /* icon_choice.png in Resources */,
 				18069BDE169FB8C2000F849F /* ico_def.png in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
