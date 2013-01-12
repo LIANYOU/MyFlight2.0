@@ -298,6 +298,7 @@
     detail.deptAirPortCode = self.deptAirPortCode;
     detail.arrAirPortCode = self.arrAirPortCode;
     detail.dic = dic;
+    detail.isAttentionFlight = YES;
     [self.navigationController pushViewController:detail animated:YES];
     
     

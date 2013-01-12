@@ -644,14 +644,9 @@ int whichDay(int year,int month,int day)
     {
         [[NSBundle mainBundle] loadNibNamed:@"LookFlightConditionCell" owner:self options:nil];
         cell = self.lookCell;
-//        UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"input.png"]];
-//        imageView.alpha = 0.5;
-//        imageView.frame = CGRectMake(10, 35, 300, 50);
-//        [cell addSubview:imageView];
-//        [imageView release];
+
         cell.bootImageView.backgroundColor = [UIColor whiteColor];
-//        cell.bootImageView.frame = CGRectMake(10, 35, 300, 50);
-//        [cell.bootImageView.layer  :4];
+
     }
     
     NSDictionary * dic = [self.lookFlightArr objectAtIndex:indexPath.row];

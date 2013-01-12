@@ -17,7 +17,7 @@
 
 #import "SearchFlightConditionController.h"
 #import "UIButton+BackButton.h"
-
+#import "Ann.h"
 @interface DetailFlightConditionViewController ()
 @property(nonatomic,retain) NSString *shareMsg;
 @property(nonatomic,retain) NSString *shareMsgWithWeibo;
@@ -38,6 +38,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -55,10 +57,11 @@
     [WXApi registerApp:tencentWeChatAppID];
     // Do any additional setup after loading the view from its nib.
     
+
+    
     //底部4个按钮
     [self.btnMessage addTarget:self action:@selector(btnMessageClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.toolSendLabel.userInteractionEnabled = YES;
-    self.toolSendLabel.text = @"短信提醒";
+
     UITapGestureRecognizer * toolSendTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(btnMessageClick:)];
     toolSendTap.numberOfTapsRequired = 1;
     toolSendTap.numberOfTouchesRequired =1;
@@ -81,7 +84,7 @@
     toolShareTap.numberOfTouchesRequired = 1;
     toolShareTap.numberOfTapsRequired = 1;
     [self.toolWeixinLabel addGestureRecognizer:toolShareTap];
-    [toolSendTap release];
+    [toolShareTap release];
 
     
     [self.btnMoreShare addTarget:self action:@selector(btnMoreShareClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -237,26 +240,9 @@
     //    self.arriveResult.text = @"";
     
 #pragma mark - 判断航班动态图片
-//    if (<#condition#>) {
-//        <#statements#>
-//    }
+
     if ([myFlightConditionDetailData.flightState isEqualToString:@"起飞"]) {
         [self.arriveBackImage setImage:[UIImage imageNamed:@"icon_blue_bg.png"]];
-    }else if ([myFlightConditionDetailData.flightState isEqualToString:@"计划"]){
-        [self.arriveBackImage setImage:[UIImage imageNamed:@"icon_blue_bg.png"]];
-
-    }else if ([myFlightConditionDetailData.flightState isEqualToString:@"到达"]){
-        [self.arriveBackImage setImage:[UIImage imageNamed:@"icon_green_bg.png"]];
-
-    }else if ([myFlightConditionDetailData.flightState isEqualToString:@"取消"]){
-        [self.arriveBackImage setImage:[UIImage imageNamed:@"icon_red_bg.png"]];
-
-    }else if ([myFlightConditionDetailData.flightState isEqualToString:@"延误"]){
-        [self.arriveBackImage setImage:[UIImage imageNamed:@"icon_red_bg.png"]];
-
-    }
-    
-    if ([myFlightConditionDetailData.flightState isEqualToString:@"起飞"]) {
         double totalTime = [self mxGetStringTimeDiff:myFlightConditionDetailData.expectedDeptTime timeE:myFlightConditionDetailData.expectedArrTime];
         
         NSDate *  senddate=[NSDate date];
@@ -265,25 +251,16 @@
         [dateformatter setDateFormat:@"HH:mm"];
         NSString *  locationString=[dateformatter stringFromDate:senddate];
         NSLog(@"locationString : %@",locationString);
-        
-        
-        
+   
         double curTime = [self mxGetStringTimeDiff:myFlightConditionDetailData.realDeptTime timeE:locationString];
         [dateformatter release];
-        
-        
-        
+ 
         NSLog(@"起飞：%f",curTime);
         NSLog(@"total:%f",totalTime);
         NSLog(@"时间百分比：%f",curTime/totalTime);
 #pragma mark - 换图
-        double timePoint = curTime/totalTime;
-        
-        
-        if (timePoint > 0.8){
-            [flightLine setImage:[UIImage imageNamed:@"circle_state_5.png"]];
-            flightLine.frame = CGRectMake(76, 111, 148, 51);
-        }else if (timePoint > 0.6){
+        double timePoint = curTime/totalTime;   //时间百分比
+        if (timePoint > 0.6){
             [flightLine setImage:[UIImage imageNamed:@"circle_state_4.png"]];
             flightLine.frame = CGRectMake(76, 111, 148, 51);
         }else if (timePoint > 0.4){
@@ -296,6 +273,58 @@
             [flightLine setImage:[UIImage imageNamed:@"circle_state_1.png"]];
             flightLine.frame = CGRectMake(76, 111, 148, 51);
         }
+        
+        
+    }else if ([myFlightConditionDetailData.flightState isEqualToString:@"计划"]){
+        [self.arriveBackImage setImage:[UIImage imageNamed:@"icon_blue_bg.png"]];
+        [flightLine setImage:[UIImage imageNamed:@"circle_state_1.png"]];
+
+    }else if ([myFlightConditionDetailData.flightState isEqualToString:@"到达"]){
+        [self.arriveBackImage setImage:[UIImage imageNamed:@"icon_green_bg.png"]];
+        [flightLine setImage:[UIImage imageNamed:@"circle_state_5.png"]];
+
+    }else if ([myFlightConditionDetailData.flightState isEqualToString:@"取消"]){
+        [self.arriveBackImage setImage:[UIImage imageNamed:@"icon_red_bg.png"]];
+        [flightLine setImage:[UIImage imageNamed:@"circle_state_1.png"]];
+
+    }else if ([myFlightConditionDetailData.flightState isEqualToString:@"延误"]){
+        [self.arriveBackImage setImage:[UIImage imageNamed:@"icon_red_bg.png"]];
+        
+        double totalTime = [self mxGetStringTimeDiff:myFlightConditionDetailData.expectedDeptTime timeE:myFlightConditionDetailData.expectedArrTime];
+        
+        NSDate *  senddate=[NSDate date];
+        NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+        
+        [dateformatter setDateFormat:@"HH:mm"];
+        NSString *  locationString=[dateformatter stringFromDate:senddate];
+        NSLog(@"locationString : %@",locationString);
+        
+        double curTime = [self mxGetStringTimeDiff:myFlightConditionDetailData.realDeptTime timeE:locationString];
+        [dateformatter release];
+        
+        NSLog(@"起飞：%f",curTime);
+        NSLog(@"total:%f",totalTime);
+        NSLog(@"时间百分比：%f",curTime/totalTime);
+#pragma mark - 换图
+        double timePoint = curTime/totalTime;   //时间百分比
+        if (timePoint > 0.6){
+            [flightLine setImage:[UIImage imageNamed:@"circle_state_4.png"]];
+            flightLine.frame = CGRectMake(76, 111, 148, 51);
+        }else if (timePoint > 0.4){
+            [flightLine setImage:[UIImage imageNamed:@"circle_state_3.png"]];
+            flightLine.frame = CGRectMake(76, 111, 148, 51);
+        }else if (timePoint > 0.2){
+            [flightLine setImage:[UIImage imageNamed:@"circle_state_2.png"]];
+            flightLine.frame = CGRectMake(76, 111, 148, 51);
+        }else{
+            [flightLine setImage:[UIImage imageNamed:@"circle_state_1.png"]];
+            flightLine.frame = CGRectMake(76, 111, 148, 51);
+        }
+
+    }
+    
+    if ([myFlightConditionDetailData.flightState isEqualToString:@"起飞"]) {
+        
         
 //        CGRect frame = flightLine.frame;
 //        frame.size.width = frame.size.width*(curTime/totalTime);
@@ -617,7 +646,7 @@
     [self showShareResultMsg:@"分享成功."];
 }
 - (void)onFailureLogin:(NSError *)error{
-
+    
 }
 
 #pragma mark - SinaWeiboRequest Delegate
@@ -772,7 +801,9 @@
 
 
 -(void)getFlightMapData{
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/flightRoute.jsp"];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/web/phone/prod/flight/flightRoute.jsp",BASE_Domain_Name];
+//    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/flightRoute.jsp"];
+    NSURL * url = [NSURL URLWithString:urlStr];
     
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
@@ -837,7 +868,30 @@
     pointsToUse[1] = coords;
     NSLog(@"2 : %f,%f",coords.latitude,coords.longitude);
     
+    
+#pragma mark - 添加大头针
+    //出发机场
+    Ann * pin1 = [[Ann alloc]init];
+    [pin1 setLatitude:[[[pointArray objectAtIndex:0] objectForKey:@"latitude"]doubleValue]];
+    [pin1 setLongitude:[[[pointArray objectAtIndex:0] objectForKey:@"longitude"]doubleValue]];
+    [pin1 setMyTitle:[NSString stringWithFormat:@"%@",myFlightConditionDetailData.deptAirport ]];
+    [myMapView addAnnotation:pin1];
+    
+    
+    //到达机场
+    Ann * pin2 = [[Ann alloc]init];
+    [pin2 setLatitude:[[[pointArray objectAtIndex:2] objectForKey:@"latitude"]doubleValue]];
+    [pin2 setLongitude:[[[pointArray objectAtIndex:2] objectForKey:@"longitude"]doubleValue]];
+    [pin2 setMyTitle:[NSString stringWithFormat:@"%@",myFlightConditionDetailData.arrAirport]];
+    [myMapView addAnnotation:pin2];
    
+    //小飞机
+    Ann * pin3 = [[Ann alloc]init];
+    [pin3 setLatitude:([[[pointArray objectAtIndex:2] objectForKey:@"latitude"]doubleValue] - [[[pointArray objectAtIndex:0] objectForKey:@"latitude"]doubleValue])];
+    
+    
+    
+    //线
     MKPolyline *lineOne = [MKPolyline polylineWithCoordinates:pointsToUse count:2];
     lineOne.title = @"blue";
     [overlays addObject:lineOne];
