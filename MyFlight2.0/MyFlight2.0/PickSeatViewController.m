@@ -109,7 +109,9 @@
     }];
     
     [request setFailedBlock:^(void){
-        NSLog(@"JSON Request Failed\n");
+        alertMessage = [[UIAlertView alloc] initWithTitle:@"" message:@"网络无响应，请稍后再试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertMessage show];
+        [alertMessage release];
     }];
     
     [request setDelegate:self];
@@ -365,8 +367,6 @@
         }
         else
         {
-            NSLog(@"JSON Parse Succeeded\n");
-            
             NSDictionary *result = [responseDict objectForKey:@"result"];
             
             if([[result objectForKey:@"resultCode"] isEqualToString:@""])
@@ -399,7 +399,9 @@
     }];
     
     [request setFailedBlock:^(void){
-        NSLog(@"JSON Request Failed\n");
+        alertMessage = [[UIAlertView alloc] initWithTitle:@"" message:@"网络无响应，请稍后再试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertMessage show];
+        [alertMessage release];
     }];
     
     [request setDelegate:self];
