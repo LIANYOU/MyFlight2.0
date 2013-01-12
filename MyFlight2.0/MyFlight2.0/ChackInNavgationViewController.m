@@ -150,7 +150,7 @@
     nameLabel.font = [UIFont systemFontOfSize:14];
     nameLabel.textAlignment = NSTextAlignmentRight;
     nameLabel.backgroundColor = [UIColor clearColor];
-    nameLabel.textColor = FONT_COLOR_BIG_GRAY;
+    nameLabel.textColor = FONT_COLOR_DEEP_GRAY;
     nameLabel.text = name;
     [myButton addSubview:nameLabel];
     [nameLabel release];
@@ -164,7 +164,7 @@
     terLabel.backgroundColor = [UIColor clearColor];
     terLabel.textAlignment = NSTextAlignmentRight;
     terLabel.text = myTerminal;
-    terLabel.textColor = FONT_COLOR_BIG_GRAY;
+    terLabel.textColor = FONT_COLOR_DEEP_GRAY;
     [myButton addSubview:terLabel];
     [terLabel release];
     
@@ -173,7 +173,7 @@
     phoneLabel.backgroundColor = [UIColor clearColor];
     phoneLabel.textAlignment = NSTextAlignmentRight;
     phoneLabel.font = [UIFont systemFontOfSize:12];
-    phoneLabel.textColor = FONT_COLOR_BIG_GRAY;
+    phoneLabel.textColor = FONT_COLOR_DEEP_GRAY;
     [myButton addSubview:phoneLabel];
     [phoneLabel release];
     

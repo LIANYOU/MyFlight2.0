@@ -30,7 +30,7 @@
         service.backgroundColor = [UIColor clearColor];
         
         service.font = [UIFont systemFontOfSize:16.0f];
-        service.textColor = FONT_COLOR_BIG_GRAY;
+        service.textColor = FONT_COLOR_DEEP_GRAY;
         service.textAlignment = UITextAlignmentLeft;
         
         [self addSubview:service];
@@ -41,7 +41,7 @@
         user.backgroundColor = [UIColor clearColor];
         
         user.font = [UIFont systemFontOfSize:14.0f];
-        user.textColor = FONT_COLOR_BIG_GRAY;
+        user.textColor = FONT_COLOR_DEEP_GRAY;
         user.textAlignment = UITextAlignmentRight;
         
         [self addSubview:user];

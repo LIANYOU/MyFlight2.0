@@ -115,7 +115,7 @@
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(40, 8, 139, 27)];
     title.text = [titleArray objectAtIndex:indexPath.row];
     title.backgroundColor = [UIColor clearColor];
-    title.textColor = FONT_COLOR_BIG_GRAY;
+    title.textColor = FONT_COLOR_DEEP_GRAY;
     [cell addSubview:title];
     [title release];
     
@@ -127,7 +127,7 @@
     cell.backgroundColor = [UIColor colorWithRed:247/255.0 green:243/255.0 blue:239/255.0 alpha:1];
     
     UIImageView * bottomLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
-    bottomLineImageView.backgroundColor = Line_COLOR_GRAY;
+    bottomLineImageView.backgroundColor = LINE_COLOR;
     [cell addSubview:bottomLineImageView];
     [bottomLineImageView release];
     

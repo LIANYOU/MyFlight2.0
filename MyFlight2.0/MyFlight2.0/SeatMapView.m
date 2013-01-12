@@ -63,7 +63,7 @@
             
             label.text = [NSString stringWithFormat:@"%d", value.intValue];
             
-            label.textColor = FONT_COLOR_BIG_GRAY;
+            label.textColor = FONT_COLOR_DEEP_GRAY;
             label.textAlignment = UITextAlignmentCenter;
             label.font = [UIFont systemFontOfSize:20.0f];
             label.backgroundColor = [UIColor clearColor];

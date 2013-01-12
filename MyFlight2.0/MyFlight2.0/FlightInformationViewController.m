@@ -160,7 +160,7 @@
     [cancelCheckInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     cancelCheckInButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    cancelCheckInButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    cancelCheckInButton.titleLabel.textAlignment = UITextAlignmentCenter;
     
     [cancelCheckInButton addTarget:self action:@selector(cancelCheckIn) forControlEvents:UIControlEventTouchUpInside];
     
@@ -323,7 +323,7 @@
             label.text = @"起飞时间";
             label.font = [UIFont systemFontOfSize:13.0f];
             label.textAlignment = UITextAlignmentLeft;
-            label.textColor = FONT_COLOR_LITTLE_GRAY;
+            label.textColor = FONT_COLOR_LIGHT_GRAY;
             label.backgroundColor = [UIColor clearColor];
             
             [cell addSubview:label];
@@ -334,7 +334,7 @@
             label.text = [[cussInfo objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:NSMakeRange(10, 14) withString:@""];
             label.font = [UIFont systemFontOfSize:13.0f];
             label.textAlignment = UITextAlignmentLeft;
-            label.textColor = FONT_COLOR_BIG_GRAY;
+            label.textColor = FONT_COLOR_DEEP_GRAY;
             label.backgroundColor = [UIColor clearColor];
             
             [cell addSubview:label];
@@ -346,7 +346,7 @@
             
             label.font = [UIFont systemFontOfSize:24.0f];
             label.textAlignment = UITextAlignmentLeft;
-            label.textColor = FONT_COLOR_BIG_GRAY;
+            label.textColor = FONT_COLOR_DEEP_GRAY;
             label.backgroundColor = [UIColor clearColor];
             
             [cell addSubview:label];

@@ -90,7 +90,7 @@
     [checkIn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     checkIn.titleLabel.font = [UIFont systemFontOfSize:20];
-    checkIn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    checkIn.titleLabel.textAlignment = UITextAlignmentCenter;
     
     [checkIn addTarget:self action:@selector(checkIn) forControlEvents:UIControlEventTouchUpInside];
     
@@ -107,7 +107,7 @@
     [progressQuery setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     progressQuery.titleLabel.font = [UIFont systemFontOfSize:20];
-    progressQuery.titleLabel.textAlignment = NSTextAlignmentCenter;
+    progressQuery.titleLabel.textAlignment = UITextAlignmentCenter;
     
     [progressQuery addTarget:self action:@selector(progressQuery) forControlEvents:UIControlEventTouchUpInside];
     
@@ -181,7 +181,7 @@
     title.text = [titleArray objectAtIndex:indexPath.row];
     title.font = [UIFont systemFontOfSize:16.0f];
     title.textColor = [UIColor colorWithRed:0.1f green:0.4f blue:0.8f alpha:1.0f];
-    title.textAlignment = NSTextAlignmentCenter;
+    title.textAlignment = UITextAlignmentCenter;
     title.backgroundColor = [UIColor clearColor];
     
     [cell addSubview:title];
@@ -196,7 +196,7 @@
             
             passName.font = [UIFont systemFontOfSize:16.0f];
             passName.textColor = FONT_COLOR_DEEP_GRAY;
-            passName.textAlignment = NSTextAlignmentRight;
+            passName.textAlignment = UITextAlignmentRight;
             passName.backgroundColor = [UIColor clearColor];
             passName.keyboardType = UIKeyboardTypeNamePhonePad;
             
@@ -233,7 +233,7 @@
             
             typeLabel.font = [UIFont systemFontOfSize:16.0f];
             typeLabel.textColor = FONT_COLOR_DEEP_GRAY;
-            typeLabel.textAlignment = NSTextAlignmentRight;
+            typeLabel.textAlignment = UITextAlignmentRight;
             typeLabel.backgroundColor = [UIColor clearColor];
             
             [changeType addSubview:typeLabel];
@@ -249,7 +249,7 @@
             
             idNo.font = [UIFont systemFontOfSize:16.0f];
             idNo.textColor = FONT_COLOR_DEEP_GRAY;
-            idNo.textAlignment = NSTextAlignmentRight;
+            idNo.textAlignment = UITextAlignmentRight;
             idNo.backgroundColor = [UIColor clearColor];
             idNo.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
             
@@ -275,7 +275,7 @@
             
             cityLabel.font = [UIFont systemFontOfSize:16.0f];
             cityLabel.textColor = FONT_COLOR_DEEP_GRAY;
-            cityLabel.textAlignment = NSTextAlignmentRight;
+            cityLabel.textAlignment = UITextAlignmentRight;
             cityLabel.backgroundColor = [UIColor clearColor];
             
             [changeCity addSubview:cityLabel];

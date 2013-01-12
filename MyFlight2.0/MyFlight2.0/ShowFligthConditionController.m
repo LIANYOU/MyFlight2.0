@@ -252,7 +252,7 @@
 //        [backView release];
         
         UIImageView * bottom1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 48, 320, 1)];
-        bottom1.backgroundColor = Line_COLOR_GRAY;
+        bottom1.backgroundColor = LINE_COLOR;
         [cell addSubview:bottom1];
         [bottom1 release];
         

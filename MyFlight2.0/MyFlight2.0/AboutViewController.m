@@ -60,7 +60,7 @@
     
     version.text = @"版本号 : 3.0";
     version.textAlignment = UITextAlignmentCenter;
-    version.textColor = FONT_COLOR_BIG_GRAY;
+    version.textColor = FONT_COLOR_DEEP_GRAY;
     version.font = [UIFont systemFontOfSize:12.0f];
     version.backgroundColor = [UIColor clearColor];
     
@@ -71,7 +71,7 @@
     
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"Copyright © 新华旅行网 51YOU.com"];
     
-    [string addAttribute:NSForegroundColorAttributeName value:FONT_COLOR_BIG_GRAY range:NSMakeRange(0, 17)];
+    [string addAttribute:NSForegroundColorAttributeName value:FONT_COLOR_DEEP_GRAY range:NSMakeRange(0, 17)];
     [string addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(18, 9)];
     [string addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0f] range:NSMakeRange(0, 27)];
     

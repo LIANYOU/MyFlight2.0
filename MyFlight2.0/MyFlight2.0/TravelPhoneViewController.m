@@ -112,7 +112,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         titlelabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 4, 160, 32)];
         titlelabel.font = [UIFont systemFontOfSize:14];
-        titlelabel.textColor = FONT_COLOR_BIG_GRAY;
+        titlelabel.textColor = FONT_COLOR_DEEP_GRAY;
         if ([phoneInfoArray count] == 0) {
             NSLog(@"phoneInfoArray count == 0");
         }else{
@@ -127,7 +127,7 @@
         [myBackgroundView release];
         
         UIImageView * bottomLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
-        bottomLineImageView.backgroundColor = Line_COLOR_GRAY;
+        bottomLineImageView.backgroundColor = LINE_COLOR;
         [cell addSubview:bottomLineImageView];
         [bottomLineImageView release];
         
@@ -142,7 +142,7 @@
         
         phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 4, 100, 32)];
         phoneLabel.font = [UIFont systemFontOfSize:14];
-        phoneLabel.textColor = FONT_COLOR_BIG_GRAY;
+        phoneLabel.textColor = FONT_COLOR_DEEP_GRAY;
         if ([phoneInfoArray count] == 0) {
             NSLog(@"phoneInfoArray count == 0");
         }else{

@@ -2740,10 +2740,9 @@
 		14935590169CE13000F66E87 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				186A638616A18A7100CD182C /* Feedback */,
 				18CED551169D6D2400CE2B92 /* AboutViewController.h */,
 				18CED552169D6D2400CE2B92 /* AboutViewController.m */,
-				18CED54E169D6CE000CE2B92 /* FeedbackViewController.h */,
-				18CED54F169D6CE000CE2B92 /* FeedbackViewController.m */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -3222,6 +3221,15 @@
 				1855579A169AAFE800AB5FAB /* CancelOrdre.m */,
 			);
 			name = "取消订单";
+			sourceTree = "<group>";
+		};
+		186A638616A18A7100CD182C /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				18CED54E169D6CE000CE2B92 /* FeedbackViewController.h */,
+				18CED54F169D6CE000CE2B92 /* FeedbackViewController.m */,
+			);
+			name = Feedback;
 			sourceTree = "<group>";
 		};
 		188B728816915C30004F09B8 /* Map */ = {

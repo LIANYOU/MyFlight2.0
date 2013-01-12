@@ -61,7 +61,7 @@
     myTitleLabel.backgroundColor = [UIColor clearColor];
     myTitleLabel.textAlignment = NSTextAlignmentCenter;
     myTitleLabel.font = [UIFont systemFontOfSize:20];
-    myTitleLabel.textColor = FONT_COLOR_BIG_GRAY;
+    myTitleLabel.textColor = FONT_COLOR_DEEP_GRAY;
     myTitleLabel.userInteractionEnabled = YES;
 //    [myView addSubview:myTitleLabel];
     [scrollView addSubview:myTitleLabel];

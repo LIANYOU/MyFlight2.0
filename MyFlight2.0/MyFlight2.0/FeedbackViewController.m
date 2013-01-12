@@ -32,7 +32,7 @@
     label = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 100, 20)];
     
     label.text = @"您的意见";
-    label.textColor = FONT_COLOR_BIG_GRAY;
+    label.textColor = FONT_COLOR_DEEP_GRAY;
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:20.0f];
     
@@ -55,7 +55,7 @@
     label = [[UILabel alloc] initWithFrame:CGRectMake(20, 185, 140, 20)];
     
     label.text = @"您的联系方式";
-    label.textColor = FONT_COLOR_BIG_GRAY;
+    label.textColor = FONT_COLOR_DEEP_GRAY;
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:20.0f];
     

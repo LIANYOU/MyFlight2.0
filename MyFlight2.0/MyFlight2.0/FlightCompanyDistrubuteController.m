@@ -182,7 +182,7 @@
 //    myButton.tintColor = btnTitCol;
     UILabel * nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 10, 60, 15)];
     nameLabel.font = [UIFont systemFontOfSize:14];
-    nameLabel.textColor = FONT_COLOR_BIG_GRAY;
+    nameLabel.textColor = FONT_COLOR_DEEP_GRAY;
     nameLabel.textAlignment = NSTextAlignmentRight;
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.text = name;
@@ -191,7 +191,7 @@
     
     UILabel * terLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 35, 60, 12)];
     terLabel.font = [UIFont systemFontOfSize:12];
-    terLabel.textColor = FONT_COLOR_BIG_GRAY;
+    terLabel.textColor = FONT_COLOR_DEEP_GRAY;
     terLabel.backgroundColor = [UIColor clearColor];
     terLabel.textAlignment = NSTextAlignmentRight;
     terLabel.text = myTerminal;
@@ -202,7 +202,7 @@
     phoneLabel.tag = 999;
     phoneLabel.text = myPhone;
     phoneLabel.backgroundColor = [UIColor clearColor];
-    phoneLabel.textColor = FONT_COLOR_BIG_GRAY;
+    phoneLabel.textColor = FONT_COLOR_DEEP_GRAY;
     phoneLabel.textAlignment = NSTextAlignmentRight;
     phoneLabel.font = [UIFont systemFontOfSize:12];
     [myButton addSubview:phoneLabel];
