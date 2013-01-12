@@ -68,7 +68,7 @@
      - (void)viewDidLoad
      {
          [super viewDidLoad];
-         
+         [self.UserInputPhoneNumber becomeFirstResponder];
          [self setNav];
          self.title  =@"找回密码";
          // Do any additional setup after loading the view from its nib.

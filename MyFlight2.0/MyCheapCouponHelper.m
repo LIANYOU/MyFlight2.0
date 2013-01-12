@@ -67,6 +67,7 @@
                     info.price = [tmpDic objectForKey:@"price"];
                     info.dateStart = [tmpDic objectForKey:@"dateStart"];
                     info.dateEnd = [tmpDic objectForKey:@"dateEnd"];
+                    info.rule =[tmpDic objectForKey:@"rule"];
                     [useList addObject:info];
                     [info release];
                     

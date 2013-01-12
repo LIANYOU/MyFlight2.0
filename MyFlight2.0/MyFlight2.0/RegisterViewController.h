@@ -43,9 +43,16 @@
 @property (retain, nonatomic) IBOutlet UIView *textView;
 
 
+@property (retain, nonatomic) IBOutlet UISwipeGestureRecognizer *swipGesture;
+
+
+- (IBAction)backKey:(id)sender;
+
+
 
 //注册用户
 - (IBAction)registerAccount:(id)sender;
+
 - (IBAction)backToLogView:(id)sender;
 
 

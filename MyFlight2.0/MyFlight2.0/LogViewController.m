@@ -68,6 +68,8 @@
 {
     [super viewDidLoad];
     
+    self.swipGesture.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+    
     
     logNumber.delegate =self;
     logPassword.delegate =self;
@@ -166,6 +168,7 @@
      }
      
      - (void)dealloc {
+         [_swipGesture release];
          [logNumber release];
          [logPassword release];
          [loginBusiness release];
@@ -179,7 +182,7 @@
          logNumber = nil;
          [logPassword release];
          logPassword = nil;
-         
+         self.swipGesture =nil;
          [ScrollerView release];
          ScrollerView = nil;
          [self setRemembePasswordBn:nil];
@@ -513,4 +516,9 @@
      
      
      
-@end
+     - (IBAction)backKey:(id)sender {
+         
+         [logNumber resignFirstResponder];
+         [logPassword resignFirstResponder];
+     }
+   @end

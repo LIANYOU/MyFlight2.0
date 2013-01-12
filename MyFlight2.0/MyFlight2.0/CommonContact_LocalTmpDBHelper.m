@@ -185,6 +185,7 @@
     } else{
         
         CCLog(@"不存在");
+        return nil;
     }
     NSMutableArray *resultArray =[[NSMutableArray alloc] init];
     

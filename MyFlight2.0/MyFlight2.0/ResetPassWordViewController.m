@@ -82,6 +82,7 @@
     [super viewDidLoad];
     [self setNav];
     self.title = @"重置密码";
+    [self.newPassword becomeFirstResponder];
     
     isResetPwdSuccess = NO;
     CCLog(@"重置密码页面 用户手机号 %@ 验证码 %@",self.mobile,self.code);

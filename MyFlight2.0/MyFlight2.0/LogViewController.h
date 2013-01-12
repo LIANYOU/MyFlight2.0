@@ -85,4 +85,11 @@
 //用新浪微博登陆
 - (IBAction)LoginWithSinaWeiBo:(id)sender;
 
+
+- (IBAction)backKey:(id)sender;
+
+@property (retain, nonatomic) IBOutlet UISwipeGestureRecognizer *swipGesture;
+
+
+
 @end
