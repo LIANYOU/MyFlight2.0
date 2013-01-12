@@ -55,7 +55,11 @@
 }
 -(void)lookFlightAttention
 {
-    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Flight/BookFlightMovement.json"]];
+    NSString * urlStr = [NSString stringWithFormat:@"%@/3GPlusPlatform/Flight/BookFlightMovement.json",BASE_DOMAIN_URL];
+//    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Flight/BookFlightMovement.json"]];
+    
+    NSURL * url = [NSURL URLWithString:urlStr];
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     
     [request setPostValue:self.memberId forKey:@"memberId"];
     [request setPostValue:self.orgSource forKey:@"orgSource"];
@@ -101,6 +105,7 @@
     [request setFailedBlock:^{
         NSError *error = [request error];
         NSLog(@"Error downloading image: %@", error.localizedDescription);
+        
     }];
     
     [request setDelegate:self];

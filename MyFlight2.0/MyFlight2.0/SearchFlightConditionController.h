@@ -48,7 +48,7 @@
     int selectDayCount;
     UIButton * animationBtn;//大按钮（有动画的按钮）
     
-    UIScrollView * scrollview;  //放关注列表
+    UIScrollView * scrollview;  //关注列表的放在这个view上
     UILabel * remindLabel;
     UILabel * remindLabel1;
 }

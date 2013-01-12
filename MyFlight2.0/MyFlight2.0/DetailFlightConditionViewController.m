@@ -51,8 +51,14 @@
     UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
     self.navigationItem.leftBarButtonItem = leftItem;
     [leftItem release];
+
     
 
+    
+
+
+    
+    
     //注册微信号
     [WXApi registerApp:tencentWeChatAppID];
     // Do any additional setup after loading the view from its nib.
@@ -152,16 +158,74 @@
     
     [self fillAllData];
     
+    
+    
+
+    
+#pragma mark - 判断是关注该航班还是取消关注
+   
+    if (self.isAttentionFlight == YES) {
+        attentionBtnTextLabel.text = @"关注该航班";
+    }else{
+        attentionBtnTextLabel.text = @"取消关注";
+    }
+}
+
+-(void)isAttentionFlightOrNot{
+   
+}
+
+-(void)deleteThisFlight{
+    NSString * memberID = Default_UserMemberId_Value;
+    NSString * hwID = HWID_VALUE;
+    
+    AttentionFlight * attention = [[AttentionFlight alloc] initWithMemberId:memberID
+                                                               andorgSource:@"51YOU"
+                                                                     andFno:myFlightConditionDetailData.flightNum
+                                                                   andFdate:myFlightConditionDetailData.deptDate
+                                                                     andDpt:myFlightConditionDetailData.flightDepcode
+                                                                     andArr:myFlightConditionDetailData.flightArrcode
+                                                                 andDptTime:myFlightConditionDetailData.deptTime
+                                                                 andArrTime:myFlightConditionDetailData.arrTime
+                                                                 andDptName:nil
+                                                                 andArrName:nil
+                                                                    andType:@"C"
+                                                                  andSendTo:nil
+                                                                 andMessage:nil
+                                                                   andToken:hwID
+                                                                  andSource:@"1"
+                                                                    andHwId:hwID
+                                                             andServiceCode:@"01"];
+    
+    
+    
+    
+    
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDelFlightData:) name:@"关注航班" object:nil];
+    [attention lookFlightAttention];
+//    attention.delegate = self;
 }
 
 #pragma mark - 关注该航班按钮响应
 - (IBAction)attentThisPlane:(id)sender {
+    
+    if (self.isAttentionFlight == NO) {
+        [self deleteThisFlight];
+    }else{
+#pragma mark - 判断是否能关注该航班
+    //关注btn是否可点击
+    if ([myFlightConditionDetailData.flightState isEqualToString:@"到达"]) {
+        isEnableAttent = NO;
+ 
+    }else if ([myFlightConditionDetailData.flightState isEqualToString:@"取消"]){
+        isEnableAttent = NO;
+        
+    }else{
+        isEnableAttent = YES;
+
     NSString * memberID = Default_UserMemberId_Value;
     NSString * hwID = HWID_VALUE;
-   
-    
-    
-    
+
     //提醒的类型，P:PUSH,  M:短信,  PM:PUSH+短信，  C:取消
     NSString * pushType = @"P";
 /*    
@@ -181,7 +245,11 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDelFlightData:) name:@"关注航班" object:nil];
     [attention lookFlightAttention];
-    
+        
+    //isEnableAttent = YES;
+    }
+    //self.isAttentionFlight == YES;
+    }
 }
 -(void)receiveDelFlightData:(NSNotification *)not
 {
@@ -927,6 +995,7 @@
     }
     return nil;
 }
+
 
 
 #pragma mark - dealloc

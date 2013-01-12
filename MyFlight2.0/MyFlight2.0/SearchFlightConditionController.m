@@ -18,6 +18,7 @@
 #import "GetAttentionFlight.h"
 #import "LookFlightConditionCell.h"
 #import "UIButton+BackButton.h"
+#import "DetailFlightConditionViewController.h"
 @interface SearchFlightConditionController ()
 
 {
@@ -920,9 +921,14 @@ int whichDay(int year,int month,int day)
 #pragma mark - 详情btn点击事件
 -(void)myDetailBtnClick:(UIButton *)btn{
     NSLog(@"myDetailBtnClick");
+    DetailFlightConditionViewController * detail = [[DetailFlightConditionViewController alloc]init];
+    NSDictionary * dic = [self.lookFlightArr objectAtIndex:btn.tag - 1000];
+    detail.dic = dic;
+    detail.isAttentionFlight = NO;
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
-#pragma mark - 取消关注点击事件
+#pragma mark - 取消关注点击事件(其他地方已实现，这个不用了)
 -(void)cancelBtnClick:(UIButton *)btn{
     NSLog(@"cancelBtnClick");
 }
