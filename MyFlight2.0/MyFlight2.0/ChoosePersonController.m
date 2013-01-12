@@ -243,6 +243,8 @@
         [self.certTypeDic          setObject:com.certType forKey:str];
         
     }
+    
+   
 
     blocks(self.nameDic,self.identityNumberDic,self.typeDic,self.flightPassengerIdDic,self.certTypeDic,self.selectArr);
     [self.navigationController popViewControllerAnimated:YES];

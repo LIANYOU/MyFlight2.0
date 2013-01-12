@@ -38,11 +38,21 @@
 @property (assign, nonatomic) int flag;  // 标记上次选择了哪一个btn
 @property (retain, nonatomic) IBOutlet UIView *postView;
 
+@property (retain, nonatomic) NSMutableArray * postArr;
+
+
+@property (retain, nonatomic) NSString * cellText;  // 上一界面传递过来的行程单的配送方式
+
 
 @property (retain, nonatomic) IBOutlet UIImageView *image1;
 @property (retain, nonatomic) IBOutlet UIImageView *image2;
 @property (retain, nonatomic) IBOutlet UIImageView *image3;
 
+@property (retain, nonatomic) IBOutlet UITextField *postName;
+@property (retain, nonatomic) IBOutlet UITextField *postCity;
+@property (retain, nonatomic) IBOutlet UITextField *postAddress;
+@property (retain, nonatomic) IBOutlet UITextField *postPhone;
+@property (retain, nonatomic) IBOutlet UILabel *postType;
 
 -(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex , NSArray * InfoArr))string;
 - (IBAction)postType:(id)sender;

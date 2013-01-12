@@ -123,6 +123,7 @@
 
 
 @property (nonatomic,retain)  NSString * postType;
+@property (nonatomic,retain)  NSString * postSchuduel;
 
 - (IBAction)payMoney:(id)sender;  // 去支付订单
 - (IBAction)changeToBigHeadView:(id)sender;
