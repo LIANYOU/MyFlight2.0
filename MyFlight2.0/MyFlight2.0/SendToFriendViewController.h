@@ -7,7 +7,8 @@
 //
 
 #import "BasicViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface SendToFriendViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SendToFriendViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @end
