@@ -229,6 +229,7 @@
     FeedbackViewController *feedback = nil;
     SendToFriendViewController *send = nil;
     RecommendationViewController *recommend = nil;
+    NSString *comment;
     
     switch(indexPath.row)
     {
@@ -249,6 +250,10 @@
             recommend = [[RecommendationViewController alloc] init];
             [self.navigationController pushViewController:recommend animated:YES];
             [recommend release];
+            break;
+        case 4:
+            comment = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d", 0];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:comment]];
             break;
         default:
             break;

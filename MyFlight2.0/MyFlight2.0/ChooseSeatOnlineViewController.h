@@ -6,7 +6,6 @@
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "BasicViewController.h"
 
 @interface ChooseSeatOnlineViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate>

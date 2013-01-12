@@ -6,8 +6,6 @@
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
 #import "BasicViewController.h"
 #import "ChooseAirPortViewController.h"
 #import "ChooseFlightViewController.h"

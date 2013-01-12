@@ -6,9 +6,7 @@
 //  Copyright (c) 2012年 LIAN YOU. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "BasicViewController.h"
-#import <QuartzCore/QuartzCore.h>
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 

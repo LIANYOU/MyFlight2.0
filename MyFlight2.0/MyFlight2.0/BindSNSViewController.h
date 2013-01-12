@@ -6,8 +6,6 @@
 //  Copyright (c) 2013年 LIAN YOU. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
 #import "BasicViewController.h"
 #import "MultiChoiceTableViewSupport.h"
 #import "MultiChoiceCell.h"

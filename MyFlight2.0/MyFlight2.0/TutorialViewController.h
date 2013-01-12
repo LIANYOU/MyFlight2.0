@@ -1,5 +1,5 @@
 //
-//  SendToFriendViewController.h
+//  TutorialViewController.h
 //  MyFlight2.0
 //
 //  Created by 123 123 on 13-1-12.
@@ -8,6 +8,6 @@
 
 #import "BasicViewController.h"
 
-@interface SendToFriendViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate>
+@interface TutorialViewController : BasicViewController
 
 @end
