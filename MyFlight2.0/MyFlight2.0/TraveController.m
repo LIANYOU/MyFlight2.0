@@ -52,6 +52,28 @@
 
     [UIQuickHelp setRoundCornerForView:self.backView withRadius:8];
     
+    self.postArr  = [NSMutableArray arrayWithCapacity:5];
+
+    self.postArr = [[NSUserDefaults standardUserDefaults] objectForKey:@"TraveController"];
+  
+    if ([self.cellText isEqualToString:@"不需要行程单报销凭证"]) {
+        self.flag = 1;
+    }
+    else{
+        self.flag = [[self.postArr objectAtIndex:2] intValue];
+    }
+    
+    
+    
+    NSArray * postInfoArr = [self.postArr objectAtIndex:3];
+    
+    name.text = [postInfoArr objectAtIndex:0];
+    city.text = [postInfoArr objectAtIndex:1];
+    address.text = [postInfoArr objectAtIndex:2];
+    phone.text = [postInfoArr objectAtIndex:3];
+    type.text = [postInfoArr objectAtIndex:4];
+    
+    
     noNeedBtn.tag = 1;
     helpYourselfBtn.tag = 2;
     post.tag = 3;
@@ -127,6 +149,10 @@
     [self.image2 setImage:[UIImage imageNamed:@"icon_Default.png"] ];
     [self.image3 setImage:[UIImage imageNamed:@"icon_Selected.png"]];
 
+
+    
+    
+    
     self.postView.hidden = NO;
 }
 - (void)dealloc {
@@ -143,6 +169,11 @@
     [_image1 release];
     [_image2 release];
     [_image3 release];
+    [_postName release];
+    [_postCity release];
+    [_postAddress release];
+    [_postPhone release];
+    [_postType release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -167,6 +198,11 @@
     [self setImage1:nil];
     [self setImage2:nil];
     [self setImage3:nil];
+    [self setPostName:nil];
+    [self setPostCity:nil];
+    [self setPostAddress:nil];
+    [self setPostPhone:nil];
+    [self setPostType:nil];
     [super viewDidUnload];
 }
 
@@ -189,13 +225,36 @@
 }
 -(void)back
 {
-  
+    NSArray * arr = [NSArray arrayWithObjects:name.text,city.text,address.text,phone.text,type.text, nil];
     
-    NSArray * arr = [NSArray arrayWithObjects:name.text,city.text,address.text,phone.text, nil];
+
+    
+    if (btnTag != 0) {
+        self.flag = btnTag;
+    }
+    if (btnTag == 0) {
+        _schedule_ = [self.postArr objectAtIndex:0];
+        type.text = [[self.postArr objectAtIndex:3] objectAtIndex:4];
+        self.flag = [[self.postArr objectAtIndex:2] intValue];
+    }
     
     
-    blocks(_schedule_,type.text,btnTag, arr);
+    blocks(_schedule_,type.text,self.flag, arr);  // type.text (快递）
     [self.navigationController popViewControllerAnimated:YES];
+    
+    if (_schedule_ == nil) {
+        _schedule_ = @"";
+    }
+    if (type.text == nil) {
+        type.text = @"";
+    }
+
+    
+    NSMutableArray * arrary = [NSMutableArray arrayWithObjects:_schedule_,type.text,[NSString stringWithFormat:@"%d",self.flag],arr,nil];
+    [[NSUserDefaults standardUserDefaults] setObject:arrary forKey:@"TraveController"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField

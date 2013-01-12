@@ -45,7 +45,13 @@
   
     int finalPay;  // 最终支付的价格
     
+    int indexSelectedFlag;  // 判断是不是重新点击了选择乘机人
+    
     int insuranceFlag;  // 判断有没有购买保险
+    
+    
+    int indexSelectedInsuranceFlag ;  // 判断是不是点击配送行程单之前点击来了购买保险
+    
     
     NSMutableArray * addPersonArr;
     
@@ -54,6 +60,18 @@
     NSString * goldAndCount;// 金币和资金账户
     NSString * passWord;    // 支付密码
     NSString * captchaID;// 优惠券ID
+    
+    
+
+    
+    
+    int personMoney;
+    int airPortName;
+    int oil ;
+    
+    int childPersonMoney ;
+    int childAirPortName;
+    int childOil;
     
    
     
@@ -95,13 +113,13 @@
     
     //********* 计算订单总额......
     
-    int personMoney = self.searchDate.pay + self.searchBackDate.pay;   // 单程是时候最后赋值的是self.backPay
-    int airPortName = [self.searchDate.constructionFee intValue] + [self.searchBackDate.constructionFee intValue];
-    int oil = [self.searchDate.adultBaf intValue]+[self.searchBackDate.adultBaf intValue];
+     personMoney = self.searchDate.pay + self.searchBackDate.pay;   // 单程是时候最后赋值的是self.backPay
+     airPortName = [self.searchDate.constructionFee intValue] + [self.searchBackDate.constructionFee intValue];
+     oil = [self.searchDate.adultBaf intValue]+[self.searchBackDate.adultBaf intValue];
     
-    int childPersonMoney = [self.searchDate.childPrice intValue] +[self.searchBackDate.childPrice intValue];
-    int childAirPortName = [self.searchDate.childConstructionFee intValue] + [self.searchBackDate.childConstructionFee intValue];
-    int childOil = [self.searchDate.childBaf intValue] + [self.searchBackDate.childBaf intValue];
+     childPersonMoney = [self.searchDate.childPrice intValue] +[self.searchBackDate.childPrice intValue];
+     childAirPortName = [self.searchDate.childConstructionFee intValue] + [self.searchBackDate.childConstructionFee intValue];
+     childOil = [self.searchDate.childBaf intValue] + [self.searchBackDate.childBaf intValue];
     
     
     newPersonAllPay = (personMoney+airPortName+oil)*personNumber;
@@ -123,20 +141,23 @@
     self.stringArr = [NSMutableArray array];
     self.personArray = [NSMutableArray array];
     
-    NSMutableArray * arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"personArr"];
-    
+ //   [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"personArr"];
+     
+    NSMutableArray * arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"newPersonArr"];
+
     self.passengerIDArr = [arr objectAtIndex:0];
     self.cerNO = [arr objectAtIndex:1];
     self.cerTYPE = [arr objectAtIndex:2];
     self.passengeNAME = [arr objectAtIndex:3];
     self.passengerTYPE = [arr objectAtIndex:4];
+    self.indexArr = [arr objectAtIndex:5];
     
-    NSLog(@"%d",self.passengerIDArr.count);
-    NSLog(@"%@",self.passengerIDArr);
-    NSLog(@"%@",self.cerNO);
-    NSLog(@"%@",self.cerTYPE);
-    NSLog(@"%@",self.passengeNAME);
-    NSLog(@"%@",self.passengerTYPE);
+//    NSLog(@"%d",self.passengerIDArr.count);
+//    NSLog(@"%@",self.passengerIDArr);
+//    NSLog(@"%@",self.cerNO);
+//    NSLog(@"%@",self.cerTYPE);
+//    NSLog(@"%@",self.passengeNAME);
+//    NSLog(@"%@",self.passengerTYPE);
     
     for(int i = 0; i<self.passengerIDArr.count;i++ )
     {
@@ -192,8 +213,7 @@
     }
     
     stringAfterJoin = @"";
-    NSLog(@"self.stringArr.count  %d",self.stringArr.count);
-    
+
     for (int i = 0; i<self.stringArr.count; i++) {
         
         if ([stringAfterJoin isEqualToString:@""]) {
@@ -205,15 +225,18 @@
         
     }
     personNumber = self.passengerIDArr.count-childNumber;
-    
-    NSLog(@"------------%@",stringAfterJoin);
+ 
     [self.firstCelTextArr replaceObjectAtIndex:0 withObject:stringAfterJoin];
+    
+
 
 }
 - (void)viewDidLoad
 {
     personNumber = 0;  // 默认一个成人
     childNumber = 0;
+     self.traveType = 1;// 默认是不需要行程单
+    insuranceFlag = 1; // 默认买保险
     
 //    NSLog(@"%@\n--------------%@",self.searchDate.cabinInfo,self.searchBackDate.cabinInfo);
 //    NSLog(@"%d,%@",self.searchDate.pay,self.searchBackDate.childPrice);
@@ -241,6 +264,9 @@
     self.tempView = self.headView;
     self.headViewHegiht = 40;
     
+    
+    // 默认不需要行程单
+    self.postSchuduel = @"不需要行程单报销凭证";
     
     // 行程单
     flightItinerary = [[flightItineraryVo alloc] init];
@@ -712,8 +738,8 @@
                             
                         case 3:
                             cell.firstLable.text = @"行  程  单";
-                            cell.secondLable.text = @"不需要行程单报销凭证";
-                            self.traveType = 1;
+                            cell.secondLable.text = self.postSchuduel;
+                           
                             
                             cell.imageLabel.hidden = YES;
                             break;
@@ -765,6 +791,7 @@
                     {
                         [[NSBundle mainBundle] loadNibNamed:@"WirterOrderTwoLineCell" owner:self options:nil];
                         cell = self.wirterOrderTwoLineCell;
+                        cell.firLable.text = @"";
                     }
                     if (Default_IsUserLogin_Value) {
                         
@@ -897,9 +924,10 @@
                             cell.imageLabel.text = @" ";
                             break;
                         case 3:
+                            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
                             cell.firstLable.text = @"行  程  单";
-                            cell.secondLable.text = @"不需要行程单报销凭证";
-                            self.traveType = 1;   // 默认带进去就是不要行程单
+                            cell.secondLable.text = self.postSchuduel;
+                            
                             
                             cell.imageLabel.text = @" ";
                             break;
@@ -1023,6 +1051,7 @@
 
     if (indexPath.row == 0) {
         
+        indexSelectedFlag = 1;  
         
         if (selectDicount) {     // 判断如果已经选择了优惠券，有重新选择乘机人，优惠券要重新选择
             
@@ -1042,8 +1071,8 @@
         
         }
         
-        personNumber = 1;
-        childNumber = 0; // 再次进入的时候清空初始人数；
+//        personNumber = 1;
+//        childNumber = 0; // 再次进入的时候清空初始人数；
         
         if (!Default_IsUserLogin_Value) {
             
@@ -1070,8 +1099,8 @@
             
             [choose getDate:^(NSMutableDictionary * name, NSMutableDictionary * identity ,NSMutableDictionary * type, NSMutableDictionary *flightPassengerIdDic,NSMutableDictionary * certTypeDic,NSMutableArray * arr)
              {
-
-                 if (arr.count != 0) {
+                 NSLog(@"%@",name);
+           
                      if (type.allKeys.count > [self.searchDate.ticketCount intValue]) {
                          UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已超过本舱位可预订的剩余座位数。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                          [alert show];
@@ -1096,6 +1125,7 @@
                      
                      
                      [self.personArray removeAllObjects];
+            
                      
                      for (int i = 0; i<name.allKeys.count; i++) {
                          
@@ -1105,6 +1135,7 @@
                          NSString * str4 = [flightPassengerIdDic objectForKey:[flightPassengerIdDic.allKeys objectAtIndex:i]];
                          NSString * str5 = [certTypeDic objectForKey:[certTypeDic.allKeys objectAtIndex:i]];
                          
+                
                          
                          // *******  加入到填写订单时候的 flightPassengerVo
                          flightPassengerVo * passenger = [[flightPassengerVo alloc] init];
@@ -1169,16 +1200,15 @@
                          
                      }
                      
+                   
                      // 动态修改定单的金额数
                      self.personMuber.text = [NSString stringWithFormat:@"%d",personNumber];  //  改变成人和儿童的数目
                      self.childMunber.text = [NSString stringWithFormat:@"%d",childNumber];
-                     
-                     self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
-                     self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
-                     self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber];
-                     
+                 
                      if (stringAfterJoin != @"") {
+              
                          [self.firstCelTextArr replaceObjectAtIndex:0 withObject:stringAfterJoin];
+                
                      }
                      
                      
@@ -1207,15 +1237,24 @@
                      for (flightPassengerVo * passenger in self.personArray) {   // 默认乘机人都买上保险
                          passenger.goInsuranceNum = @"1";
                      }
-                     
-                     self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
-                     self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
-                     self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20*(personNumber + childNumber)];
-                     
+                 
+                 if ([self.postType isEqualToString:@"快递"]) {
+                     self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber) + 20];
+                     self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber)+ 20];
+                     self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber)+ 20];
+                 }
+                 else{
+                     self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber)];
+                     self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber)];
+                     self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber)];
+
+                 }
+                                         
                      if (stringAfterJoin != @"") {  
                          [self.orderTableView reloadData];
+                       
                      }
-                 }
+         
            
                
              
@@ -1226,7 +1265,9 @@
         }
     }
     if (indexPath.row == 2) {
-
+        
+        indexSelectedInsuranceFlag = 1;
+        
         BuyInsuranceViewController * insurance = [[BuyInsuranceViewController alloc] init];
         
         insurance.type = self.swithType;
@@ -1236,12 +1277,9 @@
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             
             self.swithType = type;   // 记录开关状态
-            
-            
-            NSLog(@"~~~~~~~~~~~~~~~~~~~~~%@",idntity);
-                         
+
             if (idntity != nil) {
-                NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+           
                 for (flightPassengerVo * passenger in self.personArray) {
                     passenger.goInsuranceNum = @"1";
                 }
@@ -1251,15 +1289,15 @@
                 self.childInsure.text = @"￥20";
                 
                 if ([self.postType isEqualToString:@"快递"]) {
-                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
-                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
-                    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber) + 20];
+                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber) + 20];
+                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber) + 20];
+                    self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber) + 20];
                 }
 
                 else{
-                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
-                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
-                    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + 20*(personNumber+childNumber)];
+                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber)];
+                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber)];
+                    self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber)];
                 }
                
        
@@ -1277,15 +1315,15 @@
 
                 
                 if ([self.postType isEqualToString:@"快递"]) {
-                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20 ];
-                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20];
-                    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +20];
+                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20 ];
+                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20];
+                    self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20];
                 }
                 else
                 {
-                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
-                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
-                    self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber ];
+                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber ];
+                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber ];
+                    self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber ];
                 }
                 
                 
@@ -1304,20 +1342,33 @@
         
         TraveController * trave = [[TraveController alloc] init];
         
-        trave.flag = self.traveType;
+        trave.cellText = self.postSchuduel;
         
+        self.postType = @"";
+
         [trave getDate:^(NSString *schedule, NSString *postPay, int chooseBtnIndex , NSArray * InfoArr) {
             
             
-            self.postType = postPay;
-            NSLog(@"%@,,,%@,,,%d",schedule,postPay,chooseBtnIndex);
             
+            
+          //  self.postSchuduel = [NSString stringWithFormat:@"%@(%@)",schedule,postPay];
+            self.postSchuduel = schedule;
             /// **************  填写行程单配送信息
-            if (chooseBtnIndex != 0) {
-                flightItinerary.deliveryType = [NSString stringWithFormat:@"%d",chooseBtnIndex-1];
+          
+            if (chooseBtnIndex == 1) {
+                flightItinerary.deliveryType = @"0";   // 不需要
+            }
+            if (chooseBtnIndex == 2) {
+                flightItinerary.deliveryType = @"3";  // 机场自取
             }
             
             if (chooseBtnIndex == 3) {
+                if ([postPay isEqualToString:@"快递"]) {
+                    flightItinerary.deliveryType = @"1";    // 快递
+                }
+                else{
+                    flightItinerary.deliveryType = @"2";  // 挂号
+                }
                 flightItinerary.address = [InfoArr objectAtIndex:2];
                 flightItinerary.city = [InfoArr objectAtIndex:1];
                 flightItinerary.mobile = [InfoArr objectAtIndex:3];
@@ -1337,29 +1388,38 @@
             }
             
        
-            
+             NSLog(@"%@,,,%@,,,%d",schedule,postPay,chooseBtnIndex);
             WriterOrderCommonCell * cell = (WriterOrderCommonCell *)[self.orderTableView cellForRowAtIndexPath:indexPath];
             
             if (chooseBtnIndex != 0) {
-                
+          
                 self.traveType = chooseBtnIndex;
                 
                 cell.secondLable.text = schedule;
             }
             
+            if (indexSelectedInsuranceFlag != 1) {   // 判断如果之前没有点击购买保险
+                insuranceFlag = 0;
+            }
             
             
-            if ([postPay isEqualToString:@"快递"]) {
+            if (chooseBtnIndex == 3 && [postPay isEqualToString:@"快递"]) {
                 
-                self.upPayMoney.text = [NSString stringWithFormat:@"%d",[self.upPayMoney.text intValue]+20];
-                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
-                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +insuranceFlag*20*(personNumber+childNumber)+20];
+                self.postType = postPay;
+                
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
+                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
+                self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + newChildAllPay*(childPersonMoney+childAirPortName+childOil) +insuranceFlag*20*(personNumber+childNumber)+20];
             }
             
             else{
-                self.upPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +insuranceFlag*20*(personNumber+childNumber)];
-                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber+insuranceFlag*20*(personNumber+childNumber)];
-                self.allPay.text = [NSString stringWithFormat:@"%d",newPersonAllPay*personNumber + newChildAllPay*childNumber +insuranceFlag*20*(personNumber+childNumber)];
+                
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +insuranceFlag*20*(personNumber+childNumber)];
+                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber+insuranceFlag*20*(personNumber+childNumber)];
+                self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +insuranceFlag*20*(personNumber+childNumber)];
+                
+                
+                NSLog(@"uppaymoney andinsuranceFlag %d,%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +insuranceFlag*20*(personNumber+childNumber),insuranceFlag);
             }
             
        
@@ -1632,8 +1692,10 @@
     }
     
 
-    NSMutableArray * arr = [NSMutableArray arrayWithObjects:IDArr,certNoArr,certTypeArr,nameArr,typeArr, nil];
-    [[NSUserDefaults standardUserDefaults] setObject:arr forKey:@"personArr"];
+    
+
+    NSMutableArray * arr = [NSMutableArray arrayWithObjects:IDArr,certNoArr,certTypeArr,nameArr,typeArr,self.indexArr, nil];
+    [[NSUserDefaults standardUserDefaults] setObject:arr forKey:@"newPersonArr"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     
@@ -1774,11 +1836,6 @@
     return NO;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
 
 -(void)log
 {
@@ -1922,6 +1979,8 @@
     
 }
 
+#pragma mark - 键盘回收
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	
     if (self.flag == 3)
@@ -1931,6 +1990,15 @@
         [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
         [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
         
+        CGPoint ce=self.view.center;
+        ce.y=self.view.frame.size.height/2;
+        
+        [UIView beginAnimations:@"Curl"context:nil];//动画开始
+        [UIView setAnimationDuration:0.25];
+        [UIView setAnimationDelegate:self];
+        self.view.center=ce;
+        [UIView commitAnimations];
+
         [cell.nameField resignFirstResponder];
         [cell.phoneField resignFirstResponder];
         
@@ -1942,14 +2010,49 @@
         [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
         [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
         
+        CGPoint ce=self.view.center;
+        ce.y=self.view.frame.size.height/2;
+        
+        [UIView beginAnimations:@"Curl"context:nil];//动画开始
+        [UIView setAnimationDuration:0.25];
+        [UIView setAnimationDelegate:self];
+        self.view.center=ce;
+        [UIView commitAnimations];
+
+        
         [cell.nameField resignFirstResponder];
         [cell.phoneField resignFirstResponder];
     }
 
-    
-  
-    
+}
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    CGPoint ce=self.view.center;
+    ce.y=self.view.frame.size.height/2;
+    if (textField.center.y>20) {
+        ce.y=ce.y- textField.center.y-20;
+    }
+    NSLog(@"%f",textField.center.y);
+    [UIView beginAnimations:@"dsdf" context:nil];//动画开始
+    [UIView setAnimationDuration:0.25];
+    [UIView setAnimationDelegate:self];
+    self.view.center=ce;
+    [UIView commitAnimations];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    CGPoint ce=self.view.center;
+    ce.y=self.view.frame.size.height/2;
+    
+    [UIView beginAnimations:@"Curl"context:nil];//动画开始
+    [UIView setAnimationDuration:0.25];
+    [UIView setAnimationDelegate:self];
+    self.view.center=ce;
+    [UIView commitAnimations];
+    [textField resignFirstResponder];
+    return YES ;
 }
 
 @end
