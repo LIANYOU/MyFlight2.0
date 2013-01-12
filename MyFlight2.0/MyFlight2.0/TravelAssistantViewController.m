@@ -55,9 +55,9 @@
     [self.view addSubview:myTableView];
     
     // Do any additional setup after loading the view from its nib.
-    imageArray  = [[NSArray alloc]initWithObjects:[UIImage imageNamed:@"icon_Orders.png"],[UIImage imageNamed:@"icon_luggage.png"], [UIImage imageNamed:@"icon_Traffic.png"], [UIImage imageNamed:@"icon_checkin.png"], [UIImage imageNamed:@"icon_telphone.png"], [UIImage imageNamed:@"icon_Distributed.png"],[UIImage imageNamed:@"icon_Distributed.png"],  nil];
+    imageArray  = [[NSArray alloc]initWithObjects:[UIImage imageNamed:@"icon_Orders.png"], [UIImage imageNamed:@"icon_Traffic.png"], [UIImage imageNamed:@"icon_checkin.png"], [UIImage imageNamed:@"icon_telphone.png"], [UIImage imageNamed:@"icon_Distributed.png"],[UIImage imageNamed:@"icon_Distributed.png"],  nil];
     NSLog(@"image count : %d",[imageArray count]);
-    titleArray = [[NSArray alloc]initWithObjects:@"机场介绍",@"行李规定",@"机场交通",@"值机柜台",@"常用电话",@"航空公司分布",@"天气预报" ,nil];
+    titleArray = [[NSArray alloc]initWithObjects:@"机场介绍",@"机场交通",@"值机柜台",@"常用电话",@"航空公司分布",@"天气预报" ,nil];
     
     
     //导航栏rightItem
@@ -92,7 +92,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -160,11 +160,6 @@
             [self.navigationController pushViewController:fcd animated:YES];
             [fcd release];
         }else if (indexPath.row == 1){
-            NSLog(@"行李规定");
-            BaggageViewController * bag = [[BaggageViewController alloc]init];
-            [self.navigationController pushViewController:bag animated:YES];
-            [bag release];
-        }else if (indexPath.row == 2){
             NSLog(@"机场交通");
             TravelTrafficViewController * ttvc = [[TravelTrafficViewController alloc]init];
             if (self.myAirPortData) {
@@ -175,7 +170,7 @@
             }
             [self.navigationController pushViewController:ttvc  animated:YES];
             [ttvc release];
-        }else if (indexPath.row == 3){
+        }else if (indexPath.row == 2){
             NSLog(@"值机柜台");
             ChackInNavgationViewController * cinav = [[ChackInNavgationViewController alloc]init];
             cinav.subAirPortData = self.myAirPortData;
@@ -183,14 +178,14 @@
             cinav.myTitle = self.myAirPortData.apName;
             [self.navigationController pushViewController:cinav animated:YES];
             [cinav release];
-        }else if (indexPath.row == 4){
+        }else if (indexPath.row == 3){
             NSLog(@"常用电话");
             TravelPhoneViewController * tpvc = [[TravelPhoneViewController alloc]init];
             tpvc.subAirPortData = self.myAirPortData;
             [self.navigationController pushViewController:tpvc animated:YES];
             [tpvc release];
             
-        }else if (indexPath.row == 5){
+        }else if (indexPath.row == 4){
             NSLog(@"航空公司分布");
             FlightCompanyDistrubuteController * fcdc = [[FlightCompanyDistrubuteController alloc]init];
             fcdc.subAirPortData = self.myAirPortData;
@@ -199,7 +194,7 @@
             fcdc.myTitle = self.myAirPortData.apName;
             [self.navigationController pushViewController:fcdc animated:YES];
             [fcdc release];
-        }else if(indexPath.row == 6){
+        }else if(indexPath.row == 5){
             NSLog(@"天气预报");
             WeatherViewController * weather = [[WeatherViewController alloc]init];
             weather.subAirPortData = self.myAirPortData;

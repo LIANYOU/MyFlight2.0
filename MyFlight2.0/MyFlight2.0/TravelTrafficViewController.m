@@ -40,6 +40,7 @@
     UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
     self.navigationItem.leftBarButtonItem = leftItem;
     [leftItem release];
+    customViewIsCoach = YES;
 #pragma mark - cell高Array
     coachCellHeightArray = [[NSMutableArray alloc]initWithCapacity:0];
     coachCellHeightArray1 = [[NSMutableArray alloc]initWithCapacity:0];
@@ -77,6 +78,21 @@
     taxiTableView.delegate = self;
     taxiTableView.dataSource = self;
     taxiTableView.hidden = NO;
+
+
+#pragma mark - 最后方案
+#pragma mark - begin
+    contentTaxiView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, contentView.bounds.size.height)];
+    contentTaxiView.backgroundColor = [UIColor blueColor];
+    UILabel * label1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 280, 27)];
+    
+    [contentTaxiView addSubview:label1];
+    
+    
+   
+#pragma mark - 最后方案
+#pragma mark - over
+    
     
     //将tableview添加进去
 //    [contentView addSubview:taxiTableView];
@@ -88,11 +104,12 @@
 #pragma mark - 3个tableView背景色
     coachTableView.backgroundColor = BACKGROUND_COLOR;
     subwayTableView.backgroundColor = BACKGROUND_COLOR;
-    taxiTableView.backgroundColor = BACKGROUND_COLOR;
+//    taxiTableView.backgroundColor = BACKGROUND_COLOR;
+    taxiTableView.backgroundColor = [UIColor blueColor];
     
     
     //导航栏view
-    UIView * navgationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 44)];
+    UIView * navgationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 210, 44)];
     
     
     navLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 130, 44)];
@@ -158,11 +175,11 @@
     
     if (segmented.selectedIndex == 0) {
         trfficType = 0;//机场大巴
-        if (currTableView == taxiTableView) {
+        if (customViewIsCoach == NO) {
             [taxiTableView removeFromSuperview];
             [contentView addSubview:coachTableView];
         }
-        currTableView = coachTableView;
+        customViewIsCoach = YES;
         
         if (orientationCoach == 1) {
             navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
@@ -172,11 +189,11 @@
 
     }else if (segmented.selectedIndex == 1){
         trfficType = 2;//机场快轨
-        if (currTableView == taxiTableView) {
+        if (customViewIsCoach == NO) {
             [taxiTableView removeFromSuperview];
             [contentView addSubview:coachTableView];
         }
-        currTableView = coachTableView;
+        customViewIsCoach = YES;
         //更改nav的标题
         if (orientationSubway == 1) {
             navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
@@ -186,9 +203,11 @@
 
     }else if (segmented.selectedIndex == 2){
         trfficType = 1;//出租车
-        [coachTableView removeFromSuperview];
-        [contentView addSubview:taxiTableView];
-        currTableView = taxiTableView;
+        if (customViewIsCoach == YES) {
+            [coachTableView removeFromSuperview];
+            [contentView addSubview:contentTaxiView];
+        }
+        customViewIsCoach = NO;
         //更改nav的标题
         if (orientationTaxi == 1) {
             navLabel.text = [NSString stringWithFormat:@"%@机场-市区",self.airPortName];
@@ -238,19 +257,37 @@
             if (taxiDic == nil) {
                 [self getData5];
             }else{
-                [taxiTableView reloadData];
+                [self fillTaxiData1];
             }
         }else{
             if (taxiDicFromAirPort == nil) {
                 [self getData6];
             }else{
-                [taxiTableView reloadData];
+                [self fillTaxiData2];
             }
         }
         
     }
 }
 
+#pragma mark - 填充taxi数据
+-(void)fillTaxiData1{
+    taxiRuleTitleLast.text = [[sectionCountTaxi objectAtIndex:0]objectForKey:@"lineName"];
+    taxiRuleLabelLast.text =  [[[sectionCountTaxi objectAtIndex:0]objectForKey:@"lineStops"]stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
+    taxiLineNameLast.text = [[sectionCountTaxi objectAtIndex:1]objectForKey:@"lineName"];
+    aboutRangeLast.text = [[sectionCountTaxi objectAtIndex:1]objectForKey:@"lineStops"];
+    taxiPriceLast.text = [[sectionCountTaxi objectAtIndex:1]objectForKey:@"lineFares"];
+    taxiPlaceLast.text = [[sectionCountTaxi objectAtIndex:2]objectForKey:@"lineStops"];
+}
+-(void)fillTaxiData2{
+     taxiRuleTitleLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:0]objectForKey:@"lineName"];
+    taxiRuleLabelLast.text =  [[[sectionCountTaxiFromAirPort objectAtIndex:0]objectForKey:@"lineStops"]stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
+    taxiLineNameLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:1]objectForKey:@"lineName"];
+    aboutRangeLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:1]objectForKey:@"lineStops"];
+    taxiPriceLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:1]objectForKey:@"lineFares"];
+    taxiPlaceLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:2]objectForKey:@"lineStops"];
+}
+#pragma mark -
 -(void)getDataWithType:(NSInteger)trafficType sendOrientation:(NSInteger)sendOrientation{
     
 }
@@ -476,7 +513,7 @@
             [taxiCellHeightArray addObject:[NSString stringWithFormat:@"%f",labelsize.height]];
         }
        
-        
+        [self fillTaxiData1];
     }];
     //请求失败
     [request setFailedBlock:^{
@@ -504,8 +541,11 @@
     //请求完成
     [request setCompletionBlock:^{
         NSString * str = [request responseString];
-        NSLog(@"taxiDicFromAirPort :%@",str);
-        taxiDicFromAirPort = [str objectFromJSONString];
+//        NSLog(@"taxiDicFromAirPort :%@",str);
+        NSString * temp1= [str stringByReplacingOccurrencesOfString:@"\r\n" withString:@"aaaaa"];
+        NSString * temp2= [temp1 stringByReplacingOccurrencesOfString:@"\r" withString:@"aaaaa"];
+        NSString * temp3= [temp2 stringByReplacingOccurrencesOfString:@"\n" withString:@"aaaaa"];
+        taxiDicFromAirPort = [temp3 objectFromJSONString];
         sectionCountTaxiFromAirPort = [[NSArray alloc]initWithArray:[taxiDicFromAirPort objectForKey:@"TrafficTools"]];
         
         
@@ -519,8 +559,8 @@
             [taxiCellHeightArray1 addObject:[NSString stringWithFormat:@"%f",labelsize.height]];
         }
         
-        
-        [taxiTableView reloadData];
+        [self fillTaxiData2];
+       
     }];
     //请求失败
     [request setFailedBlock:^{
@@ -594,7 +634,7 @@
             if (sectionCountTaxiFromAirPort == nil) {
                 [self getData6];
             }else{
-                [taxiTableView reloadData];
+                [self fillTaxiData1];
             }
         }else{
             orientationTaxi = 0;
@@ -602,11 +642,12 @@
             if (sectionCountTaxi == nil) {
                 [self getData5];
             }else{
-                [taxiTableView reloadData];
+                [self fillTaxiData2];
             }
         }
     }
 }
+
 
 
 #pragma mark - tableView代理
@@ -620,12 +661,6 @@
         }else{
             return [sectionCountCoachFromAirPort count];
         }
-    }else if (tableView == taxiTableView){
-        if (taxiTableView == 0) {
-            return [sectionCountTaxi count];
-        }else{
-            return [sectionCountTaxiFromAirPort count];
-        }
     }
         return 0;
 }
@@ -635,13 +670,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = @"";
-    if (tableView == coachTableView) {
-        CellIdentifier = @"Cell";
-    }else if(tableView == taxiTableView){
-        CellIdentifier = @"taxiCell";
-    }
-   
+
+    NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -766,23 +796,9 @@
                 lineFares.text = [[sectionCountSubwayFromAirPort objectAtIndex:indexPath.row]objectForKey:@"lineFares"];
             }
         }
-    }else if (segmented.selectedIndex == 2){
-        if (orientationTaxi == 0) {
-              NSLog(@" ++++++  ------->  20");
-            if (sectionCountTaxi) {
-                NSLog(@"------->  20");
-                
-            }
-
-        }else{
-             NSLog(@"   +++   ------->  21");
-            if (sectionCountTaxiFromAirPort) {
-                 NSLog(@"------->  21");
-            }
-        
-        }
-    
     }
+       
+
     return cell;
 }
 
