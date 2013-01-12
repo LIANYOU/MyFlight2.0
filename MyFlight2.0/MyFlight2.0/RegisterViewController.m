@@ -38,6 +38,10 @@
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
+    
+    
+    self.accountFiled.keyboardType = UIKeyboardTypeNumberPad;
+    
 
 }
 
@@ -63,7 +67,7 @@
     
   [self setNav];
     
-    
+    self.swipGesture.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
     
     
     [UIQuickHelp setRoundCornerForView:self.thisView withRadius:View_CoureRadious];
@@ -106,8 +110,10 @@
     
     
     self.title  =@"注册";
-    self.accountFiled.keyboardType = UIKeyboardTypeNamePhonePad;  // 设置键盘样式
-    self.passWordFiled.keyboardType = UIKeyboardTypeDefault;
+      
+      
+//    self.accountFiled.keyboardType = UIKeyboardTypeNamePhonePad;  // 设置键盘样式
+//    self.passWordFiled.keyboardType = UIKeyboardTypeDefault;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -120,6 +126,7 @@
 }
 
 - (void)dealloc {
+    [_swipGesture release];
     [_accountFiled release];
     [_passWordFiled release];
     [_securityCodeField release];
@@ -137,6 +144,7 @@
     [self setSecretCodeBn:nil];
     [self setThisView:nil];
     [self setTextView:nil];
+    [self setSwipGesture:nil];
     [super viewDidUnload];
 }
 
@@ -285,6 +293,7 @@
         
         
         [thisTimer invalidate];
+        thisTimer = nil;
         
     }
     
@@ -367,7 +376,7 @@
         
         
         self.passWordFiled.text=string;
-        //        self.passWordFiled.secureTextEntry = NO;
+        // self.passWordFiled.secureTextEntry = NO;
         //
         isShowPassword = YES;
         [self.showPassWordBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];
@@ -489,4 +498,17 @@
     [textField resignFirstResponder];
     return YES ;
 }
+      
+- (IBAction)backKey:(id)sender {
+    
+    [self.accountFiled resignFirstResponder];
+    [self.securityCodeField resignFirstResponder];
+    [self.passWordFiled resignFirstResponder];
+    
+    
+    
+    
+}
+
+      
 @end

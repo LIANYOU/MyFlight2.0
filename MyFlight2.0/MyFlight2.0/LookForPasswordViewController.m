@@ -63,6 +63,12 @@
 
 - (void) back{
     
+    if (thisTimer!=nil) {
+        
+        [thisTimer invalidate];
+    }
+    
+    
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -233,6 +239,11 @@
         
    } else{
        
+       if (thisTimer!=nil) {
+           
+           [thisTimer invalidate];
+       }
+       
        //重置密码界面
        ResetPassWordViewController *controller = [[ResetPassWordViewController alloc] init];
 
@@ -263,7 +274,7 @@
     
     self.getSecretCodeBn.userInteractionEnabled = YES;
     
-    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
+//    NSString *thisMessage = [info objectForKey:KEY_Request_Type];
     NSString *returnMessage = [info objectForKey:KEY_message];
     
     
@@ -300,6 +311,7 @@
         self.getSecretCodeBn.userInteractionEnabled = YES;
         [self.getSecretCodeBn setBackgroundImage:[UIImage imageNamed:@"green_btn.png"] forState:UIControlStateNormal];
          [thisTimer invalidate];
+        thisTimer=nil;
         
     }
     
