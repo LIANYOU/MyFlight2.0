@@ -418,7 +418,7 @@
     
     FMDatabase *db =[self openDatabase];
     
-    FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,apEName,hotcity,cityName,air_x,air_y FROM AirPortDataBase where hotcity=1"];
+    FMResultSet *resultSet = [db executeQuery:@"SELECT  * FROM AirPortDataBase where hotcity=1"];
     //    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
     
     NSMutableDictionary *resultDic = [[NSMutableDictionary alloc] init];
@@ -434,8 +434,19 @@
         NSString *air_x = [resultSet stringForColumn:Column_air_x];
         NSString *air_y = [resultSet stringForColumn:Column_air_y];
         NSString *apEName =[resultSet stringForColumn:Column_apEName];
+    
         AirPortData *airPort = [[AirPortData alloc] initWithapCode:apCode apName:apName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
         airPort.apEname=apEName;
+        
+        //新增
+        airPort.cityCode = [resultSet stringForColumn:Column_cityCode];
+        airPort.cityPinYin =[resultSet stringForColumn:Column_cityPinYin];
+        airPort.weatherCode = [resultSet stringForColumn:Column_weatherCode];
+        airPort.city_x =[resultSet stringForColumn:Column_city_x];
+        airPort.city_y =[resultSet stringForColumn:Column_city_y];
+        
+               
+        
         //        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
         
         //        [resultArray addObject:dict];
@@ -459,7 +470,7 @@
     FMDatabase *db =[self openDatabase];
     
     
-    FMResultSet *resultSet = [db executeQuery:@"SELECT  apCode,apName,apEName,hotcity,cityName,air_x,air_y FROM AirPortDataBase "];
+    FMResultSet *resultSet = [db executeQuery:@"SELECT * FROM AirPortDataBase "];
     //    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
     
     NSMutableDictionary *resultDic =[[NSMutableDictionary alloc] init];
@@ -477,9 +488,16 @@
         
         AirPortData *airPort = [[AirPortData alloc] initWithapCode:apCode apName:apName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
         airPort.apEname=apEName;
-        //        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
-        //
-        //        [resultArray addObject:dict];
+        
+        
+        
+        //新增
+        airPort.cityCode = [resultSet stringForColumn:Column_cityCode];
+        airPort.cityPinYin =[resultSet stringForColumn:Column_cityPinYin];
+        airPort.weatherCode = [resultSet stringForColumn:Column_weatherCode];
+        airPort.city_x =[resultSet stringForColumn:Column_city_x];
+        airPort.city_y =[resultSet stringForColumn:Column_city_y];
+
         
         
         [resultDic setObject:airPort forKey:apCode];
@@ -538,6 +556,17 @@
         
         AirPortData *airPort = [[AirPortData alloc] initWithapCode:apCode apName:apName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
         airPort.apEname=apEName;
+        
+        
+        //新增
+        airPort.cityCode = [resultSet stringForColumn:Column_cityCode];
+        airPort.cityPinYin =[resultSet stringForColumn:Column_cityPinYin];
+        airPort.weatherCode = [resultSet stringForColumn:Column_weatherCode];
+        airPort.city_x =[resultSet stringForColumn:Column_city_x];
+        airPort.city_y =[resultSet stringForColumn:Column_city_y];
+
+        
+        
         
         
         

@@ -54,6 +54,18 @@
 #define Column_air_y  @"air_y"
 
 
+//新增
+
+#define Column_cityCode @"cityCode"
+
+#define Column_cityPinYin @"cityPinYin"
+
+#define Column_weatherCode @"weatherCode"
+
+#define Column_city_x @"city_x"
+
+#define Column_city_y @"city_y"
+
 
 
 

@@ -204,7 +204,7 @@
     NSInteger rows = 0;
     
     if (self.tableView == tableView) {
-//        CCLog(@"显示视图");
+        //        CCLog(@"显示视图");
         
         
         if (section==0) {
@@ -222,7 +222,7 @@
     } else{
         
         
-//        CCLog(@"搜索视图");
+        //        CCLog(@"搜索视图");
         [self filterAirPortByCondition:self.searchBar.text];
         
         rows = [self.filterArray count];
@@ -241,7 +241,7 @@
     
     if (self.tableView == tableView) {
         
-//        NSLog(@"显示视图cell");
+        //        NSLog(@"显示视图cell");
         if (indexPath.section==0) {
             
             static NSString *CellIdentifier  = @"onecell";
@@ -419,7 +419,7 @@
         } else{
             
             
-                        
+            
             
             if (self.choiceTypeOfAirPort==AIRPORT_Big_Screen_ChooseType) {
                 
@@ -438,12 +438,12 @@
                 UITableViewCell *tmpCell=[tableView cellForRowAtIndexPath:indexPath];
                 //标示为选择状态
                 tmpCell.accessoryType=UITableViewCellAccessoryCheckmark;
-               
+                
                 
                 selectIndex = indexPath.row;
-
                 
-                                  
+                
+                
             } else{
                 
                 
@@ -456,21 +456,23 @@
                 AirPortData *data  = [items objectAtIndex:indexPath.row];
                 
                 
-                CCLog(@"选择的机场信息：%@,%@",data.apCode,data.apName);
+                CCLog(@"选择的机场信息：apcode = %@,apname =%@ city_x =%@ weatherCode =%@",data.apCode,data.apName,data.city_x,data.weatherCode);
+                
+                CCLog(@"机场坐标：%@ %@ ", data.air_x,data.air_y);
                 
                 if (_delegate&&[_delegate respondsToSelector:@selector(ChooseAirPortViewController:chooseType:didSelectAirPortInfo:)]) {
                     
                     [_delegate ChooseAirPortViewController:self chooseType:self.choiceTypeOfAirPort didSelectAirPortInfo:data];
                 }
-
+                
                 
                 
                 
                 
             }
             
-
-}
+            
+        }
     } else{
         
         
@@ -485,7 +487,7 @@
         
     }
     
-        
+    
     
     [self.navigationController popViewControllerAnimated:YES];
 }
