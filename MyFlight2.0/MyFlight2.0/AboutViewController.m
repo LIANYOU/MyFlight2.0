@@ -130,10 +130,16 @@
                 {
                     NSLog(@"%@\n",string);
                 }
+                
+                NSURL *url = [NSURL URLWithString:[responseDictionary objectForKey:@"apkurl"]];
+                
+                [[UIApplication sharedApplication] openURL:url];
             }
             else
             {
-                NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+                alertMessage = [[UIAlertView alloc] initWithTitle:[result objectForKey:@"resultCode"] message:[result objectForKey:@"message"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alertMessage show];
+                [alertMessage release];
             }
         }
     }];
@@ -221,6 +227,8 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FeedbackViewController *feedback = nil;
+    SendToFriendViewController *send = nil;
+    RecommendationViewController *recommend = nil;
     
     switch(indexPath.row)
     {
@@ -231,6 +239,16 @@
             break;
         case 1:
             [self chechkForUpdate];
+            break;
+        case 2:
+            send = [[SendToFriendViewController alloc] init];
+            [self.navigationController pushViewController:send animated:YES];
+            [send release];
+            break;
+        case 3:
+            recommend = [[RecommendationViewController alloc] init];
+            [self.navigationController pushViewController:recommend animated:YES];
+            [recommend release];
             break;
         default:
             break;

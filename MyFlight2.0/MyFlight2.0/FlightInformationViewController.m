@@ -78,7 +78,9 @@
             }
             else
             {
-                NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+                alertMessage = [[UIAlertView alloc] initWithTitle:[result objectForKey:@"resultCode"] message:[result objectForKey:@"message"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alertMessage show];
+                [alertMessage release];
             }
         }
     }];
@@ -128,7 +130,7 @@
     detailedInfoTable.scrollEnabled = NO;
     detailedInfoTable.allowsSelection = NO;
     
-    flightInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 284, 300, 88)];
+    flightInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 250, 300, 88)];
     
     flightInfoTable.rowHeight = 44.0f;
     flightInfoTable.backgroundColor = FOREGROUND_COLOR;
@@ -416,7 +418,9 @@
             }
             else
             {
-                NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+                alertMessage = [[UIAlertView alloc] initWithTitle:[result objectForKey:@"resultCode"] message:[result objectForKey:@"message"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alertMessage show];
+                [alertMessage release];
             }
         }
     }];

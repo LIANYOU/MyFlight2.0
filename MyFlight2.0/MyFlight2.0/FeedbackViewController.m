@@ -45,7 +45,7 @@
     message.layer.borderWidth = 1.0f;
     message.layer.cornerRadius = 10.0f;
     
-    message.backgroundColor = [UIColor clearColor];
+    message.backgroundColor = FOREGROUND_COLOR;
     
     message.delegate = self;
     
@@ -67,6 +67,7 @@
     address.layer.borderColor = [BORDER_COLOR CGColor];
     address.layer.borderWidth = 1.0f;
     address.layer.cornerRadius = 10.0f;
+    address.backgroundColor = FOREGROUND_COLOR;
     
     address.delegate = self;
     
@@ -139,7 +140,9 @@
             }
             else
             {
-                NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+                alertMessage = [[UIAlertView alloc] initWithTitle:[result objectForKey:@"resultCode"] message:[result objectForKey:@"message"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alertMessage show];
+                [alertMessage release];
             }
         }
     }];

@@ -18,6 +18,8 @@
     
     UITableView *flightInfoTable;
     
+    UIAlertView *alertMessage;
+    
     __block NSDictionary *responseDictionary;
 }
 

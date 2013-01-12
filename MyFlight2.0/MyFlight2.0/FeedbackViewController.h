@@ -17,6 +17,8 @@
     UITextView *message;
     UITextField *address;
     
+    UIAlertView *alertMessage;
+    
     UIButton *invisibleButton;
 }
 

@@ -101,7 +101,9 @@
             }
             else
             {
-                NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+                alertMessage = [[UIAlertView alloc] initWithTitle:[result objectForKey:@"resultCode"] message:[result objectForKey:@"message"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alertMessage show];
+                [alertMessage release];
             }
         }
     }];
@@ -293,7 +295,9 @@
 {
     if([map currentSelected] == nil)
     {
-        // error: no seat choosen
+        alertMessage = [[UIAlertView alloc] initWithTitle:@"" message:@"请选择一个座位" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertMessage show];
+        [alertMessage release];
         return;
     }
     
@@ -405,7 +409,9 @@
             }
             else
             {
-                NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+                alertMessage = [[UIAlertView alloc] initWithTitle:[result objectForKey:@"resultCode"] message:[result objectForKey:@"message"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alertMessage show];
+                [alertMessage release];
             }
         }
     }];
