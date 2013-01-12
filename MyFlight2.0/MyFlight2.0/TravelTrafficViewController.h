@@ -144,7 +144,17 @@
  
     
     UILabel * lineFares;
- 
+    IBOutlet UIScrollView * contentTaxiView;   //最后方案
+    IBOutlet UILabel * taxiRuleTitleLast;
+    IBOutlet UILabel * taxiRuleLabelLast;
+    IBOutlet UILabel * taxiLineNameLast;
+    IBOutlet UILabel * aboutRangeLast;
+    IBOutlet UILabel * taxiPriceLast;
+    IBOutlet UILabel * taxiPlaceLast;
+    BOOL customViewIsCoach;
+   
+    
+    
 }
 @property(nonatomic,retain) NSString * airPortCode;
 @property(nonatomic,retain)AirPortData * subAirPortData;

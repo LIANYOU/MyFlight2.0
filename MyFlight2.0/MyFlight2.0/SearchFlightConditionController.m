@@ -728,7 +728,7 @@ int whichDay(int year,int month,int day)
             
         }
     }
-    NSLog(@"%d",[self.lookFlightArr count]);
+    NSLog(@"关注列表删除后还剩 ： %d",[self.lookFlightArr count]);
     for (int i = 0; i < [self.lookFlightArr count]; i++) {
         UIImageView * addimageView = [self createBtnWithDic:[self.lookFlightArr objectAtIndex:i] index:i];
         NSLog(@"OK");
