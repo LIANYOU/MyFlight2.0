@@ -819,7 +819,7 @@ int whichDay(int year,int month,int day)
     deptTime.backgroundColor = [UIColor clearColor];
     deptTime.textAlignment = NSTextAlignmentLeft;
     deptTime.font = [UIFont boldSystemFontOfSize:15];
-    deptTime.textColor = FONT_COLOR_BIG_GRAY;
+    deptTime.textColor = FONT_COLOR_DEEP_GRAY;
     [myButton addSubview:deptTime];
     [deptTime release];
     
@@ -829,7 +829,7 @@ int whichDay(int year,int month,int day)
     arrTime.textAlignment = NSTextAlignmentLeft;
     arrTime.backgroundColor = [UIColor clearColor];
     arrTime.font = [UIFont boldSystemFontOfSize:15];
-    arrTime.textColor = FONT_COLOR_BIG_GRAY;
+    arrTime.textColor = FONT_COLOR_DEEP_GRAY;
     [myButton addSubview:arrTime];
     [arrTime release];
     
@@ -839,7 +839,7 @@ int whichDay(int year,int month,int day)
     deptAirPort.backgroundColor = [UIColor clearColor];
     deptAirPort.textAlignment = NSTextAlignmentLeft;
     deptAirPort.font = [UIFont systemFontOfSize:14];
-    deptAirPort.textColor = FONT_COLOR_BIG_GRAY;
+    deptAirPort.textColor = FONT_COLOR_DEEP_GRAY;
     [myButton addSubview:deptAirPort];
     [deptAirPort release];
     
@@ -849,7 +849,7 @@ int whichDay(int year,int month,int day)
     arrAirPort.backgroundColor = [UIColor clearColor];
     arrAirPort.textAlignment = NSTextAlignmentLeft;
     arrAirPort.font = [UIFont systemFontOfSize:14];
-    arrAirPort.textColor = FONT_COLOR_BIG_GRAY;
+    arrAirPort.textColor = FONT_COLOR_DEEP_GRAY;
     [myButton addSubview:arrAirPort];
     [arrAirPort release];
     

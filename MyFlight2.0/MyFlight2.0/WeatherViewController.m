@@ -150,7 +150,7 @@
             [bottomViewLine release];
             
             UIView * secView = [[UIView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
-            secView.backgroundColor = Line_COLOR_GRAY;
+            secView.backgroundColor = LINE_COLOR;
             [cell addSubview:secView];
             [secView release];
             

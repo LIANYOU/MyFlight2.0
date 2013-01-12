@@ -257,7 +257,7 @@
     [checkIn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     checkIn.titleLabel.font = [UIFont systemFontOfSize:20];
-    checkIn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    checkIn.titleLabel.textAlignment = UITextAlignmentCenter;
     
     [checkIn addTarget:self action:@selector(checkIn) forControlEvents:UIControlEventTouchUpInside];
     

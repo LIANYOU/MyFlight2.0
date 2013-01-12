@@ -67,6 +67,7 @@
             {
                 [passengerInfoTable reloadData];
                 [flightInfoTable reloadData];
+                
                 for(NSString *string in [responseDictionary allKeys])
                 {
                     NSLog(@"%@\n",string);
@@ -186,7 +187,7 @@
     [confirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     confirm.titleLabel.font = [UIFont systemFontOfSize:20];
-    confirm.titleLabel.textAlignment = NSTextAlignmentCenter;
+    confirm.titleLabel.textAlignment = UITextAlignmentCenter;
     
     [self.view addSubview:confirm];
     
@@ -256,7 +257,7 @@
         
         title.font = [UIFont systemFontOfSize:16.0f];
         title.textColor = [UIColor colorWithRed:0.1f green:0.4f blue:0.8f alpha:1.0f];
-        title.textAlignment = NSTextAlignmentCenter;
+        title.textAlignment = UITextAlignmentCenter;
         title.backgroundColor = [UIColor clearColor];
         
         [cell addSubview:title];
@@ -277,7 +278,7 @@
         
         value.font = [UIFont systemFontOfSize:16.0f];
         value.textColor = FONT_COLOR_DEEP_GRAY;
-        value.textAlignment = NSTextAlignmentRight;
+        value.textAlignment = UITextAlignmentRight;
         value.backgroundColor = [UIColor clearColor];
         
         [cell addSubview:value];

@@ -2732,10 +2732,9 @@
 		14935590169CE13000F66E87 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				186A638616A18A7100CD182C /* Feedback */,
 				18CED551169D6D2400CE2B92 /* AboutViewController.h */,
 				18CED552169D6D2400CE2B92 /* AboutViewController.m */,
-				18CED54E169D6CE000CE2B92 /* FeedbackViewController.h */,
-				18CED54F169D6CE000CE2B92 /* FeedbackViewController.m */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -3214,6 +3213,15 @@
 				1855579A169AAFE800AB5FAB /* CancelOrdre.m */,
 			);
 			name = "取消订单";
+			sourceTree = "<group>";
+		};
+		186A638616A18A7100CD182C /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				18CED54E169D6CE000CE2B92 /* FeedbackViewController.h */,
+				18CED54F169D6CE000CE2B92 /* FeedbackViewController.m */,
+			);
+			name = Feedback;
 			sourceTree = "<group>";
 		};
 		188B728816915C30004F09B8 /* Map */ = {
@@ -5060,12 +5068,9 @@
 				18D0D70D169EBDCD0028995B /* DiscountGoldInfo.m in Sources */,
 				18D0D714169EC1B50028995B /* SalesCell.m in Sources */,
 				18D0D71A169EF6BD0028995B /* WriteOrderGreenCell.m in Sources */,
-
 				18069BF4169FED49000F849F /* GDataXMLNode.m in Sources */,
-
 				14E4AC2716A0647A00DE365A /* BindSNSViewController.m in Sources */,
 				14E4AC2A16A0665F00DE365A /* MultiChoiceCell.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

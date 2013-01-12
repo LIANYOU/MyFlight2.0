@@ -676,7 +676,7 @@
             [imageView1 release];
             
             UIImageView * imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
-            imageView.backgroundColor = Line_COLOR_GRAY;
+            imageView.backgroundColor = LINE_COLOR;
             [cell addSubview:imageView2];
             [imageView2 release];
             

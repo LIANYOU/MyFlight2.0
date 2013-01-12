@@ -148,7 +148,6 @@
     {
         case 0:
             checkIn = [[CheckInViewController alloc] init];
-            
             [self.navigationController pushViewController:checkIn animated:YES];
             [checkIn release];
             break;
