@@ -113,9 +113,11 @@
     
     [self.view addSubview:progressQuery];
     
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 355, 300, 200)];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 350, 300, 140)];
     
     textView.text = @"值机小贴士：网上值机需待机场开放航班后才可办理，一般从航班起飞前一天下午14:00开始。每个机场的具体开放时间请以网站“开通城市”页面公布的时刻为准。";
+    
+    textView.font = [UIFont systemFontOfSize:[UIScreen mainScreen].bounds.size.height < 500 ? 10.0f:12.0f];
     
     textView.editable = NO;
     textView.backgroundColor = [UIColor clearColor];
@@ -192,8 +194,6 @@
         case 0:
             passName = [[UITextField alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
             
-            passName.text = @"降枫";
-            
             passName.font = [UIFont systemFontOfSize:16.0f];
             passName.textColor = FONT_COLOR_DEEP_GRAY;
             passName.textAlignment = UITextAlignmentRight;
@@ -245,13 +245,11 @@
         case 2:
             idNo = [[UITextField alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
             
-            idNo.text = @"123456789012345678";
-            
             idNo.font = [UIFont systemFontOfSize:16.0f];
             idNo.textColor = FONT_COLOR_DEEP_GRAY;
             idNo.textAlignment = UITextAlignmentRight;
             idNo.backgroundColor = [UIColor clearColor];
-            idNo.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            idNo.keyboardType = UIKeyboardTypeNumberPad;
             
             idNo.delegate = self;
             
@@ -287,11 +285,6 @@
         default:
             break;
     }
-    
-    passName.text = @"降枫";
-    idNo.text = @"123456789012345678";
-    depCity = @"北京";
-    depCityCode = @"010";
     
     if(indexPath.row == 1 || indexPath.row == 3)
     {
@@ -331,6 +324,40 @@
 - (void) back
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL) validateInput
+{
+    if([[passName.text stringByTrimmingCharactersInSet:[NSCharacterSet punctuationCharacterSet]] isEqualToString:passName.text])
+    {
+        switch(passportType)
+        {
+            case 0:
+                if([idNo.text length] != 18)
+                {
+                    alertMessage = [[UIAlertView alloc] initWithTitle:@"" message:@"您输入的证件号码格式有误" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    [alertMessage show];
+                    [alertMessage release];
+                    return NO;
+                }
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
+    }
+    else
+    {
+        alertMessage = [[UIAlertView alloc] initWithTitle:@"" message:@"您输入的姓名中包含非法字符" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertMessage show];
+        [alertMessage release];
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (void) checkIn

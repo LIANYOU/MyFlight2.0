@@ -79,7 +79,9 @@
             }
             else
             {
-                NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
+                alertMessage = [[UIAlertView alloc] initWithTitle:[result objectForKey:@"resultCode"] message:[result objectForKey:@"message"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alertMessage show];
+                [alertMessage release];
             }
         }
     }];
@@ -482,8 +484,9 @@
                     }
                     else
                     {
-                        NSLog(@"%@,%@\n", [result objectForKey:@"resultCode"], [result objectForKey:@"message"]);
-                        // information incorrect
+                        alertMessage = [[UIAlertView alloc] initWithTitle:[result objectForKey:@"resultCode"] message:[result objectForKey:@"message"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                        [alertMessage show];
+                        [alertMessage release];
                     }
                 }
             }];
@@ -498,7 +501,9 @@
     }
     else
     {
-        // error : must pick a flight
+        alertMessage = [[UIAlertView alloc] initWithTitle:@"" message:@"请选择一个航班" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertMessage show];
+        [alertMessage release];
     }
 }
 

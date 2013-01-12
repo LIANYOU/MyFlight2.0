@@ -22,6 +22,8 @@
     
     UILabel *title;
     
+    UIAlertView *alertMessage;
+    
     __block NSDictionary *responseDictionary;
 }
 

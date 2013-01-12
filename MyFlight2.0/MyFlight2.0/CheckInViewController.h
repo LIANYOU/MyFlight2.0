@@ -35,10 +35,13 @@
     
     unsigned char passportType;
     
+    UIAlertView *alertMessage;
+    
     __block NSDictionary *responseDictionary;
 }
 
 - (void) back;
+- (BOOL) validateInput;
 
 - (void) checkIn;
 - (void) progressQuery;

@@ -21,6 +21,8 @@
     
     NSInteger currentSelection;
     
+    UIAlertView *alertMessage;
+    
     __block NSDictionary *responseDictionary;
 }
 
