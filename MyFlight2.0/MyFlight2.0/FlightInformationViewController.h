@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BasicViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 
-@interface FlightInformationViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FlightInformationViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate>
 {
     UITableView *detailedInfoTable;
     NSArray *detailedTitleArray;
@@ -28,8 +29,6 @@
 @property (retain, nonatomic) NSString *idNo;
 
 - (void) requestForData;
-
-- (void) back;
 - (void) cancelCheckIn;
 
 @end

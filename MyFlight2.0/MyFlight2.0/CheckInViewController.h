@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "BasicViewController.h"
 #import "ChooseAirPortViewController.h"
 #import "ChooseFlightViewController.h"
 #import "AirPortData.h"
 
-@interface CheckInViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ChooseAirPortViewControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate>
+@interface CheckInViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate, ChooseAirPortViewControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate>
 {
     UITableView *checkInInfoTable;
     
@@ -40,7 +41,6 @@
     __block NSDictionary *responseDictionary;
 }
 
-- (void) back;
 - (BOOL) validateInput;
 
 - (void) checkIn;

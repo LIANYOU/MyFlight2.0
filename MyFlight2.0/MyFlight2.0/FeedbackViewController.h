@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "BasicViewController.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
 
-@interface FeedbackViewController : UIViewController <UITextViewDelegate, UITextFieldDelegate>
+@interface FeedbackViewController : BasicViewController <UITextViewDelegate, UITextFieldDelegate>
 {
     UITextView *message;
     UITextField *address;

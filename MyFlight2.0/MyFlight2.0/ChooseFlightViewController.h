@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "BasicViewController.h"
 #import "PickSeatViewController.h"
 #import "FlightInformationViewController.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
 
-@interface ChooseFlightViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ChooseFlightViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate>
 {
     UITableView *passengerInfoTable;
     UITableView *flightInfoTable;
@@ -32,7 +33,6 @@
 @property (nonatomic, retain) NSString *idNo;
 @property (nonatomic, retain) NSString *depCity;
 
-- (void) back;
 - (void) requestForData;
 - (void) confirmSelection;
 

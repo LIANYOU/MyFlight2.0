@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BasicViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface SendToFriendViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SendToFriendViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

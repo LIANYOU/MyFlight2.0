@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BasicViewController.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
 
-@interface RecommendationViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface RecommendationViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate>
 {
     UITableView *table;
     

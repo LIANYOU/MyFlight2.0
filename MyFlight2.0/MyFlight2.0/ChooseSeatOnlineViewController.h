@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BasicViewController.h"
 
-@interface ChooseSeatOnlineViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ChooseSeatOnlineViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate>
 {
     NSArray *imageArray;
     NSArray *titleArray;
 }
-
-- (void) back;
 
 @end

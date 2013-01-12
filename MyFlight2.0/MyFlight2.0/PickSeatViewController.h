@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "BasicViewController.h"
 #import "FlightInformationViewController.h"
 #import "SeatMapView.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
 
-@interface PickSeatViewController : UIViewController
+@interface PickSeatViewController : BasicViewController
 {
     UIScrollView *scroll;
     

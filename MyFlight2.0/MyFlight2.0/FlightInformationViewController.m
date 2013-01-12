@@ -100,19 +100,6 @@
     
     [self requestForData];
     
-    UIButton *navigationLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    navigationLeftButton.frame = CGRectMake(10, 5, 30, 31);
-    
-    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_.png"] forState:UIControlStateNormal];
-    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_click.png"] forState:UIControlStateHighlighted];
-    
-    [navigationLeftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *navigationLeftBarItem = [[UIBarButtonItem alloc] initWithCustomView:navigationLeftButton];
-    self.navigationItem.leftBarButtonItem = navigationLeftBarItem;
-    [navigationLeftBarItem release];
-    
     detailedTitleArray = [[NSArray alloc] initWithObjects:@"电子票号", @"值机状态", @"航班号", @"座位号", @"乘机人", nil];
     
     detailedInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, 300, 220)];
@@ -359,11 +346,6 @@
     cell.backgroundColor = FOREGROUND_COLOR;
     
     return cell;
-}
-
-- (void) back
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) cancelCheckIn

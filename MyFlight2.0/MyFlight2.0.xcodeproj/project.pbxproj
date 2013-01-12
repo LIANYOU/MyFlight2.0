@@ -359,6 +359,7 @@
 		18630445168EAA1D0022CB2F /* WriteOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */; };
 		186A639116A194D600CD182C /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186A639016A194D600CD182C /* RecommendationViewController.m */; };
 		186A639416A19E9200CD182C /* SendToFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186A639316A19E9200CD182C /* SendToFriendViewController.m */; };
+		186A63A116A1AE7A00CD182C /* BasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186A63A016A1AE7A00CD182C /* BasicViewController.m */; };
 		188B728C16915C69004F09B8 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B728B16915C69004F09B8 /* MapManager.m */; };
 		188B728F16916C7A004F09B8 /* Ann.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B728E16916C7A004F09B8 /* Ann.m */; };
 		18953997168EFA20008901F5 /* AirportMainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18953995168EFA20008901F5 /* AirportMainScreenViewController.m */; };
@@ -1307,6 +1308,8 @@
 		186A639016A194D600CD182C /* RecommendationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationViewController.m; sourceTree = "<group>"; };
 		186A639216A19E9200CD182C /* SendToFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendToFriendViewController.h; sourceTree = "<group>"; };
 		186A639316A19E9200CD182C /* SendToFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendToFriendViewController.m; sourceTree = "<group>"; };
+		186A639F16A1AE7A00CD182C /* BasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicViewController.h; sourceTree = "<group>"; };
+		186A63A016A1AE7A00CD182C /* BasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicViewController.m; sourceTree = "<group>"; };
 		188B728A16915C69004F09B8 /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManager.h; sourceTree = "<group>"; };
 		188B728B16915C69004F09B8 /* MapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManager.m; sourceTree = "<group>"; };
 		188B728D16916C7A004F09B8 /* Ann.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ann.h; sourceTree = "<group>"; };
@@ -2746,7 +2749,6 @@
 		14935590169CE13000F66E87 /* About */ = {
 			isa = PBXGroup;
 			children = (
-
 				186A638E16A194B400CD182C /* SendToFriend */,
 				186A638C16A1949600CD182C /* Recommendation */,
 				186A638616A18A7100CD182C /* Feedback */,
@@ -3102,6 +3104,7 @@
 		1823C9C4166F243F0079CA3F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				186A639E16A1AE5500CD182C /* BasicViewController */,
 				18953992168EF991008901F5 /* AirportMainScreen */,
 				18AD32F3168C6ED10065BF08 /* chooseSeat */,
 				1469874D1680300900E9B30D /* service */,
@@ -3241,7 +3244,6 @@
 			name = Feedback;
 			sourceTree = "<group>";
 		};
-
 		186A638C16A1949600CD182C /* Recommendation */ = {
 			isa = PBXGroup;
 			children = (
@@ -3258,6 +3260,15 @@
 				186A639316A19E9200CD182C /* SendToFriendViewController.m */,
 			);
 			name = SendToFriend;
+			sourceTree = "<group>";
+		};
+		186A639E16A1AE5500CD182C /* BasicViewController */ = {
+			isa = PBXGroup;
+			children = (
+				186A639F16A1AE7A00CD182C /* BasicViewController.h */,
+				186A63A016A1AE7A00CD182C /* BasicViewController.m */,
+			);
+			name = BasicViewController;
 			sourceTree = "<group>";
 		};
 		188B728816915C30004F09B8 /* Map */ = {
@@ -5117,6 +5128,7 @@
 				14E4AC2A16A0665F00DE365A /* MultiChoiceCell.m in Sources */,
 				186A639116A194D600CD182C /* RecommendationViewController.m in Sources */,
 				186A639416A19E9200CD182C /* SendToFriendViewController.m in Sources */,
+				186A63A116A1AE7A00CD182C /* BasicViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

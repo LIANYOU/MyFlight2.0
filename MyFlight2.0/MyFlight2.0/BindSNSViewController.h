@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "BasicViewController.h"
 #import "MultiChoiceTableViewSupport.h"
 #import "MultiChoiceCell.h"
 
-@interface BindSNSViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MultiChoiceTableViewSupport>
+@interface BindSNSViewController : BasicViewController <UITableViewDelegate, UITableViewDataSource, MultiChoiceTableViewSupport>
 {
     UITableView *table;
 }

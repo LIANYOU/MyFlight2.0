@@ -123,19 +123,6 @@
     
     [self requestForData];
     
-    UIButton *navigationLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    navigationLeftButton.frame = CGRectMake(10, 5, 30, 31);
-    
-    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_.png"] forState:UIControlStateNormal];
-    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_click.png"] forState:UIControlStateHighlighted];
-    
-    [navigationLeftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *navigationLeftBarItem = [[UIBarButtonItem alloc] initWithCustomView:navigationLeftButton];
-    self.navigationItem.leftBarButtonItem = navigationLeftBarItem;
-    [navigationLeftBarItem release];
-    
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
     
     header.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.85f alpha:1.0f];
@@ -284,11 +271,6 @@
 - (void) updateTitle
 {
     title.text = [NSString stringWithFormat:@"%@  %@-%@-%@  %@-%@",[[responseDictionary objectForKey:@"segment"] objectForKey:@"flightNo"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"year"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"month"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"day"], [[responseDictionary objectForKey:@"segment"] objectForKey:@"depAirportCode"], [[responseDictionary objectForKey:@"segment"] objectForKey:@"arrAirportCode"]];
-}
-
-- (void) back
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) checkIn

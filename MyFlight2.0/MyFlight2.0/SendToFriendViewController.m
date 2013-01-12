@@ -116,6 +116,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     UIView *line;
     
     if(indexPath.row != 0)

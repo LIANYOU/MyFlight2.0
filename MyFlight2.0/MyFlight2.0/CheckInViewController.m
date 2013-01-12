@@ -34,19 +34,6 @@
     depCity = @"北京";
     depCityCode = @"010";
     
-    UIButton *navigationLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    navigationLeftButton.frame = CGRectMake(10, 5, 30, 31);
-    
-    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_.png"] forState:UIControlStateNormal];
-    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_click.png"] forState:UIControlStateHighlighted];
-    
-    [navigationLeftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *navigationLeftBarItem = [[UIBarButtonItem alloc] initWithCustomView:navigationLeftButton];
-    self.navigationItem.leftBarButtonItem = navigationLeftBarItem;
-    [navigationLeftBarItem release];
-    
     UILabel *label;
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 50, 20)];
@@ -319,11 +306,6 @@
     [responseDictionary release];
     
     [super viewDidUnload];
-}
-
-- (void) back
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL) validateInput

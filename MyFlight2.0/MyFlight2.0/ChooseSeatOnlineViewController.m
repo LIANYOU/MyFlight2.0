@@ -29,19 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    UIButton *navigationLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    navigationLeftButton.frame = CGRectMake(10, 5, 30, 31);
-    
-    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_.png"] forState:UIControlStateNormal];
-    [navigationLeftButton setImage:[UIImage imageNamed:@"icon_return_click.png"] forState:UIControlStateHighlighted];
-    
-    [navigationLeftButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *navigationLeftBarItem = [[UIBarButtonItem alloc] initWithCustomView:navigationLeftButton];
-    self.navigationItem.leftBarButtonItem = navigationLeftBarItem;
-    [navigationLeftBarItem release];
-    
     titleArray = [[NSArray alloc] initWithObjects:@"海南航空值机", @"中国国航值机", @"东方航空值机", @"南方航空值机", @"四川航空值机", @"厦门航空值机", nil];
     imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"l_HU.png"], [UIImage imageNamed:@"l_CA.png"], [UIImage imageNamed:@"l_MU.png"], [UIImage imageNamed:@"l_CZ.png"], [UIImage imageNamed:@"l_3U.png"], [UIImage imageNamed:@"l_MF.png"], nil];
     
@@ -143,6 +130,8 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CheckInViewController *checkIn;
+    BasicViewController *webView;
+    UIWebView *webContent;
     
     switch(indexPath.row)
     {
@@ -151,14 +140,45 @@
             [self.navigationController pushViewController:checkIn animated:YES];
             [checkIn release];
             break;
+        case 1:
+            webView = [[BasicViewController alloc] init];
+            [self.navigationController pushViewController:webView animated:YES];
+            [webView release];
+            webContent = [[UIWebView alloc] initWithFrame:webView.view.frame];
+            [webContent loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://mcki.airchina.com/mcki/versionJump.do?sysName=CAP2C"]]];
+            [webView.view addSubview:webContent];
+            [webContent release];
+            break;
+        case 2:
+            webView = [[BasicViewController alloc] init];
+            [self.navigationController pushViewController:webView animated:YES];
+            [webView release];
+            webContent = [[UIWebView alloc] initWithFrame:webView.view.frame];
+            [webContent loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://mcki.travelsky.com/mcki/versionJump.do?sysName=mup2c"]]];
+            [webView.view addSubview:webContent];
+            [webContent release];
+            break;
+        case 3:
+            webView = [[BasicViewController alloc] init];
+            [self.navigationController pushViewController:webView animated:YES];
+            [webView release];
+            webContent = [[UIWebView alloc] initWithFrame:webView.view.frame];
+            [webContent loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://wap.csair.com/Default.aspx?AspxAutoDetectCookieSupport=1"]]];
+            [webView.view addSubview:webContent];
+            [webContent release];
+            break;
+        case 4:
+            webView = [[BasicViewController alloc] init];
+            [self.navigationController pushViewController:webView animated:YES];
+            [webView release];
+            webContent = [[UIWebView alloc] initWithFrame:webView.view.frame];
+            [webContent loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.scal.com.cn/Scal.WebMaster/FileUpLoad/htmlpage/588.html"]]];
+            [webView.view addSubview:webContent];
+            [webContent release];
+            break;
         default:
             break;
     }
-}
-
-- (void) back
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
