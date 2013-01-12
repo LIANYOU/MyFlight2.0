@@ -12,7 +12,14 @@
 
 //有关数据的操作 网络解析机场和城市数据 返回的各个字段的宏定义
 
-#define URLForAirPortsAndCities @"http://test.51you.com/web/phone/prod/flight/airPortCitySearch.jsp"
+#define URLForAirPortsAndCities_Index @"/web/phone/prod/flight/airPortCitySearch.jsp"
+
+#define URLForAirPortsAndCities GET_RIGHT_URL_WITH_Index(URLForAirPortsAndCities_Index)
+
+
+
+
+
 
 #define KEY_DataBaseVersion  @"version"
 
@@ -26,7 +33,13 @@
 #define KEY_hotCity @"hotcity"
 #define KEY_cityName @"name"
 
+//以下为增加字段
 
+#define KEY_cityCode @"code"
+#define KEY_cityPinYin @"pinyin"
+#define KEY_cityWeatherCode @"weatherCode"
+#define KEY_city_X @"x"
+#define KEY_city_Y @"y"
 //数据库的字段名字
 
 

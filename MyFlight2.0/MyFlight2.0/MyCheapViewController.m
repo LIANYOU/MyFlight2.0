@@ -76,33 +76,16 @@
     self.navigationItem.rightBarButtonItem=backBtn2;
     [backBtn2 release];
     
+  
     
-    
-    
-    
-    
-    
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+        
+    UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
-    
-    
-//    
-//    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonSystemItemSave target:self action:@selector(loginOut)];
-//    
-//    right.tintColor = [UIColor colorWithRed:35/255.0 green:103/255.0 blue:188/255.0 alpha:1];
-//    
-//    self.navigationItem.rightBarButtonItem = right;
-//    
-//    [right release];
-    
     
 }
 
@@ -116,7 +99,7 @@
     [titleNameArray release];
     segmented.backgroundImage = [UIImage imageNamed:@"tab_bg.png"];
     segmented.textColor = myFirstColor;
-    segmented.center = CGPointMake(160, 23);
+    segmented.center = CGPointMake(160, 25);
     
     //segmented.thumb.backgroundImage = [UIImage imageNamed:@"tab.png"];
     
@@ -277,8 +260,12 @@
     
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    CouponsInfo *data = [tmpArray objectAtIndex:indexPath.row];
+    NSString *rule = data.rule;
+    
 
-    [UIQuickHelp showAlertViewWithTitle:@"优惠券使用规则" message:@"本优惠券，只限单人单次单张使用，过期不侯，谢谢！！" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    [UIQuickHelp showAlertViewWithTitle:@"优惠券使用规则" message:rule delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
     
 }
 

@@ -17,4 +17,6 @@
 @property(nonatomic,retain)NSString *dateStart; //有效起止日期
 @property(nonatomic,retain)NSString *dateEnd; //有效截止日期
 
+@property(nonatomic,retain)NSString *rule; //优惠券规则
+
 @end
