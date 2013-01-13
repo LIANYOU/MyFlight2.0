@@ -36,7 +36,7 @@
 +(BOOL) getCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
 
 //增加常用联系人
-+ (BOOL) addCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate;
++ (BOOL) addCommonPassenger:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate NS_DEPRECATED_IOS(2_0, 3_0);
 
 
 //增加联系人新方法
@@ -83,7 +83,7 @@
 
 
 //个人中心优惠券查询
-+ (Boolean) getCouponListWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate;
++ (Boolean) getCouponListWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate  NS_DEPRECATED_IOS(2_0, 3_0);
 
 
 

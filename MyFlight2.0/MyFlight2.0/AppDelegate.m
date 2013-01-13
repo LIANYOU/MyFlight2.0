@@ -15,7 +15,8 @@
 #import "IsLoginInSingle.h"
 #import "LogViewController.h"
 #import "DetailFlightConditionViewController.h"
-
+#import "AirCompanyDataBase.h"
+#import "CityDataBase_David.h"
 @implementation AppDelegate
 @synthesize window=_window,viewController = _viewController;
 @synthesize sinaweibo;
@@ -31,6 +32,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    
+//    [CityDataBase_David initDataBase];
+//    [CityDataBase_David findAllCitiesSortedInKeys];
+    
+//    [CityDataBase_David findAllDerectCities];
+    
+//    [AirCompanyDataBase initDataBase];
+    
+//    [AirCompanyDataBase findAllAirCompany];
     
     CCLog(@"****************************");
     CCLog(@"token  = %@",Default_Token_Value);

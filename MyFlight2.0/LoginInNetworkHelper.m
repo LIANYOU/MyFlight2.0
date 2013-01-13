@@ -939,7 +939,177 @@
     
     
     
-    return true;
+    NSString *name = passengerData.name;
+    NSString *type = passengerData.type;
+    NSString *certType = passengerData.certType;
+    NSString *certNo = passengerData.certNo;
+    
+    
+    
+//    NSString *name = [bodyDic objectForKey:KEY_Passenger_Name];
+//    NSString *type = [bodyDic objectForKey:KEY_Passenger_Type];
+//    NSString *certType = [bodyDic objectForKey:KEY_Passenger_CertType];
+//    NSString *certNo = [bodyDic objectForKey:KEY_Passenger_CertNo];
+//    
+        
+    CCLog(@"增加常用联系人的姓名：%@ 类型：%@ 证件类型：%@ 证件号码：%@",name,type,certType,certNo);
+    
+    NSString *memberId = Default_UserMemberId_Value;
+    NSString *memberCode = Default_UserMemberCode_Value;
+    CCLog(@"memberId = %@ memberCode = %@",memberId,memberCode);
+    NSString *personNum = @"1";
+    
+    
+    //    NSString *publicParm = PUBLIC_Parameter;
+    NSString *token = Default_Token_Value;
+    NSString *signTmp = [NSString stringWithFormat:@"%@%@%@",memberId,SOURCE_VALUE,token];
+    
+    NSString *sign =GET_SIGN(signTmp);
+    
+    //    NSString *urlString = [NSString stringWithFormat:@"?mobile=%@&type=%@&%@",mobileNumber,KEY_GETCode_ForRegist,publicParm];
+    
+    __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
+    
+    __block NSString *message = nil;
+    
+    __block ASIFormDataRequest *formRequst = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:AddCommomPassenger_URL]];
+    
+    
+    [formRequst setPostValue:memberId forKey:KEY_Account_MemberId];
+    [formRequst setPostValue:memberCode forKey:@"memberCode"];
+    [formRequst setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [formRequst setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
+    
+    [formRequst setPostValue:HWID_VALUE forKey:KEY_hwId];
+    
+    [formRequst setPostValue:personNum forKey:@"personNum"];
+    
+    [formRequst setPostValue:EDITION_VALUE forKey:KEY_edition];
+    [formRequst setPostValue:sign forKey:KEY_SIGN];
+    
+    [formRequst setPostValue:name forKey:@"memberPassengerVoList[0].name"];
+    [formRequst setPostValue:type forKey:@"memberPassengerVoList[0].type"];
+    [formRequst setPostValue:certType forKey:@"memberPassengerVoList[0].certType"];
+    [formRequst setPostValue:certNo forKey:@"memberPassengerVoList[0].certNo"];
+    
+    
+    
+    [formRequst setRequestMethod:@"POST"];
+    
+    
+    [formRequst setCompletionBlock:^{
+        
+        NSString *data = [formRequst responseString];
+        
+        CCLog(@"网络返回的数据为：%@",data);
+        
+        NSError *error = nil;
+        
+        
+        NSDictionary *dic = [data objectFromJSONStringWithParseOptions:JKParseOptionLooseUnicode error:&error];
+        
+        if (!error) {
+            
+            CCLog(@"json解析格式正确");
+            
+            message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
+            NSLog(@"服务器返回的信息为：%@",message);
+            
+            if ([message length]==0||[message isEqualToString:@"success"]) {
+                
+                // NSLog(@"成功登陆后返回的数据：%@",data);
+                
+                
+                
+                //增加成功 更新本地数据库
+                
+                
+                
+                CommonContact *con = [[CommonContact alloc] init];
+                con.name=name;
+                con.type =type;
+                con.certType= certType;
+                con.certNo=certNo;
+                NSMutableArray *array =[ [NSMutableArray alloc] initWithObjects:con, nil];
+                
+                [con release];
+                //更新本地数据库
+                [CommonContact_LocalTmpDBHelper addCommonContact_Login:array];
+                
+                
+                
+                NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
+                [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
+                
+                [self getCommonPassenger:dic delegate:nil];
+                [dic release];
+                
+                
+                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
+                    
+                    [delegate requestDidFinishedWithRightMessage:messageDic];
+                    
+                }
+                
+                
+                
+            } else{
+                
+                //message 长度不为0 有错误信息
+                [messageDic setObject:message forKey:KEY_message];
+                
+                
+                
+                
+            }
+            
+            
+            
+        } else{
+            NSLog(@"解析有错误");
+            
+            
+            [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+            
+            if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithFalseMessage:)]) {
+                [delegate requestDidFinishedWithFalseMessage:messageDic];
+                
+            }
+            
+            
+            return ;
+            
+        }
+        
+        
+        
+    }];
+    
+    [formRequst setFailedBlock:^{
+        
+        
+        
+        
+        [messageDic setObject:WRONG_Message_NetWork forKey:KEY_message];
+        
+        if (delegate&&[delegate respondsToSelector:@selector(requestDidFailed:)]) {
+            
+            [delegate requestDidFailed:messageDic];
+            
+        }
+        
+        
+        
+        
+        
+    }];
+    
+    
+    
+    
+    [formRequst startAsynchronous];
+    
+       return true;
 }
 
 
@@ -958,11 +1128,7 @@
     NSString *certType = [bodyDic objectForKey:KEY_Passenger_CertType];
     NSString *certNo = [bodyDic objectForKey:KEY_Passenger_CertNo];
     
-    
-    
-    
-    
-    
+       
     CCLog(@"增加常用联系人的姓名：%@ 类型：%@ 证件类型：%@ 证件号码：%@",name,type,certType,certNo);
     
     NSString *memberId = Default_UserMemberId_Value;
