@@ -38,8 +38,7 @@
     
 //    [CityDataBase_David findAllDerectCities];
     
-//    [AirCompanyDataBase initDataBase];
-    
+//   [AirCompanyDataBase initDataBase];
 //    [AirCompanyDataBase findAllAirCompany];
     
     CCLog(@"****************************");
