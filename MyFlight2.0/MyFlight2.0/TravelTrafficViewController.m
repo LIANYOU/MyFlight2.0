@@ -83,12 +83,88 @@
 #pragma mark - 最后方案
 #pragma mark - begin
     contentTaxiView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, contentView.bounds.size.height)];
-    contentTaxiView.backgroundColor = [UIColor blueColor];
-    UILabel * label1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 280, 27)];
+    contentTaxiView.backgroundColor = BACKGROUND_COLOR;
     
-    [contentTaxiView addSubview:label1];
+    //XXX城市出租车计价方式
+    label1Last = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 280, 27)];
+    label1Last.textColor = FONT_COLOR_DEEP_GRAY;
+    label1Last.font = [UIFont systemFontOfSize:17];
+    label1Last.backgroundColor = [UIColor clearColor];
+    [contentTaxiView addSubview:label1Last];
     
-//    UITextView * textView = [UITextView alloc]initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>);
+    //明细
+    textViewLast = [[UITextView alloc]initWithFrame:CGRectMake(20, 35, 280, 180)];
+    textViewLast.backgroundColor = [UIColor clearColor];
+    textViewLast.editable = NO;
+    textViewLast.font = [UIFont systemFontOfSize:14];
+    textViewLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    [contentTaxiView addSubview:textViewLast];
+    
+    //参考路线
+    UILabel * label2Last = [[UILabel alloc]initWithFrame:CGRectMake(20, 224, 95, 32)];
+    label2Last.textColor = FONT_COLOR_DEEP_GRAY;
+    label2Last.backgroundColor = [UIColor clearColor];
+    label2Last.font = [UIFont systemFontOfSize:17];
+    label2Last.text = @"参考路线";
+    [contentTaxiView addSubview:label2Last];
+    [label2Last release];
+    //路线1
+    taxiLineLast = [[UILabel alloc]initWithFrame:CGRectMake(20, 252, 128, 22)];
+    taxiLineLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    taxiLineLast.backgroundColor = [UIColor clearColor];
+    taxiLineLast.font = [UIFont systemFontOfSize:14];
+    [contentTaxiView addSubview:taxiLineLast];
+//    //路线2
+//    taxiLineLast1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 276, 128, 22)];
+//    taxiLineLast1.textColor = FONT_COLOR_LIGHT_GRAY;
+//    taxiLineLast1.backgroundColor = [UIColor clearColor];
+//    taxiLineLast1.font = [UIFont systemFontOfSize:14];
+//    [contentTaxiView addSubview:taxiLineLast1];
+    
+    
+    //距离
+    taxiLineRangeLast = [[UILabel alloc]initWithFrame:CGRectMake(151, 253, 74, 21)];
+    taxiLineRangeLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    taxiLineRangeLast.backgroundColor = [UIColor clearColor];
+    taxiLineRangeLast.font = [UIFont systemFontOfSize:14];
+    [contentTaxiView addSubview:taxiLineRangeLast];
+    
+//    taxiLineRangeLast1 = [[UILabel alloc]initWithFrame:CGRectMake(151, 276, 74, 21)];
+//    taxiLineRangeLast1.textColor = FONT_COLOR_LIGHT_GRAY;
+//    taxiLineRangeLast1.backgroundColor = [UIColor clearColor];
+//    taxiLineRangeLast1.font = [UIFont systemFontOfSize:14];
+//    [contentTaxiView addSubview:taxiLineRangeLast1];
+    
+    
+    //价格
+    taxiLinePriceLast = [[UILabel alloc]initWithFrame:CGRectMake(223, 253, 59, 21)];
+    taxiLinePriceLast.textColor = FONT_COLOR_RED;
+    taxiLinePriceLast.backgroundColor = [UIColor clearColor];
+    taxiLinePriceLast.font = [UIFont systemFontOfSize:17];
+    [contentTaxiView addSubview:taxiLinePriceLast];
+    
+//    taxiLinePriceLast1 = [[UILabel alloc]initWithFrame:CGRectMake(223, 276, 59, 21)];
+//    taxiLinePriceLast1.textColor = FONT_COLOR_RED;
+//    taxiLinePriceLast1.backgroundColor = [UIColor clearColor];
+//    taxiLinePriceLast1.font = [UIFont systemFontOfSize:17];
+//    [contentTaxiView addSubview:taxiLinePriceLast1];
+    
+
+    //机场出租车位置
+    UILabel * taxiStopPlaceLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 299, 155, 33)];
+    taxiStopPlaceLabel.font = [UIFont systemFontOfSize:17];
+    taxiStopPlaceLabel.backgroundColor = [UIColor clearColor];
+    taxiStopPlaceLabel.textColor = FONT_COLOR_DEEP_GRAY;
+    taxiStopPlaceLabel.text = @"机场出租车位置";
+    [contentTaxiView addSubview:taxiStopPlaceLabel];
+    [taxiStopPlaceLabel release];
+    
+    taxiStopPlaceLast = [[UILabel alloc]initWithFrame:CGRectMake(20, 330, 272, 26)];
+    taxiStopPlaceLast.font = [UIFont systemFontOfSize:14];
+    taxiStopPlaceLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    taxiStopPlaceLast.backgroundColor = [UIColor clearColor];
+    [contentTaxiView addSubview:taxiStopPlaceLast];
+    
    
 #pragma mark - 最后方案
 #pragma mark - over
@@ -105,7 +181,7 @@
     coachTableView.backgroundColor = BACKGROUND_COLOR;
     subwayTableView.backgroundColor = BACKGROUND_COLOR;
 //    taxiTableView.backgroundColor = BACKGROUND_COLOR;
-    taxiTableView.backgroundColor = [UIColor blueColor];
+//    taxiTableView.backgroundColor = [UIColor blueColor];
     
     
     //导航栏view
@@ -272,20 +348,57 @@
 
 #pragma mark - 填充taxi数据
 -(void)fillTaxiData1{
+/*
     taxiRuleTitleLast.text = [[sectionCountTaxi objectAtIndex:0]objectForKey:@"lineName"];
     taxiRuleLabelLast.text =  [[[sectionCountTaxi objectAtIndex:0]objectForKey:@"lineStops"]stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
     taxiLineNameLast.text = [[sectionCountTaxi objectAtIndex:1]objectForKey:@"lineName"];
     aboutRangeLast.text = [[sectionCountTaxi objectAtIndex:1]objectForKey:@"lineStops"];
     taxiPriceLast.text = [[sectionCountTaxi objectAtIndex:1]objectForKey:@"lineFares"];
     taxiPlaceLast.text = [[sectionCountTaxi objectAtIndex:2]objectForKey:@"lineStops"];
+*/
+    
+    for (NSDictionary * dic in sectionCountTaxi) {
+        if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"2"]) {
+            label1Last.text = [dic objectForKey:@"lineName"];
+            textViewLast.text = [[dic objectForKey:@"lineStops"]stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
+        }else if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"1"]){
+            taxiStopPlaceLast.text = [dic objectForKey:@"lineStops"];
+        }else if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"0"]){
+            taxiLineLast.text = [dic objectForKey:@"lineName"];
+            taxiLineRangeLast = [dic objectForKey:@"lineStops"];
+            taxiLinePriceLast.text = [dic objectForKey:@"lineFares"];
+        }
+    }
+
+    
 }
 -(void)fillTaxiData2{
-     taxiRuleTitleLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:0]objectForKey:@"lineName"];
+/*
+    taxiRuleTitleLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:0]objectForKey:@"lineName"];
     taxiRuleLabelLast.text =  [[[sectionCountTaxiFromAirPort objectAtIndex:0]objectForKey:@"lineStops"]stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
     taxiLineNameLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:1]objectForKey:@"lineName"];
     aboutRangeLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:1]objectForKey:@"lineStops"];
     taxiPriceLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:1]objectForKey:@"lineFares"];
     taxiPlaceLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:2]objectForKey:@"lineStops"];
+ */
+    
+    
+    
+    
+    for (NSDictionary * dic in sectionCountTaxiFromAirPort) {
+        if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"2"]) {
+            label1Last.text = [dic objectForKey:@"lineName"];
+            textViewLast.text = [[dic objectForKey:@"lineStops"]stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
+        }else if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"1"]){
+            taxiStopPlaceLast.text = [dic objectForKey:@"lineStops"];
+        }else if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"0"]){
+            taxiLineLast.text = [dic objectForKey:@"lineName"];
+            taxiLineRangeLast = [dic objectForKey:@"lineStops"];
+            taxiLinePriceLast.text = [dic objectForKey:@"lineFares"];
+        }
+    }
+    
+    
 }
 #pragma mark -
 -(void)getDataWithType:(NSInteger)trafficType sendOrientation:(NSInteger)sendOrientation{
@@ -547,7 +660,7 @@
         NSString * temp3= [temp2 stringByReplacingOccurrencesOfString:@"\n" withString:@"aaaaa"];
         taxiDicFromAirPort = [temp3 objectFromJSONString];
         sectionCountTaxiFromAirPort = [[NSArray alloc]initWithArray:[taxiDicFromAirPort objectForKey:@"TrafficTools"]];
-        
+        NSLog(@"TaxiFromAirPortDic : %@",temp3);
         
         
         [taxiCellHeightArray1 removeAllObjects];

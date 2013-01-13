@@ -39,7 +39,7 @@
 //    [CityDataBase_David findAllDerectCities];
     
 //   [AirCompanyDataBase initDataBase];
-//    [AirCompanyDataBase findAllAirCompany];
+//  [AirCompanyDataBase findAllAirCompany];
     
     CCLog(@"****************************");
     CCLog(@"token  = %@",Default_Token_Value);
