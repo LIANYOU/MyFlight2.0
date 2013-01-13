@@ -13,7 +13,7 @@
 @class AddPersonSwitchCell;
 #import "ServiceDelegate.h"
 @class AddPersonController;
-
+#import "PersonTypeCell.h"
 @protocol AddPersonControllerDelegate <NSObject>
 
 @optional
@@ -60,6 +60,17 @@
 @property(nonatomic,retain) NSArray * cellTitleArr;
 @property(nonatomic,retain) NSMutableArray * cellTextArr;
 - (IBAction)delPassenger:(id)sender;
+@property (retain, nonatomic) IBOutlet PersonTypeCell *typeCell;
+
+@property (retain, nonatomic) IBOutlet UITableView *typeTableView;
+
+
+@property (retain, nonatomic) NSMutableArray * typeArr;    // 儿童，成人
+@property (retain, nonatomic) NSMutableArray * typeArrText;
+
+@property (retain, nonatomic) NSMutableArray * certArr;    // 身份证，护照
+@property (retain, nonatomic) NSMutableArray * certArrText;
+
 
 -(void)getDate:(void (^) (NSString * name, NSString * identity))string;
 @end

@@ -9,13 +9,28 @@
 #import <UIKit/UIKit.h>
 #import "CustomTableViewCell.h"
 
-@interface CustomTableView : UITableView<UITableViewDataSource,UITableViewDelegate>
+
+
+@protocol CustomTableViewDelegate <NSObject>
+
+
+-(void)delegateViewController:(id)controller didSelectItem:(NSString *)item; // 其他选项传值
+
+@end
+
+
+@interface CustomTableView : UITableView
 {
     NSArray * cellArr;   // 存放不同button推进来的cell的内容
-    UITableView * _tableView;
+    
 }
+
+@property (nonatomic, assign) id<CustomTableViewDelegate> idDelegate;
+
 
 @property (retain, nonatomic) IBOutlet CustomTableViewCell *resultCell;
 
--(id)initWithButtonName:(NSString *)name andAirPortTwoCode:(NSArray *) codeArr andTable:(UITableView *) tableView; // 通过点击的button的名字确认弹出的table里边有多少行数
+
+
+-(id)initWithTabelViewData:(NSArray *) codeArr andDelegate:(id<CustomTableViewDelegate>)delegate; // 通过点击的button的名字确认弹出的table里边有多少行数
 @end

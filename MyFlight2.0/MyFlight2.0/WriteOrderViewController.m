@@ -152,13 +152,13 @@
     self.passengerTYPE = [arr objectAtIndex:4];
     self.indexArr = [arr objectAtIndex:5];
     
-//    NSLog(@"%d",self.passengerIDArr.count);
-//    NSLog(@"%@",self.passengerIDArr);
-//    NSLog(@"%@",self.cerNO);
-//    NSLog(@"%@",self.cerTYPE);
-//    NSLog(@"%@",self.passengeNAME);
-//    NSLog(@"%@",self.passengerTYPE);
-    
+    NSLog(@"%d",self.passengerIDArr.count);
+    NSLog(@"%@",self.passengerIDArr);
+    NSLog(@"%@",self.cerNO);
+    NSLog(@"%@",self.cerTYPE);
+    NSLog(@"%@",self.passengeNAME);
+    NSLog(@"%@",self.passengerTYPE);
+    NSLog(@"%@",self.indexArr);
     for(int i = 0; i<self.passengerIDArr.count;i++ )
     {
         NSString * str1 = [self.passengerIDArr objectAtIndex:i];
@@ -724,12 +724,18 @@
                             cell.firstLable.frame = CGRectMake(21, 0, 196, MAX(size.height, 50.0f));
                             
                             cell.backView.frame = CGRectMake(0, 0, 320, MAX(size.height, 50.0f));
-                            
+                
                             cell.imageLabel.frame = CGRectMake(10, MAX(size.height, 50.0f)/2-6, 7, 21);
+                            
+                            cell.fristImageView.frame = CGRectMake(0, MAX(size.height-1, 49.0f), 320,1);
+                            cell.secImageView.frame = CGRectMake(0, MAX(size.height, 50.0f), 320,1);
                             
                             cell.secondLable.text = firstCellText;
                             
                             cell.firstLable.text = @"乘  机  人";
+                            
+                            cell.sortImageView.frame = CGRectMake(301, MAX(size.height, 50.0f)/2-6, 9, 14);
+                                                      
                             
                             break;
                             
@@ -766,6 +772,7 @@
                     {
                         [[NSBundle mainBundle] loadNibNamed:@"WriteOrderDetailsCell" owner:self options:nil];
                         cell = self.writeOrderDetailsCell;
+                        cell.phoneField.text = [addPersonArr objectAtIndex:1];
                     }
                     [cell.addPerson addTarget:self action:@selector(addPersonFormAddressBook) forControlEvents:UIControlEventTouchUpInside];
                     
@@ -773,7 +780,7 @@
                     cell.phoneField.delegate = self;
                     
                     cell.nameField.text = [addPersonArr objectAtIndex:0];
-                    cell.phoneField.text = [addPersonArr objectAtIndex:1];
+                    
                     
                     
                     cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
@@ -919,12 +926,13 @@
                             cell.fristImageView.frame = CGRectMake(0, MAX(size.height-1, 49.0f), 320,1);
                             cell.secImageView.frame = CGRectMake(0, MAX(size.height, 50.0f), 320,1);
                             break;
+                            
                         case 2:
                             cell.firstLable.text = @"购买保险";
                             cell.imageLabel.text = @" ";
                             break;
                         case 3:
-                            NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+                         
                             cell.firstLable.text = @"行  程  单";
                             cell.secondLable.text = self.postSchuduel;
                             
@@ -950,6 +958,8 @@
                     {
                         [[NSBundle mainBundle] loadNibNamed:@"WriteOrderDetailsCell" owner:self options:nil];
                         cell = self.writeOrderDetailsCell;
+                        
+                         cell.phoneField.text = [addPersonArr objectAtIndex:1];
                     }
                     
                     cell.nameField.delegate = self;
@@ -957,7 +967,7 @@
                     [cell.addPerson addTarget:self action:@selector(addPersonFormAddressBook) forControlEvents:UIControlEventTouchUpInside];
                     
                     cell.nameField.text = [addPersonArr objectAtIndex:0];
-                    cell.phoneField.text = [addPersonArr objectAtIndex:1];
+                   
                     
                     cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
                     cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
@@ -1074,7 +1084,7 @@
 //        personNumber = 1;
 //        childNumber = 0; // 再次进入的时候清空初始人数；
         
-        if (!Default_IsUserLogin_Value) {
+        if (personNumber == 199999999) {
             
             AddPersonController * person = [[AddPersonController alloc] init];   // 添加乘机人列表
             
@@ -1122,8 +1132,8 @@
                      
                      self.indexArr = arr;   // 把后边添加的标记的联系人传过来
                      
-                     
-                     
+                 NSLog(@" ********************************  %@",arr);
+                 
                      [self.personArray removeAllObjects];
             
                      
@@ -1409,7 +1419,7 @@
                 
                 self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
                 self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
-                self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + newChildAllPay*(childPersonMoney+childAirPortName+childOil) +insuranceFlag*20*(personNumber+childNumber)+20];
+                self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
             }
             
             else{
@@ -1418,14 +1428,9 @@
                 self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber+insuranceFlag*20*(personNumber+childNumber)];
                 self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +insuranceFlag*20*(personNumber+childNumber)];
                 
-                
-                NSLog(@"uppaymoney andinsuranceFlag %d,%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +insuranceFlag*20*(personNumber+childNumber),insuranceFlag);
             }
             
-       
-            
-            
-            
+
         }];
         
         [self.navigationController pushViewController:trave animated:YES];
@@ -1653,12 +1658,27 @@
     
     // 联系人
     
-    
-    
+    if (self.flag == 3)
+    {
+        WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
+        
+        [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
+        [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
+        
+    }
+    else{
+        
+        WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
+        
+        [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
+        [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
+        
+    }
     
     flightContactVo * contactVo = [[flightContactVo alloc] init];
     contactVo.name = [addPersonArr objectAtIndex:0];
     contactVo.mobile = [addPersonArr objectAtIndex:1];
+    
     
     
     NSLog(@"====================================================  %@",flightItinerary.deliveryType);
@@ -1987,8 +2007,8 @@
     {
         WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
         
-        [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
-        [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
+//        [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
+//        [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
         
         CGPoint ce=self.view.center;
         ce.y=self.view.frame.size.height/2;
@@ -2007,8 +2027,8 @@
         
         WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
 
-        [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
-        [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
+//        [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
+//        [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
         
         CGPoint ce=self.view.center;
         ce.y=self.view.frame.size.height/2;

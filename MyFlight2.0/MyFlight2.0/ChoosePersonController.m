@@ -44,8 +44,8 @@
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
     
-    self.selectArr = [NSMutableArray array];
-    self.selectArr = self.indexArr;
+   
+    self.selectArr = [[NSMutableArray alloc] initWithArray: self.indexArr];
     
     self.nameDic = [NSMutableDictionary dictionaryWithCapacity:5];
     self.identityNumberDic = [NSMutableDictionary dictionaryWithCapacity:5];

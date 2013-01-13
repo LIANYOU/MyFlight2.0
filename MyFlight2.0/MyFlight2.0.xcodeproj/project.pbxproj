@@ -380,8 +380,6 @@
 		18C30D5816859927009B0A54 /* SelectCalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D5716859927009B0A54 /* SelectCalendarController.m */; };
 		18C30D6116859DD7009B0A54 /* ChineseCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D5E16859DD7009B0A54 /* ChineseCalendar.m */; };
 		18C30D6216859DD7009B0A54 /* WeekDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C30D6016859DD7009B0A54 /* WeekDayCell.m */; };
-		18C48A07168D4C2000A981A4 /* AddPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C489FE168D4C2000A981A4 /* AddPersonController.m */; };
-		18C48A08168D4C2000A981A4 /* AddPersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C489FF168D4C2000A981A4 /* AddPersonController.xib */; };
 		18C48A09168D4C2000A981A4 /* AddPersonSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A01168D4C2000A981A4 /* AddPersonSwitchCell.m */; };
 		18C48A0A168D4C2000A981A4 /* AddPersonSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C48A02168D4C2000A981A4 /* AddPersonSwitchCell.xib */; };
 		18C48A0B168D4C2000A981A4 /* IdentityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A04168D4C2000A981A4 /* IdentityViewController.m */; };
@@ -394,6 +392,12 @@
 		18C48A20168D86FF00A981A4 /* GoldCoinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A1F168D86FE00A981A4 /* GoldCoinCell.m */; };
 		18C48A22168D870D00A981A4 /* GoldCoinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C48A21168D870D00A981A4 /* GoldCoinCell.xib */; };
 		18C48A26168D8B3A00A981A4 /* UseGoldPay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C48A25168D8B3A00A981A4 /* UseGoldPay.m */; };
+		18C65E2016A17B8700E975D4 /* ChoosePersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C65E1E16A17B8700E975D4 /* ChoosePersonController.m */; };
+		18C65E2116A17B8700E975D4 /* ChoosePersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C65E1F16A17B8700E975D4 /* ChoosePersonController.xib */; };
+		18C65E2516A17B9800E975D4 /* AddPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C65E2316A17B9800E975D4 /* AddPersonController.m */; };
+		18C65E2616A17B9800E975D4 /* AddPersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C65E2416A17B9800E975D4 /* AddPersonController.xib */; };
+		18C65E2916A191CD00E975D4 /* PersonTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C65E2816A191CC00E975D4 /* PersonTypeCell.m */; };
+		18C65E2B16A191E700E975D4 /* PersonTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C65E2A16A191E700E975D4 /* PersonTypeCell.xib */; };
 		18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C9E6D81685C96100A1453C /* circle_green_change.png */; };
 		18CB482116914CE200780BB7 /* add_attention.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB47CE16914CE100780BB7 /* add_attention.png */; };
 		18CB482216914CE200780BB7 /* Arrow_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB47CF16914CE100780BB7 /* Arrow_white.png */; };
@@ -522,8 +526,6 @@
 		18D019AE16821AFD0096852E /* WirterOrderTwoLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D019AC16821AFC0096852E /* WirterOrderTwoLineCell.xib */; };
 		18D019B216821B830096852E /* SelectResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D019B016821B820096852E /* SelectResultCell.m */; };
 		18D019B316821B830096852E /* SelectResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D019B116821B830096852E /* SelectResultCell.xib */; };
-		18D019B716821BF90096852E /* ChoosePersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D019B516821BF90096852E /* ChoosePersonController.m */; };
-		18D019B816821BF90096852E /* ChoosePersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D019B616821BF90096852E /* ChoosePersonController.xib */; };
 		18D019BC16821C160096852E /* ChoosePersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D019BA16821C160096852E /* ChoosePersonCell.m */; };
 		18D019BD16821C160096852E /* ChoosePersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D019BB16821C160096852E /* ChoosePersonCell.xib */; };
 		18D019C4168229820096852E /* SearchAirPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D019C3168229820096852E /* SearchAirPort.m */; };
@@ -1348,9 +1350,6 @@
 		18C30D5E16859DD7009B0A54 /* ChineseCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseCalendar.m; sourceTree = "<group>"; };
 		18C30D5F16859DD7009B0A54 /* WeekDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekDayCell.h; sourceTree = "<group>"; };
 		18C30D6016859DD7009B0A54 /* WeekDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekDayCell.m; sourceTree = "<group>"; };
-		18C489FD168D4C2000A981A4 /* AddPersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonController.h; sourceTree = "<group>"; };
-		18C489FE168D4C2000A981A4 /* AddPersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonController.m; sourceTree = "<group>"; };
-		18C489FF168D4C2000A981A4 /* AddPersonController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonController.xib; sourceTree = "<group>"; };
 		18C48A00168D4C2000A981A4 /* AddPersonSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonSwitchCell.h; sourceTree = "<group>"; };
 		18C48A01168D4C2000A981A4 /* AddPersonSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonSwitchCell.m; sourceTree = "<group>"; };
 		18C48A02168D4C2000A981A4 /* AddPersonSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonSwitchCell.xib; sourceTree = "<group>"; };
@@ -1370,6 +1369,16 @@
 		18C48A21168D870D00A981A4 /* GoldCoinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoldCoinCell.xib; sourceTree = "<group>"; };
 		18C48A24168D8B3A00A981A4 /* UseGoldPay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseGoldPay.h; sourceTree = "<group>"; };
 		18C48A25168D8B3A00A981A4 /* UseGoldPay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseGoldPay.m; sourceTree = "<group>"; };
+		18C65DFF16A15D7700E975D4 /* CustomTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewDelegate.h; sourceTree = "<group>"; };
+		18C65E1D16A17B8700E975D4 /* ChoosePersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonController.h; sourceTree = "<group>"; };
+		18C65E1E16A17B8700E975D4 /* ChoosePersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonController.m; sourceTree = "<group>"; };
+		18C65E1F16A17B8700E975D4 /* ChoosePersonController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePersonController.xib; sourceTree = "<group>"; };
+		18C65E2216A17B9800E975D4 /* AddPersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonController.h; sourceTree = "<group>"; };
+		18C65E2316A17B9800E975D4 /* AddPersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonController.m; sourceTree = "<group>"; };
+		18C65E2416A17B9800E975D4 /* AddPersonController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPersonController.xib; sourceTree = "<group>"; };
+		18C65E2716A191CB00E975D4 /* PersonTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTypeCell.h; sourceTree = "<group>"; };
+		18C65E2816A191CC00E975D4 /* PersonTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTypeCell.m; sourceTree = "<group>"; };
+		18C65E2A16A191E700E975D4 /* PersonTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonTypeCell.xib; sourceTree = "<group>"; };
 		18C9E6D81685C96100A1453C /* circle_green_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_green_change.png; sourceTree = "<group>"; };
 		18CB47CE16914CE100780BB7 /* add_attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_attention.png; sourceTree = "<group>"; };
 		18CB47CF16914CE100780BB7 /* Arrow_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow_white.png; sourceTree = "<group>"; };
@@ -1523,9 +1532,6 @@
 		18D019AF16821B820096852E /* SelectResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectResultCell.h; sourceTree = "<group>"; };
 		18D019B016821B820096852E /* SelectResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectResultCell.m; sourceTree = "<group>"; };
 		18D019B116821B830096852E /* SelectResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectResultCell.xib; sourceTree = "<group>"; };
-		18D019B416821BF90096852E /* ChoosePersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonController.h; sourceTree = "<group>"; };
-		18D019B516821BF90096852E /* ChoosePersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonController.m; sourceTree = "<group>"; };
-		18D019B616821BF90096852E /* ChoosePersonController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePersonController.xib; sourceTree = "<group>"; };
 		18D019B916821C160096852E /* ChoosePersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonCell.h; sourceTree = "<group>"; };
 		18D019BA16821C160096852E /* ChoosePersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonCell.m; sourceTree = "<group>"; };
 		18D019BB16821C160096852E /* ChoosePersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePersonCell.xib; sourceTree = "<group>"; };
@@ -3089,6 +3095,7 @@
 		1823C9C3166F24370079CA3F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18C65DFF16A15D7700E975D4 /* CustomTableViewDelegate.h */,
 				18EAE7AE16705F7300CA6265 /* CustomTableView.h */,
 				18EAE7AF16705F7300CA6265 /* CustomTableView.m */,
 				18EAE7B216705F9E00CA6265 /* CustomTableView.xib */,
@@ -3528,9 +3535,9 @@
 		18D01F0616782C2A002C13DB /* addPerson */ = {
 			isa = PBXGroup;
 			children = (
-				18C489FD168D4C2000A981A4 /* AddPersonController.h */,
-				18C489FE168D4C2000A981A4 /* AddPersonController.m */,
-				18C489FF168D4C2000A981A4 /* AddPersonController.xib */,
+				18C65E2216A17B9800E975D4 /* AddPersonController.h */,
+				18C65E2316A17B9800E975D4 /* AddPersonController.m */,
+				18C65E2416A17B9800E975D4 /* AddPersonController.xib */,
 				18C48A00168D4C2000A981A4 /* AddPersonSwitchCell.h */,
 				18C48A01168D4C2000A981A4 /* AddPersonSwitchCell.m */,
 				18C48A02168D4C2000A981A4 /* AddPersonSwitchCell.xib */,
@@ -3539,6 +3546,9 @@
 				18C48A0E168D503900A981A4 /* AddPersonCoustomCell.h */,
 				18C48A0F168D503900A981A4 /* AddPersonCoustomCell.m */,
 				18C48A11168D504D00A981A4 /* AddPersonCoustomCell.xib */,
+				18C65E2716A191CB00E975D4 /* PersonTypeCell.h */,
+				18C65E2816A191CC00E975D4 /* PersonTypeCell.m */,
+				18C65E2A16A191E700E975D4 /* PersonTypeCell.xib */,
 			);
 			name = addPerson;
 			sourceTree = "<group>";
@@ -3546,12 +3556,12 @@
 		18D01F0816782C4A002C13DB /* choose */ = {
 			isa = PBXGroup;
 			children = (
+				18C65E1D16A17B8700E975D4 /* ChoosePersonController.h */,
+				18C65E1E16A17B8700E975D4 /* ChoosePersonController.m */,
+				18C65E1F16A17B8700E975D4 /* ChoosePersonController.xib */,
 				18D019B916821C160096852E /* ChoosePersonCell.h */,
 				18D019BA16821C160096852E /* ChoosePersonCell.m */,
 				18D019BB16821C160096852E /* ChoosePersonCell.xib */,
-				18D019B416821BF90096852E /* ChoosePersonController.h */,
-				18D019B516821BF90096852E /* ChoosePersonController.m */,
-				18D019B616821BF90096852E /* ChoosePersonController.xib */,
 			);
 			name = choose;
 			sourceTree = "<group>";
@@ -4458,7 +4468,6 @@
 				18D019A916821AE60096852E /* WriterOrderCommonCell.xib in Resources */,
 				18D019AE16821AFD0096852E /* WirterOrderTwoLineCell.xib in Resources */,
 				18D019B316821B830096852E /* SelectResultCell.xib in Resources */,
-				18D019B816821BF90096852E /* ChoosePersonController.xib in Resources */,
 				18D019BD16821C160096852E /* ChoosePersonCell.xib in Resources */,
 				18D105191682A8DE00F112D2 /* bg_blue_.png in Resources */,
 				18D1051A1682A8DE00F112D2 /* bg_green_.png in Resources */,
@@ -4534,7 +4543,6 @@
 				149B771F168C2014006281A3 /* AddPersonViewController.xib in Resources */,
 				149B7724168C2690006281A3 /* AddPersonCell0.xib in Resources */,
 				149B77AC168C4FE1006281A3 /* MyCenterUnLoginCell.xib in Resources */,
-				18C48A08168D4C2000A981A4 /* AddPersonController.xib in Resources */,
 				18C48A0A168D4C2000A981A4 /* AddPersonSwitchCell.xib in Resources */,
 				18C48A12168D504E00A981A4 /* AddPersonCoustomCell.xib in Resources */,
 				18C48A18168D7B6700A981A4 /* DiscountCouponController.xib in Resources */,
@@ -4853,10 +4861,16 @@
 				18069BDE169FB8C2000F849F /* ico_def.png in Resources */,
 				14E4AC3416A07B3500DE365A /* icon_not_choosed.png in Resources */,
 				14E4AC3716A07B4000DE365A /* icon_choosed.png in Resources */,
+
 				18CED5F816A1496900CE2B92 /* bg_hangbandongtai.png in Resources */,
 				18CED5F916A1496900CE2B92 /* button_x.png in Resources */,
 				18CED5FA16A1496900CE2B92 /* icon_blue_bg.png in Resources */,
 				18CED5FB16A1496900CE2B92 /* icon_red_bg.png in Resources */,
+
+				18C65E2116A17B8700E975D4 /* ChoosePersonController.xib in Resources */,
+				18C65E2616A17B9800E975D4 /* AddPersonController.xib in Resources */,
+				18C65E2B16A191E700E975D4 /* PersonTypeCell.xib in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4931,7 +4945,6 @@
 				18D019A816821AE60096852E /* WriterOrderCommonCell.m in Sources */,
 				18D019AD16821AFD0096852E /* WirterOrderTwoLineCell.m in Sources */,
 				18D019B216821B830096852E /* SelectResultCell.m in Sources */,
-				18D019B716821BF90096852E /* ChoosePersonController.m in Sources */,
 				18D019BC16821C160096852E /* ChoosePersonCell.m in Sources */,
 				18D019C4168229820096852E /* SearchAirPort.m in Sources */,
 				18D1051E1682ABEB00F112D2 /* NewChooseSpaceCell.m in Sources */,
@@ -4981,7 +4994,6 @@
 				18AD330A168C6EF40065BF08 /* FlightInformationViewController.m in Sources */,
 				18AD330C168C6EF40065BF08 /* PickSeatViewController.m in Sources */,
 				18E8B675168C9AAC009EC8C5 /* OrderFlight.m in Sources */,
-				18C48A07168D4C2000A981A4 /* AddPersonController.m in Sources */,
 				18C48A09168D4C2000A981A4 /* AddPersonSwitchCell.m in Sources */,
 				18C48A0B168D4C2000A981A4 /* IdentityViewController.m in Sources */,
 				18C48A10168D503A00A981A4 /* AddPersonCoustomCell.m in Sources */,
@@ -5139,10 +5151,16 @@
 				18069BF4169FED49000F849F /* GDataXMLNode.m in Sources */,
 				14E4AC2716A0647A00DE365A /* BindSNSViewController.m in Sources */,
 				14E4AC2A16A0665F00DE365A /* MultiChoiceCell.m in Sources */,
+
 				186A639116A194D600CD182C /* RecommendationViewController.m in Sources */,
 				186A639416A19E9200CD182C /* SendToFriendViewController.m in Sources */,
 				186A63A116A1AE7A00CD182C /* BasicViewController.m in Sources */,
 				186A63AA16A1B3B400CD182C /* TutorialViewController.m in Sources */,
+
+				18C65E2016A17B8700E975D4 /* ChoosePersonController.m in Sources */,
+				18C65E2516A17B9800E975D4 /* AddPersonController.m in Sources */,
+				18C65E2916A191CD00E975D4 /* PersonTypeCell.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
