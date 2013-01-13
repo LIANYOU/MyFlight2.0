@@ -18,6 +18,7 @@
 #import "SearchFlightConditionController.h"
 #import "UIButton+BackButton.h"
 #import "Ann.h"
+
 @interface DetailFlightConditionViewController ()
 @property(nonatomic,retain) NSString *shareMsg;
 @property(nonatomic,retain) NSString *shareMsgWithWeibo;
@@ -157,7 +158,7 @@
     
     
     [self fillAllData];
-    
+    [self getWeather];
     
     
 
@@ -375,6 +376,7 @@
         NSLog(@"时间百分比：%f",curTime/totalTime);
 #pragma mark - 换图
         double timePoint = curTime/totalTime;   //时间百分比
+        
         if (timePoint > 0.6){
             [flightLine setImage:[UIImage imageNamed:@"circle_state_4.png"]];
             flightLine.frame = CGRectMake(76, 111, 148, 51);
@@ -406,12 +408,18 @@
 -(void)btnMessageClick:(id)sender{
     
     SMSViewController * sendMessange = [[SMSViewController alloc]init];
+    if (myFlightConditionDetailData) {
+        NSLog(@"myFlightConditionDetailData is ok");
+    }else{
+        NSLog(@"myFlightConditionDetailData is nil");
+    }
     sendMessange.subMyFlightConditionDetailData = myFlightConditionDetailData;
     [self.navigationController pushViewController:sendMessange animated:YES];
     [sendMessange release];
 }
 -(void)btnPhoneClick:(id)sender{
     NSLog(@"打电话");
+    
 }
 -(void)btnShareClick:(id)sender{
     NSLog(@"发微信");
@@ -820,6 +828,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 获取天气（出发和到达的）
+-(void)getWeather{
+    
+}
+
+
 
 #pragma mark - 所有地图相关初始化
 -(void)aboutMap{
@@ -859,6 +873,7 @@
             if (isFinish) {
                 isMap = NO;
                 self.title = @"航班详情";
+//                [myMapView removeAnnotations:myMapView.annotations];
             }
         }];
     }
@@ -870,11 +885,14 @@
 
 -(void)getFlightMapData{
     NSString * urlStr = [NSString stringWithFormat:@"%@/web/phone/prod/flight/flightRoute.jsp",BASE_Domain_Name];
+    //王浩链接
+//    NSString * urlStr = [NSString stringWithFormat:@"%@/Flight/GetFlightRoute.json",BASE_Domain_Name];
 //    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.179:9580/web/phone/prod/flight/flightRoute.jsp"];
     NSURL * url = [NSURL URLWithString:urlStr];
     
     //请求
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    
     
     
     [request setPostValue:self.deptAirPortCode forKey:@"dpt"];
@@ -883,9 +901,9 @@
     
     [request setPostValue:@"google" forKey:@"mapType"];
     
-    [request setPostValue:myFlightConditionDetailData.realDeptTime forKey:@"deptTime"];
+    [request setPostValue:myFlightConditionDetailData.deptTime forKey:@"deptTime"];
     
-    [request setPostValue:myFlightConditionDetailData.realArrTime forKey:@"arrTime"];
+    [request setPostValue:myFlightConditionDetailData.arrTime forKey:@"arrTime"];
     
     //请求完成
     [request setCompletionBlock:^{
@@ -946,16 +964,43 @@
     [myMapView addAnnotation:pin1];
     
     
+    
     //到达机场
     Ann * pin2 = [[Ann alloc]init];
     [pin2 setLatitude:[[[pointArray objectAtIndex:2] objectForKey:@"latitude"]doubleValue]];
     [pin2 setLongitude:[[[pointArray objectAtIndex:2] objectForKey:@"longitude"]doubleValue]];
     [pin2 setMyTitle:[NSString stringWithFormat:@"%@",myFlightConditionDetailData.arrAirport]];
     [myMapView addAnnotation:pin2];
+    
    
+    
+     x1 = [[[pointArray objectAtIndex:0] objectForKey:@"latitude"]doubleValue];
+     y1 = [[[pointArray objectAtIndex:0] objectForKey:@"longitude"]doubleValue];
+     x2 = [[[pointArray objectAtIndex:2] objectForKey:@"latitude"]doubleValue];
+     y2 = [[[pointArray objectAtIndex:2] objectForKey:@"longitude"]doubleValue];
+    
+    double totalTime = [self mxGetStringTimeDiff:myFlightConditionDetailData.expectedDeptTime timeE:myFlightConditionDetailData.expectedArrTime];
+    
+    NSDate *  senddate=[NSDate date];
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    
+    [dateformatter setDateFormat:@"HH:mm"];
+    NSString *  locationString=[dateformatter stringFromDate:senddate];
+    NSLog(@"locationString : %@",locationString);
+    
+    double curTime = [self mxGetStringTimeDiff:myFlightConditionDetailData.realDeptTime timeE:locationString];
+    [dateformatter release];
+    double timePoint1 = curTime/totalTime;
+    
     //小飞机
     Ann * pin3 = [[Ann alloc]init];
-    [pin3 setLatitude:([[[pointArray objectAtIndex:2] objectForKey:@"latitude"]doubleValue] - [[[pointArray objectAtIndex:0] objectForKey:@"latitude"]doubleValue])];
+    
+    [pin3 setLatitude:(x2 - x1) * timePoint1 + x1];
+    [pin3 setLongitude:(y2 - y1) * timePoint1 + y1];
+    NSLog(@"pin3.latitude : %f,pin3.longitude : %f",pin3.latitude,pin3.longitude);
+    [pin3 setMyTitle:@"ok"];
+    [pin3 setMyTitle:@"飞机"];
+    [myMapView addAnnotation:pin3];
     
     
     
@@ -971,15 +1016,34 @@
 
 #pragma mark - 大头针图片
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+
     MKPinAnnotationView *pinView = nil;
-    
     static NSString *defaultPinID = @"myPin";
+ 
     pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
     if ( pinView == nil ) pinView = [[[MKPinAnnotationView alloc]
                                       initWithAnnotation:annotation reuseIdentifier:defaultPinID] autorelease];
-    pinView.pinColor = MKPinAnnotationColorRed;
+    if ([[annotation title]isEqualToString:@"飞机"]) {
+        NSLog(@"[[annotation title]isEqualToString:@\"飞机\"]");
+        [pinView setImage:[UIImage imageNamed:@"icon_loading.png"]];
+        pinView.layer.anchorPoint = CGPointMake(0.5, 0.5);
+//        CGAffineTransform rotate = CGAffineTransformMakeRotation(M_1_PI - atan((x1-x2)/(y1-y2)));
+        CGAffineTransform rotate;
+        if (x1>x2) {
+            rotate = CGAffineTransformMakeRotation(tan((x1-x2)/(y1-y2)));
+        }else{
+            rotate = CGAffineTransformMakeRotation(M_2_PI - tan((x1-x2)/(y1-y2)));
+        }
+         
+        
+        [pinView setTransform:rotate];
+        
+//        pinView.frame = CGRectMake(0, 0, 40, 40);
+    }else{
+        pinView.pinColor = MKPinAnnotationColorRed;
+    }
     pinView.canShowCallout = YES;
-    pinView.animatesDrop = YES;
+    pinView.animatesDrop = NO;
     return pinView;
 }
 

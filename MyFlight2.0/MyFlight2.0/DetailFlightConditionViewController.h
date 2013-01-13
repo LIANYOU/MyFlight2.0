@@ -67,6 +67,12 @@
     BOOL isAttentionFlight; //判断btn要关注，还是取消 ,yes关注，no取消
     BOOL isEnableAttent;    //判断状态，只有  计划，延误跟起飞可以关注，其他不可关注
     IBOutlet UILabel * attentionBtnTextLabel;
+    
+    double x1;
+    double y1;
+    double x2;
+    double y2;
+    
 }
 @property(nonatomic,assign)BOOL isAttentionFlight;
 @property(nonatomic,retain)IBOutlet UIView * myAllBackView;  //总底view

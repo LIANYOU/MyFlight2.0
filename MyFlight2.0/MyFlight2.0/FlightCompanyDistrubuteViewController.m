@@ -12,7 +12,7 @@
 #import "AppConfigure.h"
 #import "JSONKit.h"
 #import "UIButton+BackButton.h"
-
+#import "Ann.h"
 @interface FlightCompanyDistrubuteViewController ()
 
 @end
@@ -265,26 +265,37 @@
 //    center.longitude = [[airportCoordinateArray objectAtIndex:1]doubleValue];
 //    NSLog(@"center :%f,%f",[[airportCoordinateArray objectAtIndex:0]doubleValue],[[airportCoordinateArray objectAtIndex:1]doubleValue]);
     if (self.subAirPortData.air_x) {
-        center.latitude = [self.subAirPortData.air_x doubleValue];
+        center.longitude = [self.subAirPortData.air_x doubleValue];
     }else{
-        center.latitude = 50;
+        center.longitude = 50;
     }
     if (self.subAirPortData.air_y) {
-        center.longitude = [self.subAirPortData.air_y doubleValue];
+        center.latitude = [self.subAirPortData.air_y doubleValue];
     }else{
-        center.longitude = 117;
+        center.latitude = 117;
     }
     
-    NSLog(@"------>>>%@%@",self.subAirPortData.air_x,self.subAirPortData.air_y);
-    NSLog(@"-----> %f%f",center.latitude,center.longitude);
+    NSLog(@"------>>>%@,%@",self.subAirPortData.air_x,self.subAirPortData.air_y);
+    NSLog(@"-----> %f,%f",center.latitude,center.longitude);
     MKCoordinateSpan span;
-    span.latitudeDelta = 35;
-    span.longitudeDelta = 35;
+    span.latitudeDelta = 0.1;
+    span.longitudeDelta = 0.1;
     
     MKCoordinateRegion region = {
         center,span
     };
     myMapView.region = region;
+    
+    Ann * pin = [[Ann alloc]init];
+    [pin setLatitude:center.latitude];
+    [pin setLongitude:center.longitude];
+    [pin setMyTitle:self.subAirPortData.apName];
+    [myMapView addAnnotation:pin];
+    [pin release];
+    
+   
+    
+    
 //    myMapView.showsUserLocation = YES;
 
     [self.view addSubview:myMapView];

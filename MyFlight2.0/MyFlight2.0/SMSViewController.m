@@ -12,6 +12,8 @@
 #import "JSONKit.h"
 #import "AppConfigure.h"
 #import "AppConfigure.h"
+#import "UIButton+BackButton.h"
+
 #define ADD_Y 56
 @interface SMSViewController ()
 
@@ -45,7 +47,7 @@
     cusInputTextField.text = @"手动输入一个手机号码";
     cusInputTextField.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:cusInputTextField];
-    cusInputTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    cusInputTextField.keyboardType = UIKeyboardTypeNumberPad;
     [cusInputTextField setBorderStyle:UITextBorderStyleRoundedRect];
     cusInputTextField.textColor = [UIColor lightGrayColor];
     cusInputTextField.returnKeyType = UIReturnKeyJoin;
@@ -57,6 +59,7 @@
     
    
     self.view.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:222.0/255.0 blue:215.0/255.0 alpha:1];
+/*
         //导航栏rightItem
     UIButton * myBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     myBtn.frame = CGRectMake(0, 0, 76, 30);
@@ -73,6 +76,13 @@
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithCustomView:myBtn];
     [myBtn release];
     self.navigationItem.rightBarButtonItem = rightItem;
+*/
+    UIButton * cusRight = [UIButton backButtonType:5 andTitle:@"选择联系人"];
+    [cusRight addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithCustomView:cusRight];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    [rightItem release];
+
     
     //CGRectMake(20, 10, 280, 44);
     //发送短信按钮
@@ -119,6 +129,7 @@
 #pragma mark - 发送短息
 -(void)sendMessage:(UIButton *)sender{
     NSLog(@"发短信");
+    [cusInputTextField resignFirstResponder];
     //nameAndPhone(NSArray *)
     NSMutableString * peopleList = [[[NSMutableString alloc]initWithCapacity:0]autorelease];
     for (int i = 0; i < [nameAndPhone count]; i++) {
@@ -308,6 +319,8 @@
 
 #pragma mark - 短信联系人btn
 -(void)btnClick:(UIButton *)btn{
+    [cusInputTextField resignFirstResponder];
+    
     NSString * tempStr = [NSString stringWithFormat:@"%@ %@",[[nameAndPhone objectAtIndex:btn.tag]objectForKey:@"name"],[[nameAndPhone objectAtIndex:btn.tag]objectForKey:@"phone"]];
     delegateIndex = btn.tag;
     UIAlertView * tapAlert = [[UIAlertView alloc]initWithTitle:@"删除" message:tempStr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除", nil];
@@ -437,8 +450,10 @@
     
     // Do any additional setup after loading the view from its nib.
     
-    // NSString * myUrl = [NSString stringWithFormat:@"%@3gWeb/api/provision.jsp",BASE_Domain_Name];
-    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Flight/BookFlightMovement.json"];
+     NSString * myUrl = [NSString stringWithFormat:@"%@/3GPlusPlatform/Flight/BookFlightMovement.json",BASE_DOMAIN_URL];
+    NSURL * url = [NSURL URLWithString:myUrl];
+//    NSURL *  url = [NSURL URLWithString:@"http://223.202.36.172:8380/3GPlusPlatform/Flight/BookFlightMovement.json"];
+    
     
     NSString * memberID = Default_UserMemberId_Value;
     NSString * hwID = HWID_VALUE;
@@ -448,12 +463,12 @@
     
     [request setPostValue:memberID forKey:@"memberId"];
     [request setPostValue:@"51YOU" forKey:@"orgSource"];
-    [request setPostValue:subMyFlightConditionDetailData.flightNum  forKey:@"fno"];
-    [request setPostValue:subMyFlightConditionDetailData.deptDate  forKey:@"fdate"];
-    [request setPostValue:subMyFlightConditionDetailData.flightDepcode forKey:@"dpt"];
-    [request setPostValue:subMyFlightConditionDetailData.flightArrcode forKey:@"arr"];
-    [request setPostValue:subMyFlightConditionDetailData.deptTime forKey:@"dptTime"];
-    [request setPostValue:subMyFlightConditionDetailData.arrTime forKey:@"arrTime"];
+    [request setPostValue:self.subMyFlightConditionDetailData.flightNum  forKey:@"fno"];
+    [request setPostValue:self.subMyFlightConditionDetailData.deptDate  forKey:@"fdate"];
+    [request setPostValue:self.subMyFlightConditionDetailData.flightDepcode forKey:@"dpt"];
+    [request setPostValue:self.subMyFlightConditionDetailData.flightArrcode forKey:@"arr"];
+    [request setPostValue:self.subMyFlightConditionDetailData.deptTime forKey:@"dptTime"];
+    [request setPostValue:self.subMyFlightConditionDetailData.arrTime forKey:@"arrTime"];
     [request setPostValue:nil forKey:@"dptName"];
     [request setPostValue:nil forKey:@"arrName"];
     [request setPostValue:@"M" forKey:@"type"];
@@ -463,7 +478,7 @@
     [request setPostValue:@"1" forKey:@"source"];
     [request setPostValue:hwID forKey:@"hwId"];
     [request setPostValue:@"01" forKey:@"serviceCode"];
-    NSLog(@"request :%@",request);
+    NSLog(@"request :%@ , %@, %@, %@, %@, %@",self.subMyFlightConditionDetailData.flightNum,self.subMyFlightConditionDetailData.deptDate,self.subMyFlightConditionDetailData.flightDepcode,self.subMyFlightConditionDetailData.flightArrcode,self.subMyFlightConditionDetailData.deptTime,self.subMyFlightConditionDetailData.arrTime);
     
     [request setCompletionBlock:^{
         

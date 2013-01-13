@@ -166,7 +166,7 @@
 //    UILabel * taxiLinePriceLast1;
     
     UILabel * taxiStopPlaceLast;    //机场出租车位置
-    
+    UILabel * taxiStopDetailPlaceLast;
 }
 @property(nonatomic,retain) NSString * airPortCode;
 @property(nonatomic,retain)AirPortData * subAirPortData;
