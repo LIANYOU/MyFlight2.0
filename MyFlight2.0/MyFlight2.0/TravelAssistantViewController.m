@@ -55,28 +55,15 @@
     [self.view addSubview:myTableView];
     
     // Do any additional setup after loading the view from its nib.
-    imageArray  = [[NSArray alloc]initWithObjects:[UIImage imageNamed:@"icon_Orders.png"], [UIImage imageNamed:@"icon_Traffic.png"], [UIImage imageNamed:@"icon_checkin.png"], [UIImage imageNamed:@"icon_telphone.png"], [UIImage imageNamed:@"icon_Distributed.png"],[UIImage imageNamed:@"icon_Distributed.png"],  nil];
+    imageArray  = [[NSArray alloc]initWithObjects:[UIImage imageNamed:@"icon_Orders.png"], [UIImage imageNamed:@"icon_Traffic.png"], [UIImage imageNamed:@"icon_checkin.png"], [UIImage imageNamed:@"icon_telphone.png"], [UIImage imageNamed:@"icon_Distributed.png"],[UIImage imageNamed:@"icon_Weather.png"],  nil];
     NSLog(@"image count : %d",[imageArray count]);
     titleArray = [[NSArray alloc]initWithObjects:@"机场介绍",@"机场交通",@"值机柜台",@"常用电话",@"航空公司分布",@"天气预报" ,nil];
     
-    
-    //导航栏rightItem
-    UIButton * myBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    myBtn.frame = CGRectMake(0, 0, 76, 30);
-    [myBtn setImage:[UIImage imageNamed:@"clean_histroy_4words.png"] forState:UIControlStateNormal];
-    [myBtn setImage:[UIImage imageNamed:@"btn_blue_rule.png"] forState:UIControlStateHighlighted];
-    titleLable = [[UILabel alloc]initWithFrame:CGRectMake(7, 2, 62, 26)];
-    titleLable.font = [UIFont systemFontOfSize:13];
-    titleLable.textAlignment = NSTextAlignmentCenter;
-    titleLable.text = @"选择机场";
-    titleLable.textColor = [UIColor whiteColor];
-    titleLable.backgroundColor = [UIColor clearColor];
-    [myBtn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
-    [myBtn addSubview:titleLable];
-    [titleLable release];
-    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithCustomView:myBtn];
-    [myBtn release];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    UIButton * cusRightBtn = [UIButton backButtonType:4 andTitle:@"选择机场"];
+    [cusRightBtn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithCustomView:cusRightBtn];
+    self.navigationItem.rightBarButtonItem = right;
+   
 }
 
 - (void)didReceiveMemoryWarning

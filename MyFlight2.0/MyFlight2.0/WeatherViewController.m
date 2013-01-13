@@ -82,7 +82,14 @@
     
     __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
     
-    [request setPostValue:@"101010100" forKey:@"city"];
+    
+    if (self.subAirPortData.weatherCode.length < 1) {
+        [request setPostValue:@"101010100" forKey:@"city"];
+    }else{
+        [request setPostValue:self.subAirPortData.weatherCode forKey:@"city"];
+    }
+    
+    
     [request setPostValue:nsDateString forKey:@"date"];
     [request setPostValue:self.subAirPortData.apCode forKey:@"type"];
     [request setPostValue:@"v1.0" forKey:@"edition"];

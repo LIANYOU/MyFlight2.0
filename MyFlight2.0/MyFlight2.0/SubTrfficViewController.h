@@ -10,7 +10,14 @@
 
 @interface SubTrfficViewController : UIViewController
 {
-    NSMutableDictionary * _subDic;
+    
+    IBOutlet UILabel * titleLabel;
+    IBOutlet UILabel * priceLabel;
+    IBOutlet UILabel * firstBus;
+    IBOutlet UILabel * lastBus;
+    IBOutlet UILabel * lineIntervalTime;
+    IBOutlet UITextView * stops;
+    IBOutlet UIImageView * titleImageView;
 }
 @property(nonatomic,retain)NSMutableDictionary * subDic;
 @end

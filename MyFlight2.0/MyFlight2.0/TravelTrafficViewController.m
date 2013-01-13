@@ -11,7 +11,7 @@
 #import "JSONKit.h"
 #import "AppConfigure.h"
 #import "UIButton+BackButton.h"
-
+#import "SubTrfficViewController.h"
 @interface TravelTrafficViewController ()
 
 @end
@@ -40,6 +40,14 @@
     UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:cusBtn];
     self.navigationItem.leftBarButtonItem = leftItem;
     [leftItem release];
+    
+#pragma mark - segment背景
+    UIImageView * segBg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bar_bg.png"]];
+    [segBg setFrame:CGRectMake(0, 0, 320, 58)];
+    [self.view addSubview:segBg];
+    [segBg release];
+    
+    
     customViewIsCoach = YES;
 #pragma mark - cell高Array
     coachCellHeightArray = [[NSMutableArray alloc]initWithCapacity:0];
@@ -83,25 +91,25 @@
 #pragma mark - 最后方案
 #pragma mark - begin
     contentTaxiView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, contentView.bounds.size.height)];
-    contentTaxiView.backgroundColor = BACKGROUND_COLOR;
+    contentTaxiView.backgroundColor = FOREGROUND_COLOR;
     
     //XXX城市出租车计价方式
-    label1Last = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 280, 27)];
+    label1Last = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 300, 27)];
     label1Last.textColor = FONT_COLOR_DEEP_GRAY;
     label1Last.font = [UIFont systemFontOfSize:17];
     label1Last.backgroundColor = [UIColor clearColor];
     [contentTaxiView addSubview:label1Last];
     
     //明细
-    textViewLast = [[UITextView alloc]initWithFrame:CGRectMake(20, 35, 280, 180)];
+    textViewLast = [[UITextView alloc]initWithFrame:CGRectMake(10, 35, 300, 180)];
     textViewLast.backgroundColor = [UIColor clearColor];
     textViewLast.editable = NO;
-    textViewLast.font = [UIFont systemFontOfSize:14];
+    textViewLast.font = [UIFont systemFontOfSize:12];
     textViewLast.textColor = FONT_COLOR_LIGHT_GRAY;
     [contentTaxiView addSubview:textViewLast];
     
     //参考路线
-    UILabel * label2Last = [[UILabel alloc]initWithFrame:CGRectMake(20, 224, 95, 32)];
+    UILabel * label2Last = [[UILabel alloc]initWithFrame:CGRectMake(10, 224, 95, 32)];
     label2Last.textColor = FONT_COLOR_DEEP_GRAY;
     label2Last.backgroundColor = [UIColor clearColor];
     label2Last.font = [UIFont systemFontOfSize:17];
@@ -109,17 +117,12 @@
     [contentTaxiView addSubview:label2Last];
     [label2Last release];
     //路线1
-    taxiLineLast = [[UILabel alloc]initWithFrame:CGRectMake(20, 252, 128, 22)];
+    taxiLineLast = [[UILabel alloc]initWithFrame:CGRectMake(10, 252, 128, 22)];
     taxiLineLast.textColor = FONT_COLOR_LIGHT_GRAY;
     taxiLineLast.backgroundColor = [UIColor clearColor];
     taxiLineLast.font = [UIFont systemFontOfSize:14];
     [contentTaxiView addSubview:taxiLineLast];
-//    //路线2
-//    taxiLineLast1 = [[UILabel alloc]initWithFrame:CGRectMake(20, 276, 128, 22)];
-//    taxiLineLast1.textColor = FONT_COLOR_LIGHT_GRAY;
-//    taxiLineLast1.backgroundColor = [UIColor clearColor];
-//    taxiLineLast1.font = [UIFont systemFontOfSize:14];
-//    [contentTaxiView addSubview:taxiLineLast1];
+
     
     
     //距离
@@ -129,16 +132,12 @@
     taxiLineRangeLast.font = [UIFont systemFontOfSize:14];
     [contentTaxiView addSubview:taxiLineRangeLast];
     
-//    taxiLineRangeLast1 = [[UILabel alloc]initWithFrame:CGRectMake(151, 276, 74, 21)];
-//    taxiLineRangeLast1.textColor = FONT_COLOR_LIGHT_GRAY;
-//    taxiLineRangeLast1.backgroundColor = [UIColor clearColor];
-//    taxiLineRangeLast1.font = [UIFont systemFontOfSize:14];
-//    [contentTaxiView addSubview:taxiLineRangeLast1];
     
     
     //价格
-    taxiLinePriceLast = [[UILabel alloc]initWithFrame:CGRectMake(223, 253, 59, 21)];
+    taxiLinePriceLast = [[UILabel alloc]initWithFrame:CGRectMake(240, 253, 70, 21)];
     taxiLinePriceLast.textColor = FONT_COLOR_RED;
+    taxiLinePriceLast.textAlignment = NSTextAlignmentRight;
     taxiLinePriceLast.backgroundColor = [UIColor clearColor];
     taxiLinePriceLast.font = [UIFont systemFontOfSize:17];
     [contentTaxiView addSubview:taxiLinePriceLast];
@@ -151,7 +150,7 @@
     
 
     //机场出租车位置
-    UILabel * taxiStopPlaceLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 299, 155, 33)];
+    UILabel * taxiStopPlaceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 299, 155, 33)];
     taxiStopPlaceLabel.font = [UIFont systemFontOfSize:17];
     taxiStopPlaceLabel.backgroundColor = [UIColor clearColor];
     taxiStopPlaceLabel.textColor = FONT_COLOR_DEEP_GRAY;
@@ -159,12 +158,19 @@
     [contentTaxiView addSubview:taxiStopPlaceLabel];
     [taxiStopPlaceLabel release];
     
-    taxiStopPlaceLast = [[UILabel alloc]initWithFrame:CGRectMake(20, 330, 272, 26)];
+    taxiStopPlaceLast = [[UILabel alloc]initWithFrame:CGRectMake(10, 330, 150, 26)];
     taxiStopPlaceLast.font = [UIFont systemFontOfSize:14];
     taxiStopPlaceLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    taxiStopPlaceLast.textAlignment = NSTextAlignmentLeft;
     taxiStopPlaceLast.backgroundColor = [UIColor clearColor];
     [contentTaxiView addSubview:taxiStopPlaceLast];
     
+    taxiStopDetailPlaceLast = [[UILabel alloc]initWithFrame:CGRectMake(160, 330, 150, 26)];
+    taxiStopDetailPlaceLast.textAlignment = NSTextAlignmentRight;
+    taxiStopDetailPlaceLast.font = [UIFont systemFontOfSize:14];
+    taxiStopDetailPlaceLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    taxiStopDetailPlaceLast.backgroundColor = [UIColor clearColor];
+    [contentTaxiView addSubview:taxiStopDetailPlaceLast];
    
 #pragma mark - 最后方案
 #pragma mark - over
@@ -178,7 +184,7 @@
     currTableView = coachTableView;
     
 #pragma mark - 3个tableView背景色
-    coachTableView.backgroundColor = BACKGROUND_COLOR;
+    coachTableView.backgroundColor = FOREGROUND_COLOR;
     subwayTableView.backgroundColor = BACKGROUND_COLOR;
 //    taxiTableView.backgroundColor = BACKGROUND_COLOR;
 //    taxiTableView.backgroundColor = [UIColor blueColor];
@@ -207,6 +213,8 @@
     [navgationView addGestureRecognizer:navTap];
     [navTap release];
     
+
+    
     //默认方向 0，去机场
     orientation = 0;
     orientationCoach = 0;
@@ -222,7 +230,7 @@
     [titleNameArray release];
     segmented.backgroundImage = [UIImage imageNamed:@"tab_bg.png"];
     segmented.textColor = myFirstColor;
-    segmented.center = CGPointMake(160, 23);
+    segmented.center = CGPointMake(160, 24);
     
     //segmented.thumb.backgroundImage = [UIImage imageNamed:@"tab.png"];
     
@@ -359,13 +367,18 @@
     
     for (NSDictionary * dic in sectionCountTaxi) {
         if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"2"]) {
+            //计价方式
             label1Last.text = [dic objectForKey:@"lineName"];
             textViewLast.text = [[dic objectForKey:@"lineStops"]stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
         }else if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"1"]){
+            //出租车停靠位置
             taxiStopPlaceLast.text = [dic objectForKey:@"lineStops"];
+            taxiStopDetailPlaceLast.text = [dic objectForKey:@"lineName"];
         }else if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"0"]){
+            //参考路线
             taxiLineLast.text = [dic objectForKey:@"lineName"];
-            taxiLineRangeLast = [dic objectForKey:@"lineStops"];
+            taxiLineRangeLast.text = [dic objectForKey:@"lineStops"];
+            
             taxiLinePriceLast.text = [dic objectForKey:@"lineFares"];
         }
     }
@@ -373,28 +386,24 @@
     
 }
 -(void)fillTaxiData2{
-/*
-    taxiRuleTitleLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:0]objectForKey:@"lineName"];
-    taxiRuleLabelLast.text =  [[[sectionCountTaxiFromAirPort objectAtIndex:0]objectForKey:@"lineStops"]stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
-    taxiLineNameLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:1]objectForKey:@"lineName"];
-    aboutRangeLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:1]objectForKey:@"lineStops"];
-    taxiPriceLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:1]objectForKey:@"lineFares"];
-    taxiPlaceLast.text = [[sectionCountTaxiFromAirPort objectAtIndex:2]objectForKey:@"lineStops"];
- */
-    
-    
-    
+
     
     for (NSDictionary * dic in sectionCountTaxiFromAirPort) {
         if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"2"]) {
+            //计价方式
             label1Last.text = [dic objectForKey:@"lineName"];
             textViewLast.text = [[dic objectForKey:@"lineStops"]stringByReplacingOccurrencesOfString:@"aaaaa" withString:@"\r"];
+            
         }else if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"1"]){
+            //出租车位置
             taxiStopPlaceLast.text = [dic objectForKey:@"lineStops"];
+            taxiStopDetailPlaceLast.text = [dic objectForKey:@"lineName"];
         }else if ([[dic objectForKey:@"trafficLine"]isEqualToString:@"0"]){
+            //参考路线
             taxiLineLast.text = [dic objectForKey:@"lineName"];
-            taxiLineRangeLast = [dic objectForKey:@"lineStops"];
+            taxiLineRangeLast.text = [dic objectForKey:@"lineStops"];
             taxiLinePriceLast.text = [dic objectForKey:@"lineFares"];
+            
         }
     }
     
@@ -791,9 +800,9 @@
         if (tableView == coachTableView) {
             cell.showsReorderControl = YES;
             
-            UILabel * firstBusLable = [[UILabel alloc]initWithFrame:CGRectMake(5, 20, 60, 21)];
+            UILabel * firstBusLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, 60, 21)];
             firstBusLable.font = [UIFont systemFontOfSize:12];
-            firstBusLable.textAlignment = NSTextAlignmentRight;
+            firstBusLable.textAlignment = NSTextAlignmentLeft;
             firstBusLable.text = @"首班车:";
             firstBusLable.backgroundColor = [UIColor clearColor];
             firstBusLable.textColor = FONT_COLOR_GRAY;
@@ -828,9 +837,9 @@
             lineName.textAlignment = NSTextAlignmentLeft;
             lineName.backgroundColor = [UIColor clearColor];
             lineName.font = [UIFont systemFontOfSize:14];
-            lineName.textColor = FONT_COLOR_GRAY;
+            lineName.textColor = FONT_COLOR_DEEP_GRAY;
             [cell.contentView addSubview:lineName];
-            [lineName release];
+            
             
             firstBusTime = [[UILabel alloc]initWithFrame:CGRectMake(70, 20, 58, 21)];
             firstBusTime.font = [UIFont systemFontOfSize:12];
@@ -838,7 +847,7 @@
             firstBusTime.backgroundColor = [UIColor clearColor];
             firstBusTime.textColor = FONT_COLOR_GRAY;
             [cell addSubview:firstBusTime];
-            [firstBusTime release];
+            
             
             
             lastBusTime = [[UILabel alloc]initWithFrame:CGRectMake(156, 20, 68, 21)];
@@ -848,9 +857,9 @@
             lastBusTime.textColor = FONT_COLOR_GRAY;
             [cell addSubview:lastBusTime];
             
-            lineIndex = [[UILabel alloc]initWithFrame:CGRectMake(5, 4, 60, 21)];
-            lineIndex.textColor = FONT_COLOR_GRAY;
-            lineIndex.textAlignment = NSTextAlignmentRight;
+            lineIndex = [[UILabel alloc]initWithFrame:CGRectMake(10, 4, 60, 21)];
+            lineIndex.textColor = FONT_COLOR_DEEP_GRAY;
+            lineIndex.textAlignment = NSTextAlignmentLeft;
             lineIndex.backgroundColor = [UIColor clearColor];
             lineIndex.font = [UIFont systemFontOfSize:14];
             [cell addSubview:lineIndex];
@@ -861,7 +870,7 @@
             lineFares.textColor = FONT_COLOR_RED;
             lineFares.backgroundColor = [UIColor clearColor];
             [cell addSubview:lineFares];
-            [lineFares release];
+            
 
         }
                 
@@ -915,6 +924,33 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (segmented.selectedIndex == 0){
+        if (orientationSubway == 0){
+            SubTrfficViewController * subTrffic = [[SubTrfficViewController alloc]init];
+            subTrffic.subDic = [sectionCountCoach objectAtIndex:indexPath.row];
+            [self.navigationController pushViewController:subTrffic animated:YES];
+            [subTrffic release];
+        }else{
+            SubTrfficViewController * subTrffic = [[SubTrfficViewController alloc]init];
+            subTrffic.subDic = [sectionCountCoachFromAirPort objectAtIndex:indexPath.row];
+            [self.navigationController pushViewController:subTrffic animated:YES];
+            [subTrffic release];
+        }
+    }else if (segmented.selectedIndex == 1){
+        if (orientationSubway == 0) {
+            SubTrfficViewController * subTrffic = [[SubTrfficViewController alloc]init];
+            subTrffic.subDic = [sectionCountSubway objectAtIndex:indexPath.row];
+            [self.navigationController pushViewController:subTrffic animated:YES];
+            [subTrffic release];
+        }else{
+            SubTrfficViewController * subTrffic = [[SubTrfficViewController alloc]init];
+            subTrffic.subDic = [sectionCountSubwayFromAirPort objectAtIndex:indexPath.row];
+            [self.navigationController pushViewController:subTrffic animated:YES];
+            [subTrffic release];
+        }
+    }
+}
 
 #pragma mark - tableViewCell over
 #pragma mark -

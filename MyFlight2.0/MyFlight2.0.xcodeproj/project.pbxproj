@@ -715,6 +715,11 @@
 		18EC25041688300300871EE6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EC25031688300000871EE6 /* MapKit.framework */; };
 		18FB6C6416A2736300DA8FC5 /* SubTrfficViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FB6C6216A2736300DA8FC5 /* SubTrfficViewController.m */; };
 		18FB6C6516A2736300DA8FC5 /* SubTrfficViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FB6C6316A2736300DA8FC5 /* SubTrfficViewController.xib */; };
+		18FB6C7016A289C600DA8FC5 /* icon_Weather.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FB6C6F16A289C600DA8FC5 /* icon_Weather.png */; };
+		18FB6C7816A2D78400DA8FC5 /* bar_loding.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FB6C7416A2D78400DA8FC5 /* bar_loding.png */; };
+		18FB6C7916A2D78400DA8FC5 /* bg_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FB6C7516A2D78400DA8FC5 /* bg_loading.png */; };
+		18FB6C7A16A2D78400DA8FC5 /* icon_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FB6C7616A2D78400DA8FC5 /* icon_loading.png */; };
+		18FB6C7B16A2D78400DA8FC5 /* off_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FB6C7716A2D78400DA8FC5 /* off_loading.png */; };
 		A87590B3168FE0FD006FB90E /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A87590B0168FE0FD006FB90E /* libWeChatSDK.a */; };
 		A87590B5168FE11F006FB90E /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A87590B4168FE11F006FB90E /* libWeChatSDK_armv7_armv7s.a */; };
 		A87590B7168FE9F0006FB90E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A87590B6168FE9F0006FB90E /* MessageUI.framework */; };
@@ -1809,6 +1814,11 @@
 		18FB6C6116A2736300DA8FC5 /* SubTrfficViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubTrfficViewController.h; sourceTree = "<group>"; };
 		18FB6C6216A2736300DA8FC5 /* SubTrfficViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubTrfficViewController.m; sourceTree = "<group>"; };
 		18FB6C6316A2736300DA8FC5 /* SubTrfficViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubTrfficViewController.xib; sourceTree = "<group>"; };
+		18FB6C6F16A289C600DA8FC5 /* icon_Weather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Weather.png; sourceTree = "<group>"; };
+		18FB6C7416A2D78400DA8FC5 /* bar_loding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_loding.png; sourceTree = "<group>"; };
+		18FB6C7516A2D78400DA8FC5 /* bg_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_loading.png; sourceTree = "<group>"; };
+		18FB6C7616A2D78400DA8FC5 /* icon_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_loading.png; sourceTree = "<group>"; };
+		18FB6C7716A2D78400DA8FC5 /* off_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = off_loading.png; sourceTree = "<group>"; };
 		A87590B0168FE0FD006FB90E /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		A87590B1168FE0FD006FB90E /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		A87590B4168FE11F006FB90E /* libWeChatSDK_armv7_armv7s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK_armv7_armv7s.a; sourceTree = "<group>"; };
@@ -2255,6 +2265,7 @@
 		1427937F167078DA00E2E1E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				18FB6C7216A2D60600DA8FC5 /* LoadingImage */,
 				14633E4116956DCE00701518 /* 航空公司常旅客 */,
 				14633E2116952EE000701518 /* 更多 */,
 				14ECC0701695650E008191E1 /* 值机 */,
@@ -3749,6 +3760,7 @@
 				1842B519169C6786007FA603 /* 天气icon */,
 				1842B530169C6786007FA603 /* 天气小 */,
 				18D197191681735800FEE73A /* icon_travel_more.png */,
+				18FB6C6F16A289C600DA8FC5 /* icon_Weather.png */,
 				18D1971A1681735800FEE73A /* icon_travelFile.png */,
 				18D1970316816C6C00FEE73A /* icon_checkin.png */,
 				18D1970416816C6C00FEE73A /* icon_Distributed.png */,
@@ -4105,6 +4117,25 @@
 				18EBFAB01696E5AE0079F3EC /* CheckPassword.m */,
 			);
 			name = checkPassword;
+			sourceTree = "<group>";
+		};
+		18FB6C7216A2D60600DA8FC5 /* LoadingImage */ = {
+			isa = PBXGroup;
+			children = (
+				18FB6C7316A2D78400DA8FC5 /* loading */,
+			);
+			name = LoadingImage;
+			sourceTree = "<group>";
+		};
+		18FB6C7316A2D78400DA8FC5 /* loading */ = {
+			isa = PBXGroup;
+			children = (
+				18FB6C7416A2D78400DA8FC5 /* bar_loding.png */,
+				18FB6C7516A2D78400DA8FC5 /* bg_loading.png */,
+				18FB6C7616A2D78400DA8FC5 /* icon_loading.png */,
+				18FB6C7716A2D78400DA8FC5 /* off_loading.png */,
+			);
+			path = loading;
 			sourceTree = "<group>";
 		};
 		A87590AE168FE0D3006FB90E /* WeChat */ = {
@@ -4953,6 +4984,7 @@
 				14FA524616A154AA00F84AFB /* AllCityDataBase.sqlite in Resources */,
 
 				18FB6C6516A2736300DA8FC5 /* SubTrfficViewController.xib in Resources */,
+
 				EC89D7B116A361A500C60A88 /* tutorial_3.jpg in Resources */,
 				EC89D7B216A361A500C60A88 /* tutorial_2.jpg in Resources */,
 				EC89D7B316A361A500C60A88 /* tutorial_1.jpg in Resources */,
@@ -4964,6 +4996,13 @@
 				14FA525C16A2716900F84AFB /* PersonNewInfotableViewController.xib in Resources */,
 				14FA526316A2721300F84AFB /* PersonNewInfoCell.xib in Resources */,
 				14FA526C16A2B3BB00F84AFB /* FrequentMainPageCell.xib in Resources */,
+
+
+				18FB6C7016A289C600DA8FC5 /* icon_Weather.png in Resources */,
+				18FB6C7816A2D78400DA8FC5 /* bar_loding.png in Resources */,
+				18FB6C7916A2D78400DA8FC5 /* bg_loading.png in Resources */,
+				18FB6C7A16A2D78400DA8FC5 /* icon_loading.png in Resources */,
+				18FB6C7B16A2D78400DA8FC5 /* off_loading.png in Resources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
