@@ -88,7 +88,7 @@
     
     [contentTaxiView addSubview:label1];
     
-    
+//    UITextView * textView = [UITextView alloc]initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>);
    
 #pragma mark - 最后方案
 #pragma mark - over
