@@ -207,6 +207,9 @@
 		14ED61F21672F16D0019DC23 /* FMDB使用.html in Resources */ = {isa = PBXBuildFile; fileRef = 14ED61EA1672F16D0019DC23 /* FMDB使用.html */; };
 		14ED61F31672F16D0019DC23 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED61EC1672F16D0019DC23 /* FMResultSet.m */; };
 		14ED61F61672F1960019DC23 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14ED61F51672F1960019DC23 /* libsqlite3.0.dylib */; };
+		14FA524116A1452600F84AFB /* CityData_David.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA524016A1452600F84AFB /* CityData_David.m */; };
+		14FA524416A1471100F84AFB /* CityDataBase_David.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA524316A1471100F84AFB /* CityDataBase_David.m */; };
+		14FA524616A154AA00F84AFB /* AllCityDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14FA524516A154AA00F84AFB /* AllCityDataBase.sqlite */; };
 		18069BD9169FAD2E000F849F /* btn_attention.png in Resources */ = {isa = PBXBuildFile; fileRef = 18069BD7169FAD2E000F849F /* btn_attention.png */; };
 		18069BDA169FAD2E000F849F /* btn_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18069BD8169FAD2E000F849F /* btn_cancel.png */; };
 		18069BDD169FB8C2000F849F /* icon_choice.png in Resources */ = {isa = PBXBuildFile; fileRef = 18069BDB169FB8C2000F849F /* icon_choice.png */; };
@@ -1120,6 +1123,11 @@
 		14ED61EB1672F16D0019DC23 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		14ED61EC1672F16D0019DC23 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		14ED61F51672F1960019DC23 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		14FA523F16A1452600F84AFB /* CityData_David.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityData_David.h; sourceTree = "<group>"; };
+		14FA524016A1452600F84AFB /* CityData_David.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityData_David.m; sourceTree = "<group>"; };
+		14FA524216A1471000F84AFB /* CityDataBase_David.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityDataBase_David.h; sourceTree = "<group>"; };
+		14FA524316A1471100F84AFB /* CityDataBase_David.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityDataBase_David.m; sourceTree = "<group>"; };
+		14FA524516A154AA00F84AFB /* AllCityDataBase.sqlite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllCityDataBase.sqlite; sourceTree = "<group>"; };
 		18069BD7169FAD2E000F849F /* btn_attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_attention.png; sourceTree = "<group>"; };
 		18069BD8169FAD2E000F849F /* btn_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_cancel.png; sourceTree = "<group>"; };
 		18069BDB169FB8C2000F849F /* icon_choice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_choice.png; sourceTree = "<group>"; };
@@ -2929,6 +2937,18 @@
 			path = FMDB;
 			sourceTree = "<group>";
 		};
+		14FA523D16A1446A00F84AFB /* 城市数据 */ = {
+			isa = PBXGroup;
+			children = (
+				14FA524516A154AA00F84AFB /* AllCityDataBase.sqlite */,
+				14FA523F16A1452600F84AFB /* CityData_David.h */,
+				14FA524016A1452600F84AFB /* CityData_David.m */,
+				14FA524216A1471000F84AFB /* CityDataBase_David.h */,
+				14FA524316A1471100F84AFB /* CityDataBase_David.m */,
+			);
+			name = "城市数据";
+			sourceTree = "<group>";
+		};
 		18069BF1169FED33000F849F /* GDataXMLN */ = {
 			isa = PBXGroup;
 			children = (
@@ -3050,6 +3070,7 @@
 		1823C9C1166F24240079CA3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				14FA523D16A1446A00F84AFB /* 城市数据 */,
 				18D0D68B169CD0910028995B /* 本地订单数据库 */,
 				1468CC66169AD05500B05F43 /* ContactLocalTmp */,
 				18D15A6C169BF3BE00A9AD08 /* PostCity */,
@@ -4862,6 +4883,7 @@
 				14E4AC3416A07B3500DE365A /* icon_not_choosed.png in Resources */,
 				14E4AC3716A07B4000DE365A /* icon_choosed.png in Resources */,
 
+
 				18CED5F816A1496900CE2B92 /* bg_hangbandongtai.png in Resources */,
 				18CED5F916A1496900CE2B92 /* button_x.png in Resources */,
 				18CED5FA16A1496900CE2B92 /* icon_blue_bg.png in Resources */,
@@ -4870,6 +4892,9 @@
 				18C65E2116A17B8700E975D4 /* ChoosePersonController.xib in Resources */,
 				18C65E2616A17B9800E975D4 /* AddPersonController.xib in Resources */,
 				18C65E2B16A191E700E975D4 /* PersonTypeCell.xib in Resources */,
+
+
+				14FA524616A154AA00F84AFB /* AllCityDataBase.sqlite in Resources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5152,6 +5177,7 @@
 				14E4AC2716A0647A00DE365A /* BindSNSViewController.m in Sources */,
 				14E4AC2A16A0665F00DE365A /* MultiChoiceCell.m in Sources */,
 
+
 				186A639116A194D600CD182C /* RecommendationViewController.m in Sources */,
 				186A639416A19E9200CD182C /* SendToFriendViewController.m in Sources */,
 				186A63A116A1AE7A00CD182C /* BasicViewController.m in Sources */,
@@ -5160,6 +5186,10 @@
 				18C65E2016A17B8700E975D4 /* ChoosePersonController.m in Sources */,
 				18C65E2516A17B9800E975D4 /* AddPersonController.m in Sources */,
 				18C65E2916A191CD00E975D4 /* PersonTypeCell.m in Sources */,
+
+
+				14FA524116A1452600F84AFB /* CityData_David.m in Sources */,
+				14FA524416A1471100F84AFB /* CityDataBase_David.m in Sources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;

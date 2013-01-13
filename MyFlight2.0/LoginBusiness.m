@@ -146,7 +146,7 @@
 - (void) deleteCommonPassengerWithPassengerId:(NSString *) passengerId userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate{
     
     
-    
+   
     
     [LoginInNetworkHelper deleteCommonPassengerWithPassengerId:passengerId userDic:passengerInfo andDelegate:delegate];
     
@@ -179,7 +179,7 @@
 - (void) addCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate{
     
     
-    
+    [LoginInNetworkHelper addCommonPassengerWithPassengerData:passengerData andDelegate:delegate];
     
     
 }

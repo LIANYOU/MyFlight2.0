@@ -46,14 +46,14 @@
 
 
 //增加常用联系人
-- (void) addCommonPassengerWithPassengerName:(NSString *) name type:(NSString *) type certType:(NSString *) certType certNo:(NSString *)certNo userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate;
+- (void) addCommonPassengerWithPassengerName:(NSString *) name type:(NSString *) type certType:(NSString *) certType certNo:(NSString *)certNo userDic:(NSDictionary *)passengerInfo andDelegate:(id<ServiceDelegate>) delegate NS_DEPRECATED_IOS(2_0, 3_0);
 
 
 
 
 
 //增加联系人新方法
-- (void) addCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate NS_DEPRECATED_IOS(2_0, 3_0); 
+- (void) addCommonPassengerWithPassengerData:(CommonContact *) passengerData  andDelegate:(id<ServiceDelegate>)delegate ; 
 
 
 //删除常用联系人
@@ -85,8 +85,10 @@
 
 - (void) makeAccountFullWithRechargeCardNo:(NSString *) cardNo cardPasswd:(NSString *) pwd andDelegate:(id<ServiceDelegate>) delegate;
 
-//个人中心优惠券查询 
-- (void) getCouponListWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate;
+//个人中心优惠券查询  方法已废弃  使用一个独立的 代替
+
+
+- (void) getCouponListWithMemberId:(NSString *) memberId andDelegate:(id<ServiceDelegate>) delegate NS_DEPRECATED_IOS(2_0, 3_0);
 
 
 
