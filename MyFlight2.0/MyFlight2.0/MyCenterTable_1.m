@@ -25,7 +25,7 @@
 #import "CommonContact_LocalTmpDBHelper.h"
 #import "UIButton+BackButton.h"
 #import "CommonContact.h"
-
+#import "PersonNewInfotableViewController.h"
 @interface MyCenterTable_1 ()
 {
     
@@ -38,6 +38,8 @@
     UILabel *label_goldMoney;
     UILabel *label_silverMoney;
     
+    
+    NSMutableArray *thisTmpArray;
     
     
 }
@@ -110,14 +112,20 @@
     cellsum = 1;
     [self setNav];
     
+    thisTmpArray =[[NSMutableArray alloc] initWithObjects:@"",@"",@"",@"",@"", nil];
+    
+    CCLog(@"thisArray = %d" ,[thisTmpArray count]);
+    
+    
+    
     nameResultArray =[[NSMutableArray alloc] init];
     
     LoginBusiness *busi = [[LoginBusiness alloc] init];
     
     NSString *memberId =Default_UserMemberId_Value;
     CCLog(@"在个人中心界面 memberId= %@",memberId);
-    [busi getAccountInfoWithMemberId:memberId andDelegate:self];
-    [busi release];
+   [busi getAccountInfoWithMemberId:memberId andDelegate:self];
+  [busi release];
     
     self.accountString = [NSString stringWithFormat:@"%d",0];
     self.allAccountMoneyString = [NSString stringWithFormat:@"%d",0];
@@ -208,7 +216,7 @@
         
         cell.titleLabel.text = @"个人资料";
         [cell.detailLabel setTextColor:FONT_Blue_Color];
-        //           cell.detailLabel.text = self.accountString;
+//        cell.detailLabel.text = [thisTmpArray objectAtIndex:0];
         cell.thisImageView.image = [UIImage imageNamed:@"icon_acc.png"];
         
         return cell;
@@ -228,8 +236,16 @@
                 
                 NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterSecondCell" owner:self options:nil];
                 
-                cell = [[[array objectAtIndex:0] retain] autorelease];
+                cell =[array objectAtIndex:0];
+                
+//                cell.accountMoneyLabel.text =[thisTmpArray objectAtIndex:1];
+                
+//                cell.goldMoneyLabel.text =[thisTmpArray objectAtIndex:2];
+//                cell.silverMoneyLabel.text =[thisTmpArray objectAtIndex:3];
             }
+            
+           
+            
             
             //            CCLog(@"金币*****%@",self.allAccountMoneyString);
             //
@@ -324,6 +340,8 @@
 
 
 
+
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
@@ -340,7 +358,7 @@
         NSLog(@"第0分区执行");
         
         
-        controller = [[PersonInfotoShowViewController alloc] init];
+        controller = [[PersonNewInfotableViewController alloc] init];
         
         
     }
@@ -443,6 +461,14 @@
     //
     
     
+    [thisTmpArray removeAllObjects];
+    
+    [thisTmpArray addObject:self.accountString];
+    [thisTmpArray addObject:self.allAccountMoneyString];
+    [thisTmpArray addObject:self.goldMoneyString];
+    [thisTmpArray addObject:self.silverMoneyString];
+    
+    
     CCLog(@"资金账户：%@",self.allAccountMoneyString);
     CCLog(@"金币：%@",self.goldMoneyString);
     CCLog(@"银币：%@",self.silverMoneyString);
@@ -458,10 +484,10 @@
     //    cell.goldMoneyLabel.text = @"1311241";
     //    NSString *string = self.allAccountMoneyString;
     
-    [secondCell.accountMoneyLabel setText:[NSString stringWithFormat:@"%@",_allAccountMoneyString]];
+   [secondCell.accountMoneyLabel setText:[NSString stringWithFormat:@"%@",_allAccountMoneyString]];
     
     
-    [secondCell.goldMoneyLabel setText:[NSString stringWithFormat:@"%@",_goldMoneyString]];
+   [secondCell.goldMoneyLabel setText:[NSString stringWithFormat:@"%@",_goldMoneyString]];
     
     secondCell.silverMoneyLabel.text = [NSString stringWithFormat:@"%@",_silverMoneyString];
     
@@ -471,7 +497,7 @@
     
     MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
-    thisCell.detailLabel.text = [NSString stringWithFormat:@"%@",_accountString];
+   thisCell.detailLabel.text = [NSString stringWithFormat:@"%@",_accountString];
     
     //    [thisCell.detailLabel setTextColor:FONT_Blue_Color];
     
@@ -481,7 +507,7 @@
     
     
     
-    //     [self.thisTableView reloadData];
+//        [self.thisTableView reloadData];
     
     
 }

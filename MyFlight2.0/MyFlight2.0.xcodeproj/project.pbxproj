@@ -210,6 +210,12 @@
 		14FA524116A1452600F84AFB /* CityData_David.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA524016A1452600F84AFB /* CityData_David.m */; };
 		14FA524416A1471100F84AFB /* CityDataBase_David.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA524316A1471100F84AFB /* CityDataBase_David.m */; };
 		14FA524616A154AA00F84AFB /* AllCityDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14FA524516A154AA00F84AFB /* AllCityDataBase.sqlite */; };
+		14FA525B16A2716900F84AFB /* PersonNewInfotableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA525916A2716800F84AFB /* PersonNewInfotableViewController.m */; };
+		14FA525C16A2716900F84AFB /* PersonNewInfotableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA525A16A2716900F84AFB /* PersonNewInfotableViewController.xib */; };
+		14FA526116A2720000F84AFB /* PersonNewInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA526016A2720000F84AFB /* PersonNewInfoCell.m */; };
+		14FA526316A2721300F84AFB /* PersonNewInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA526216A2721300F84AFB /* PersonNewInfoCell.xib */; };
+		14FA526A16A2B39E00F84AFB /* FrequentMainPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA526916A2B39D00F84AFB /* FrequentMainPageCell.m */; };
+		14FA526C16A2B3BB00F84AFB /* FrequentMainPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA526B16A2B3BA00F84AFB /* FrequentMainPageCell.xib */; };
 		18069BD9169FAD2E000F849F /* btn_attention.png in Resources */ = {isa = PBXBuildFile; fileRef = 18069BD7169FAD2E000F849F /* btn_attention.png */; };
 		18069BDA169FAD2E000F849F /* btn_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18069BD8169FAD2E000F849F /* btn_cancel.png */; };
 		18069BDD169FB8C2000F849F /* icon_choice.png in Resources */ = {isa = PBXBuildFile; fileRef = 18069BDB169FB8C2000F849F /* icon_choice.png */; };
@@ -1128,6 +1134,15 @@
 		14FA524216A1471000F84AFB /* CityDataBase_David.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityDataBase_David.h; sourceTree = "<group>"; };
 		14FA524316A1471100F84AFB /* CityDataBase_David.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityDataBase_David.m; sourceTree = "<group>"; };
 		14FA524516A154AA00F84AFB /* AllCityDataBase.sqlite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllCityDataBase.sqlite; sourceTree = "<group>"; };
+		14FA525816A2716800F84AFB /* PersonNewInfotableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonNewInfotableViewController.h; sourceTree = "<group>"; };
+		14FA525916A2716800F84AFB /* PersonNewInfotableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonNewInfotableViewController.m; sourceTree = "<group>"; };
+		14FA525A16A2716900F84AFB /* PersonNewInfotableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonNewInfotableViewController.xib; sourceTree = "<group>"; };
+		14FA525F16A2720000F84AFB /* PersonNewInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonNewInfoCell.h; sourceTree = "<group>"; };
+		14FA526016A2720000F84AFB /* PersonNewInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonNewInfoCell.m; sourceTree = "<group>"; };
+		14FA526216A2721300F84AFB /* PersonNewInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonNewInfoCell.xib; sourceTree = "<group>"; };
+		14FA526816A2B39C00F84AFB /* FrequentMainPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentMainPageCell.h; sourceTree = "<group>"; };
+		14FA526916A2B39D00F84AFB /* FrequentMainPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentMainPageCell.m; sourceTree = "<group>"; };
+		14FA526B16A2B3BA00F84AFB /* FrequentMainPageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrequentMainPageCell.xib; sourceTree = "<group>"; };
 		18069BD7169FAD2E000F849F /* btn_attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_attention.png; sourceTree = "<group>"; };
 		18069BD8169FAD2E000F849F /* btn_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_cancel.png; sourceTree = "<group>"; };
 		18069BDB169FB8C2000F849F /* icon_choice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_choice.png; sourceTree = "<group>"; };
@@ -2038,6 +2053,7 @@
 		141523A316835D5200E2FF0E /* personalInfo */ = {
 			isa = PBXGroup;
 			children = (
+				14FA525E16A271D900F84AFB /* newInfo */,
 				141523A416835D7300E2FF0E /* PersonalInfoViewController.h */,
 				141523A516835D7300E2FF0E /* PersonalInfoViewController.m */,
 				141523A616835D7300E2FF0E /* PersonalInfoViewController.xib */,
@@ -2477,6 +2493,9 @@
 				14633DE3169528C700701518 /* FrequentMainViewController.h */,
 				14633DE4169528C700701518 /* FrequentMainViewController.m */,
 				14633DE5169528C700701518 /* FrequentMainViewController.xib */,
+				14FA526816A2B39C00F84AFB /* FrequentMainPageCell.h */,
+				14FA526916A2B39D00F84AFB /* FrequentMainPageCell.m */,
+				14FA526B16A2B3BA00F84AFB /* FrequentMainPageCell.xib */,
 			);
 			name = mainPage;
 			sourceTree = "<group>";
@@ -2947,6 +2966,19 @@
 				14FA524316A1471100F84AFB /* CityDataBase_David.m */,
 			);
 			name = "城市数据";
+			sourceTree = "<group>";
+		};
+		14FA525E16A271D900F84AFB /* newInfo */ = {
+			isa = PBXGroup;
+			children = (
+				14FA525816A2716800F84AFB /* PersonNewInfotableViewController.h */,
+				14FA525916A2716800F84AFB /* PersonNewInfotableViewController.m */,
+				14FA525A16A2716900F84AFB /* PersonNewInfotableViewController.xib */,
+				14FA525F16A2720000F84AFB /* PersonNewInfoCell.h */,
+				14FA526016A2720000F84AFB /* PersonNewInfoCell.m */,
+				14FA526216A2721300F84AFB /* PersonNewInfoCell.xib */,
+			);
+			name = newInfo;
 			sourceTree = "<group>";
 		};
 		18069BF1169FED33000F849F /* GDataXMLN */ = {
@@ -4882,20 +4914,17 @@
 				18069BDE169FB8C2000F849F /* ico_def.png in Resources */,
 				14E4AC3416A07B3500DE365A /* icon_not_choosed.png in Resources */,
 				14E4AC3716A07B4000DE365A /* icon_choosed.png in Resources */,
-
-
 				18CED5F816A1496900CE2B92 /* bg_hangbandongtai.png in Resources */,
 				18CED5F916A1496900CE2B92 /* button_x.png in Resources */,
 				18CED5FA16A1496900CE2B92 /* icon_blue_bg.png in Resources */,
 				18CED5FB16A1496900CE2B92 /* icon_red_bg.png in Resources */,
-
 				18C65E2116A17B8700E975D4 /* ChoosePersonController.xib in Resources */,
 				18C65E2616A17B9800E975D4 /* AddPersonController.xib in Resources */,
 				18C65E2B16A191E700E975D4 /* PersonTypeCell.xib in Resources */,
-
-
 				14FA524616A154AA00F84AFB /* AllCityDataBase.sqlite in Resources */,
-
+				14FA525C16A2716900F84AFB /* PersonNewInfotableViewController.xib in Resources */,
+				14FA526316A2721300F84AFB /* PersonNewInfoCell.xib in Resources */,
+				14FA526C16A2B3BB00F84AFB /* FrequentMainPageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5176,21 +5205,18 @@
 				18069BF4169FED49000F849F /* GDataXMLNode.m in Sources */,
 				14E4AC2716A0647A00DE365A /* BindSNSViewController.m in Sources */,
 				14E4AC2A16A0665F00DE365A /* MultiChoiceCell.m in Sources */,
-
-
 				186A639116A194D600CD182C /* RecommendationViewController.m in Sources */,
 				186A639416A19E9200CD182C /* SendToFriendViewController.m in Sources */,
 				186A63A116A1AE7A00CD182C /* BasicViewController.m in Sources */,
 				186A63AA16A1B3B400CD182C /* TutorialViewController.m in Sources */,
-
 				18C65E2016A17B8700E975D4 /* ChoosePersonController.m in Sources */,
 				18C65E2516A17B9800E975D4 /* AddPersonController.m in Sources */,
 				18C65E2916A191CD00E975D4 /* PersonTypeCell.m in Sources */,
-
-
 				14FA524116A1452600F84AFB /* CityData_David.m in Sources */,
 				14FA524416A1471100F84AFB /* CityDataBase_David.m in Sources */,
-
+				14FA525B16A2716900F84AFB /* PersonNewInfotableViewController.m in Sources */,
+				14FA526116A2720000F84AFB /* PersonNewInfoCell.m in Sources */,
+				14FA526A16A2B39E00F84AFB /* FrequentMainPageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

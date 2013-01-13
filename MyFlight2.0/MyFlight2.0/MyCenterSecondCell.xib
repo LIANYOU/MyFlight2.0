@@ -125,7 +125,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">231313</string>
+								<string key="IBUIText"/>
 								<object class="NSColor" key="IBUITextColor" id="669115405">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC45MzMzMzMzMzMzIDAuMzYwNzg0MzEzNyAwLjA0NzA1ODgyMzUzAA</bytes>
@@ -155,7 +155,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">523535</string>
+								<string key="IBUIText"/>
 								<reference key="IBUITextColor" ref="669115405"/>
 								<reference key="IBUIHighlightedColor" ref="16868500"/>
 								<int key="IBUIBaselineAdjustment">0</int>
@@ -175,13 +175,14 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{223, 30}, {89, 21}}</string>
 								<reference key="NSSuperview" ref="114317952"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">25325</string>
+								<string key="IBUIText"/>
 								<reference key="IBUITextColor" ref="669115405"/>
 								<reference key="IBUIHighlightedColor" ref="16868500"/>
 								<int key="IBUIBaselineAdjustment">0</int>
@@ -304,8 +305,8 @@
 							<reference ref="1042066845"/>
 							<reference ref="79164338"/>
 							<reference ref="285328277"/>
-							<reference ref="504457356"/>
 							<reference ref="942822672"/>
+							<reference ref="504457356"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

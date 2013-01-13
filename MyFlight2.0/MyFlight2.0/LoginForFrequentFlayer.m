@@ -14,6 +14,7 @@
 #import "isFrequentPassengerLogin.h"
 #import "FrequentPassengerData.h"
 #import "AirCompanyDataBase.h"
+
 @interface LoginForFrequentFlayer (){
     
     BOOL isRemember;
@@ -58,7 +59,18 @@
 {
     [super viewDidLoad];
     [self initThisView];
-    [AirCompanyDataBase initDataBase];
+    
+//    [AirCompanyDataBase initDataBase];
+    
+    [UIQuickHelp setRoundCornerForView:self.thisView withRadius:View_CoureRadious];
+    [UIQuickHelp setBorderForView:self.thisView withWidth:1 withColor:View_BorderColor];
+    
+    [self.thisView.layer setShadowColor:View_ShadowColor;
+     [self.thisView.layer setShadowRadius:2];
+     [self.thisView.layer setShadowOffset:CGSizeMake(1, 3)];
+
+    
+    
     
     
 }
@@ -69,23 +81,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)dealloc {
     [_accountLabel release];
     [_passwdLabel release];
     [_rememberPwdStateBn release];
+    [_thisView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setAccountLabel:nil];
     [self setPasswdLabel:nil];
     [self setRememberPwdStateBn:nil];
+    [self setThisView:nil];
     [super viewDidUnload];
 }
 //回收键盘
 - (IBAction)backKeyBoard:(id)sender {
     
     NSLog(@"回收键盘");
-    [sender resignFirstResponder];
+    
+    [self.accountLabel resignFirstResponder];
+    [self.passwdLabel resignFirstResponder];
+//    [sender resignFirstResponder];
     
 }
 
@@ -186,7 +204,7 @@
     [self.navigationController pushViewController:con animated:YES];
     
     
-    [UIQuickHelp showAlertViewWithTitle:@"登录成功" message:@"即将跳转" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+//    [UIQuickHelp showAlertViewWithTitle:@"登录成功" message:@"即将跳转" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
     
     
     

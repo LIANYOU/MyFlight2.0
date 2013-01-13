@@ -32,6 +32,12 @@
 {
     [super viewDidLoad];
     
+    
+    
+    
+    
+    
+    
 //    LoginBusiness *bis = [[LoginBusiness alloc] init];
 //    
 //    [bis updatePassWdWithOldPasswd:<#(NSString *)#> newPasswd:<#(NSString *)#> andDelegate:<#(id<ServiceDelegate>)#>]
@@ -57,14 +63,40 @@
     [backBtn1 release];
     
     
+    UIButton *rightBn =[UIButton backButtonType:7 andTitle:@"保存"];
     
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonSystemItemSave target:self action:@selector(save)];
+    [rightBn addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     
-    right.tintColor = Right_BarItem_Green;
+    UIBarButtonItem *right =[[UIBarButtonItem alloc] initWithCustomView:rightBn];
     
+    
+//    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonSystemItemSave target:self action:@selector(save)];
+//    
+//    right.tintColor = Right_BarItem_Green;
+    
+    
+//    
     self.navigationItem.rightBarButtonItem = right;
     
     [right release];
+    
+    
+    
+    
+    [UIQuickHelp setRoundCornerForView:self.modifyView withRadius:View_CoureRadious];
+    
+    [UIQuickHelp setRoundCornerForView:self.modifyView withRadius:View_CoureRadious];
+    
+    [UIQuickHelp setBorderForView:self.modifyView withWidth:1 withColor:View_BorderColor];
+    
+    [self.modifyView.layer setShadowColor:View_ShadowColor;
+     
+     [self.modifyView.layer setShadowRadius:2];
+     [self.modifyView.layer setShadowOffset:CGSizeMake(1, 3)];
+
+    
+    
+    
     
 }
 
@@ -94,6 +126,8 @@
     
 }
 
+     
+     
 #pragma mark -
 #pragma mark 保存密码操作
 - (void) save{
@@ -205,6 +239,7 @@
     
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     NSString *meg =[info objectForKey:KEY_message];
+    
     
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
     

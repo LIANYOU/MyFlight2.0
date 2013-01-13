@@ -1,14 +1,14 @@
 //
-//  LiChengBuDengCell.m
+//  FrequentMainPageCell.m
 //  MyFlight2.0
 //
-//  Created by Davidsph on 1/4/13.
+//  Created by Davidsph on 1/13/13.
 //  Copyright (c) 2013 LIAN YOU. All rights reserved.
 //
 
-#import "LiChengBuDengCell.h"
+#import "FrequentMainPageCell.h"
 
-@implementation LiChengBuDengCell
+@implementation FrequentMainPageCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,8 +27,8 @@
 }
 
 - (void)dealloc {
-    [_nameLabel release];
-    [_thisTextField release];
+    [_thisImageView release];
+    [_thisNameLabel release];
     [super dealloc];
 }
 @end

@@ -24,5 +24,10 @@
 //底部视图
 @property (retain, nonatomic) IBOutlet UIView *footView;
 
+- (IBAction)callFuckPhone:(id)sender;
+
+@property (retain, nonatomic) IBOutlet UIButton *callPhone;
+
+
 
 @end
