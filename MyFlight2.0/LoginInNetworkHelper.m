@@ -305,6 +305,17 @@
                 CCLog(@"用户手机号码为：%@", [defaultUser objectForKey:KEY_Default_UserMobile]);
                 
                 
+//                
+//                NSMutableDictionary *dic1 =[[NSMutableDictionary alloc] init];
+//                
+//                [dic1 setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];
+//                [self getAccountInfo:dic1 delegate:nil];
+//                [dic1 release];
+//                
+
+                
+                
+                
                 if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     
                     CCLog(@"用户代理不为空");
@@ -543,8 +554,7 @@
                 CCLog(@"查询到的用户名字为：%@",single.userAccount.name);
                 CCLog(@"xinlvGoldMoeny= %@", single.userAccount.xinlvGoldMoeny);
                 
-                
-                
+                               
                 [delegate requestDidFinishedWithRightMessage:messageDic];
                 
             } else{

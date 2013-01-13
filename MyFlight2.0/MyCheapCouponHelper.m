@@ -267,4 +267,10 @@
 
 
 
++(BOOL) MakeLiChengWithInfo:(NSMutableDictionary *) dic  andDlegate:(id<ServiceDelegate>) delegate {
+    
+       
+}
+
+
 @end

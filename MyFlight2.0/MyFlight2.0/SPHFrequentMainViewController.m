@@ -106,6 +106,7 @@
     [_cardNumber release];
     [_nameLabel release];
     [_lichengLabel release];
+    [_callPhone release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -115,6 +116,7 @@
     [self setCardNumber:nil];
     [self setNameLabel:nil];
     [self setLichengLabel:nil];
+    [self setCallPhone:nil];
     [super viewDidUnload];
 }
 
@@ -143,12 +145,16 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.contentView.backgroundColor = [UIColor clearColor];
+  
     
-    
+    cell.backgroundColor =View_BackGround_Color;
     cell.textLabel.text = [nameArray objectAtIndex:indexPath.row];
     
     cell.textLabel.backgroundColor = [UIColor clearColor];
+    
+    [cell.textLabel setHighlightedTextColor:[UIColor blackColor]];
+    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+    cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
     
     
     return cell;
@@ -236,4 +242,26 @@
 
 
 
+- (IBAction)callFuckPhone:(id)sender {
+    
+    NSString *selectedPhoneNum =@"950719";
+    
+    NSString *deviceType = [UIDevice currentDevice].model;
+    //NSString *deviceType = [UIDevice currentDevice].modellocalizedModel;
+    
+    if([deviceType  isEqualToString:@"iPod touch"]||[deviceType  isEqualToString:@"iPad"]||[deviceType  isEqualToString:@"iPhone Simulator"]){
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"您的设备不能打电话" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+    }else{
+        NSString * temp = [NSString stringWithFormat:@"tel:%@",selectedPhoneNum];
+        UIWebView*callWebview =[[UIWebView alloc] init];
+        NSURL *telURL =[NSURL URLWithString:temp];// 貌似tel:// 或者 tel: 都行
+        [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+    }
+
+    
+    
+}
 @end

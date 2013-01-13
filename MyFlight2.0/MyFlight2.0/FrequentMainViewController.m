@@ -8,6 +8,8 @@
 
 #import "FrequentMainViewController.h"
 #import "LoginForFrequentFlayer.h"
+#import "AppConfigure.h"
+#import "FrequentMainPageCell.h"
 @interface FrequentMainViewController ()
 {
     NSArray *imageArray;
@@ -76,17 +78,27 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    FrequentMainPageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
+       
+        NSArray *array =[[NSBundle mainBundle] loadNibNamed:@"FrequentMainPageCell" owner:nil options:nil];
+        cell =[array objectAtIndex:0];
+    } 
     
-    cell.contentView.backgroundColor = [UIColor clearColor];
+    cell.thisImageView.image =[imageArray objectAtIndex:indexPath.row];
+    cell.thisNameLabel.text = [nameArray objectAtIndex:indexPath.row];
     
-    cell.imageView.image =[imageArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [nameArray objectAtIndex:indexPath.row];
     
-    return cell;
+//    cell.contentView.backgroundColor = [UIColor clearColor];
+//    
+//    cell.imageView.image =[imageArray objectAtIndex:indexPath.row];
+//    cell.textLabel.text = [nameArray objectAtIndex:indexPath.row];
+    cell.highlighted = NO;
+    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+
+    
+    return cell; 
 }
 
 #pragma mark - Table view delegate

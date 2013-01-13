@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     
-    thisFuckView.tableHeaderView=ceshiView;
+    thisFuckView.tableHeaderView=self.thisTableHeaderView;
     
     self.resultArray = [OrderDatabase findAllOrderInfo];
     

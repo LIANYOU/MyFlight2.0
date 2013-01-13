@@ -17,6 +17,8 @@
 
 + (BOOL) makeCouponActiveWithMemberId:(NSString *) memberId captcha:(NSString *) captcha andDlegate:(id<ServiceDelegate>) delegate;
 
+//里程补登
 
++(BOOL) MakeLiChengWithInfo:(NSMutableDictionary *) dic  andDlegate:(id<ServiceDelegate>) delegate;
 
 @end

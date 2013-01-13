@@ -67,23 +67,28 @@
 {
     static NSString *CellIdentifier = @"Cell";
     MoreCell *cell = (MoreCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (!cell)
     {
         [[NSBundle mainBundle] loadNibNamed:@"MoreCell" owner:self options:nil];
         
         cell = self.moreCell;
+               
     }
     
     if (indexPath.section == 0) {
+        
         cell.imaeView.image = [imageArray objectAtIndex:indexPath.row];
         cell.firstLabel.text = [_arr objectAtIndex:indexPath.row];
     }
     else{
+        
         cell.firstLabel.text = [_arr objectAtIndex:indexPath.row + 3];
         cell.imaeView.image = [imageArray objectAtIndex:indexPath.row + 3];
     }
-    
-    
+    cell.highlighted = NO;
+    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+    cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
     return cell;
 }
 

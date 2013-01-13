@@ -11,4 +11,9 @@
 @interface LiChengBuDengCell : UITableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;
 
+
+@property (retain, nonatomic) IBOutlet UITextField *thisTextField;
+
+
+
 @end

@@ -34,6 +34,7 @@
 @synthesize weiboEngine;
 //@synthesize sinaweibo;
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -242,6 +243,7 @@
          
          
          [[NSUserDefaults standardUserDefaults] synchronize];
+         
          
          
          if (isRemember) {

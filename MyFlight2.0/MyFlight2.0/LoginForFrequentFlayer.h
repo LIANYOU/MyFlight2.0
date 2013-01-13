@@ -18,6 +18,9 @@
 //回收键盘 
 - (IBAction)backKeyBoard:(id)sender;
 
+
+
+
 //记住密码 
 - (IBAction)rememberPwdBn:(id)sender;
 
@@ -25,6 +28,12 @@
 
 //登录操作
 - (IBAction)goToMyviewpage:(id)sender;
+
+
+
+@property (retain, nonatomic) IBOutlet UIView *thisView;
+
+
 
 
 @end
