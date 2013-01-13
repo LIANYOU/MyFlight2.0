@@ -28,6 +28,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.navigationItem.title = @"关于我们";
+    
     titleArray = [[NSArray alloc] initWithObjects:@"意见反馈", @"检查新版本", @"推荐给好友安装", @"软件推荐", @"觉得不错，给我们评分", nil];
     
     UIImageView *image;

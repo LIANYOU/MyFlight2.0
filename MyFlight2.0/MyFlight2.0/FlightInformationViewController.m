@@ -98,6 +98,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.navigationItem.title = @"值机进度详情";
+    
     [self requestForData];
     
     detailedTitleArray = [[NSArray alloc] initWithObjects:@"电子票号", @"值机状态", @"航班号", @"座位号", @"乘机人", nil];

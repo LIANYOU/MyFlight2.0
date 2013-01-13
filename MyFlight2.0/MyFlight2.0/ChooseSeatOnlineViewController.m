@@ -29,6 +29,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.navigationItem.title = @"值机";
+    
     titleArray = [[NSArray alloc] initWithObjects:@"海南航空值机", @"中国国航值机", @"东方航空值机", @"南方航空值机", @"四川航空值机", @"厦门航空值机", nil];
     imageArray = [[NSArray alloc] initWithObjects:[UIImage imageNamed:@"l_HU.png"], [UIImage imageNamed:@"l_CA.png"], [UIImage imageNamed:@"l_MU.png"], [UIImage imageNamed:@"l_CZ.png"], [UIImage imageNamed:@"l_3U.png"], [UIImage imageNamed:@"l_MF.png"], nil];
     

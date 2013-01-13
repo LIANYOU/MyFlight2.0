@@ -28,6 +28,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.navigationItem.title = @"推荐给好友安装";
+    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 214)];
     
     view.backgroundColor = FOREGROUND_COLOR;

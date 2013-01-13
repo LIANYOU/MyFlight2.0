@@ -97,6 +97,8 @@
     
     [self requestForData];
     
+    self.navigationItem.title = @"推荐软件";
+    
     table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 300, 420) style:UITableViewStylePlain];
     
     table.rowHeight = 70.0f;
