@@ -28,6 +28,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.navigationItem.title = @"海南航空值机";
+    
     titleArray = [[NSArray alloc] initWithObjects:@"姓      名", @"证件类型", @"证件号码", @"出发城市", nil];
     
     passportType = 0;

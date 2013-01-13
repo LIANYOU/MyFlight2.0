@@ -105,6 +105,15 @@
     
     currentSelection = -1;
     
+    if(self.isQuery)
+    {
+        self.navigationItem.title = @"查询值机进度";
+    }
+    else
+    {
+        self.navigationItem.title = @"选择航班";
+    }
+    
     UILabel *label;
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 50, 20)];

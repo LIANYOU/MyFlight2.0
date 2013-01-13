@@ -36,7 +36,6 @@
 
 - (void) requestForData;
 - (void) updateTitle;
-- (void) back;
 - (void) checkIn;
 
 @end

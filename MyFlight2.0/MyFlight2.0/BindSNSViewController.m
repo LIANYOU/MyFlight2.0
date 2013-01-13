@@ -46,6 +46,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.navigationItem.title = @"社交帐户绑定";
 }
 
 - (void)didReceiveMemoryWarning

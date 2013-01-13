@@ -27,6 +27,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.navigationItem.title = @"意见反馈";
+    
     UILabel *label;
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 100, 20)];

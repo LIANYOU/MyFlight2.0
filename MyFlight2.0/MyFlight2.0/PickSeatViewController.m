@@ -125,6 +125,8 @@
     
     [self requestForData];
     
+    self.navigationItem.title = @"选择座位";
+    
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
     
     header.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.85f alpha:1.0f];
