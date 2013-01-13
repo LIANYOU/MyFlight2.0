@@ -218,8 +218,19 @@
                         [aisle release];
                         break;
                     case '/':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:available forState:UIControlStateNormal];
+                        [button setTitle:[NSString stringWithFormat:@"%d%@", type.intValue, [stringArray objectAtIndex:j]] forState:UIControlStateNormal];
+                        [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+                        [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+                        [self addSubview:button];
                         break;
                     case '+':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
                         break;
                     case 'E':
                         image = [[UIImageView alloc] initWithImage:emergencyExit];
@@ -230,6 +241,13 @@
                     case 'I':
                         break;
                     case 'Q':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:available forState:UIControlStateNormal];
+                        [button setTitle:[NSString stringWithFormat:@"%d%@", type.intValue, [stringArray objectAtIndex:j]] forState:UIControlStateNormal];
+                        [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+                        [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+                        [self addSubview:button];
                         break;
                     case 'X':
                         button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -238,6 +256,10 @@
                         [self addSubview:button];
                         break;
                     case 'T':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
                         break;
                     case 'V':
                         button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -246,6 +268,10 @@
                         [self addSubview:button];
                         break;
                     case 'D':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
                         break;
                     case 'C':
                         if(availableCount == 0)
@@ -267,26 +293,85 @@
                         }
                         break;
                     case 'P':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
                         break;
                     case 'R':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
                         break;
                     case 'O':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
                         break;
                     case 'A':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
                         break;
                     case 'B':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:available forState:UIControlStateNormal];
+                        [button setTitle:[NSString stringWithFormat:@"%d%@", type.intValue, [stringArray objectAtIndex:j]] forState:UIControlStateNormal];
+                        [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+                        [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+                        [self addSubview:button];
                         break;
                     case 'N':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:available forState:UIControlStateNormal];
+                        [button setTitle:[NSString stringWithFormat:@"%d%@", type.intValue, [stringArray objectAtIndex:j]] forState:UIControlStateNormal];
+                        [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+                        [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+                        [self addSubview:button];
                         break;
                     case 'U':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:available forState:UIControlStateNormal];
+                        [button setTitle:[NSString stringWithFormat:@"%d%@", type.intValue, [stringArray objectAtIndex:j]] forState:UIControlStateNormal];
+                        [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+                        [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+                        [self addSubview:button];
                         break;
                     case 'G':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
                         break;
                     case 'H':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:available forState:UIControlStateNormal];
+                        [button setTitle:[NSString stringWithFormat:@"%d%@", type.intValue, [stringArray objectAtIndex:j]] forState:UIControlStateNormal];
+                        [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+                        [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+                        [self addSubview:button];
                         break;
                     case '>':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:occupied forState:UIControlStateNormal];
+                        [self addSubview:button];
                         break;
                     case 'L':
+                        button = [UIButton buttonWithType:UIButtonTypeCustom];
+                        button.frame = CGRectMake((j + 1) * 30 + 4, i * 30 + 4, 22, 22);
+                        [button setBackgroundImage:available forState:UIControlStateNormal];
+                        [button setTitle:[NSString stringWithFormat:@"%d%@", type.intValue, [stringArray objectAtIndex:j]] forState:UIControlStateNormal];
+                        [button setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+                        [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+                        [self addSubview:button];
                         break;
                     default:
                         break;

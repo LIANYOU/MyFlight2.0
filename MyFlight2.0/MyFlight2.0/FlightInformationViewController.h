@@ -9,6 +9,7 @@
 #import "BasicViewController.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
+#import "AppConfigure.h"
 
 @interface FlightInformationViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate>
 {

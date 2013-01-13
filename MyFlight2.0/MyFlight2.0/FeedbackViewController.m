@@ -106,7 +106,11 @@
     [request setPostValue:address.text forKey:@"contacts"];
     [request setPostValue:@"" forKey:@"name"];
     [request setPostValue:EDITION_VALUE forKey:@"version"];
+    
+    [request setPostValue:HWID_VALUE forKey:KEY_hwId];
     [request setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [request setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
+    [request setPostValue:EDITION_VALUE forKey:KEY_edition];
     
     [request setCompletionBlock:^(void){
         
@@ -156,7 +160,7 @@
     }];
     
     [request setDelegate:self];
-    [request startSynchronous];
+    [request startAsynchronous];
 }
 
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView

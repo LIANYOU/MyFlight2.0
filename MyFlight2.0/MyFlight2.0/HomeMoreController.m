@@ -95,6 +95,7 @@
 {
     AboutViewController *about;
     BindSNSViewController *bindSNS;
+    TutorialViewController *tutorial;
     
     NSInteger selectIndex = indexPath.row;
     
@@ -139,6 +140,8 @@
                 break;
             case 2:
                 CCLog(@"新功能引导页");
+                tutorial = [[TutorialViewController alloc] init];
+                [self.navigationController pushViewController:tutorial animated:YES];
                 break;
             case  3:
                 CCLog(@"关于我们");

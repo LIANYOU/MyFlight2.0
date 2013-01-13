@@ -33,10 +33,12 @@
     [request setDefaultResponseEncoding:NSUTF8StringEncoding];
     
     [request setPostValue:@"iphone" forKey:KEY_source];
+    [request setPostValue:@"01" forKey:@"type"];
+    
     [request setPostValue:HWID_VALUE forKey:KEY_hwId];
+//    [request setPostValue:SOURCE_VALUE forKey:KEY_source];
     [request setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
     [request setPostValue:EDITION_VALUE forKey:KEY_edition];
-    [request setPostValue:@"01" forKey:@"type"];
     
     [request setCompletionBlock:^(void){
         
@@ -99,7 +101,7 @@
     
     self.navigationItem.title = @"推荐软件";
     
-    table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 300, 420) style:UITableViewStylePlain];
+    table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 420) style:UITableViewStylePlain];
     
     table.rowHeight = 70.0f;
     table.backgroundColor = FOREGROUND_COLOR;
@@ -184,7 +186,7 @@
     
     UILabel *label;
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 200, 16)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(80, 14, 210, 16)];
     
     label.text = [recommend objectForKey:@"name"];
     label.textColor = FONT_COLOR_DEEP_GRAY;
@@ -195,11 +197,11 @@
     [cell addSubview:label];
     [label release];
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 200, 10)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(80, 44, 210, 12)];
     
     label.text = [recommend objectForKey:@"detail"];
     label.textColor = FONT_COLOR_DEEP_GRAY;
-    label.font = [UIFont systemFontOfSize:10.0f];
+    label.font = [UIFont systemFontOfSize:12.0f];
     
     label.backgroundColor = [UIColor clearColor];
     

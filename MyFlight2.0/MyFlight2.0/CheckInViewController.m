@@ -312,20 +312,35 @@
 
 - (BOOL) validateInput
 {
+    if([passName.text length] == 0 || [idNo.text length] == 0)
+    {
+        alertMessage = [[UIAlertView alloc] initWithTitle:@"" message:@"请输入您的完整信息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertMessage show];
+        [alertMessage release];
+        return NO;
+    }
+    
     if([[passName.text stringByTrimmingCharactersInSet:[NSCharacterSet punctuationCharacterSet]] isEqualToString:passName.text])
     {
         switch(passportType)
         {
             case 0:
-                if([idNo.text length] != 18)
+                if([idNo.text length] != 18 && [idNo.text length] != 15)
                 {
-                    alertMessage = [[UIAlertView alloc] initWithTitle:@"" message:@"您输入的证件号码格式有误" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    alertMessage = [[UIAlertView alloc] initWithTitle:@"" message:@"您输入的证件号码长度有误" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
                     [alertMessage show];
                     [alertMessage release];
                     return NO;
                 }
                 break;
             case 1:
+                if([idNo.text length] < 6)
+                {
+                    alertMessage = [[UIAlertView alloc] initWithTitle:@"" message:@"您输入的证件号码长度有误" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    [alertMessage show];
+                    [alertMessage release];
+                    return NO;
+                }
                 break;
             case 2:
                 break;
@@ -346,28 +361,34 @@
 
 - (void) checkIn
 {
-    ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
-    
-    chooseFlight.isQuery = NO;
-    chooseFlight.passName = passName.text;
-    chooseFlight.idNo = idNo.text;
-    chooseFlight.depCity = depCityCode;
-    
-    [self.navigationController pushViewController:chooseFlight animated:YES];
-    [chooseFlight release];
+    if([self validateInput])
+    {
+        ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
+        
+        chooseFlight.isQuery = NO;
+        chooseFlight.passName = passName.text;
+        chooseFlight.idNo = idNo.text;
+        chooseFlight.depCity = depCityCode;
+        
+        [self.navigationController pushViewController:chooseFlight animated:YES];
+        [chooseFlight release];
+    }
 }
 
 - (void) progressQuery
 {
-    ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
-    
-    chooseFlight.isQuery = YES;
-    chooseFlight.passName = passName.text;
-    chooseFlight.idNo = idNo.text;
-    chooseFlight.depCity = depCityCode;
-    
-    [self.navigationController pushViewController:chooseFlight animated:YES];
-    [chooseFlight release];
+    if([self validateInput])
+    {
+        ChooseFlightViewController *chooseFlight = [[ChooseFlightViewController alloc] init];
+        
+        chooseFlight.isQuery = YES;
+        chooseFlight.passName = passName.text;
+        chooseFlight.idNo = idNo.text;
+        chooseFlight.depCity = depCityCode;
+        
+        [self.navigationController pushViewController:chooseFlight animated:YES];
+        [chooseFlight release];
+    }
 }
 
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

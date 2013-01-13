@@ -42,6 +42,11 @@
     [request setPostValue:self.idNo forKey:@"idNo"];
     [request setPostValue:@"1" forKey:@"currentPageNo"];
     
+    [request setPostValue:HWID_VALUE forKey:KEY_hwId];
+    [request setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [request setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
+    [request setPostValue:EDITION_VALUE forKey:KEY_edition];
+    
     [request setCompletionBlock:^(void){
         
         NSData *response = [request responseData];
@@ -98,7 +103,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.navigationItem.title = @"值机进度详情";
+    self.navigationItem.title = @"查询进度详情";
     
     [self requestForData];
     
