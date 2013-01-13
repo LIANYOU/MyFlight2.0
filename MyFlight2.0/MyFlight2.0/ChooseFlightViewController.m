@@ -41,7 +41,11 @@
     [request setPostValue:self.passName forKey:@"passName"];
     [request setPostValue:self.idNo forKey:@"idNo"];
     [request setPostValue:self.depCity forKey:@"depCity"];
+    
+    [request setPostValue:HWID_VALUE forKey:KEY_hwId];
     [request setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [request setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
+    [request setPostValue:EDITION_VALUE forKey:KEY_edition];
     
     [request setCompletionBlock:^(void){
         
@@ -431,7 +435,11 @@
             [request setPostValue:self.passName forKey:@"passName"];
             [request setPostValue:self.idNo forKey:@"id"];
             [request setPostValue:[segs objectForKey:@"segIndex"] forKey:@"segIndex"];
+            
+            [request setPostValue:HWID_VALUE forKey:KEY_hwId];
             [request setPostValue:SOURCE_VALUE forKey:KEY_source];
+            [request setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
+            [request setPostValue:EDITION_VALUE forKey:KEY_edition];
             
             [request setCompletionBlock:^(void){
                 

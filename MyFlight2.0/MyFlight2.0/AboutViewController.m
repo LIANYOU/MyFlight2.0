@@ -98,8 +98,11 @@
     
     [request setPostValue:EDITION_VALUE forKey:@"currentVersion"];
     [request setPostValue:nil forKey:@"channel"];
+    
+    [request setPostValue:HWID_VALUE forKey:KEY_hwId];
     [request setPostValue:SOURCE_VALUE forKey:KEY_source];
-    [request setPostValue:@"01" forKey:@"serviceCode"];
+    [request setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
+    [request setPostValue:EDITION_VALUE forKey:KEY_edition];
     
     [request setCompletionBlock:^(void){
         
@@ -256,7 +259,7 @@
             [recommend release];
             break;
         case 4:
-            comment = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d", 0];
+            comment = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d", SOFTWARE_ID];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:comment]];
             break;
         default:

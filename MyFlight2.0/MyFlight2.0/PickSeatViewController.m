@@ -47,7 +47,11 @@
     [request setPostValue:self.orgId forKey:@"orgId"];
     [request setPostValue:self.org forKey:@"org"];
     [request setPostValue:self.symbols forKey:@"symbols"];
+    
+    [request setPostValue:HWID_VALUE forKey:KEY_hwId];
     [request setPostValue:SOURCE_VALUE forKey:KEY_source];
+    [request setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
+    [request setPostValue:EDITION_VALUE forKey:KEY_edition];
     
     [request setCompletionBlock:^(void){
         
@@ -348,6 +352,7 @@
     [request setPostValue:[[[[[responseDictionary objectForKey:@"idInfo"] objectForKey:@"arrayOfXsdString"] objectAtIndex:0] objectForKey:@"string"] objectAtIndex:0] forKey:@"idInfoType"];
     [request setPostValue:[[[[[responseDictionary objectForKey:@"idInfo"] objectForKey:@"arrayOfXsdString"] objectAtIndex:0] objectForKey:@"string"] objectAtIndex:1] forKey:@"idInfo"];
     
+    [request setPostValue:HWID_VALUE forKey:KEY_hwId];
     [request setPostValue:SOURCE_VALUE forKey:KEY_source];
     [request setPostValue:SERVICECode_VALUE forKey:KEY_serviceCode];
     [request setPostValue:EDITION_VALUE forKey:KEY_edition];

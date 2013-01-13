@@ -27,6 +27,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.navigationItem.title = @"新功能引导";
+    
+    self.view.backgroundColor = BACKGROUND_COLOR;
 }
 
 - (void)didReceiveMemoryWarning

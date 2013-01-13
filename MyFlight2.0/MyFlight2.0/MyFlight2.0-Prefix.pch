@@ -55,4 +55,6 @@
 #define FONT_COLOR_RED [UIColor colorWithRed:251/255.0 green:101/255.0 blue:43/255.0f alpha:1]
 
 
+#define SOFTWARE_ID 0
+
 #endif
