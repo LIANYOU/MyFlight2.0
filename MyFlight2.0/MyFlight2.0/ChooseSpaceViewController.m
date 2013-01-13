@@ -27,6 +27,8 @@
 {
     int flag ;
     NSString * nextDayStr;
+    
+    NSDictionary * dicCode;
 }
 
 @end
@@ -42,7 +44,39 @@
     return self;
 }
 
-
+//取得本地数据库的路径
+- (NSString *) getLocalDataBasePath{
+    
+    
+    //寻找路径
+    NSString *doc_path=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+    //配置文件
+    NSString *sqlPath=[doc_path stringByAppendingPathComponent:@"AirPortCode.plist"];
+    
+    CCLog(@"数据库版本控制文件地址：%@",sqlPath);
+    
+    
+    NSString * plistPath = [[NSBundle mainBundle] pathForResource:@"AirPortCode" ofType:@"plist"];
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    if([fm fileExistsAtPath:sqlPath] == NO)
+    {
+        
+        
+        NSError *err = nil;
+        if([fm copyItemAtPath:plistPath toPath:sqlPath error:&err] == NO)//如果拷贝失败
+        {
+            CCLog(@"open database error %@",[err localizedDescription]);
+            return nil;
+        }
+        
+        CCLog(@"document 下没有数据库版本文件，执行拷贝工作");
+    }
+    
+    
+    return sqlPath;
+}
 
 - (void)viewDidLoad
 {
@@ -74,10 +108,7 @@
     self.flightCode.text =data.temporaryLabel;
     
     
-    NSString * dataPath = [[NSBundle mainBundle] pathForResource:@"AirPortCode" ofType:@"plist"];
-    
-    NSDictionary * dicCode = [[NSDictionary alloc] initWithContentsOfFile:dataPath];
-    
+    dicCode = [[NSDictionary alloc] initWithContentsOfFile:[self getLocalDataBasePath]];    
     
     for (int i = 0; i<dicCode.allKeys.count; i++) {
         

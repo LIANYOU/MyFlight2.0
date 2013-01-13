@@ -136,6 +136,9 @@
     dicCode = [[NSDictionary alloc] initWithContentsOfFile:[self getLocalDataBasePath]];
     
     
+    NSLog(@"dicCode  %@",dicCode);
+    
+    
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeGrayView:)];
     [self.grayView addGestureRecognizer:tap];
     [tap release];
