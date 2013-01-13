@@ -184,7 +184,50 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MFMessageComposeViewController *messageSender;
+    MFMailComposeViewController *mailSender;
     
+    switch(indexPath.row)
+    {
+        case 0:
+            messageSender = [[MFMessageComposeViewController alloc] init];
+            messageSender.messageComposeDelegate = self;
+            
+            if([MFMessageComposeViewController canSendText])
+            {
+                [self presentModalViewController:messageSender animated:YES];
+            }
+            
+            [messageSender release];
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            mailSender = [[MFMailComposeViewController alloc] init];
+            mailSender.mailComposeDelegate = self;
+            
+            if([MFMailComposeViewController canSendMail])
+            {
+                [self presentModalViewController:mailSender animated:YES];
+            }
+            
+            [mailSender release];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
