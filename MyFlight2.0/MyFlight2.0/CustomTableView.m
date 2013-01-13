@@ -10,29 +10,16 @@
 #import "CustomTableViewCell.h"
 @implementation CustomTableView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 
--(id)initWithButtonName:(NSString *)name andAirPortTwoCode:(NSArray *)codeArr andTable:(UITableView *)tableView
-{
-    self = [super init];
-    if ([name isEqualToString:@"按航空公司筛选"]) {
-        cellArr = codeArr;
-    }
-    else{
-        cellArr = [[NSArray alloc] initWithObjects:@"时间从早到晚",@"价格从低到高", nil];
-    }
-    _tableView = tableView;
+
+-(id)initWithTabelViewData:(NSArray *) codeArr andDelegate:(id<CustomTableViewDelegate>)delegate{
     
-    self.delegate = self;
-    self.dataSource = self;
+    
+    cellArr = [NSArray arrayWithArray:codeArr];
+    
+    self.frame = CGRectMake(0, 320, 320, 50);
+   
     return self;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -50,6 +37,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
     static NSString *CellIdentifier = @"Cell";
     CustomTableViewCell *cell = (CustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];    
     if (!cell)
@@ -67,6 +55,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    [self.idDelegate delegateViewController:self didSelectItem:[cellArr objectAtIndex:indexPath.row] ];
+    
     [self removeFromSuperview];
 }
 - (void)dealloc {

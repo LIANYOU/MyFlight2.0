@@ -9,11 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomTableViewCell : UITableViewCell
-{
-    IBOutlet UIButton *selectBtn;   // 选择的图标
-    IBOutlet UILabel *airPortName;  // 机场名字
-}
+
 @property (retain, nonatomic) IBOutlet UILabel *airPortName;
-@property (retain, nonatomic) IBOutlet UIButton *selectBtn;
+
+@property (retain, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

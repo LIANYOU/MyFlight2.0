@@ -1,14 +1,14 @@
 //
-//  CustomTableViewCell.m
+//  ChooseCell.m
 //  MyFlight2.0
 //
-//  Created by sss on 12-12-6.
-//  Copyright (c) 2012年 LIAN YOU. All rights reserved.
+//  Created by WangJian on 13-1-12.
+//  Copyright (c) 2013年 LIAN YOU. All rights reserved.
 //
 
-#import "CustomTableViewCell.h"
+#import "ChooseCell.h"
 
-@implementation CustomTableViewCell
+@implementation ChooseCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,10 +26,4 @@
     // Configure the view for the selected state
 }
 
-- (void)dealloc {
-
-    [_airPortName release];
-
-    [super dealloc];
-}
 @end

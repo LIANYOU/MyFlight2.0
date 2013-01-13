@@ -1,14 +1,14 @@
 //
-//  CustomTableViewCell.m
+//  PersonTypeCell.m
 //  MyFlight2.0
 //
-//  Created by sss on 12-12-6.
-//  Copyright (c) 2012年 LIAN YOU. All rights reserved.
+//  Created by WangJian on 13-1-12.
+//  Copyright (c) 2013年 LIAN YOU. All rights reserved.
 //
 
-#import "CustomTableViewCell.h"
+#import "PersonTypeCell.h"
 
-@implementation CustomTableViewCell
+@implementation PersonTypeCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,9 +27,8 @@
 }
 
 - (void)dealloc {
-
-    [_airPortName release];
-
+    [_name release];
+    [_image release];
     [super dealloc];
 }
 @end
