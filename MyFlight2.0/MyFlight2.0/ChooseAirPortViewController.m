@@ -569,6 +569,7 @@
     NSString * meg =[info objectForKey:KEY_message];
     
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
 }
 
 //网络返回错误信息回调的方法

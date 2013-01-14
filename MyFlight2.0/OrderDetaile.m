@@ -59,6 +59,14 @@
     
     // **************************   订单详情查询参数  *************************
     
+    NSLog(@"orderId ....   %@",self.orderId);
+    NSLog(@"memberId ....   %@",self.memberId);
+    NSLog(@"checkCode ....   %@",self.checkCode);
+    NSLog(@"sign ....   %@",self.sign);
+    NSLog(@"source ....   %@",self.source);
+    NSLog(@"orderId ....   %@",self.orderId);
+    NSLog(@"hwId ....   %@",self.hwId);
+    NSLog(@"edition ....   %@",self.edition);
     
     [request setRequestMethod:@"POST"];
 
@@ -178,6 +186,8 @@
     order.totalMoney = [dic objectForKey:@"totalMoney"];
     order.actualMoney = [dic objectForKey:@"actualMoney"];
     order.flyType = [dic objectForKey:@"flightType"];
+    order.memberId = [dic objectForKey:@"memberId"];
+    order.sts = [dic objectForKey:@"sts"];
     
     FlightConditionWj * flight = [[FlightConditionWj alloc] init];
     

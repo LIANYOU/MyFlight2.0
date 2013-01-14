@@ -223,6 +223,8 @@
 
     }
     else{
+        
+        
         static NSString *CellIdentifier = @"Cell";
         
          GoldCoinCell *cell = (GoldCoinCell *)[self.showDiscountTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -257,12 +259,15 @@
     
     NSString * string = [NSString stringWithFormat:@"%@%@%@%@",Default_UserMemberId_Value,self.text.text,SOURCE_VALUE,Default_Token_Value];
     
+    
+    
     CheckPassword * password = [[CheckPassword alloc] initWithMemberId:Default_UserMemberId_Value
-                                                             andSource:SOURCE_VALUE
-                                                               andHwId:HWID_VALUE
-                                                               andSign:GET_SIGN(string)
-                                                            andEdition:EDITION_VALUE
-                                                           andDelegate:self];
+                                                         andSource:SOURCE_VALUE
+                                                           andHwId:HWID_VALUE
+                                                       andPassWord:self.text.text
+                                                           andSign:GET_SIGN(string)
+                                                        andEdition:EDITION_VALUE
+                                                       andDelegate:self];
     password.delegate = self;
     
     [password getPassword];
@@ -311,6 +316,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.section == 1) {
+        return;
+    }
     
      UseDiscountCell *cell = (UseDiscountCell *)[self.showDiscountTableView cellForRowAtIndexPath:indexPath];
 
@@ -394,7 +403,7 @@
 
 -(void)back
 {
-   
+   [self.text resignFirstResponder];
     
     NSString * string = nil;
     NSString * goldString = nil;

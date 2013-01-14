@@ -15,12 +15,14 @@
 @property (nonatomic,retain) NSString * hwId;
 @property (nonatomic,retain) NSString * sign;
 @property (nonatomic,retain) NSString * edition;
+@property (nonatomic,retain) NSString * passWord;
 
 @property (nonatomic, assign) id<ServiceDelegate> delegate;
 
 -(id) initWithMemberId:(NSString *)memberId
              andSource:(NSString *)source
                andHwId:(NSString * )hwId
+           andPassWord:(NSString *)passWord
                andSign:(NSString *)sign
             andEdition:(NSString *)edition
            andDelegate:(id<ServiceDelegate>)delegate;

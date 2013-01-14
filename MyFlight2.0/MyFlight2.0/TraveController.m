@@ -51,7 +51,11 @@
   
     if (self.postArr) {
         self.postInfoArr = [self.postArr objectAtIndex:3];
-        postCITY = [self.postInfoArr objectAtIndex:1];
+   
+        if (self.postInfoArr.count != 1 ) {
+            postCITY = [self.postInfoArr objectAtIndex:1];
+        }
+        
     }
     else{
         self.postInfoArr = [[[NSMutableArray alloc] init] autorelease];
@@ -59,7 +63,7 @@
     
     
     if ([self.cellText isEqualToString:@"不需要行程单报销凭证"]) {
-        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+       
         self.flag = 1;
     }
     else{
@@ -121,7 +125,7 @@
     }
 
     
-    if (self.postInfoArr.count != 0) {
+    if (self.postInfoArr.count != 1) {
         name.text = [self.postInfoArr objectAtIndex:0];
         city.text = postCITY;
         address.text = [self.postInfoArr objectAtIndex:2];
@@ -333,14 +337,22 @@
         self.flag = btnTag;
     }
     if (btnTag == 0) {
-        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
+       
         _schedule_ = [self.postArr objectAtIndex:0];
         type.text = [[self.postArr objectAtIndex:3] objectAtIndex:4];
         self.flag = [[self.postArr objectAtIndex:2] intValue];
+        
     }
     
     if (self.flag == 3) {
         _schedule_ = @"邮寄行程单";
+        if (arr.count==1) {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请填写邮寄方式" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            
+            return;
+        }
     }
     if (self.flag == 1) {
         _schedule_ = @"不需要行程单报销凭证";
@@ -360,6 +372,10 @@
         type.text = @"";
     }
 
+    
+    if (arr.count == 0) {
+        arr = [NSArray arrayWithObjects:@" ",@" ",@" ",@" ",@" ", nil];
+    }
     
     NSMutableArray * arrary = [NSMutableArray arrayWithObjects:_schedule_,type.text,[NSString stringWithFormat:@"%d",self.flag],arr,nil];
     [[NSUserDefaults standardUserDefaults] setObject:arrary forKey:@"TraveController"];

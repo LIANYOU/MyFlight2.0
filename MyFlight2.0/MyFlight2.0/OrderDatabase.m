@@ -96,6 +96,10 @@
     
     BOOL flag =[db executeUpdate:@"insert into orderList(creatTime,startAirport,endAirport,totalMoney,payStation,orderID,checkCode,type) values(?,?,?,?,?,?,?,?)",contactData.createTime,contactData.depAirportName,contactData.arrAirportName,contactData.totalMoney,contactData.payStsCH,contactData.orderId,contactData.checkCode,contactData.type];
     
+    NSLog(@"乘机人手机号码   %@",contactData.checkCode);
+    NSLog(@"订单ID   %@",contactData.orderId);
+    NSLog(@"订单code   %@",contactData.type);
+
     
     if (flag) {
         

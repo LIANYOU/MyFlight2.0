@@ -59,6 +59,8 @@
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
     
+    self.navigationItem.title = @"订单详情";
+    
     UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
@@ -106,6 +108,8 @@
     [_payOnlineLabel release];
     [_goldView release];
     [_goldLabel release];
+    [_cancleBtn release];
+    [_payBtn release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -131,6 +135,8 @@
     [self setPayOnlineLabel:nil];
     [self setGoldView:nil];
     [self setGoldLabel:nil];
+    [self setCancleBtn:nil];
+    [self setPayBtn:nil];
     [super viewDidUnload];
 }
 
@@ -520,144 +526,182 @@
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
     
-    //获取请求类型
-    NSString *requestType = [info objectForKey:KEY_Request_Type];
-    
-    if ([requestType isEqualToString:@"cancel"]) {
-        [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:@"取消订单成功" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-
+    if ([[[info allKeys] objectAtIndex:0] isEqualToString:@"pay"])
+    {
+        [Umpay pay:[info objectForKey:@"pay"] payType:@"9" window:self.view.window delegate:self];
     }
+
     else{
+        //获取请求类型
+        NSString *requestType = [info objectForKey:KEY_Request_Type];
         
-        NSArray * arr = [info objectForKey:@"newDic"];
-        
-        self.order = [arr objectAtIndex:0];
-        self.flight = [arr objectAtIndex:1];   // 出港
-        self.inFlight = [arr objectAtIndex:2];  // 入港
-        self.personArray = [NSArray arrayWithArray:[arr objectAtIndex:3]];
-        self.post = [arr objectAtIndex:4];
-        self.person = [arr objectAtIndex:5];
-        self.discountInfo = [arr objectAtIndex:6];
-        
-        
-        //*************************** 动态变化邮寄行程单cell***********
-        
-        if ([self.post.deliveryType isEqualToString:@"0"]) {
+        if ([requestType isEqualToString:@"cancel"]) {
+            [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:@"取消订单成功" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
             
-            self.post.deliveryType = @"无需配送(低碳出行)";
-            
-            postHight = 45;
-        }
-        if ([self.post.deliveryType isEqualToString:@"1"]) {
-            self.post.deliveryType = @"快递";
-            
-            postHight = 150;
-            
-        }
-        if ([self.post.deliveryType isEqualToString:@"2"]) {
-            self.post.deliveryType = @"挂号信";
-            
-            postHight = 150;
-            
-        }
-        
-
-        // **************  控制第一个cell中内容的动态变化***********
-        self.dictionary = [NSMutableDictionary dictionary];
-          
-        if (self.discountInfo.discount != nil && self.discountInfo.discount != @"0") {
-            [self.dictionary setObject:self.discountInfo.discount forKey:@"discount"];
-        }
-       
-        if (self.discountInfo.xlbSilver != nil  && self.discountInfo.xlbSilver != @"0") {
-            [self.dictionary setObject:self.discountInfo.xlbSilver forKey:@"xlbSilver"];
-        }
-
-        if (self.discountInfo.xlbGold != nil && self.discountInfo.xlbGold != @"0") {
-            [self.dictionary setObject:[NSString stringWithFormat:@"%d",[self.discountInfo.xlbGold intValue]+[self.discountInfo.netAmount intValue]] forKey:@"gold"];
-        }
-
-        if (self.discountInfo.payOnLine != nil && self.discountInfo.payOnLine != @"0") {
-            [self.dictionary setObject:self.discountInfo.payOnLine forKey:@"payOnLine"];
-        }
-
-        // **************************  动态变化乘机人的票钱信息  **************************
-               
-        Passenger * person = [[Passenger alloc] init];
-        Passenger * goPerson = [[Passenger alloc] init];
-        Passenger * child = [[Passenger alloc] init];
-        Passenger * goChild = [[Passenger alloc] init];
-        
-        NSMutableArray * personArr = [[NSMutableArray alloc] init];
-        NSMutableArray * childArr = [[NSMutableArray alloc] init];
-        
-        personCount = 0;
-        childCount = 0;
-        
-        for (Passenger * p in self.personArray) {
-            
-            if ([p.type isEqualToString:@"01"]) {
-                
-                [personArr addObject:p];
-                person = p;
-                personCount = personCount + 1;
-            }
-            else{
-                [childArr addObject:p];
-                child = p;
-                childCount = childCount +1;
-            }
-            
-        }
-        
-        
-        if ([self.order.flyType isEqualToString:@"2"]) {
-            goPerson = [personArr objectAtIndex:0];
-            
-            personCount = personCount/2;
+            WJOrderBasicCell *cell = (WJOrderBasicCell *)[self.showTableView  cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                                                          cell.orderStation.text = @"已取消";
             
             
-            if (childCount != 0) {
-                goChild = [childArr objectAtIndex:0];
-                childCount = childCount/2;
-            }
-            
+            [self.cancleBtn setTitle:@"重新购买" forState:0  ];
+            [self.cancleBtn setBackgroundImage:[UIImage imageNamed:@"btn_orange.png"] forState:0];
+            self.payBtn.hidden = YES;
             
         }
         else{
-            goPerson = nil;
-            goChild = nil;
+            
+            NSArray * arr = [info objectForKey:@"newDic"];
+            
+            self.order = [arr objectAtIndex:0];
+            self.flight = [arr objectAtIndex:1];   // 出港
+            self.inFlight = [arr objectAtIndex:2];  // 入港
+            self.personArray = [NSArray arrayWithArray:[arr objectAtIndex:3]];
+            self.post = [arr objectAtIndex:4];
+            self.person = [arr objectAtIndex:5];
+            self.discountInfo = [arr objectAtIndex:6];
+            
+            
+            
+            if ([self.order.sts isEqualToString:@"04"]|| [self.order.sts isEqualToString:@"03"]) {
+                [self.cancleBtn setTitle:@"重新购买" forState:0  ];
+                [self.cancleBtn setBackgroundImage:[UIImage imageNamed:@"btn_orange.png"] forState:0];
+                self.payBtn.hidden = YES;
+            }
+            if ([self.order.sts isEqualToString:@"02"]) {
+                [self.cancleBtn setTitle:@"退改签" forState:0  ];
+                [self.payBtn setTitle:@"在线值机" forState:0  ];
+                [self.cancleBtn setBackgroundImage:[UIImage imageNamed:@"btn_orange.png"] forState:0];
+                self.payBtn.hidden = NO;
+            }
+            if ([self.order.sts isEqualToString:@"00"]) {
+                [self.cancleBtn setTitle:@"取消订单" forState:0  ];
+                [self.payBtn setTitle:@"立即支付" forState:0  ];
+                self.payBtn.hidden = NO;
+            }
+            
+            
+            
+            //*************************** 动态变化邮寄行程单cell***********
+            
+            if ([self.post.deliveryType isEqualToString:@"0"]) {
+                
+                self.post.deliveryType = @"无需配送(低碳出行)";
+                
+                postHight = 45;
+            }
+            if ([self.post.deliveryType isEqualToString:@"1"]) {
+                self.post.deliveryType = @"快递";
+                
+                postHight = 150;
+                
+            }
+            if ([self.post.deliveryType isEqualToString:@"2"]) {
+                self.post.deliveryType = @"挂号信";
+                
+                postHight = 150;
+                
+            }
+            
+            
+            // **************  控制第一个cell中内容的动态变化***********
+            self.dictionary = [NSMutableDictionary dictionary];
+            
+            if (self.discountInfo.discount != nil && self.discountInfo.discount != @"0") {
+                [self.dictionary setObject:self.discountInfo.discount forKey:@"discount"];
+            }
+            
+            if (self.discountInfo.xlbSilver != nil  && self.discountInfo.xlbSilver != @"0") {
+                [self.dictionary setObject:self.discountInfo.xlbSilver forKey:@"xlbSilver"];
+            }
+            
+            if (self.discountInfo.xlbGold != nil && self.discountInfo.xlbGold != @"0") {
+                [self.dictionary setObject:[NSString stringWithFormat:@"%d",[self.discountInfo.xlbGold intValue]+[self.discountInfo.netAmount intValue]] forKey:@"gold"];
+            }
+            
+            if (self.discountInfo.payOnLine != nil && self.discountInfo.payOnLine != @"0") {
+                [self.dictionary setObject:self.discountInfo.payOnLine forKey:@"payOnLine"];
+            }
+            
+            // **************************  动态变化乘机人的票钱信息  **************************
+            
+            Passenger * person = [[Passenger alloc] init];
+            Passenger * goPerson = [[Passenger alloc] init];
+            Passenger * child = [[Passenger alloc] init];
+            Passenger * goChild = [[Passenger alloc] init];
+            
+            NSMutableArray * personArr = [[NSMutableArray alloc] init];
+            NSMutableArray * childArr = [[NSMutableArray alloc] init];
+            
+            personCount = 0;
+            childCount = 0;
+            
+            for (Passenger * p in self.personArray) {
+                
+                if ([p.type isEqualToString:@"01"]) {
+                    
+                    [personArr addObject:p];
+                    person = p;
+                    personCount = personCount + 1;
+                }
+                else{
+                    [childArr addObject:p];
+                    child = p;
+                    childCount = childCount +1;
+                }
+                
+            }
+            
+            
+            if ([self.order.flyType isEqualToString:@"2"]) {
+                goPerson = [personArr objectAtIndex:0];
+                
+                personCount = personCount/2;
+                
+                
+                if (childCount != 0) {
+                    goChild = [childArr objectAtIndex:0];
+                    childCount = childCount/2;
+                }
+                
+                
+            }
+            else{
+                goPerson = nil;
+                goChild = nil;
+            }
+            
+            
+            
+            self.PerStanderPrice.text =[NSString stringWithFormat:@"￥%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]];
+            self.PersonConstructionFee.text =[NSString stringWithFormat:@"￥%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
+            self.personAdultBaf.text =[NSString stringWithFormat:@"￥%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
+            self.Personinsure.text = [NSString stringWithFormat:@"￥%d",[person.insurance intValue] + [goPerson.insurance intValue]];
+            self.personMuber.text = [NSString stringWithFormat:@"%d",personCount];
+            
+            
+            
+            self.smallPerStanderPrice.text = [NSString stringWithFormat:@"￥%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]];
+            self.smallPersonConstructionFee.text = [NSString stringWithFormat:@"￥%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
+            self.smallpersonAdultBaf.text = [NSString stringWithFormat:@"￥%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
+            self.smallPersoninsure.text = [NSString stringWithFormat:@"￥%d",[person.insurance intValue] + [goPerson.insurance intValue]];
+            self.smallpersonMuber.text = [NSString stringWithFormat:@"%d",personCount];
+            
+            
+            
+            self.childStanderPrice.text =[NSString stringWithFormat:@"￥%d",[child.ticketPrice intValue] + [goChild.ticketPrice intValue]];
+            self.childConstructionFee.text =[NSString stringWithFormat:@"￥%d",[child.constructionPrice intValue] + [goChild.constructionPrice intValue]] ;
+            self.childBaf.text = [NSString stringWithFormat:@"￥%d",[child.bafPrice intValue] + [goChild.bafPrice intValue]];
+            self.childInsure.text = [NSString stringWithFormat:@"￥%d",[child.insurance intValue] + [goChild.insurance intValue]];
+            self.childMunber.text = [NSString stringWithFormat:@"%d",childCount];
+            
+            
+            [self.showTableView reloadData];
+            
         }
         
-        
-        
-        self.PerStanderPrice.text =[NSString stringWithFormat:@"￥%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]];
-        self.PersonConstructionFee.text =[NSString stringWithFormat:@"￥%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
-        self.personAdultBaf.text =[NSString stringWithFormat:@"￥%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
-        self.Personinsure.text = [NSString stringWithFormat:@"￥%d",[person.insurance intValue] + [goPerson.insurance intValue]];
-        self.personMuber.text = [NSString stringWithFormat:@"%d",personCount];
-        
-        
-        
-        self.smallPerStanderPrice.text = [NSString stringWithFormat:@"￥%d",[person.ticketPrice intValue] + [goPerson.ticketPrice intValue]];
-        self.smallPersonConstructionFee.text = [NSString stringWithFormat:@"￥%d",[person.constructionPrice intValue] + [goPerson.constructionPrice intValue]];
-        self.smallpersonAdultBaf.text = [NSString stringWithFormat:@"￥%d",[person.bafPrice intValue] + [goPerson.bafPrice intValue]];
-        self.smallPersoninsure.text = [NSString stringWithFormat:@"￥%d",[person.insurance intValue] + [goPerson.insurance intValue]];
-        self.smallpersonMuber.text = [NSString stringWithFormat:@"%d",personCount];
-        
-        
-        
-        self.childStanderPrice.text =[NSString stringWithFormat:@"￥%d",[child.ticketPrice intValue] + [goChild.ticketPrice intValue]];
-        self.childConstructionFee.text =[NSString stringWithFormat:@"￥%d",[child.constructionPrice intValue] + [goChild.constructionPrice intValue]] ;
-        self.childBaf.text = [NSString stringWithFormat:@"￥%d",[child.bafPrice intValue] + [goChild.bafPrice intValue]];
-        self.childInsure.text = [NSString stringWithFormat:@"￥%d",[child.insurance intValue] + [goChild.insurance intValue]];
-        self.childMunber.text = [NSString stringWithFormat:@"%d",childCount];
-        
-
-        [self.showTableView reloadData];
+       
 
     }
-   
+      
 }
 
 -(void)back
@@ -687,42 +731,79 @@
     [alert release];
     
 }
-- (IBAction)goPay:(id)sender {
+- (IBAction)goPay:(UIButton *)sender {
     
     
     
     PayOnline * payOnline = [[PayOnline alloc] initWithProdType:@"01"
                                                         payType:@"umpay"
                                                       orderCode:self.order.code
-                                                       memberId:Default_UserMemberId_Value
+                                                       memberId:self.order.memberId
                                                       actualPay:self.order.actualMoney
                                                          source:@"51you"
                                                            hwId:HWID_VALUE
                                                     serviceCode:@"01"
                                                     andDelegate:self];
     
-    PayViewController * pay = [[PayViewController alloc] init];
-    pay.orderDetailsFlag = @"orderViewController";
-    pay.payOnline = payOnline;
-    pay.searchType = self.searchType;
-    [self.navigationController pushViewController:pay animated:YES];
-    [pay release];
+    payOnline.delegate = self;
+    [payOnline getBackInfo];
+    
+
 }
 
-- (IBAction)cancelOrder:(id)sender {
+- (IBAction)cancelOrder:(UIButton *)sender {
     
-    NSString * string = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
+    if ([sender.titleLabel.text isEqual:@"取消订单"]) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定取消本订单？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
+        [alert release];
+        return;
+
+    }
+    if ([sender.titleLabel.text isEqual:@"退改签"]) {
+       
+        
+    }
+    if ([sender.titleLabel.text isEqual:@"重新购买"]) {
+        
+        
+    }
     
-    CancelOrdre * cancel = [[CancelOrdre alloc] initWithOrderId:self.order.orderId
-                                                   andOrderCode:self.order.code
-                                                    andMemberId:Default_UserMemberId_Value
-                                                   andCheckCode:self.person.iphone
-                                                        andSign:GET_SIGN(string)
-                                                      andSource:SOURCE_VALUE
-                                                        andHwId:HWID_VALUE
-                                                     andEdition:EDITION_VALUE
-                                                    andDelegate:self];
-    
-    [cancel delOrder];
+   
+}
+#pragma mark -- alertView delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex ==1 ) {
+        
+        NSString * string = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
+        
+        CancelOrdre * cancel = [[CancelOrdre alloc] initWithOrderId:self.order.orderId
+                                                       andOrderCode:self.order.code
+                                                        andMemberId:Default_UserMemberId_Value
+                                                       andCheckCode:self.person.iphone
+                                                            andSign:GET_SIGN(string)
+                                                          andSource:SOURCE_VALUE
+                                                            andHwId:HWID_VALUE
+                                                         andEdition:EDITION_VALUE
+                                                        andDelegate:self];
+        
+        [cancel delOrder];
+        
+    }
+    else if (buttonIndex ==0)
+    {
+        NSLog(@"停留在次界面");
+    }
+}
+
+
+#pragma mark ---------  支付
+
+- (void)onPayResult:(NSString*)orderId  resultCode:(NSString*)resultCode
+      resultMessage:(NSString*)resultMessage
+{
+   
+    NSLog(@"orderId:%@,resultCode:%@,resultMessage:%@",orderId,resultCode,resultMessage);
 }
 @end
