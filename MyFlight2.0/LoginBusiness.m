@@ -12,15 +12,15 @@
 @implementation LoginBusiness
 
 //登陆
-- (void) loginWithName:(NSString *)name password:(NSString *)passwd andDelegate:(id<ServiceDelegate>)delegate{
+- (void) loginWithName:(NSString *)name password:(NSString *)passwd andDelegate:(id<ServiceDelegate>)delegate {
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
     [dic setObject:name forKey:KEY_Login_Account];
     [dic setObject:passwd forKey:KEY_Login_Pwd];
     
-    [LoginInNetworkHelper requestWithUrl:dic delegate:delegate];
+   [LoginInNetworkHelper requestWithUrl:dic delegate:delegate];
     
-    [dic release];
+     [dic release];
     
    
     

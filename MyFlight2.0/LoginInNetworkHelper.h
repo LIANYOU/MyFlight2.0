@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ServiceDelegate.h"
 #import "CommonContact.h"
+#import "ASIFormDataRequest.h"
 @interface LoginInNetworkHelper : NSObject
 
 //登录操作 

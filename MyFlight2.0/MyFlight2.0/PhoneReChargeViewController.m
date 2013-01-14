@@ -129,12 +129,16 @@
         cell.thisDetailLabel.placeholder = @"请填写心愿旅行卡卡号";
         cell.thisDetailLabel.tag = 100;
         self.accountField = cell.thisDetailLabel;
+        cell.thisDetailLabel.keyboardType =UIKeyboardTypeNumberPad;
+        
         
     } else{
         
         cell.nameLabel.text = @"卡密码";
+        cell.nameLabel.textAlignment=NSTextAlignmentRight;
         cell.thisDetailLabel.placeholder = @"请输入密码";
         cell.thisDetailLabel.tag = 200;
+//        cell.thisDetailLabel.textAlignment =NSTextAlignmentRight;
         self.pwdField = cell.thisDetailLabel;
         
     }
