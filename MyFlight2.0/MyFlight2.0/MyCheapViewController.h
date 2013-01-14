@@ -21,6 +21,9 @@
 }
 
 
+@property (retain, nonatomic) IBOutlet UIView *thisTempView;
+
+
 @property (retain, nonatomic) IBOutlet UITextField *tmpTextField;
 
 

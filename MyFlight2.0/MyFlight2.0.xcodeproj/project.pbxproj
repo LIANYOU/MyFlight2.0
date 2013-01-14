@@ -63,6 +63,9 @@
 		1427936C1670412F00E2E1E3 /* BuyInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1427936A1670412F00E2E1E3 /* BuyInsuranceViewController.m */; };
 		1427936D1670412F00E2E1E3 /* BuyInsuranceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427936B1670412F00E2E1E3 /* BuyInsuranceViewController.xib */; };
 		142793821670792500E2E1E3 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 142793811670792500E2E1E3 /* line.png */; };
+		1436058416A2DF900048DE6A /* AllCityDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1436058316A2DF900048DE6A /* AllCityDataBase.sqlite */; };
+		1436058616A2DFA30048DE6A /* AirCompanyDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1436058516A2DFA30048DE6A /* AirCompanyDataBase.sqlite */; };
+		1436058816A2DFAD0048DE6A /* AirPortDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1436058716A2DFAD0048DE6A /* AirPortDataBase.sqlite */; };
 		145394EA166F220D00417F61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394E9166F220D00417F61 /* UIKit.framework */; };
 		145394EC166F220D00417F61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394EB166F220D00417F61 /* Foundation.framework */; };
 		145394EE166F220D00417F61 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145394ED166F220D00417F61 /* CoreGraphics.framework */; };
@@ -181,10 +184,8 @@
 		14AF42371697DA3C00C7C2CA /* MemberPointDataOfFrequent.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42361697DA3C00C7C2CA /* MemberPointDataOfFrequent.m */; };
 		14AF423B1697EE8E00C7C2CA /* LiChengDetailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF423A1697EE8E00C7C2CA /* LiChengDetailData.m */; };
 		14AF42441698038A00C7C2CA /* AirCompanyDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42431698038A00C7C2CA /* AirCompanyDataBase.m */; };
-		14AF4246169806AD00C7C2CA /* AirCompanyDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14AF4245169806AD00C7C2CA /* AirCompanyDataBase.sqlite */; };
 		14AF4249169816B400C7C2CA /* ResultForLeijiViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF4248169816B300C7C2CA /* ResultForLeijiViewCell.m */; };
 		14AF424B169816CC00C7C2CA /* ResultForLeijiViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AF424A169816CB00C7C2CA /* ResultForLeijiViewCell.xib */; };
-		14D18030168FF4860084CB48 /* AirPortDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */; };
 		14DF3581169BD8B200CD93AB /* CommonContactDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14DF3580169BD8B200CD93AB /* CommonContactDataBase.sqlite */; };
 		14E4AC2716A0647A00DE365A /* BindSNSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4AC2616A0647A00DE365A /* BindSNSViewController.m */; };
 		14E4AC2A16A0665F00DE365A /* MultiChoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E4AC2916A0665F00DE365A /* MultiChoiceCell.m */; };
@@ -209,7 +210,6 @@
 		14ED61F61672F1960019DC23 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14ED61F51672F1960019DC23 /* libsqlite3.0.dylib */; };
 		14FA524116A1452600F84AFB /* CityData_David.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA524016A1452600F84AFB /* CityData_David.m */; };
 		14FA524416A1471100F84AFB /* CityDataBase_David.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA524316A1471100F84AFB /* CityDataBase_David.m */; };
-		14FA524616A154AA00F84AFB /* AllCityDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 14FA524516A154AA00F84AFB /* AllCityDataBase.sqlite */; };
 		14FA525B16A2716900F84AFB /* PersonNewInfotableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA525916A2716800F84AFB /* PersonNewInfotableViewController.m */; };
 		14FA525C16A2716900F84AFB /* PersonNewInfotableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA525A16A2716900F84AFB /* PersonNewInfotableViewController.xib */; };
 		14FA526116A2720000F84AFB /* PersonNewInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA526016A2720000F84AFB /* PersonNewInfoCell.m */; };
@@ -918,6 +918,9 @@
 		1427936A1670412F00E2E1E3 /* BuyInsuranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyInsuranceViewController.m; sourceTree = "<group>"; };
 		1427936B1670412F00E2E1E3 /* BuyInsuranceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyInsuranceViewController.xib; sourceTree = "<group>"; };
 		142793811670792500E2E1E3 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		1436058316A2DF900048DE6A /* AllCityDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AllCityDataBase.sqlite; sourceTree = "<group>"; };
+		1436058516A2DFA30048DE6A /* AirCompanyDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirCompanyDataBase.sqlite; sourceTree = "<group>"; };
+		1436058716A2DFAD0048DE6A /* AirPortDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirPortDataBase.sqlite; sourceTree = "<group>"; };
 		145394E5166F220D00417F61 /* MyFlight2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFlight2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145394E9166F220D00417F61 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		145394EB166F220D00417F61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1101,11 +1104,9 @@
 		14AF423A1697EE8E00C7C2CA /* LiChengDetailData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiChengDetailData.m; sourceTree = "<group>"; };
 		14AF42421698038A00C7C2CA /* AirCompanyDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirCompanyDataBase.h; sourceTree = "<group>"; };
 		14AF42431698038A00C7C2CA /* AirCompanyDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirCompanyDataBase.m; sourceTree = "<group>"; };
-		14AF4245169806AD00C7C2CA /* AirCompanyDataBase.sqlite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AirCompanyDataBase.sqlite; sourceTree = "<group>"; };
 		14AF4247169816B300C7C2CA /* ResultForLeijiViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultForLeijiViewCell.h; sourceTree = "<group>"; };
 		14AF4248169816B300C7C2CA /* ResultForLeijiViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultForLeijiViewCell.m; sourceTree = "<group>"; };
 		14AF424A169816CB00C7C2CA /* ResultForLeijiViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultForLeijiViewCell.xib; sourceTree = "<group>"; };
-		14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirPortDataBase.sqlite; sourceTree = "<group>"; };
 		14DF3580169BD8B200CD93AB /* CommonContactDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CommonContactDataBase.sqlite; sourceTree = "<group>"; };
 		14E4AC2516A0647A00DE365A /* BindSNSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindSNSViewController.h; sourceTree = "<group>"; };
 		14E4AC2616A0647A00DE365A /* BindSNSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindSNSViewController.m; sourceTree = "<group>"; };
@@ -1142,7 +1143,6 @@
 		14FA524016A1452600F84AFB /* CityData_David.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityData_David.m; sourceTree = "<group>"; };
 		14FA524216A1471000F84AFB /* CityDataBase_David.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityDataBase_David.h; sourceTree = "<group>"; };
 		14FA524316A1471100F84AFB /* CityDataBase_David.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityDataBase_David.m; sourceTree = "<group>"; };
-		14FA524516A154AA00F84AFB /* AllCityDataBase.sqlite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllCityDataBase.sqlite; sourceTree = "<group>"; };
 		14FA525816A2716800F84AFB /* PersonNewInfotableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonNewInfotableViewController.h; sourceTree = "<group>"; };
 		14FA525916A2716800F84AFB /* PersonNewInfotableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonNewInfotableViewController.m; sourceTree = "<group>"; };
 		14FA525A16A2716900F84AFB /* PersonNewInfotableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonNewInfotableViewController.xib; sourceTree = "<group>"; };
@@ -2115,7 +2115,7 @@
 		1416692E16967EB0007BB0D0 /* airPortCompanyData */ = {
 			isa = PBXGroup;
 			children = (
-				14AF4245169806AD00C7C2CA /* AirCompanyDataBase.sqlite */,
+				1436058516A2DFA30048DE6A /* AirCompanyDataBase.sqlite */,
 				1416692F16967EDA007BB0D0 /* AirPortCompanyData.h */,
 				1416693016967EDA007BB0D0 /* AirPortCompanyData.m */,
 				14AF42421698038A00C7C2CA /* AirCompanyDataBase.h */,
@@ -2751,7 +2751,7 @@
 		148059CE1676E65D00836353 /* CityAndAirPorts */ = {
 			isa = PBXGroup;
 			children = (
-				14D1802F168FF4850084CB48 /* AirPortDataBase.sqlite */,
+				1436058716A2DFAD0048DE6A /* AirPortDataBase.sqlite */,
 				14805B8D1678349100836353 /* DataBaseVersionConfigure.plist */,
 				14805B8816782B2A00836353 /* AirPortData.h */,
 				14805B8916782B2A00836353 /* AirPortData.m */,
@@ -2985,7 +2985,7 @@
 		14FA523D16A1446A00F84AFB /* 城市数据 */ = {
 			isa = PBXGroup;
 			children = (
-				14FA524516A154AA00F84AFB /* AllCityDataBase.sqlite */,
+				1436058316A2DF900048DE6A /* AllCityDataBase.sqlite */,
 				14FA523F16A1452600F84AFB /* CityData_David.h */,
 				14FA524016A1452600F84AFB /* CityData_David.m */,
 				14FA524216A1471000F84AFB /* CityDataBase_David.h */,
@@ -4694,7 +4694,6 @@
 				A8A0AA14168ED20500FCBD23 /* test.png in Resources */,
 				A8A0AA15168ED20500FCBD23 /* test@2x.png in Resources */,
 				18630445168EAA1D0022CB2F /* WriteOrderViewController.xib in Resources */,
-				14D18030168FF4860084CB48 /* AirPortDataBase.sqlite in Resources */,
 				18D19A15168FEC05004861C3 /* btn_search.png in Resources */,
 				18D19A16168FEC05004861C3 /* Drop_down_long.png in Resources */,
 				18D19A17168FEC05004861C3 /* Drop_down_short.png in Resources */,
@@ -4836,7 +4835,6 @@
 				141669C61696D55B007BB0D0 /* WarmTipViewController.xib in Resources */,
 				18D053ED169841940041240A /* icon_Default.png in Resources */,
 				18D053EE169841950041240A /* icon_Selected.png in Resources */,
-				14AF4246169806AD00C7C2CA /* AirCompanyDataBase.sqlite in Resources */,
 				14AF424B169816CC00C7C2CA /* ResultForLeijiViewCell.xib in Resources */,
 				18DDB3FF16957A9B004CEC75 /* WJOrderBasicCell.xib in Resources */,
 				18D364391696713B005CF80C /* dong1.png in Resources */,
@@ -4950,8 +4948,6 @@
 				18C65E2116A17B8700E975D4 /* ChoosePersonController.xib in Resources */,
 				18C65E2616A17B9800E975D4 /* AddPersonController.xib in Resources */,
 				18C65E2B16A191E700E975D4 /* PersonTypeCell.xib in Resources */,
-				14FA524616A154AA00F84AFB /* AllCityDataBase.sqlite in Resources */,
-
 				18FB6C6516A2736300DA8FC5 /* SubTrfficViewController.xib in Resources */,
 				EC89D7B116A361A500C60A88 /* tutorial_3.jpg in Resources */,
 				EC89D7B216A361A500C60A88 /* tutorial_2.jpg in Resources */,
@@ -4960,11 +4956,12 @@
 				EC89D7B816A368C600C60A88 /* dots_1.png in Resources */,
 				EC89D7B916A368C600C60A88 /* dots_2.png in Resources */,
 				EC89D7BA16A368C600C60A88 /* dots_0.png in Resources */,
-
 				14FA525C16A2716900F84AFB /* PersonNewInfotableViewController.xib in Resources */,
 				14FA526316A2721300F84AFB /* PersonNewInfoCell.xib in Resources */,
 				14FA526C16A2B3BB00F84AFB /* FrequentMainPageCell.xib in Resources */,
-
+				1436058416A2DF900048DE6A /* AllCityDataBase.sqlite in Resources */,
+				1436058616A2DFA30048DE6A /* AirCompanyDataBase.sqlite in Resources */,
+				1436058816A2DFAD0048DE6A /* AirPortDataBase.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5254,13 +5251,10 @@
 				18C65E2916A191CD00E975D4 /* PersonTypeCell.m in Sources */,
 				14FA524116A1452600F84AFB /* CityData_David.m in Sources */,
 				14FA524416A1471100F84AFB /* CityDataBase_David.m in Sources */,
-
 				18FB6C6416A2736300DA8FC5 /* SubTrfficViewController.m in Sources */,
-
 				14FA525B16A2716900F84AFB /* PersonNewInfotableViewController.m in Sources */,
 				14FA526116A2720000F84AFB /* PersonNewInfoCell.m in Sources */,
 				14FA526A16A2B39E00F84AFB /* FrequentMainPageCell.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

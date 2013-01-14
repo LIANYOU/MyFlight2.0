@@ -253,7 +253,7 @@
         CCLog(@"表不存在");
     }
     
-        
+    
     BOOL flag = false;
     
     if (contactDataArray!=nil) {
@@ -262,13 +262,13 @@
             
             
             flag =[db executeUpdate:@"insert into LoginContactTableCeshi(contactId,name,type,certType,certNo,birtyhday) values(?,?,?,?,?,?)",contactData.contactId,contactData.name,contactData.type,contactData.certType,contactData.certNo,contactData.birtyhday];
-            }
-
+        }
+        
         
     }
-   
-        
-        
+    
+    
+    
     if (flag) {
         
         CCLog(@"增加联系人成功");
@@ -300,11 +300,36 @@
     
     
     return flag;
- 
+    
     
 }
 
 
+
++(BOOL) addCommonContact_Login_ForOnce:(CommonContact *)contactData{
+    
+    CCLog(@"登录  在数据库中 更新数据库操作  添加乘机人");
+    
+    FMDatabase *db =[self openDatabase];
+    
+    BOOL flag = false;
+    
+      flag =[db executeUpdate:@"insert into LoginContactTableCeshi(contactId,name,type,certType,certNo,birtyhday) values(?,?,?,?,?,?)",contactData.contactId,contactData.name,contactData.type,contactData.certType,contactData.certNo,contactData.birtyhday];
+    
+      
+    if (flag) {
+        
+        CCLog(@"增加联系人成功");
+        
+    } else{
+        
+        CCLog(@"增加失败");
+    }
+    
+    
+    return flag;
+    
+  }
 
 
 @end
