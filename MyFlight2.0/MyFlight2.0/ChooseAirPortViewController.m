@@ -585,9 +585,18 @@
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
     locationFlag = @"location";
+
+    
+    
     self.airPortName = [info objectForKey:@"name"];
     
-    [self.tableView reloadData];
+    if ([self.airPortName isEqualToString:@"noInfo"]) {
+        
+    }
+    else{
+        [self.tableView reloadData];
+    }
+    
     
 }
 

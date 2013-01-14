@@ -381,6 +381,7 @@
 		18AD330A168C6EF40065BF08 /* FlightInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD32FF168C6EF40065BF08 /* FlightInformationViewController.m */; };
 		18AD330C168C6EF40065BF08 /* PickSeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD3302168C6EF40065BF08 /* PickSeatViewController.m */; };
 		18B8319D16A3D90D0046CB0C /* LocationAirPortWJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8319C16A3D90D0046CB0C /* LocationAirPortWJ.m */; };
+		18B831AC16A41F5E0046CB0C /* title_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B831AB16A41F5E0046CB0C /* title_bar@2x.png */; };
 		18C30D2A16858481009B0A54 /* history.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D2916858481009B0A54 /* history.sqlite */; };
 		18C30D3416859223009B0A54 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D3316859223009B0A54 /* 03.png */; };
 		18C30D51168598D7009B0A54 /* calendar.txt in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D48168598D7009B0A54 /* calendar.txt */; };
@@ -474,7 +475,6 @@
 		18CB486A16914CE200780BB7 /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB481716914CE200780BB7 /* tab.png */; };
 		18CB486B16914CE200780BB7 /* tab_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB481816914CE200780BB7 /* tab_bg.png */; };
 		18CB486C16914CE200780BB7 /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = 18CB481916914CE200780BB7 /* Thumbs.db */; };
-		18CB486D16914CE200780BB7 /* title_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB481A16914CE200780BB7 /* title_bar.png */; };
 		18CB486E16914CE200780BB7 /* triangle_white_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB481B16914CE200780BB7 /* triangle_white_down.png */; };
 		18CB486F16914CE200780BB7 /* triangle_white_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB481C16914CE200780BB7 /* triangle_white_up.png */; };
 		18CB487016914CE200780BB7 /* white_block1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB481D16914CE200780BB7 /* white_block1.png */; };
@@ -1378,6 +1378,7 @@
 		18AD3302168C6EF40065BF08 /* PickSeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickSeatViewController.m; sourceTree = "<group>"; };
 		18B8319B16A3D90D0046CB0C /* LocationAirPortWJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationAirPortWJ.h; sourceTree = "<group>"; };
 		18B8319C16A3D90D0046CB0C /* LocationAirPortWJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAirPortWJ.m; sourceTree = "<group>"; };
+		18B831AB16A41F5E0046CB0C /* title_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title_bar@2x.png"; sourceTree = "<group>"; };
 		18C30D2916858481009B0A54 /* history.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = history.sqlite; sourceTree = "<group>"; };
 		18C30D3316859223009B0A54 /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03.png; sourceTree = "<group>"; };
 		18C30D48168598D7009B0A54 /* calendar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar.txt; sourceTree = "<group>"; };
@@ -1490,7 +1491,6 @@
 		18CB481716914CE200780BB7 /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab.png; sourceTree = "<group>"; };
 		18CB481816914CE200780BB7 /* tab_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_bg.png; sourceTree = "<group>"; };
 		18CB481916914CE200780BB7 /* Thumbs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thumbs.db; sourceTree = "<group>"; };
-		18CB481A16914CE200780BB7 /* title_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_bar.png; sourceTree = "<group>"; };
 		18CB481B16914CE200780BB7 /* triangle_white_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_white_down.png; sourceTree = "<group>"; };
 		18CB481C16914CE200780BB7 /* triangle_white_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_white_up.png; sourceTree = "<group>"; };
 		18CB481D16914CE200780BB7 /* white_block1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_block1.png; sourceTree = "<group>"; };
@@ -3518,6 +3518,7 @@
 		18CB47CD16914CE100780BB7 /* 机票预订 */ = {
 			isa = PBXGroup;
 			children = (
+				18B831AB16A41F5E0046CB0C /* title_bar@2x.png */,
 				18069BD7169FAD2E000F849F /* btn_attention.png */,
 				18069BD8169FAD2E000F849F /* btn_cancel.png */,
 				18D0D6C1169D67400028995B /* icon_screening_click.png */,
@@ -3594,7 +3595,6 @@
 				18CB481716914CE200780BB7 /* tab.png */,
 				18CB481816914CE200780BB7 /* tab_bg.png */,
 				18CB481916914CE200780BB7 /* Thumbs.db */,
-				18CB481A16914CE200780BB7 /* title_bar.png */,
 				18CB481B16914CE200780BB7 /* triangle_white_down.png */,
 				18CB481C16914CE200780BB7 /* triangle_white_up.png */,
 				18CB481D16914CE200780BB7 /* white_block1.png */,
@@ -4821,7 +4821,6 @@
 				18CB486A16914CE200780BB7 /* tab.png in Resources */,
 				18CB486B16914CE200780BB7 /* tab_bg.png in Resources */,
 				18CB486C16914CE200780BB7 /* Thumbs.db in Resources */,
-				18CB486D16914CE200780BB7 /* title_bar.png in Resources */,
 				18CB486E16914CE200780BB7 /* triangle_white_down.png in Resources */,
 				18CB486F16914CE200780BB7 /* triangle_white_up.png in Resources */,
 				18CB487016914CE200780BB7 /* white_block1.png in Resources */,
@@ -5025,6 +5024,7 @@
 				1436058616A2DFA30048DE6A /* AirCompanyDataBase.sqlite in Resources */,
 				1436058816A2DFAD0048DE6A /* AirPortDataBase.sqlite in Resources */,
 				18C65E4816A2591B00E975D4 /* PostCityViewController.xib in Resources */,
+				18B831AC16A41F5E0046CB0C /* title_bar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

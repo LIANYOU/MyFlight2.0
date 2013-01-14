@@ -82,7 +82,15 @@
             
             NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
             NSString * apName = [dic objectForKey:@"apName"];
-            [dictionary setObject:apName forKey:@"name"];
+            
+            if (apName != nil) {
+                [dictionary setObject:apName forKey:@"name"];
+
+            }
+            else{
+                [dictionary setObject:@"noInfo" forKey:@"name"];
+
+            }
             
         
             if ([message length]==0) {

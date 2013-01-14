@@ -47,7 +47,7 @@
     self.postArr = [[NSUserDefaults standardUserDefaults] objectForKey:@"TraveController"];
 
     btnTag = [[self.postArr objectAtIndex:2] intValue];
-    NSLog(@"---------------   %d",btnTag);
+
   
     if (self.postArr) {
         self.postInfoArr = [self.postArr objectAtIndex:3];
@@ -318,6 +318,8 @@
 -(void)back
 {
     NSArray * arr = nil;
+    NSLog(@"self.flag    %d",self.flag);
+    
     if (self.flag != 3) {
         arr = [NSArray arrayWithObjects:name.text,city.text,address.text,phone.text,@"平信", nil];
     }

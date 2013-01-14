@@ -28,7 +28,7 @@
 
 
 #import "MyLowOrderListViewController.h"
-
+#import "UIImage+scaleImage.h"
 @interface ViewController ()
 
 @end
@@ -37,7 +37,10 @@
 
 - (void)viewDidLoad
 {
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title_bar1.png"] forBarMetrics:UIBarMetricsDefault];
+   // UIImage * image = [UIImage scaleImage:[UIImage imageNamed:@"title_bar.png"] toScale:1];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title_bar.png"] forBarMetrics:UIBarMetricsDefault];
+    
     [super viewDidLoad];
     
   
