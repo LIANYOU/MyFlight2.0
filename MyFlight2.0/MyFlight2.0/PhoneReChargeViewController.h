@@ -35,4 +35,9 @@
 @property(nonatomic,retain)UITextField *accountField;
 @property(nonatomic,retain)UITextField *pwdField;
 
+
+- (IBAction)backKeyBoard:(id)sender;
+
+
+
 @end

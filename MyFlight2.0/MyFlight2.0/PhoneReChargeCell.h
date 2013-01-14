@@ -14,4 +14,8 @@
 
 @property (retain, nonatomic) IBOutlet UITextField *thisDetailLabel;
 
+
+
+
+
 @end
