@@ -12,11 +12,18 @@
 #import "AutomaticPositioningCell.h"
 #import "AirPortData.h"
 #import "AppConfigure.h"
+#import "LocationAirPortWJ.h"
+#import "UIQuickHelp.h"
 @interface ChooseAirPortViewController (){
     
     NSMutableArray *sectionTitles;
     NSMutableSet *selectItem;
     NSInteger selectIndex;
+    
+    
+    
+    
+    NSString * locationFlag ; // 已经定位以后的标记位
 }
 
 @property(nonatomic,retain) NSMutableDictionary *resultDic;
@@ -114,8 +121,41 @@
     
     NSLog(@"字典里面 一共有%d个分区",self.resultDic.count);
     
+    
+    
+    // 机场定位
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    [locationManager startUpdatingLocation];
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
+
+#pragma mark ---  地图定位
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    [locationManager stopUpdatingLocation];
+    
+    NSString *strLat = [NSString stringWithFormat:@"%.4f",newLocation.coordinate.latitude];
+    NSString *strLng = [NSString stringWithFormat:@"%.4f",newLocation.coordinate.longitude];
+    NSLog(@"Y: %@  X: %@", strLat, strLng);
+    
+    
+    LocationAirPortWJ * location = [[LocationAirPortWJ alloc] initWithX:strLng andY:strLat andMapType:@"gps" andCode:nil andCodeType:nil andDelegate:self];
+    location.delegate = self;
+    
+    [location getLocationName];
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"locError:%@", error);
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -254,6 +294,14 @@
                 cell = [array objectAtIndex:0];
             }
             
+            AutomaticPositioningCell *thisCell =(AutomaticPositioningCell *) cell;
+            
+            if ([locationFlag isEqualToString:@"location"]) {
+                thisCell.thsiImage.hidden = YES;
+                thisCell.apName.text =  self.airPortName;
+            }
+            
+        
             
         } else{
             
@@ -513,6 +561,35 @@
     [self.filterArray removeAllObjects];
 }
 
+#pragma mark -
+
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+}
+
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+    
+    locationFlag = @"location";
+    self.airPortName = [info objectForKey:@"name"];
+    
+    [self.tableView reloadData];
+    
+}
 
 
 

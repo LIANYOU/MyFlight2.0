@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+#import "ServiceDelegate.h"
 @class ChooseAirPortViewController;
 @class  AirPortData;
 @protocol ChooseAirPortViewControllerDelegate <NSObject>
@@ -21,9 +23,11 @@
 
 @end
 
-@interface ChooseAirPortViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ChooseAirPortViewControllerDelegate,UISearchBarDelegate,UISearchDisplayDelegate>
+@interface ChooseAirPortViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ChooseAirPortViewControllerDelegate,UISearchBarDelegate,UISearchDisplayDelegate,MKMapViewDelegate, CLLocationManagerDelegate,ServiceDelegate>
 
-
+{
+      CLLocationManager *locationManager;  
+}
 
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar; //搜索条
 
@@ -35,8 +39,7 @@
 @property(nonatomic,retain)NSString *endAirPortName; //到达机场 
 @property(nonatomic,assign)NSInteger choiceTypeOfAirPort; //选择的类型 单程 还是往返
 
-
-
+@property (nonatomic, retain) NSString * airPortName;
 
 
 @property(nonatomic,assign)id<ChooseAirPortViewControllerDelegate> delegate;
