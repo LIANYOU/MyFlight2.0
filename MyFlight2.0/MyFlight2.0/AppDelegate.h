@@ -22,18 +22,21 @@
 #define tencentWeChatAppKey @"fbfd760d82bcdee8a2500edda8cdd01d"
 
 #import <UIKit/UIKit.h>
-
+#import "AirPortData.h"
 @class ViewController;//
 @class SinaWeibo;
 
 @interface AppDelegate : UIResponder  <UIApplicationDelegate>{
     SinaWeibo *sinaweibo;
     SinaWeibo *justWeibo;
+    AirPortData * TravelAssisData;
 }
 @property (readonly, nonatomic) SinaWeibo *sinaweibo;
 @property (readonly, nonatomic) SinaWeibo *justWeibo;
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) ViewController *viewController;
+
+@property (nonatomic,retain) AirPortData * TravelAssisData;
 
 @end

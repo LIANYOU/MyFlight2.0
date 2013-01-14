@@ -16,7 +16,7 @@
     NSArray * titleArray;   
     AirPortData * _myAirPortData;
     NSString * airPortCode;     // 机场三字码
-    UILabel * titleLable;
+    UILabel * rightItemTitleLable;
     
     
     

@@ -419,7 +419,7 @@
 }
 -(void)btnPhoneClick:(id)sender{
     NSLog(@"打电话");
-    
+//    UIActionSheet * actionSheet = [UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"" otherButtonTitles:@"出发机场电话",@"到达机场电话", nil;
 }
 -(void)btnShareClick:(id)sender{
     NSLog(@"发微信");

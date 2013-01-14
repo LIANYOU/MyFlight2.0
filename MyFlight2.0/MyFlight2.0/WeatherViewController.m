@@ -193,11 +193,13 @@
                     NSString * myStr = [tempPicNameArray objectAtIndex:i];
                     
                     [selectPicName setString:myStr];
+                    
                 }
             }
+            
             NSLog(@"大图 ： %@",bigPicName);
             
-            UIImageView * bigPicImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[ NSString stringWithFormat:@"%@_big.png",bigPicName]]];
+            UIImageView * bigPicImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[ NSString stringWithFormat:@"%@_big.png",selectPicName]]];
             bigPicImageView.frame = CGRectMake(185, 27, 115, 115);
             [cell addSubview:bigPicImageView];
             [bigPicImageView release];

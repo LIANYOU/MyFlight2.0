@@ -13,6 +13,7 @@
 #import "JSONKit.h"
 #import "UIButton+BackButton.h"
 #import "Ann.h"
+#import "AppDelegate.h"
 @interface FlightCompanyDistrubuteViewController ()
 
 @end
@@ -67,7 +68,7 @@
     [scrollView addSubview:myTitleLabel];
    
    
-    myTextView = [[UILabel alloc]initWithFrame:CGRectMake(20, 51, 280, myView.bounds.size.height - 55-30)];
+    myTextView = [[UILabel alloc]initWithFrame:CGRectMake(20, 45, 280, myView.bounds.size.height - 55-30)];
     myTextView.backgroundColor = [UIColor clearColor];
     [myTextView setNumberOfLines:0];
     myTextView.lineBreakMode = UILineBreakModeWordWrap;
@@ -78,9 +79,9 @@
     [scrollView addSubview:myTextView];
     [myView addSubview:scrollView];
     
-    goToWebViewBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, myView.bounds.size.height - 30, 320, 15)];
+    goToWebViewBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, myView.bounds.size.height - 28, 320, 20)];
     goToWebViewBtn.hidden = YES;
-    UILabel * btnLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 18)];
+    UILabel * btnLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 5, 320, 15)];
     btnLabel.font = [UIFont systemFontOfSize:13];
     btnLabel.text = @"查看更多 >";
     btnLabel.textAlignment = NSTextAlignmentCenter;
@@ -97,6 +98,22 @@
     myViewTap.numberOfTapsRequired = 1;
     myViewTap.numberOfTouchesRequired = 1;
     [myTitleLabel addGestureRecognizer:myViewTap];
+    
+    
+    
+    //遮罩
+    shadeView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, myView.bounds.size.height)];
+    shadeView.backgroundColor = [UIColor blackColor];
+    shadeView.alpha = 0.0;
+    [myView addSubview:shadeView];
+  
+    
+    UITapGestureRecognizer * shadeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(mapChangeToBottom)];
+    shadeTap.numberOfTapsRequired = 1;
+    shadeTap.numberOfTouchesRequired = 1;
+    [shadeView addGestureRecognizer:shadeTap];
+    [shadeTap release];
+    
     
     //地图
 //    [self addMap];
@@ -296,31 +313,54 @@
    
     
     
-//    myMapView.showsUserLocation = YES;
-
+#pragma mark - 地图遮罩
+    
+    //地图遮罩
+    shadeMap = [[UIView alloc]initWithFrame:myMapView.bounds];
+    shadeMap.backgroundColor = [UIColor blackColor];
+    shadeMap.alpha = .5;
+    UITapGestureRecognizer * mapShadeTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(mapTapClick:)];
+    [shadeMap addGestureRecognizer:mapShadeTap];
+    [mapShadeTap release];
+    
+    
+    [myMapView addSubview:shadeMap];
+    
+    
     [self.view addSubview:myMapView];
 
 }
 
 -(void)mapTapClick:(UITapGestureRecognizer *)tap{
-
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     myMapView.frame = CGRectMake(0, 60, 320, [[UIScreen mainScreen] bounds].size.height - 64 - 60);
+    shadeView.alpha = 0.5;
+    
+    shadeMap.alpha = 0;
+    shadeMap.frame = myMapView.bounds;
     [UIView commitAnimations];
 }
 
 -(void)mapChangeToFullScreen{
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.75];
     myMapView.frame = CGRectMake(0, 60, 320, [[UIScreen mainScreen] bounds].size.height - 64 - 60);
     [UIView commitAnimations];
+    
+    
+    
 }
 -(void)mapChangeToBottom{
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     myMapView.frame = CGRectMake(0,[[UIScreen mainScreen] bounds].size.height - 180 , 320, 180);
+    shadeView.alpha = 0.0;
+    shadeMap.alpha = .5;
+    shadeMap.frame = myMapView.bounds;
     [UIView commitAnimations];
 }
 -(void)moreBtnClick:(id)sender{

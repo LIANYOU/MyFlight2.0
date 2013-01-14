@@ -16,6 +16,7 @@
 #import "BaggageViewController.h"
 #import "WeatherViewController.h"
 #import "UIButton+BackButton.h"
+#import "AppDelegate.h"
 @interface TravelAssistantViewController ()
 
 @end
@@ -42,6 +43,20 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     [leftItem release];
 
+
+    
+#pragma mark - 读取用户选择的机场信息
+    AppDelegate * shareApp = [UIApplication sharedApplication].delegate;
+    if (shareApp.TravelAssisData) {
+        NSLog(@"not nil");
+        self.myAirPortData = shareApp.TravelAssisData;
+    }else{
+        NSLog(@"data is nil");
+    }
+    
+    
+    
+    
     
     airPortCode = [[NSString alloc]initWithString:@"PEK"];
     self.view.backgroundColor = FOREGROUND_COLOR;
@@ -59,10 +74,29 @@
     NSLog(@"image count : %d",[imageArray count]);
     titleArray = [[NSArray alloc]initWithObjects:@"机场介绍",@"机场交通",@"值机柜台",@"常用电话",@"航空公司分布",@"天气预报" ,nil];
     
-    UIButton * cusRightBtn = [UIButton backButtonType:4 andTitle:@"选择机场"];
+//    UIButton * cusRightBtn = [UIButton backButtonType:4 andTitle:@"选择机场"];
+    UIButton * cusRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cusRightBtn setImage:[UIImage imageNamed:@"btn_4words.png"] forState:UIControlStateNormal];
+    [cusRightBtn setImage:[UIImage imageNamed:@"btn_4words_click.png"] forState:UIControlStateHighlighted];
+    cusRightBtn.frame = CGRectMake(0, 0, 80, 30);
+    rightItemTitleLable = [[UILabel alloc]initWithFrame:CGRectMake(2, 2, 76, 26)];
+    rightItemTitleLable.backgroundColor = [UIColor clearColor];
+    rightItemTitleLable.textColor = [UIColor whiteColor];
+    rightItemTitleLable.font = [UIFont systemFontOfSize:15];
+    [cusRightBtn addSubview:rightItemTitleLable];
+    if (self.myAirPortData.apName) {
+        rightItemTitleLable.text = self.myAirPortData.apName;
+    }else{
+        rightItemTitleLable.text = @"选择机场";
+    }
+    rightItemTitleLable.textAlignment = NSTextAlignmentCenter;
+    
+
     [cusRightBtn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithCustomView:cusRightBtn];
     self.navigationItem.rightBarButtonItem = right;
+    
+
    
 }
 
@@ -209,8 +243,11 @@
 - (void) ChooseAirPortViewController:(ChooseAirPortViewController *) controlelr chooseType:(NSInteger ) choiceType didSelectAirPortInfo:(AirPortData *) airPort{
     self.myAirPortData = airPort;
     NSLog(@"myairPortData : %@",self.myAirPortData.apCode);
-    titleLable.text = airPort.apName;
+    rightItemTitleLable.text = airPort.apName;
     
+    AppDelegate * shareApp = [UIApplication sharedApplication].delegate;
+    shareApp.TravelAssisData = airPort;
+
 }
 
 #pragma mark - alert代理方法
@@ -227,6 +264,7 @@
         controller.delegate =self;
         
         [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
     }
 }
 

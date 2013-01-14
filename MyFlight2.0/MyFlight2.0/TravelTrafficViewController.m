@@ -42,8 +42,15 @@
     [leftItem release];
     
 #pragma mark - segment背景
-    UIImageView * segBg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bar_bg.png"]];
-    [segBg setFrame:CGRectMake(0, 0, 320, 58)];
+    UIImageView * segBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 48)];
+    segBg.backgroundColor = [UIColor colorWithRed:212/255.0 green:218/255.0 blue:228/255.0 alpha:1];
+    
+    //蓝线
+    UIImageView * bottomLine = [[UIImageView alloc]initWithFrame:CGRectMake(0, 47, 320, 1)];
+    bottomLine.backgroundColor = LINE_COLOR_BLUE;
+    [segBg addSubview:bottomLine];
+    [bottomLine release];
+    
     [self.view addSubview:segBg];
     [segBg release];
     
@@ -105,7 +112,7 @@
     textViewLast.backgroundColor = [UIColor clearColor];
     textViewLast.editable = NO;
     textViewLast.font = [UIFont systemFontOfSize:12];
-    textViewLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    textViewLast.textColor = FONT_COLOR_GRAY;
     [contentTaxiView addSubview:textViewLast];
     
     //参考路线
@@ -118,7 +125,7 @@
     [label2Last release];
     //路线1
     taxiLineLast = [[UILabel alloc]initWithFrame:CGRectMake(10, 252, 128, 22)];
-    taxiLineLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    taxiLineLast.textColor = FONT_COLOR_GRAY;
     taxiLineLast.backgroundColor = [UIColor clearColor];
     taxiLineLast.font = [UIFont systemFontOfSize:14];
     [contentTaxiView addSubview:taxiLineLast];
@@ -127,7 +134,7 @@
     
     //距离
     taxiLineRangeLast = [[UILabel alloc]initWithFrame:CGRectMake(151, 253, 74, 21)];
-    taxiLineRangeLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    taxiLineRangeLast.textColor = FONT_COLOR_GRAY;
     taxiLineRangeLast.backgroundColor = [UIColor clearColor];
     taxiLineRangeLast.font = [UIFont systemFontOfSize:14];
     [contentTaxiView addSubview:taxiLineRangeLast];
@@ -160,7 +167,7 @@
     
     taxiStopPlaceLast = [[UILabel alloc]initWithFrame:CGRectMake(10, 330, 150, 26)];
     taxiStopPlaceLast.font = [UIFont systemFontOfSize:14];
-    taxiStopPlaceLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    taxiStopPlaceLast.textColor = FONT_COLOR_GRAY;
     taxiStopPlaceLast.textAlignment = NSTextAlignmentLeft;
     taxiStopPlaceLast.backgroundColor = [UIColor clearColor];
     [contentTaxiView addSubview:taxiStopPlaceLast];
@@ -168,7 +175,7 @@
     taxiStopDetailPlaceLast = [[UILabel alloc]initWithFrame:CGRectMake(160, 330, 150, 26)];
     taxiStopDetailPlaceLast.textAlignment = NSTextAlignmentRight;
     taxiStopDetailPlaceLast.font = [UIFont systemFontOfSize:14];
-    taxiStopDetailPlaceLast.textColor = FONT_COLOR_LIGHT_GRAY;
+    taxiStopDetailPlaceLast.textColor = FONT_COLOR_GRAY;
     taxiStopDetailPlaceLast.backgroundColor = [UIColor clearColor];
     [contentTaxiView addSubview:taxiStopDetailPlaceLast];
    
@@ -194,7 +201,7 @@
     UIView * navgationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 210, 44)];
     
     
-    navLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 130, 44)];
+    navLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 130, 44)];
     navLabel.backgroundColor = [UIColor clearColor];
     navLabel.textColor = [UIColor whiteColor];
     navLabel.font = [UIFont systemFontOfSize:14];
@@ -203,7 +210,7 @@
     navLabel.text = [NSString stringWithFormat:@"%@市区-机场",self.airPortName];
     
     navImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"triangle_white_down.png"]];
-    navImageView.frame = CGRectMake(135, 17, 10, 10);
+    navImageView.frame = CGRectMake(155, 17, 10, 10);
     [navgationView addSubview:navImageView];
     [navgationView addSubview:navLabel];
     self.navigationItem.titleView = navgationView;
@@ -817,8 +824,9 @@
             [cell addSubview:lastBusLabel];
             [lastBusLabel release];
             
-            UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(300, 20, 9, 12)];
-            [imageView setImage:[UIImage imageNamed:@"icon_arrowhead_.png"]];
+            UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_arrowhead_.png"]];
+            imageView.frame = CGRectMake(300, 20, 9, 12);
+//            [imageView setImage:[UIImage imageNamed:@"icon_arrowhead_.png"]];
             [cell addSubview:imageView];
             [imageView release];
             

@@ -29,6 +29,8 @@
     BOOL isWebView;
     BOOL mapIsFullScreen;
     UIButton * goToWebViewBtn;  //百度百科按钮
+    UIView * shadeView; //遮罩
+    UIView * shadeMap;  //地图遮罩
 }
 //@property(nonatomic,retain) NSString * airPortCode;
 @property(nonatomic,retain)AirPortData * subAirPortData;

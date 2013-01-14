@@ -109,7 +109,7 @@ int whichDay(int year,int month,int day);
     [myConditionListTableView addSubview:scrollview];
     scrollview.userInteractionEnabled = YES;
     
-    remindLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 340, 320, 20)];
+    remindLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 140, 320, 20)];
     remindLabel.text = @"关注后可免费获得通知";
     remindLabel.font = [UIFont systemFontOfSize:14];
     remindLabel.backgroundColor = [UIColor clearColor];
@@ -118,7 +118,7 @@ int whichDay(int year,int month,int day);
     remindLabel.textAlignment = NSTextAlignmentCenter;
     [myConditionListView addSubview:remindLabel];
     
-    remindLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 360, 320, 20)];
+    remindLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 120, 320, 20)];
     remindLabel1.text = @"随时了解航班起降信息";
     remindLabel1.font = [UIFont systemFontOfSize:14];
     remindLabel1.backgroundColor = [UIColor clearColor];
