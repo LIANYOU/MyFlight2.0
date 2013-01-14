@@ -53,7 +53,7 @@
     
     tableView.layer.borderColor = [BORDER_COLOR CGColor];
     tableView.layer.borderWidth = 1.0f;
-    tableView.layer.cornerRadius = 10.0f;
+    tableView.layer.cornerRadius = CORNER_RADIUS;
     
     [self.view addSubview:tableView];
     [tableView release];
@@ -209,6 +209,13 @@
         [cell addSubview:line];
         [line release];
     }
+    
+    line = [[UIView alloc] initWithFrame:[tableView cellForRowAtIndexPath:indexPath].bounds];
+    
+    line.backgroundColor = BACKGROUND_COLOR;
+    
+    cell.selectedBackgroundView = line;
+    [line release];
     
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(14, 13.5f, 180, 17)];
     

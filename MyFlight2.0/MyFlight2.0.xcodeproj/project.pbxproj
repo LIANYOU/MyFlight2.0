@@ -817,6 +817,13 @@
 		A8A0AA4E168ED4CA00FCBD23 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A0AA4D168ED4CA00FCBD23 /* CoreLocation.framework */; };
 		A8A0AA50168ED4D700FCBD23 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A0AA4F168ED4D700FCBD23 /* Security.framework */; };
 		A8A0AA52168ED53800FCBD23 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A0AA51168ED53800FCBD23 /* libicucore.dylib */; };
+		EC89D7B116A361A500C60A88 /* tutorial_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC89D7AD16A361A500C60A88 /* tutorial_3.jpg */; };
+		EC89D7B216A361A500C60A88 /* tutorial_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC89D7AE16A361A500C60A88 /* tutorial_2.jpg */; };
+		EC89D7B316A361A500C60A88 /* tutorial_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC89D7AF16A361A500C60A88 /* tutorial_1.jpg */; };
+		EC89D7B416A361A500C60A88 /* tutorial_0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC89D7B016A361A500C60A88 /* tutorial_0.jpg */; };
+		EC89D7B816A368C600C60A88 /* dots_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EC89D7B516A368C600C60A88 /* dots_1.png */; };
+		EC89D7B916A368C600C60A88 /* dots_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EC89D7B616A368C600C60A88 /* dots_2.png */; };
+		EC89D7BA16A368C600C60A88 /* dots_0.png in Resources */ = {isa = PBXBuildFile; fileRef = EC89D7B716A368C600C60A88 /* dots_0.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1940,6 +1947,13 @@
 		A8A0AA4D168ED4CA00FCBD23 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A8A0AA4F168ED4D700FCBD23 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A8A0AA51168ED53800FCBD23 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		EC89D7AD16A361A500C60A88 /* tutorial_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial_3.jpg; sourceTree = "<group>"; };
+		EC89D7AE16A361A500C60A88 /* tutorial_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial_2.jpg; sourceTree = "<group>"; };
+		EC89D7AF16A361A500C60A88 /* tutorial_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial_1.jpg; sourceTree = "<group>"; };
+		EC89D7B016A361A500C60A88 /* tutorial_0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial_0.jpg; sourceTree = "<group>"; };
+		EC89D7B516A368C600C60A88 /* dots_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dots_1.png; sourceTree = "<group>"; };
+		EC89D7B616A368C600C60A88 /* dots_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dots_2.png; sourceTree = "<group>"; };
+		EC89D7B716A368C600C60A88 /* dots_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dots_0.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2489,6 +2503,13 @@
 		14633E2116952EE000701518 /* 更多 */ = {
 			isa = PBXGroup;
 			children = (
+				EC89D7B716A368C600C60A88 /* dots_0.png */,
+				EC89D7B516A368C600C60A88 /* dots_1.png */,
+				EC89D7B616A368C600C60A88 /* dots_2.png */,
+				EC89D7AD16A361A500C60A88 /* tutorial_3.jpg */,
+				EC89D7AE16A361A500C60A88 /* tutorial_2.jpg */,
+				EC89D7AF16A361A500C60A88 /* tutorial_1.jpg */,
+				EC89D7B016A361A500C60A88 /* tutorial_0.jpg */,
 				14E4AC3616A07B4000DE365A /* icon_choosed.png */,
 				14E4AC3316A07B3500DE365A /* icon_not_choosed.png */,
 				14633E2216952EF500701518 /* icon_aboutus.png */,
@@ -4899,6 +4920,13 @@
 				18C65E2B16A191E700E975D4 /* PersonTypeCell.xib in Resources */,
 				14FA524616A154AA00F84AFB /* AllCityDataBase.sqlite in Resources */,
 				18FB6C6516A2736300DA8FC5 /* SubTrfficViewController.xib in Resources */,
+				EC89D7B116A361A500C60A88 /* tutorial_3.jpg in Resources */,
+				EC89D7B216A361A500C60A88 /* tutorial_2.jpg in Resources */,
+				EC89D7B316A361A500C60A88 /* tutorial_1.jpg in Resources */,
+				EC89D7B416A361A500C60A88 /* tutorial_0.jpg in Resources */,
+				EC89D7B816A368C600C60A88 /* dots_1.png in Resources */,
+				EC89D7B916A368C600C60A88 /* dots_2.png in Resources */,
+				EC89D7BA16A368C600C60A88 /* dots_0.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

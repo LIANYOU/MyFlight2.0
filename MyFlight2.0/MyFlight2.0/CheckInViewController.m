@@ -30,7 +30,7 @@
     
     self.navigationItem.title = @"海南航空值机";
     
-    titleArray = [[NSArray alloc] initWithObjects:@"姓      名", @"证件类型", @"证件号码", @"出发城市", nil];
+    titleArray = [[NSArray alloc] initWithObjects:@"姓      名", @"证件类型", @"证件号码", @"出发机场", nil];
     
     passportType = 0;
     depCity = @"北京";
@@ -38,11 +38,11 @@
     
     UILabel *label;
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 50, 20)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 7, 150, 14)];
     
     label.text = @"乘机人信息";
     label.textColor = FONT_COLOR_GRAY;
-    label.font = [UIFont systemFontOfSize:10.0f];
+    label.font = [UIFont systemFontOfSize:14.0f];
     label.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:label];
@@ -61,7 +61,7 @@
     
     checkInInfoTable.layer.borderColor = [BORDER_COLOR CGColor];
     checkInInfoTable.layer.borderWidth = 1.0;
-    checkInInfoTable.layer.cornerRadius = 10.0f;
+    checkInInfoTable.layer.cornerRadius = CORNER_RADIUS;
     
     [self.view addSubview:checkInInfoTable];
     [checkInInfoTable release];
@@ -167,11 +167,11 @@
         [line release];
     }
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 17, 64, 16)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 16.5, 70, 17)];
     
     title.text = [titleArray objectAtIndex:indexPath.row];
-    title.font = [UIFont systemFontOfSize:16.0f];
-    title.textColor = [UIColor colorWithRed:0.1f green:0.4f blue:0.8f alpha:1.0f];
+    title.font = [UIFont systemFontOfSize:17.0f];
+    title.textColor = FONT_COLOR_BLUE;
     title.textAlignment = UITextAlignmentCenter;
     title.backgroundColor = [UIColor clearColor];
     
@@ -181,15 +181,15 @@
     switch(indexPath.row)
     {
         case 0:
-            passName = [[UITextField alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
+            passName = [[UITextField alloc] initWithFrame:CGRectMake(74, 16.5, 216, 20)];
             
-            passName.font = [UIFont systemFontOfSize:16.0f];
+            passName.font = [UIFont systemFontOfSize:17.0f];
             passName.textColor = FONT_COLOR_DEEP_GRAY;
             passName.textAlignment = UITextAlignmentRight;
             passName.backgroundColor = [UIColor clearColor];
             passName.keyboardType = UIKeyboardTypeNamePhonePad;
             
-            passName.delegate = self;
+            passName.clearButtonMode = UITextFieldViewModeWhileEditing;
             
             [cell addSubview:passName];
             [passName release];
@@ -198,14 +198,14 @@
         case 1:
             changeType = [UIButton buttonWithType:UIButtonTypeCustom];
             
-            changeType.frame = CGRectMake(74, 17, 194, 16);
+            changeType.frame = CGRectMake(74, 16.5, 194, 17);
             changeType.backgroundColor = [UIColor clearColor];
             
             [changeType setContentEdgeInsets:UIEdgeInsetsZero];
             
             [changeType addTarget:self action:@selector(choosePassportType) forControlEvents:UIControlEventTouchUpInside];
             
-            typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 194, 16)];
+            typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 194, 17)];
             
             if(passportType == 0)
             {
@@ -220,7 +220,7 @@
                 typeLabel.text = @"其他";
             }
             
-            typeLabel.font = [UIFont systemFontOfSize:16.0f];
+            typeLabel.font = [UIFont systemFontOfSize:17.0f];
             typeLabel.textColor = FONT_COLOR_DEEP_GRAY;
             typeLabel.textAlignment = UITextAlignmentRight;
             typeLabel.backgroundColor = [UIColor clearColor];
@@ -232,15 +232,15 @@
             
             break;
         case 2:
-            idNo = [[UITextField alloc] initWithFrame:CGRectMake(74, 17, 194, 16)];
+            idNo = [[UITextField alloc] initWithFrame:CGRectMake(74, 16.5, 216, 20)];
             
-            idNo.font = [UIFont systemFontOfSize:16.0f];
+            idNo.font = [UIFont systemFontOfSize:17.0f];
             idNo.textColor = FONT_COLOR_DEEP_GRAY;
             idNo.textAlignment = UITextAlignmentRight;
             idNo.backgroundColor = [UIColor clearColor];
             idNo.keyboardType = UIKeyboardTypeNumberPad;
             
-            idNo.delegate = self;
+            idNo.clearButtonMode = UITextFieldViewModeWhileEditing;
             
             [cell addSubview:idNo];
             [idNo release];
@@ -249,18 +249,18 @@
         case 3:
             changeCity = [UIButton buttonWithType:UIButtonTypeCustom];
             
-            changeCity.frame = CGRectMake(74, 17, 194, 16);
+            changeCity.frame = CGRectMake(74, 16.5, 194, 17);
             changeCity.backgroundColor = [UIColor clearColor];
             
             [changeCity setContentEdgeInsets:UIEdgeInsetsZero];
             
             [changeCity addTarget:self action:@selector(chooseAirport) forControlEvents:UIControlEventTouchUpInside];
             
-            cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 194, 16)];
+            cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 194, 17)];
             
             cityLabel.text = depCity;
             
-            cityLabel.font = [UIFont systemFontOfSize:16.0f];
+            cityLabel.font = [UIFont systemFontOfSize:17.0f];
             cityLabel.textColor = FONT_COLOR_DEEP_GRAY;
             cityLabel.textAlignment = UITextAlignmentRight;
             cityLabel.backgroundColor = [UIColor clearColor];
@@ -278,7 +278,7 @@
     if(indexPath.row == 1 || indexPath.row == 3)
     {
         UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrowhead.png"]];
-        arrow.frame = CGRectMake(278, 15, 12, 16);
+        arrow.frame = CGRectMake(278, 19, 9, 12);
         [cell addSubview:arrow];
         [arrow release];
     }
@@ -439,36 +439,9 @@
 - (void) ChooseAirPortViewController:(ChooseAirPortViewController *)controlelr chooseType:(NSInteger)choiceType didSelectAirPortInfo:(AirPortData *)airPort
 {
     depCity = airPort.cityName;
-    depCityCode = airPort.cityName;
+    depCityCode = airPort.apCode;
     
     cityLabel.text = depCity;
-}
-
-- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
-{
-    invisibleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    invisibleButton.frame = self.view.frame;
-    
-    [invisibleButton addTarget:textField action:@selector(resignFirstResponder) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:invisibleButton];
-    
-    return YES;
-}
-
-- (BOOL) textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-
-- (BOOL) textFieldShouldEndEditing:(UITextField *)textField
-{
-    [invisibleButton removeFromSuperview];
-    
-    return YES;
 }
 
 @end

@@ -120,11 +120,11 @@
     
     UILabel *label;
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 50, 20)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 7, 150, 14)];
     
     label.text = @"乘机人信息";
     label.textColor = FONT_COLOR_GRAY;
-    label.font = [UIFont systemFontOfSize:10.0f];
+    label.font = [UIFont systemFontOfSize:14.0f];
     label.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:label];
@@ -143,13 +143,13 @@
     
     passengerInfoTable.layer.borderColor = [BORDER_COLOR CGColor];
     passengerInfoTable.layer.borderWidth = 1.0f;
-    passengerInfoTable.layer.cornerRadius = 10.0f;
+    passengerInfoTable.layer.cornerRadius = CORNER_RADIUS;
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 135, 80, 20)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 137, 150, 14)];
     
     label.text = @"选择要值机的航班";
     label.textColor = FONT_COLOR_GRAY;
-    label.font = [UIFont systemFontOfSize:10.0f];
+    label.font = [UIFont systemFontOfSize:14.0f];
     label.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:label];
@@ -157,8 +157,9 @@
     
     flightInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 160, 300, [UIScreen mainScreen].bounds.size.height < 500 ? 210:280) style:UITableViewStylePlain];
     
-    flightInfoTable.delegate = self;
-    flightInfoTable.dataSource = self;
+    passengerInfoTable.delegate = self;
+    passengerInfoTable.dataSource = self;
+    passengerInfoTable.allowsSelection = NO;
     
     flightInfoTable.rowHeight = 70.0f;
     flightInfoTable.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -246,11 +247,11 @@
             [line release];
         }
         
-        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10, 17, 48, 16)];
+        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10, 16.5, 60, 17)];
         
         switch (indexPath.row) {
             case 0:
-                title.text = @"姓 名";
+                title.text = @"姓   名";
                 break;
             case 1:
                 title.text = @"身份证";
@@ -259,15 +260,15 @@
                 break;
         }
         
-        title.font = [UIFont systemFontOfSize:16.0f];
-        title.textColor = [UIColor colorWithRed:0.1f green:0.4f blue:0.8f alpha:1.0f];
+        title.font = [UIFont systemFontOfSize:17.0f];
+        title.textColor = FONT_COLOR_DEEP_GRAY;
         title.textAlignment = UITextAlignmentCenter;
         title.backgroundColor = [UIColor clearColor];
         
         [cell addSubview:title];
         [title release];
         
-        UILabel *value = [[UILabel alloc]initWithFrame:CGRectMake(100, 17, 190, 16)];
+        UILabel *value = [[UILabel alloc]initWithFrame:CGRectMake(100, 16.5, 193, 17)];
         
         switch (indexPath.row) {
             case 0:
@@ -280,7 +281,7 @@
                 break;
         }
         
-        value.font = [UIFont systemFontOfSize:16.0f];
+        value.font = [UIFont systemFontOfSize:17.0f];
         value.textColor = FONT_COLOR_DEEP_GRAY;
         value.textAlignment = UITextAlignmentRight;
         value.backgroundColor = [UIColor clearColor];
@@ -301,7 +302,7 @@
         
         NSDictionary *flight = [[responseDictionary objectForKey:@"segs"] objectAtIndex:indexPath.row];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 12, 50, 12)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 14, 50, 12)];
         
         label.text = [flight objectForKey:@"flightNo"];
         label.font = [UIFont systemFontOfSize:12.0f];
@@ -311,7 +312,7 @@
         [flightInfo addSubview:label];
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(10, 36, 50, 12)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(10, 34, 50, 12)];
         
         label.text = [NSString stringWithFormat:@"%@舱", [flight objectForKey:@"cabin"]];
         label.font = [UIFont systemFontOfSize:12.0f];
@@ -321,7 +322,7 @@
         [flightInfo addSubview:label];
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(65, 12, 120, 12)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(65, 14, 120, 12)];
         
         label.text = [NSString stringWithFormat:@"%@ - %@", [flight objectForKey:@"deCity"], [flight objectForKey:@"arCity"]];
         label.font = [UIFont systemFontOfSize:12.0f];
@@ -331,7 +332,7 @@
         [flightInfo addSubview:label];
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(65, 36, 120, 12)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(65, 34, 120, 12)];
         
         label.text = [NSString stringWithFormat:@"票号:%@", [flight objectForKey:@"tktNo"]];
         label.font = [UIFont systemFontOfSize:12.0f];
@@ -341,7 +342,7 @@
         [flightInfo addSubview:label];
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(195, 12, 75, 12)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(195, 14, 75, 12)];
         
         label.text = [[[flight objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:NSMakeRange(0, 11) withString:@""] stringByReplacingCharactersInRange:NSMakeRange(8, 5) withString:@""];
         label.font = [UIFont systemFontOfSize:12.0f];
@@ -351,7 +352,7 @@
         [flightInfo addSubview:label];
         [label release];
         
-        label = [[UILabel alloc] initWithFrame:CGRectMake(195, 36, 75, 12)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(195, 34, 75, 12)];
         
         label.text = [[flight objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:NSMakeRange(10, 14) withString:@""];
         label.font = [UIFont systemFontOfSize:12.0f];
@@ -381,8 +382,6 @@
         [flightInfo release];
         
         cell.backgroundColor = [UIColor clearColor];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     return cell;

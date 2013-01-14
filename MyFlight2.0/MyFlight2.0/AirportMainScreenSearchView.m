@@ -149,8 +149,6 @@
     UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
     exitButton.frame = [UIScreen mainScreen].bounds;
-    exitButton.layer.backgroundColor = [[UIColor clearColor] CGColor];
-    exitButton.layer.borderWidth = 0.0f;
     
     [exitButton addTarget:exitButton action:@selector(removeFromSuperview) forControlEvents:UIControlEventTouchDown];
     

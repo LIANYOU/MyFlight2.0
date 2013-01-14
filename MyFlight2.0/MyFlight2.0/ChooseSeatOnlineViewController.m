@@ -99,6 +99,13 @@
         [line release];
     }
     
+    line = [[UIView alloc] initWithFrame:[tableView cellForRowAtIndexPath:indexPath].bounds];
+    
+    line.backgroundColor = BACKGROUND_COLOR;
+    
+    cell.selectedBackgroundView = line;
+    [line release];
+    
     UIImageView *icon = [[UIImageView alloc] initWithImage:[imageArray objectAtIndex:indexPath.row]];
     
     icon.frame = CGRectMake(10, 14, 16, 16);

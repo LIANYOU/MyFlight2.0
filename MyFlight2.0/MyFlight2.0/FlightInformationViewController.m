@@ -107,7 +107,7 @@
     
     [self requestForData];
     
-    detailedTitleArray = [[NSArray alloc] initWithObjects:@"电子票号", @"值机状态", @"航班号", @"座位号", @"乘机人", nil];
+    detailedTitleArray = [[NSArray alloc] initWithObjects:@"票        号", @"值机状态", @"航  班  号", @"座  位  号", @"乘  机  人", nil];
     
     detailedInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, 300, 220)];
     
@@ -117,7 +117,7 @@
     
     detailedInfoTable.layer.borderColor = [BORDER_COLOR CGColor];
     detailedInfoTable.layer.borderWidth = 1.0f;
-    detailedInfoTable.layer.cornerRadius = 10.0f;
+    detailedInfoTable.layer.cornerRadius = CORNER_RADIUS;
     
     detailedInfoTable.delegate = self;
     detailedInfoTable.dataSource = self;
@@ -132,7 +132,7 @@
     
     flightInfoTable.layer.borderColor = [BORDER_COLOR CGColor];
     flightInfoTable.layer.borderWidth = 1.0f;
-    flightInfoTable.layer.cornerRadius = 10.0f;
+    flightInfoTable.layer.cornerRadius = CORNER_RADIUS;
     
     flightInfoTable.delegate = self;
     flightInfoTable.dataSource = self;
@@ -237,28 +237,28 @@
     
     if(tableView == detailedInfoTable)
     {
-        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 60, 14)];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 13.5, 80, 17)];
         
         title.text = [detailedTitleArray objectAtIndex:indexPath.row];
-        title.font = [UIFont systemFontOfSize:14.0f];
-        title.textAlignment = UITextAlignmentCenter;
+        title.font = [UIFont systemFontOfSize:17.0f];
+        title.textAlignment = UITextAlignmentLeft;
         title.textColor = FONT_COLOR_LIGHT_GRAY;
         title.backgroundColor = [UIColor clearColor];
         
         [cell addSubview:title];
         [title release];
         
-        UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(80, 15, 210, 14)];
+        UILabel *value = [[UILabel alloc] initWithFrame:CGRectMake(90, 13.5, 200, 17)];
         
         switch (indexPath.row) {
             case 0:
-                value.text = [cussInfo objectForKey:@"etNo"];
+                value.text = [responseDictionary objectForKey:@"tktNo"];
                 break;
             case 1:
                 if([[cussInfo objectForKey:@"result"] isEqualToString:@"1"])
                 {
                     value.text = @"已值机";
-                    [value setTextColor:[UIColor greenColor]];
+                    value.textColor = FONT_COLOR_GREEN;
                 }
                 break;
             case 2:
@@ -274,7 +274,7 @@
                 break;
         }
         
-        value.font = [UIFont systemFontOfSize:14.0f];
+        value.font = [UIFont systemFontOfSize:17.0f];
         value.textAlignment = UITextAlignmentRight;
         value.textColor = FONT_COLOR_DEEP_GRAY;
         value.backgroundColor = [UIColor clearColor];
@@ -299,7 +299,7 @@
             [cell addSubview:label];
             [label release];
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(140, 14, 120, 16)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(130, 14, 120, 16)];
             
             label.text = [NSString stringWithFormat:@"%@%@", [cussInfo objectForKey:@"airlinecode"], [cussInfo objectForKey:@"airlineNo"]];
             label.font = [UIFont systemFontOfSize:16.0f];
@@ -314,10 +314,10 @@
         {
             UILabel *label;
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 7, 80, 13)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(100, 8, 80, 12)];
             
             label.text = @"起飞时间";
-            label.font = [UIFont systemFontOfSize:13.0f];
+            label.font = [UIFont systemFontOfSize:12.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = FONT_COLOR_LIGHT_GRAY;
             label.backgroundColor = [UIColor clearColor];
@@ -325,10 +325,10 @@
             [cell addSubview:label];
             [label release];
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 27, 80, 13)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(100, 22, 80, 14)];
             
             label.text = [[cussInfo objectForKey:@"takeoffDateTime"] stringByReplacingCharactersInRange:NSMakeRange(10, 14) withString:@""];
-            label.font = [UIFont systemFontOfSize:13.0f];
+            label.font = [UIFont systemFontOfSize:14.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = FONT_COLOR_DEEP_GRAY;
             label.backgroundColor = [UIColor clearColor];
@@ -336,11 +336,11 @@
             [cell addSubview:label];
             [label release];
             
-            label = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, 80, 24)];
+            label = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 80, 28)];
             
             label.text = [NSString stringWithFormat:@"%@:%@", [[cussInfo objectForKey:@"deptime"] stringByReplacingCharactersInRange:NSMakeRange(2, 2) withString:@""], [[cussInfo objectForKey:@"deptime"] stringByReplacingCharactersInRange:NSMakeRange(0, 2) withString:@""]];
             
-            label.font = [UIFont systemFontOfSize:24.0f];
+            label.font = [UIFont systemFontOfSize:28.0f];
             label.textAlignment = UITextAlignmentLeft;
             label.textColor = FONT_COLOR_DEEP_GRAY;
             label.backgroundColor = [UIColor clearColor];

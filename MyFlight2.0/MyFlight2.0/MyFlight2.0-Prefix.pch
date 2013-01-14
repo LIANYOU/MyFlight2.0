@@ -29,7 +29,7 @@
 
 
 
-
+#define CORNER_RADIUS 6.0
 
 //背景色（深色）
 #define BACKGROUND_COLOR [UIColor colorWithRed:237/255.0 green:232/255.0 blue:226/255.0f alpha:1]
@@ -38,11 +38,13 @@
 //字体颜色（蓝色）
 #define FONT_COLOR_BLUE [UIColor colorWithRed:20/255.0 green:89/255.0 blue:179/255.0 alpha:1]
 //线 （深蓝）
+#define FONT_COLOR_GREEN [UIColor colorWithRed:100/255.0 green:169/255.0 blue:38/255.0 alpha:1]
+#define FONT_COLOR_ORANGE [UIColor colorWithRed:238/255.0 green:92/255.0 blue:12/255.0 alpha:1]
 #define LINE_COLOR_BLUE [UIColor colorWithRed:151/255.0 green:168/255.0 blue:196/255.0 alpha:1]
 //背景（绿色）
 #define BACKGROUND_COLOR_GREEN [UIColor colorWithRed:93/255.0 green:167/255.0 blue:64/255.0 alpha:1]
 //边框色（灰色）
-#define BORDER_COLOR [UIColor colorWithRed:186.0f/255.0f green:176.0f/255.0f blue:173.0f/255.0f alpha:1.0f]
+#define BORDER_COLOR [UIColor colorWithRed:206.0f/255.0f green:197.0f/255.0f blue:184.0f/255.0f alpha:1.0f]
 //线色（浅色）
 #define LINE_COLOR [UIColor colorWithRed:232.0f/255.0f green:226.0f/255.0f blue:220.0f/255.0f alpha:1.0f]
 //字体颜色（深灰色）

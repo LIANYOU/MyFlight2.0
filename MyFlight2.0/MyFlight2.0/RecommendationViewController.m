@@ -173,6 +173,13 @@
         [line release];
     }
     
+    line = [[UIView alloc] initWithFrame:[tableView cellForRowAtIndexPath:indexPath].bounds];
+    
+    line.backgroundColor = BACKGROUND_COLOR;
+    
+    cell.selectedBackgroundView = line;
+    [line release];
+    
     NSDictionary *recommend = [[responseDictionary objectForKey:@"recommend"] objectAtIndex:indexPath.row];
     
     UIImage *icon = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[recommend objectForKey:@"logoPath"]]]];
