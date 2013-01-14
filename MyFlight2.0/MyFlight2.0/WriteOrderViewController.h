@@ -19,9 +19,9 @@
 #import "WriteOrderGreenCell.h"
 #import "UseGoldPay.h"
 #import <AddressBookUI/AddressBookUI.h>
-
-
-@interface WriteOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ABPersonViewControllerDelegate,ABNewPersonViewControllerDelegate,ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate,ServiceDelegate>
+#import "Umpay.h"
+#import "OrderDetaile.h"
+@interface WriteOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ABPersonViewControllerDelegate,ABNewPersonViewControllerDelegate,ABPeoplePickerNavigationControllerDelegate,UITextFieldDelegate,ServiceDelegate,UmpayDelegate>
 {
     IBOutlet UILabel *orderMoney;
     NSString * stringAfterJoin ;  // 拼接好的string
@@ -45,7 +45,7 @@
 @property (retain, nonatomic) IBOutlet WirterOrderTwoLineCell *wirterOrderTwoLineCell;
 @property (retain, nonatomic) IBOutlet SalesCell *salesCell;
 
-
+@property (retain, nonatomic) OrderDetaile *  order;
 
 @property (retain, nonatomic) NSMutableArray * passengerIDArr;
 @property (retain, nonatomic) NSMutableArray * cerNO;
@@ -83,6 +83,13 @@
 
 
 @property (retain, nonatomic) NSString * searchType;
+
+
+
+@property (retain, nonatomic) NSString * passWord;   // 支付密码
+@property (retain, nonatomic) NSString * captchaID;  // 优惠券ID
+
+
 
 
 //*****headView  property

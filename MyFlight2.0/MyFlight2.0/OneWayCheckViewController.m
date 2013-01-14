@@ -515,7 +515,8 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
 
     
     NSLog(@"%@,%@",self.oneGoWeek,self.twoGoWeek);
-   
+    
+ 
     SearchAirPort * searchAirPort;
     
     ShowSelectedResultViewController * show = [[ShowSelectedResultViewController alloc] init];
@@ -523,7 +524,16 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
     
     if (searchFlag == 1) {
         
-     //   NSLog(@"首页单程机票查询条件 ：%@%@%@",oneStartCode,oneEndCode,oneGoData);
+        
+        if ([oneStartCode isEqualToString:oneEndCode]) {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"出发和到达机场一致，没有这样的航线哦。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            
+            return;
+
+        }
+    
         searchAirPort = [[SearchAirPort alloc] initWithdpt:oneStartCode arr:oneEndCode date:oneGoData ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
         
         show.startPort = oneStartAirPort.text;
@@ -555,6 +565,15 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
             return;
           
         }
+        if ([startCode isEqualToString:endCode]) {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"机场选择有误，请重新选择。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert release];
+            
+            return;
+            
+        }
+
        
         NSLog(@"首页往返机票查询条件 ： %@%@%@，%@",startCode,endCode,oneGoData,self.twoGoBack);
         searchAirPort = [[SearchAirPort alloc] initWithdpt:startCode arr:endCode date:oneGoData ftype:@"1" cabin:0 carrier:nil dptTime:0 qryFlag:@"xxxxxx"];
@@ -604,6 +623,10 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
              CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-170, 0);
              twoBeginView.layer.affineTransform = moveTo;
              twoEndView.layer.affineTransform = moveFrom;
+             twoBeginTitle.text = @"到达机场";
+             twoEndTitle.text = @"出发机场";
+             twoBeginImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
+             twoEndImageView.image = [UIImage imageNamed:@"icon_depart.png"];
              flag = 2;
          }
          else{
@@ -611,29 +634,19 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
              CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(0, 0);
              twoEndView.layer.affineTransform = moveTo;
              twoBeginView.layer.affineTransform = moveFrom;
+             twoBeginTitle.text = @"出发机场";
+             twoEndTitle.text = @"到达机场";
+             twoBeginImageView.image = [UIImage imageNamed:@"icon_depart.png"];
+             twoEndImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
+
+
              flag = 1;
          }
          
      }  completion:^(BOOL finished)
      {
     
-         
-         if (flag == 2) {
-             twoBeginImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
-             twoEndImageView.image = [UIImage imageNamed:@"icon_depart.png"];
-             twoBeginTitle.text = @"到达机场";
-             twoEndTitle.text = @"出发机场";
-             
-         }
-         else{
-             twoBeginImageView.image = [UIImage imageNamed:@"icon_depart.png"];
-             twoEndImageView.image = [UIImage imageNamed:@"icon_arrive.png"];
-             twoBeginTitle.text = @"出发机场";
-             twoEndTitle.text = @"到达机场";
-             
-         }
-
-         
+            
          changeString = startAirport;
          startAirport = endAirport;
          endAirport = changeString;
@@ -655,6 +668,10 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
              CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(-170, 0);
              beginView.layer.affineTransform = moveTo;
              endView.layer.affineTransform = moveFrom;
+             beginImage.image = [UIImage imageNamed:@"icon_arrive.png"];
+             endImage.image = [UIImage imageNamed:@"icon_depart.png"];
+             beginTitle.text = @"到达机场";
+             endTitle.text = @"出发机场";
              oneFlag = 2;
          }
          else{
@@ -662,6 +679,11 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
              CGAffineTransform moveFrom = CGAffineTransformMakeTranslation(0, 0);
              endView.layer.affineTransform = moveTo;
              beginView.layer.affineTransform = moveFrom;
+             beginImage.image = [UIImage imageNamed:@"icon_depart.png"];
+             endImage.image = [UIImage imageNamed:@"icon_arrive.png"];
+
+             beginTitle.text = @"出发机场";
+             endTitle.text = @"到达机场";
              oneFlag = 1;
          }
          
@@ -671,22 +693,7 @@ int whatday(int year,int month,int day) /*计算给定年月日的某一天是�
          oneStartAirPort = oneEndAirPort;
          oneEndAirPort = changeString;
          changeString = nil;
-         
-         if (oneFlag == 2) {
-             beginImage.image = [UIImage imageNamed:@"icon_arrive.png"];
-             endImage.image = [UIImage imageNamed:@"icon_depart.png"];
-             beginTitle.text = @"到达机场";
-             endTitle.text = @"出发机场";
-
-         }
-         else{
-             beginImage.image = [UIImage imageNamed:@"icon_depart.png"];
-             endImage.image = [UIImage imageNamed:@"icon_arrive.png"];
-             beginTitle.text = @"出发机场";
-             endTitle.text = @"到达机场";
-
-         }
-         
+                 
          oneCode = oneStartCode;
          oneStartCode = oneEndCode;
          oneEndCode = oneCode;

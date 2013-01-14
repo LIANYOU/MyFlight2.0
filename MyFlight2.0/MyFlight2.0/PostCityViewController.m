@@ -32,6 +32,12 @@
     self.provinceDic = [CityDataBase_David findAllCitiesSortedInKeys];
     
     self.derectDic = [CityDataBase_David findAllDerectCities];
+    
+    
+    self.scetionTitleArr = [NSMutableArray arrayWithObject:@"直辖市"];
+    for (NSString * str in [self.provinceDic allKeys]) {
+        [self.scetionTitleArr addObject:str];
+    }
 
     self.siftArr = [NSMutableArray arrayWithCapacity:10];
  
@@ -78,6 +84,13 @@
     
     
 }
+
+
+- (NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView{
+
+    return self.scetionTitleArr;
+        
+ }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

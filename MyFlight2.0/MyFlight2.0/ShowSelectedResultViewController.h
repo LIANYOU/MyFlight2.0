@@ -102,6 +102,7 @@
 @property (retain, nonatomic) NSString * cabin;
 @property (retain, nonatomic) NSString * childPayMoney; // 保存去程的时候儿童的价格
 
+@property (retain, nonatomic) IBOutlet UIView *noInfoView;
 
 
 @property (retain, nonatomic) IBOutlet UIView *grayView;

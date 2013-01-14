@@ -15,6 +15,7 @@
 -(id) initWithMemberId:(NSString *)memberId
              andSource:(NSString *)source
                andHwId:(NSString * )hwId
+           andPassWord:(NSString *)passWord
                andSign:(NSString *)sign
             andEdition:(NSString *)edition
            andDelegate:(id<ServiceDelegate>)delegate
@@ -24,6 +25,7 @@
         self.source = source;
         self.hwId = hwId;
         self.sign = sign;
+        self.passWord = passWord;
         self.edition = edition;
         self.delegate = delegate;
     }
@@ -41,6 +43,7 @@
     [request setPostValue:self.memberId forKey:@"memberId"];
     [request setPostValue:self.source forKey:@"source"];
     [request setPostValue:self.hwId forKey:@"hwId"];
+    [request setPostValue:self.passWord forKey:@"payPassword"];
     [request setPostValue:self.sign forKey:@"sign"];
     [request setPostValue:self.edition forKey:@"edition"];
     

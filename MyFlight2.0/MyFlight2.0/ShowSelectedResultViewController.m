@@ -41,6 +41,9 @@
     int lowOrderFlag;  // 判断是不是进入了低价预约，， 回来的时候不用联网
     
     NSString * deviceTime; // 获取当前时间
+    
+    
+    UIImageView * animationView;
 }
 
 @end
@@ -347,6 +350,7 @@
     [timeLabel release];
     [_grayView release];
     [backImageView release];
+    [_noInfoView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -378,6 +382,7 @@
     [self setGrayView:nil];
     [backImageView release];
     backImageView = nil;
+    [self setNoInfoView:nil];
     [super viewDidUnload];
 }
 
@@ -416,6 +421,28 @@
 
     
     self.dateArr = [[not userInfo] objectForKey:@"arr"];
+    
+    if (self.dateArr.count == 0) {
+        
+        [self.view addSubview:self.noInfoView];
+        
+        animationView = [[UIImageView alloc]initWithFrame:CGRectMake(48,40,224, 224)];
+        NSArray * animationImageArray = [NSArray arrayWithObjects:[UIImage imageNamed:@"查询无结果.png"],[UIImage imageNamed:@"查询无结果1.png"], nil];
+        animationView.animationImages = animationImageArray;
+        animationView.animationDuration = .35;
+        [animationView startAnimating];
+       
+        
+          
+        [self.noInfoView addSubview:animationView];
+
+         [animationView release];
+        [HUD removeFromSuperview];
+        [HUD release];
+        HUD = nil;
+        
+        return;
+    }
     
     if (self.write != nil || self.netFlag == 1) {
        

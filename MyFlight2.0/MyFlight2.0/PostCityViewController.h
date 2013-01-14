@@ -23,5 +23,8 @@
 @property (retain, nonatomic) NSMutableArray * siftArr;
 
 
+
+@property (retain, nonatomic) NSMutableArray * scetionTitleArr;
+
 -(void)getDate:(void (^) (NSString * idntity))string;
 @end

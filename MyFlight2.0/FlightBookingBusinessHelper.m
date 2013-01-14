@@ -471,6 +471,10 @@
                 
                 if (!Default_IsUserLogin_Value) {   // 判断用户是不是登陆
                     
+                    
+                    
+              
+                    
                     OrderListModelData * list = [[OrderListModelData alloc] init];
                     list.createTime = [NSString stringWithFormat:@"%d-%02d-%02d",year,month,day];
                     list.depAirportName = bookingGoFlightVo.dptAirportName;
@@ -479,8 +483,14 @@
                     list.payStsCH = @"未支付";  // 暂时这样
                     list.orderId = [dic objectForKey:@"orderId"];
                     list.checkCode = flightContactVo.mobile;
+                    list.type = [dic objectForKey:@"code"];
                     
                     [OrderDatabase addOrderInfo_UnLogin:list];
+                    
+                    
+                    NSLog(@"乘机人手机号码   %@",list.checkCode);
+                    NSLog(@"订单ID   %@",list.orderId);
+                    NSLog(@"订单code   %@",list.type);
                 }
                 
 

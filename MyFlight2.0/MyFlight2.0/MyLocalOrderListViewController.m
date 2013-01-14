@@ -179,8 +179,8 @@
         OrderListModelData *data = [tmpArray objectAtIndex:indexPath.row];
         
         NSString *orderId =data.orderId;
-        NSString *code = data.code;
-        NSString *createTime =data.createTime;
+//        NSString *code = data.code;
+//        NSString *createTime =data.createTime;
         
         NSString *memberId = Default_UserMemberId_Value;
         NSString *token =Default_Token_Value;
@@ -189,12 +189,36 @@
         
         NSString *sign =GET_SIGN(signTmp);
         
-        CCLog(@"用户选择的订单号为%@",code);
-        CCLog(@"订单日期 ;%@",createTime);
-        CCLog(@"日期长度为：%d",[createTime length]);
+        CCLog(@"用户选择的订单号为%@",orderId);
+        CCLog(@"订单code ;%@",data.code);
+        CCLog(@"type：%@",data.type);
         
-        OrderDetaile *detail =[[OrderDetaile alloc] initWithOrderId:orderId andMemberId:memberId andCheckCode:code sndSign:sign sndSource:SOURCE_VALUE andHwId:HWID_VALUE andEdition:EDITION_VALUE andDelegate:nil];
         
+        OrderDetaile *detail = nil;
+        if (Default_IsUserLogin_Value) {
+            
+            detail =[[OrderDetaile alloc] initWithOrderId:orderId
+                                                            andMemberId:memberId
+                                                           andCheckCode:data.type
+                                                                sndSign:sign
+                                                              sndSource:SOURCE_VALUE
+                                                                andHwId:HWID_VALUE
+                                                             andEdition:EDITION_VALUE
+                                                            andDelegate:nil];
+
+        }
+        else{
+            
+            detail =[[OrderDetaile alloc] initWithOrderId:orderId
+                                                            andMemberId:nil
+                                                           andCheckCode:data.checkCode
+                                                                sndSign:nil
+                                                              sndSource:SOURCE_VALUE
+                                                                andHwId:HWID_VALUE
+                                                             andEdition:EDITION_VALUE
+                                                            andDelegate:nil];
+
+        }
         
         
         DetailsOrderViewController *con  =[[DetailsOrderViewController alloc] init];

@@ -22,6 +22,10 @@
     
     NSString * oneCode;
     
+    
+    int selectRow;
+    int selectFlag;
+    
     ChooseAirPortViewController * chooseAirPort;
 }
 @end
@@ -41,12 +45,13 @@
 {
     
     oneFlag = 1;
+    selectRow = 0;
     
     if ([self.flagStr isEqualToString:@"oneController"]) {
         self.tempView = self.smallFuckView;
     }
     else{
-        self.startCode = @"PKE";
+        self.startCode = @"PEK";
         self.endCode = @"SHA";
         self.tempView = self.bigFuckView;
     }
@@ -283,6 +288,7 @@
                                     destructiveButtonTitle:nil
                                          otherButtonTitles:nil];
         actionSheet.tag = 10;
+        
         [actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         
         CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
@@ -290,6 +296,8 @@
         UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
         pickerView.showsSelectionIndicator = YES;
         pickerView.dataSource = self;
+      
+        [pickerView selectRow:selectRow inComponent:0 animated:YES];
         pickerView.delegate = self;
         
         [actionSheet addSubview:pickerView];
@@ -356,6 +364,8 @@
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    selectRow = row;
+    selectFlag = 1;
     LowOrderCell *cell = (LowOrderCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
     
     [self.seconderLabelArr replaceObjectAtIndex:2 withObject:[self.contents objectAtIndex:row]];
@@ -366,6 +376,15 @@
 }
 -(void)done   // 点击pickerView上边定义的done按钮的时候触发
 {
+    if (selectFlag != 1) {
+        
+        LowOrderCell *cell = (LowOrderCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
+        
+        [self.seconderLabelArr replaceObjectAtIndex:2 withObject:[self.contents objectAtIndex:selectRow]];
+        
+        cell.secondLabel.text = [self.contents objectAtIndex:selectRow];
+        
+    }
     [actionSheet dismissWithClickedButtonIndex:0 animated:YES];  // 移除视图
 }
 

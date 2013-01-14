@@ -110,7 +110,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">每位用户限定阅5条航线的低价通知</string>
+						<string key="IBUIText">每位用户限预约5条航线的低价通知</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAwLjUzNTg4ODgyODcgMC4xNDEwMTEzMDk2AA</bytes>

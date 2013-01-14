@@ -16,12 +16,13 @@
 #import "PostInfo.h"
 #import "LinkPersonInfo.h"
 #import "DiscountGoldInfo.h"
+#import "Umpay.h"
 @class PassengerCell;
 @class LinkmanCell;
 @class JourneyCell;
 @class FlightConditionCell;
 
-@interface DetailsOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ServiceDelegate>
+@interface DetailsOrderViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ServiceDelegate,UmpayDelegate>
 
 {
     
@@ -108,7 +109,9 @@
 @property (retain, nonatomic) IBOutlet LinkmanCell *linkCell;
 @property (retain, nonatomic) IBOutlet JourneyCell *journeyCell;
 @property (retain, nonatomic) IBOutlet FlightConditionCell *flightCell;
+@property (retain, nonatomic) IBOutlet UIButton *payBtn;
 
-- (IBAction)goPay:(id)sender;
-- (IBAction)cancelOrder:(id)sender;
+- (IBAction)goPay:(UIButton *)sender;
+- (IBAction)cancelOrder:(UIButton *)sender;
+@property (retain, nonatomic) IBOutlet UIButton *cancleBtn;
 @end

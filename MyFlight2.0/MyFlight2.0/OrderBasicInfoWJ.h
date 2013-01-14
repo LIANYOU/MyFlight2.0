@@ -20,4 +20,8 @@
 @property (nonatomic, retain) NSString * actualMoney;// 总额
 
 @property (nonatomic, retain) NSString * flyType; // 单程，往返
+@property (nonatomic, retain) NSString * memberId; // 用户ID
+
+
+@property (nonatomic, retain) NSString * sts; // 订单状态  00，01，02.。。。
 @end
