@@ -40,6 +40,7 @@
 }
 
 - (BOOL) validateInput;
+- (void) endInput;
 
 - (void) checkIn;
 - (void) progressQuery;

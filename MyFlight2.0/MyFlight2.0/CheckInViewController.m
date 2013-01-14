@@ -115,6 +115,15 @@
     [textView release];
     
     self.view.backgroundColor = BACKGROUND_COLOR;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endInput)];
+    UIPanGestureRecognizer *swipe = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(endInput)];
+    
+    [self.view addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:swipe];
+    
+    [tap release];
+    [swipe release];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -181,7 +190,7 @@
     switch(indexPath.row)
     {
         case 0:
-            passName = [[UITextField alloc] initWithFrame:CGRectMake(74, 16.5, 216, 20)];
+            passName = [[UITextField alloc] initWithFrame:CGRectMake(74, 16.5, 194, 20)];
             
             passName.font = [UIFont systemFontOfSize:17.0f];
             passName.textColor = FONT_COLOR_DEEP_GRAY;
@@ -232,7 +241,7 @@
             
             break;
         case 2:
-            idNo = [[UITextField alloc] initWithFrame:CGRectMake(74, 16.5, 216, 20)];
+            idNo = [[UITextField alloc] initWithFrame:CGRectMake(74, 16.5, 194, 20)];
             
             idNo.font = [UIFont systemFontOfSize:17.0f];
             idNo.textColor = FONT_COLOR_DEEP_GRAY;
@@ -357,6 +366,12 @@
     }
     
     return YES;
+}
+
+- (void) endInput
+{
+    [passName resignFirstResponder];
+    [idNo resignFirstResponder];
 }
 
 - (void) checkIn

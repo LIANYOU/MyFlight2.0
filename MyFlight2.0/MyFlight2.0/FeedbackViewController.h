@@ -11,7 +11,7 @@
 #import "JSONKit.h"
 #import "AppConfigure.h"
 
-@interface FeedbackViewController : BasicViewController <UITextViewDelegate, UITextFieldDelegate>
+@interface FeedbackViewController : BasicViewController
 {
     UITextView *message;
     UITextField *address;
@@ -22,5 +22,8 @@
 }
 
 - (void) send:(UIButton *) sender;
+- (void) endInput;
+- (void) repositionText;
+- (void) repositionView;
 
 @end

@@ -157,9 +157,9 @@
     
     flightInfoTable = [[UITableView alloc] initWithFrame:CGRectMake(10, 160, 300, [UIScreen mainScreen].bounds.size.height < 500 ? 210:280) style:UITableViewStylePlain];
     
-    passengerInfoTable.delegate = self;
-    passengerInfoTable.dataSource = self;
-    passengerInfoTable.allowsSelection = NO;
+    flightInfoTable.delegate = self;
+    flightInfoTable.dataSource = self;
+    flightInfoTable.scrollEnabled = YES;
     
     flightInfoTable.rowHeight = 70.0f;
     flightInfoTable.separatorStyle = UITableViewCellSeparatorStyleNone;

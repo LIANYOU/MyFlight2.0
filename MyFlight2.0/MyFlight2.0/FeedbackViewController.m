@@ -31,49 +31,69 @@
     
     UILabel *label;
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 100, 20)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 100, 14)];
     
     label.text = @"您的意见";
     label.textColor = FONT_COLOR_DEEP_GRAY;
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont systemFontOfSize:20.0f];
+    label.font = [UIFont systemFontOfSize:14.0f];
     
     [self.view addSubview:label];
     [label release];
     
-    message = [[UITextView alloc] initWithFrame:CGRectMake(10, 50, 300, 120)];
+    UIView *block;
     
-    message.layer.borderColor = [BORDER_COLOR CGColor];
-    message.layer.borderWidth = 1.0f;
-    message.layer.cornerRadius = CORNER_RADIUS;
+    block = [[UIView alloc] initWithFrame:CGRectMake(10, 50, 300, 120)];
     
-    message.backgroundColor = FOREGROUND_COLOR;
+    block.layer.borderColor = [BORDER_COLOR CGColor];
+    block.layer.borderWidth = 1.0f;
+    block.layer.cornerRadius = CORNER_RADIUS;
     
-    message.delegate = self;
+    block.backgroundColor = FOREGROUND_COLOR;
     
-    [self.view addSubview:message];
+    [self.view addSubview:block];
+    [block release];
+    
+    message = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, 110)];
+    
+    message.textColor = FONT_COLOR_GRAY;
+    message.backgroundColor = [UIColor clearColor];
+    message.font = [UIFont systemFontOfSize:14.0f];
+    
+    [block addSubview:message];
     [message release];
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 185, 140, 20)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(20, 190, 140, 14)];
     
     label.text = @"您的联系方式";
     label.textColor = FONT_COLOR_DEEP_GRAY;
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont systemFontOfSize:20.0f];
+    label.font = [UIFont systemFontOfSize:14.0f];
     
     [self.view addSubview:label];
     [label release];
     
-    address = [[UITextField alloc] initWithFrame:CGRectMake(10, 220, 300, 40)];
+    block = [[UIView alloc] initWithFrame:CGRectMake(10, 220, 300, 40)];
     
-    address.layer.borderColor = [BORDER_COLOR CGColor];
-    address.layer.borderWidth = 1.0f;
-    address.layer.cornerRadius = CORNER_RADIUS;
-    address.backgroundColor = FOREGROUND_COLOR;
+    block.layer.borderColor = [BORDER_COLOR CGColor];
+    block.layer.borderWidth = 1.0f;
+    block.layer.cornerRadius = CORNER_RADIUS;
     
-    address.delegate = self;
+    block.backgroundColor = FOREGROUND_COLOR;
     
-    [self.view addSubview:address];
+    [self.view addSubview:block];
+    [block release];
+    
+    address = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 280, 20)];
+    
+    address.backgroundColor = [UIColor clearColor];
+    address.textColor = FONT_COLOR_GRAY;
+    address.font = [UIFont systemFontOfSize:14.0f];
+    
+    [address addTarget:self action:@selector(endInput) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [address addTarget:self action:@selector(repositionText) forControlEvents:UIControlEventEditingDidBegin];
+    
+    [block addSubview:address];
     [address release];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -91,6 +111,15 @@
     [self.view addSubview:button];
     
     self.view.backgroundColor = BACKGROUND_COLOR;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endInput)];
+    UIPanGestureRecognizer *swipe = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(endInput)];
+    
+    [self.view addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:swipe];
+    
+    [tap release];
+    [swipe release];
 }
 
 - (void) send:(UIButton *)sender
@@ -163,51 +192,28 @@
     [request startAsynchronous];
 }
 
-- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+- (void) repositionText
 {
-    invisibleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    invisibleButton.frame = self.view.frame;
-    
-    [invisibleButton addTarget:textView action:@selector(resignFirstResponder) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:invisibleButton];
-    
-    return YES;
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - 150, self.view.frame.size.width, self.view.frame.size.height);
 }
 
-- (BOOL) textViewShouldEndEditing:(UITextView *)textView
+- (void) repositionView
 {
-    [invisibleButton removeFromSuperview];
-    
-    return YES;
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 150, self.view.frame.size.width, self.view.frame.size.height);
 }
 
-- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+- (void) endInput
 {
-    invisibleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    if([message isFirstResponder])
+    {
+        [message resignFirstResponder];
+    }
     
-    invisibleButton.frame = self.view.frame;
-    
-    [invisibleButton addTarget:textField action:@selector(resignFirstResponder) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:invisibleButton];
-    
-    return YES;
-}
-
-- (BOOL) textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-
-- (BOOL) textFieldShouldEndEditing:(UITextField *)textField
-{
-    [invisibleButton removeFromSuperview];
-    
-    return YES;
+    if([address isFirstResponder])
+    {
+        [self repositionView];
+        [address resignFirstResponder];
+    }
 }
 
 - (void)didReceiveMemoryWarning

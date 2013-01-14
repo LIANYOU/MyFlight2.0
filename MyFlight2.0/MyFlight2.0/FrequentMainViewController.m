@@ -110,13 +110,32 @@ cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
     NSInteger selectIndex = indexPath.row;
     
     id controller = nil;
+    BasicViewController *webView;
+    UIWebView *webContent;
     
     switch (selectIndex) {
         case 0:
             controller =[[LoginForFrequentFlayer alloc] init];
             
             break;
-            
+        case 1:
+            webView = [[BasicViewController alloc] init];
+            [self.navigationController pushViewController:webView animated:YES];
+            [webView release];
+            webContent = [[UIWebView alloc] initWithFrame:webView.view.frame];
+            [webContent loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://ffp.airchina.com.cn/"]]];
+            [webView.view addSubview:webContent];
+            [webContent release];
+            break;
+        case 2:
+            webView = [[BasicViewController alloc] init];
+            [self.navigationController pushViewController:webView animated:YES];
+            [webView release];
+            webContent = [[UIWebView alloc] initWithFrame:webView.view.frame];
+            [webContent loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://skypearl.csair.com/cn/index.html"]]];
+            [webView.view addSubview:webContent];
+            [webContent release];
+            break;
         default:
             break;
     }

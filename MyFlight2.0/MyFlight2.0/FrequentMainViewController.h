@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 LIAN YOU. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BasicViewController.h"
 
 @interface FrequentMainViewController : UITableViewController
 
