@@ -179,6 +179,7 @@
 		149B780B168D8132006281A3 /* bookingGoFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780A168D8132006281A3 /* bookingGoFlightVo.m */; };
 		149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780D168D8FD1006281A3 /* bookingFlightVo.m */; };
 		149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7810168D9775006281A3 /* bookingReturnFlightVo.m */; };
+		14A43C8816A409A500656CDF /* MyOrderListSingleDataSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A43C8716A409A500656CDF /* MyOrderListSingleDataSave.m */; };
 		14AF42311697D1A000C7C2CA /* FrequentPassengerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */; };
 		14AF42341697D67300C7C2CA /* isFrequentPassengerLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42331697D67300C7C2CA /* isFrequentPassengerLogin.m */; };
 		14AF42371697DA3C00C7C2CA /* MemberPointDataOfFrequent.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42361697DA3C00C7C2CA /* MemberPointDataOfFrequent.m */; };
@@ -1102,6 +1103,8 @@
 		149B780F168D9774006281A3 /* bookingReturnFlightVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bookingReturnFlightVo.h; sourceTree = "<group>"; };
 		149B7810168D9775006281A3 /* bookingReturnFlightVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bookingReturnFlightVo.m; sourceTree = "<group>"; };
 		149B7813168D9ABE006281A3 /* flightBookingUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flightBookingUility.h; sourceTree = "<group>"; };
+		14A43C8616A409A500656CDF /* MyOrderListSingleDataSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderListSingleDataSave.h; sourceTree = "<group>"; };
+		14A43C8716A409A500656CDF /* MyOrderListSingleDataSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderListSingleDataSave.m; sourceTree = "<group>"; };
 		14AF422F1697D1A000C7C2CA /* FrequentPassengerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentPassengerData.h; sourceTree = "<group>"; };
 		14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentPassengerData.m; sourceTree = "<group>"; };
 		14AF42321697D67300C7C2CA /* isFrequentPassengerLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = isFrequentPassengerLogin.h; sourceTree = "<group>"; };
@@ -2634,6 +2637,8 @@
 			children = (
 				1468CC3F16993FBF00B05F43 /* OrderListModelData.h */,
 				1468CC4016993FBF00B05F43 /* OrderListModelData.m */,
+				14A43C8616A409A500656CDF /* MyOrderListSingleDataSave.h */,
+				14A43C8716A409A500656CDF /* MyOrderListSingleDataSave.m */,
 			);
 			name = orderListModel;
 			sourceTree = "<group>";
@@ -5314,7 +5319,11 @@
 				14FA526116A2720000F84AFB /* PersonNewInfoCell.m in Sources */,
 				14FA526A16A2B39E00F84AFB /* FrequentMainPageCell.m in Sources */,
 				18C65E4716A2591B00E975D4 /* PostCityViewController.m in Sources */,
+
 				18B8319D16A3D90D0046CB0C /* LocationAirPortWJ.m in Sources */,
+
+				14A43C8816A409A500656CDF /* MyOrderListSingleDataSave.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

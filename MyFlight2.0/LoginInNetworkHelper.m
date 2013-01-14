@@ -19,6 +19,7 @@
 #import "CommontContactSingle.h"
 #import "OrderListModelData.h"
 #import "CommonContact_LocalTmpDBHelper.h"
+#import "MyOrderListSingleDataSave.h"
 @implementation LoginInNetworkHelper
 
 #pragma mark -
@@ -2397,6 +2398,7 @@
 
 + (BOOL) getOrderListWithCurrentPage:(NSString *) currentPage rowsOfPage:(NSString *) page andDelegate:(id<ServiceDelegate>) delegate{
     
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     
     //    NSString *publicParm = PUBLIC_Parameter;
     NSString *memberId = Default_UserMemberId_Value;
@@ -2553,6 +2555,13 @@
                     
                 }
                 
+                
+                MyOrderListSingleDataSave *singleOrder =[MyOrderListSingleDataSave shareMyOrderListSingleDataSave];
+                
+                
+                singleOrder.allPayList = allPayList;
+                singleOrder.alradyPayList =alradyPayList;
+                singleOrder.noPayList =noPayList;
                 
                 [messageDic setObject:allPayList forKey:@"allOrderList"];
                 [messageDic setObject:noPayList forKey:@"noPayList"];

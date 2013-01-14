@@ -21,6 +21,8 @@
 #import "AppConfigure.h"
 
 #import "MyLocalOrderListViewController.h"
+
+#import "MyOrderListSingleDataSave.h"
 @interface MyOrderListViewController ()
 
 
@@ -86,6 +88,7 @@
 
 -(void)mySegmentValueChange:(SVSegmentedControl *)sender{
     
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     NSInteger index = sender.selectedIndex;
     switch (index) {
         case 0:
@@ -136,6 +139,7 @@
 - (void)viewDidLoad
 {
     
+    
     [super viewDidLoad];
     
     CCLog(@"订单列表项目：%d",[tmpArray count]);
@@ -156,11 +160,27 @@
     
     [self initThisView];
     
+    
+    
+    
+    MyOrderListSingleDataSave *single =[MyOrderListSingleDataSave shareMyOrderListSingleDataSave];
+    
+    self.noPaylistArray =single.noPayList;
+    self.alreadlyListArray =single.alradyPayList;
+    self.allOrderListArray =single.allPayList;
+    
+    
+    tmpArray =self.noPaylistArray;
+
+    CCLog(@"在订单列表界面 count = %d",[tmpArray count]);
+    
     self.thisTableView.tableHeaderView = self.thisHeadView;
+    [self.thisTableView reloadData];
     
-    LoginBusiness *bis = [[LoginBusiness alloc] init];
-    [bis getOrderListWithCurrentPage:@"1" rowsOfPage:@"100" andDelegate:self];
-    
+//    LoginBusiness *bis = [[LoginBusiness alloc] init];
+//    [bis getOrderListWithCurrentPage:@"1" rowsOfPage:@"100" andDelegate:self];
+//    
+//    [bis release];
     
     
     // Do any additional setup after loading the view from its nib.
@@ -178,6 +198,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     
     // Return the number of sections.
     return 1;
@@ -202,6 +223,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     static NSString *CellIdentifier = @"Cell";
     
     MyOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -338,7 +360,7 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
-    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     self.noPaylistArray =[info objectForKey:@"noPayList"];
     
     self.alreadlyListArray =[info objectForKey:@"alreadyPayList"];
