@@ -116,10 +116,13 @@
         if ([phoneInfoArray count] == 0) {
             NSLog(@"phoneInfoArray count == 0");
         }else{
-            NSDictionary * dic1 = [phoneInfoArray objectAtIndex:1];
-            NSString * phoneStr = [dic1 objectForKey:@"title"];
-            NSLog(@"phoneStr : %@",phoneStr);
-            titlelabel.text = [[phoneInfoArray objectAtIndex:indexPath.row]objectForKey:@"title"];
+            
+        NSDictionary * dic1 = [phoneInfoArray objectAtIndex:indexPath.row];
+        NSString * phoneStr = [dic1 objectForKey:@"title"];
+        NSLog(@"phoneStr : %@",phoneStr);
+        titlelabel.text = [[phoneInfoArray objectAtIndex:indexPath.row]objectForKey:@"title"];
+
+            
         }
         UIView * myBackgroundView = [[UIView alloc]initWithFrame:cell.bounds];
         myBackgroundView.backgroundColor = BACKGROUND_COLOR;
@@ -146,7 +149,7 @@
         if ([phoneInfoArray count] == 0) {
             NSLog(@"phoneInfoArray count == 0");
         }else{
-            NSDictionary * dic1 = [phoneInfoArray objectAtIndex:1];
+            NSDictionary * dic1 = [phoneInfoArray objectAtIndex:indexPath.row];
             NSString * phoneStr = [dic1 objectForKey:@"phone"];
             NSLog(@"phoneStr : %@",phoneStr);
             phoneLabel.text = [[phoneInfoArray objectAtIndex:indexPath.row]objectForKey:@"phone"];
