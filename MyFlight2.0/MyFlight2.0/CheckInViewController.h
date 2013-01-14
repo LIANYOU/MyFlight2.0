@@ -11,7 +11,7 @@
 #import "ChooseFlightViewController.h"
 #import "AirPortData.h"
 
-@interface CheckInViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate, ChooseAirPortViewControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate>
+@interface CheckInViewController : BasicViewController <UITableViewDataSource, UITableViewDelegate, ChooseAirPortViewControllerDelegate, UIActionSheetDelegate>
 {
     UITableView *checkInInfoTable;
     

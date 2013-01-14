@@ -28,11 +28,12 @@
         
         table.layer.borderColor = [BORDER_COLOR CGColor];
         table.layer.borderWidth = 1.0f;
-        table.layer.cornerRadius = 10.0f;
+        table.layer.cornerRadius = CORNER_RADIUS;
         
         table.dataSource = self;
         table.delegate = self;
         table.scrollEnabled = NO;
+        table.allowsSelection = NO;
         
         [self.view addSubview:table];
         [table release];

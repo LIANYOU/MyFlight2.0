@@ -139,12 +139,12 @@
                 [bindSNS release];
                 break;
             case 2:
-                CCLog(@"新功能引导页");
                 tutorial = [[TutorialViewController alloc] init];
-                [self.navigationController pushViewController:tutorial animated:YES];
+                tutorial.wantsFullScreenLayout = YES;
+                [self presentModalViewController:tutorial animated:YES];
+                [tutorial release];
                 break;
             case  3:
-                CCLog(@"关于我们");
                 about = [[AboutViewController alloc] init];
                 [self.navigationController pushViewController:about animated:YES];
                 [about release];

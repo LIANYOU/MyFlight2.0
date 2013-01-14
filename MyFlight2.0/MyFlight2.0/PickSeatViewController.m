@@ -133,14 +133,21 @@
     
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
     
-    header.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.85f alpha:1.0f];
+    header.backgroundColor = [UIColor colorWithRed:212.0f/255.0f green:218.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
     
-    title = [[UILabel alloc] initWithFrame:CGRectMake(0, 9, 320, 14)];
+    title = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 300, 14)];
 
-    title.textColor = [UIColor blackColor];
+    title.textColor = FONT_COLOR_BLUE;
     title.font = [UIFont systemFontOfSize:14.0f];
-    title.textAlignment = UITextAlignmentCenter;
+    title.textAlignment = UITextAlignmentLeft;
     title.backgroundColor = [UIColor clearColor];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 29, 320, 1)];
+    
+    line.backgroundColor = [UIColor colorWithRed:151.0f/255.0f green:168.0f/255.0f blue:196.0f/255.0f alpha:1.0f];
+    
+    [header addSubview:line];
+    [line release];
     
     [header addSubview:title];
     [title release];
@@ -148,9 +155,9 @@
     [self.view addSubview:header];
     [header release];
     
-    scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 40, 300, [UIScreen mainScreen].bounds.size.height < 500 ? 290:370)];
+    scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 30, 320, [UIScreen mainScreen].bounds.size.height < 500 ? 310:390)];
     
-    map = [[SeatMapView alloc] initWithFrame:CGRectMake(0, 0, 300, [UIScreen mainScreen].bounds.size.height < 500 ? 290:370)];
+    map = [[SeatMapView alloc] initWithFrame:CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height < 500 ? 310:390)];
     
     [scroll addSubview:map];
     [map release];
@@ -158,15 +165,17 @@
     [self.view addSubview:scroll];
     [scroll release];
     
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(10, [UIScreen mainScreen].bounds.size.height < 500 ? 340:420, 300, 25)];
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height < 500 ? 340:420, 320, 100)];
+    
+    footer.backgroundColor = BACKGROUND_COLOR;
     
     UILabel *label;
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 65, 25)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(10, 9, 50, 12)];
     
     label.text = @"紧急出口";
-    label.font = [UIFont systemFontOfSize:16.0f];
-    label.textColor = [UIColor grayColor];
+    label.font = [UIFont systemFontOfSize:12.0f];
+    label.textColor = FONT_COLOR_DEEP_GRAY;
     label.textAlignment = UITextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     
@@ -177,17 +186,16 @@
     
     icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"e.png"]];
     
-    icon.frame = CGRectMake(65, 0, 25, 25);
-    icon.contentMode = UIViewContentModeScaleAspectFit;
+    icon.frame = CGRectMake(65, 9.25f, 6.5, 11.5);
     
     [footer addSubview:icon];
     [icon release];
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(95, 0, 40, 25)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(90, 9, 40, 12)];
     
     label.text = @"可选";
-    label.font = [UIFont systemFontOfSize:16.0f];
-    label.textColor = [UIColor grayColor];
+    label.font = [UIFont systemFontOfSize:12.0f];
+    label.textColor = FONT_COLOR_DEEP_GRAY;
     label.textAlignment = UITextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     
@@ -196,17 +204,16 @@
     
     icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"seat1.png"]];
     
-    icon.frame = CGRectMake(135, 0, 25, 25);
-    icon.contentMode = UIViewContentModeScaleAspectFit;
+    icon.frame = CGRectMake(134, 4, 22, 22);
     
     [footer addSubview:icon];
     [icon release];
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(165, 0, 40, 25)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(165, 9, 40, 12)];
     
     label.text = @"已占";
-    label.font = [UIFont systemFontOfSize:16.0f];
-    label.textColor = [UIColor grayColor];
+    label.font = [UIFont systemFontOfSize:12.0f];
+    label.textColor = FONT_COLOR_DEEP_GRAY;
     label.textAlignment = UITextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     
@@ -215,17 +222,16 @@
     
     icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"no_seat.png"]];
     
-    icon.frame = CGRectMake(205, 0, 25, 25);
-    icon.contentMode = UIViewContentModeScaleAspectFit;
+    icon.frame = CGRectMake(209, 4, 22, 22);
     
     [footer addSubview:icon];
     [icon release];
     
-    label = [[UILabel alloc] initWithFrame:CGRectMake(235, 0, 40, 25)];
+    label = [[UILabel alloc] initWithFrame:CGRectMake(240, 9, 40, 12)];
     
     label.text = @"选中";
-    label.font = [UIFont systemFontOfSize:16.0f];
-    label.textColor = [UIColor grayColor];
+    label.font = [UIFont systemFontOfSize:12.0f];
+    label.textColor = FONT_COLOR_DEEP_GRAY;
     label.textAlignment = UITextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     
@@ -234,8 +240,7 @@
     
     icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pitch_on.png"]];
     
-    icon.frame = CGRectMake(275, 0, 25, 25);
-    icon.contentMode = UIViewContentModeScaleAspectFit;
+    icon.frame = CGRectMake(284, 4, 22, 22);
     
     [footer addSubview:icon];
     [icon release];
@@ -278,7 +283,7 @@
 
 - (void) updateTitle
 {
-    title.text = [NSString stringWithFormat:@"%@  %@-%@-%@  %@-%@",[[responseDictionary objectForKey:@"segment"] objectForKey:@"flightNo"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"year"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"month"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"day"], [[responseDictionary objectForKey:@"segment"] objectForKey:@"depAirportCode"], [[responseDictionary objectForKey:@"segment"] objectForKey:@"arrAirportCode"]];
+    title.text = [NSString stringWithFormat:@"%@   %@-%@   %@-%@-%@",[[responseDictionary objectForKey:@"segment"] objectForKey:@"flightNo"], [[responseDictionary objectForKey:@"segment"] objectForKey:@"depAirportCode"], [[responseDictionary objectForKey:@"segment"] objectForKey:@"arrAirportCode"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"year"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"month"], [[[responseDictionary objectForKey:@"segment"] objectForKey:@"depTime"] objectForKey:@"day"]];
 }
 
 - (void) checkIn

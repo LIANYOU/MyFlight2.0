@@ -45,7 +45,7 @@
     
     message.layer.borderColor = [BORDER_COLOR CGColor];
     message.layer.borderWidth = 1.0f;
-    message.layer.cornerRadius = 10.0f;
+    message.layer.cornerRadius = CORNER_RADIUS;
     
     message.backgroundColor = FOREGROUND_COLOR;
     
@@ -68,7 +68,7 @@
     
     address.layer.borderColor = [BORDER_COLOR CGColor];
     address.layer.borderWidth = 1.0f;
-    address.layer.cornerRadius = 10.0f;
+    address.layer.cornerRadius = CORNER_RADIUS;
     address.backgroundColor = FOREGROUND_COLOR;
     
     address.delegate = self;

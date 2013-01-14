@@ -36,12 +36,14 @@
     
     UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
     
-    image.frame = CGRectMake(75, 15, 170, 170);
+    image.frame = CGRectMake(75, 10, 170, 170);
+    
+    image.backgroundColor = [UIColor whiteColor];
     
     [view addSubview:image];
     [image release];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 200, 320, 12)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 196, 320, 12)];
     
     label.text = @"扫描二维码，立即得到 APP STORE 下载地址";
     label.textAlignment = UITextAlignmentCenter;
@@ -79,7 +81,7 @@
     
     table.layer.borderColor = [BORDER_COLOR CGColor];
     table.layer.borderWidth = 1.0f;
-    table.layer.cornerRadius = 10.0f;
+    table.layer.cornerRadius = CORNER_RADIUS;
     
     table.delegate = self;
     table.dataSource = self;
@@ -129,6 +131,13 @@
         [cell addSubview:line];
         [line release];
     }
+    
+    line = [[UIView alloc] initWithFrame:[tableView cellForRowAtIndexPath:indexPath].bounds];
+    
+    line.backgroundColor = BACKGROUND_COLOR;
+    
+    cell.selectedBackgroundView = line;
+    [line release];
     
     if(indexPath.row != [tableView numberOfRowsInSection:indexPath.section] - 1)
     {

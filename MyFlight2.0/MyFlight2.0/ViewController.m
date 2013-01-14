@@ -141,12 +141,8 @@
 - (IBAction)showAirportMainScreen:(id)sender
 {
     AirportMainScreenViewController *screen = [[AirportMainScreenViewController alloc] init];
-    
-    [self presentViewController:screen
-                       animated:YES
-                     completion:^(void){
-                         [screen release];
-                     }];
+    [self presentModalViewController:screen animated:YES];
+    [screen release];
 }
 
 @end

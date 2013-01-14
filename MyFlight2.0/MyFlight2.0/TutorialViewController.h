@@ -8,6 +8,15 @@
 
 #import "BasicViewController.h"
 
-@interface TutorialViewController : BasicViewController
+@interface TutorialViewController : BasicViewController <UIScrollViewDelegate>
+{
+    UIImageView *dots_0;
+    UIImageView *dots_1;
+    UIImageView *dots_2;
+    
+    UIButton *quitTutorial;
+}
+
+- (void) quitTutorial;
 
 @end

@@ -166,7 +166,7 @@
                 
                 label.text = value;
                 
-                label.textColor = [UIColor blueColor];
+                label.textColor = FONT_COLOR_BLUE;
                 label.textAlignment = UITextAlignmentCenter;
                 label.font = [UIFont systemFontOfSize:20.0f];
                 label.backgroundColor = [UIColor clearColor];
