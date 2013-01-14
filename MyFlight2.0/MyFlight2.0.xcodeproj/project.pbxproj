@@ -179,6 +179,7 @@
 		149B780B168D8132006281A3 /* bookingGoFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780A168D8132006281A3 /* bookingGoFlightVo.m */; };
 		149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780D168D8FD1006281A3 /* bookingFlightVo.m */; };
 		149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7810168D9775006281A3 /* bookingReturnFlightVo.m */; };
+		14A43C8816A409A500656CDF /* MyOrderListSingleDataSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A43C8716A409A500656CDF /* MyOrderListSingleDataSave.m */; };
 		14AF42311697D1A000C7C2CA /* FrequentPassengerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */; };
 		14AF42341697D67300C7C2CA /* isFrequentPassengerLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42331697D67300C7C2CA /* isFrequentPassengerLogin.m */; };
 		14AF42371697DA3C00C7C2CA /* MemberPointDataOfFrequent.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42361697DA3C00C7C2CA /* MemberPointDataOfFrequent.m */; };
@@ -1101,6 +1102,8 @@
 		149B780F168D9774006281A3 /* bookingReturnFlightVo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bookingReturnFlightVo.h; sourceTree = "<group>"; };
 		149B7810168D9775006281A3 /* bookingReturnFlightVo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bookingReturnFlightVo.m; sourceTree = "<group>"; };
 		149B7813168D9ABE006281A3 /* flightBookingUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flightBookingUility.h; sourceTree = "<group>"; };
+		14A43C8616A409A500656CDF /* MyOrderListSingleDataSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderListSingleDataSave.h; sourceTree = "<group>"; };
+		14A43C8716A409A500656CDF /* MyOrderListSingleDataSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderListSingleDataSave.m; sourceTree = "<group>"; };
 		14AF422F1697D1A000C7C2CA /* FrequentPassengerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentPassengerData.h; sourceTree = "<group>"; };
 		14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentPassengerData.m; sourceTree = "<group>"; };
 		14AF42321697D67300C7C2CA /* isFrequentPassengerLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = isFrequentPassengerLogin.h; sourceTree = "<group>"; };
@@ -2631,6 +2634,8 @@
 			children = (
 				1468CC3F16993FBF00B05F43 /* OrderListModelData.h */,
 				1468CC4016993FBF00B05F43 /* OrderListModelData.m */,
+				14A43C8616A409A500656CDF /* MyOrderListSingleDataSave.h */,
+				14A43C8716A409A500656CDF /* MyOrderListSingleDataSave.m */,
 			);
 			name = orderListModel;
 			sourceTree = "<group>";
@@ -4987,9 +4992,7 @@
 				18C65E2116A17B8700E975D4 /* ChoosePersonController.xib in Resources */,
 				18C65E2616A17B9800E975D4 /* AddPersonController.xib in Resources */,
 				18C65E2B16A191E700E975D4 /* PersonTypeCell.xib in Resources */,
-
 				18FB6C6516A2736300DA8FC5 /* SubTrfficViewController.xib in Resources */,
-
 				EC89D7B116A361A500C60A88 /* tutorial_3.jpg in Resources */,
 				EC89D7B216A361A500C60A88 /* tutorial_2.jpg in Resources */,
 				EC89D7B316A361A500C60A88 /* tutorial_1.jpg in Resources */,
@@ -5000,24 +5003,15 @@
 				14FA525C16A2716900F84AFB /* PersonNewInfotableViewController.xib in Resources */,
 				14FA526316A2721300F84AFB /* PersonNewInfoCell.xib in Resources */,
 				14FA526C16A2B3BB00F84AFB /* FrequentMainPageCell.xib in Resources */,
-
-
-
 				18FB6C7016A289C600DA8FC5 /* icon_Weather.png in Resources */,
 				18FB6C7816A2D78400DA8FC5 /* bar_loding.png in Resources */,
 				18FB6C7916A2D78400DA8FC5 /* bg_loading.png in Resources */,
 				18FB6C7A16A2D78400DA8FC5 /* icon_loading.png in Resources */,
 				18FB6C7B16A2D78400DA8FC5 /* off_loading.png in Resources */,
-
-
 				1436058416A2DF900048DE6A /* AllCityDataBase.sqlite in Resources */,
 				1436058616A2DFA30048DE6A /* AirCompanyDataBase.sqlite in Resources */,
 				1436058816A2DFAD0048DE6A /* AirPortDataBase.sqlite in Resources */,
-
-
-				14FA524616A154AA00F84AFB /* AllCityDataBase.sqlite in Resources */,
 				18C65E4816A2591B00E975D4 /* PostCityViewController.xib in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5307,14 +5301,12 @@
 				18C65E2916A191CD00E975D4 /* PersonTypeCell.m in Sources */,
 				14FA524116A1452600F84AFB /* CityData_David.m in Sources */,
 				14FA524416A1471100F84AFB /* CityDataBase_David.m in Sources */,
-
 				18FB6C6416A2736300DA8FC5 /* SubTrfficViewController.m in Sources */,
 				14FA525B16A2716900F84AFB /* PersonNewInfotableViewController.m in Sources */,
 				14FA526116A2720000F84AFB /* PersonNewInfoCell.m in Sources */,
 				14FA526A16A2B39E00F84AFB /* FrequentMainPageCell.m in Sources */,
-
 				18C65E4716A2591B00E975D4 /* PostCityViewController.m in Sources */,
-
+				14A43C8816A409A500656CDF /* MyOrderListSingleDataSave.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

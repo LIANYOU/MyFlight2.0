@@ -15,7 +15,7 @@
     
 }
 
-
+@property(nonatomic,retain)UILabel *noPayOrderLabel;
 
 
 

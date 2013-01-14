@@ -220,13 +220,19 @@
      
 - (void)initLocalDatabase{
          
-         
+    
+    
          LoginBusiness *bis =[[LoginBusiness alloc] init];
          
          [bis getCommonPassengerWithMemberId:Default_UserMemberId_Value andDelegate:nil];
          
+         [bis getOrderListWithCurrentPage:@"1" rowsOfPage:@"100" andDelegate:nil];
          [bis release];
-         
+    
+    
+    
+    
+    
      }
      
      
@@ -260,7 +266,7 @@
          }
          
          
-//     [UIQuickHelp showAlertViewWithTitle:@"登录成功" message:@"即将跳转" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+         //     [UIQuickHelp showAlertViewWithTitle:@"登录成功" message:@"即将跳转" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
          
          
          NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_Default_Token];
@@ -342,9 +348,9 @@
              [logPassword resignFirstResponder];
              
              
-            [loginBusiness loginWithName:account password:pwd andDelegate:self];
+             [loginBusiness loginWithName:account password:pwd andDelegate:self];
              
-                         
+             
          }
          
          
@@ -462,9 +468,9 @@
          
          if (isRemember) {
              //不记住密码
-            isRemember = false;
+             isRemember = false;
              
-        [[NSUserDefaults standardUserDefaults] setBool:isRemember forKey:KEY_Default_IsRememberPwd];
+             [[NSUserDefaults standardUserDefaults] setBool:isRemember forKey:KEY_Default_IsRememberPwd];
              
              
              //        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:KEY_Default_Password];
@@ -494,28 +500,28 @@
              
          }
          
-}
+     }
      
-
-- (BOOL) textFieldShouldReturn:(UITextField *)textField{
+     
+     - (BOOL) textFieldShouldReturn:(UITextField *)textField{
          
          if ([textField isEqual:logNumber]) {
              
-//             [logNumber resignFirstResponder];
+             //             [logNumber resignFirstResponder];
              [logPassword becomeFirstResponder];
              
              
          } else{
              
-            [textField resignFirstResponder];
+             [textField resignFirstResponder];
              
-//          [self performSelector:@selector(beginLoging:)];
+             //          [self performSelector:@selector(beginLoging:)];
              
              
          }
          
          
-        return true;
+         return true;
          
      }
      
@@ -526,4 +532,4 @@
          [logNumber resignFirstResponder];
          [logPassword resignFirstResponder];
      }
-   @end
+     @end
