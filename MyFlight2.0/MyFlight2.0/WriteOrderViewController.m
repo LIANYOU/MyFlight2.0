@@ -74,6 +74,7 @@
     int childOil;
     
    
+    int money;  //  邮件费用
     
     
     BOOL selectDicount;
@@ -245,6 +246,7 @@
     
 
     self.firstCelTextArr = [NSMutableArray arrayWithObject:@""];
+    
     self.navigationItem.title = @"填写订单";
     
     self.orderTableView.delegate = self;
@@ -1249,9 +1251,9 @@
                      }
                  
                  if ([self.postType isEqualToString:@"快递"]) {
-                     self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber) + 20];
-                     self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber)+ 20];
-                     self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber)+ 20];
+                     self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber) + money];
+                     self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber)+ money];
+                     self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber)+ money];
                  }
                  else{
                      self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +20*(personNumber + childNumber)];
@@ -1299,9 +1301,9 @@
                 self.childInsure.text = @"￥20";
                 
                 if ([self.postType isEqualToString:@"快递"]) {
-                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber) + 20];
-                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber) + 20];
-                    self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber) + 20];
+                    self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber) + money];
+                    self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber) + money];
+                    self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + 20*(personNumber+childNumber) + money];
                 }
 
                 else{
@@ -1356,7 +1358,7 @@
         
         self.postType = @"";
 
-        [trave getDate:^(NSString *schedule, NSString *postPay, int chooseBtnIndex , NSArray * InfoArr) {
+        [trave getDate:^(NSString *schedule, NSString *postPay, int chooseBtnIndex ,NSString * city, NSArray * InfoArr) {
             
             
             
@@ -1417,9 +1419,17 @@
                 
                 self.postType = postPay;
                 
-                self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
-                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
-                self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+20];
+                
+                if ([city isEqualToString:@"北京"]) {
+                    money = 10;
+                }
+                else{
+                    money = 20;
+                }
+                
+                self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+money];
+                self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+money];
+                self.allPay.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber + insuranceFlag*20*(personNumber+childNumber)+money];
             }
             
             else{

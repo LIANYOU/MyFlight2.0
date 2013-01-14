@@ -127,8 +127,8 @@
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<string key="IBUIText">zhang/feng</string>
 										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">2</int>
-											<bytes key="NSRGB">MC4xMzcyNTQ5MDIgMC4zNDUwOTgwMzkyIDAuNjk0MTE3NjQ3MQA</bytes>
+											<int key="NSColorSpace">1</int>
+											<bytes key="NSRGB">MC4yIDAuMiAwLjIAA</bytes>
 										</object>
 										<object class="NSColor" key="IBUIHighlightedColor">
 											<int key="NSColorSpace">2</int>
@@ -224,7 +224,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 44}, {320, 1}}</string>
 								<reference key="NSSuperview" ref="400297489"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>

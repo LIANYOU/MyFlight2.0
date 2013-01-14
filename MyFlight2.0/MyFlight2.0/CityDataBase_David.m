@@ -211,7 +211,7 @@
         
         NSString *parentName =[data.parentName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
-        CCLog(@"************parentName = %@",parentName);
+    //    CCLog(@"************parentName = %@",parentName);
         
         
         FMResultSet *resultSet =[db executeQuery:@"SELECT *  FROM cityAllDataBase where parentCode = ? order by pinyin",parentCode];
@@ -234,9 +234,9 @@
             data.hotcity =[resultSet stringForColumnIndex:3];
             data.parentName =[resultSet stringForColumn:@"parentName"];
             
-            CCLog(@"******************************************************************");
+     //       CCLog(@"******************************************************************");
             
-            CCLog(@"%@",data.name);
+   //         CCLog(@"%@",data.name);
             
             [cityArray addObject:data];
             [data release];
@@ -399,5 +399,39 @@
     
     
 }
+//查找搜索城市
++(NSMutableArray *)findCityBySiftBy:(NSString *)condition
+{
+    FMDatabase *db =[self openDatabase];
+;
 
+    FMResultSet *resultSet =[db executeQuery:[NSString stringWithFormat:@"SELECT *  FROM cityAllDataBase where name like '%%%@%@'",condition,@"%"]];
+
+    NSMutableArray *resultArray =[[NSMutableArray alloc] init];
+    
+    while ([resultSet next]) {
+
+        CityData_David *data =[[CityData_David alloc] init];
+        
+        data.name = [resultSet stringForColumnIndex:0];
+        data.code = [resultSet stringForColumnIndex:1];
+        data.pinyin =[resultSet stringForColumnIndex:2];
+        data.hotcity =[resultSet stringForColumnIndex:3];
+        data.parentName =[resultSet stringForColumn:@"parentName"];
+        
+        [resultArray addObject:data];
+        
+        [data release];
+        
+    }
+
+    
+    [db close];
+    
+    
+  
+    
+    return [resultArray autorelease];
+
+}
 @end

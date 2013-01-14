@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TraveController : UIViewController<UITextFieldDelegate>
+@interface TraveController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate,UIActionSheetDelegate>
 {
 
     IBOutlet UIButton *noNeedBtn;
@@ -18,13 +18,16 @@
     IBOutlet UILabel *type;
     
     IBOutlet UITextField *name;
-    IBOutlet UITextField *city;
+
+    
+    IBOutlet UILabel *city;
+    
     IBOutlet UITextField *address;
     IBOutlet UITextField *phone;
     
     int btnTag;
     
-    void (^blocks) (NSString *schedule, NSString *postPay, int chooseBtnIndex, NSArray * InfoArr);
+    void (^blocks) (NSString *schedule, NSString *postPay, int chooseBtnIndex,NSString * city, NSArray * InfoArr);
 }
 
 @property(nonatomic,retain) NSString * schedule_;
@@ -54,7 +57,15 @@
 @property (retain, nonatomic) IBOutlet UITextField *postPhone;
 @property (retain, nonatomic) IBOutlet UILabel *postType;
 
--(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex , NSArray * InfoArr))string;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UIView *backViewBlack;
+
+@property (retain, nonatomic)NSMutableArray * postInfoArr;
+
+-(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex ,NSString * city, NSArray * InfoArr))string;
 - (IBAction)postType:(id)sender;
+- (IBAction)getPostCity:(id)sender;
+- (IBAction)postFast:(id)sender;
+- (IBAction)postSlow:(id)sender;
 
 @end

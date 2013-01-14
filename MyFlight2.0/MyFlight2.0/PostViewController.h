@@ -10,8 +10,9 @@
 
 @interface PostViewController : UITableViewController
 {
-    void (^blocks) (NSString * idntity);;
+    void (^blocks) (NSString * idntity);
 }
 
 -(void)getDate:(void (^) (NSString * idntity))string;
 @end
+

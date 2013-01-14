@@ -29,7 +29,7 @@
 
 
 
-@interface AddPersonController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,ServiceDelegate>
+@interface AddPersonController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,ServiceDelegate,UIActionSheetDelegate>
 {
     UISwitch *mySwitch;
     void (^blocks) (NSString * name, NSString * identity);

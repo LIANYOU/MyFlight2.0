@@ -10,8 +10,12 @@
 #import "UIQuickHelp.h"
 #import "PostViewController.h"
 #import "UIButton+BackButton.h"
+#import "PostCityViewController.h"
+#import "AppConfigure.h"
 @interface TraveController ()
-
+{
+    NSString * postCITY;
+}
 @end
 
 @implementation TraveController
@@ -27,14 +31,44 @@
 
 - (void)viewDidLoad
 {
+        
+ 
     self.postView.hidden = YES;
+    self.backViewBlack.hidden = YES;
     
     self.navigationItem.title = @"行程单配送";
+    
+    self.postInfoArr = [[NSMutableArray alloc] initWithCapacity:5];
+    
+    self.scrollView.delegate = self;
+  
+    
+    self.postArr = [[NSUserDefaults standardUserDefaults] objectForKey:@"TraveController"];
+    
+    btnTag = [[self.postArr objectAtIndex:2] intValue];
+    
+    if (self.postArr) {
+        self.postInfoArr = [self.postArr objectAtIndex:3];
+        postCITY = [self.postInfoArr objectAtIndex:1];
+    }
+    else{
+        self.postInfoArr = [[[NSMutableArray alloc] init] autorelease];
+    }
+    
+    
+    if ([self.cellText isEqualToString:@"不需要行程单报销凭证"]) {
+        self.flag = 1;
+    }
+    else{
+        self.flag = [[self.postArr objectAtIndex:2] intValue];
+        
+    }
+    
+
     
     name.delegate = self;
     address.delegate = self;
     phone.delegate = self;
-    city.delegate = self;
     
     UIButton * backBtn_ = [UIButton backButtonType:0 andTitle:@""];
     [backBtn_ addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
@@ -52,27 +86,7 @@
 
     [UIQuickHelp setRoundCornerForView:self.backView withRadius:8];
     
-    self.postArr  = [NSMutableArray arrayWithCapacity:5];
-
-    self.postArr = [[NSUserDefaults standardUserDefaults] objectForKey:@"TraveController"];
-  
-    if ([self.cellText isEqualToString:@"不需要行程单报销凭证"]) {
-        self.flag = 1;
-    }
-    else{
-        self.flag = [[self.postArr objectAtIndex:2] intValue];
-    }
-    
-    
-    
-    NSArray * postInfoArr = [self.postArr objectAtIndex:3];
-    
-    name.text = [postInfoArr objectAtIndex:0];
-    city.text = [postInfoArr objectAtIndex:1];
-    address.text = [postInfoArr objectAtIndex:2];
-    phone.text = [postInfoArr objectAtIndex:3];
-    type.text = [postInfoArr objectAtIndex:4];
-    
+       
     
     noNeedBtn.tag = 1;
     helpYourselfBtn.tag = 2;
@@ -107,6 +121,20 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+
+    
+    name.text = [self.postInfoArr objectAtIndex:0];
+    city.text = postCITY;
+    address.text = [self.postInfoArr objectAtIndex:2];
+    phone.text = [self.postInfoArr objectAtIndex:3];
+    type.text = [self.postInfoArr objectAtIndex:4];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -161,7 +189,6 @@
     [helpYourselfBtn release];
     [post release];
     [name release];
-    [city release];
     [address release];
     [phone release];
     [type release];
@@ -174,6 +201,9 @@
     [_postAddress release];
     [_postPhone release];
     [_postType release];
+    [city release];
+    [_scrollView release];
+    [_backViewBlack release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -186,8 +216,6 @@
     post = nil;
     [name release];
     name = nil;
-    [city release];
-    city = nil;
     [address release];
     address = nil;
     [phone release];
@@ -203,10 +231,14 @@
     [self setPostAddress:nil];
     [self setPostPhone:nil];
     [self setPostType:nil];
+    [city release];
+    city = nil;
+    [self setScrollView:nil];
+    [self setBackViewBlack:nil];
     [super viewDidUnload];
 }
 
--(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex , NSArray * InfoArr))string
+-(void)getDate:(void (^) (NSString *schedule, NSString *postPay, int chooseBtnIndex ,NSString * city, NSArray * InfoArr))string
 {
     [blocks release];
     blocks = [string copy];
@@ -215,13 +247,65 @@
 
 - (IBAction)postType:(id)sender {
     
-    PostViewController * postT = [[PostViewController alloc] init];
-    [postT getDate:^(NSString *idntity) {
-        type.text = idntity;
-    }];
-    [self.navigationController pushViewController:postT animated:YES];
-    [postT release];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择邮寄方式"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"快递,北京10元,其它地区20元(推荐)", @"平信(全国免费)", nil];
     
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    
+    [actionSheet showInView:self.view];
+    [actionSheet release];
+   
+
+   
+}
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch(buttonIndex)
+    {
+        case 0:
+           type.text = @"快递";
+            break;
+        case 1:
+            type.text = @"平信";
+            
+            break;
+        
+            
+        default:
+            break;
+    }
+}
+- (IBAction)getPostCity:(id)sender {
+    
+    
+    PostCityViewController * post1 = [[PostCityViewController alloc] init];
+    [self.navigationController pushViewController:post1 animated:YES];
+    
+    [post1 getDate:^(NSString *idntity) {
+    
+        postCITY = idntity;
+
+    }];
+    
+    
+    
+    [post1 release];
+    
+}
+
+- (IBAction)postFast:(id)sender {
+    self.scrollView.scrollEnabled = YES;
+    self.backViewBlack.hidden = YES;
+ 
+}
+
+- (IBAction)postSlow:(id)sender {
+    self.scrollView.scrollEnabled = YES;
+    self.backViewBlack.hidden = YES;
+
 }
 -(void)back
 {
@@ -238,8 +322,11 @@
         self.flag = [[self.postArr objectAtIndex:2] intValue];
     }
     
-    
-    blocks(_schedule_,type.text,self.flag, arr);  // type.text (快递）
+    if (self.flag == 3) {
+        _schedule_ = @"邮寄行程单";
+    }
+
+    blocks(_schedule_,type.text,self.flag,postCITY,arr);  // type.text (快递）
     [self.navigationController popViewControllerAnimated:YES];
     
     if (_schedule_ == nil) {
@@ -254,17 +341,42 @@
     [[NSUserDefaults standardUserDefaults] setObject:arrary forKey:@"TraveController"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+
+    
     
 }
+
+#pragma mark - 键盘回收
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    
+    CGPoint ce=self.view.center;
+    ce.y=self.view.frame.size.height/2;
+    
+    [UIView beginAnimations:@"Curl"context:nil];//动画开始
+    [UIView setAnimationDuration:0.25];
+    [UIView setAnimationDelegate:self];
+    self.view.center=ce;
+    [UIView commitAnimations];
+
+    
+    [name resignFirstResponder];
+    [address resignFirstResponder];
+    [phone resignFirstResponder];
+
+}
+
+
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     CGPoint ce=self.view.center;
-    ce.y=self.view.frame.size.height/2;
+    ce.y=self.view.bounds.size.height/2;
     if (textField.center.y>20) {
         ce.y=ce.y- textField.center.y-20;
     }
-    NSLog(@"%f",textField.center.y);
+   
     [UIView beginAnimations:@"dsdf" context:nil];//动画开始
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationDelegate:self];
@@ -275,7 +387,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     CGPoint ce=self.view.center;
-    ce.y=self.view.frame.size.height/2;
+    ce.y=self.view.bounds.size.height/2;
 
     [UIView beginAnimations:@"Curl"context:nil];//动画开始
     [UIView setAnimationDuration:0.25];

@@ -407,6 +407,8 @@
 		18C65E2616A17B9800E975D4 /* AddPersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C65E2416A17B9800E975D4 /* AddPersonController.xib */; };
 		18C65E2916A191CD00E975D4 /* PersonTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C65E2816A191CC00E975D4 /* PersonTypeCell.m */; };
 		18C65E2B16A191E700E975D4 /* PersonTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C65E2A16A191E700E975D4 /* PersonTypeCell.xib */; };
+		18C65E4716A2591B00E975D4 /* PostCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C65E4516A2591B00E975D4 /* PostCityViewController.m */; };
+		18C65E4816A2591B00E975D4 /* PostCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C65E4616A2591B00E975D4 /* PostCityViewController.xib */; };
 		18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C9E6D81685C96100A1453C /* circle_green_change.png */; };
 		18CB482116914CE200780BB7 /* add_attention.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB47CE16914CE100780BB7 /* add_attention.png */; };
 		18CB482216914CE200780BB7 /* Arrow_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CB47CF16914CE100780BB7 /* Arrow_white.png */; };
@@ -1416,6 +1418,9 @@
 		18C65E2716A191CB00E975D4 /* PersonTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTypeCell.h; sourceTree = "<group>"; };
 		18C65E2816A191CC00E975D4 /* PersonTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTypeCell.m; sourceTree = "<group>"; };
 		18C65E2A16A191E700E975D4 /* PersonTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonTypeCell.xib; sourceTree = "<group>"; };
+		18C65E4416A2591B00E975D4 /* PostCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCityViewController.h; sourceTree = "<group>"; };
+		18C65E4516A2591B00E975D4 /* PostCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCityViewController.m; sourceTree = "<group>"; };
+		18C65E4616A2591B00E975D4 /* PostCityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCityViewController.xib; sourceTree = "<group>"; };
 		18C9E6D81685C96100A1453C /* circle_green_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_green_change.png; sourceTree = "<group>"; };
 		18CB47CE16914CE100780BB7 /* add_attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_attention.png; sourceTree = "<group>"; };
 		18CB47CF16914CE100780BB7 /* Arrow_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow_white.png; sourceTree = "<group>"; };
@@ -3053,6 +3058,9 @@
 				18CB6D0C16843C580025F42F /* PostViewController.h */,
 				18CB6D0D16843C580025F42F /* PostViewController.m */,
 				18CB6D0E16843C580025F42F /* PostViewController.xib */,
+				18C65E4416A2591B00E975D4 /* PostCityViewController.h */,
+				18C65E4516A2591B00E975D4 /* PostCityViewController.m */,
+				18C65E4616A2591B00E975D4 /* PostCityViewController.xib */,
 			);
 			name = TravelItinerary;
 			sourceTree = "<group>";
@@ -4979,6 +4987,7 @@
 				18C65E2116A17B8700E975D4 /* ChoosePersonController.xib in Resources */,
 				18C65E2616A17B9800E975D4 /* AddPersonController.xib in Resources */,
 				18C65E2B16A191E700E975D4 /* PersonTypeCell.xib in Resources */,
+
 				18FB6C6516A2736300DA8FC5 /* SubTrfficViewController.xib in Resources */,
 
 				EC89D7B116A361A500C60A88 /* tutorial_3.jpg in Resources */,
@@ -5004,6 +5013,10 @@
 				1436058416A2DF900048DE6A /* AllCityDataBase.sqlite in Resources */,
 				1436058616A2DFA30048DE6A /* AirCompanyDataBase.sqlite in Resources */,
 				1436058816A2DFAD0048DE6A /* AirPortDataBase.sqlite in Resources */,
+
+
+				14FA524616A154AA00F84AFB /* AllCityDataBase.sqlite in Resources */,
+				18C65E4816A2591B00E975D4 /* PostCityViewController.xib in Resources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5294,10 +5307,14 @@
 				18C65E2916A191CD00E975D4 /* PersonTypeCell.m in Sources */,
 				14FA524116A1452600F84AFB /* CityData_David.m in Sources */,
 				14FA524416A1471100F84AFB /* CityDataBase_David.m in Sources */,
+
 				18FB6C6416A2736300DA8FC5 /* SubTrfficViewController.m in Sources */,
 				14FA525B16A2716900F84AFB /* PersonNewInfotableViewController.m in Sources */,
 				14FA526116A2720000F84AFB /* PersonNewInfoCell.m in Sources */,
 				14FA526A16A2B39E00F84AFB /* FrequentMainPageCell.m in Sources */,
+
+				18C65E4716A2591B00E975D4 /* PostCityViewController.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

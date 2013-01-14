@@ -59,12 +59,21 @@
         
     }];
     [request setFailedBlock:^{
+        
         NSError *error = [request error];
+        
+        NSMutableDictionary * diccc = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"网络不给力，请重新加载",@"arr", nil];
+
+        NSNotification * not = [NSNotification notificationWithName:@"返回错误信息" object:self userInfo:diccc];
+        [[NSNotificationCenter defaultCenter] postNotification:not];
+        
         NSLog(@"-----------Error downloading image: %@", error.localizedDescription);
     }];
     
     [request setDelegate:self];
     [request startAsynchronous];
+    
+    
 }
 
 -(NSArray *)analysisData:(NSData *)data

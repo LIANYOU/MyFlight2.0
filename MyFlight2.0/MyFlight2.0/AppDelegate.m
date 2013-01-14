@@ -33,7 +33,7 @@
 {
     
     
-//    [CityDataBase_David initDataBase];
+//   [CityDataBase_David initDataBase];
 //    [CityDataBase_David findAllCitiesSortedInKeys];
     
 //    [CityDataBase_David findAllDerectCities];
