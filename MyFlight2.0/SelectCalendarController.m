@@ -60,6 +60,8 @@ static SelectCalendarController *_instance;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:245/255.0 blue:241/255.0 alpha:1];
+    
     UIButton * backBtn = [UIButton backButtonType:0 andTitle:@""];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     

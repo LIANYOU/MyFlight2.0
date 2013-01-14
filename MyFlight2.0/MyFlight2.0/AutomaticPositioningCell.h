@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AutomaticPositioningCell : UITableViewCell
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *thsiImage;
+@property (retain, nonatomic) IBOutlet UILabel *apName;
 
 @end

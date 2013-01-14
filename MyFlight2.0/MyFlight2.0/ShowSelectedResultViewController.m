@@ -1411,18 +1411,22 @@ NSLog(@"---------------  %@,%@",self.oneGoWeek,self.backWeek);
     if (iPhone5) {
         
         if (self.tempTwoCodeArr.count<4) {
-            self.sortTableView.frame = CGRectMake(0, 568-20-45-44*5+(self.tempTwoCodeArr.count+1)*44, 320, 44*(self.tempTwoCodeArr.count+1));
+            
+            self.sortTableView.frame = CGRectMake(0, 568-20-45-44*9+(self.tempTwoCodeArr.count+1)*44, 320, 44*(self.tempTwoCodeArr.count+1));
         }
         else{
+           
             self.sortTableView.frame = CGRectMake(0, 568-20-45-44*5, 320, 44*4);
         }
         
     }
     else{
         if (self.tempTwoCodeArr.count<4) {
-             self.sortTableView.frame = CGRectMake(0, 568-20-45-44*7+(self.tempTwoCodeArr.count+1)*44, 320, 44*(self.tempTwoCodeArr.count+1));
+          
+             self.sortTableView.frame = CGRectMake(0, 568-20-45-44*11+(self.tempTwoCodeArr.count+1)*44, 320, 44*(self.tempTwoCodeArr.count+1));
         }
         else{
+            
             self.sortTableView.frame = CGRectMake(0, 568-20-45-44*7, 320, 44*4);
         }
     }

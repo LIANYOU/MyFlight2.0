@@ -17,9 +17,11 @@ static NSArray* chineseWeekDays;
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [UIColor colorWithRed:209/255.0 green:201/255.0 blue:187/255.0 alpha:1];
         
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - 1, frame.size.height - 1)];
+        label.textColor = [UIColor colorWithRed:178/255.0 green:172/255.0 blue:163/255.0 alpha:1];
+        label.backgroundColor = [UIColor colorWithRed:237/255.0 green:232/255.0 blue:226/255.0 alpha:1];
         label.textAlignment = UITextAlignmentCenter;
         [self addSubview:label];
         [label release];

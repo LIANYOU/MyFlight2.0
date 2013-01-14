@@ -649,7 +649,7 @@
 
 - (IBAction)lookFlight:(UIButton *)sender {
     
-    // 只发push....
+    // 只发push....................
     
     if (self.lookReceive.count >=5) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您关注的航班已经达到5条,不能继续添加" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

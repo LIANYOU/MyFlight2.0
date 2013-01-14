@@ -7,7 +7,7 @@
 //
 
 #import "MonthSection.h"
-
+#import "ColorUility.h"
 @implementation MonthSection
 
 - (id)initWithFrame:(CGRect)frame
@@ -16,17 +16,18 @@
     if (self) {
         
         titleBar = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 40)];
-        [titleBar setBackgroundColor:[UIColor lightGrayColor]];
+        [titleBar setBackgroundColor:[UIColor colorWithRed:28/255.0 green:92/255.0 blue:178/255.0 alpha:1]];
+        titleBar.textColor = [UIColor whiteColor];
         [self addSubview:titleBar];
         [titleBar release];
         
         weekDaysBar = [[UIView alloc] initWithFrame:CGRectMake(0, 40, frame.size.width, 30)];
-        [weekDaysBar setBackgroundColor:[UIColor whiteColor]];
+        [weekDaysBar setBackgroundColor:[UIColor colorWithRed:28/255.0 green:92/255.0 blue:178/255.0 alpha:1]];
         [self addSubview:weekDaysBar];
         [weekDaysBar release];
-    
+ 
         container = [[UIView alloc] initWithFrame:CGRectMake(0, 70, self.frame.size.width, self.frame.size.height - 70)];
-        [container setBackgroundColor:[UIColor whiteColor]];
+        [container setBackgroundColor:[UIColor blackColor]];
         [self addSubview:container]; 
         [container release];
     }

@@ -54,6 +54,7 @@ static NSMutableDictionary* items;
 
 +(NSString*) findFestivalOrDayWithYear: (int) year month: (int) month day: (int) day {
     
+    
     NSString* date = [NSString stringWithFormat:@"%d-%d-%d", year, month, day];
     
     NSArray* sections = (NSArray*)[items objectForKey:date];
