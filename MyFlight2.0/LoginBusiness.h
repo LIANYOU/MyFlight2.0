@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "ServiceDelegate.h"
 #import "CommonContact.h"
-
+#import "ASIFormDataRequest.h"
 @interface LoginBusiness : NSObject
 
 @property(nonatomic,assign)id<ServiceDelegate> delegate; 
 
 //登录
-- (void) loginWithName:(NSString *) name password:(NSString *) passwd andDelegate:(id<ServiceDelegate>) delegate;
+- (void) loginWithName:(NSString *) name password:(NSString *) passwd andDelegate:(id<ServiceDelegate>) delegate andRequest:(ASIFormDataRequest *) formRequst;
 
 //第三方登陆
 -(void) loginWithOAuth:(NSMutableDictionary *) userInfo andDelegate:(id<ServiceDelegate>)delegate;

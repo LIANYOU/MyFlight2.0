@@ -260,8 +260,8 @@
             
             //            CCLog(@"成功登陆后返回的数据：%@",dic);
             
-             [formRequst clearDelegatesAndCancel];
-                this=nil;
+//             [formRequst clearDelegatesAndCancel];
+//                this=nil;
             
             
             if ([message length]==0) {
@@ -1047,11 +1047,15 @@
                 con.type =type;
                 con.certType= certType;
                 con.certNo=certNo;
-                NSMutableArray *array =[ [NSMutableArray alloc] initWithObjects:con, nil];
+//                NSMutableArray *array =[ [NSMutableArray alloc] initWithObjects:con, nil];
+//
                 
-                [con release];
-                //更新本地数据库
-                [CommonContact_LocalTmpDBHelper addCommonContact_Login:array];
+                 [CommonContact_LocalTmpDBHelper addCommonContact_Login_ForOnce:con];
+                
+                
+               [con release];
+//                //更新本地数据库
+//                [CommonContact_LocalTmpDBHelper addCommonContact_Login:array];
                 
                 
                 
