@@ -424,7 +424,8 @@
 }
 -(void)btnPhoneClick:(id)sender{
     NSLog(@"打电话");
-//    UIActionSheet * actionSheet = [UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"" otherButtonTitles:@"出发机场电话",@"到达机场电话", nil;
+    UIActionSheet * callPhoneActionSheet = [[UIActionSheet alloc]initWithTitle:@"电话咨询" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"出发机场电话",@"到达机场电话",@"航班公司电话", nil];
+    [callPhoneActionSheet showInView:self.view];
 }
 -(void)btnShareClick:(id)sender{
     NSLog(@"发微信");
@@ -508,78 +509,144 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if ([actionSheet.title isEqualToString:@"更多分享"]) {
         NSLog(@"actionsheet更多分享");
-    }
-    
-    NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *cachedictionary = [paths objectAtIndex:0];
-    if (buttonIndex == 0) {
-        //分享新浪微博
-        SinaWeibo *sinaweibo = [self sinaweibo];
-        if (![sinaweibo isAuthValid]) {
-            [sinaweibo logIn];
-        }else{
-            [sinaweibo requestWithURL:@"statuses/upload.json"
-                               params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       self.shareMsgWithWeibo,@"status",
-                                       [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/capture.png",cachedictionary]], @"pic", nil]
-                           httpMethod:@"POST"
-                             delegate:self];
-        }
-    }else if(buttonIndex == 1){
-        //分享到腾讯微博
-        engine = [[TCWBEngine alloc] initWithAppKey:WiressSDKDemoAppKey andSecret:WiressSDKDemoAppSecret andRedirectUrl:@"http://www.51you.com/mobile/myflight.html"];
-        
-        if ([engine isAuthorizeExpired]) {
-            [engine logInWithDelegate:self onSuccess:@selector(loginSucess) onFailure:@selector(loginFailed)];
-        }else{
-            [engine setRootViewController:self];
-            [engine UIBroadCastMsgWithContent:self.shareMsgWithWeibo
-                                     andImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/capture.png",cachedictionary]]
-                                  parReserved:nil
-                                     delegate:self
-                                  onPostStart:@selector(postStart)
-                                onPostSuccess:@selector(createSuccess:)
-                                onPostFailure:@selector(createFail:)];
-        }
-    }else if(buttonIndex == 2){
-        //发短信
-        Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
-        if (messageClass != nil) {
-            // Check whether the current device is configured for sending SMS messages
-            if ([messageClass canSendText]) {
-                [self displaySMSComposerSheet];
+        NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *cachedictionary = [paths objectAtIndex:0];
+        if (buttonIndex == 0) {
+            //分享新浪微博
+            SinaWeibo *sinaweibo = [self sinaweibo];
+            if (![sinaweibo isAuthValid]) {
+                [sinaweibo logIn];
+            }else{
+                [sinaweibo requestWithURL:@"statuses/upload.json"
+                                   params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                           self.shareMsgWithWeibo,@"status",
+                                           [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/capture.png",cachedictionary]], @"pic", nil]
+                               httpMethod:@"POST"
+                                 delegate:self];
+            }
+        }else if(buttonIndex == 1){
+            //分享到腾讯微博
+            engine = [[TCWBEngine alloc] initWithAppKey:WiressSDKDemoAppKey andSecret:WiressSDKDemoAppSecret andRedirectUrl:@"http://www.51you.com/mobile/myflight.html"];
+            
+            if ([engine isAuthorizeExpired]) {
+                [engine logInWithDelegate:self onSuccess:@selector(loginSucess) onFailure:@selector(loginFailed)];
+            }else{
+                [engine setRootViewController:self];
+                [engine UIBroadCastMsgWithContent:self.shareMsgWithWeibo
+                                         andImage:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/capture.png",cachedictionary]]
+                                      parReserved:nil
+                                         delegate:self
+                                      onPostStart:@selector(postStart)
+                                    onPostSuccess:@selector(createSuccess:)
+                                    onPostFailure:@selector(createFail:)];
+            }
+        }else if(buttonIndex == 2){
+            //发短信
+            Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
+            if (messageClass != nil) {
+                // Check whether the current device is configured for sending SMS messages
+                if ([messageClass canSendText]) {
+                    [self displaySMSComposerSheet];
+                }
+                else {
+                    UIAlertView *showMsg = [[UIAlertView alloc] initWithTitle:@"提示" message:@"设备没有短信功能" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
+                    [showMsg show];
+                    [showMsg release];
+                }
             }
             else {
-                UIAlertView *showMsg = [[UIAlertView alloc] initWithTitle:@"提示" message:@"设备没有短信功能" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
+                UIAlertView *showMsg = [[UIAlertView alloc] initWithTitle:@"提示" message:@"iOS版本过低,iOS4.0以上才支持程序内发送短信" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
                 [showMsg show];
                 [showMsg release];
             }
-        }
-        else {
-            UIAlertView *showMsg = [[UIAlertView alloc] initWithTitle:@"提示" message:@"iOS版本过低,iOS4.0以上才支持程序内发送短信" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
-            [showMsg show];
-            [showMsg release];
-        }
-        
-    }else if(buttonIndex == 3){
-        //发邮件
-        MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-        mc.mailComposeDelegate = self;
-        if ([MFMailComposeViewController canSendMail]) {
-            [mc setSubject:@"航班信息分享"];
-            [mc setMessageBody:self.shareMsg isHTML:NO];
             
-            NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-            NSString *cachedictionary = [paths objectAtIndex:0];
-            NSString *path = [NSString stringWithFormat:@"%@/capture.png",cachedictionary];
-            NSData *data = [NSData dataWithContentsOfFile:path];
-            [mc addAttachmentData:data mimeType:@"image/png" fileName:@"blood_orange"];
-            [self presentModalViewController:mc animated:YES];
-            [mc release];
+        }else if(buttonIndex == 3){
+            //发邮件
+            MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+            mc.mailComposeDelegate = self;
+            if ([MFMailComposeViewController canSendMail]) {
+                [mc setSubject:@"航班信息分享"];
+                [mc setMessageBody:self.shareMsg isHTML:NO];
+                
+                NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+                NSString *cachedictionary = [paths objectAtIndex:0];
+                NSString *path = [NSString stringWithFormat:@"%@/capture.png",cachedictionary];
+                NSData *data = [NSData dataWithContentsOfFile:path];
+                [mc addAttachmentData:data mimeType:@"image/png" fileName:@"blood_orange"];
+                [self presentModalViewController:mc animated:YES];
+                [mc release];
+            }
+        }else if(buttonIndex == 4){
+            //取消
         }
-    }else if(buttonIndex == 4){
-        //取消
+    }else{
+        
+        
+        if (buttonIndex == 0) {
+            //出发机场电话
+            NSString *deviceType = [UIDevice currentDevice].model;
+            //NSString *deviceType = [UIDevice currentDevice].modellocalizedModel;
+            
+            if([deviceType  isEqualToString:@"iPod touch"]||[deviceType  isEqualToString:@"iPad"]||[deviceType  isEqualToString:@"iPhone Simulator"]){
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"您的设备不能打电话" delegate:nil cancelButtonTitle:@"好的,知道了" otherButtonTitles:nil];
+                [alert show];
+                [alert release];
+                
+            }else{
+                
+//                NSString * temp = [NSString stringWithFormat:@"tel:%@",selectedPhoneNum];
+//                UIWebView*callWebview =[[UIWebView alloc] init];
+//                NSURL *telURL =[NSURL URLWithString:temp];// 貌似tel:// 或者 tel: 都行
+//                [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+            }
+            
+            
+        }else if (buttonIndex == 1){
+            //到达机场电话
+            
+            NSString *deviceType = [UIDevice currentDevice].model;
+            //NSString *deviceType = [UIDevice currentDevice].modellocalizedModel;
+            
+            if([deviceType  isEqualToString:@"iPod touch"]||[deviceType  isEqualToString:@"iPad"]||[deviceType  isEqualToString:@"iPhone Simulator"]){
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"您的设备不能打电话" delegate:nil cancelButtonTitle:@"好的,知道了" otherButtonTitles:nil];
+                [alert show];
+                [alert release];
+                
+            }else{
+//                NSString * temp = [NSString stringWithFormat:@"tel:%@",selectedPhoneNum];
+//                UIWebView*callWebview =[[UIWebView alloc] init];
+//                NSURL *telURL =[NSURL URLWithString:temp];// 貌似tel:// 或者 tel: 都行
+//                [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+            }
+            
+            
+            
+            
+        }else if (buttonIndex == 2){
+            //航班公司电话
+            
+            NSString *deviceType = [UIDevice currentDevice].model;
+            //NSString *deviceType = [UIDevice currentDevice].modellocalizedModel;
+            
+            if([deviceType  isEqualToString:@"iPod touch"]||[deviceType  isEqualToString:@"iPad"]||[deviceType  isEqualToString:@"iPhone Simulator"]){
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"您的设备不能打电话" delegate:nil cancelButtonTitle:@"好的,知道了" otherButtonTitles:nil];
+                [alert show];
+                [alert release];
+                
+            }else{
+//                  myFlightConditionDetailData.flightNum
+//                NSString * temp = [NSString stringWithFormat:@"tel:%@",selectedPhoneNum];
+//                UIWebView*callWebview =[[UIWebView alloc] init];
+//                NSURL *telURL =[NSURL URLWithString:temp];// 貌似tel:// 或者 tel: 都行
+//                [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+            }
+            
+            
+            
+        }
     }
+    
+    
     
 }
 
@@ -1115,7 +1182,7 @@
         NSString * str = [NSString stringWithFormat:@"%@.png",selectPicName];
         NSLog(@"image name :%@",str);
         [self.depWeatherImageView setImage:[UIImage imageNamed:str]];
-        self.fromWeather = [self.depWeatherDic objectForKey:@"temp"];
+        self.fromWeather.text = [self.depWeatherDic objectForKey:@"temp"];
 #pragma mark -
     }];
     
@@ -1175,7 +1242,8 @@
         NSString * str = [NSString stringWithFormat:@"%@.png",selectPicName];
         NSLog(@"image name :%@",str);
         [self.arrWeatherImageView setImage:[UIImage imageNamed:str]];
-        self.arriveWeather = [self.arrWeatherDic objectForKey:@"temp"];
+        self.arriveWeather.text = [self.arrWeatherDic objectForKey:@"temp"];
+        NSLog(@"");
 #pragma mark -
        
         
