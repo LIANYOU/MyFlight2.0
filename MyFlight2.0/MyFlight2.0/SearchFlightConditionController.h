@@ -51,6 +51,8 @@
     UIScrollView * scrollview;  //关注列表的放在这个view上
     UILabel * remindLabel;
     UILabel * remindLabel1;
+    
+    
 }
 
 
@@ -74,6 +76,9 @@
 @property (retain,nonatomic)IBOutlet UILabel * whichDateLabel;  //今天、明天或者后天
 @property (retain,nonatomic)IBOutlet UILabel * whichDataLabelAirPort;
 @property (nonatomic,retain)IBOutlet UILabel * listCellState;   //关注列表的状态
+@property(nonatomic,retain)AirPortData * DetailDepAirPortData;
+@property(nonatomic,retain)AirPortData * DetailArrAirPortData;
+
 
 - (IBAction)selectedInquireType:(UISegmentedControl *)sender;
 

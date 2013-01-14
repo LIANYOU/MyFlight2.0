@@ -297,6 +297,10 @@
     DetailFlightConditionViewController * detail = [[DetailFlightConditionViewController alloc]init];
     detail.deptAirPortCode = self.deptAirPortCode;
     detail.arrAirPortCode = self.arrAirPortCode;
+    
+    detail.depAirPortData = self.DetailDepAirPortData;
+    detail.arrAirPortData = self.DetailArrAirPortData;
+    
     detail.dic = dic;
     detail.isAttentionFlight = YES;
     [self.navigationController pushViewController:detail animated:YES];

@@ -325,6 +325,8 @@
     delegateIndex = btn.tag;
     UIAlertView * tapAlert = [[UIAlertView alloc]initWithTitle:@"删除" message:tempStr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除", nil];
     [tapAlert show];
+    [tapAlert release];
+    
 }
 
 #pragma mark textField代理
@@ -446,7 +448,7 @@
 #pragma mark - 
 
 -(void)getDataWithList:(NSString *)peopleList{
-    myData = [[NSMutableData alloc]init];
+    
     
     // Do any additional setup after loading the view from its nib.
     
@@ -487,7 +489,10 @@
         
    
         NSLog(@"temp : %@",string);
-       
+        if (string.length < 1) {
+            [nameAndPhone removeAllObjects];
+            NSLog(@"发送成功");
+        }
         
     }];
     

@@ -15,10 +15,12 @@
 #import "WXApi.h"
 #import <MessageUI/MessageUI.h>
 #import <MapKit/MapKit.h>
+#import "AirPortData.h"
 @interface DetailFlightConditionViewController : UIViewController<UIActionSheetDelegate,SinaWeiboRequestDelegate,SinaWeiboDelegate,WXApiDelegate,MFMessageComposeViewControllerDelegate,MKMapViewDelegate,MFMailComposeViewControllerDelegate>{
     NSDictionary * _dic;
-    FlightConditionDetailData * myFlightConditionDetailData;
-    
+    FlightConditionDetailData * myFlightConditionDetailData;        //该航班详情
+    AirPortData * depAirPortData;
+    AirPortData * arrAirPortData;
     
     TCWBEngine *engine;
     IBOutlet UIButton * btnMessage;
@@ -73,6 +75,9 @@
     double x2;
     double y2;
     
+    NSMutableDictionary * depWeatherDic;
+    NSMutableDictionary * arrWeatherDic;
+    NSArray * tempPicNameArray;
 }
 @property(nonatomic,assign)BOOL isAttentionFlight;
 @property(nonatomic,retain)IBOutlet UIView * myAllBackView;  //总底view
@@ -125,4 +130,12 @@
 @property(nonatomic,retain) IBOutlet UILabel * toolPhoneLabel;
 @property(nonatomic,retain) IBOutlet UILabel * toolWeixinLabel;
 @property(nonatomic,retain) IBOutlet UILabel * toolShareLable;
+
+@property(nonatomic,retain)AirPortData * depAirPortData;
+@property(nonatomic,retain)AirPortData * arrAirPortData;
+@property(nonatomic,retain) NSMutableDictionary * depWeatherDic;
+@property(nonatomic,retain) NSMutableDictionary * arrWeatherDic;
+
+@property(nonatomic,retain)IBOutlet UIImageView * depWeatherImageView;
+@property(nonatomic,retain)IBOutlet UIImageView * arrWeatherImageView;
 @end

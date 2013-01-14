@@ -364,6 +364,10 @@ int whichDay(int year,int month,int day)
             show.searchCondition = search;
             show.deptAirPortCode = startAirPortCode;
             show.arrAirPortCode = arrAirPortCode;
+            
+            show.DetailDepAirPortData = self.DetailDepAirPortData;
+            show.DetailArrAirPortData = self.DetailArrAirPortData;
+            
             [self.navigationController pushViewController:show animated:YES];
             [search release];
             [show release];
@@ -481,11 +485,13 @@ int whichDay(int year,int month,int day)
         //获得用户的出发机场 
         self.startAirPort.text = airPortP.apName;
         startAirPortCode = [NSString stringWithString:airPortP.apCode];
+        
+        self.DetailDepAirPortData = airPortP;
     } else if(choiceType==END_AIRPORT_TYPE){
         //获得用户的到达机场
         self.endAirPort.text = airPortP.apName;
         arrAirPortCode = [NSString stringWithString:airPortP.apCode];
-        
+        self.DetailArrAirPortData = airPortP;
     }
 }
 
@@ -569,6 +575,7 @@ int whichDay(int year,int month,int day)
         
         NSString * temp = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
         NSLog(@"temp : %@",temp);
+        [temp release];
         
     }];
     
@@ -926,6 +933,7 @@ int whichDay(int year,int month,int day)
     detail.dic = dic;
     detail.isAttentionFlight = NO;
     [self.navigationController pushViewController:detail animated:YES];
+    [detail release];
 }
 
 #pragma mark - 取消关注点击事件(其他地方已实现，这个不用了)

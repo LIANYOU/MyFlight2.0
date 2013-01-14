@@ -23,7 +23,7 @@
     
     
     NSString * myString;
-    NSMutableData * myData;
+//    NSMutableData * myData;
     FlightConditionDetailData * subMyFlightConditionDetailData;
     
     BOOL flag;
