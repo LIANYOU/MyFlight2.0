@@ -1410,9 +1410,9 @@
                 cell.secondLable.text = schedule;
             }
             
-            if (indexSelectedInsuranceFlag != 1) {   // 判断如果之前没有点击购买保险
-                insuranceFlag = 0;
-            }
+//            if (indexSelectedInsuranceFlag == 1) {   // 判断如果之前没有点击购买保险
+//                insuranceFlag = 0;
+//            }
             
             
             if (chooseBtnIndex == 3 && [postPay isEqualToString:@"快递"]) {
@@ -1433,6 +1433,8 @@
             }
             
             else{
+                
+                NSLog(@"%s,%d",__FUNCTION__,__LINE__);
                 
                 self.upPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber +insuranceFlag*20*(personNumber+childNumber)];
                 self.bigUpPayMoney.text = [NSString stringWithFormat:@"%d",(personMoney+airPortName+oil)*personNumber + (childPersonMoney+childAirPortName+childOil)*childNumber+insuranceFlag*20*(personNumber+childNumber)];

@@ -42,11 +42,13 @@
     
     self.scrollView.delegate = self;
   
+ 
     
     self.postArr = [[NSUserDefaults standardUserDefaults] objectForKey:@"TraveController"];
-    
+
     btnTag = [[self.postArr objectAtIndex:2] intValue];
-    
+    NSLog(@"---------------   %d",btnTag);
+  
     if (self.postArr) {
         self.postInfoArr = [self.postArr objectAtIndex:3];
         postCITY = [self.postInfoArr objectAtIndex:1];
@@ -57,6 +59,7 @@
     
     
     if ([self.cellText isEqualToString:@"不需要行程单报销凭证"]) {
+        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
         self.flag = 1;
     }
     else{
@@ -118,6 +121,14 @@
     }
 
     
+    if (self.postInfoArr.count != 0) {
+        name.text = [self.postInfoArr objectAtIndex:0];
+        city.text = postCITY;
+        address.text = [self.postInfoArr objectAtIndex:2];
+        phone.text = [self.postInfoArr objectAtIndex:3];
+        type.text = [self.postInfoArr objectAtIndex:4];
+        
+    }
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -128,12 +139,8 @@
 {
     [super viewWillAppear:YES];
 
-    
-    name.text = [self.postInfoArr objectAtIndex:0];
-    city.text = postCITY;
-    address.text = [self.postInfoArr objectAtIndex:2];
-    phone.text = [self.postInfoArr objectAtIndex:3];
-    type.text = [self.postInfoArr objectAtIndex:4];
+   city.text = postCITY;
+
 
 }
 
@@ -263,13 +270,14 @@
 }
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+  
     switch(buttonIndex)
     {
         case 0:
-           type.text = @"快递";
+        type.text = @"快递";
             break;
         case 1:
-            type.text = @"平信";
+        type.text = @"平信";
             
             break;
         
@@ -309,14 +317,21 @@
 }
 -(void)back
 {
-    NSArray * arr = [NSArray arrayWithObjects:name.text,city.text,address.text,phone.text,type.text, nil];
-    
+    NSArray * arr = nil;
+    if (self.flag != 3) {
+        arr = [NSArray arrayWithObjects:name.text,city.text,address.text,phone.text,@"平信", nil];
+    }
+    else{
+        arr = [NSArray arrayWithObjects:name.text,city.text,address.text,phone.text,type.text, nil];
+    }
+        
 
     
     if (btnTag != 0) {
         self.flag = btnTag;
     }
     if (btnTag == 0) {
+        NSLog(@"%s,%d",__FUNCTION__,__LINE__);
         _schedule_ = [self.postArr objectAtIndex:0];
         type.text = [[self.postArr objectAtIndex:3] objectAtIndex:4];
         self.flag = [[self.postArr objectAtIndex:2] intValue];
@@ -325,6 +340,13 @@
     if (self.flag == 3) {
         _schedule_ = @"邮寄行程单";
     }
+    if (self.flag == 1) {
+        _schedule_ = @"不需要行程单报销凭证";
+    }
+    if (self.flag == 2) {
+        _schedule_ = @"机场自取";
+    }
+    NSLog(@"%@,%@,%d,%@",_schedule_,type.text,self.flag,postCITY);
 
     blocks(_schedule_,type.text,self.flag,postCITY,arr);  // type.text (快递）
     [self.navigationController popViewControllerAnimated:YES];
