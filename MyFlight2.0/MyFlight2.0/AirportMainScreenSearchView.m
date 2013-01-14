@@ -136,7 +136,7 @@
 {
     [self.delegate performSelector:@selector(search:) withObject:textInput.text];
     
-    [textInput.superview removeFromSuperview];
+    [exitButton removeFromSuperview];
 }
 
 - (void) previous
@@ -146,30 +146,50 @@
 
 - (void) search
 {
-    UIButton *exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
     exitButton.frame = [UIScreen mainScreen].bounds;
     
     [exitButton addTarget:exitButton action:@selector(removeFromSuperview) forControlEvents:UIControlEventTouchDown];
     
-    textInput = [[UITextField alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height < 500 ? 203:291, 320, 40)];
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height < 500 ? 205:291, 320, 40)];
     
+    [exitButton addSubview:toolbar];
+    [toolbar release];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 8, 300, 24)];
+    
+    view.layer.cornerRadius = CORNER_RADIUS;
+    view.backgroundColor = [UIColor whiteColor];
+    
+    [toolbar addSubview:view];
+    [view release];
+    
+    textInput = [[UITextField alloc] initWithFrame:CGRectMake(10, 2, 280, 16)];
+    
+    textInput.font = [UIFont systemFontOfSize:16.0f];
+    textInput.textAlignment = UITextAlignmentLeft;
     textInput.keyboardType = UIKeyboardTypeASCIICapable;
     textInput.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
-    textInput.textAlignment = UITextAlignmentCenter;
-    textInput.textColor = [UIColor blueColor];
-    textInput.font = [UIFont systemFontOfSize:40.0f];
+    textInput.backgroundColor = [UIColor whiteColor];
     
-    textInput.backgroundColor = [UIColor yellowColor];
+    [view addSubview:textInput];
+    [textInput release];
     
     [textInput addTarget:self action:@selector(userDidInput) forControlEvents:UIControlEventEditingDidEndOnExit];
-    
-    [exitButton addSubview:textInput];
-    [textInput release];
+    [textInput addTarget:self action:@selector(validateInput) forControlEvents:UIControlEventEditingChanged];
     
     [self.superview addSubview:exitButton];
     
     [textInput becomeFirstResponder];
+}
+
+- (void) validateInput
+{
+    if([textInput.text length] > 6)
+    {
+        textInput.text = [textInput.text stringByReplacingCharactersInRange:NSMakeRange(6, ([textInput.text length] - 6)) withString:@""];
+    }
 }
 
 - (void) next

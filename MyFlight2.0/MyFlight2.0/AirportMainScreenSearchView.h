@@ -15,6 +15,8 @@
     UIButton *rightItem;
     UIButton *centerItem;
     
+    UIButton *exitButton;
+    
     UITextField *textInput;
 }
 
@@ -26,6 +28,7 @@
 - (void) setRightIconInvisible;
 - (void) userDidInput;
 
+- (void) validateInput;
 - (void) previous;
 - (void) search;
 - (void) next;
