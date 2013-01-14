@@ -19,6 +19,7 @@
 #import "AddPersonController.h"
 #import "CommonContact_LocalTmpDBHelper.h"
 #import "UIButton+BackButton.h"
+
 @interface CommonContactViewController ()
 {
     
@@ -182,10 +183,12 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
     // Dispose of any resources that can be recreated.
 }
 
 
+//将要显示的 数据
 - (void) viewWillAppear:(BOOL)animated{
     CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     [super viewWillAppear:animated];
@@ -197,6 +200,15 @@
 }
 
 #pragma mark - Table view data source
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    return 50;
+    
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -243,9 +255,10 @@
         
     }
     
+    [UIQuickHelp setTableViewCellBackGroundColorAndHighLighted:cell];
     
     cell.contactName.text = data.name;
-    cell.personType  =[NSString stringWithFormat:@"(%@)",string];
+    cell.personType.text  =[NSString stringWithFormat:@"(%@)",string];
     cell.personId.text = data.certNo;
     
     

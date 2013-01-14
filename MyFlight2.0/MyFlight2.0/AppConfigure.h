@@ -19,6 +19,12 @@
 #import "FrequentFlyUility.h"
 #import "TipConfigure.h"
 
+//设置有没有 本地订单 
+#define KEY_IsHaveLocalOrderList @"isHaveLocalOrderList"
+
+#define IsHaveLocalOrderList [[NSUserDefaults standardUserDefaults] boolForKey:KEY_IsHaveLocalOrderList]
+
+
 
 #define  KEY_Default_StartAirPort @"startAirPort"
 //默认到达机场

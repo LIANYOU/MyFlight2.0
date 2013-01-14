@@ -10,7 +10,7 @@
 #import "ASIHTTPRequest.h"
 #import "DNWrapper.h"
 #import "NSData+base64.h"
-#import "ASIFormDataRequest.h"
+
 #import "AppConfigure.h"
 #import "JSONKit.h"
 #import "IsLoginInSingle.h"
@@ -195,7 +195,7 @@
 #pragma mark 登录操作
 //登录操作
 
-+ (BOOL) requestWithUrl:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate
++ (BOOL) requestWithUrl:(NSDictionary *) bodyDic delegate:(id<ServiceDelegate>) delegate 
 {
     
     
@@ -1007,8 +1007,7 @@
     [formRequst setPostValue:type forKey:@"memberPassengerVoList[0].type"];
     [formRequst setPostValue:certType forKey:@"memberPassengerVoList[0].certType"];
     [formRequst setPostValue:certNo forKey:@"memberPassengerVoList[0].certNo"];
-    
-    
+        
     
     [formRequst setRequestMethod:@"POST"];
     

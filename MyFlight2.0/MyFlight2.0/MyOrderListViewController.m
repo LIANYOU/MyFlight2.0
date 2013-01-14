@@ -18,6 +18,9 @@
 #import "UIButton+BackButton.h"
 
 #import "OrderDatabase.h"
+#import "AppConfigure.h"
+
+#import "MyLocalOrderListViewController.h"
 @interface MyOrderListViewController ()
 
 
@@ -138,6 +141,17 @@
     CCLog(@"订单列表项目：%d",[tmpArray count]);
     
     
+    BOOL flag1 =[[NSUserDefaults standardUserDefaults] boolForKey:KEY_IsHaveLocalOrderList];
+    flag1 =true;
+    
+    if (flag1) {
+        CCLog(@"存在本地订单");
+        self.thisTableView.tableFooterView = self.thisFuckFootView;
+        
+    } 
+    
+    
+    
     [self setNav];
     
     [self initThisView];
@@ -206,6 +220,15 @@
     cell.areaInfo.text = [NSString stringWithFormat:@"%@-%@",data.depAirportName,data.arrAirportName];
     
     
+    if ([data.payStsCH isEqualToString:@"未支付"]) {
+       
+        [cell.orderState setTextColor:FONT_Orange_Color];
+        [cell.orderState setHighlightedTextColor:FONT_Orange_Color];
+        
+    }
+    
+    [UIQuickHelp setTableViewCellBackGroundColorAndHighLighted:cell];
+    
     NSString *time = [data.createTime substringWithRange:NSMakeRange(0, 10)];
     
     
@@ -266,6 +289,7 @@
     [_customView release];
     [_thisHeadView release];
     //    [_thisTableView release];
+    [_thisFuckFootView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -273,6 +297,7 @@
     [self setCustomView:nil];
     [self setThisHeadView:nil];
     [self setThisTableView:nil];
+    [self setThisFuckFootView:nil];
     [super viewDidUnload];
 }
 
@@ -329,4 +354,14 @@
 }
 
 
+- (IBAction)lookForLocalOrderList:(id)sender {
+    
+    MyLocalOrderListViewController *controller =[[MyLocalOrderListViewController alloc] init];
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+    
+    
+    
+}
 @end

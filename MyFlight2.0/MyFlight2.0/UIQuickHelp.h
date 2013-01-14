@@ -23,16 +23,19 @@
 
 +(void) showAlertViewWithTitle:(NSString *) title message:(NSString *) message delegate:(id) delgate  cancelButtonTitle:(NSString *) cancel otherButtonTitles:(NSString *) ok;
 
-+ (UIButton *)buttonWithType:(NSUInteger)type
-					   title:(NSString *)title
-					   frame:(CGRect)frame
-				   imageName:(NSString *)imageName
-			 tappedImageName:(NSString *)tappedImageName
-					  target:(id)target
-					  action:(SEL)selector
-						 tag:(NSInteger)tag;
+//+ (UIButton *)buttonWithType:(NSUInteger)type
+//					   title:(NSString *)title
+//					   frame:(CGRect)frame
+//				   imageName:(NSString *)imageName
+//			 tappedImageName:(NSString *)tappedImageName
+//					  target:(id)target
+//					  action:(SEL)selector
+//						 tag:(NSInteger)tag;
 
 
 
+
+
++ (void) setTableViewCellBackGroundColorAndHighLighted:(UITableViewCell *) cell;
 
 @end

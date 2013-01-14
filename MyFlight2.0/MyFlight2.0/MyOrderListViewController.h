@@ -15,6 +15,15 @@
     SVSegmentedControl * segmented;
 }
 
+//查看本地订单
+
+- (IBAction)lookForLocalOrderList:(id)sender;
+
+
+@property (retain, nonatomic) IBOutlet UIView *thisFuckFootView;
+
+
+
 @property (retain, nonatomic) IBOutlet UIView *customView;
 
 @property (retain, nonatomic) IBOutlet UITableView *thisTableView;

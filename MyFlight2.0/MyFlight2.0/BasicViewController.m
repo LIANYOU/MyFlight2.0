@@ -26,7 +26,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
+    
+    
+    CCLog(@"%@",self.view);
+    
+    
+//    webContent = [[UIWebView alloc] initWithFrame:webView.view.frame];
+//    
+//    webContent.scalesPageToFit =YES;
+//    
+//    [webContent loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://ffp.airchina.com.cn/"]]];
+//    
+//    [webView.view addSubview:webContent];
+//    [webContent release];
+
+    
     
     UIButton *navigationLeftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -40,6 +56,7 @@
     UIBarButtonItem *navigationLeftBarItem = [[UIBarButtonItem alloc] initWithCustomView:navigationLeftButton];
     self.navigationItem.leftBarButtonItem = navigationLeftBarItem;
     [navigationLeftBarItem release];
+    
 }
 
 - (void)didReceiveMemoryWarning

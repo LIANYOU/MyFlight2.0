@@ -19,6 +19,7 @@
 #import "MyNewCenterViewController.h"
 #import "MyCenterTable_1.h"
 #import "UIButton+BackButton.h"
+#import "ASIFormDataRequest.h"
 @interface LogViewController ()
 {
     
@@ -340,8 +341,10 @@
              [logNumber resignFirstResponder];
              [logPassword resignFirstResponder];
              
-             [loginBusiness loginWithName:account password:pwd andDelegate:self];
              
+            [loginBusiness loginWithName:account password:pwd andDelegate:self];
+             
+                         
          }
          
          

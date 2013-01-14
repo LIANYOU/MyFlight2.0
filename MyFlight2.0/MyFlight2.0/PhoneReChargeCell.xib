@@ -66,20 +66,20 @@
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
 								<int key="IBUIClearButtonMode">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="921214680">
 									<int key="type">1</int>
-									<double key="pointSize">14</double>
+									<double key="pointSize">15</double>
 								</object>
-								<object class="NSFont" key="IBUIFont">
+								<object class="NSFont" key="IBUIFont" id="746034144">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">14</double>
+									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
 							<object class="IBUILabel" id="372205753">
 								<reference key="NSNextResponder" ref="18297590"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{7, 11}, {95, 21}}</string>
+								<string key="NSFrame">{{9, 11}, {95, 21}}</string>
 								<reference key="NSSuperview" ref="18297590"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="184203765"/>
@@ -99,15 +99,8 @@
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
-									<double key="pointSize">15</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">15</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="921214680"/>
+								<reference key="IBUIFont" ref="746034144"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
@@ -132,6 +125,10 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="18297590"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">2</int>
+					<bytes key="NSRGB">MC45NzI1NDkwMTk2IDAuOTYwNzg0MzEzNyAwLjk0NTA5ODAzOTIAA</bytes>
+				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="18297590"/>

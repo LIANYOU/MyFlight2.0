@@ -7,7 +7,7 @@
 //
 
 #import "UIQuickHelp.h"
-
+#import "AppConfigure.h"
 @implementation UIQuickHelp
 
 + (void)setRoundCornerForView:(UIView*)view
@@ -36,5 +36,12 @@
     [view release];
     
 }
+
++ (void) setTableViewCellBackGroundColorAndHighLighted:(UITableViewCell *) cell{
+    
+    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+    cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+}
+
 
 @end

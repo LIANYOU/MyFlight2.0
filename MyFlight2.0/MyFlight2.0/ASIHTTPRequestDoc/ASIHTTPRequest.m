@@ -700,6 +700,7 @@ static NSOperationQueue *sharedQueue = nil;
 // cancel the request - this must be run on the same thread as the request is running on
 - (void)cancelOnRequestThread
 {
+    
 	#if DEBUG_REQUEST_STATUS
 	ASI_DEBUG_LOG(@"[STATUS] Request cancelled: %@",self);
 	#endif

@@ -110,6 +110,7 @@ cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
     NSInteger selectIndex = indexPath.row;
     
     id controller = nil;
+    
     BasicViewController *webView;
     UIWebView *webContent;
     
@@ -119,22 +120,36 @@ cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
             
             break;
         case 1:
+            
             webView = [[BasicViewController alloc] init];
-            [self.navigationController pushViewController:webView animated:YES];
-            [webView release];
+            
+           
             webContent = [[UIWebView alloc] initWithFrame:webView.view.frame];
+            
+            webContent.scalesPageToFit =YES;
+            
             [webContent loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://ffp.airchina.com.cn/"]]];
             [webView.view addSubview:webContent];
             [webContent release];
+             
+            controller =webView;
+            
+            
+//            [self.navigationController pushViewController:webView animated:YES];
+//            [webView release];
+            
             break;
         case 2:
             webView = [[BasicViewController alloc] init];
-            [self.navigationController pushViewController:webView animated:YES];
-            [webView release];
+           
+       
             webContent = [[UIWebView alloc] initWithFrame:webView.view.frame];
+            webContent.scalesPageToFit= YES;
             [webContent loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://skypearl.csair.com/cn/index.html"]]];
             [webView.view addSubview:webContent];
             [webContent release];
+            
+            controller =webView;
             break;
         default:
             break;

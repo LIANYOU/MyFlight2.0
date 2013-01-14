@@ -14,8 +14,10 @@
 
 @property(nonatomic,assign)id<ServiceDelegate> delegate; 
 
+
+
 //登录
-- (void) loginWithName:(NSString *) name password:(NSString *) passwd andDelegate:(id<ServiceDelegate>) delegate andRequest:(ASIFormDataRequest *) formRequst;
+- (void) loginWithName:(NSString *) name password:(NSString *) passwd andDelegate:(id<ServiceDelegate>) delegate;
 
 //第三方登陆
 -(void) loginWithOAuth:(NSMutableDictionary *) userInfo andDelegate:(id<ServiceDelegate>)delegate;

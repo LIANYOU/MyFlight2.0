@@ -223,7 +223,7 @@
     }
     
     
-    cell.highlighted = NO;
+//    cell.highlighted = NO;
     
     CouponsInfo *data = [tmpArray objectAtIndex:indexPath.row];
     
@@ -235,6 +235,8 @@
     cell.youHuiQuanName.text = data.name;
     cell.moneyLabel.text= price;
     cell.timeLabel.text =string;
+    
+    [UIQuickHelp setTableViewCellBackGroundColorAndHighLighted:cell];
     if ([cell.timeLabel.text isEqualToString:@""]) {
         
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

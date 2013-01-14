@@ -41,6 +41,10 @@
     
     NSMutableArray *thisTmpArray;
     
+    BOOL isReloadTableView;
+    
+    NSTimer *thisTimer;
+    
     
 }
 
@@ -64,6 +68,19 @@
 }
 
 
+
+- (void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:YES];
+    
+    
+    if (thisTimer!=nil) {
+        [thisTimer invalidate];
+    }
+    
+    
+    
+    
+}
 
 - (void) loginOut{
     
@@ -109,6 +126,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    isReloadTableView =false;
+    
+    
     cellsum = 1;
     [self setNav];
     
@@ -124,6 +144,7 @@
     
     NSString *memberId =Default_UserMemberId_Value;
     CCLog(@"在个人中心界面 memberId= %@",memberId);
+    
    [busi getAccountInfoWithMemberId:memberId andDelegate:self];
   [busi release];
     
@@ -216,8 +237,11 @@
         
         cell.titleLabel.text = @"个人资料";
         [cell.detailLabel setTextColor:FONT_Blue_Color];
+        [cell.detailLabel setHighlightedTextColor:FONT_Blue_Color];
 //        cell.detailLabel.text = [thisTmpArray objectAtIndex:0];
         cell.thisImageView.image = [UIImage imageNamed:@"icon_acc.png"];
+        
+        [UIQuickHelp setTableViewCellBackGroundColorAndHighLighted:cell];
         
         return cell;
         
@@ -244,7 +268,7 @@
 //                cell.silverMoneyLabel.text =[thisTmpArray objectAtIndex:3];
             }
             
-           
+            [UIQuickHelp setTableViewCellBackGroundColorAndHighLighted:cell];
             
             
             //            CCLog(@"金币*****%@",self.allAccountMoneyString);
@@ -276,6 +300,8 @@
             cell.detailLabel.text = @"";
             cell.thisImageView.image = [UIImage imageNamed:@"icon_Coupon.png"];
             
+            [UIQuickHelp setTableViewCellBackGroundColorAndHighLighted:cell];
+            
             return  cell;
             
         }
@@ -293,6 +319,7 @@
         
         MyCenterCell  *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
+                
         if (cell == nil) {
             
             NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"MyCenterCell" owner:self options:nil];
@@ -303,11 +330,12 @@
         
         if(indexPath.row==0){
             
-            
+            [UIQuickHelp setTableViewCellBackGroundColorAndHighLighted:cell];
             
             cell.titleLabel.text = @"我的订单";
             
             [cell.detailLabel setTextColor:FONT_Orange_Color];
+            [cell.detailLabel setHighlightedTextColor:FONT_Orange_Color];
             UIFont *font =[UIFont systemFontOfSize:14];
             cell.detailLabel.font = font;
             cell.detailLabel.text = @"未支付订单(1)";
@@ -322,11 +350,13 @@
             
             cell.thisImageView.image = [imageArray objectAtIndex:indexPath.row-1];
             cell.detailTextLabel.text =@"";
+            isReloadTableView =true;
             
             
         }
         
-        
+        [UIQuickHelp setTableViewCellBackGroundColorAndHighLighted:cell];
+
         
         return  cell;
         
@@ -435,6 +465,58 @@
 }
 
 
+- (void) updateThisView{
+    
+    CCLog(@"更新界面********************");
+    
+    CCLog(@"资金账户：%@",self.allAccountMoneyString);
+    CCLog(@"金币：%@",self.goldMoneyString);
+    CCLog(@"银币：%@",self.silverMoneyString);
+    CCLog(@"用户名为：%@",self.accountString);
+    
+    
+    if (isReloadTableView) {
+        
+        
+        
+        MyCenterSecondCell *secondCell =(MyCenterSecondCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+        
+        
+        CCLog(@"更新cell 之前 ：%@", secondCell.accountMoneyLabel.text);
+        
+        //    cell.goldMoneyLabel.text = @"1311241";
+        //    NSString *string = self.allAccountMoneyString;
+        
+        [secondCell.accountMoneyLabel setText:[NSString stringWithFormat:@"%@",_allAccountMoneyString]];
+        
+        
+        [secondCell.goldMoneyLabel setText:[NSString stringWithFormat:@"%@",_goldMoneyString]];
+        
+        secondCell.silverMoneyLabel.text = [NSString stringWithFormat:@"%@",_silverMoneyString];
+        
+        //    secondCell.silverMoneyLabel.text = _silverMoneyString;
+        
+        
+        
+        MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        
+        thisCell.detailLabel.text = [NSString stringWithFormat:@"%@",_accountString];
+        
+        //    [thisCell.detailLabel setTextColor:FONT_Blue_Color];
+        
+        CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
+        CCLog(@"银币 %@",self.silverMoneyString);
+        
+        
+        [thisTimer invalidate];
+        thisTimer =nil;
+        
+        
+    }
+
+    
+}
+
 #pragma mark -
 #pragma mark 网络正确回调的方法
 
@@ -474,37 +556,45 @@
     CCLog(@"银币：%@",self.silverMoneyString);
     CCLog(@"用户名为：%@",self.accountString);
     
+    thisTimer =[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateThisView) userInfo:nil repeats:YES];
     
     
-    MyCenterSecondCell *secondCell =(MyCenterSecondCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    
-    
-    CCLog(@"更新cell 之前 ：%@", secondCell.accountMoneyLabel.text);
-    
-    //    cell.goldMoneyLabel.text = @"1311241";
-    //    NSString *string = self.allAccountMoneyString;
-    
-   [secondCell.accountMoneyLabel setText:[NSString stringWithFormat:@"%@",_allAccountMoneyString]];
-    
-    
-   [secondCell.goldMoneyLabel setText:[NSString stringWithFormat:@"%@",_goldMoneyString]];
-    
-    secondCell.silverMoneyLabel.text = [NSString stringWithFormat:@"%@",_silverMoneyString];
-    
-    //    secondCell.silverMoneyLabel.text = _silverMoneyString;
-    
-    
-    
-    MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    
-   thisCell.detailLabel.text = [NSString stringWithFormat:@"%@",_accountString];
-    
-    //    [thisCell.detailLabel setTextColor:FONT_Blue_Color];
-    
-    CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
-    CCLog(@"银币 %@",self.silverMoneyString);
-    
-    
+   /*
+    if (isReloadTableView) {
+        
+        
+        
+        MyCenterSecondCell *secondCell =(MyCenterSecondCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+        
+        
+        CCLog(@"更新cell 之前 ：%@", secondCell.accountMoneyLabel.text);
+        
+        //    cell.goldMoneyLabel.text = @"1311241";
+        //    NSString *string = self.allAccountMoneyString;
+        
+        [secondCell.accountMoneyLabel setText:[NSString stringWithFormat:@"%@",_allAccountMoneyString]];
+        
+        
+        [secondCell.goldMoneyLabel setText:[NSString stringWithFormat:@"%@",_goldMoneyString]];
+        
+        secondCell.silverMoneyLabel.text = [NSString stringWithFormat:@"%@",_silverMoneyString];
+        
+        //    secondCell.silverMoneyLabel.text = _silverMoneyString;
+        
+        
+        
+        MyCenterCell *thisCell = (MyCenterCell *)[self.thisTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        
+        thisCell.detailLabel.text = [NSString stringWithFormat:@"%@",_accountString];
+        
+        //    [thisCell.detailLabel setTextColor:FONT_Blue_Color];
+        
+        CCLog(@"更新界面 金币 %@",self.allAccountMoneyString);
+        CCLog(@"银币 %@",self.silverMoneyString);
+        
+           
+    }
+    */
     
     
 //        [self.thisTableView reloadData];
