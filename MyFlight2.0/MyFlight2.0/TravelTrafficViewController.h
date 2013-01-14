@@ -144,7 +144,7 @@
  
     
     UILabel * lineFares;
-    IBOutlet UIScrollView * contentTaxiView;   //最后方案
+    UIScrollView * contentTaxiView;   //最后方案
     IBOutlet UILabel * taxiRuleTitleLast;
     IBOutlet UILabel * taxiRuleLabelLast;
     IBOutlet UILabel * taxiLineNameLast;
@@ -153,7 +153,19 @@
     IBOutlet UILabel * taxiPlaceLast;
     BOOL customViewIsCoach;
    
+    UILabel * label1Last;   //XXX城市出租车计价方式
+    UITextView * textViewLast;  //明细
     
+    UILabel * taxiLineLast;     //参考路线
+//    UILabel * taxiLineLast1;
+    
+    UILabel * taxiLineRangeLast;    //距离
+//    UILabel * taxiLineRangeLast1;
+    
+    UILabel * taxiLinePriceLast;    //价格
+//    UILabel * taxiLinePriceLast1;
+    
+    UILabel * taxiStopPlaceLast;    //机场出租车位置
     
 }
 @property(nonatomic,retain) NSString * airPortCode;

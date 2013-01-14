@@ -104,7 +104,8 @@
     NSMutableDictionary *dict =[NSMutableDictionary dictionaryWithContentsOfFile:[self getLocalDataBasePath]];
     
     CCLog(@"本地版本号为：%@",[dict objectForKey:@"DataBaseVersion"]);
-//    
+    
+////    
 //      [dict setValue:@"2" forKey:@"DataBaseVersion"];
 //      [dict writeToFile:[self getLocalDataBasePath] atomically:YES];
 //    
