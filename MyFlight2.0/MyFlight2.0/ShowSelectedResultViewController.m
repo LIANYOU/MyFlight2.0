@@ -134,11 +134,7 @@
 //    NSString * dataPath = [[NSBundle mainBundle] pathForResource:@"AirPortCode" ofType:@"plist"];
     
     dicCode = [[NSDictionary alloc] initWithContentsOfFile:[self getLocalDataBasePath]];
-    
-    
-    NSLog(@"dicCode  %@",dicCode);
-    
-    
+
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeGrayView:)];
     [self.grayView addGestureRecognizer:tap];
     [tap release];
@@ -267,6 +263,7 @@
             self.dateArr = [NSArray array];
             
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveError:) name:@"返回错误信息" object:nil];
             [self.airPort searchAirPort];
             
             HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
@@ -382,6 +379,23 @@
     [backImageView release];
     backImageView = nil;
     [super viewDidUnload];
+}
+
+-(void)receiveError:(NSNotification *)not
+{
+    NSString * error = [[not userInfo] objectForKey:@"arr"];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:error delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    
+    
+    [HUD removeFromSuperview];
+	[HUD release];
+	HUD = nil;
+    
+    
+    [alert show];
+    [alert release];
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 -(void)receive:(NSNotification *)not
@@ -1466,5 +1480,27 @@ NSLog(@"---------------  %@,%@",self.oneGoWeek,self.backWeek);
 -(void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+
+#pragma mark -- alertView delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex ==1 ) {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveError:) name:@"返回错误信息" object:nil];
+    [self.airPort searchAirPort];
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    [HUD show:YES];
+    }
+    else{
+        
+    }
+
+    
 }
 @end

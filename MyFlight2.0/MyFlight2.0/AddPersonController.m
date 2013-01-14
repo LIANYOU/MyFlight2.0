@@ -175,7 +175,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    if (tableView == self.addPersonTableView) {
+    
         if (Default_IsUserLogin_Value) {
             return 5;
         }
@@ -183,21 +183,12 @@
             return 6;
         }
 
-    }
-else{
-    if(selectOneRow == 1){
-        return 2;
-    }
-    else{
-        return 3;
-    }
-}
+
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (tableView == self.addPersonTableView) {
         if ([passengerType isEqualToString:@"成人"]) {
             
             self.delBtnView.frame = CGRectMake(0, 0, 320, 91);
@@ -221,17 +212,15 @@ else{
             return 50;
         }
 
-    }
-    else{
-        return 44;
-    }
+    
+    
     
    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.addPersonTableView) {
+   
         if (indexPath.row == 5) {
             
             static NSString *CellIdentifier1 = @"Cell";
@@ -259,6 +248,7 @@ else{
             
             if (passengerType != nil) {
                 
+                NSLog(@"%s,%d",__FUNCTION__,__LINE__);
                 
                 if ([passengerType isEqualToString:@"成人"]) {
                     if (indexPath.row == 4) {
@@ -322,40 +312,8 @@ else{
             
         }
 
-    }
-    else{
-        static NSString *CellIdentifier1 = @"Cell";
-        PersonTypeCell *cell = (PersonTypeCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-        if (!cell)
-        {
-            [[NSBundle mainBundle] loadNibNamed:@"PersonTypeCell" owner:self options:nil];
-            cell = self.typeCell;
-        }
-        
-        
-        if (selectOneRow == 1) {
-            if (indexPath.row == flagOne) {
-                cell.image.image = [UIImage imageNamed:@"icon_default1_click.png"];
-            }
-            else{
-                cell.image.image = [UIImage imageNamed:@"icon_Default1.png"];
-            }
-            cell.name.text = [self.typeArr objectAtIndex:indexPath.row];
-            
-            
-        }
-        else{
-            if (indexPath.row == flagThree) {
-                cell.image.image = [UIImage imageNamed:@"icon_default1_click.png"];
-            }
-            else{
-                cell.image.image = [UIImage imageNamed:@"icon_Default1.png"];
-            }
-            cell.name.text = [self.certArr objectAtIndex:indexPath.row];
-        }
-        
-        return cell;
-    }
+
+
     
 }
 
@@ -369,87 +327,82 @@ else{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.row == 0 || indexPath.row == 2) {
-//        IdentityViewController * identity = [[IdentityViewController alloc] init];
-//        identity.flag = indexPath.row;
-//        
-//        [identity getDate:^(NSString *idntity) {
-//
-//            if (self.choose != nil || self.controllerType != nil) {
-//                if (indexPath.row == 0) {
-//                    
-//                    passengerType = idntity;
-//                }
-//                else{
-//                    passengerCertType = idntity;
-//                }
-//
-//            }
-//            
-//
-//            [self.cellTextArr replaceObjectAtIndex:indexPath.row withObject:idntity];
-//           
-//           
-//            [self.addPersonTableView reloadData];
-//        }];
-//        
-//        [self.navigationController pushViewController:identity animated:YES];
-//        [identity release];
-//    }
     
-    if (tableView == self.addPersonTableView) {
-        if(indexPath.row == 0){
-            selectOneRow = 1;
-            selectThreeRow = 0;
-            if(iPhone5){
-                self.typeTableView.frame = CGRectMake(0, 397+20, 320, 88);
-            }
-            else{
-                self.typeTableView.frame = CGRectMake(0, 328+20, 230, 88);
-            }
-  
-        }
-        if(indexPath.row == 2){
-            
-            selectOneRow = 0;
-            selectThreeRow = 3;
-            
-            if(iPhone5){
-                self.typeTableView.frame = CGRectMake(0, 397-44+20, 320, 88+44);
-            }
-            else{
-                self.typeTableView.frame = CGRectMake(0, 328-44+20, 230, 88+44);
-            }
-            
-            
-        }
-        self.typeTableView.hidden = NO;
+    if (indexPath.row == 0) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"取消"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"儿童", @"成人", nil];
+        actionSheet.tag = 1;
+        
+        actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+        
+        [actionSheet showInView:self.view];
+        [actionSheet release];
 
-        [self.typeTableView reloadData];
     }
-    else{
-      
-        if (selectOneRow == 1) {
-            
-            flagOne = indexPath.row;
-            
-            passengerType = [self.typeArr objectAtIndex:indexPath.row ];
-            
-            [self.cellTextArr replaceObjectAtIndex:0 withObject:passengerType];
-        }
-        else{
-            flagThree = indexPath.row;
-            
-            passengerCertType = [self.certArr objectAtIndex:indexPath.row ];
-            [self.cellTextArr replaceObjectAtIndex:2 withObject:passengerCertType];
-        }
+    if (indexPath.row == 2) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"取消"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"身份证", @"护照",@"其它", nil];
+        actionSheet.tag = 2;
         
-        self.typeTableView.hidden = YES;
+        actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
         
-        [self.addPersonTableView reloadData];
+        [actionSheet showInView:self.view];
+        [actionSheet release];
+        
     }
-    
+
 }
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 1) {
+        switch(buttonIndex)
+        {
+            case 0:
+                passengerType = @"儿童";
+                break;
+            case 1:
+                passengerType = @"成人";
+                
+                break;
+                
+                
+            default:
+                break;
+        }
+
+    }
+    if (actionSheet.tag == 2) {
+        switch(buttonIndex)
+        {
+            case 0:
+                passengerCertType = @"身份证";
+                break;
+            case 1:
+                passengerCertType = @"护照";
+                
+                break;
+            case 2:
+                passengerCertType = @"其它";
+                
+                break;
+   
+                
+            default:
+                break;
+        }
+        
+    }
+
+    [self.addPersonTableView reloadData];
+}
+
 
 #pragma mark - switch
 
@@ -490,9 +443,7 @@ else{
 
 - (IBAction)delPassenger:(id)sender {
     
-//    CommonContact *contact = [[CommonContact alloc] initWithName:@"李测试" type:@"01" certType:@"0" certNo:@"555555555555555" contactId:@"2de69decad604966abbc8b802677dc82"];
-//    
-//    NSString *passId = @"2de69decad604966abbc8b802677dc82";
+
     
     LoginBusiness *bis =[[LoginBusiness alloc] init];
     
@@ -533,27 +484,26 @@ else{
         brithMember = cell2.secText.text;
         
         
-        [self.cellTextArr replaceObjectAtIndex:0 withObject:passengerType];
+//        [self.cellTextArr replaceObjectAtIndex:0 withObject:passengerType];
+//        
+//        [self.cellTextArr replaceObjectAtIndex:2 withObject:passengerCertType];
         
-        [self.cellTextArr replaceObjectAtIndex:2 withObject:passengerCertType];
         
-        
-        if ([[self.cellTextArr objectAtIndex:2] isEqualToString:@"身份证"]) {
+        if ([passengerCertType isEqualToString:@"身份证"] || passengerCertType == nil) {
             
             certtype = @"0";
         }
-        if ([[self.cellTextArr objectAtIndex:2] isEqualToString:@"护照"]) {
+        if ([passengerCertType isEqualToString:@"护照"]) {
             certtype = @"1";
         }
-        else if ([[self.cellTextArr objectAtIndex:2] isEqualToString:@"其他"]){
+        else if ([passengerCertType isEqualToString:@"其它"]){
             certtype = @"9";
         }
+      
+
         
-        
-        NSLog(@"%@",passengerType);
-        
-        NSString * passenType = [self.cellTextArr objectAtIndex:0];
-        if ([passenType isEqualToString:@"成人"]) {
+        NSString * passenType = nil;
+        if ([passengerType isEqualToString:@"成人"] || passengerType == nil) {
             passenType = @"01";
         }
         else{
@@ -562,24 +512,24 @@ else{
         
         LoginBusiness *bis = [[LoginBusiness alloc] init];
         
+        CommonContact *contact = [[CommonContact alloc] initWithName:passengerName
+                                                                type:passenType
+                                                            certType:certtype
+                                                              certNo:certMember
+                                                           contactId:self.passenger.contactId];
+
+        
         if ([self.navTitleString isEqualToString:@"添加乘机人"]) {
             
-            [bis addCommonPassengerWithPassengerName:passengerName
-                                                type:passenType
-                                            certType:certtype
-                                              certNo:certMember
-                                             userDic:nil
-                                         andDelegate:self];
+            
+            
+            [bis addCommonPassengerWithPassengerData:contact andDelegate:self];
+            
             
         }
         if ([self.navTitleString isEqualToString:@"编辑乘机人"]) {
             
-            CommonContact *contact = [[CommonContact alloc] initWithName:passengerName
-                                                                    type:passenType
-                                                                certType:certtype
-                                                                  certNo:certMember
-                                                               contactId:self.passenger.contactId];
-            
+                       
             [bis editCommonPassengerWithPassengerData:contact andDelegate:self];
             
         }
@@ -626,22 +576,34 @@ else{
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
     
-   
+    NSLog(@"hfioewhfioawjhfjaekl");
     
     
     [self.navigationController popViewControllerAnimated:YES];
-//    NSString *meg =@"成功";
-//    
-//    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+
     
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    AddPersonCoustomCell *cell = (AddPersonCoustomCell *)[self.addPersonTableView  cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    AddPersonCoustomCell *cell1 = (AddPersonCoustomCell *)[self.addPersonTableView  cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     
+    self.passenger.name = cell.secText.text;
+    self.passenger.certNo = cell1.secText.text;
     
+    [cell1.secText resignFirstResponder];
+    
+    [cell.secText resignFirstResponder];
+
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	
 
     AddPersonCoustomCell *cell = (AddPersonCoustomCell *)[self.addPersonTableView  cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     AddPersonCoustomCell *cell1 = (AddPersonCoustomCell *)[self.addPersonTableView  cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    
+    self.passenger.name = cell.secText.text;
+    self.passenger.certNo = cell1.secText.text;
     
     [cell1.secText resignFirstResponder];
 

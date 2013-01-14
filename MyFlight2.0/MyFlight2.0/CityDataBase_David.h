@@ -22,4 +22,10 @@
 
 //所有的直辖市 key 为直辖市
 + (NSMutableDictionary *) findAllDerectCities;
+
+
+//搜索
+
++(NSMutableArray *)findCityBySiftBy:(NSString *)condition;
+
 @end

@@ -20,7 +20,7 @@
 @class ShowSelectedCell;
 
 #import "SearchFlightData.h"
-@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,MBProgressHUDDelegate,UITabBarControllerDelegate,ViewControllerDelegate,UIGestureRecognizerDelegate>
+@interface ShowSelectedResultViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,MBProgressHUDDelegate,UITabBarControllerDelegate,ViewControllerDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate>
 {
     
     NSString * navigationTitle;

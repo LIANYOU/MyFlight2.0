@@ -86,6 +86,9 @@
     [super viewWillAppear:YES];
     self.dataArr = [[NSMutableArray alloc] init];
     self.dataArr = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
+    for (CommonContact * com in self.dataArr) {
+        NSLog(@",,,,,,,,,,   %@",com.name);
+    }
     [self.showTableView reloadData];
 }
 
@@ -293,15 +296,7 @@
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
 
-//    CommontContactSingle *sin = [CommontContactSingle shareCommonContact];
-//    
-//    NSArray * arr = [NSArray arrayWithArray:sin.passengerArray];
-//    
-//    for (CommonContact * common in arr) {
-//        [self.dataArr addObject:common];
-//    }
-//    
-//    [self.showTableView reloadData];
+    
 }
 
 

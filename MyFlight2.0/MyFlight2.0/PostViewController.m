@@ -62,7 +62,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
      cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
-    // Configure the cell...
+    
     if (indexPath.row == 0) {
         cell.textLabel.text = @"快递         北京10元,其他地区20元 (推荐)";
        
