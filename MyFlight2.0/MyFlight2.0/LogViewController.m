@@ -217,7 +217,7 @@
      }
      
      
-     - (void)initLocalDatabase{
+- (void)initLocalDatabase{
          
          
          LoginBusiness *bis =[[LoginBusiness alloc] init];

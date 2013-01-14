@@ -125,7 +125,7 @@
     
     tmpArray =realArray;
     
-    nameArray =[[NSArray alloc] initWithObjects:@"用户名",@"姓名",@"性别",@"详细地址", nil];
+    nameArray =[[NSArray alloc] initWithObjects:@"用  户 名",@"姓      名",@"性      别",@"详细地址", nil];
     
     self.clearsSelectionOnViewWillAppear = NO;
  }
@@ -217,6 +217,10 @@
         
     }
    
+    
+    cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+    cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+
     
     // Configure the cell...
     

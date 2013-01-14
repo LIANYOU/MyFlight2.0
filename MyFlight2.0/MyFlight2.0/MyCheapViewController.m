@@ -340,6 +340,7 @@
     [_captchaNumberTextField release];
     [_tmpTextField release];
     [_captchNumberInput release];
+    [_thisTempView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -350,6 +351,7 @@
     [self setCaptchaNumberTextField:nil];
     [self setTmpTextField:nil];
     [self setCaptchNumberInput:nil];
+    [self setThisTempView:nil];
     [super viewDidUnload];
 }
 - (IBAction)SureAddcaptchaBn:(id)sender {

@@ -204,7 +204,7 @@
     
     NSString *pwd = [bodyDic objectForKey:KEY_Login_Pwd];
     
-    
+    __block id this =delegate;
     CCLog(@"用户名为：%@",name);
     
     
@@ -236,6 +236,8 @@
     //    [formRequst setPostValue:SOURCE_VALUE forKey:KEY_source];
     [formRequst setRequestMethod:@"POST"];
     
+   
+    
     [formRequst setCompletionBlock:^{
         
         NSString *data = [formRequst responseString];
@@ -257,6 +259,10 @@
             CCLog(@"message 长度为%d",[message length]);
             
             //            CCLog(@"成功登陆后返回的数据：%@",dic);
+            
+             [formRequst clearDelegatesAndCancel];
+                this=nil;
+            
             
             if ([message length]==0) {
                 
@@ -316,10 +322,10 @@
                 
                 
                 
-                if (delegate&&[delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
+                if (this&&[this respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     
                     CCLog(@"用户代理不为空");
-                    [delegate requestDidFinishedWithRightMessage:messageDic];
+                    [this requestDidFinishedWithRightMessage:messageDic];
                     
                     
                     
@@ -1007,6 +1013,7 @@
     [formRequst setRequestMethod:@"POST"];
     
     
+    
     [formRequst setCompletionBlock:^{
         
         NSString *data = [formRequst responseString];
@@ -1068,8 +1075,7 @@
                 //message 长度不为0 有错误信息
                 [messageDic setObject:message forKey:KEY_message];
                 
-                
-                
+            
                 
             }
             
@@ -1217,13 +1223,16 @@
                 con.type =type;
                 con.certType= certType;
                 con.certNo=certNo;
-                NSMutableArray *array =[ [NSMutableArray alloc] initWithObjects:con, nil];
+                
+//                NSMutableArray *array =[ [NSMutableArray alloc] initWithObjects:con, nil];
+//                
+                
+//                //更新本地数据库
+//                [CommonContact_LocalTmpDBHelper addCommonContact_Login:array];
+                
+                [CommonContact_LocalTmpDBHelper addCommonContact_Login_ForOnce:con];
                 
                 [con release];
-                //更新本地数据库
-                [CommonContact_LocalTmpDBHelper addCommonContact_Login:array];
-                
-                
                 
                 NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
                 [dic setObject:Default_UserMemberId_Value forKey:KEY_Account_MemberId];

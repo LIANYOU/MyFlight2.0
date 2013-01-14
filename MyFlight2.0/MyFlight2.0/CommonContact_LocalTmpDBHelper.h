@@ -34,7 +34,7 @@
 //登录用户 使用 
 
 
-
++(BOOL) addCommonContact_Login_ForOnce:(CommonContact *)contactData;
 
 //查找所有的联系人
 + (NSMutableArray *) findAllCommonContact_Login;
