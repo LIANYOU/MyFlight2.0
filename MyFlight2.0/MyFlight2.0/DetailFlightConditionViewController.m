@@ -54,8 +54,10 @@
     [leftItem release];
 
     
+//    depWeatherDic = [[NSMutableDictionary alloc]init];
+//    arrWeatherDic = [[NSMutableDictionary alloc]init];
 
-    
+    tempPicNameArray = [[NSArray alloc]initWithObjects:@"暴雪",@"暴雨",@"大雪",@"大雨",@"冻雨",@"多云",@"浮尘",@"雷阵雨",@"强沙尘暴",@"晴",@"沙尘暴",@"雾",@"小雪",@"小雨",@"阴",@"雨夹雪",@"阵雪",@"阵雨",@"中雪",@"中雨",@"雷阵雨伴有冰雹",nil];
 
 
     
@@ -158,8 +160,9 @@
     
     
     [self fillAllData];
-    [self getWeather];
-    
+
+    [self getArrWeatherData];
+    [self getDepWeatherData];
     
 
     
@@ -170,6 +173,8 @@
     }else{
         attentionBtnTextLabel.text = @"取消关注";
     }
+    
+#pragma mark - viewDidLoadOver
 }
 
 -(void)isAttentionFlightOrNot{
@@ -501,6 +506,10 @@
 }
 #pragma mark - actionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if ([actionSheet.title isEqualToString:@"更多分享"]) {
+        NSLog(@"actionsheet更多分享");
+    }
+    
     NSArray *paths= NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *cachedictionary = [paths objectAtIndex:0];
     if (buttonIndex == 0) {
@@ -1009,7 +1018,7 @@
     lineOne.title = @"blue";
     [overlays addObject:lineOne];
     [myMapView addOverlays:overlays];
-    [lineOne release];
+//    [lineOne release];
     [myMapView reloadInputViews];
 }
 
@@ -1060,7 +1069,129 @@
     return nil;
 }
 
+#pragma mark - 获取天气
+-(void)getDepWeatherData{
+    
+    NSString * urlStr = [NSString stringWithFormat:@"%@/web/phone/newWeather.jsp",BASE_Domain_Name];
+    NSURL * url = [NSURL URLWithString:urlStr];
+    
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    
+    
+    if (self.depAirPortData.weatherCode.length < 1) {
+        [request setPostValue:@"101010100" forKey:@"city"];
+    }else{
+        [request setPostValue:self.depAirPortData.weatherCode forKey:@"city"];
+    }
+    
+    
+    [request setPostValue:myFlightConditionDetailData.deptDate forKey:@"date"];
+    [request setPostValue:self.depAirPortData.apCode forKey:@"type"];
+    [request setPostValue:@"v1.0" forKey:@"edition"];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    
+    [request setCompletionBlock:^{
+        
+        NSData * jsonData = [request responseData] ;
+        
+        NSString * temp = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSString * temp1= [temp stringByReplacingOccurrencesOfString:@"\r\n" withString:@" "];
+        NSDictionary * dic = [temp1 objectFromJSONString];
+        self.depWeatherDic = [[dic objectForKey:@"weatherList"]objectAtIndex:0];
+        
+#pragma mark - 天气判断并填充        
+        NSMutableString * littlePicName = [self.depWeatherDic objectForKey:@"weather"];
+        NSMutableString * selectPicName = [[NSMutableString alloc]initWithCapacity:0];
+        for (int i = 0; i < [tempPicNameArray count]; i++) {
+            if ([littlePicName hasSuffix:[tempPicNameArray objectAtIndex:i]]) {
+                NSString * myStr = [tempPicNameArray objectAtIndex:i];
+                
+                [selectPicName setString:myStr];
+                
+            }
+        }
+        
+        NSLog(@"小图 ：%@",selectPicName);
+        NSString * str = [NSString stringWithFormat:@"%@.png",selectPicName];
+        NSLog(@"image name :%@",str);
+        [self.depWeatherImageView setImage:[UIImage imageNamed:str]];
+        self.fromWeather = [self.depWeatherDic objectForKey:@"temp"];
+#pragma mark -
+    }];
+    
+    [request setFailedBlock:^{
+        NSError *error = [request error];
+        NSLog(@"Error : %@", error.localizedDescription);
+    }];
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
+    
+}
 
+-(void)getArrWeatherData{
+    
+    NSString * urlStr = [NSString stringWithFormat:@"%@/web/phone/newWeather.jsp",BASE_Domain_Name];
+    NSURL * url = [NSURL URLWithString:urlStr];
+    
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+    
+    
+    if (self.depAirPortData.weatherCode.length < 1) {
+        [request setPostValue:@"101010100" forKey:@"city"];
+    }else{
+        [request setPostValue:self.arrAirPortData.weatherCode forKey:@"city"];
+    }
+    
+    
+    [request setPostValue:myFlightConditionDetailData.deptDate forKey:@"date"];
+    [request setPostValue:self.arrAirPortData.apCode forKey:@"type"];
+    [request setPostValue:@"v1.0" forKey:@"edition"];
+    [request setDefaultResponseEncoding:NSUTF8StringEncoding];
+    
+    [request setCompletionBlock:^{
+        
+        NSData * jsonData = [request responseData] ;
+        
+        NSString * temp = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSString * temp1= [temp stringByReplacingOccurrencesOfString:@"\r\n" withString:@" "];
+        NSDictionary * dic = [temp1 objectFromJSONString];
+        self.arrWeatherDic = [[dic objectForKey:@"weatherList"]objectAtIndex:0];
+       
+        
+#pragma mark - 天气判断并填充
+        NSMutableString * littlePicName = [self.arrWeatherDic objectForKey:@"weather"];
+        NSMutableString * selectPicName = [[NSMutableString alloc]initWithCapacity:0];
+        for (int i = 0; i < [tempPicNameArray count]; i++) {
+            if ([littlePicName hasSuffix:[tempPicNameArray objectAtIndex:i]]) {
+                NSString * myStr = [tempPicNameArray objectAtIndex:i];
+                
+                [selectPicName setString:myStr];
+                
+            }
+        }
+        
+        NSLog(@"小图 ：%@",selectPicName);
+        NSString * str = [NSString stringWithFormat:@"%@.png",selectPicName];
+        NSLog(@"image name :%@",str);
+        [self.arrWeatherImageView setImage:[UIImage imageNamed:str]];
+        self.arriveWeather = [self.arrWeatherDic objectForKey:@"temp"];
+#pragma mark -
+       
+        
+        
+        
+    }];
+    
+    [request setFailedBlock:^{
+        NSError *error = [request error];
+        NSLog(@"Error : %@", error.localizedDescription);
+    }];
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
+    
+}
 
 #pragma mark - dealloc
 -(void)dealloc{

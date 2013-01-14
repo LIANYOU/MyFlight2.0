@@ -10,6 +10,7 @@
 #import "SearchFlightConditionCell.h"
 #import "SearchFlightCondition.h"
 #import "EGORefreshTableHeaderView.h"
+#import "AirPortData.h"
 @interface ShowFligthConditionController : UIViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 {
     EGORefreshTableHeaderView * _refreshHeaderView;
@@ -37,4 +38,7 @@
 
 @property(nonatomic,retain) NSString * deptAirPortCode;
 @property(nonatomic,retain) NSString * arrAirPortCode;
+
+@property(nonatomic,retain)AirPortData * DetailArrAirPortData;
+@property(nonatomic,retain)AirPortData * DetailDepAirPortData;
 @end
