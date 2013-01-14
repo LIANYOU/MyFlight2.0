@@ -11,8 +11,12 @@
 #import "UIQuickHelp.h"
 #import "LoginBusiness.h"
 #import "UIButton+BackButton.h"
+#import "LogViewController.h"
 @interface ModifyPassWordViewController ()
-
+{
+    
+    BOOL isResetPwdSuccess;
+}
 
 - (void) setNav;
 @end
@@ -32,11 +36,7 @@
 {
     [super viewDidLoad];
     
-    
-    
-    
-    
-    
+    isResetPwdSuccess = false;
     
 //    LoginBusiness *bis = [[LoginBusiness alloc] init];
 //    
@@ -209,8 +209,11 @@
 
 - (IBAction)backKeyBoard:(id)sender{
     
+    [self.newPasswdOne resignFirstResponder];
+    [self.newPasswdAgainTextField resignFirstResponder];
+    [self.orignPasswdTextField resignFirstResponder];
     
-    [sender resignFirstResponder];
+    
     
     
 }
@@ -261,16 +264,57 @@
 }
 
 
+     
 #pragma mark -
 #pragma mark 网络正确回调的方法
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)inf{
+    isResetPwdSuccess =true;
     
-    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:@"密码修改成功" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:@"密码修改成功,回到登录界面" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
     
         
 }
 
 
+     
+#pragma mark -
+#pragma mark 警告视图代理方法
+     
+     - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+         
+         
+         
+         
+         if (isResetPwdSuccess) {
+             
+             switch (buttonIndex) {
+                 case 0:{
+                     //回首页
+                     
+                     //回到登录界面
+                     
+                     LogViewController *con =[[LogViewController alloc] init];
+                     
+                     con.loginSuccessReturnType =Login_Success_ReturnMyCenterDefault_Type;
+                     
+                     UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:con];
+                     
+                     [con release];
+                     [self presentModalViewController:nav animated:YES];
+                 }
+                     
+                     break;
+                       default:
+                     break;
+             }
+          }
+           
+     }
 
-@end
+     
+     
+     
+     
+     @end

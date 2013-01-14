@@ -130,6 +130,7 @@
         cell.thisDetailLabel.tag = 100;
         self.accountField = cell.thisDetailLabel;
         cell.thisDetailLabel.keyboardType =UIKeyboardTypeNumberPad;
+       
         
         
     } else{
@@ -141,6 +142,8 @@
 //        cell.thisDetailLabel.textAlignment =NSTextAlignmentRight;
         self.pwdField = cell.thisDetailLabel;
         
+        [cell.thisDetailLabel addTarget:self action:@selector(backKey:) forControlEvents:UIControlEventEditingDidEndOnExit];
+        
     }
     cell.thisDetailLabel.delegate =self;
     
@@ -150,6 +153,10 @@
 }
 
 
+- (void) backKey:(UITextField *) sender{
+    
+    [sender resignFirstResponder];
+}
 
 #pragma mark - Table view delegate
 
@@ -260,4 +267,10 @@
 
 
 
+- (IBAction)backKeyBoard:(id)sender {
+    
+    [self.accountField resignFirstResponder];
+    [self.pwdField resignFirstResponder];
+    
+}
 @end
