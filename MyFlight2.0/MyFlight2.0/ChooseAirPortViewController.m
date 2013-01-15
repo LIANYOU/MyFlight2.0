@@ -14,6 +14,7 @@
 #import "AppConfigure.h"
 #import "LocationAirPortWJ.h"
 #import "UIQuickHelp.h"
+#import "AirPortDataBase.h"
 @interface ChooseAirPortViewController (){
     
     NSMutableArray *sectionTitles;
@@ -21,7 +22,7 @@
     NSInteger selectIndex;
     
     
-    
+    BOOL isLocated;
     
     NSString * locationFlag ; // 已经定位以后的标记位
 }
@@ -98,11 +99,13 @@
     
     [super viewDidLoad];
     
+    isLocated =NO;
     selectItem =[[NSMutableSet alloc] init];
     
     [self setNav];
     
     [self initSectionTitles];
+    
     resultDic = [[NSMutableDictionary alloc] init];
     //数据库的单例
     AirPortDataBaseSingleton *air =[AirPortDataBaseSingleton shareAirPortBaseData];
@@ -148,6 +151,8 @@
     
     [location getLocationName];
     
+    [location release];
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -156,6 +161,13 @@
 }
 
 
+- (void) viewDidDisappear:(BOOL)animated{
+    
+    [super viewDidDisappear:YES];
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -164,9 +176,16 @@
 }
 
 - (void)dealloc {
+    
+    CCLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     [_searchBar release];
     [_tableView release];
     [sectionTitles release];
+    
+
+    CCLog(@"allResult retainCOunt =%d",[_allKeysArray retainCount]);
+    
+    
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -294,14 +313,26 @@
                 cell = [array objectAtIndex:0];
             }
             
+            
             AutomaticPositioningCell *thisCell =(AutomaticPositioningCell *) cell;
             
-            if ([locationFlag isEqualToString:@"location"]) {
+            if (isLocated) {
                 thisCell.thsiImage.hidden = YES;
-                thisCell.apName.text =  self.airPortName;
+                NSString *string =[self.locationInfoArr objectAtIndex:0];
+                
+                
+                thisCell.apName.text =  [string stringByReplacingOccurrencesOfString:@"机场" withString:@""];
             }
             
-        
+            
+            
+//            if ([thisCell.apName.text isEqualToString:<#(NSString *)#>]) {
+//                <#statements#>
+//            }
+            
+            
+            
+            
             
         } else{
             
@@ -321,13 +352,19 @@
             
             
             AirPortData *data  = [items objectAtIndex:indexPath.row];
+            
             thisCell.apCodeLabel.text = data.apCode;
             
             thisCell.airPortNameLabel.text = data.apName;
-            thisCell.apCodeLabel.textColor =[UIColor darkTextColor];
-            thisCell.airPortNameLabel.textColor = [UIColor darkTextColor];
             
-            [thisCell.flightState setHidden:YES];
+            thisCell.apCodeLabel.textColor =View_BackGrayTitleOne_Color;
+            thisCell.airPortNameLabel.textColor = View_BackGrayTitleOne_Color;
+            thisCell.airPortNameLabel.highlightedTextColor =View_BackGrayTitleOne_Color;
+            
+            thisCell.apCodeLabel.highlightedTextColor= View_BackGrayTitleOne_Color;
+            
+            
+            [thisCell.thisStateView setHidden:YES];
             
             
             if (self.choiceTypeOfAirPort==AIRPORT_Big_Screen_ChooseType) {
@@ -354,10 +391,21 @@
                 
                 if ([thisCell.airPortNameLabel.text isEqualToString:self.startAirportName]) {
                     
-                    thisCell.apCodeLabel.textColor = [UIColor blueColor];
-                    thisCell.airPortNameLabel.textColor =[UIColor blueColor];
-                    [thisCell.flightState setHidden:NO];
-                    thisCell.flightState.image = [UIImage imageNamed:@"arrive.png"];
+                    thisCell.apCodeLabel.textColor = FONT_Blue_Color;
+                    thisCell.airPortNameLabel.textColor =FONT_Blue_Color;
+                    [thisCell.thisStateView setHidden:NO];
+                    thisCell.labelState.text =@"到达";
+                    thisCell.labelState.textColor =FONT_Blue_Color;
+                    
+                    
+                    
+                    thisCell.apCodeLabel.highlightedTextColor = FONT_Blue_Color;
+                    
+                    thisCell.airPortNameLabel.highlightedTextColor =FONT_Blue_Color;
+                    thisCell.labelState.highlightedTextColor =FONT_Blue_Color;
+                    
+                    
+                    thisCell.flightState.image = [UIImage imageNamed:@"icon_arrive.png"];
                 }
                 
                 
@@ -365,11 +413,22 @@
                 
                 
                 if ([thisCell.airPortNameLabel.text isEqualToString:self.endAirPortName]) {
-                    thisCell.apCodeLabel.textColor = [UIColor blueColor];
-                    thisCell.airPortNameLabel.textColor =[UIColor blueColor];
-                    [thisCell.flightState setHidden:NO];
-                    thisCell.flightState.image =[UIImage imageNamed:@"depart.png"];
                     
+                    thisCell.apCodeLabel.textColor = FONT_Blue_Color;
+                    thisCell.airPortNameLabel.textColor =FONT_Blue_Color;
+                    [thisCell.thisStateView setHidden:NO];
+                    thisCell.labelState.text =@"出发";
+                    thisCell.labelState.textColor =FONT_Blue_Color;
+                    
+                    thisCell.apCodeLabel.highlightedTextColor = FONT_Blue_Color;
+                    
+                    thisCell.airPortNameLabel.highlightedTextColor =FONT_Blue_Color;
+                    
+                    
+                    
+                    thisCell.labelState.textColor =[UIColor colorWithRed:99.0/255 green:159.0/255 blue:76.0/255 alpha:1];
+                    thisCell.flightState.image =[UIImage imageNamed:@"icon_depart.png"];
+                    thisCell.labelState.highlightedTextColor=[UIColor colorWithRed:99.0/255 green:159.0/255 blue:76.0/255 alpha:1];
                     
                 }
                 
@@ -403,7 +462,7 @@
         thisCell.apCodeLabel.textColor =[UIColor darkTextColor];
         thisCell.airPortNameLabel.textColor = [UIColor darkTextColor];
         
-        [thisCell.flightState setHidden:YES];
+        [thisCell.thisStateView setHidden:YES];
         
         
         
@@ -428,20 +487,38 @@
             
         } else{
             
+            
             if ([thisCell.airPortNameLabel.text isEqualToString:self.startAirportName]) {
                 
-                thisCell.apCodeLabel.textColor = [UIColor blueColor];
-                thisCell.airPortNameLabel.textColor =[UIColor blueColor];
-                [thisCell.flightState setHidden:NO];
-                thisCell.flightState.image = [UIImage imageNamed:@"arrive.png"];
+                thisCell.apCodeLabel.textColor = FONT_Blue_Color;
+                thisCell.airPortNameLabel.textColor =FONT_Blue_Color;
+                [thisCell.thisStateView setHidden:NO];
+                
+                thisCell.labelState.text =@"到达";
+                thisCell.labelState.textColor = [UIColor blueColor];
+                
+                thisCell.labelState.highlightedTextColor =FONT_Blue_Color;
+                thisCell.apCodeLabel.highlightedTextColor =FONT_Blue_Color;
+                thisCell.airPortNameLabel.highlightedTextColor=FONT_Blue_Color;
+                
+                thisCell.flightState.image = [UIImage imageNamed:@"icon_arrive.png"];
             }
             
             
             if ([thisCell.airPortNameLabel.text isEqualToString:self.endAirPortName]) {
                 thisCell.apCodeLabel.textColor = [UIColor blueColor];
+                
                 thisCell.airPortNameLabel.textColor =[UIColor blueColor];
-                [thisCell.flightState setHidden:NO];
-                thisCell.flightState.image =[UIImage imageNamed:@"depart.png"];
+                
+                [thisCell.thisStateView setHidden:NO];
+                
+                thisCell.apCodeLabel.highlightedTextColor =FONT_Blue_Color;
+                thisCell.airPortNameLabel.highlightedTextColor=FONT_Blue_Color;
+                thisCell.labelState.highlightedTextColor=[UIColor colorWithRed:99.0/255 green:159.0/255 blue:76.0/255 alpha:1];
+                
+                thisCell.labelState.text =@"出发";
+                thisCell.labelState.textColor =[UIColor colorWithRed:99.0/255 green:159.0/255 blue:76.0/255 alpha:1];
+                thisCell.flightState.image =[UIImage imageNamed:@"icon_depart.png"];
             }
         }
         
@@ -452,6 +529,25 @@
     return cell;
 }
 
+
+- (NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section==0) {
+        
+        if (!isLocated) {
+            return nil;
+        } else{
+            
+            return indexPath;
+        }
+        
+        
+    }
+    
+    
+return indexPath;
+
+}
 
 
 #pragma mark - Table view delegate
@@ -464,6 +560,30 @@
         if (indexPath.section==0) {
             
             
+            if (isLocated) {
+                
+                
+                NSString *code =[self.locationInfoArr objectAtIndex:1];
+                CCLog(@"选择的是%@",code);
+                
+                
+                AirPortData *data =[AirPortDataBase findAirPortByApCode:code];
+                
+                
+                CCLog(@"选择的机场信息：apcode = %@,apname =%@ city_x =%@ weatherCode =%@",data.apCode,data.apName,data.city_x,data.weatherCode);
+                
+                CCLog(@"机场坐标：%@ %@ ", data.air_x,data.air_y);
+                
+                if (_delegate&&[_delegate respondsToSelector:@selector(ChooseAirPortViewController:chooseType:didSelectAirPortInfo:)]) {
+                    
+                    [_delegate ChooseAirPortViewController:self chooseType:self.choiceTypeOfAirPort didSelectAirPortInfo:data];
+                    
+                }
+                
+                      
+            }
+            
+              
         } else{
             
             
@@ -566,6 +686,7 @@
 //网络错误回调的方法
 - (void )requestDidFailed:(NSDictionary *)info{
     
+    isLocated =NO;
     NSString * meg =[info objectForKey:KEY_message];
     
     [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
@@ -573,6 +694,7 @@
 
 //网络返回错误信息回调的方法
 - (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    isLocated =NO;
     
     NSString * meg =[info objectForKey:KEY_message];
     
@@ -585,15 +707,19 @@
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
     locationFlag = @"location";
-
     
+    self.locationInfoArr =[info objectForKey:@"name"];
     
-    self.airPortName = [info objectForKey:@"name"];
+   
+    CCLog(@"当前定位机场 ； %@", [self.locationInfoArr objectAtIndex:0]);
+    
+ //   self.airPortName = [info objectForKey:@"name"];
     
     if ([self.airPortName isEqualToString:@"noInfo"]) {
-        
+        isLocated=NO;
     }
     else{
+        isLocated =YES;
         [self.tableView reloadData];
     }
     

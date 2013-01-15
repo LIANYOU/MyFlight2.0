@@ -30,6 +30,8 @@
     [_apCodeLabel release];
     [_airPortNameLabel release];
     [_flightState release];
+    [_thisStateView release];
+    [_labelState release];
     [super dealloc];
 }
 @end

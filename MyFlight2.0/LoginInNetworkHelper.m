@@ -378,7 +378,9 @@
     
     return true;
     
-}
+} 
+
+
 //第三方登陆成功后提交到服务器
 +(BOOL) submitOAuthDateToServer:(NSMutableDictionary *) userOAuthInfo delegate:(id<ServiceDelegate>) delegate{
     NSString *usrId = [userOAuthInfo objectForKey:@"usrId"];

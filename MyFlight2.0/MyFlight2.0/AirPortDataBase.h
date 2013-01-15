@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AirPortData.h"
 @interface AirPortDataBase : NSObject
 
 
@@ -25,6 +25,6 @@
 +(NSMutableArray *) findAirPortByCondition:(NSString *) condition;
 
 
-
++(AirPortData *) findAirPortByApCode:(NSString *) apcode;
 
 @end

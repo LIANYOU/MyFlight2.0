@@ -15,7 +15,7 @@
 #import "ASIHTTPRequest.h"
 #import "JSONKit.h"
 #import "AppConfigure.h"
-#import "AirPortData.h"
+
 
 @implementation AirPortDataBase
 
@@ -105,11 +105,11 @@
     
     CCLog(@"本地版本号为：%@",[dict objectForKey:@"DataBaseVersion"]);
     
-////    
-//      [dict setValue:@"2" forKey:@"DataBaseVersion"];
-//      [dict writeToFile:[self getLocalDataBasePath] atomically:YES];
-//    
-//    NSLog(@"更新后本地版本号为：%@",[dict objectForKey:@"DataBaseVersion"]);
+    ////
+    //      [dict setValue:@"2" forKey:@"DataBaseVersion"];
+    //      [dict writeToFile:[self getLocalDataBasePath] atomically:YES];
+    //
+    //    NSLog(@"更新后本地版本号为：%@",[dict objectForKey:@"DataBaseVersion"]);
     return [dict objectForKey:@"DataBaseVersion"];
 }
 
@@ -136,6 +136,7 @@
 
 + (BOOL) createTableWithAirPortDataArray:(NSMutableArray *) dataArray{
     
+    
     CCLog(@"待插入的数组的数量为：%d",[dataArray count]);
     
     FMDatabase *db = [self openDatabase];
@@ -150,15 +151,15 @@
         //删除旧表
         [db executeUpdate:@"drop table AirPortDataBase"];
         
-      BOOL flag =  [db executeUpdate:@"CREATE TABLE AirPortDataBase (apCode TEXT, apName TEXT, apEName TEXT, apLName TEXT, hotcity TEXT, cityName TEXT,air_x text,air_y text, cityCode text,cityPinYin text,weatherCode text,city_x text,city_y text,id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE ) "];
+        BOOL flag =  [db executeUpdate:@"CREATE TABLE AirPortDataBase (apCode TEXT, apName TEXT, apEName TEXT, apLName TEXT, hotcity TEXT, cityName TEXT,air_x text,air_y text, cityCode text,cityPinYin text,weatherCode text,city_x text,city_y text,id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE ) "];
         if (flag) {
-           CCLog(@"创建一个表格  成功");
+            CCLog(@"创建一个表格  成功");
             
         } else{
             
             CCLog(@"创建新表格失败");
         }
-    
+        
         
         
         isDataBaseNew = true;
@@ -172,13 +173,13 @@
         [db  executeUpdate:@"insert into AirPortDataBase(apCode, apName, apEName, apLName, hotcity, cityName,air_x,air_y,cityCode,cityPinYin,weatherCode,city_x,city_y) values(?,?,?,?,?,?,?,?,?,?,?,?,?)",data.apCode,data.apName,data.apEname,data.apLName,data.hotCity,data.cityName,data.air_x,data.air_y,data.cityCode,data.cityPinYin,data.weatherCode,data.city_x,data.city_y];
     }
     
-        
+    
     [db close];
     
     
     return true;
     
-        
+    
 }
 
 //创建一个表格
@@ -203,7 +204,7 @@
         
     }
     
-       //插入数据
+    //插入数据
     [db  executeUpdate:@"insert into AirPortDataBase(apCode, apName, apEName, apLName, hotcity, cityName,air_x,air_y) values(?,?,?,?,?,?,?,?)",apCode,apName,apEName,apLName,hotCity,city,air_x,air_y];
     [db close];
     
@@ -224,7 +225,7 @@
     
     NSDictionary *dict = [jsonData objectFromJSONDataWithParseOptions:JKSerializeOptionEscapeUnicode error:&error];
     
-      
+    
     if (!error) {
         
         NSString *version = [dict objectForKey:KEY_DataBaseVersion];
@@ -261,7 +262,7 @@
                 CCLog(@"取得的城市有%d个",[cityArray count]);
                 
                 
-                //保存数据的数组 
+                //保存数据的数组
                 NSMutableArray *resultArray = [[NSMutableArray alloc] init];
                 
                 
@@ -277,7 +278,7 @@
                     NSString *air_x =nil;
                     NSString *air_y = nil;
                     
-                                     
+                    
                     
                     //以下为增加字段
                     
@@ -335,7 +336,7 @@
                         data.apEname = apEName;
                         data.apLName =apLName;
                         
-                                                
+                        
                         data.cityCode = cityCode;
                         data.cityPinYin =pinyin;
                         data.weatherCode = weatherCode;
@@ -349,7 +350,7 @@
                         
                         
                         //创建表格
-//                        [self createTableWithApCode:apCode apName:apName apEName:apEName apLName:apLName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
+                        //                        [self createTableWithApCode:apCode apName:apName apEName:apEName apLName:apLName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
                         
                     }
                     
@@ -362,7 +363,7 @@
                 
                 [resultArray release];
                 
-                        
+                
             } else{
                 
                 CCLog(@"服务器返回结果错误");
@@ -373,17 +374,17 @@
                 
                 
             }
-                
+            
         } else{
             
             CCLog(@"数据库版本一致无需更新");
         }
         
-     } else{
+    } else{
         
         CCLog(@"初始化机场数据时出错误了 不更新");
     }
-     return true;
+    return true;
 }
 
 
@@ -399,7 +400,7 @@
         
         
         
-//        CCLog(@"网络返回的数据为：%@",[request responseString]);
+        //        CCLog(@"网络返回的数据为：%@",[request responseString]);
         
         //初始化表格
         [self initDataBaseTable:[request responseData]];
@@ -435,7 +436,7 @@
         NSString *air_x = [resultSet stringForColumn:Column_air_x];
         NSString *air_y = [resultSet stringForColumn:Column_air_y];
         NSString *apEName =[resultSet stringForColumn:Column_apEName];
-    
+        
         AirPortData *airPort = [[AirPortData alloc] initWithapCode:apCode apName:apName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
         airPort.apEname=apEName;
         
@@ -446,7 +447,7 @@
         airPort.city_x =[resultSet stringForColumn:Column_city_x];
         airPort.city_y =[resultSet stringForColumn:Column_city_y];
         
-               
+        
         
         //        NSDictionary *dict = [NSDictionary dictionaryWithObject:airPort forKey:apCode];
         
@@ -466,6 +467,8 @@
 
 +(NSMutableDictionary *) findAllCitiesAndAirPorts{
     
+    
+    
     NSLog(@"function %s line=%d",__FUNCTION__,__LINE__);
     
     FMDatabase *db =[self openDatabase];
@@ -478,7 +481,7 @@
     
     
     while ([resultSet next]) {
-
+        
         NSString *apCode = [resultSet stringForColumn:Column_apCode];
         NSString *apName = [resultSet stringForColumn:Column_apName];
         NSString *hotCity = [resultSet stringForColumn:Column_hotcity];
@@ -498,7 +501,7 @@
         airPort.weatherCode = [resultSet stringForColumn:Column_weatherCode];
         airPort.city_x =[resultSet stringForColumn:Column_city_x];
         airPort.city_y =[resultSet stringForColumn:Column_city_y];
-
+        
         
         
         [resultDic setObject:airPort forKey:apCode];
@@ -565,7 +568,7 @@
         airPort.weatherCode = [resultSet stringForColumn:Column_weatherCode];
         airPort.city_x =[resultSet stringForColumn:Column_city_x];
         airPort.city_y =[resultSet stringForColumn:Column_city_y];
-
+        
         
         
         
@@ -583,5 +586,66 @@
     return [resultDic autorelease];
     
 }
+
+
+
++(AirPortData *) findAirPortByApCode:(NSString *) apcode{
+    
+    
+    
+    FMDatabase *db =[self openDatabase];
+    
+    FMResultSet *resultSet = nil;
+    
+    
+    if ([db tableExists:@"AirPortDataBase"]) {
+        
+        CCLog(@"存在表，可继续查询");
+        
+//        NSString *sql=[NSString stringWithFormat:@"select  * from AirPortDataBase where apCode = %@",apcode];
+//        
+        resultSet = [db executeQuery:@"select  * from AirPortDataBase where apCode = ?",apcode];
+        
+        
+    }
+    
+    AirPortData *airPort =nil;
+    
+    
+    while ([resultSet next]) {
+        
+        
+        
+        NSString *apCode = [resultSet stringForColumn:Column_apCode];
+        NSString *apName = [resultSet stringForColumn:Column_apName];
+        NSString *hotCity = [resultSet stringForColumn:Column_hotcity];
+        NSString *cityName = [resultSet stringForColumn:Column_cityName];
+        NSString *air_x = [resultSet stringForColumn:Column_air_x];
+        NSString *air_y = [resultSet stringForColumn:Column_air_y];
+        NSString *apEName =[resultSet stringForColumn:Column_apEName];
+        
+        airPort = [[AirPortData alloc] initWithapCode:apCode apName:apName hotCity:hotCity cityName:cityName air_x:air_x air_y:air_y];
+        airPort.apEname=apEName;
+        
+        
+        //新增
+        airPort.cityCode = [resultSet stringForColumn:Column_cityCode];
+        airPort.cityPinYin =[resultSet stringForColumn:Column_cityPinYin];
+        airPort.weatherCode = [resultSet stringForColumn:Column_weatherCode];
+        airPort.city_x =[resultSet stringForColumn:Column_city_x];
+        airPort.city_y =[resultSet stringForColumn:Column_city_y];
+        
+    }
+    
+    
+    
+    CCLog(@"查询到的机场数据为：%@   %@",airPort.cityCode,airPort.cityName);
+    
+    return [airPort autorelease];
+    
+    
+    
+}
+
 
 @end

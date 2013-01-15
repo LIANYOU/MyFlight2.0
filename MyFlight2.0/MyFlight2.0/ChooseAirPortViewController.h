@@ -40,7 +40,7 @@
 @property(nonatomic,assign)NSInteger choiceTypeOfAirPort; //选择的类型 单程 还是往返
 
 @property (nonatomic, retain) NSString * airPortName;
-
+@property (nonatomic, retain) NSArray * locationInfoArr;
 
 @property(nonatomic,assign)id<ChooseAirPortViewControllerDelegate> delegate;
 
