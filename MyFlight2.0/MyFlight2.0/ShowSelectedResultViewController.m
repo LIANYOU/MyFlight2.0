@@ -112,6 +112,15 @@
     self.tempTwoCodeArr = [[NSMutableArray alloc] initWithCapacity:5];  // 缓存已经得到的二字码
     
     sortFlag = 0;
+    
+    self.threeTableView.frame = CGRectMake(320, 42, 320, 371-44);
+    self.threeTableView.delegate = self;
+    self.threeTableView.dataSource = self;
+    [self.view addSubview:self.threeTableView];
+    
+    
+    // 默认tempTableView 是当前在0，0位置的tableView
+    self.tempTableView = self.showResultTableView;
 
     
     UIButton * backBtn_ = [UIButton backButtonType:0 andTitle:@""];
@@ -183,12 +192,29 @@
     if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
         
         
-//        [UIView animateWithDuration:0.001 animations:^(void)  //不用回调
-//         {
-//             self.showResultTableView.frame = CGRectMake(320, 44, 320, 480);
-//
-//         }  completion:^(BOOL finished)
-//         {
+        [UIView animateWithDuration:0.5 animations:^(void)  //不用回调
+         {
+             
+             [self.searchFlightDateArr removeAllObjects];
+             
+             
+             self.showResultTableView.frame = CGRectMake(-320, 44, 320, 440);
+
+             self.threeTableView.frame = CGRectMake(0, 44, 320, 420);
+             
+             
+            
+             
+         }  completion:^(BOOL finished)
+         {
+             
+             if (self.threeTableView.frame.origin.x == 0) {
+                 self.tempTableView = self.threeTableView;
+             }
+             else{
+                 self.tempTableView = self.showResultTableView;
+             }
+             
 //             [UIView animateWithDuration:0.5 animations:^{
 //                 self.showResultTableView.frame = CGRectMake(0, 44, 320, 480);
 //             } completion:^(BOOL finished) {
@@ -197,7 +223,18 @@
 //                 [self.airPort searchAirPort];
 //                           
 //             }];
-//         }];
+             
+             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receive:) name:@"接受数据" object:nil];
+             self.airPort.date = @"2013-01-16";
+             [self.airPort searchAirPort];
+             
+             
+             HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+             [self.navigationController.view addSubview:HUD];
+             
+             [HUD show:YES];
+             
+         }];
  
     }
     if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
@@ -351,6 +388,7 @@
     [_grayView release];
     [backImageView release];
     [_noInfoView release];
+    [_threeTableView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -383,6 +421,7 @@
     [backImageView release];
     backImageView = nil;
     [self setNoInfoView:nil];
+    [self setThreeTableView:nil];
     [super viewDidUnload];
 }
 
@@ -405,7 +444,7 @@
 
 -(void)receive:(NSNotification *)not
 {
-    
+    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
     timeSortFlag = 0 ;
     airPortNameFlag = 0;
     sortFlag =0;
@@ -511,7 +550,13 @@
     }
 
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-    [self.showResultTableView reloadData];
+    
+    if (self.tempTableView == self.showResultTableView) {
+        [self.showResultTableView reloadData];
+    }
+    else{
+        [self.threeTableView reloadData];
+    }
     
     
     if (self.write != nil  ||  self.netFlag == 1) {
@@ -655,85 +700,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.showResultTableView) {
-        static NSString *CellIdentifier = @"Cell";
-        SelectResultCell *cell = (SelectResultCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell)
-        {
-            NSArray *array =  [[NSBundle mainBundle] loadNibNamed:@"SelectResultCell" owner:self options:nil];
-            cell = [array objectAtIndex:0];
-            
-
-        }
-        
-        if (self.write != nil  ||  self.netFlag == 1) {
-            
-
-            
-            if (sortBackFlag == 2 || sortBackTimeFlag == 2) {
-            
-                data = [self.sortBackArr objectAtIndex:indexPath.row];  // 经过排序处理
-            }
-            else
-            {
-                data = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
-            }
-        }
-
-        else
-        {
-
-            if (sortFlag == 1 || sortTimeFlag == 1) {
-            
-                data = [self.sortArr objectAtIndex:indexPath.row];
-            
-            }
-            else{
-                data = [self.searchFlightDateArr objectAtIndex:indexPath.row];
-            }
-        }
-        
-        NSString * string ;
-        
-        
-        
-        for (int i = 0; i<dicCode.allKeys.count; i++) {
-            
-            if ([data.airPort isEqualToString:[dicCode.allKeys objectAtIndex:i]]) {
-                
-                string = [dicCode objectForKey:[dicCode.allKeys objectAtIndex:i]];
-                
-                break;
-            }
-            else
-            {
-                string = data.airPort;
-            }
-            
-          
-        }
-        
-        cell.temporaryLabel.text =  data.temporaryLabel;
-        cell.airPort.text = string;
-        cell.palntType.text = [NSString stringWithFormat:@"%@机型",data.palntType];
-        cell.beginTime.text = data.beginTime;
-        cell.endTime.text = data.endTime;
-        cell.pay.text =[NSString stringWithFormat:@"￥%d",data.pay] ; // Y仓价格
-        cell.discount.text = data.discount; // 仓位折扣
-        cell.ticketCount.text = data.ticketCount; // 剩余票数
-        
-        
-        
-        cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
-        cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
-      
-        
-        
-        return cell;
-        
-    }
-    else
-    {
+    if (tableView == self.sortTableView) {
         static NSString *CellIdentifier = @"Cell";
         ShowSelectedCell *cell = (ShowSelectedCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (!cell)
@@ -767,10 +734,10 @@
                 cell.airportName.text = [self.airportNameArr objectAtIndex:indexPath.row-1];
                 
                 cell.airPortImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"l_%@.png",[self.tempTwoCodeArr objectAtIndex:indexPath.row-1]]];
-               
+                
             }
         }
-
+        
         
         if (indexPath.row == sortViewFlag) {
             [cell.selectBtn setBackgroundImage:[UIImage imageNamed:@"icon_default1_click.png"] forState:0];
@@ -782,9 +749,90 @@
         cell.selectionStyle = 2;
         
         [cell.selectBtn addTarget:self action:@selector(changeImage:) forControlEvents:UIControlEventTouchUpInside];
-
-      return cell;
-   }
+        
+        return cell;
+    }
+    else
+    {
+        
+        static NSString *CellIdentifier = @"Cell";
+        SelectResultCell *cell = (SelectResultCell *)[self.tempTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell)
+        {
+            NSArray *array =  [[NSBundle mainBundle] loadNibNamed:@"SelectResultCell" owner:self options:nil];
+            cell = [array objectAtIndex:0];
+            
+            
+        }
+        
+        if (self.write != nil  ||  self.netFlag == 1) {
+            
+            
+            
+            if (sortBackFlag == 2 || sortBackTimeFlag == 2) {
+                
+                data = [self.sortBackArr objectAtIndex:indexPath.row];  // 经过排序处理
+            }
+            else
+            {
+                data = [self.searchBackFlightDateArr objectAtIndex:indexPath.row];
+            }
+        }
+        
+        else
+        {
+            
+            if (sortFlag == 1 || sortTimeFlag == 1) {
+                
+                data = [self.sortArr objectAtIndex:indexPath.row];
+                
+            }
+            else{
+                
+                data = [self.searchFlightDateArr objectAtIndex:indexPath.row];
+            }
+        }
+        
+        NSString * string ;
+        
+        
+        
+        for (int i = 0; i<dicCode.allKeys.count; i++) {
+            
+            if ([data.airPort isEqualToString:[dicCode.allKeys objectAtIndex:i]]) {
+                
+                string = [dicCode objectForKey:[dicCode.allKeys objectAtIndex:i]];
+                
+                break;
+            }
+            else
+            {
+                string = data.airPort;
+            }
+            
+            
+        }
+        
+        cell.temporaryLabel.text =  data.temporaryLabel;
+        cell.airPort.text = string;
+        cell.palntType.text = [NSString stringWithFormat:@"%@机型",data.palntType];
+        cell.beginTime.text = data.beginTime;
+        cell.endTime.text = data.endTime;
+        cell.pay.text =[NSString stringWithFormat:@"￥%d",data.pay] ; // Y仓价格
+        cell.discount.text = data.discount; // 仓位折扣
+        cell.ticketCount.text = data.ticketCount; // 剩余票数
+        
+        
+        NSLog(@"%@",cell.temporaryLabel.text);
+        cell.selectedBackgroundView=[[[UIView alloc]initWithFrame:cell.frame]autorelease];
+        cell.selectedBackgroundView.backgroundColor=View_BackGrayGround_Color;
+        
+        
+        
+        return cell;
+        
+        
+    }
 }
 
 -(void)changeImage:(UIButton *)send
@@ -803,7 +851,7 @@
     
     CalendarFlag = 0;
     lowOrderFlag = 0;
-    if (tableView == self.showResultTableView)
+    if (tableView == self.tempTableView)
     {
         ChooseSpaceViewController * order = [[ChooseSpaceViewController alloc] init];
         

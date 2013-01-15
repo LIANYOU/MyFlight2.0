@@ -612,7 +612,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">triangle_icon_down.png</string>
-			<string key="NS.object.0">{16, 14}</string>
+			<string key="NS.object.0">{13, 11}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>

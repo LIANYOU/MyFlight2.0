@@ -85,6 +85,7 @@ int whatday(int year,int month,int day);
     
        
     self.navigationItem.title = @"机票查询";
+
     
     startAirport.text = @"北京首都";
     endAirport.text = @"上海虹桥";
