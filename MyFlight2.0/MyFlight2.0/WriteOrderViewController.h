@@ -54,6 +54,9 @@
 @property (retain, nonatomic) NSMutableArray * passengerTYPE;
 
 
+//@property (retain, nonatomic) NSMutableArray * addPersonArr;
+
+
 @property (retain, nonatomic) UseGoldPay * useGoldPay ;
 
 @property (retain, nonatomic) NSString * goAirPortName;  // 去成公司二字码

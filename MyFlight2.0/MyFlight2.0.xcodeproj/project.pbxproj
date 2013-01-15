@@ -390,6 +390,8 @@
 		18B831B316A43C320046CB0C /* 查询无结果.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B831B116A43C320046CB0C /* 查询无结果.png */; };
 		18B831B416A43C320046CB0C /* 查询无结果1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B831B216A43C320046CB0C /* 查询无结果1.png */; };
 		18B831DC16A500E20046CB0C /* UINavigationBar+CustomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B831DB16A500E20046CB0C /* UINavigationBar+CustomImage.m */; };
+		18B831F516A58AEF0046CB0C /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B831F316A58AE50046CB0C /* ShowSelectedResultViewController.m */; };
+		18B831F616A58AEF0046CB0C /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B831F416A58AE90046CB0C /* ShowSelectedResultViewController.xib */; };
 		18C30D2A16858481009B0A54 /* history.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D2916858481009B0A54 /* history.sqlite */; };
 		18C30D3416859223009B0A54 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D3316859223009B0A54 /* 03.png */; };
 		18C30D51168598D7009B0A54 /* calendar.txt in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D48168598D7009B0A54 /* calendar.txt */; };
@@ -645,8 +647,6 @@
 		18DF893516881FAD00D2DDAE /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF893316881FAD00D2DDAE /* HistoryCell.xib */; };
 		18DF893916881FC800D2DDAE /* HistroyCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF893716881FC800D2DDAE /* HistroyCheckViewController.m */; };
 		18DF893A16881FC800D2DDAE /* HistroyCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF893816881FC800D2DDAE /* HistroyCheckViewController.xib */; };
-		18DF893E1688202400D2DDAE /* ShowSelectedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF893C1688202400D2DDAE /* ShowSelectedResultViewController.m */; };
-		18DF893F1688202400D2DDAE /* ShowSelectedResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DF893D1688202400D2DDAE /* ShowSelectedResultViewController.xib */; };
 		18DF894E168824E600D2DDAE /* HistoryCheckDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF894A168824E600D2DDAE /* HistoryCheckDataBase.m */; };
 		18DF894F168824E600D2DDAE /* HistoryCheckInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF894C168824E600D2DDAE /* HistoryCheckInfoData.m */; };
 		18DF8950168824E600D2DDAE /* HistoryFlightQuery.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18DF894D168824E600D2DDAE /* HistoryFlightQuery.sqlite */; };
@@ -1395,6 +1395,9 @@
 		18B831B216A43C320046CB0C /* 查询无结果1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "查询无结果1.png"; sourceTree = "<group>"; };
 		18B831DA16A500E20046CB0C /* UINavigationBar+CustomImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomImage.h"; sourceTree = "<group>"; };
 		18B831DB16A500E20046CB0C /* UINavigationBar+CustomImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomImage.m"; sourceTree = "<group>"; };
+		18B831F216A58AE40046CB0C /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
+		18B831F316A58AE50046CB0C /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
+		18B831F416A58AE90046CB0C /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
 		18C30D2916858481009B0A54 /* history.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = history.sqlite; sourceTree = "<group>"; };
 		18C30D3316859223009B0A54 /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03.png; sourceTree = "<group>"; };
 		18C30D48168598D7009B0A54 /* calendar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar.txt; sourceTree = "<group>"; };
@@ -1735,9 +1738,6 @@
 		18DF893616881FC800D2DDAE /* HistroyCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistroyCheckViewController.h; sourceTree = "<group>"; };
 		18DF893716881FC800D2DDAE /* HistroyCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistroyCheckViewController.m; sourceTree = "<group>"; };
 		18DF893816881FC800D2DDAE /* HistroyCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistroyCheckViewController.xib; sourceTree = "<group>"; };
-		18DF893B1688202400D2DDAE /* ShowSelectedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSelectedResultViewController.h; sourceTree = "<group>"; };
-		18DF893C1688202400D2DDAE /* ShowSelectedResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSelectedResultViewController.m; sourceTree = "<group>"; };
-		18DF893D1688202400D2DDAE /* ShowSelectedResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowSelectedResultViewController.xib; sourceTree = "<group>"; };
 		18DF8949168824E600D2DDAE /* HistoryCheckDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCheckDataBase.h; sourceTree = "<group>"; };
 		18DF894A168824E600D2DDAE /* HistoryCheckDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCheckDataBase.m; sourceTree = "<group>"; };
 		18DF894B168824E600D2DDAE /* HistoryCheckInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCheckInfoData.h; sourceTree = "<group>"; };
@@ -2444,12 +2444,12 @@
 				142793691670412F00E2E1E3 /* BuyInsuranceViewController.h */,
 				1427936A1670412F00E2E1E3 /* BuyInsuranceViewController.m */,
 				1427936B1670412F00E2E1E3 /* BuyInsuranceViewController.xib */,
+				18B831F216A58AE40046CB0C /* ShowSelectedResultViewController.h */,
+				18B831F316A58AE50046CB0C /* ShowSelectedResultViewController.m */,
+				18B831F416A58AE90046CB0C /* ShowSelectedResultViewController.xib */,
 				18630441168EAA1B0022CB2F /* WriteOrderViewController.h */,
 				18630442168EAA1C0022CB2F /* WriteOrderViewController.m */,
 				18630443168EAA1D0022CB2F /* WriteOrderViewController.xib */,
-				18DF893B1688202400D2DDAE /* ShowSelectedResultViewController.h */,
-				18DF893C1688202400D2DDAE /* ShowSelectedResultViewController.m */,
-				18DF893D1688202400D2DDAE /* ShowSelectedResultViewController.xib */,
 				18DDB3A616952261004CEC75 /* PayViewController.h */,
 				18DDB3A716952261004CEC75 /* PayViewController.m */,
 				18DDB3A816952261004CEC75 /* PayViewController.xib */,
@@ -4700,7 +4700,6 @@
 				18C9E6D91685C96100A1453C /* circle_green_change.png in Resources */,
 				18DF893516881FAD00D2DDAE /* HistoryCell.xib in Resources */,
 				18DF893A16881FC800D2DDAE /* HistroyCheckViewController.xib in Resources */,
-				18DF893F1688202400D2DDAE /* ShowSelectedResultViewController.xib in Resources */,
 				18DF8950168824E600D2DDAE /* HistoryFlightQuery.sqlite in Resources */,
 				140D979E1689570800D8934E /* CommonContactDetailViewController.xib in Resources */,
 				149B770A168BE3E1006281A3 /* MyCenterCell.xib in Resources */,
@@ -5055,16 +5054,14 @@
 				18B831B316A43C320046CB0C /* 查询无结果.png in Resources */,
 				18B831B416A43C320046CB0C /* 查询无结果1.png in Resources */,
 				14A43CAA16A4E0A500656CDF /* AirPortCode.plist in Resources */,
-
 				1895076B16A505AD00B9E315 /* done1.png in Resources */,
 				1895076C16A505AD00B9E315 /* done2.png in Resources */,
-
 				14A43CBA16A4EDF000656CDF /* Icon.png in Resources */,
 				14A43CBC16A4EDFA00656CDF /* Icon@2x.png in Resources */,
 				14A43CBE16A50EF500656CDF /* Default@2x.png in Resources */,
 				14A43CC016A50EFD00656CDF /* Default.png in Resources */,
 				14A43CC216A50F1600656CDF /* Default-568@2x.png in Resources */,
-
+				18B831F616A58AEF0046CB0C /* ShowSelectedResultViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5169,7 +5166,6 @@
 				145A2D7516858609000DAAA1 /* MyCheapFlightViewController.m in Sources */,
 				18DF893416881FAD00D2DDAE /* HistoryCell.m in Sources */,
 				18DF893916881FC800D2DDAE /* HistroyCheckViewController.m in Sources */,
-				18DF893E1688202400D2DDAE /* ShowSelectedResultViewController.m in Sources */,
 				18DF894E168824E600D2DDAE /* HistoryCheckDataBase.m in Sources */,
 				18DF894F168824E600D2DDAE /* HistoryCheckInfoData.m in Sources */,
 				140D979D1689570800D8934E /* CommonContactDetailViewController.m in Sources */,
@@ -5362,6 +5358,7 @@
 				18B8319D16A3D90D0046CB0C /* LocationAirPortWJ.m in Sources */,
 				14A43C8816A409A500656CDF /* MyOrderListSingleDataSave.m in Sources */,
 				18B831DC16A500E20046CB0C /* UINavigationBar+CustomImage.m in Sources */,
+				18B831F516A58AEF0046CB0C /* ShowSelectedResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
