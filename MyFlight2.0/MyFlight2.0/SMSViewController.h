@@ -27,6 +27,9 @@
     FlightConditionDetailData * subMyFlightConditionDetailData;
     
     BOOL flag;
+    UITableView * myTableView;
+    UILabel * cellNameLabel;
+    UILabel * cellPhoneLabel;
 }
 
 @property(nonatomic,retain) FlightConditionDetailData * subMyFlightConditionDetailData;

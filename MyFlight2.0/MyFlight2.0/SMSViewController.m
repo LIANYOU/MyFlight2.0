@@ -42,11 +42,11 @@
     [leftItem release];
     
     //输入框
-    cusInputTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, 10, 280, 24)];
+    cusInputTextField = [[UITextField alloc]initWithFrame:CGRectMake(10, 10, 300, 30)];
     cusInputTextField.font = [UIFont systemFontOfSize:17];
-    cusInputTextField.text = @"手动输入一个手机号码";
+    cusInputTextField.placeholder = @"手动输入一个手机号码";
     cusInputTextField.textAlignment = NSTextAlignmentLeft;
-    [self.view addSubview:cusInputTextField];
+    
     cusInputTextField.keyboardType = UIKeyboardTypeNumberPad;
     [cusInputTextField setBorderStyle:UITextBorderStyleRoundedRect];
     cusInputTextField.textColor = [UIColor lightGrayColor];
@@ -96,8 +96,68 @@
     [sendMessageBtn addSubview:label];
     [label release];
     [sendMessageBtn addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:sendMessageBtn];
+//    [self.view addSubview:sendMessageBtn];
+    
+    
+    
+    
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 50, 320, [[UIScreen mainScreen] bounds].size.height - 50 - 64)];
+    myTableView.dataSource = self;
+    myTableView.delegate = self;
+    myTableView.separatorColor = [UIColor clearColor];
+    myTableView.backgroundColor = [UIColor clearColor];
+    
+    
+    UIView * bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    bgView.backgroundColor = [UIColor colorWithRed:212/255.0 green:218/255.0 blue:228/255.0 alpha:1];
+    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0, 49, 320, 1)];
+    line.backgroundColor = LINE_COLOR_BLUE;
+    [bgView addSubview:line];
+    [line release];
+    [self.view addSubview:bgView];
+    [bgView release];
+    
+    
+    
+    [self.view addSubview:cusInputTextField];
+    [self.view addSubview:myTableView];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                            selector:@selector(addButtonToKeyboard)
+                                                name:UIKeyboardDidShowNotification
+                                              object:nil];
 
+    
+    
+    
+}
+
+- (void)addButtonToKeyboard {
+    // create custom button
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    doneButton.frame = CGRectMake(0, 163, 106, 53);
+    doneButton.adjustsImageWhenHighlighted =NO;
+  
+    [doneButton setImage:[UIImage imageNamed:@"done1.png"]
+                forState:UIControlStateNormal];
+    [doneButton setImage:[UIImage imageNamed:@"done2.png"]
+                forState:UIControlStateHighlighted];
+    [doneButton addTarget:self
+                   action:@selector(doneButton:)
+         forControlEvents:UIControlEventTouchUpInside];
+    // locate keyboard view
+    UIWindow* tempWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:1];
+    UIView* keyboard;
+    for(int i=0; i<[tempWindow.subviews count]; i++) {
+        keyboard = [tempWindow.subviews objectAtIndex:i];
+        // keyboard found, add the button
+        if([[keyboard description] hasPrefix:@"<UIPeripheralHost"] ==YES)
+                [keyboard addSubview:doneButton];
+        
+    }
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -504,6 +564,130 @@
     [request setDelegate:self];
     [request startAsynchronous];
     
+}
+
+-(void)doneButton:(UIButton *)btn{
+    NSString * myStr = cusInputTextField.text;
+    if (cusInputTextField.text.length == 0) {
+        [cusInputTextField resignFirstResponder];
+    }
+    if ([self checkTel:myStr] == YES) {
+        if ([nameAndPhone count] == 0) {
+            NSDictionary * phone = [NSDictionary dictionaryWithObjectsAndKeys:@"",@"name",myStr,@"phone", nil];
+            [nameAndPhone addObject:phone];
+            
+            [cusInputTextField resignFirstResponder];
+            [myTableView reloadData];
+        }else{
+            
+            for (int i = 0;i < [nameAndPhone count];i++) {
+                NSDictionary * dic = [nameAndPhone objectAtIndex:i];
+                NSLog(@"dic : %@",[dic objectForKey:@"phone"]);
+                if ([[dic objectForKey:@"phone"] isEqualToString:myStr] == YES) {
+                    isHave = YES;
+                    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已存在" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+
+                    [cusInputTextField resignFirstResponder];
+                    [alert show];
+                    [alert release];
+                    
+                }
+            }
+            if (isHave == NO) {
+                NSDictionary * phone = [NSDictionary dictionaryWithObjectsAndKeys:@"",@"name",myStr,@"phone", nil];
+                
+                [nameAndPhone addObject:phone];
+                [cusInputTextField resignFirstResponder];
+                [myTableView reloadData];
+            }
+            isHave = NO;
+            
+        }
+        
+    }
+}
+
+#pragma mark - tableView代理
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [nameAndPhone count] + 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *CellIdentifier = @"";
+    if (indexPath.row == [nameAndPhone count]) {
+        CellIdentifier = @"sendbtn";
+    }else{
+        CellIdentifier = @"Cell";
+    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        if (indexPath.row == [nameAndPhone count]) {
+            UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(10, 20, 300, 44);
+            [btn setImage:[UIImage imageNamed:@"orange_btn.png"] forState:UIControlStateNormal];
+            [btn addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
+            [cell addSubview:btn];
+            UILabel * btnLabel = [[UILabel alloc]initWithFrame:CGRectMake(110, 7, 80, 30)];
+            btnLabel.textColor = [UIColor whiteColor];
+            btnLabel.backgroundColor = [UIColor clearColor];
+            btnLabel.textAlignment = NSTextAlignmentCenter;
+            btnLabel.text = @"发送短信";
+            [btn addSubview:btnLabel];
+            [btnLabel release];
+           
+        }else{
+            cellNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 7, 80, 20)];
+            cellNameLabel.textColor = FONT_COLOR_GRAY;
+            cellNameLabel.textAlignment = NSTextAlignmentLeft;
+            cellNameLabel.backgroundColor = [UIColor clearColor];
+            [cell addSubview:cellNameLabel];
+            
+            cellPhoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(140, 7, 140, 20)];
+            cellPhoneLabel.textAlignment = NSTextAlignmentCenter;
+            cellPhoneLabel.textColor = FONT_COLOR_GRAY;
+            cellPhoneLabel.backgroundColor = [UIColor clearColor];
+            [cell addSubview:cellPhoneLabel];
+            
+            UIImageView * bottomView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
+            bottomView.backgroundColor = LINE_COLOR;
+            [cell addSubview:bottomView];
+            [bottomView release];
+            
+            UIImageView * bottomView2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 43, 320, 1)];
+            bottomView2.backgroundColor = [UIColor whiteColor];
+            [cell addSubview:bottomView2];
+            [bottomView2 release];
+        }
+    }
+    if ([nameAndPhone count] > 0 && indexPath.row < [nameAndPhone count]) {
+        cellNameLabel.text = [[nameAndPhone objectAtIndex:indexPath.row]objectForKey:@"name"];
+        cellPhoneLabel.text = [[nameAndPhone objectAtIndex:indexPath.row]objectForKey:@"phone"];
+        
+    }
+    return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [nameAndPhone removeObjectAtIndex:indexPath.row];
+        // Delete the row from the data source.
+        [myTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+    }
+   
+}
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [cusInputTextField resignFirstResponder];
 }
 
 -(void)dealloc{

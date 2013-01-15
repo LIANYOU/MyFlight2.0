@@ -374,6 +374,8 @@
 		186A63AA16A1B3B400CD182C /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186A63A916A1B3B400CD182C /* TutorialViewController.m */; };
 		188B728C16915C69004F09B8 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B728B16915C69004F09B8 /* MapManager.m */; };
 		188B728F16916C7A004F09B8 /* Ann.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B728E16916C7A004F09B8 /* Ann.m */; };
+		1895076B16A505AD00B9E315 /* done1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1895076916A505AD00B9E315 /* done1.png */; };
+		1895076C16A505AD00B9E315 /* done2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1895076A16A505AD00B9E315 /* done2.png */; };
 		18953997168EFA20008901F5 /* AirportMainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18953995168EFA20008901F5 /* AirportMainScreenViewController.m */; };
 		189F5D48168A014700A3494F /* AttentionFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F5D47168A014700A3494F /* AttentionFlight.m */; };
 		18AD3304168C6EF40065BF08 /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD32F6168C6EF40065BF08 /* CheckInViewController.m */; };
@@ -1365,6 +1367,8 @@
 		188B728B16915C69004F09B8 /* MapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManager.m; sourceTree = "<group>"; };
 		188B728D16916C7A004F09B8 /* Ann.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ann.h; sourceTree = "<group>"; };
 		188B728E16916C7A004F09B8 /* Ann.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ann.m; sourceTree = "<group>"; };
+		1895076916A505AD00B9E315 /* done1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done1.png; sourceTree = "<group>"; };
+		1895076A16A505AD00B9E315 /* done2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done2.png; sourceTree = "<group>"; };
 		18953994168EFA20008901F5 /* AirportMainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirportMainScreenViewController.h; sourceTree = "<group>"; };
 		18953995168EFA20008901F5 /* AirportMainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirportMainScreenViewController.m; sourceTree = "<group>"; };
 		189F5D46168A014700A3494F /* AttentionFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionFlight.h; sourceTree = "<group>"; };
@@ -4033,6 +4037,8 @@
 				18E4BC69167AC293009858A0 /* myBtn.png */,
 				18E4BC6A167AC295009858A0 /* tabbar.png */,
 				18D3643716967139005CF80C /* dong1.png */,
+				1895076916A505AD00B9E315 /* done1.png */,
+				1895076A16A505AD00B9E315 /* done2.png */,
 				18D364381696713A005CF80C /* dong2.png */,
 				18E4BC54167A072E009858A0 /* Thumbs.db */,
 			);
@@ -5033,6 +5039,8 @@
 				18B831B316A43C320046CB0C /* 查询无结果.png in Resources */,
 				18B831B416A43C320046CB0C /* 查询无结果1.png in Resources */,
 				14A43CAA16A4E0A500656CDF /* AirPortCode.plist in Resources */,
+				1895076B16A505AD00B9E315 /* done1.png in Resources */,
+				1895076C16A505AD00B9E315 /* done2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
