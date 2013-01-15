@@ -15,6 +15,7 @@
 #import "LocationAirPortWJ.h"
 #import "UIQuickHelp.h"
 #import "AirPortDataBase.h"
+#import "UIButton+BackButton.h"
 @interface ChooseAirPortViewController (){
     
     NSMutableArray *sectionTitles;
@@ -48,15 +49,15 @@
 #pragma mark 设置导航栏
 - (void) setNav{
     
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 5, 30, 31);
-    backBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
-    backBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"icon_return_.png"]];
+    UIButton * backBtn = [UIButton  backButtonType:0 andTitle:@""];
+    
+    
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
+
     
     
     
@@ -711,7 +712,7 @@ return indexPath;
    
   //  CCLog(@"当前定位机场 ； %@", [self.locationInfoArr objectAtIndex:0]);
     
-    self.airPortName = [info objectForKey:@"name"];
+    self.airPortName = [info objectForKey:@"key_error"];
     
     if ([self.airPortName isEqualToString:@"noInfo"]) {
         isLocated=NO;
@@ -720,7 +721,7 @@ return indexPath;
         
         locationFlag = @"location";
         
-        self.locationInfoArr =[info objectForKey:@"name"];
+        self.locationInfoArr =[info objectForKey:@"key_result"];
 
         isLocated =YES;
         [self.tableView reloadData];

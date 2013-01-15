@@ -79,6 +79,22 @@
 {
     [super viewDidLoad];
     [self setNav];
+    
+    UISwipeGestureRecognizer *swip =[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
+    swip.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+    
+    [self.view addGestureRecognizer: swip];
+    
+    [swip release];
+    
+    
+    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
+    [self.view addGestureRecognizer:tap];
+    
+    [tap release];
+
+    
+    
     self.title = @"找回密码";
     CCLog(@"找回密码时 用户上一个界面 用户输入的手机号为：%@",self.userMobile);
     isSecretBnEnabled = YES;

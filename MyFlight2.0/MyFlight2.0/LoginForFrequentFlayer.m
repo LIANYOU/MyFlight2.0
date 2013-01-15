@@ -60,6 +60,23 @@
     [super viewDidLoad];
     [self initThisView];
     
+    
+    UISwipeGestureRecognizer *swip =[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backKeyBoard:)];
+    swip.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+    
+    [self.view addGestureRecognizer: swip];
+    
+    [swip release];
+    
+    
+    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backKeyBoard:)];
+    [self.view addGestureRecognizer:tap];
+    
+    [tap release];
+
+    
+    
+    
 //    [AirCompanyDataBase initDataBase];
     
     [UIQuickHelp setRoundCornerForView:self.thisView withRadius:View_CoureRadious];
@@ -243,4 +260,29 @@
    
     
 }
+     
+     
+     - (BOOL) textFieldShouldReturn:(UITextField *)textField{
+         
+         if ([textField isEqual:self.accountLabel]) {
+             
+             //             [logNumber resignFirstResponder];
+             [self.passwdLabel becomeFirstResponder];
+             
+             
+         } else{
+             
+             [textField resignFirstResponder];
+             
+             //          [self performSelector:@selector(beginLoging:)];
+             
+             
+         }
+         
+         
+         return true;
+         
+     }
+     
+
 @end
