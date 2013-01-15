@@ -259,6 +259,11 @@
 
 - (IBAction)postType:(id)sender {
     
+    [name resignFirstResponder];
+    [address resignFirstResponder];
+    [phone resignFirstResponder];
+    
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择邮寄方式"
                                                              delegate:self
                                                     cancelButtonTitle:@"取消"
