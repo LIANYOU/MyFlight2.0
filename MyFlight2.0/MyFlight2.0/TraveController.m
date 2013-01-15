@@ -124,8 +124,9 @@
         self.postView.hidden = NO;
     }
 
+    NSLog(@"count   %d",self.postInfoArr.count);
     
-    if (self.postInfoArr.count != 1) {
+    if (self.postInfoArr.count >2) {
         name.text = [self.postInfoArr objectAtIndex:0];
         city.text = postCITY;
         address.text = [self.postInfoArr objectAtIndex:2];
