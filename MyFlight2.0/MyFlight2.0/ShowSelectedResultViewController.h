@@ -50,6 +50,12 @@
 }
 @property (retain, nonatomic) IBOutlet UITableView *showResultTableView;
 @property (retain, nonatomic) IBOutlet UITableView *sortTableView;
+
+@property (retain, nonatomic) IBOutlet UITableView *threeTableView;
+
+@property (retain, nonatomic) IBOutlet UITableView *tempTableView;
+
+
 @property (retain, nonatomic) IBOutlet UIView *backView;
 
 @property (retain, nonatomic) NSString * oneGoDate;

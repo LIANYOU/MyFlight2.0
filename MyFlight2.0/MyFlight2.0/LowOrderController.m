@@ -366,7 +366,7 @@
 {
     selectRow = row;
     selectFlag = 1;
-    LowOrderCell *cell = (LowOrderCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
+    LowOrderCell *cell = (LowOrderCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     
     [self.seconderLabelArr replaceObjectAtIndex:2 withObject:[self.contents objectAtIndex:row]];
     
@@ -378,7 +378,7 @@
 {
     if (selectFlag != 1) {
         
-        LowOrderCell *cell = (LowOrderCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
+        LowOrderCell *cell = (LowOrderCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
         
         [self.seconderLabelArr replaceObjectAtIndex:2 withObject:[self.contents objectAtIndex:selectRow]];
         
@@ -400,7 +400,7 @@
     
     NSString * string = [NSString stringWithFormat:@"%@%@%@",Default_UserMemberId_Value,SOURCE_VALUE,Default_Token_Value];
     
-    LowTextFiledCell *cell = (LowTextFiledCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0]];
+    LowTextFiledCell *cell = (LowTextFiledCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
                                                   
     NSString * discount = [[self.seconderLabelArr objectAtIndex:2] substringWithRange:NSMakeRange(0, 1)];
     
@@ -512,7 +512,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	
-     LowTextFiledCell *cell = (LowTextFiledCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0]];
+     LowTextFiledCell *cell = (LowTextFiledCell *)[self.showTabelView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
     
     
     CGPoint ce=self.view.center;

@@ -25,7 +25,7 @@
 #import "DetailsOrderViewController.h"
 
 
-
+#import "UINavigationBar+CustomImage.h"
 
 #import "MyLowOrderListViewController.h"
 #import "UIImage+scaleImage.h"
@@ -39,8 +39,24 @@
 {
    // UIImage * image = [UIImage scaleImage:[UIImage imageNamed:@"title_bar.png"] toScale:1];
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title_bar.png"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title_bar.png"] forBarMetrics:UIBarMetricsDefault];
     
+    
+   
+    
+    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]){
+        
+        //ios5 新特性
+        
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"title_bar.png"]forBarMetrics:UIBarMetricsDefault];
+        
+    }
+    else{
+        
+        [[self.navigationController navigationBar] setBackgroundImage:[UIImage imageNamed:@"title_bar.png"]];
+
+    }
+        
     [super viewDidLoad];
     
   

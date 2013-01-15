@@ -385,6 +385,7 @@
 		18B831AC16A41F5E0046CB0C /* title_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B831AB16A41F5E0046CB0C /* title_bar@2x.png */; };
 		18B831B316A43C320046CB0C /* 查询无结果.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B831B116A43C320046CB0C /* 查询无结果.png */; };
 		18B831B416A43C320046CB0C /* 查询无结果1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B831B216A43C320046CB0C /* 查询无结果1.png */; };
+		18B831DC16A500E20046CB0C /* UINavigationBar+CustomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B831DB16A500E20046CB0C /* UINavigationBar+CustomImage.m */; };
 		18C30D2A16858481009B0A54 /* history.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D2916858481009B0A54 /* history.sqlite */; };
 		18C30D3416859223009B0A54 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D3316859223009B0A54 /* 03.png */; };
 		18C30D51168598D7009B0A54 /* calendar.txt in Resources */ = {isa = PBXBuildFile; fileRef = 18C30D48168598D7009B0A54 /* calendar.txt */; };
@@ -1384,6 +1385,8 @@
 		18B831AB16A41F5E0046CB0C /* title_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title_bar@2x.png"; sourceTree = "<group>"; };
 		18B831B116A43C320046CB0C /* 查询无结果.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "查询无结果.png"; sourceTree = "<group>"; };
 		18B831B216A43C320046CB0C /* 查询无结果1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "查询无结果1.png"; sourceTree = "<group>"; };
+		18B831DA16A500E20046CB0C /* UINavigationBar+CustomImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomImage.h"; sourceTree = "<group>"; };
+		18B831DB16A500E20046CB0C /* UINavigationBar+CustomImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomImage.m"; sourceTree = "<group>"; };
 		18C30D2916858481009B0A54 /* history.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = history.sqlite; sourceTree = "<group>"; };
 		18C30D3316859223009B0A54 /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03.png; sourceTree = "<group>"; };
 		18C30D48168598D7009B0A54 /* calendar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar.txt; sourceTree = "<group>"; };
@@ -3218,6 +3221,8 @@
 				18D41A0A169136BB0014B371 /* UIImage+scaleImage.h */,
 				18D41A0B169136BB0014B371 /* UIImage+scaleImage.m */,
 				1823C9C1166F24240079CA3F /* Model */,
+				18B831DA16A500E20046CB0C /* UINavigationBar+CustomImage.h */,
+				18B831DB16A500E20046CB0C /* UINavigationBar+CustomImage.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -5329,6 +5334,7 @@
 				18C65E4716A2591B00E975D4 /* PostCityViewController.m in Sources */,
 				18B8319D16A3D90D0046CB0C /* LocationAirPortWJ.m in Sources */,
 				14A43C8816A409A500656CDF /* MyOrderListSingleDataSave.m in Sources */,
+				18B831DC16A500E20046CB0C /* UINavigationBar+CustomImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
