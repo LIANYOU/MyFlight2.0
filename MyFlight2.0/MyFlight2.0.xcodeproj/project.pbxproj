@@ -149,6 +149,7 @@
 		1474CE04169D12F400FF6761 /* MyLocalOrderListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1474CE02169D12F400FF6761 /* MyLocalOrderListViewController.xib */; };
 		1474CE1D169EEC7100FF6761 /* btn_save_click_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 1474CE1C169EEC7100FF6761 /* btn_save_click_new.png */; };
 		1474CE20169EEC7E00FF6761 /* btn_save_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 1474CE1F169EEC7E00FF6761 /* btn_save_new.png */; };
+		147683DC16A5763C007EBBC3 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 147683DB16A5763C007EBBC3 /* LogViewController.m */; };
 		14805B8616782A8E00836353 /* AirPortDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B8516782A8E00836353 /* AirPortDataBase.m */; };
 		14805B8A16782B2B00836353 /* AirPortData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14805B8916782B2A00836353 /* AirPortData.m */; };
 		14805B8E1678349200836353 /* DataBaseVersionConfigure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14805B8D1678349100836353 /* DataBaseVersionConfigure.plist */; };
@@ -247,7 +248,6 @@
 		180E226D167190EF002A7228 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180E226C167190EF002A7228 /* SystemConfiguration.framework */; };
 		180E226F167190F6002A7228 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180E226E167190F6002A7228 /* MobileCoreServices.framework */; };
 		180E227116719111002A7228 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 180E227016719111002A7228 /* libz.dylib */; };
-		180E22851671B3D4002A7228 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E22831671B3D4002A7228 /* LogViewController.m */; };
 		180E22861671B3D4002A7228 /* LogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180E22841671B3D4002A7228 /* LogViewController.xib */; };
 		180E228E1671BB6F002A7228 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E228C1671BB6F002A7228 /* RegisterViewController.m */; };
 		180E228F1671BB6F002A7228 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180E228D1671BB6F002A7228 /* RegisterViewController.xib */; };
@@ -1058,6 +1058,8 @@
 		1474CE13169E738900FF6761 /* TipConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipConfigure.h; sourceTree = "<group>"; };
 		1474CE1C169EEC7100FF6761 /* btn_save_click_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_save_click_new.png; sourceTree = "<group>"; };
 		1474CE1F169EEC7E00FF6761 /* btn_save_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_save_new.png; sourceTree = "<group>"; };
+		147683DA16A5763C007EBBC3 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
+		147683DB16A5763C007EBBC3 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		14805A0E1676F04B00836353 /* AppConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigure.h; sourceTree = "<group>"; };
 		14805A0F1676F0DF00836353 /* AirPortsUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPortsUility.h; sourceTree = "<group>"; };
 		14805A101676F13000836353 /* PublicConstUrls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicConstUrls.h; sourceTree = "<group>"; };
@@ -1216,8 +1218,6 @@
 		180E226C167190EF002A7228 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		180E226E167190F6002A7228 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		180E227016719111002A7228 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		180E22821671B3D4002A7228 /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
-		180E22831671B3D4002A7228 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		180E22841671B3D4002A7228 /* LogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogViewController.xib; sourceTree = "<group>"; };
 		180E228B1671BB6F002A7228 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		180E228C1671BB6F002A7228 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
@@ -3158,8 +3158,8 @@
 			isa = PBXGroup;
 			children = (
 				146986CE167DD8D400E9B30D /* LookForPassword */,
-				180E22821671B3D4002A7228 /* LogViewController.h */,
-				180E22831671B3D4002A7228 /* LogViewController.m */,
+				147683DA16A5763C007EBBC3 /* LogViewController.h */,
+				147683DB16A5763C007EBBC3 /* LogViewController.m */,
 				180E22841671B3D4002A7228 /* LogViewController.xib */,
 				180E228B1671BB6F002A7228 /* RegisterViewController.h */,
 				180E228C1671BB6F002A7228 /* RegisterViewController.m */,
@@ -5055,16 +5055,13 @@
 				18B831B316A43C320046CB0C /* 查询无结果.png in Resources */,
 				18B831B416A43C320046CB0C /* 查询无结果1.png in Resources */,
 				14A43CAA16A4E0A500656CDF /* AirPortCode.plist in Resources */,
-
 				1895076B16A505AD00B9E315 /* done1.png in Resources */,
 				1895076C16A505AD00B9E315 /* done2.png in Resources */,
-
 				14A43CBA16A4EDF000656CDF /* Icon.png in Resources */,
 				14A43CBC16A4EDFA00656CDF /* Icon@2x.png in Resources */,
 				14A43CBE16A50EF500656CDF /* Default@2x.png in Resources */,
 				14A43CC016A50EFD00656CDF /* Default.png in Resources */,
 				14A43CC216A50F1600656CDF /* Default-568@2x.png in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5092,7 +5089,6 @@
 				180E225C1671908E002A7228 /* ASINetworkQueue.m in Sources */,
 				180E225D1671908E002A7228 /* Reachability.m in Sources */,
 				180E226416719094002A7228 /* JSONKit.m in Sources */,
-				180E22851671B3D4002A7228 /* LogViewController.m in Sources */,
 				180E228E1671BB6F002A7228 /* RegisterViewController.m in Sources */,
 				180E22EA1671F4E6002A7228 /* DNWrapper.m in Sources */,
 				14ED61ED1672F16D0019DC23 /* FMDatabase.m in Sources */,
@@ -5362,6 +5358,7 @@
 				18B8319D16A3D90D0046CB0C /* LocationAirPortWJ.m in Sources */,
 				14A43C8816A409A500656CDF /* MyOrderListSingleDataSave.m in Sources */,
 				18B831DC16A500E20046CB0C /* UINavigationBar+CustomImage.m in Sources */,
+				147683DC16A5763C007EBBC3 /* LogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

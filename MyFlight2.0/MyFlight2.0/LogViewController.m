@@ -73,28 +73,28 @@
     [super viewDidLoad];
     [self setNav];
     
-    UISwipeGestureRecognizer *swip =[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
-    swip.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+    //    UISwipeGestureRecognizer *swip =[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
+    //    swip.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+    //
+    //    [self.view addGestureRecognizer: swip];
+    //
+    //    [swip release];
+    //
+    //
+    //    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
+    //    [self.view addGestureRecognizer:tap];
+    //
+    //    [tap release];
     
-    [self.view addGestureRecognizer: swip];
-    
-    [swip release];
-    
-    
-    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
-    [self.view addGestureRecognizer:tap];
-    
-    [tap release];
-    
-    
-    
-    
+    self.view.userInteractionEnabled =YES;
     
     
     
     
-//    self.swipGesture.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
-//    
+    
+    
+    //    self.swipGesture.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+    //
     
     logNumber.delegate =self;
     logPassword.delegate =self;
@@ -241,21 +241,21 @@
      }
      
      
-- (void)initLocalDatabase{
+     - (void)initLocalDatabase{
          
-    
-    
+         
+         
          LoginBusiness *bis =[[LoginBusiness alloc] init];
          
          [bis getCommonPassengerWithMemberId:Default_UserMemberId_Value andDelegate:nil];
          
          [bis getOrderListWithCurrentPage:@"1" rowsOfPage:@"100" andDelegate:nil];
          [bis release];
-    
-    
-    
-    
-    
+         
+         
+         
+         
+         
      }
      
      
@@ -552,7 +552,37 @@
      
      - (IBAction)backKey:(id)sender {
          
+         CCLog(@"%@ **************",sender);
+         
          [logNumber resignFirstResponder];
          [logPassword resignFirstResponder];
      }
+     
+   
+     
+     
+     - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+         CCLog(@"*********&&&&&&&&");
+         
+         [logNumber resignFirstResponder];
+         [logPassword resignFirstResponder];
+                 
+     }
+     
+     
+     - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+         
+         
+         CCLog(@"$$$$$$$$$$$$$$$$$$");
+        
+         
+         [logNumber resignFirstResponder];
+         [logPassword resignFirstResponder];
+         
+         
+     }
+     
+     
+     
+     
      @end

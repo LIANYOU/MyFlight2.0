@@ -177,6 +177,8 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
     UITableViewCell *cell = nil;
     
     NSString *identifier = @"about";
@@ -187,6 +189,7 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    
     
     UIView *line;
     

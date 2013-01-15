@@ -17,6 +17,7 @@
 #import "DetailFlightConditionViewController.h"
 #import "AirCompanyDataBase.h"
 #import "CityDataBase_David.h"
+
 @implementation AppDelegate
 @synthesize window=_window,viewController = _viewController;
 @synthesize sinaweibo;
@@ -54,9 +55,9 @@
     UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:self.viewController];
     
     
-    [self performSelectorInBackground:@selector(initDataBaseInBackground) withObject:nil];
+//    [self performSelectorInBackground:@selector(initDataBaseInBackground) withObject:nil];
     
-    [self performSelectorInBackground:@selector(getCityAndAirport) withObject:nil];
+//    [self performSelectorInBackground:@selector(getCityAndAirport) withObject:nil];
 
     
     

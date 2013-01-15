@@ -83,19 +83,19 @@
 {
     [super viewDidLoad];
     
-    UISwipeGestureRecognizer *swip =[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
-    swip.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
-    
-    [self.view addGestureRecognizer: swip];
-    
-    [swip release];
-    
-    
-    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
-    [self.view addGestureRecognizer:tap];
-    
-    [tap release];
-
+//    UISwipeGestureRecognizer *swip =[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
+//    swip.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+//    
+//    [self.view addGestureRecognizer: swip];
+//    
+//    [swip release];
+//    
+//    
+//    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
+//    [self.view addGestureRecognizer:tap];
+//    
+//    [tap release];
+//
     
     
     [self setNav];
@@ -344,5 +344,27 @@
     
     
      }
+
+     
+     
+     
+     
+     - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+         CCLog(@"*********&&&&&&&&");
+         
+         [self.newPassword resignFirstResponder];
+     }
+     
+     
+     - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+         
+         
+         CCLog(@"$$$$$$$$$$$$$$$$$$");
+         
+         
+        [self.newPassword resignFirstResponder];
+         
+     }
+     
 
 @end
