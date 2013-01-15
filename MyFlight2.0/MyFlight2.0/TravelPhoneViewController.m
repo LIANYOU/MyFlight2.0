@@ -72,6 +72,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 //    NSString * title = [[phoneInfoArray objectAtIndex:indexPath.row]objectForKey:@"title"];
     NSString * phoneNum = [[phoneInfoArray objectAtIndex:indexPath.row]objectForKey:@"phone"];
 //    UIAlertView * phoneAlert = [[UIAlertView alloc]initWithTitle:title message:phoneNum delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];

@@ -166,6 +166,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (self.myAirPortData == nil) {
         UIAlertView * chooseAirPortAlert = [[UIAlertView alloc]initWithTitle:@"未选择机场" message:@"现在选择机场吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [chooseAirPortAlert show];

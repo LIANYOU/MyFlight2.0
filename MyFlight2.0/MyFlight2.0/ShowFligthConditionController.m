@@ -293,6 +293,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     NSDictionary * dic = [self.dateArr objectAtIndex:indexPath.row];
     DetailFlightConditionViewController * detail = [[DetailFlightConditionViewController alloc]init];
     detail.deptAirPortCode = self.deptAirPortCode;

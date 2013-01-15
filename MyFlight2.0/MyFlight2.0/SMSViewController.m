@@ -423,6 +423,7 @@
                 NSLog(@"dic : %@",[dic objectForKey:@"phone"]);
                 if ([[dic objectForKey:@"phone"] isEqualToString:myStr] == YES) {
                     isHave = YES;
+                    [cusInputTextField resignFirstResponder];
                     UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"已存在" message:@"" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
                     [self resetSendMessageBtnFrame];
                     [cusInputTextField resignFirstResponder];
@@ -458,6 +459,7 @@
     if ([str length] == 0) {
         
 //        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"data_null_prompt", nil) message:NSLocalizedString(@"tel_no_null", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [cusInputTextField resignFirstResponder];
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"请输入一个手机号码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         
         [alert show];
@@ -481,7 +483,7 @@
     BOOL isMatch = [pred evaluateWithObject:str];
     
     if (!isMatch) {
-        
+        [cusInputTextField resignFirstResponder];
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         
         [alert show];

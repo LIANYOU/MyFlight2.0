@@ -48,6 +48,7 @@
     stops.text = [self.subDic objectForKey:@"lineStops"];
     stops.backgroundColor = [UIColor clearColor];
     stops.userInteractionEnabled = NO;
+    self.title = [self.subDic objectForKey:@"lineName"];
 }
 
 - (void)didReceiveMemoryWarning
