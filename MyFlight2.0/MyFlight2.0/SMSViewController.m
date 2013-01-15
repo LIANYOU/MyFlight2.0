@@ -42,7 +42,7 @@
     [leftItem release];
     
     //输入框
-    cusInputTextField = [[UITextField alloc]initWithFrame:CGRectMake(10, 10, 300, 30)];
+    cusInputTextField = [[UITextField alloc]initWithFrame:CGRectMake(10, 12, 300, 27)];
     cusInputTextField.font = [UIFont systemFontOfSize:17];
     cusInputTextField.placeholder = @"手动输入一个手机号码";
     cusInputTextField.textAlignment = NSTextAlignmentLeft;
@@ -361,8 +361,6 @@
     
     [oneMan addSubview:btn];
     oneMan.tag = 999999;
-    
-    
     [oneMan release];
 }
 
@@ -459,7 +457,8 @@
     
     if ([str length] == 0) {
         
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"data_null_prompt", nil) message:NSLocalizedString(@"tel_no_null", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"data_null_prompt", nil) message:NSLocalizedString(@"tel_no_null", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"" message:@"请输入一个手机号码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         
         [alert show];
         
@@ -483,7 +482,7 @@
     
     if (!isMatch) {
         
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入正确的手机号码" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         
         [alert show];
         
@@ -500,9 +499,11 @@
 
 #pragma mark - alert代理
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        [nameAndPhone removeObjectAtIndex:delegateIndex];
-        [self resetSendMessageBtnFrame];
+    if (buttonIndex == 0) {
+        NSLog(@"AlertView buttonIndex : %d",buttonIndex);
+        return;
+//        [nameAndPhone removeObjectAtIndex:delegateIndex];
+//        [self resetSendMessageBtnFrame];
     }
 }
 #pragma mark - 
@@ -637,14 +638,14 @@
             [btnLabel release];
            
         }else{
-            cellNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 7, 80, 20)];
+            cellNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 7, 80, 30)];
             cellNameLabel.textColor = FONT_COLOR_GRAY;
             cellNameLabel.textAlignment = NSTextAlignmentLeft;
             cellNameLabel.backgroundColor = [UIColor clearColor];
             [cell addSubview:cellNameLabel];
             
-            cellPhoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(140, 7, 140, 20)];
-            cellPhoneLabel.textAlignment = NSTextAlignmentCenter;
+            cellPhoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(140, 7, 130, 30)];
+            cellPhoneLabel.textAlignment = NSTextAlignmentRight;
             cellPhoneLabel.textColor = FONT_COLOR_GRAY;
             cellPhoneLabel.backgroundColor = [UIColor clearColor];
             [cell addSubview:cellPhoneLabel];
@@ -669,6 +670,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+   
     return YES;
 }
 
