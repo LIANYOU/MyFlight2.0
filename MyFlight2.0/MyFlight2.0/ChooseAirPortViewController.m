@@ -707,19 +707,21 @@ return indexPath;
 //网络正确回调的方法
 - (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
     
-    locationFlag = @"location";
-    
-    self.locationInfoArr =[info objectForKey:@"name"];
-    
+        
    
-    CCLog(@"当前定位机场 ； %@", [self.locationInfoArr objectAtIndex:0]);
+  //  CCLog(@"当前定位机场 ； %@", [self.locationInfoArr objectAtIndex:0]);
     
- //   self.airPortName = [info objectForKey:@"name"];
+    self.airPortName = [info objectForKey:@"name"];
     
     if ([self.airPortName isEqualToString:@"noInfo"]) {
         isLocated=NO;
     }
     else{
+        
+        locationFlag = @"location";
+        
+        self.locationInfoArr =[info objectForKey:@"name"];
+
         isLocated =YES;
         [self.tableView reloadData];
     }
