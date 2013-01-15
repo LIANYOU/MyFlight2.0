@@ -180,6 +180,7 @@
 		149B780E168D8FD2006281A3 /* bookingFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B780D168D8FD1006281A3 /* bookingFlightVo.m */; };
 		149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7810168D9775006281A3 /* bookingReturnFlightVo.m */; };
 		14A43C8816A409A500656CDF /* MyOrderListSingleDataSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A43C8716A409A500656CDF /* MyOrderListSingleDataSave.m */; };
+		14A43CAA16A4E0A500656CDF /* AirPortCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14A43CA916A4E0A500656CDF /* AirPortCode.plist */; };
 		14AF42311697D1A000C7C2CA /* FrequentPassengerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */; };
 		14AF42341697D67300C7C2CA /* isFrequentPassengerLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42331697D67300C7C2CA /* isFrequentPassengerLogin.m */; };
 		14AF42371697DA3C00C7C2CA /* MemberPointDataOfFrequent.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42361697DA3C00C7C2CA /* MemberPointDataOfFrequent.m */; };
@@ -620,7 +621,6 @@
 		18D70AC816947D5F00B11636 /* LinkmanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70AC716947D5F00B11636 /* LinkmanCell.xib */; };
 		18D70ACB169482E000B11636 /* FlightConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D70ACA169482DE00B11636 /* FlightConditionCell.m */; };
 		18D70ACD169482F900B11636 /* FlightConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D70ACC169482F800B11636 /* FlightConditionCell.xib */; };
-		18D88B5E167AC3F4003EA0C5 /* AirPortCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */; };
 		18DB9B40168AB73C00CE975F /* GetAttentionFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DB9B3F168AB73C00CE975F /* GetAttentionFlight.m */; };
 		18DD1D391675BF7A006B59AB /* TransitionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D381675BF7A006B59AB /* TransitionString.m */; };
 		18DD1D3C1675D01E006B59AB /* SearchFlightData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD1D3B1675D01D006B59AB /* SearchFlightData.m */; };
@@ -1107,6 +1107,7 @@
 		149B7813168D9ABE006281A3 /* flightBookingUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flightBookingUility.h; sourceTree = "<group>"; };
 		14A43C8616A409A500656CDF /* MyOrderListSingleDataSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderListSingleDataSave.h; sourceTree = "<group>"; };
 		14A43C8716A409A500656CDF /* MyOrderListSingleDataSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderListSingleDataSave.m; sourceTree = "<group>"; };
+		14A43CA916A4E0A500656CDF /* AirPortCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirPortCode.plist; sourceTree = "<group>"; };
 		14AF422F1697D1A000C7C2CA /* FrequentPassengerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentPassengerData.h; sourceTree = "<group>"; };
 		14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentPassengerData.m; sourceTree = "<group>"; };
 		14AF42321697D67300C7C2CA /* isFrequentPassengerLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = isFrequentPassengerLogin.h; sourceTree = "<group>"; };
@@ -1688,7 +1689,6 @@
 		18D70AC9169482DD00B11636 /* FlightConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightConditionCell.h; sourceTree = "<group>"; };
 		18D70ACA169482DE00B11636 /* FlightConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightConditionCell.m; sourceTree = "<group>"; };
 		18D70ACC169482F800B11636 /* FlightConditionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightConditionCell.xib; sourceTree = "<group>"; };
-		18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirPortCode.plist; sourceTree = "<group>"; };
 		18DB9B3E168AB73C00CE975F /* GetAttentionFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAttentionFlight.h; sourceTree = "<group>"; };
 		18DB9B3F168AB73C00CE975F /* GetAttentionFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAttentionFlight.m; sourceTree = "<group>"; };
 		18DC00AF1679C87C008C6B8D /* TicketCheckUility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketCheckUility.h; sourceTree = "<group>"; };
@@ -3195,9 +3195,9 @@
 				18478C64167332AD00D3AFCD /* SearchFlightCondition.m */,
 				18DD1D371675BF7A006B59AB /* TransitionString.h */,
 				18DD1D381675BF7A006B59AB /* TransitionString.m */,
+				14A43CA916A4E0A500656CDF /* AirPortCode.plist */,
 				18DD1D3A1675D01D006B59AB /* SearchFlightData.h */,
 				18DD1D3B1675D01D006B59AB /* SearchFlightData.m */,
-				18D88B5D167AC3F3003EA0C5 /* AirPortCode.plist */,
 				18C30D2916858481009B0A54 /* history.sqlite */,
 			);
 			name = Model;
@@ -4555,7 +4555,6 @@
 				18E4BC68167A072E009858A0 /* Thumbs.db in Resources */,
 				18E4BC6B167AC29B009858A0 /* myBtn.png in Resources */,
 				18E4BC6C167AC29B009858A0 /* tabbar.png in Resources */,
-				18D88B5E167AC3F4003EA0C5 /* AirPortCode.plist in Resources */,
 				180D964E167C410B00A36243 /* clean_histroy_4words_.png in Resources */,
 				180D9654167C450000A36243 /* icon_history_.png in Resources */,
 				180D9655167C450000A36243 /* icon_return_.png in Resources */,
@@ -5033,6 +5032,7 @@
 				18B831AC16A41F5E0046CB0C /* title_bar@2x.png in Resources */,
 				18B831B316A43C320046CB0C /* 查询无结果.png in Resources */,
 				18B831B416A43C320046CB0C /* 查询无结果1.png in Resources */,
+				14A43CAA16A4E0A500656CDF /* AirPortCode.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

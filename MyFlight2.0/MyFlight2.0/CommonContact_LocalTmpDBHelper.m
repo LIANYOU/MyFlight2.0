@@ -12,9 +12,6 @@
 #import "FMDatabaseAdditions.h"
 #import "CommonContact.h"
 
-
-
-
 @implementation CommonContact_LocalTmpDBHelper
 
 
