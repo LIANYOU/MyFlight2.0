@@ -72,9 +72,6 @@
 		145394F4166F220D00417F61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 145394F2166F220D00417F61 /* InfoPlist.strings */; };
 		145394F6166F220E00417F61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 145394F5166F220E00417F61 /* main.m */; };
 		145394FA166F220E00417F61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 145394F9166F220E00417F61 /* AppDelegate.m */; };
-		145394FC166F220E00417F61 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 145394FB166F220E00417F61 /* Default.png */; };
-		145394FE166F220E00417F61 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 145394FD166F220E00417F61 /* Default@2x.png */; };
-		14539500166F220E00417F61 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 145394FF166F220E00417F61 /* Default-568h@2x.png */; };
 		14539503166F220E00417F61 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14539502166F220E00417F61 /* ViewController.m */; };
 		14539506166F220E00417F61 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14539504166F220E00417F61 /* ViewController.xib */; };
 		145A2CBA16841E07000DAAA1 /* AddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A2CB816841E07000DAAA1 /* AddContactViewController.m */; };
@@ -181,6 +178,11 @@
 		149B7811168D9776006281A3 /* bookingReturnFlightVo.m in Sources */ = {isa = PBXBuildFile; fileRef = 149B7810168D9775006281A3 /* bookingReturnFlightVo.m */; };
 		14A43C8816A409A500656CDF /* MyOrderListSingleDataSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A43C8716A409A500656CDF /* MyOrderListSingleDataSave.m */; };
 		14A43CAA16A4E0A500656CDF /* AirPortCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14A43CA916A4E0A500656CDF /* AirPortCode.plist */; };
+		14A43CBA16A4EDF000656CDF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A43CB916A4EDF000656CDF /* Icon.png */; };
+		14A43CBC16A4EDFA00656CDF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A43CBB16A4EDFA00656CDF /* Icon@2x.png */; };
+		14A43CBE16A50EF500656CDF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A43CBD16A50EF500656CDF /* Default@2x.png */; };
+		14A43CC016A50EFD00656CDF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A43CBF16A50EFD00656CDF /* Default.png */; };
+		14A43CC216A50F1600656CDF /* Default-568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A43CC116A50F1600656CDF /* Default-568@2x.png */; };
 		14AF42311697D1A000C7C2CA /* FrequentPassengerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */; };
 		14AF42341697D67300C7C2CA /* isFrequentPassengerLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42331697D67300C7C2CA /* isFrequentPassengerLogin.m */; };
 		14AF42371697DA3C00C7C2CA /* MemberPointDataOfFrequent.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AF42361697DA3C00C7C2CA /* MemberPointDataOfFrequent.m */; };
@@ -942,9 +944,6 @@
 		145394F7166F220E00417F61 /* MyFlight2.0-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyFlight2.0-Prefix.pch"; sourceTree = "<group>"; };
 		145394F8166F220E00417F61 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		145394F9166F220E00417F61 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		145394FB166F220E00417F61 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		145394FD166F220E00417F61 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		145394FF166F220E00417F61 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		14539501166F220E00417F61 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		14539502166F220E00417F61 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		14539505166F220E00417F61 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
@@ -1108,6 +1107,11 @@
 		14A43C8616A409A500656CDF /* MyOrderListSingleDataSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderListSingleDataSave.h; sourceTree = "<group>"; };
 		14A43C8716A409A500656CDF /* MyOrderListSingleDataSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderListSingleDataSave.m; sourceTree = "<group>"; };
 		14A43CA916A4E0A500656CDF /* AirPortCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirPortCode.plist; sourceTree = "<group>"; };
+		14A43CB916A4EDF000656CDF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		14A43CBB16A4EDFA00656CDF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		14A43CBD16A50EF500656CDF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		14A43CBF16A50EFD00656CDF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		14A43CC116A50F1600656CDF /* Default-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568@2x.png"; sourceTree = "<group>"; };
 		14AF422F1697D1A000C7C2CA /* FrequentPassengerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentPassengerData.h; sourceTree = "<group>"; };
 		14AF42301697D1A000C7C2CA /* FrequentPassengerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentPassengerData.m; sourceTree = "<group>"; };
 		14AF42321697D67300C7C2CA /* isFrequentPassengerLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = isFrequentPassengerLogin.h; sourceTree = "<group>"; };
@@ -2280,6 +2284,7 @@
 		1427937F167078DA00E2E1E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				14A43CB316A4ED4800656CDF /* appleIcon */,
 				18FB6C7216A2D60600DA8FC5 /* LoadingImage */,
 				14633E4116956DCE00701518 /* 航空公司常旅客 */,
 				14633E2116952EE000701518 /* 更多 */,
@@ -2325,6 +2330,8 @@
 		145394DA166F220D00417F61 = {
 			isa = PBXGroup;
 			children = (
+				14A43CBB16A4EDFA00656CDF /* Icon@2x.png */,
+				14A43CB916A4EDF000656CDF /* Icon.png */,
 				18EBFA9E1696A5730079F3EC /* UMPAY */,
 				A8A0A823168EA8D300FCBD23 /* OAuth */,
 				18C30D3916859846009B0A54 /* Calendar */,
@@ -2390,13 +2397,13 @@
 		145394F0166F220D00417F61 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				14A43CC116A50F1600656CDF /* Default-568@2x.png */,
+				14A43CBF16A50EFD00656CDF /* Default.png */,
+				14A43CBD16A50EF500656CDF /* Default@2x.png */,
 				145394F1166F220D00417F61 /* MyFlight2.0-Info.plist */,
 				145394F2166F220D00417F61 /* InfoPlist.strings */,
 				145394F5166F220E00417F61 /* main.m */,
 				145394F7166F220E00417F61 /* MyFlight2.0-Prefix.pch */,
-				145394FB166F220E00417F61 /* Default.png */,
-				145394FD166F220E00417F61 /* Default@2x.png */,
-				145394FF166F220E00417F61 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2940,6 +2947,13 @@
 				149B7813168D9ABE006281A3 /* flightBookingUility.h */,
 			);
 			name = constClassInfo;
+			sourceTree = "<group>";
+		};
+		14A43CB316A4ED4800656CDF /* appleIcon */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = appleIcon;
 			sourceTree = "<group>";
 		};
 		14AF422D1697D06C00C7C2CA /* 常旅客 */ = {
@@ -4498,9 +4512,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				145394F4166F220D00417F61 /* InfoPlist.strings in Resources */,
-				145394FC166F220E00417F61 /* Default.png in Resources */,
-				145394FE166F220E00417F61 /* Default@2x.png in Resources */,
-				14539500166F220E00417F61 /* Default-568h@2x.png in Resources */,
 				14539506166F220E00417F61 /* ViewController.xib in Resources */,
 				1427936D1670412F00E2E1E3 /* BuyInsuranceViewController.xib in Resources */,
 				18EAE7B316705F9E00CA6265 /* CustomTableView.xib in Resources */,
@@ -5033,6 +5044,11 @@
 				18B831B316A43C320046CB0C /* 查询无结果.png in Resources */,
 				18B831B416A43C320046CB0C /* 查询无结果1.png in Resources */,
 				14A43CAA16A4E0A500656CDF /* AirPortCode.plist in Resources */,
+				14A43CBA16A4EDF000656CDF /* Icon.png in Resources */,
+				14A43CBC16A4EDFA00656CDF /* Icon@2x.png in Resources */,
+				14A43CBE16A50EF500656CDF /* Default@2x.png in Resources */,
+				14A43CC016A50EFD00656CDF /* Default.png in Resources */,
+				14A43CC216A50F1600656CDF /* Default-568@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

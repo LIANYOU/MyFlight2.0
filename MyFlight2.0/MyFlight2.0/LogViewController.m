@@ -54,6 +54,8 @@
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *backBtn1=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    
+    
     self.navigationItem.leftBarButtonItem=backBtn1;
     [backBtn1 release];
     
@@ -69,6 +71,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setNav];
     
     self.swipGesture.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
     
