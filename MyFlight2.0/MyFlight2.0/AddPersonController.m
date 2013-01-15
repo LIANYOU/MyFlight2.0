@@ -15,6 +15,7 @@
 #import "LoginBusiness.h"
 #import "UIQuickHelp.h"
 #import "CustomTableView.h"
+#import "CommonContact_LocalTmpDBHelper.h"
 @interface AddPersonController ()
 {
     NSString * passengerType;  // 乘客类型
@@ -124,7 +125,9 @@
         passengerCertType = nil;
     }
     
-    
+    if (!Default_IsUserLogin_Value) {
+        passengerType = @"成人";
+    }
     
     
     // 初始化第二个tableview的数组
@@ -470,53 +473,53 @@
     
     
     
+    AddPersonCoustomCell *cell = (AddPersonCoustomCell *)[self.addPersonTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    passengerName = cell.secText.text;
     
+    AddPersonCoustomCell *cell1 = (AddPersonCoustomCell *)[self.addPersonTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    certMember = cell1.secText.text;
+    
+    AddPersonCoustomCell *cell2 = (AddPersonCoustomCell *)[self.addPersonTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+    brithMember = cell2.secText.text;
+    
+    
+    //        [self.cellTextArr replaceObjectAtIndex:0 withObject:passengerType];
+    //
+    //        [self.cellTextArr replaceObjectAtIndex:2 withObject:passengerCertType];
+    
+    
+    if ([passengerCertType isEqualToString:@"身份证"] || passengerCertType == nil) {
+        
+        certtype = @"0";
+    }
+    if ([passengerCertType isEqualToString:@"护照"]) {
+        certtype = @"1";
+    }
+    else if ([passengerCertType isEqualToString:@"其它"]){
+        certtype = @"9";
+    }
+    
+    
+    
+    NSString * passenType = nil;
+    if ([passengerType isEqualToString:@"成人"] || passengerType == nil) {
+        passenType = @"01";
+    }
+    else{
+        passenType = @"02";
+    }
+    
+    LoginBusiness *bis = [[LoginBusiness alloc] init];
+    
+    CommonContact *contact = [[CommonContact alloc] initWithName:passengerName
+                                                            type:passenType
+                                                        certType:certtype
+                                                          certNo:certMember
+                                                       contactId:self.passenger.contactId];
     
     
     if (Default_IsUserLogin_Value) {
-        AddPersonCoustomCell *cell = (AddPersonCoustomCell *)[self.addPersonTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-        passengerName = cell.secText.text;
-        
-        AddPersonCoustomCell *cell1 = (AddPersonCoustomCell *)[self.addPersonTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
-        certMember = cell1.secText.text;
-        
-        AddPersonCoustomCell *cell2 = (AddPersonCoustomCell *)[self.addPersonTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
-        brithMember = cell2.secText.text;
-        
-        
-//        [self.cellTextArr replaceObjectAtIndex:0 withObject:passengerType];
-//        
-//        [self.cellTextArr replaceObjectAtIndex:2 withObject:passengerCertType];
-        
-        
-        if ([passengerCertType isEqualToString:@"身份证"] || passengerCertType == nil) {
-            
-            certtype = @"0";
-        }
-        if ([passengerCertType isEqualToString:@"护照"]) {
-            certtype = @"1";
-        }
-        else if ([passengerCertType isEqualToString:@"其它"]){
-            certtype = @"9";
-        }
-      
-
-        
-        NSString * passenType = nil;
-        if ([passengerType isEqualToString:@"成人"] || passengerType == nil) {
-            passenType = @"01";
-        }
-        else{
-            passenType = @"02";
-        }
-        
-        LoginBusiness *bis = [[LoginBusiness alloc] init];
-        
-        CommonContact *contact = [[CommonContact alloc] initWithName:passengerName
-                                                                type:passenType
-                                                            certType:certtype
-                                                              certNo:certMember
-                                                           contactId:self.passenger.contactId];
+ 
 
         
         if ([self.navTitleString isEqualToString:@"添加乘机人"]) {
@@ -538,7 +541,24 @@
     else{
         
         
+        if ([self.navTitleString isEqualToString:@"添加乘机人"]) {
+            
+            
+            
+             [CommonContact_LocalTmpDBHelper addCommonContact_UnLogin:contact];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        if ([self.navTitleString isEqualToString:@"编辑乘机人"]) {
+            
+            
+            [CommonContact_LocalTmpDBHelper updateCommonContact_UnLogin:contact];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+
         
+       
         
     }
     

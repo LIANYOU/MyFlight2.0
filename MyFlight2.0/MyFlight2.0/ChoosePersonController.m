@@ -85,11 +85,21 @@
 {
     [super viewWillAppear:YES];
     self.dataArr = [[NSMutableArray alloc] init];
-    self.dataArr = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
-    for (CommonContact * com in self.dataArr) {
-        NSLog(@",,,,,,,,,,   %@",com.name);
+    if (Default_IsUserLogin_Value) {
+        self.dataArr = [CommonContact_LocalTmpDBHelper findAllCommonContact_Login];
+        for (CommonContact * com in self.dataArr) {
+            NSLog(@",,,,,,,,,,   %@",com.name);
+        }
+
     }
-    [self.showTableView reloadData];
+    else{
+        self.dataArr = [CommonContact_LocalTmpDBHelper findAllCommonContact_UnLogin];
+        for (CommonContact * com in self.dataArr) {
+            NSLog(@"UNDefault_IsUserLogin_Value,,,,,,,,,,   %@",com.name);
+        }
+
+    }
+        [self.showTableView reloadData];
 }
 
 #pragma mark - Table view data source

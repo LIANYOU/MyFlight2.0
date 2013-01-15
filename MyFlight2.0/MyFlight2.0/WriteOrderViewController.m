@@ -1566,6 +1566,12 @@
 - (IBAction)payMoney:(id)sender {
     
     
+//    if (!Default_IsUserLogin_Value) {
+//        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请登陆后支付" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//        [alert show];
+//        [alert release];
+//    }
+    
     
     [self judgeCondition];
     
