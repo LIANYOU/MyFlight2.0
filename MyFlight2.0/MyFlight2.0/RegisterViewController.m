@@ -101,7 +101,7 @@
     self.accountFiled.delegate = self;
     self.securityCodeField.delegate = self;
     self.passWordFiled.delegate = self;
-    self.passWordFiled.secureTextEntry = YES;
+    self.passWordFiled.secureTextEntry = NO;
     //默认获取验证码按钮可以使用
     isSecretBnEnabled = YES;
     timeValue = 59;
@@ -350,11 +350,12 @@
 //显示密码
 - (IBAction)showPassWord:(id)sender {
     
+    
     NSString *string = self.passWordFiled.text;
     
     if ([[self.showPassWordBn currentBackgroundImage] isEqual:[UIImage imageNamed:@"icon_choice.png"]]) {
         
-        
+        [self.passWordFiled resignFirstResponder];
         
         self.passWordFiled.text=@"";
         self.passWordFiled.secureTextEntry = YES;
@@ -370,6 +371,7 @@
         
     } else{
         
+         [self.passWordFiled resignFirstResponder];
         
         self.passWordFiled.text=@"";
         self.passWordFiled.secureTextEntry = NO;

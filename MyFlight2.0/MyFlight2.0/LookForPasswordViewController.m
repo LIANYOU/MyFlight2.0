@@ -83,6 +83,8 @@
     CCLog(@"找回密码时 用户上一个界面 用户输入的手机号为：%@",self.userMobile);
     isSecretBnEnabled = YES;
     timeValue = 59;
+    self.userNumber.text =self.userMobile;
+    
     // Do any additional setup after loading the view from its nib.
 }
 

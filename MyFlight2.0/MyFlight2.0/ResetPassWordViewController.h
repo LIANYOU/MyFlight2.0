@@ -18,6 +18,10 @@
 
 
 
+@property (retain, nonatomic) IBOutlet UIButton *showStateBn;
+
+
+
 
 
 //用户输入的新密码

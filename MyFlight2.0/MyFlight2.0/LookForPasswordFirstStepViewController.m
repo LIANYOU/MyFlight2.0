@@ -92,9 +92,11 @@
      }
      - (IBAction)goToNextStep:(id)sender {
          
+         
          LoginBusiness *bis = [[LoginBusiness alloc] init];
          
          NSString *phone = [self.UserInputPhoneNumber.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+         
          
          if (![phone length]==0) {
              
@@ -104,6 +106,7 @@
              //        此验证码请求方式 废弃不用
              //
              //        [bis getSecretCode:self.UserInputPhoneNumber.text requestType:GetCode_ForFindPassWd_Value andDelegate:self];
+             
              
              
          } else{

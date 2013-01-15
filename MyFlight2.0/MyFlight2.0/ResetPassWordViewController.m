@@ -22,6 +22,8 @@
     
     
     BOOL isResetPwdSuccess;
+    
+    BOOL isShowPassword;
 }
 @end
 
@@ -83,6 +85,7 @@
     [self setNav];
     self.title = @"重置密码";
     [self.newPassword becomeFirstResponder];
+    self.newPassword.secureTextEntry = NO;
     
     isResetPwdSuccess = NO;
     CCLog(@"重置密码页面 用户手机号 %@ 验证码 %@",self.mobile,self.code);
@@ -112,6 +115,50 @@
 
 //显示密码
 - (IBAction)showPasswordState:(id)sender {
+    
+    
+    
+    NSString *string = self.newPassword.text;
+    
+    if ([[self.showStateBn currentBackgroundImage] isEqual:[UIImage imageNamed:@"icon_choice.png"]]) {
+        
+        [self.newPassword resignFirstResponder];
+        
+        self.newPassword.text=@"";
+        self.newPassword.secureTextEntry = YES;
+        
+        self.newPassword.text=string;
+        
+        
+        
+        NSLog(@"不显示密码");
+        [self.showStateBn setBackgroundImage:[UIImage imageNamed:@"ico_def.png"] forState:UIControlStateNormal];
+        isShowPassword = NO;
+        
+        
+    } else{
+        
+        [self.newPassword resignFirstResponder];
+        
+        self.newPassword.text=@"";
+        self.newPassword.secureTextEntry = NO;
+        
+        
+        self.newPassword.text=string;
+        
+        isShowPassword = YES;
+        
+        [self.showStateBn setBackgroundImage:[UIImage imageNamed:@"icon_choice.png"] forState:UIControlStateNormal];
+        NSLog(@"显示密码");
+        
+    }
+
+    
+    
+    
+    
+    
+    
     
     
 }
@@ -272,10 +319,7 @@
 }
 
 
-
-
-
-
+     
 - (IBAction)backKey:(id)sender {
     
     CCLog(@"%@",sender);
@@ -284,4 +328,5 @@
     
     
      }
+
 @end
