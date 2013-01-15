@@ -39,11 +39,11 @@
     
     __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
     
-//    //取消订单信息
-//    
-//    [messageDic setObject:@"cancel" forKey:KEY_Request_Type];
-//    
-//    
+    //    //取消订单信息
+    //
+    //    [messageDic setObject:@"cancel" forKey:KEY_Request_Type];
+    //
+    //
     NSString * url =GET_RIGHT_URL_WITH_Index(@"/web/phone/service/getLocation.jsp");
     
     
@@ -56,7 +56,7 @@
     [request setPostValue:self.mapType forKey:@"mapType"];
     [request setPostValue:self.code forKey:@"code"];
     [request setPostValue:self.codeType forKey:@"codeType"];
-
+    
     
     
     
@@ -88,12 +88,12 @@
             
             message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
             
-                    
+            
             if ([message length]==0) {
                 
-//                [messageDic setObject:message forKey:KEY_message];
+                //                [messageDic setObject:message forKey:KEY_message];
                 
-                               
+                
                 
                 NSString * apName = [dic objectForKey:@"apName"];
                 NSString * apCode = [dic objectForKey:@"apCode"];
@@ -102,16 +102,13 @@
                 
                 CCLog(@"网络请求到的数据 %@ ",apName);
                 
-                if (apName != nil) {
-                    [messageDic setObject:arr forKey:@"name"];
-                    
-                }
-                else{
-                    [messageDic setObject:@"noInfo" forKey:@"name"];
-                    
-                }
                 
-
+                
+                [messageDic setObject:@"noInfo" forKey:@"key_error"];
+                
+                
+                [messageDic setObject:arr forKey:@"key_result"];
+                
                 
                 
                 if (self.delegate && [self.delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
@@ -132,7 +129,7 @@
                     
                 }
                 
-                  [messageDic release];              
+                [messageDic release];
             }
             
         } else{
@@ -145,10 +142,10 @@
                 [self.delegate requestDidFinishedWithFalseMessage:messageDic];
                 
             }
-          
             
-             [messageDic release];
-                       
+            
+            [messageDic release];
+            
         }
     }];
     
@@ -163,14 +160,14 @@
             
         }
         
-         [messageDic release];
+        [messageDic release];
         
     }];
     
-//    CCLog(@"执行销毁之前");
+    //    CCLog(@"执行销毁之前");
     [request startAsynchronous];
     
-   
+    
     
 }
 @end

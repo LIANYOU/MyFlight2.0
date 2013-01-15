@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ServiceDelegate.h"
-@interface LoginForFrequentFlayer : UIViewController<ServiceDelegate>
+@interface LoginForFrequentFlayer : UIViewController<ServiceDelegate,UITextFieldDelegate>
 
 @property (retain, nonatomic) IBOutlet UITextField *accountLabel;
 

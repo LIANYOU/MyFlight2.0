@@ -82,6 +82,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UISwipeGestureRecognizer *swip =[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
+    swip.direction =UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+    
+    [self.view addGestureRecognizer: swip];
+    
+    [swip release];
+    
+    
+    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backKey:)];
+    [self.view addGestureRecognizer:tap];
+    
+    [tap release];
+
+    
+    
     [self setNav];
     self.title = @"重置密码";
     [self.newPassword becomeFirstResponder];
