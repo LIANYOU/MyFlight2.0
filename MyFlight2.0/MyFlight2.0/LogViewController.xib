@@ -279,6 +279,7 @@
 								<string key="NSFrame">{{221, 360}, {39, 39}}</string>
 								<reference key="NSSuperview" ref="579835017"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUIContentMode">1</int>
