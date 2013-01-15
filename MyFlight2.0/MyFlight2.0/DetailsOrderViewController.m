@@ -69,8 +69,10 @@
     [backBtn1 release];
     
     
+    NSLog(@"****************************************************        机票查询类型   %@",self.searchType);
+    
     self.detaile.delegate = self;
-    [self.detaile getOrderDetailInfo:self.searchType];
+    [self.detaile getOrderDetailInfo:@"1"];
 
     self.tempView = nil;
     
@@ -182,7 +184,7 @@
             return 1;
             break;
         case 1:
-            if (self.inFlight.depAirPortCN != nil) {
+            if ([self.order.flyType isEqualToString:@"2"]) {
                 return 2;
             }
             else{
@@ -345,7 +347,7 @@
         if (indexPath.row == 0) {
            [cell.imageBtn setBackgroundImage:[UIImage imageNamed:@"bg_blue.png"] forState:0];
            [cell.imageBtn setBackgroundImage:[UIImage imageNamed:@"bg_blue.png"] forState:UIControlStateHighlighted];
-            cell.HUButton.text = self.flight.flightNo;
+            cell.HUButton.text = [NSString stringWithFormat:@"%@%@",self.flight.airlineCompanyCode,self.flight.flightNo];
             cell.endAirPortName.text = self.flight.arrAirportCN;
             cell.startAirPortName.text = self.flight.depAirPortCN;
             cell.endTime.text = self.flight.arrivalTime;
@@ -371,9 +373,9 @@
             [cell.imageBtn setBackgroundImage:[UIImage imageNamed:@"bg_green.png"] forState:0];
             [cell.imageBtn setBackgroundImage:[UIImage imageNamed:@"bg_green.png"] forState:UIControlStateHighlighted];
 
-            cell.HUButton.text = self.inFlight.flightNo;
-            cell.endAirPortName.text = self.inFlight.arrAirportCN;
-            cell.startAirPortName.text = self.inFlight.depAirPortCN;
+            cell.HUButton.text = [NSString stringWithFormat:@"%@%@",self.inFlight.airlineCompanyCode,self.inFlight.flightNo];
+            cell.endAirPortName.text = self.flight.depAirPortCN;
+            cell.startAirPortName.text = self.flight.arrAirportCN;
             cell.endTime.text = self.inFlight.arrivalTime;
             cell.startTime.text = self.inFlight.departureTime;
             cell.date.text = self.inFlight.departureDate;

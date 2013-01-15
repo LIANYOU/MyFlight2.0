@@ -340,6 +340,8 @@
     }
     
     
+    NSLog(@"-------------------------------------------%@",addPersonArr);
+    
     [self.orderTableView reloadData];
     [super viewWillAppear:YES];
 }
@@ -456,6 +458,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"%s,%d",__FUNCTION__,__LINE__);
     if (self.flag==1) { // 单程
         
         return 3;
@@ -1588,7 +1591,7 @@
 //    }
     
     
-    [self judgeCondition];
+    
     
     
     
@@ -1598,9 +1601,10 @@
     {
  
         WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
-        
-        if (![self checkTel:cell.phoneField.text]) {
-         
+         NSLog(@"======================================%@============== ",[cell.phoneField.text stringByReplacingOccurrencesOfString:@" " withString:@""]);
+        if (![self checkTel:[cell.phoneField.text stringByReplacingOccurrencesOfString:@" " withString:@""]]) {
+            
+
             return;
         }
         
@@ -1610,9 +1614,9 @@
     else{
        
         WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
-       
+       NSLog(@"======================================%@============== ",[cell.phoneField.text stringByReplacingOccurrencesOfString:@" " withString:@""]);
         
-        if (![self checkTel:cell.phoneField.text]) {
+        if (![self checkTel:[cell.phoneField.text stringByReplacingOccurrencesOfString:@" " withString:@""]]) {
          
             return;
         }
@@ -1754,14 +1758,20 @@
         [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
         
     }
-    
+//    NSString * temp1 =  [aPhone stringByReplacingOccurrencesOfString:@"+86" withString:@""];
+//    NSString * new = [temp1 stringByReplacingOccurrencesOfString:@"-" withString:@" "];
+
     flightContactVo * contactVo = [[flightContactVo alloc] init];
-    contactVo.name = [addPersonArr objectAtIndex:0];
-    contactVo.mobile = [addPersonArr objectAtIndex:1];
+//    contactVo.name = [addPersonArr objectAtIndex:0];
+//    contactVo.mobile = [addPersonArr objectAtIndex:1];
+    contactVo.name = [[addPersonArr objectAtIndex:0] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    contactVo.mobile = [[addPersonArr objectAtIndex:1] stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    
-    
+     NSLog(@"====================================== %@ ============== %@",contactVo.name,contactVo.mobile);
     NSLog(@"====================================================  %@",flightItinerary.deliveryType);
+    
+    
+    [self judgeCondition];
     
     [FlightBookingBusinessHelper flightBookingWithGoflight:dic        // 杂项
                                          bookingGoFlightVo:go           //去成
@@ -1878,12 +1888,12 @@
         
         //获取号码
         NSString * temp1 =  [aPhone stringByReplacingOccurrencesOfString:@"+86" withString:@""];
-        NSString * new = [temp1 stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        NSString * new = [temp1 stringByReplacingOccurrencesOfString:@"-" withString:@" "];
         NSString * phone = new;
-        NSLog(@"PhoneLabel:%@ Phone:%@",aLabel,aPhone);
+        NSLog(@"PhoneLabel:%@ Phone:%@",aLabel,phone);
         
         [addPersonArr replaceObjectAtIndex:0 withObject:name];
-        [addPersonArr replaceObjectAtIndex:1 withObject:aPhone];
+        [addPersonArr replaceObjectAtIndex:1 withObject:phone];
         
         
         
@@ -2022,7 +2032,7 @@
         if (!Default_IsUserLogin_Value) {   // 非登陆用户
             self.order = [[OrderDetaile alloc] initWithOrderId:[arr objectAtIndex:0]
                                                    andMemberId:nil
-                                                  andCheckCode:[addPersonArr objectAtIndex:1]
+                                                  andCheckCode:[[addPersonArr objectAtIndex:1] stringByReplacingOccurrencesOfString:@" " withString:@""]
                                                        sndSign:nil
                                                      sndSource:SOURCE_VALUE
                                                        andHwId:HWID_VALUE
@@ -2161,8 +2171,25 @@
     {
         WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
         
-//        [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
-//        [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
+        NSString * string1 = nil;
+        NSString * string2 = nil;
+        if (cell.nameField.text != nil) {
+            string1 = cell.nameField.text;
+        }
+        else{
+            string1 = @" ";
+        }
+        if (cell.phoneField.text != nil) {
+            string2 = cell.phoneField.text;
+        }
+        else{
+            string2 = @" ";
+        }
+
+        
+        
+        [addPersonArr replaceObjectAtIndex:0 withObject:string1];
+        [addPersonArr replaceObjectAtIndex:1 withObject:string2];
         
         CGPoint ce=self.view.center;
         ce.y=self.view.frame.size.height/2;
@@ -2181,8 +2208,25 @@
         
         WriteOrderDetailsCell *cell = (WriteOrderDetailsCell *)[self.orderTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
 
-//        [addPersonArr replaceObjectAtIndex:0 withObject:cell.nameField.text];
-//        [addPersonArr replaceObjectAtIndex:1 withObject:cell.phoneField.text];
+        NSString * string1 = nil;
+        NSString * string2 = nil;
+        if (cell.nameField.text != nil) {
+            string1 = cell.nameField.text;
+        }
+        else{
+            string1 = @" ";
+        }
+        if (cell.phoneField.text != nil) {
+            string2 = cell.phoneField.text;
+        }
+        else{
+            string2 = @" ";
+        }
+        
+        
+        [addPersonArr replaceObjectAtIndex:0 withObject:string1];
+        [addPersonArr replaceObjectAtIndex:1 withObject:string2];
+
         
         CGPoint ce=self.view.center;
         ce.y=self.view.frame.size.height/2;
@@ -2197,6 +2241,8 @@
         [cell.nameField resignFirstResponder];
         [cell.phoneField resignFirstResponder];
     }
+    
+    
 
 }
 

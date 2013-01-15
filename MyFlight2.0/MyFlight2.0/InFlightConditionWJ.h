@@ -21,4 +21,9 @@
 @property (nonatomic, retain) NSString * departureTime; // 起飞时间
 @property (nonatomic, retain) NSString * arrivalTime; // 到达时间
 @property (nonatomic, retain) NSString * cabinRule; // 舱位规则
+
+
+
+@property (nonatomic, retain) NSString * flightType; // 机票类型
+
 @end

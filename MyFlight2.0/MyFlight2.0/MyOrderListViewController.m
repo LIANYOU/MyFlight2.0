@@ -292,6 +292,8 @@
     
     DetailsOrderViewController *con  =[[DetailsOrderViewController alloc] init];
     
+    //  con.searchType = @""  订单类型
+    
     con.controllerFlag = @"orderListViewController";
     
     con.detaile = detail;
