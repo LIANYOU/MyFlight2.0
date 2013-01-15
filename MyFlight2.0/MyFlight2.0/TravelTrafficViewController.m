@@ -210,7 +210,7 @@
     navLabel.text = [NSString stringWithFormat:@"%@市区-机场",self.airPortName];
     
     navImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"triangle_white_down.png"]];
-    navImageView.frame = CGRectMake(155, 17, 10, 10);
+    navImageView.frame = CGRectMake(155, 19, 8, 8);
     [navgationView addSubview:navImageView];
     [navgationView addSubview:navLabel];
     self.navigationItem.titleView = navgationView;
@@ -825,7 +825,7 @@
             [lastBusLabel release];
             
             UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_arrowhead_.png"]];
-            imageView.frame = CGRectMake(300, 20, 9, 12);
+            imageView.frame = CGRectMake(300, 16, 9, 12);
 //            [imageView setImage:[UIImage imageNamed:@"icon_arrowhead_.png"]];
             [cell addSubview:imageView];
             [imageView release];
@@ -836,7 +836,7 @@
             [imageView1 release];
             
             UIImageView * imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 42, 320, 1)];
-            imageView.backgroundColor = LINE_COLOR;
+            imageView2.backgroundColor = LINE_COLOR;
             [cell addSubview:imageView2];
             [imageView2 release];
             
@@ -933,6 +933,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
     if (segmented.selectedIndex == 0){
         if (orientationSubway == 0){
             SubTrfficViewController * subTrffic = [[SubTrfficViewController alloc]init];
