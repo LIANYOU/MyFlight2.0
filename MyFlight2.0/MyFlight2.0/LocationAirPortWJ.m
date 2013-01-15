@@ -29,19 +29,27 @@
     return self;
     
 }
+
+
 -(void)getLocationName
 {
+    
+    
+    
+    
     __block NSMutableDictionary *messageDic = [[NSMutableDictionary alloc] init];
     
-    //取消订单信息
-    
-    [messageDic setObject:@"cancel" forKey:KEY_Request_Type];
-    
+//    //取消订单信息
+//    
+//    [messageDic setObject:@"cancel" forKey:KEY_Request_Type];
+//    
+//    
+    NSString * url =GET_RIGHT_URL_WITH_Index(@"/web/phone/service/getLocation.jsp");
     
     
     __block NSString *message = nil;
     
-    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",@"http://223.202.36.179:9580/web/phone/service/getLocation.jsp?"]]];
+    __block ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:[NSURL URLWithString: url] ];
     
     [request setPostValue:self.x forKey:@"x"];
     [request setPostValue:self.y forKey:@"y"];
@@ -80,29 +88,39 @@
             
             message = [[dic objectForKey:KEY_result] objectForKey:KEY_message];
             
-            NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
-            NSString * apName = [dic objectForKey:@"apName"];
-            
-            if (apName != nil) {
-                [dictionary setObject:apName forKey:@"name"];
-
-            }
-            else{
-                [dictionary setObject:@"noInfo" forKey:@"name"];
-
-            }
-            
-        
+                    
             if ([message length]==0) {
                 
-                [messageDic setObject:message forKey:KEY_message];
+//                [messageDic setObject:message forKey:KEY_message];
+                
+                               
+                
+                NSString * apName = [dic objectForKey:@"apName"];
+                NSString * apCode = [dic objectForKey:@"apCode"];
+                
+                NSArray * arr = [NSArray arrayWithObjects:apName,apCode, nil];
+                
+                CCLog(@"网络请求到的数据 %@ ",apName);
+                
+                if (apName != nil) {
+                    [messageDic setObject:arr forKey:@"name"];
+                    
+                }
+                else{
+                    [messageDic setObject:@"noInfo" forKey:@"name"];
+                    
+                }
+                
+
                 
                 
                 if (self.delegate && [self.delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     
-                    [self.delegate requestDidFinishedWithRightMessage:dictionary];
+                    [self.delegate requestDidFinishedWithRightMessage:messageDic];
                     
                 }
+                
+                [messageDic release];
                 
             } else{
                 
@@ -114,6 +132,7 @@
                     
                 }
                 
+                  [messageDic release];              
             }
             
         } else{
@@ -126,8 +145,10 @@
                 [self.delegate requestDidFinishedWithFalseMessage:messageDic];
                 
             }
-            return ;
+          
             
+             [messageDic release];
+                       
         }
     }];
     
@@ -142,9 +163,14 @@
             
         }
         
+         [messageDic release];
+        
     }];
     
-    
+//    CCLog(@"执行销毁之前");
     [request startAsynchronous];
+    
+   
+    
 }
 @end
