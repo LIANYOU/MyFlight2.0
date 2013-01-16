@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ServiceDelegate.h"
 @class discountCell;
-@interface ChooseDiscountCouponController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface ChooseDiscountCouponController : UIViewController<UITableViewDataSource,UITableViewDelegate,ServiceDelegate>
 {
     void (^blocks) (NSString * name, NSString * count ,NSMutableArray * arr);
 }
@@ -22,5 +23,12 @@
 @property (retain, nonatomic) NSArray * captchaList;
 
 -(void)getDate:(void (^) (NSString * name, NSString * count ,NSMutableArray * arr))string;
+
+
+@property (retain, nonatomic) IBOutlet UITextField *tempField;
+@property (retain, nonatomic) IBOutlet UIView *keyBoardView;
+@property (retain, nonatomic) IBOutlet UITextField *discountInfoField;
+- (IBAction)checkDiscountInfo:(id)sender;
+- (IBAction)inputDiscountInfo:(id)sender;
 
 @end

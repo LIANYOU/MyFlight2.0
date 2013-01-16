@@ -10,6 +10,8 @@
 #import "discountCell.h"
 #import "UIButton+BackButton.h"
 #import "UIQuickHelp.h"
+#import "MyCheapCouponHelper.h"
+#import "AppConfigure.h"
 @interface ChooseDiscountCouponController ()
 {
         BOOL selectedSign;
@@ -52,6 +54,9 @@
     self.showTableView.delegate = self;
     self.showTableView.dataSource = self;
     
+    
+    
+    self.tempField.inputAccessoryView = self.keyBoardView;
 
     self.selectArr = [NSMutableArray arrayWithArray:self.indexArr];
 
@@ -154,6 +159,9 @@
     [_showTableView release];
     [_footView release];
     [_backViee release];
+    [_tempField release];
+    [_keyBoardView release];
+    [_discountInfoField release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -161,6 +169,9 @@
     [self setShowTableView:nil];
     [self setFootView:nil];
     [self setBackViee:nil];
+    [self setTempField:nil];
+    [self setKeyBoardView:nil];
+    [self setDiscountInfoField:nil];
     [super viewDidUnload];
 }
 
@@ -177,6 +188,9 @@
         string2 = [NSString stringWithFormat:@"%@",cell.count.text];
     }
     
+    
+    
+    
     blocks(string1,string2,self.selectArr);
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -187,4 +201,56 @@
     [blocks release];
     blocks = [string copy];
 }
+- (IBAction)checkDiscountInfo:(id)sender {
+    
+    [self.discountInfoField resignFirstResponder];
+    [MyCheapCouponHelper makeCouponActiveWithMemberId:Default_UserMemberId_Value captcha:self.discountInfoField.text andDlegate:self];
+    
+    
+}
+
+- (IBAction)inputDiscountInfo:(id)sender {
+    [self.tempField becomeFirstResponder];
+    [self.discountInfoField becomeFirstResponder];
+    
+}
+
+#pragma mark -
+
+//网络错误回调的方法
+- (void )requestDidFailed:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+}
+
+//网络返回错误信息回调的方法
+- (void) requestDidFinishedWithFalseMessage:(NSDictionary *)info{
+    
+    NSString * meg =[info objectForKey:KEY_message];
+    
+    [UIQuickHelp showAlertViewWithTitle:@"温馨提醒" message:meg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    
+}
+
+
+//网络正确回调的方法
+- (void) requestDidFinishedWithRightMessage:(NSDictionary *)info{
+    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"优惠券验证成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+   
+    [alert show];
+    [alert release];
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    
+    [self.discountInfoField resignFirstResponder];
+    
+}
+
+
 @end
