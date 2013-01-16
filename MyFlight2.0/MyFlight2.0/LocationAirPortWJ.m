@@ -113,6 +113,8 @@
                 
                 if (self.delegate && [self.delegate respondsToSelector:@selector(requestDidFinishedWithRightMessage:)]) {
                     
+                    
+                    
                     [self.delegate requestDidFinishedWithRightMessage:messageDic];
                     
                 }

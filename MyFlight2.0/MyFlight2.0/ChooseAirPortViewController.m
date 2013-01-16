@@ -319,6 +319,7 @@
             
             if (isLocated) {
                 thisCell.thsiImage.hidden = YES;
+                
                 NSString *string =[self.locationInfoArr objectAtIndex:0];
                 
                 
@@ -720,7 +721,7 @@ return indexPath;
     else{
         
         locationFlag = @"location";
-        
+        CCLog(@"&&&&&&&&&&&&");
         self.locationInfoArr =[info objectForKey:@"key_result"];
 
         isLocated =YES;
